@@ -48,15 +48,18 @@ void TICManagerImpl::Init(int sdkappid, TICCallback callback)
 	TIMSetConfig(json_config.toStyledString().c_str(), nullptr, nullptr);
 
 	//获取APPDATA路径
-	char my_documents[MAX_PATH] = { 0 };
-	HRESULT result = SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, SHGFP_TYPE_CURRENT, my_documents);
-	std::string szIMLogDir = my_documents;
-	szIMLogDir += "\\Tencent\\imsdk";
+	wchar_t my_documents[MAX_PATH] = { 0 };
+	HRESULT result = SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, SHGFP_TYPE_CURRENT, my_documents);
+	std::wstring szIMLogDir = my_documents;
+	szIMLogDir += L"\\Tencent\\imsdk";
+
+	std::wstring configFile = szIMLogDir + L"\\imsdk_config";
+	DeleteFileW(configFile.c_str());
 
 	//指定IMSDK日志路径
 	Json::Value json_value_init;
-	json_value_init[kTIMSdkConfigLogFilePath] = szIMLogDir.c_str();
-	json_value_init[kTIMSdkConfigConfigFilePath] = szIMLogDir.c_str();
+	json_value_init[kTIMSdkConfigLogFilePath] = w2a(szIMLogDir).c_str();
+	json_value_init[kTIMSdkConfigConfigFilePath] = w2a(szIMLogDir).c_str();
 
 	int ret = TIMInit(sdkappid, json_value_init.toStyledString().c_str());
 

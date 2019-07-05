@@ -327,17 +327,7 @@ id makeWeakRef (id object) {
 {
     _isEnterRoom = YES;
     //录制对时
-    __weak typeof(self) ws = self;
-    if(_recorder == nil){
-        _recorder = [[TICRecorder alloc] init];
-    }
-    [_recorder sendOfflineRecordInfo:[@(_option.classId) stringValue] ntpServer:_option.ntpServer callback:^(TICModule module, int code, NSString *desc) {
-        for (id<TICEventListener> listener in ws.eventListeners) {
-            if (listener && [listener respondsToSelector:@selector(onTICSendOfflineRecordInfo:desc:)]) {
-                [listener onTICSendOfflineRecordInfo:code desc:desc];
-            }
-        }
-    }];
+    [self sendOfflineRecordInfo];
     //群ID上报
     [_recorder reportGroupId:[@(_option.classId) stringValue] sdkAppId:_sdkAppId userId:_userId userSig:_userSig];
     //进房回调
@@ -661,6 +651,9 @@ id makeWeakRef (id object) {
 
 - (void)sendOfflineRecordInfo
 {
+    if(_recorder == nil){
+        _recorder = [[TICRecorder alloc] init];
+    }
     __weak typeof(self) ws = self;
     [_recorder sendOfflineRecordInfo:[@(_option.classId) stringValue] ntpServer:_option.ntpServer callback:^(TICModule module, int code, NSString *desc) {
         for (id<TICEventListener> listener in ws.eventListeners) {

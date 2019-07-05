@@ -1,5 +1,11 @@
 # Release Notes - Android
 
+## 2.2.2.99 @ 2019.06.30
+1. 白板
+    - AddFile接口同步返回FileID;
+    - onTEBFileUploadProgress回调接口返回FileID和进度百分比；
+    - onTEBFileUploadStatus回调接口返回FileID和错误码
+
 ## 2.2.0 @ 2019.06.20
 1. 白板
     - 支持白板上下页跳转是否重置步数

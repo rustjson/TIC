@@ -20,8 +20,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
     }
+
     signingConfigs {
         release {
             storeFile file("$System.env.KEYSTORE_PATH")
@@ -66,6 +66,6 @@ dependencies {
     compile 'com.tencent.imsdk:mobilepbforimsdk:1.6.0.45'
     compile 'com.tencent.imsdk:imsdk:4.4.479'
 
-    //http，board sdk 不依赖，根据需要使用
+    //http，board sdk 不依赖，根据项目自身需要使用
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 }
