@@ -1,10 +1,8 @@
-*.lib filter=lfs diff=lfs merge=lfs -text
-*.dll filter=lfs diff=lfs merge=lfs -text
-*.dat filter=lfs diff=lfs merge=lfs -text
-*.bin filter=lfs diff=lfs merge=lfs -text
-*.so filter=lfs diff=lfs merge=lfs -text
 *.pak filter=lfs diff=lfs merge=lfs -text
-*.a filter=lfs diff=lfs merge=lfs -text
-TXLiteAVSDK_TRTC filter=lfs diff=lfs merge=lfs -text
-TXLiteAVSDK_Mac filter=lfs diff=lfs merge=lfs -text
-chrome-sandbox filter=lfs diff=lfs merge=lfs -text
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.lib filter=lfs diff=lfs merge=lfs -text
+Windows/SDK/TEduBoard/lib/icudtl.dat filter=lfs diff=lfs merge=lfs -text
+iOS/SDK/TIM/ImSDK.framework/ImSDK filter=lfs diff=lfs merge=lfs -text
+iOS/SDK/TRTC/TXLiteAVSDK_TRTC.framework/TXLiteAVSDK_TRTC filter=lfs diff=lfs merge=lfs -text
+macOS/SDK/TIM/ImSDKForMac.framework/Versions/A/ImSDKForMac filter=lfs diff=lfs merge=lfs -text
+macOS/SDK/TRTC/TXLiteAVSDK_Mac.framework/Versions/A/TXLiteAVSDK_Mac filter=lfs diff=lfs merge=lfs -text

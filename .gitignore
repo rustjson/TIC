@@ -1,0 +1,11 @@
+.DS_Store
+.vs
+Windows/Demo/Debug
+Windows/Demo/Release
+Windows/Demo/GPUCache
+Windows/Demo/Debug
+Windows/Demo/Release
+*.user
+*.aps
+Web/Demo/.idea
+/.idea

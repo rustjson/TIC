@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A20E660219186EA0021CA30 /* libc++.tbd */; };
+		6A20E67321918A970021CA30 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A20E67221918A970021CA30 /* libresolv.tbd */; };
+		6A9FC2B2217EBCC6009ACB83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B1217EBCC6009ACB83 /* AppDelegate.m */; };
+		6A9FC2B5217EBCC6009ACB83 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B4217EBCC6009ACB83 /* ViewController.m */; };
+		6A9FC2B7217EBCC7009ACB83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B6217EBCC7009ACB83 /* Assets.xcassets */; };
+		6A9FC2BA217EBCC7009ACB83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B8217EBCC7009ACB83 /* Main.storyboard */; };
+		6A9FC2BD217EBCC7009ACB83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2BC217EBCC7009ACB83 /* main.m */; };
+		CF0AF30022785CFA00B9CD87 /* ColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0AF2FF22785CFA00B9CD87 /* ColorPickViewController.m */; };
+		CF3FB3412276A2C7001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3372276A2C7001C148E /* TICDef.m */; };
+		CF3FB3422276A2C7001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3392276A2C7001C148E /* TICManager.m */; };
+		CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB33B2276A2C7001C148E /* TICRenderView.m */; };
+		CF3FB3452276A2C7001C148E /* TXLiteAVSDK_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */; };
+		CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; };
+		CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CF3FB350227707CC001C148E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CF3FB34D227707CC001C148E /* config.json */; };
+		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
+		CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */; };
+		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
+		CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445A22953EB1004FFD01 /* NetAssociation.m */; };
+		CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445C22953EB1004FFD01 /* NetworkClock.m */; };
+		CFDF446622953EB2004FFD01 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = CFDF445D22953EB1004FFD01 /* Notes */; };
+		CFDF446722953EB2004FFD01 /* NSDate+NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445F22953EB1004FFD01 /* NSDate+NetworkClock.m */; };
+		CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF446322953EB2004FFD01 /* GCDAsyncUdpSocket.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CF3FB3482276A452001C148E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6A20E660219186EA0021CA30 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6A20E662219187560021CA30 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		6A20E6642191879E0021CA30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		6A20E666219189B50021CA30 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		6A20E66821918A290021CA30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6A20E66A21918A360021CA30 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6A20E66C21918A4D0021CA30 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		6A20E66E21918A550021CA30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6A20E67021918A5D0021CA30 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6A20E67221918A970021CA30 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		6A94EA27219AB83900F4B42B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6A9FC2AD217EBCC6009ACB83 /* TICDemo_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TICDemo_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A9FC2B0217EBCC6009ACB83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6A9FC2B1217EBCC6009ACB83 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6A9FC2B3217EBCC6009ACB83 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6A9FC2B4217EBCC6009ACB83 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6A9FC2B6217EBCC7009ACB83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A9FC2B9217EBCC7009ACB83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6A9FC2BB217EBCC7009ACB83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9FC2BC217EBCC7009ACB83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6A9FC2BE217EBCC7009ACB83 /* TICDemo_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TICDemo_Mac.entitlements; sourceTree = "<group>"; };
+		CF0AF2FE22785CFA00B9CD87 /* ColorPickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPickViewController.h; sourceTree = "<group>"; };
+		CF0AF2FF22785CFA00B9CD87 /* ColorPickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorPickViewController.m; sourceTree = "<group>"; };
+		CF3FB3362276A2C7001C148E /* TICDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDef.h; sourceTree = "<group>"; };
+		CF3FB3372276A2C7001C148E /* TICDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDef.m; sourceTree = "<group>"; };
+		CF3FB3382276A2C7001C148E /* TICManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICManager.h; sourceTree = "<group>"; };
+		CF3FB3392276A2C7001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
+		CF3FB33A2276A2C7001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
+		CF3FB33B2276A2C7001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
+		CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_Mac.framework; sourceTree = "<group>"; };
+		CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDKForMac.framework; sourceTree = "<group>"; };
+		CF3FB34D227707CC001C148E /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		CF3FB34E227707CC001C148E /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
+		CF3FB34F227707CC001C148E /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
+		CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard_Mac.framework; sourceTree = "<group>"; };
+		CFDF44322294FCD1004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
+		CFDF44332294FCD1004FFD01 /* TICRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TICRecorder.mm; sourceTree = "<group>"; };
+		CFDF445822953EB1004FFD01 /* ios-ntp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ios-ntp.h"; sourceTree = "<group>"; };
+		CFDF445922953EB1004FFD01 /* NetAssociation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAssociation.h; sourceTree = "<group>"; };
+		CFDF445A22953EB1004FFD01 /* NetAssociation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAssociation.m; sourceTree = "<group>"; };
+		CFDF445B22953EB1004FFD01 /* NetworkClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkClock.h; sourceTree = "<group>"; };
+		CFDF445C22953EB1004FFD01 /* NetworkClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkClock.m; sourceTree = "<group>"; };
+		CFDF445D22953EB1004FFD01 /* Notes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
+		CFDF445E22953EB1004FFD01 /* NSDate+NetworkClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NetworkClock.h"; sourceTree = "<group>"; };
+		CFDF445F22953EB1004FFD01 /* NSDate+NetworkClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NetworkClock.m"; sourceTree = "<group>"; };
+		CFDF446022953EB1004FFD01 /* ntp-log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ntp-log.h"; sourceTree = "<group>"; };
+		CFDF446222953EB2004FFD01 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		CFDF446322953EB2004FFD01 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A9FC2AA217EBCC6009ACB83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */,
+				6A20E67321918A970021CA30 /* libresolv.tbd in Frameworks */,
+				CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */,
+				CF3FB3452276A2C7001C148E /* TXLiteAVSDK_Mac.framework in Frameworks */,
+				CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A20E65F219186EA0021CA30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A94EA27219AB83900F4B42B /* libz.tbd */,
+				6A20E67221918A970021CA30 /* libresolv.tbd */,
+				6A20E67021918A5D0021CA30 /* AVFoundation.framework */,
+				6A20E66E21918A550021CA30 /* CoreGraphics.framework */,
+				6A20E66C21918A4D0021CA30 /* CoreMedia.framework */,
+				6A20E66A21918A360021CA30 /* CoreTelephony.framework */,
+				6A20E66821918A290021CA30 /* SystemConfiguration.framework */,
+				6A20E666219189B50021CA30 /* CoreWLAN.framework */,
+				6A20E6642191879E0021CA30 /* libsqlite3.tbd */,
+				6A20E662219187560021CA30 /* libiconv.tbd */,
+				6A20E660219186EA0021CA30 /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6A9FC2A4217EBCC6009ACB83 = {
+			isa = PBXGroup;
+			children = (
+				6A9FC2AF217EBCC6009ACB83 /* TICDemo_Mac */,
+				6A9FC2AE217EBCC6009ACB83 /* Products */,
+				6A20E65F219186EA0021CA30 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6A9FC2AE217EBCC6009ACB83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A9FC2AD217EBCC6009ACB83 /* TICDemo_Mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A9FC2AF217EBCC6009ACB83 /* TICDemo_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FB34C227707CC001C148E /* Config */,
+				CF3FB3322276A2C7001C148E /* SDK */,
+				6A9FC2B0217EBCC6009ACB83 /* AppDelegate.h */,
+				6A9FC2B1217EBCC6009ACB83 /* AppDelegate.m */,
+				6A9FC2B3217EBCC6009ACB83 /* ViewController.h */,
+				6A9FC2B4217EBCC6009ACB83 /* ViewController.m */,
+				CF0AF2FE22785CFA00B9CD87 /* ColorPickViewController.h */,
+				CF0AF2FF22785CFA00B9CD87 /* ColorPickViewController.m */,
+				6A9FC2B6217EBCC7009ACB83 /* Assets.xcassets */,
+				6A9FC2B8217EBCC7009ACB83 /* Main.storyboard */,
+				6A9FC2BB217EBCC7009ACB83 /* Info.plist */,
+				6A9FC2BC217EBCC7009ACB83 /* main.m */,
+				6A9FC2BE217EBCC7009ACB83 /* TICDemo_Mac.entitlements */,
+			);
+			path = TICDemo_Mac;
+			sourceTree = "<group>";
+		};
+		CF3FB3322276A2C7001C148E /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FB3332276A2C7001C148E /* TEduBoard */,
+				CF3FB3352276A2C7001C148E /* TIC */,
+				CF3FB33C2276A2C7001C148E /* TIM */,
+				CF3FB33E2276A2C7001C148E /* TRTC */,
+			);
+			name = SDK;
+			path = ../../../SDK;
+			sourceTree = "<group>";
+		};
+		CF3FB3332276A2C7001C148E /* TEduBoard */ = {
+			isa = PBXGroup;
+			children = (
+				CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */,
+			);
+			path = TEduBoard;
+			sourceTree = "<group>";
+		};
+		CF3FB3352276A2C7001C148E /* TIC */ = {
+			isa = PBXGroup;
+			children = (
+				CFDF446122953EB2004FFD01 /* CocoaAsyncSocket */,
+				CFDF445722953EB1004FFD01 /* ios-ntp */,
+				CF3FB3362276A2C7001C148E /* TICDef.h */,
+				CF3FB3372276A2C7001C148E /* TICDef.m */,
+				CF3FB3382276A2C7001C148E /* TICManager.h */,
+				CF3FB3392276A2C7001C148E /* TICManager.m */,
+				CF3FB33A2276A2C7001C148E /* TICRenderView.h */,
+				CF3FB33B2276A2C7001C148E /* TICRenderView.m */,
+				CFDF44322294FCD1004FFD01 /* TICRecorder.h */,
+				CFDF44332294FCD1004FFD01 /* TICRecorder.mm */,
+			);
+			path = TIC;
+			sourceTree = "<group>";
+		};
+		CF3FB33C2276A2C7001C148E /* TIM */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */,
+			);
+			path = TIM;
+			sourceTree = "<group>";
+		};
+		CF3FB33E2276A2C7001C148E /* TRTC */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */,
+			);
+			path = TRTC;
+			sourceTree = "<group>";
+		};
+		CF3FB34C227707CC001C148E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CF3FB34D227707CC001C148E /* config.json */,
+				CF3FB34E227707CC001C148E /* TICConfig.h */,
+				CF3FB34F227707CC001C148E /* TICConfig.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		CFDF445722953EB1004FFD01 /* ios-ntp */ = {
+			isa = PBXGroup;
+			children = (
+				CFDF445822953EB1004FFD01 /* ios-ntp.h */,
+				CFDF445922953EB1004FFD01 /* NetAssociation.h */,
+				CFDF445A22953EB1004FFD01 /* NetAssociation.m */,
+				CFDF445B22953EB1004FFD01 /* NetworkClock.h */,
+				CFDF445C22953EB1004FFD01 /* NetworkClock.m */,
+				CFDF445D22953EB1004FFD01 /* Notes */,
+				CFDF445E22953EB1004FFD01 /* NSDate+NetworkClock.h */,
+				CFDF445F22953EB1004FFD01 /* NSDate+NetworkClock.m */,
+				CFDF446022953EB1004FFD01 /* ntp-log.h */,
+			);
+			path = "ios-ntp";
+			sourceTree = "<group>";
+		};
+		CFDF446122953EB2004FFD01 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				CFDF446222953EB2004FFD01 /* GCDAsyncUdpSocket.h */,
+				CFDF446322953EB2004FFD01 /* GCDAsyncUdpSocket.m */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A9FC2AC217EBCC6009ACB83 /* TICDemo_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A9FC2C1217EBCC7009ACB83 /* Build configuration list for PBXNativeTarget "TICDemo_Mac" */;
+			buildPhases = (
+				6A9FC2A9217EBCC6009ACB83 /* Sources */,
+				6A9FC2AA217EBCC6009ACB83 /* Frameworks */,
+				6A9FC2AB217EBCC6009ACB83 /* Resources */,
+				CF3FB3482276A452001C148E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TICDemo_Mac;
+			productName = TIC_Demo_Mac;
+			productReference = 6A9FC2AD217EBCC6009ACB83 /* TICDemo_Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A9FC2A5217EBCC6009ACB83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Tencent;
+				TargetAttributes = {
+					6A9FC2AC217EBCC6009ACB83 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 6A9FC2A8217EBCC6009ACB83 /* Build configuration list for PBXProject "TICDemo_Mac" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A9FC2A4217EBCC6009ACB83;
+			productRefGroup = 6A9FC2AE217EBCC6009ACB83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A9FC2AC217EBCC6009ACB83 /* TICDemo_Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6A9FC2AB217EBCC6009ACB83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9FC2B7217EBCC7009ACB83 /* Assets.xcassets in Resources */,
+				6A9FC2BA217EBCC7009ACB83 /* Main.storyboard in Resources */,
+				CFDF446622953EB2004FFD01 /* Notes in Resources */,
+				CF3FB350227707CC001C148E /* config.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A9FC2A9217EBCC6009ACB83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A9FC2B5217EBCC6009ACB83 /* ViewController.m in Sources */,
+				CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */,
+				CF3FB3412276A2C7001C148E /* TICDef.m in Sources */,
+				CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */,
+				CF3FB3422276A2C7001C148E /* TICManager.m in Sources */,
+				6A9FC2BD217EBCC7009ACB83 /* main.m in Sources */,
+				6A9FC2B2217EBCC6009ACB83 /* AppDelegate.m in Sources */,
+				CF0AF30022785CFA00B9CD87 /* ColorPickViewController.m in Sources */,
+				CFDF446722953EB2004FFD01 /* NSDate+NetworkClock.m in Sources */,
+				CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */,
+				CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */,
+				CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */,
+				CF3FB351227707CC001C148E /* TICConfig.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6A9FC2B8217EBCC7009ACB83 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A9FC2B9217EBCC7009ACB83 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6A9FC2BF217EBCC7009ACB83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6A9FC2C0217EBCC7009ACB83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		6A9FC2C2217EBCC7009ACB83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../SDK/**",
+				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
+				INFOPLIST_FILE = TICDemo_Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6A9FC2C3217EBCC7009ACB83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../SDK/**",
+				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
+				INFOPLIST_FILE = TICDemo_Mac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A9FC2A8217EBCC6009ACB83 /* Build configuration list for PBXProject "TICDemo_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9FC2BF217EBCC7009ACB83 /* Debug */,
+				6A9FC2C0217EBCC7009ACB83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A9FC2C1217EBCC7009ACB83 /* Build configuration list for PBXNativeTarget "TICDemo_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A9FC2C2217EBCC7009ACB83 /* Debug */,
+				6A9FC2C3217EBCC7009ACB83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6A9FC2A5217EBCC6009ACB83 /* Project object */;
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>=====教育SDK开发者DEMO===</title>
+  <style>
+    html {
+      font-size: 75%;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      padding: 5px;
+    }
+
+    .title {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    video {
+      width: 100%;
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    .im-log-box {
+      display: inline-block;
+      width: 100%;
+      height: 200px;
+      border: 1px solid #999;
+      margin: 5px;
+      overflow-y: auto;
+    }
+
+    .im-log-box li {
+      margin: 2px 5px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    #video_wrap {
+      height: 100px;
+    }
+
+    #video_wrap video {
+      margin: 0 5px;
+    }
+
+    #paint_box {
+      position: relative;
+      width: 812px;
+      height: 500px;
+      border: 1px solid #888;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="./libs/bootstrap.min.css">
+  <script src="./libs/vue.js"></script>
+  <script src="./libs/vue-toasted.js"></script>
+</head>
+
+
+<body>
+  <div id="app_box" class="container-fluid">
+    <h4 class="title">教育SDK_开发者_DEMO</h4>
+    <div class="row" v-if="step == 'first'">
+      <div class="col align-self-center"></div>
+      <div class="col align-self-center">
+        <form>
+          <div class="form-group row">
+            <label for="account" class="col-sm-2 col-form-label">账号</label>
+            <select class="form-control col-sm-10" id="account" v-model="account" name="account">
+              <option v-for="user in users" v-bind:value="user.userId">{{user.userId}}</option>
+            </select>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">推流模式</label>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" v-model.number="pushModel" value="1">
+                自动推流</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" v-model.number="pushModel" value="0">
+                手动推流</label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">角色</label>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" v-model.number="isTeacher" value="1">
+                老师</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" v-model.number="isTeacher" value="0">
+                学生</label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="roomid" class="col-sm-2 col-form-label">课堂ID</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="roomid" v-model.trim="roomID" placeholder="课堂ID">
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary" @click="start" v-text="isTeacher ? '创建课堂': '进入课堂'"></button>
+        </form>
+      </div>
+      <div class="col align-self-center"></div>
+    </div>
+
+    <div v-else>
+      <div class="row">
+        <div class="col-md-4 offset-md-8 text-right">userid： {{account}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roomID:
+          {{roomID}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning btn-sm"
+            @click="quitClassroom">退出</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning btn-sm" v-if="isTeacher"
+            @click="destroyClassroom">销毁</button></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-row">
+
+            <div class="btn-group mr-2" role="group">
+              <button @click="startRTC" type="button" class="btn btn-primary btn-sm">摄像头推流</button>
+              <button @click="pushScreen" class="btn btn-info btn-sm">屏幕分享</button>
+              <button @click="stopPush" class="btn btn-warning btn-sm" v-if="isPushing === 1">停止推流</button>
+            </div>
+
+            <div class="btn-group mr-2" role="group">
+              <template v-if="isPushing === 1">
+                <button class="btn btn-primary btn-sm" @click="toggleCamera">{{enableCamera ? '关闭':
+                  '打开'}}摄像头/屏幕分享</button>
+                <button class="btn btn-primary btn-sm" @click="toggleMic">{{enableMic ? '关闭': '打开'}}麦克风</button>
+              </template>
+            </div>
+
+            <div class="btn-group mr-2" role="group" v-if="isPushing === 1 && isPushCamera">
+              <button @click="getCameraDevices" class="btn btn-success btn-sm">枚举摄像头</button>
+              <select class="form-control col-sm-2" v-model="cameraIndex" @change="switchCamera">
+                <option value="-1">请选择摄像头/枚举摄像头</option>
+                <option v-for="(camera, index) in devices.camera" v-bind:value="index">{{camera.label}}</option>
+              </select>
+
+              <button @click="getMicDevices" class="btn btn-info btn-sm">枚举麦克风</button>
+              <select class="form-control col-sm-2" v-model="micIndex" @change="switchMic">
+                <option value="-1">请选择麦克风/枚举麦克风</option>
+                <option v-for="(mic, index) in devices.mic" v-bind:value="index">{{mic.label}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" id="video_wrap">
+
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="row">
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#ff0000')">设置全局背景色(红)</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#0000ff')">设置全局背景色(蓝)</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#ffffff')">设置全局背景色(白色)</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="setBgColor('#ffff00')">设置当前背景色(黄)</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setBgColor('#00ff00')">设置当前背景色(绿)</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="setColor('#000000')">笔刷黑色</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setColor('#0000ff')">笔刷蓝色</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="setThin(50)">小号笔刷</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setThin(100)">中号笔刷</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setThin(150)">大号笔刷</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_TEXT)">文字输入</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_PEN)">画笔</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LINE)">直线</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL_SOLID)">实心(椭)圆</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL)">空心(椭)圆</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SOLID)">实心矩形</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT)">空心矩形</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ERASER)">橡皮擦</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LASER)">激光笔</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SELECT)">框选</button>
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_POINT_SELECT)">点选</button>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="clearDraws">清空当前页涂鸦(保留背景)</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="clear">清空当前页涂鸦 + 背景 (全部清空)</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="revert">撤销</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="process">恢复</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <div class="custom-file">
+              <input id="file_input" class="custom-file-input" type="file" @change="uploadFile"
+                accept="image/*, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-powerpoint, application/vnd.ms-excel">
+              <label class="custom-file-label" for="file_input">Choose file</label>
+            </div>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="uploadH5File">添加演示H5PPT1</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="uploadH5File2">添加演示H5PPT2</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="setBackgroundH5">设置H5背景</button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="zoom">放大</button>
+
+            <button type="button" class="btn btn-primary btn-sm" @click="shrink">缩小</button>
+
+            <button type="button" class="btn btn-primary btn-sm"
+              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ZOOM_DRAG)">移动</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="nav nav-tabs">
+                <li class="nav-item" v-for="file in boardFileGroup" @click="switchFile(file)">
+                  <a class="nav-link" v-bind:class="{active: file.fid == currentFile}" href="#">{{file.title}}<i
+                      class="fas fa-trash" v-if="file.fid != '#DEFAULT'" style="font-size: 16px;margin-left: 20px;"
+                      @click.stop="deleteFile(file)"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px;">
+            <div class="col-md-12">
+              <div id="paint_box"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-row">
+            <label class="col-form-label">消息内容</label>
+            <div class="col-3">
+              <input type="text" v-model="imMsg.common.data" class="form-control" placeholder="text消息">
+            </div>
+            <label class="col-form-label">接收人ID</label>
+            <div class="col-3">
+              <input type="text" v-model="imMsg.common.toUser" class="form-control" placeholder="不填表示给群组发消息">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" @click="sendMsg">发送文本消息</button>
+          </div>
+
+          <div class="form-row" style="margin-top: 10px;">
+            <label class="col-form-label">自定义消息</label>
+            <div class="col-1">
+              <input type="text" v-model="imMsg.custom.data" class="form-control" placeholder="data">
+            </div>
+            <label class="col-form-label">接收人ID</label>
+            <div class="col-2">
+              <input type="text" v-model="imMsg.custom.toUser" class="form-control" placeholder="不填表示给群组发消息">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" @click="sendCustomGroupMsg">发送自定义消息</button>
+          </div>
+          <div class="row">
+            <ul class="im-log-box">
+              <li v-for="msg in msgs">
+                <span class="send">{{msg.send}}</span>
+                <span class="content">{{msg.content}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-md-6">
+          <div class="btn-group mr-2" role="group">
+            <p>当前页：{{boardData.page.current}} 总页数：{{boardData.page.total}}</p>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-primary btn-sm" @click="prevBoard">上一页</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="nextBoard">下一页</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="addBoard">新增一页</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="deleteBoard">删除当前页</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="prevStep">上一步动画</button>
+            <button type="button" class="btn btn-primary btn-sm" @click="nextStep">下一步动画</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AXIOS SDK 白板SDK依赖axios（后续版本会去掉该依赖） -->
+  <script src="https://sqimg.qq.com/expert_qq/edu/axios/axios.min.js"></script>
+
+  <!-- WebRTC SDK -->
+  <script src="https://sqimg.qq.com/expert_qq/webrtc/3.1.0/WebRTCAPI.min.js"></script>
+  <!-- WebIM SDK -->
+  <script src="https://sqimg.qq.com/expert_qq/webim/1.7.1/webim.min.js"></script>
+  <!-- COS SDK -->
+  <script src="https://sqimg.qq.com/expert_qq/tedu/cos/5.1.0/cos.min.js"></script>
+  <!-- 白板SDK -->
+  <script src="https://sqimg.qq.com/expert_qq/tedu/board/2.1.0/TEduBoard.min.js"></script>
+  <!-- <script src="./libs/TEduBoard.min.js"></script> -->
+
+  <!-- TIC SDK 可根据开源代码自行编译TIC-->
+  <script src="https://sqimg.qq.com/expert_qq/tedu/tic/2.1.0/TIC.min.js"></script>
+  <!-- <script src="./libs/TIC.js"></script> -->
+
+  <script src="./libs/purl.js"></script>
+  <script src="./libs/vconsole.min.js"></script>
+  <script src="./js/account_dev.js"></script>
+  <script src="./js/app.js"></script>
+
+  <script>
+    if (location.href.indexOf('dev') > -1) {
+      var vConsole = new VConsole();
+    }
+  </script>
+</body>
+
+</html>
