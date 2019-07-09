@@ -1,4 +1,3 @@
-
 ### 1. 拼接链接打开课堂
 
 - 命令行启动
@@ -10,5 +9,5 @@ tclass sdkappid class_id user_id user_token user_sig config_url
 - URL启动
 
 ```
-https://test.tedu.qcloudtrtc.com/class/:classId/:sdkAppId?/:userId?/:userSig?/:token?
+https://tedu.qcloudtrtc.com/class/:classId/:sdkAppId?/:userId?/:userSig?/:token?
 ```
