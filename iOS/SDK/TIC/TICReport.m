@@ -58,7 +58,7 @@
     httpParam.header = @{@"Content-Type":@"application/json"};
     httpParam.url = [NSString stringWithFormat:@"https://ilivelog.qcloud.com/log/report?sign=%@", sign];
     [[TICHttps shareInstance] request:httpParam callback:^(NSInteger code, NSString *desc, NSDictionary *dic) {
-        NSLog(@"");
+        
     }];
 }
 

@@ -34,6 +34,12 @@
 		CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A8120A5A44900348C94 /* libresolv.tbd */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
 		CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */; };
+		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
+		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
+		CF9F964922D4992C00E4ADF8 /* TICHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963F22D4992B00E4ADF8 /* TICHttps.m */; };
+		CF9F964A22D4992C00E4ADF8 /* TICCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964022D4992B00E4ADF8 /* TICCrypto.m */; };
+		CF9F964B22D4992C00E4ADF8 /* TICKeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964222D4992B00E4ADF8 /* TICKeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964622D4992C00E4ADF8 /* TICReport.m */; };
 		CFAFF0E8228C191A0044DB52 /* local_test1.pptx in Resources */ = {isa = PBXBuildFile; fileRef = CFAFF0E6228C191A0044DB52 /* local_test1.pptx */; };
 		CFAFF0E9228C191A0044DB52 /* local_test2.pptx in Resources */ = {isa = PBXBuildFile; fileRef = CFAFF0E7228C191A0044DB52 /* local_test2.pptx */; };
 		CFDF442A22942A77004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF442922942A74004FFD01 /* TICRecorder.mm */; };
@@ -108,6 +114,18 @@
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC.framework; sourceTree = "<group>"; };
+		CF9F963B22D4992B00E4ADF8 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
+		CF9F963C22D4992B00E4ADF8 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
+		CF9F963D22D4992B00E4ADF8 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
+		CF9F963E22D4992B00E4ADF8 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
+		CF9F963F22D4992B00E4ADF8 /* TICHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICHttps.m; sourceTree = "<group>"; };
+		CF9F964022D4992B00E4ADF8 /* TICCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICCrypto.m; sourceTree = "<group>"; };
+		CF9F964122D4992B00E4ADF8 /* TICHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICHttps.h; sourceTree = "<group>"; };
+		CF9F964222D4992B00E4ADF8 /* TICKeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICKeychainItemWrapper.m; sourceTree = "<group>"; };
+		CF9F964322D4992C00E4ADF8 /* TICReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReport.h; sourceTree = "<group>"; };
+		CF9F964422D4992C00E4ADF8 /* TICCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICCrypto.h; sourceTree = "<group>"; };
+		CF9F964522D4992C00E4ADF8 /* TICKeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICKeychainItemWrapper.h; sourceTree = "<group>"; };
+		CF9F964622D4992C00E4ADF8 /* TICReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReport.m; sourceTree = "<group>"; };
 		CFAFF0E6228C191A0044DB52 /* local_test1.pptx */ = {isa = PBXFileReference; lastKnownFileType = file; path = local_test1.pptx; sourceTree = "<group>"; };
 		CFAFF0E7228C191A0044DB52 /* local_test2.pptx */ = {isa = PBXFileReference; lastKnownFileType = file; path = local_test2.pptx; sourceTree = "<group>"; };
 		CFDF442822942A74004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
@@ -265,6 +283,18 @@
 				CF3FB2F72273191D001C148E /* TICRenderView.m */,
 				CFDF442822942A74004FFD01 /* TICRecorder.h */,
 				CFDF442922942A74004FFD01 /* TICRecorder.mm */,
+				CF9F964322D4992C00E4ADF8 /* TICReport.h */,
+				CF9F964622D4992C00E4ADF8 /* TICReport.m */,
+				CF9F964422D4992C00E4ADF8 /* TICCrypto.h */,
+				CF9F964022D4992B00E4ADF8 /* TICCrypto.m */,
+				CF9F963D22D4992B00E4ADF8 /* TICDevice.h */,
+				CF9F963C22D4992B00E4ADF8 /* TICDevice.m */,
+				CF9F964122D4992B00E4ADF8 /* TICHttps.h */,
+				CF9F963F22D4992B00E4ADF8 /* TICHttps.m */,
+				CF9F964522D4992C00E4ADF8 /* TICKeychainItemWrapper.h */,
+				CF9F964222D4992B00E4ADF8 /* TICKeychainItemWrapper.m */,
+				CF9F963B22D4992B00E4ADF8 /* TICReachability.h */,
+				CF9F963E22D4992B00E4ADF8 /* TICReachability.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -409,11 +439,17 @@
 				6A1BF1B120BBEB1600FEA44D /* MBProgressHUD.m in Sources */,
 				CFEB9E7F22707E9100E56932 /* TICConfig.m in Sources */,
 				6AAD6B1F20AAD90F00348C94 /* ClassroomJoinViewController.m in Sources */,
+				CF9F964B22D4992C00E4ADF8 /* TICKeychainItemWrapper.m in Sources */,
 				CF3FB2FD2273191D001C148E /* TICDef.m in Sources */,
+				CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */,
 				6A90D68720B2A737004AA011 /* UIViewController+Utils.m in Sources */,
 				CFDF445022953496004FFD01 /* NSDate+NetworkClock.m in Sources */,
+				CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */,
 				6A1BF1B020BBEB1600FEA44D /* JMToast.m in Sources */,
+				CF9F964922D4992C00E4ADF8 /* TICHttps.m in Sources */,
 				CF3279C52271F11300FF817F /* PickSheetView.m in Sources */,
+				CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */,
+				CF9F964A22D4992C00E4ADF8 /* TICCrypto.m in Sources */,
 				6AAD6A0D20A58E3200348C94 /* AppDelegate.m in Sources */,
 				CF3FB2FE2273191D001C148E /* TICManager.m in Sources */,
 				CF327918227191B500FF817F /* MenuTableViewController.m in Sources */,
