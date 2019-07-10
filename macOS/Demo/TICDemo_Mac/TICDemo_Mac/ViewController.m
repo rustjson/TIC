@@ -627,10 +627,8 @@
             [self enableGroup:view enable:enable];
         }
     }
-    else{
-        if([group isKindOfClass:[NSButton class]]){
-            ((NSButton *)group).enabled = enable;
-        }
+    if([group isKindOfClass:[NSButton class]]){
+        ((NSButton *)group).enabled = enable;
     }
 }
 
