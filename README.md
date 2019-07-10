@@ -13,21 +13,33 @@
 
 ## 快速体验
 
+注意：由于`Github`默认不支持大文件上传，请您在pull代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。
+
 #### 体验Demo
 
 下载客户端，输入相同的课堂ID即可快速体验。
 
-| Web | 小程序 | Windows | Android | iOS | macOS |
-| :-: | :-: | :-: | :-: | :-: | :-: |
-| 即将推出 | 即将推出 | 即将推出 | 即将推出 | 即将推出 | 即将推出 |
+| 平台 | 快速体验 |
+|---------|---------|
+| Web | 即将推出 |
+| 小程序 | 即将推出 |
+| Windows |  [申请体验](./Docs/购买指南.md) |
+| Android | 即将推出 |
+| iOS | 即将推出 |
+| macOS | [申请体验](./Docs/购买指南.md)  |
 
 #### 开发Demo
 
 为了便于开发人员以最简明的方式调试接口，我们准备了各个平台的开发demo。
 
-| Web | 小程序 | Windows | Android | iOS | macOS |
-| :-: | :-: | :-: | :-: | :-: | :-: |
-| [体验链接](https://tic-demo-1257240443.cos.ap-shanghai.myqcloud.com/index.html)<br>[源码地址](./Web)| ![](https://main.qcloudimg.com/raw/27605e6132c2612412ef6b133020e8f1.png)<br>[源码地址](./小程序) | [源码地址](./Windows) | [源码地址](./Android) | [源码地址](./iOS) | [源码地址](./macOS) |
+| 平台 | 源码下载 | 快速体验 |
+|---------|---------|---------|
+| Web | [点击前往](./Web) | [体验链接](https://tic-demo-1257240443.cos.ap-shanghai.myqcloud.com/index.html) |
+|小程序  | [点击前往](./小程序)   | ![](https://main.qcloudimg.com/raw/db3055ade262e17bcd8711026f487ae7.png) |
+| Windows |[点击前往](./Windows)  | - |
+|Android  | [点击前往](./Android)  | - |
+| iOS | [点击前往](./iOS) | - |
+| macOS |[点击前往](./macOS)   | - |
 
 ## 购买指南
 
@@ -35,20 +47,27 @@
 
 ## 接入文档
 
-|||
-|-|-|
-|**Android**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/Android/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/Android/互动白板接入文档.md)|**iOS**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/iOS/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/iOS/互动白板接入文档.md)|
-|**Windows**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/Windows/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/Windows/互动白板接入文档.md)|**macOS**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/macOS/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/macOS/互动白板接入文档.md)|
-|**Web**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/Web/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/Web/互动白板接入文档.md)|**小程序**<br>互动课堂（TIC） [接入文档](./Docs/PaaS/SDK文档/小程序/互动课堂接入文档.md)<br>互动白板（TEduBoard） [接入文档](./Docs/PaaS/SDK文档/小程序/互动白板接入文档.md)|
+| 平台 | 互动课堂（TIC） | 互动白板（TEduBoard） |
+|---------|---------|---------|
+| Web | [接入文档](./Docs/PaaS/SDK文档/Web/互动课堂接入文档.md) | [接入文档](./Docs/PaaS/SDK文档/Web/互动白板接入文档.md) |
+|小程序  | [接入文档](./Docs/PaaS/SDK文档/小程序/互动课堂接入文档.md)   | [接入文档](./Docs/PaaS/SDK文档/小程序/互动白板接入文档.md) |
+| Windows |[接入文档](./Docs/PaaS/SDK文档/Windows/互动课堂接入文档.md) | [接入文档](./Docs/PaaS/SDK文档/Windows/互动白板接入文档.md) |
+|Android  | [接入文档](./Docs/PaaS/SDK文档/Android/互动课堂接入文档.md) | [接入文档](./Docs/PaaS/SDK文档/Android/互动白板接入文档.md) |
+| iOS | [接入文档](./Docs/PaaS/SDK文档/iOS/互动课堂接入文档.md) | [接入文档](./Docs/PaaS/SDK文档/iOS/互动白板接入文档.md) |
+| macOS | [接入文档](./Docs/PaaS/SDK文档/macOS/互动课堂接入文档.md) | [接入文档](./Docs/PaaS/SDK文档/macOS/互动白板接入文档.md) |
 
 
 ## 版本信息
 
-|||
-|-|-|
-|**Android**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/Android_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/Android_ReleaseNotes.md)|**iOS**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md)|
-|**Windows**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/Windows_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/Windows_ReleaseNotes.md)|**macOS**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md)|
-|**Web**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/Web_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/Web_ReleaseNotes.md)|**小程序**<br>互动课堂（TIC）[版本信息](./Docs/PaaS/版本信息/互动课堂/小程序_TIC_ReleaseNotes.md)<br>互动白板（TEduBoard） [版本信息](./Docs/PaaS/版本信息/互动白板/小程序_ReleaseNotes.md)|
+| 平台 | 互动课堂（TIC） | 互动白板（TEduBoard） |
+|---------|---------|---------|
+| Web | [版本信息](./Docs/PaaS/版本信息/互动课堂/Web_TIC_ReleaseNotes.md) | [版本信息](./Docs/PaaS/版本信息/互动白板/Web_ReleaseNotes.md) |
+|小程序  | [版本信息](./Docs/PaaS/版本信息/互动课堂/小程序_TIC_ReleaseNotes.md)   | [版本信息](./Docs/PaaS/版本信息/互动白板/小程序_ReleaseNotes.md) |
+| Windows |[版本信息](./Docs/PaaS/版本信息/互动课堂/Windows_TIC_ReleaseNotes.md) | [版本信息](./Docs/PaaS/版本信息/互动白板/Windows_ReleaseNotes.md) |
+|Android  | [版本信息](./Docs/PaaS/版本信息/互动课堂/Android_TIC_ReleaseNotes.md) | [版本信息](./Docs/PaaS/版本信息/互动白板/Android_ReleaseNotes.md) |
+| iOS | [版本信息](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md) | [版本信息](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md) |
+| macOS | [版本信息](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md) | [版本信息](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md) |
+
 
 
 ## 更多功能
