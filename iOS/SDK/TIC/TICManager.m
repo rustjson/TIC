@@ -489,11 +489,17 @@ id makeWeakRef (id object) {
 
 - (void)onTEBError:(TEduBoardErrorCode)code msg:(NSString *)msg
 {
-    if(code == TEDU_BOARD_ERROR_AUTH || code == TEDU_BOARD_ERROR_LOAD){
+    [self report:TIC_REPORT_BOARD_ERROR code:code msg:msg];
+    if(code == TEDU_BOARD_ERROR_AUTH || code == TEDU_BOARD_ERROR_LOAD || code == TEDU_BOARD_ERROR_INIT){
         [self report:TIC_REPORT_INIT_BOARD_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, code, msg);
         _enterCallback = nil;
     }
+}
+
+- (void)onTEBWarning:(TEduBoardWarningCode)code msg:(NSString *)msg
+{
+    [self report:TIC_REPORT_BOARD_WARNING code:code msg:msg];
 }
 
 #pragma mark - im delegate
@@ -711,6 +717,7 @@ id makeWeakRef (id object) {
     [_recorder reportGroupId:[@(_option.classId) stringValue] sdkAppId:_sdkAppId userId:_userId userSig:_userSig];
 }
 
+#pragma mark - report
 - (void)report:(TICReportEvent)event
 {
     [self report:event code:0 msg:@""];

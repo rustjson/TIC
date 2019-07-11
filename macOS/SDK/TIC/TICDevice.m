@@ -15,10 +15,9 @@
 #endif
 
 #import <sys/utsname.h>
-#import "TICKeychainItemWrapper.h"
 #import "TICReachability.h"
-#import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
 
 @implementation TICDevice
@@ -37,28 +36,6 @@
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     return deviceString;
-}
-
-+ (NSString *)getUUID
-{
-    NSString *key = @"com.tencent.tic.keychain.uuid";
-    TICKeychainItemWrapper *keychainItem = [[TICKeychainItemWrapper alloc] initWithIdentifier:key accessGroup:nil];
-    
-    NSString *strUUID = [keychainItem objectForKey:(__bridge id)kSecValueData];
-    
-    if (strUUID.length <= 0) {
-#if TARGET_OS_IPHONE
-        strUUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-#else
-        CFUUIDRef uuidObj = CFUUIDCreate(nil);
-        strUUID = (NSString*)CFBridgingRelease(CFUUIDCreateString(nil, uuidObj));
-        CFRelease(uuidObj);
-#endif
-        
-        [keychainItem setObject:@"uuid" forKey:(__bridge id)kSecAttrAccount];
-        [keychainItem setObject:strUUID forKey:(__bridge id)kSecValueData];
-    }
-    return strUUID;
 }
 
 + (TICNetType)getNetype{

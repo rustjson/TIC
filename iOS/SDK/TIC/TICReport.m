@@ -7,9 +7,9 @@
 //
 
 #import "TICReport.h"
-#import "TICHttps.h"
 #import "TICDevice.h"
-#import "TICCrypto.h"
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonHMAC.h>
 
 @implementation TICReportParam
 
@@ -19,7 +19,7 @@
 + (void)report:(TICReportParam *)param
 {
     NSString *sysVersion =  [TICDevice getSystemVersion];
-    NSString *uuid = @"";//[TICDevice getUUID];
+    NSString *uuid = @"";
     NSString *devType = [TICDevice getDevType];
     TICNetType netType = [TICDevice getNetype];
     NSString *netTypeString = [TICReport getNetTypeString:netType];
@@ -51,15 +51,31 @@
     NSDictionary *dict = @{@"business":@"tic2.0", @"dcid":@"dc0000", @"version":@(0), @"kv_str":kvStr};
     NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *sign = [TICCrypto md5:dataStr];
-    TICHttpsParam *httpParam = [[TICHttpsParam alloc] init];
-    httpParam.body = data;
-    httpParam.method = @"POST";
-    httpParam.header = @{@"Content-Type":@"application/json"};
-    httpParam.url = [NSString stringWithFormat:@"https://ilivelog.qcloud.com/log/report?sign=%@", sign];
-    [[TICHttps shareInstance] request:httpParam callback:^(NSInteger code, NSString *desc, NSDictionary *dic) {
+    NSString *sign = [TICReport md5:dataStr];
+    
+    NSString *url = [NSString stringWithFormat:@"https://ilivelog.qcloud.com/log/report?sign=%@", sign];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = data;
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
     }];
+    [task resume];
+}
+
++ (NSString *)md5:(NSString *)string {
+    if (!string){
+        return nil;
+    }
+    const char *cStr = string.UTF8String;
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
+    NSMutableString *md5Str = [NSMutableString string];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; ++i) {
+        [md5Str appendFormat:@"%02x", result[i]];
+    }
+    return md5Str;
 }
 
 + (NSString *)getNetTypeString:(TICNetType)netType

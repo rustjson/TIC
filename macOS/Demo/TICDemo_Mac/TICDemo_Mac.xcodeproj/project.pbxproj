@@ -24,11 +24,8 @@
 		CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF3FB350227707CC001C148E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CF3FB34D227707CC001C148E /* config.json */; };
 		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
-		CFA891D922D2ECFC003149C9 /* TICHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D622D2ECFC003149C9 /* TICHttps.m */; };
 		CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D822D2ECFC003149C9 /* TICDevice.m */; };
 		CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DC22D2F000003149C9 /* TICReachability.m */; };
-		CFA891E022D2F000003149C9 /* TICKeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DD22D2F000003149C9 /* TICKeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CFA891F322D32EF4003149C9 /* TICCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891F222D32EF4003149C9 /* TICCrypto.m */; };
 		CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */; };
 		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
 		CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445A22953EB1004FFD01 /* NetAssociation.m */; };
@@ -89,16 +86,10 @@
 		CF3FB34D227707CC001C148E /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		CF3FB34E227707CC001C148E /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
 		CF3FB34F227707CC001C148E /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
-		CFA891D522D2ECFC003149C9 /* TICHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICHttps.h; sourceTree = "<group>"; };
-		CFA891D622D2ECFC003149C9 /* TICHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICHttps.m; sourceTree = "<group>"; };
 		CFA891D722D2ECFC003149C9 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
 		CFA891D822D2ECFC003149C9 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
 		CFA891DB22D2F000003149C9 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
 		CFA891DC22D2F000003149C9 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
-		CFA891DD22D2F000003149C9 /* TICKeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICKeychainItemWrapper.m; sourceTree = "<group>"; };
-		CFA891DE22D2F000003149C9 /* TICKeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICKeychainItemWrapper.h; sourceTree = "<group>"; };
-		CFA891F122D32EF4003149C9 /* TICCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICCrypto.h; sourceTree = "<group>"; };
-		CFA891F222D32EF4003149C9 /* TICCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICCrypto.m; sourceTree = "<group>"; };
 		CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard_Mac.framework; sourceTree = "<group>"; };
 		CFDF44322294FCD1004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
 		CFDF44332294FCD1004FFD01 /* TICRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TICRecorder.mm; sourceTree = "<group>"; };
@@ -223,14 +214,8 @@
 				CF16F8B322CEE62F002D3CBB /* TICReport.m */,
 				CFA891D722D2ECFC003149C9 /* TICDevice.h */,
 				CFA891D822D2ECFC003149C9 /* TICDevice.m */,
-				CFA891D522D2ECFC003149C9 /* TICHttps.h */,
-				CFA891D622D2ECFC003149C9 /* TICHttps.m */,
-				CFA891F122D32EF4003149C9 /* TICCrypto.h */,
-				CFA891F222D32EF4003149C9 /* TICCrypto.m */,
 				CFA891DB22D2F000003149C9 /* TICReachability.h */,
 				CFA891DC22D2F000003149C9 /* TICReachability.m */,
-				CFA891DE22D2F000003149C9 /* TICKeychainItemWrapper.h */,
-				CFA891DD22D2F000003149C9 /* TICKeychainItemWrapper.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -364,7 +349,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A9FC2B5217EBCC6009ACB83 /* ViewController.m in Sources */,
-				CFA891E022D2F000003149C9 /* TICKeychainItemWrapper.m in Sources */,
 				CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */,
 				CF3FB3412276A2C7001C148E /* TICDef.m in Sources */,
 				CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */,
@@ -377,10 +361,8 @@
 				CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */,
 				CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */,
 				CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */,
-				CFA891F322D32EF4003149C9 /* TICCrypto.m in Sources */,
 				CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */,
 				CF16F8B422CEE62F002D3CBB /* TICReport.m in Sources */,
-				CFA891D922D2ECFC003149C9 /* TICHttps.m in Sources */,
 				CF3FB351227707CC001C148E /* TICConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
