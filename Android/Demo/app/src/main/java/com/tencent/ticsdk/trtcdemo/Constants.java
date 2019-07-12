@@ -16,8 +16,4 @@ public class Constants {
      */
     public static int APPID = 1400127140;
 
-    //角色
-    public static int Role_Teather = 0;
-    public static int Role_Student = 1;
-
 }
