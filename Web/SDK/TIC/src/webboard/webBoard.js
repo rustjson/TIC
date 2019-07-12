@@ -1,3 +1,5 @@
+import LogReport from '../log/LogReport'
+
 function WebBoard(accountModel, boardOptionModel) {
   this.board = null;
   this.accountModel = accountModel;
@@ -8,6 +10,10 @@ WebBoard.prototype.getInstance = function () {
   return this.board;
 }
 
+WebBoard.prototype.setLog = function (log) {
+  this.log = log;
+}
+
 WebBoard.prototype.render = function () {
   this.board = null;
   this.board = new TEduBoard(Object.assign({}, this.boardOptionModel, {
@@ -16,6 +22,39 @@ WebBoard.prototype.render = function () {
     userId: this.accountModel.userId + '',
     userSig: this.accountModel.userSig
   }));
+
+  // 错误
+  this.board.on(TEduBoard.EVENT.TEB_ERROR, (code, msg) => {
+    this.log.report(LogReport.EVENT_NAME.ONTEBERROR, {
+      errorCode: code,
+      errorDesc: msg,
+      timeCost: 0,
+      data: '',
+      ext: '',
+    });
+  });
+
+  // 历史数据加载完成
+  this.board.on(TEduBoard.EVENT.TEB_WARNING, (code, msg) => {
+    this.log.report(LogReport.EVENT_NAME.ONTEBWARNING, {
+      errorCode: code,
+      errorDesc: msg,
+      timeCost: 0,
+      data: '',
+      ext: '',
+    });
+  });
+
+  // 历史数据加载完成
+  this.board.on(TEduBoard.EVENT.TEB_HISTROYDATA_SYNCCOMPLETED, () => {
+    this.log.report(LogReport.EVENT_NAME.SYNCBOARDHISTORY_END, {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: '',
+    });
+  });
 }
 
 WebBoard.prototype.addSyncDataEventCallback = function (callback) {

@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "add-module-exports-webpack-plugin": "^0.1.0",
+    "axios": "^0.18.0",
     "babel-plugin-add-module-exports": "^1.0.0",
-    "axios": "^0.18.0"
+    "js-md5": "^0.7.3"
   }
 }

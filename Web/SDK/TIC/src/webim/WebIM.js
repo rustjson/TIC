@@ -1,10 +1,15 @@
 import IMHandler from './ImHandler';
+import LogReport from '../log/LogReport'
 
 function TICWebIM() {
   this.accountModel = null;
   this.imListener = null;
   this.boardNotifyCallback = null;
   this.imHandler = null;
+}
+
+TICWebIM.prototype.setLog = function (log) {
+  this.log = log;
 }
 
 TICWebIM.prototype.login = function (accountModel) {
@@ -95,9 +100,10 @@ TICWebIM.prototype.initEvent = function () {
       // "3": (notify) => {
       // },
 
-      // //被管理员踢出群(只有被踢者接收到)
-      // "4": (notify) => {
-      // },
+      //被管理员踢出群(只有被踢者接收到)
+      "4": (notify) => {
+        self.eventListener.fireEvent('onTICMemberQuit', [self.accountModel.userId]);
+      },
 
       //群被解散(全员接收)
       "5": (notify) => {
@@ -140,6 +146,15 @@ TICWebIM.prototype.initEvent = function () {
 
     // 被踢下线的回调
     onKickedEventCall() {
+      // 被强制下线
+      self.log.report(LogReport.EVENT_NAME.ONFORCEOFFLINE, {
+        errorCode: 0,
+        errorDesc: '',
+        timeCost: 0,
+        data: '',
+        ext: 'im onKickedEventCall'
+      });
+
       self.statusListener.fireEvent('onTICForceOffline');
     },
 
@@ -147,6 +162,14 @@ TICWebIM.prototype.initEvent = function () {
     onC2cEventNotifys: {
       // 多终端互踢
       "96": (notify) => {
+        // 被强制下线
+        self.log.report(LogReport.EVENT_NAME.ONFORCEOFFLINE, {
+          errorCode: 0,
+          errorDesc: '',
+          timeCost: 0,
+          data: '',
+          ext: 'im onC2cEventNotifys-96'
+        });
         self.statusListener.fireEvent('onTICForceOffline');
       }
     }
