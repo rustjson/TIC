@@ -13,7 +13,11 @@
 
 ## 快速体验
 
-注意：由于`Github`默认不支持大文件上传，请您在pull代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。
+<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，<font color="#FF0000">勿</font>直接`Download ZIP`。
+```
+git clone https://github.com/tencentyun/TIC.git
+```
+
 
 #### 体验Demo
 
