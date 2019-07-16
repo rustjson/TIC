@@ -15,5 +15,4 @@ public class Constants {
      * 实时音视频sdkAppid
      */
     public static int APPID = 1400127140;
-
 }

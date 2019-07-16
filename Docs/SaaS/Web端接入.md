@@ -3,7 +3,7 @@
 - URL启动
 
 ```
-https://tedu.qcloudtrtc.com/class/:class_id/:sdkappid?/:user_id?/:user_sig?/:user_token?
+https://tedu.qcloudtrtc.com/#/class/sdkappid/:class_id/:user_id?/:user_sig?/:user_token?
 ```
 
 - 参数描述
