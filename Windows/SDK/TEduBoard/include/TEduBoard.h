@@ -125,6 +125,7 @@ enum TEduBoardWarningCode {							//事件说明
 	TEDU_BOARD_WARNING_SYNC_DATA_PARSE_FAILED       = 1,    //接收到其他端的同步数据解析错误
 	TEDU_BOARD_WARNING_TIM_SEND_MSG_FAILED          = 2,    //腾讯云IMSDK发送消息失败
 	TEDU_BOARD_WARNING_H5PPT_ALREADY_EXISTS			= 3,    //要添加的H5PPT已存在
+	TEDU_BOARD_WARNING_BOARD_LOAD_FAILED			= 4,	//白板资源加载失败，正在内部重试
 };
 
 /**

@@ -290,6 +290,7 @@ id makeWeakRef (id object) {
 
 - (void)sendMessage:(TIMMessage *)message toUserId:(NSString *)toUserId callback:(TICCallback)callback
 {
+    [message setPriority:TIM_MSG_PRIORITY_HIGH];
     [self sendMessage:message type:TIM_C2C receiver:toUserId callback:callback];
 }
 
