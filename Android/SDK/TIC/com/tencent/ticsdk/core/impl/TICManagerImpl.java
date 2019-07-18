@@ -1,6 +1,5 @@
 package com.tencent.ticsdk.core.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 
 
 import com.tencent.imsdk.TIMCallBack;
@@ -57,6 +55,7 @@ public class TICManagerImpl  extends TICManager{
 
     //Board
     private TEduBoardController mBoard;
+    private BoardCallback mBoardCallback;
 
     //Recorder
     private TICRecorder mRecorder;
@@ -103,6 +102,8 @@ public class TICManagerImpl  extends TICManager{
     public int init(Context context, int appId) {
 
         TXCLog.i(TAG, "TICManager: init, context:" + context + " appid:" + appId);
+        TICReporter.updateAppId(appId);
+        TICReporter.report(TICReporter.EventId.initSdk_start);
 
         //0、给值
         sdkAppId = appId;
@@ -131,13 +132,15 @@ public class TICManagerImpl  extends TICManager{
         //3. TEdu Board
         if (mBoard == null) {
             mBoard = new TEduBoardController(mAppContext);
+            mBoardCallback = new BoardCallback();
+            mBoard.addCallback(mBoardCallback);
         }
 
         //4. Recorder
         if (mRecorder == null) {
             mRecorder = new TICRecorder(this);
         }
-
+        TICReporter.report(TICReporter.EventId.initSdk_end);
         return 0;
     }
 
@@ -215,7 +218,9 @@ public class TICManagerImpl  extends TICManager{
     public void login(final String userId, final String userSig, final TICCallback callBack) {
 
         TXCLog.i(TAG, "TICManager: login userid:" + userId + " sig:" + userSig);
-
+        TICReporter.updateRoomId(0);
+        TICReporter.updateUserId(userId);
+        TICReporter.report(TICReporter.EventId.login_start);
         // IM 登陆
         setUserInfo(userId, userSig);
 
@@ -223,11 +228,11 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onSuccess() {
                 TXCLog.i(TAG, "TICManager: login onSuccess:" + userId);
+                TICReporter.report(TICReporter.EventId.login_end);
                 //成功登录后，加入消息和状态监听
                 TIMManager.getInstance().getUserConfig().setUserStatusListener(mStatusListner);
                 TIMManager.getInstance().addMessageListener(mTIMListener);
 
-//                reportConfig.setUserId(userId).setUserSig(userSig);
                 if (null != callBack) {
                     callBack.onSuccess("");
                 }
@@ -236,6 +241,7 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onError(int errCode, String errMsg) {
                 TXCLog.i(TAG, "TICManager: login onError:" + errCode + " msg:"  +errMsg);
+                TICReporter.report(TICReporter.EventId.login_end, errCode, errMsg);
                 if (null != callBack) {
                     callBack.onError(MODULE_IMSDK, errCode, "login failed: " + errMsg);
                 }
@@ -246,12 +252,12 @@ public class TICManagerImpl  extends TICManager{
     @Override
     public void logout(final TICCallback callback) {
         TXCLog.i(TAG, "TICManager: logout callback:" + callback);
-
+        TICReporter.report(TICReporter.EventId.logout_start);
         TIMManager.getInstance().logout(new TIMCallBack() {
             @Override
             public void onSuccess() {
                 TXCLog.i(TAG, "TICManager: logout onSuccess");
-
+                TICReporter.report(TICReporter.EventId.logout_end);
                 if (null != callback) {
                     callback.onSuccess("");
                 }
@@ -259,6 +265,7 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onError(int errCode, String errMsg) {
                 TXCLog.i(TAG, "TICManager: logout onError:" + errCode + " msg:" + errMsg);
+                TICReporter.report(TICReporter.EventId.logout_end, errCode, errMsg);
                 if (null != callback) {
                     callback.onError(MODULE_IMSDK, errCode, "logout failed: " + errMsg);
                 }
@@ -273,7 +280,7 @@ public class TICManagerImpl  extends TICManager{
     @Override
     public void createClassroom(final int classId, final TICCallback callback) {
         TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " callback:" + callback);
-
+        TICReporter.report(TICReporter.EventId.createGroup_start);
         // 为了减少用户操作成本（收到群进出等通知需要配置工单才生效）群组类型由ChatRoom改为Public
         final String groupId = String.valueOf(classId);
         final String groupName = "interact group";
@@ -287,6 +294,7 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onSuccess(String s) {
                 TXCLog.i(TAG, "TICManager: createClassroom onSuccess:" + classId + " msg:" + s);
+                TICReporter.report(TICReporter.EventId.createGroup_end);
                 if (null != callback) {
                     callback.onSuccess(classId);
                 }
@@ -300,7 +308,8 @@ public class TICManagerImpl  extends TICManager{
                         callback.onSuccess(classId);
                     }
                     else {
-                        TXCLog.i(TAG, "TICManager: createClassroom onError:" + classId + " msg:" + errMsg);
+                        TXCLog.i(TAG, "TICManager: createClassroom onError:" + errCode + " msg:" + errMsg);
+                        TICReporter.report(TICReporter.EventId.createGroup_end, errCode, errMsg);
                         callback.onError(MODULE_IMSDK, errCode,  errMsg);
                     }
                 }
@@ -312,18 +321,20 @@ public class TICManagerImpl  extends TICManager{
     public void destroyClassroom(final int classId, final TICCallback callback) {
 
         TXCLog.i(TAG, "TICManager: destroyClassroom classId:" + classId + " callback:" + callback);
-
+        TICReporter.report(TICReporter.EventId.deleteGroup_start);
         final String groupId = String.valueOf(classId);
 
         TIMGroupManager.getInstance().deleteGroup(groupId, new TIMCallBack() {
             @Override
             public void onError(int errorCode, String errInfo) {
                 TXCLog.i(TAG, "TICManager: destroyClassroom onError:" + errorCode + " msg:" + errInfo);
+                TICReporter.report(TICReporter.EventId.deleteGroup_end, errorCode, errInfo);
                 CallbackUtil.notifyError(callback, MODULE_IMSDK, errorCode, errInfo);
             }
 
             @Override
             public void onSuccess() {
+                TICReporter.report(TICReporter.EventId.deleteGroup_end);
                 TXCLog.i(TAG, "TICManager: destroyClassroom onSuccess" );
 
             }
@@ -348,12 +359,14 @@ public class TICManagerImpl  extends TICManager{
         final String groupId = String.valueOf(classId);
         final String desc = "board group";
 
+        TICReporter.updateRoomId(classId);
+        TICReporter.report(TICReporter.EventId.joinGroup_start);
         TIMGroupManager.getInstance().applyJoinGroup(groupId, desc + groupId, new TIMCallBack() {
             @Override
             public void onSuccess() {
 
                 TXCLog.i(TAG, "TICManager: joinClassroom onSuccess ");
-
+                TICReporter.report(TICReporter.EventId.joinGroup_end);
                 onJoinClassroomSuccessfully(callback);
             }
 
@@ -362,10 +375,12 @@ public class TICManagerImpl  extends TICManager{
                 if (callback != null) {
                     if (errCode == 10013) { //you are already group member.
                         TXCLog.i(TAG, "TICManager: joinClassroom 10013 onSuccess");
+                        TICReporter.report(TICReporter.EventId.joinGroup_end);
                         onJoinClassroomSuccessfully(callback);
                     }
                     else {
-                        TXCLog.i(TAG, "TICManager: joinClassroom onError");
+                        TXCLog.i(TAG, "TICManager: joinClassroom onError:" + errCode + "|" + errMsg);
+                        TICReporter.report(TICReporter.EventId.joinGroup_end, errCode, errMsg);
                         callback.onError(MODULE_IMSDK, errCode, errMsg);
                     }
                 }
@@ -383,6 +398,7 @@ public class TICManagerImpl  extends TICManager{
             return;
         }
 
+        TICReporter.report(TICReporter.EventId.quitGroup_start);
         //1.trtc退房间
         mTrtcCloud.exitRoom();
 
@@ -396,6 +412,7 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onError(int errorCode, String errInfo) {
                 TXCLog.e(TAG, "TICManager: quitClassroom onError, err:" + errorCode + " msg:" + errInfo);
+                TICReporter.report(TICReporter.EventId.quitGroup_end, errorCode, errInfo);
                 if (callback != null) {
                     if (errorCode == 10009) {
                         callback.onSuccess(0);
@@ -409,7 +426,8 @@ public class TICManagerImpl  extends TICManager{
             @Override
             public void onSuccess() {
                 TXCLog.e(TAG, "TICManager: quitClassroom onSuccess");
-                    CallbackUtil.notifySuccess(callback, 0);
+                TICReporter.report(TICReporter.EventId.quitGroup_end);
+                CallbackUtil.notifySuccess(callback, 0);
             }
         });
 
@@ -423,6 +441,7 @@ public class TICManagerImpl  extends TICManager{
         }
 
         //TRTC进房
+        TICReporter.report(TICReporter.EventId.enterRoom_start);
         mEnterRoomCallback = callback;
         TRTCCloudDef.TRTCParams trtcParams = new TRTCCloudDef.TRTCParams(sdkAppId, userInfo.getUserId(), userInfo.getUserSig(), classroomOption.getClassId(), "", "");     /// TRTC SDK 视频通话房间进入所必须的参数
         mTrtcCloud.enterRoom(trtcParams, TRTCCloudDef.TRTC_APP_SCENE_VIDEOCALL);
@@ -438,7 +457,7 @@ public class TICManagerImpl  extends TICManager{
                 mBoard.addCallback(classroomOption.boardCallback);
             }
         }
-
+        TICReporter.report(TICReporter.EventId.initBoard_start);
         //调用初始化函数
         TEduBoardController.TEduBoardAuthParam authParam = new TEduBoardController.TEduBoardAuthParam(sdkAppId, userInfo.getUserId(), userInfo.getUserSig());
         mBoard.init(authParam, classroomOption.getClassId(), classroomOption.boardInitPara);
@@ -754,6 +773,7 @@ public class TICManagerImpl  extends TICManager{
         @Override
         public void onEnterRoom(long elapsed) {
             TXCLog.i(TAG, "TICManager: TRTC onEnterRoom elapsed: " + elapsed);
+            TICReporter.report(TICReporter.EventId.enterRoom_end);
             if (mEnterRoomCallback != null) {
                 //
                 mEnterRoomCallback.onSuccess("succ");
@@ -769,18 +789,21 @@ public class TICManagerImpl  extends TICManager{
         @Override
         public void onUserVideoAvailable(final String userId, boolean available) {
             TXCLog.i(TAG, "TICManager: onUserVideoAvailable->render userId: " + userId + ", available:" + available);
+            TICReporter.report(TICReporter.EventId.onUserVideoAvailable, "userId:" + userId + ",available:" + available);
             mEventListner.onTICUserVideoAvailable(userId, available);
         }
 
         @Override
         public void onUserSubStreamAvailable(String userId, boolean available) {
             TXCLog.i(TAG, "TICManager: onUserSubStreamAvailable :" + userId + "|" + available);
+            TICReporter.report(TICReporter.EventId.onUserSubStreamAvailable, "userId:" + userId + ",available:" + available);
             mEventListner.onTICUserSubStreamAvailable(userId, available);
         }
 
         @Override
         public void onUserAudioAvailable(String userId, boolean available) {
             TXCLog.i(TAG, "TICManager: onUserAudioAvailable :" + userId + "|" + available);
+            TICReporter.report(TICReporter.EventId.onUserAudioAvailable, "userId:" + userId + ",available:" + available);
             mEventListner.onTICUserAudioAvailable(userId, available);
         }
 
@@ -883,5 +906,104 @@ public class TICManagerImpl  extends TICManager{
 
     public void trigleOffLineRecordCallback(int code, final String msg) {
         mEventListner.onTICSendOfflineRecordInfo(code, msg);
+    }
+
+    //白板回调，用于监控事件
+    static class BoardCallback implements TEduBoardController.TEduBoardCallback {
+
+        @Override
+        public void onTEBError(int code, String msg) {
+            TICReporter.report(TICReporter.EventId.onTEBError, code, msg);
+        }
+
+        @Override
+        public void onTEBWarning(int code, String msg) {
+            TICReporter.report(TICReporter.EventId.onTEBWarning, code, msg);
+        }
+
+        @Override
+        public void onTEBInit() {
+            TICReporter.report(TICReporter.EventId.initBoard_end);
+        }
+
+        @Override
+        public void onTEBHistroyDataSyncCompleted() {
+            TICReporter.report(TICReporter.EventId.syncBoardHistory_end);
+        }
+
+        @Override
+        public void onTEBSyncData(String s) {
+
+        }
+
+        @Override
+        public void onTEBUndoStatusChanged(boolean b) {
+
+        }
+
+        @Override
+        public void onTEBRedoStatusChanged(boolean b) {
+
+        }
+
+        @Override
+        public void onTEBImageStatusChanged(String s, String s1, int i) {
+
+        }
+
+        @Override
+        public void onTEBSetBackgroundImage(String s) {
+
+        }
+
+        @Override
+        public void onTEBBackgroundH5StatusChanged(String s, String s1, int i) {
+
+        }
+
+        @Override
+        public void onTEBAddBoard(List<String> list, String s) {
+
+        }
+
+        @Override
+        public void onTEBDeleteBoard(List<String> list, String s) {
+
+        }
+
+        @Override
+        public void onTEBGotoBoard(String s, String s1) {
+
+        }
+
+        @Override
+        public void onTEBAddFile(String s) {
+
+        }
+
+        @Override
+        public void onTEBAddH5PPTFile(String s) {
+
+        }
+
+        @Override
+        public void onTEBDeleteFile(String s) {
+
+        }
+
+        @Override
+        public void onTEBSwitchFile(String s) {
+
+        }
+
+        @Override
+        public void onTEBFileUploadProgress(String s, int i, int i1, int i2, float v) {
+
+        }
+
+        @Override
+        public void onTEBFileUploadStatus(String s, int i, int i1, String s1) {
+
+        }
     }
 }

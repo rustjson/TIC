@@ -2,6 +2,7 @@ package com.tencent.ticsdk.core.impl.observer;
 
 import com.tencent.imsdk.TIMUserStatusListener;
 import com.tencent.ticsdk.core.TICManager;
+import com.tencent.ticsdk.core.impl.TICReporter;
 
 import java.lang.ref.WeakReference;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ public class TICIMStatusObservable extends TICObservable<TICManager.TICIMStatusL
 
     @Override
     public void onForceOffline() {
+        TICReporter.report(TICReporter.EventId.onForceOffline);
         LinkedList<WeakReference<TICManager.TICIMStatusListener>> tmpList = new LinkedList<>(listObservers);
         Iterator<WeakReference<TICManager.TICIMStatusListener>> it = tmpList.iterator();
 
@@ -25,7 +27,7 @@ public class TICIMStatusObservable extends TICObservable<TICManager.TICIMStatusL
 
     @Override
     public void onUserSigExpired() {
-
+        TICReporter.report(TICReporter.EventId.onUserSigExpired);
         LinkedList<WeakReference<TICManager.TICIMStatusListener>> tmpList = new LinkedList<>(listObservers);
         Iterator<WeakReference<TICManager.TICIMStatusListener>> it = tmpList.iterator();
 
