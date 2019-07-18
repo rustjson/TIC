@@ -51,9 +51,9 @@ dependencies {
     compile 'com.android.support:support-compat:26+'
 
     // 教育白板
-    compile(name: 'TEduBoardSdk-release', ext: 'aar')
+//    compile(name: 'TEduBoardSdk-release', ext: 'aar')
 //    compile project(':TEduBoardSdk')
-//       compile ('com.tencent.teduboard:TEduBoardSdk:2.2.2.99')
+       compile ('com.tencent.teduboard:TEduBoardSdk:2.3.0.109')
         //如果自已应用同时存在tbs库，请打开下面的注释，免重复
 //       {
 //           exclude group: 'com.tencent.smtt'
@@ -64,7 +64,7 @@ dependencies {
 
     //imsdk 消息通信库，如果使用腾讯的云通信Tim，则需要加上
     compile 'com.tencent.imsdk:mobilepbforimsdk:1.6.0.45'
-    compile 'com.tencent.imsdk:imsdk:4.4.479'
+    compile 'com.tencent.imsdk:imsdk:4.4.716'
 
     //http，board sdk 不依赖，根据项目自身需要使用
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
