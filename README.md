@@ -37,7 +37,7 @@ git clone https://github.com/tencentyun/TIC.git
 为了便于开发人员以最简明的方式调试接口，我们准备了各个平台的开发demo。
 
 | 平台 | 源码下载 | 快速体验 |
-|---------|---------|---------|
+<!--|---------|---------|---------|-->
 | Web | [点击前往](./Web) | [体验链接](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
 |小程序  | [点击前往](./小程序)   | ![](https://main.qcloudimg.com/raw/db3055ade262e17bcd8711026f487ae7.png) |
 | Windows |[点击前往](./Windows)  | - |
