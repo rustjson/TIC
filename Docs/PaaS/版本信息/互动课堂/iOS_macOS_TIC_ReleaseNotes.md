@@ -1,6 +1,6 @@
 # Release Notes - iOS & macOS
 
-## 2019.07.11
+## 2019.07.18
 
 新增功能
 - iOS/macOS增加事件上报
