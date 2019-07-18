@@ -32,6 +32,7 @@
 		CF3FB30322731986001C148E /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB2F92273191D001C148E /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A8120A5A44900348C94 /* libresolv.tbd */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
+		CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */; };
 		CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */; };
 		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
 		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
@@ -46,7 +47,6 @@
 		CFDF445622953AA5004FFD01 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445522953AA5004FFD01 /* GCDAsyncUdpSocket.m */; };
 		CFEB9E7F22707E9100E56932 /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEB9E7D22707E9100E56932 /* TICConfig.m */; };
 		CFEB9E8122707F8600E56932 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CFEB9E8022707F8600E56932 /* config.json */; };
-		CFEFFAF922D71E060099216B /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEFFAF822D71E060099216B /* TEduBoard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +106,7 @@
 		CF3FB2F62273191D001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB2F72273191D001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
 		CF3FB2F92273191D001C148E /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
+		CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 		CF7D09E222BA84540088CDD1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -134,7 +135,6 @@
 		CFEB9E7D22707E9100E56932 /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
 		CFEB9E7E22707E9100E56932 /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
 		CFEB9E8022707F8600E56932 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
-		CFEFFAF822D71E060099216B /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 				CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */,
 				CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */,
 				CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */,
-				CFEFFAF922D71E060099216B /* TEduBoard.framework in Frameworks */,
+				CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */,
 				CF3FB3002273191D001C148E /* ImSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +256,7 @@
 		CF3FB2EF2273191D001C148E /* TEduBoard */ = {
 			isa = PBXGroup;
 			children = (
-				CFEFFAF822D71E060099216B /* TEduBoard.framework */,
+				CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */,
 			);
 			path = TEduBoard;
 			sourceTree = "<group>";
