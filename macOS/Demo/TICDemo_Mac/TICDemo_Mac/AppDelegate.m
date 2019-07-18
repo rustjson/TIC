@@ -7,15 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "TICManager.h"
-#import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface AppDelegate () 
-
-@property (nonatomic, strong) ViewController *loginVC;     //!< 登录控制器
-
-
+@interface AppDelegate ()
 
 @end
 

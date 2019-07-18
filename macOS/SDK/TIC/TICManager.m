@@ -11,7 +11,7 @@
 #import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 #import <ImSDK/ImSDK.h>
 #else
-#import <TXLiteAVSDK_Mac/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK.h>
 #import <ImSDKForMac/ImSDK.h>
 #endif
 #import "TICRecorder.h"

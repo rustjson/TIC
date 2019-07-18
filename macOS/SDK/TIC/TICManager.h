@@ -12,7 +12,7 @@
 #import <TEduBoard/TEduBoard.h>
 #import <ImSDK/ImSDK.h>
 #else
-#import <TXLiteAVSDK_Mac/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK.h>
 #import <TEduBoard_Mac/TEduBoard.h>
 #import <ImSDKForMac/ImSDK.h>
 #endif
