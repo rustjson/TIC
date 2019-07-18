@@ -3,8 +3,11 @@ package com.tencent.ticsdk.core.impl.utils;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import com.tencent.liteav.basic.log.TXCLog;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -29,12 +32,18 @@ public class TXHttpRequest {
 
     public int sendHttpsRequest(String url, byte[] data, TXHttpListenner callback){
         TXCLog.i(TAG, "sendHttpsRequest->enter action: "+url+", data size: "+data.length);
-        asyncPostRequest(url.getBytes(), data, callback);
+        asyncPostRequest(url.getBytes(), data, callback, null);
+        return 0;
+    }
+    public int sendHttpsRequest(String url, byte[] data,  TXHttpListenner callback, String contentType){
+        TXCLog.i(TAG, "sendHttpsRequest->enter action: "+url+", data size: "+data.length);
+        asyncPostRequest(url.getBytes(), data, callback, contentType);
         return 0;
     }
 
-    void asyncPostRequest(byte[] action, byte[] data, TXHttpListenner callback) {
-        TXPostRequest request = new TXPostRequest(callback);
+
+    void asyncPostRequest(byte[] action, byte[] data, TXHttpListenner callback, String contentType) {
+        TXPostRequest request = new TXPostRequest(callback, contentType);
         request.execute(action, data);
     }
 
@@ -47,7 +56,9 @@ public class TXHttpRequest {
     static class TXPostRequest extends AsyncTask<byte[], Void, TXResult>{
         private WeakReference<TXHttpListenner> mHttpRequest;
         private Handler mHandler = null;
-        public TXPostRequest(TXHttpListenner callback) {
+        private String mContentType;
+        public TXPostRequest(TXHttpListenner callback, String contentType) {
+            mContentType = contentType;
             mHttpRequest = new WeakReference<>(callback);
             Looper looper = Looper.myLooper();
             if (looper != null) {
@@ -61,7 +72,7 @@ public class TXHttpRequest {
             TXResult result = new TXResult();
             try {
                 if (new String(bytes[0]).startsWith("https")) {
-                    result.data = getHttpsPostRsp(new String(bytes[0]), bytes[1]);
+                    result.data = getHttpsPostRsp(new String(bytes[0]), bytes[1], mContentType);
                 }else{
                     result.data = getHttpPostRsp(new String(bytes[0]), bytes[1]);
                 }
@@ -131,7 +142,7 @@ public class TXHttpRequest {
     }
 
     //HTTPS
-    static byte[] getHttpsPostRsp(String strAction, byte[] data) throws Exception {
+    static byte[] getHttpsPostRsp(String strAction, byte[] data, String contentType) throws Exception {
         TXCLog.i(TAG, "getHttpsPostRsp->request: " + strAction);
         TXCLog.i(TAG, "getHttpsPostRsp->data: " + data.length);
         URL url = new URL(strAction.replace(" ", "%20"));
@@ -141,9 +152,11 @@ public class TXHttpRequest {
         conn.setConnectTimeout(CON_TIMEOUT);
         conn.setReadTimeout(READ_TIMEOUT);
         conn.setRequestMethod("POST");
+        if (!TextUtils.isEmpty(contentType)) {
+            conn.setRequestProperty("Content-Type", contentType);
+        }
 
         DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-        //out.writeBytes(data);
         out.write(data);
         out.flush();
         out.close();
@@ -158,7 +171,6 @@ public class TXHttpRequest {
                 byBuffer.write(data, 0, nRead);
             }
             byBuffer.flush();
-
 
             in.close();
             conn.disconnect();
