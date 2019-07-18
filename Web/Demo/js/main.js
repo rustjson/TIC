@@ -29,7 +29,7 @@ window.app = new Vue({
       //board(涂鸭)
       drawEnable: true, //是否可以涂鸭
       synDrawEnable: true, //是否将你画的涂鸭同步给其他人
-      toolType: '画笔',
+      toolType: 1,
       brushThin: 100,
       backgroundImage: "背景图",
       backgroundImageH5: "背景图H5",
@@ -116,6 +116,25 @@ window.app = new Vue({
         }
       };
 
+      this.drawEnable = true; //是否可以涂鸭
+      this.synDrawEnable = true; //是否将你画的涂鸭同步给其他人
+      this.toolType = 1;
+      this.brushThin = 100;
+      this.backgroundImage = "背景图";
+      this.backgroundImageH5 = "背景图H5";
+      this.backgroundColor = "#ff0000";
+      this.globalBackgroundColor = "#ff0000";
+      this.brushColor = "#ff0000";
+      this.textColor = "#ff0000";
+      this.textStyle = "#ff0000";
+      this.textFamily = "sans-serif,serif,monospace";
+      this.textSize = 100;
+      this.scaleSize = 100;
+      this.fitMode = 1;
+      this.ration = "16:9";
+      this.canRedo = 0;
+      this.canUndo = 0;
+
       localStorage.setItem('IIC_USERID', this.account);
     },
 
@@ -191,7 +210,7 @@ window.app = new Vue({
       });
     },
 
-    // 登录
+    // 登出
     logout() {
 
       if (this.status == this.STATUS_INCLASS) {
@@ -212,6 +231,7 @@ window.app = new Vue({
           this.showMessageInBox('TIC', "logout Failed, code=" + res.code);
           console.error(res);
         } else {
+          this.initData();
           this.status = this.STATUS_UNLOGIN;
 
           this.showTip('登出成功');
@@ -264,6 +284,8 @@ window.app = new Vue({
           this.showMessageInBox('TIC', "destroyClassroom Failed:" + res.code);
           console.error(res);
         } else {
+          this.initData();
+
           this.status = this.STATUS_LOGINED;
           this.clearClassInfo();
 
@@ -285,11 +307,7 @@ window.app = new Vue({
         return;
       }
 
-      this.tic.joinClassroom(this.roomID, {
-        debug: {
-          log: true
-        }
-      }, {
+      this.tic.joinClassroom(this.roomID, {}, {
         id: 'paint_box',
         ratio: '16:9',
         boardContentFitMode: 1
@@ -334,8 +352,9 @@ window.app = new Vue({
           this.showMessageInBox('TIC', "quitClassroom Failed, code=" + res.code);
           console.log('quitClassroom error' + res.code);
         } else {
-          this.status = this.STATUS_LOGINED;
+          this.initData();
 
+          this.status = this.STATUS_LOGINED;
           // this.showTip('退出课堂成功');
           this.showMessageInBox('TIC', "quitClassroom Succ");
         }
@@ -480,8 +499,10 @@ window.app = new Vue({
           }
           localVideoEl.muted = true;
           localVideoEl.autoplay = true;
-          localVideoEl.playsinline = true
+          localVideoEl.setAttribute('autoplay', true);
+          localVideoEl.setAttribute('playsinline', true);
           localVideoEl.srcObject = data.stream;
+
           this.isPushing = 1; // 正在推流
           this.showTip('WebRTC接收到本地流');
         }
@@ -495,8 +516,8 @@ window.app = new Vue({
           userVideoEl.class = "col-md-1";
           document.querySelector("#video_wrap").appendChild(userVideoEl);
         }
-        userVideoEl.autoplay = true;
-        userVideoEl.playsinline = true
+        userVideoEl.setAttribute('autoplay', true);
+        userVideoEl.setAttribute('playsinline', true);
         userVideoEl.srcObject = data.stream;
 
         this.showTip('WebRTC接收到远端流');
@@ -520,6 +541,26 @@ window.app = new Vue({
 
       this.TRTC.on('onStreamNotify', (data) => {
         console.log('==================== onStreamNotify==', data);
+      })
+
+      this.TRTC.on('onMuteVideo', (data) => {
+        this.showTip(`${data.userId}关闭了摄像头`);
+        console.log('==================== onMuteVideo==', data);
+      })
+
+      this.TRTC.on('onUnmuteVideo', (data) => {
+        this.showTip(`${data.userId}打开了摄像头`);
+        console.log('==================== onUnmuteVideo==', data);
+      })
+
+      this.TRTC.on('onMuteAudio', (data) => {
+        this.showTip(`${data.userId}关闭了麦克风`);
+        console.log('==================== onMuteAudio==', data);
+      })
+
+      this.TRTC.on('onUnmuteAudio', (data) => {
+        this.showTip(`${data.userId}打开了麦克风`);
+        console.log('==================== onUnmuteAudio==', data);
       })
     },
 
@@ -761,6 +802,7 @@ window.app = new Vue({
     sendMsg() {
       if (!this.imMsg.common.data) {
         this.showErrorTip(`不能发送空消息`);
+        return;
       }
 
       // C2C 文本
@@ -995,7 +1037,7 @@ window.app = new Vue({
 
     onSetBackgroundImage(backgroundImage) {
       var path = backgroundImage;
-      this.teduBoard.setBackgroundImage(path, 1);
+      this.teduBoard.setBackgroundImage(path);
     },
 
     onSetBackgroundH5(backgroundImageH5) {

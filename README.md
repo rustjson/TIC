@@ -38,7 +38,7 @@ git clone https://github.com/tencentyun/TIC.git
 
 | 平台 | 源码下载 | 快速体验 |
 |---------|---------|---------|
-| Web | [点击前往](./Web) | [体验链接](https://tic-demo-1257240443.cos.ap-shanghai.myqcloud.com/index.html) |
+| Web | [点击前往](./Web) | [体验链接](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
 |小程序  | [点击前往](./小程序)   | ![](https://main.qcloudimg.com/raw/db3055ade262e17bcd8711026f487ae7.png) |
 | Windows |[点击前往](./Windows)  | - |
 |Android  | [点击前往](./Android)  | - |
