@@ -19,7 +19,6 @@
 		6AAD6A1B20A58E3200348C94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6A1A20A58E3200348C94 /* main.m */; };
 		6AAD6B1F20AAD90F00348C94 /* ClassroomJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6B1E20AAD90F00348C94 /* ClassroomJoinViewController.m */; };
 		6AAD6B2920AB05DD00348C94 /* ClassroomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6B2720AB05DD00348C94 /* ClassroomViewController.m */; };
-		CF16F8B122CDB24D002D3CBB /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF16F8B022CDB24D002D3CBB /* TEduBoard.framework */; };
 		CF327918227191B500FF817F /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF327917227191B500FF817F /* MenuTableViewController.m */; };
 		CF3279C22271F10200FF817F /* TableSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3279C12271F10200FF817F /* TableSheetView.m */; };
 		CF3279C52271F11300FF817F /* PickSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3279C42271F11300FF817F /* PickSheetView.m */; };
@@ -33,7 +32,11 @@
 		CF3FB30322731986001C148E /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB2F92273191D001C148E /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A8120A5A44900348C94 /* libresolv.tbd */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
+		CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */; };
 		CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */; };
+		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
+		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
+		CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964622D4992C00E4ADF8 /* TICReport.m */; };
 		CFAFF0E8228C191A0044DB52 /* local_test1.pptx in Resources */ = {isa = PBXBuildFile; fileRef = CFAFF0E6228C191A0044DB52 /* local_test1.pptx */; };
 		CFAFF0E9228C191A0044DB52 /* local_test2.pptx in Resources */ = {isa = PBXBuildFile; fileRef = CFAFF0E7228C191A0044DB52 /* local_test2.pptx */; };
 		CFDF442A22942A77004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF442922942A74004FFD01 /* TICRecorder.mm */; };
@@ -87,7 +90,6 @@
 		6AAD6B1E20AAD90F00348C94 /* ClassroomJoinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassroomJoinViewController.m; sourceTree = "<group>"; };
 		6AAD6B2620AB05DD00348C94 /* ClassroomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassroomViewController.h; sourceTree = "<group>"; };
 		6AAD6B2720AB05DD00348C94 /* ClassroomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassroomViewController.m; sourceTree = "<group>"; };
-		CF16F8B022CDB24D002D3CBB /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 		CF327916227191B500FF817F /* MenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		CF327917227191B500FF817F /* MenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		CF3279C02271F10200FF817F /* TableSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableSheetView.h; sourceTree = "<group>"; };
@@ -104,10 +106,17 @@
 		CF3FB2F62273191D001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB2F72273191D001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
 		CF3FB2F92273191D001C148E /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
+		CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 		CF7D09E222BA84540088CDD1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC.framework; sourceTree = "<group>"; };
+		CF9F963B22D4992B00E4ADF8 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
+		CF9F963C22D4992B00E4ADF8 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
+		CF9F963D22D4992B00E4ADF8 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
+		CF9F963E22D4992B00E4ADF8 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
+		CF9F964322D4992C00E4ADF8 /* TICReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReport.h; sourceTree = "<group>"; };
+		CF9F964622D4992C00E4ADF8 /* TICReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReport.m; sourceTree = "<group>"; };
 		CFAFF0E6228C191A0044DB52 /* local_test1.pptx */ = {isa = PBXFileReference; lastKnownFileType = file; path = local_test1.pptx; sourceTree = "<group>"; };
 		CFAFF0E7228C191A0044DB52 /* local_test2.pptx */ = {isa = PBXFileReference; lastKnownFileType = file; path = local_test2.pptx; sourceTree = "<group>"; };
 		CFDF442822942A74004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
@@ -136,7 +145,7 @@
 				CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */,
 				CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */,
 				CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */,
-				CF16F8B122CDB24D002D3CBB /* TEduBoard.framework in Frameworks */,
+				CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */,
 				CF3FB3002273191D001C148E /* ImSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +256,7 @@
 		CF3FB2EF2273191D001C148E /* TEduBoard */ = {
 			isa = PBXGroup;
 			children = (
-				CF16F8B022CDB24D002D3CBB /* TEduBoard.framework */,
+				CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */,
 			);
 			path = TEduBoard;
 			sourceTree = "<group>";
@@ -265,6 +274,12 @@
 				CF3FB2F72273191D001C148E /* TICRenderView.m */,
 				CFDF442822942A74004FFD01 /* TICRecorder.h */,
 				CFDF442922942A74004FFD01 /* TICRecorder.mm */,
+				CF9F964322D4992C00E4ADF8 /* TICReport.h */,
+				CF9F964622D4992C00E4ADF8 /* TICReport.m */,
+				CF9F963D22D4992B00E4ADF8 /* TICDevice.h */,
+				CF9F963C22D4992B00E4ADF8 /* TICDevice.m */,
+				CF9F963B22D4992B00E4ADF8 /* TICReachability.h */,
+				CF9F963E22D4992B00E4ADF8 /* TICReachability.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -410,10 +425,13 @@
 				CFEB9E7F22707E9100E56932 /* TICConfig.m in Sources */,
 				6AAD6B1F20AAD90F00348C94 /* ClassroomJoinViewController.m in Sources */,
 				CF3FB2FD2273191D001C148E /* TICDef.m in Sources */,
+				CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */,
 				6A90D68720B2A737004AA011 /* UIViewController+Utils.m in Sources */,
 				CFDF445022953496004FFD01 /* NSDate+NetworkClock.m in Sources */,
+				CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */,
 				6A1BF1B020BBEB1600FEA44D /* JMToast.m in Sources */,
 				CF3279C52271F11300FF817F /* PickSheetView.m in Sources */,
+				CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */,
 				6AAD6A0D20A58E3200348C94 /* AppDelegate.m in Sources */,
 				CF3FB2FE2273191D001C148E /* TICManager.m in Sources */,
 				CF327918227191B500FF817F /* MenuTableViewController.m in Sources */,

@@ -18,22 +18,4 @@ public class CallbackUtil {
         }
         TXCLog.e(module, errMsg);
     }
-
-    public static void notifySuccess(TICProgressCallback callBack, Object data) {
-        if (null != callBack) {
-            callBack.onSuccess(data);
-        }
-    }
-
-    public static void notifyProgress(TICProgressCallback callBack, int percent) {
-        if (null != callBack) {
-            callBack.onPrgress(percent);
-        }
-    }
-
-    public static void notifyError(TICProgressCallback callBack, String module, int errCode, String errMsg) {
-        if (null != callBack) {
-            callBack.onError(module, errCode, errMsg);
-        }
-    }
 }

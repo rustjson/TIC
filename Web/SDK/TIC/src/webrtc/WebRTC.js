@@ -1,3 +1,5 @@
+import LogReport from '../log/LogReport'
+
 function TICWebRTC(accountModel, webRTCOptionModel) {
   this.accountModel = accountModel;
   this.webRTCOptionModel = webRTCOptionModel;
@@ -6,6 +8,10 @@ function TICWebRTC(accountModel, webRTCOptionModel) {
 
 TICWebRTC.prototype.getInstance = function () {
   return this.RTC;
+}
+
+TICWebRTC.prototype.setLog = function (log) {
+  return this.log = log;
 }
 
 TICWebRTC.prototype.quit = function (succ, fail) {
@@ -33,8 +39,173 @@ TICWebRTC.prototype.joinAvRoom = function (succ = function () {}, fail = functio
     recordId: this.webRTCOptionModel.recordId
   }, succ, fail);
 
-  this.RTC.on('onKickout', () => {
+
+
+  this.RTC.on('onLocalStreamAdd', (data) => {
+    // 本地视频流
+    this.log.report('onLocalStreamAdd', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onRemoteStreamUpdate', (data) => {
+    // 本地视频流
+    this.log.report('onRemoteStreamUpdate', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onRemoteStreamRemove', (data) => {
+    // 本地视频流
+    this.log.report('onRemoteStreamRemove', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onWebSocketClose', (data) => {
+    // 本地视频流
+    this.log.report('onWebSocketClose', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onRelayTimeout', (data) => {
+    // 本地视频流
+    this.log.report('onRelayTimeout', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onKickout', (data) => {
+    // 本地视频流
+    this.log.report('onKickout', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+
+    // 本地视频流
+    this.log.report(LogReport.EVENT_NAME.ONFORCEOFFLINE, {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: JSON.stringify(data),
+      ext: 'webrtc'
+    });
+
     this.statusListener.fireEvent('onTICForceOffline');
+  });
+
+  this.RTC.on('onMuteAudio', (data) => {
+    // 本地视频流
+    this.log.report('onMuteAudio', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onUnmuteAudio', (data) => {
+    // 本地视频流
+    this.log.report('onUnmuteAudio', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onMuteVideo', (data) => {
+    // 本地视频流
+    this.log.report('onMuteVideo', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onUnmuteVideo', (data) => {
+    // 本地视频流
+    this.log.report('onUnmuteVideo', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+
+
+  this.RTC.on('onStreamNotify', (data) => {
+    // 本地视频流
+    this.log.report('onStreamNotify', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onErrorNotify', (data) => {
+    // 本地视频流
+    this.log.report('onErrorNotify', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onWebSocketNotify', (data) => {
+    // 本地视频流
+    this.log.report('onWebSocketNotify', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
+  });
+
+  this.RTC.on('onWebsocketNotify', (data) => {
+    // 本地视频流
+    this.log.report('onWebsocketNotify', {
+      errorCode: 0,
+      errorDesc: '',
+      timeCost: 0,
+      data: '',
+      ext: JSON.stringify(data),
+    });
   });
 }
 

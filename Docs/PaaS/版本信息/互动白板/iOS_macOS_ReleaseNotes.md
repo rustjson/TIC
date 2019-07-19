@@ -1,9 +1,15 @@
 # Release Notes - iOS & macOS
 
+## 2.3.0 @ 2019.07.18
+性能优化
+- 首屏渲染优化
+
 ## 2.2.2 @ 2019.07.04
 接口修改
 - addFile/addH5PPTFile返回文件Id
 - onTEBFileUploadProgress/onTEBFileUploadStatus回调接口修改
+功能更新
+- 支持画出白板再画入
 
 ## 2.2.1 @ 2019.06.21
 回调接口修改

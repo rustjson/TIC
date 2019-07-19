@@ -7,28 +7,18 @@
 //
 
 #import "AppDelegate.h"
-#import "TICManager.h"
-#import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface AppDelegate () 
-
-@property (nonatomic, strong) ViewController *loginVC;     //!< 登录控制器
-
-
+@interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[TICManager sharedInstance] init:1400127140 callback:^(TICModule module, int code, NSString *desc) {
-
-    }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
 }
 
 

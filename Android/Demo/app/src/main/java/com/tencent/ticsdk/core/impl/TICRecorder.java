@@ -1,6 +1,5 @@
 package com.tencent.ticsdk.core.impl;
 
-import android.os.SystemClock;
 import android.text.TextUtils;
 
 import com.instacart.library.truetime.TrueTime;
@@ -37,6 +36,8 @@ public class TICRecorder implements TXHttpRequest.TXHttpListenner {
 
     void start(TEduBoardController.TEduBoardAuthParam authParam, int roomId, final String ntpServer) {
         //1.ntp
+        TICReporter.report(TICReporter.EventId.sendOfflineRecordInfo_start);
+
         mGroupId = roomId;
         mNtp.start(ntpServer);
 
@@ -108,6 +109,7 @@ public class TICRecorder implements TXHttpRequest.TXHttpListenner {
         public void onGotTrueTimeRusult(int code, String msg) {
 
             if (code == NTPController.SUCC) {
+                TICReporter.report(TICReporter.EventId.sendOfflineRecordInfo_end);
                 try {
                     long avsdk_time = TXCTimeUtil.getTimeTick();
                     long ntp_time = TrueTime.now().getTime();
@@ -121,6 +123,7 @@ public class TICRecorder implements TXHttpRequest.TXHttpListenner {
             }
             else {
                 TXCLog.i(TAG, "TICManager: onGotTrueTimeRusult failed: "  + NTPController.NTP_HOST + "|" + msg);
+                TICReporter.report(TICReporter.EventId.sendOfflineRecordInfo_end, code, msg + ":" + mNtp);
                 TICManagerImpl tic = mTicRef.get();
                 if (tic != null) {
                     tic.trigleOffLineRecordCallback(code, msg);

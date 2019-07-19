@@ -1,5 +1,12 @@
 # Release Notes - Windows
 
+## 2.3.0.36 @2019.07.12
+- 更新Windows&Linux的Chromium版本到75.0.3770.100
+- Windows&Linux适配新版CEF接口
+- Windows&Linux离屏渲染模式下禁用JS弹窗
+- Windows&Linux增加白板HTML加载失败自动重试选项
+- Windows&Linux白板HTML文件上云
+
 ## 2.2.2.34 @2019.07.03
 - 修复设置白板背景图接口功能异常
 

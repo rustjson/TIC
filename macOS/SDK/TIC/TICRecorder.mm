@@ -56,7 +56,7 @@
     request.HTTPMethod = @"POST";
     request.HTTPBody = paramData;
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"");
+        
     }];
     [task resume];
     

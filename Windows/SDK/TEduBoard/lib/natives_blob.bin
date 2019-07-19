@@ -2229,7 +2229,7 @@ getWritableStreamController,
 WritableStreamDefaultControllerClose,
 });
 });
-<TransformStreamMË
+<TransformStreamË
 (function(global, binding, v8) {
 'use strict';
 const _backpressure = v8.createPrivateSymbol('[[backpressure]]');
@@ -2481,7 +2481,8 @@ const readableController =
 binding.getReadableStreamController(stream[_readable]);
 if (!binding.ReadableStreamDefaultControllerCanCloseOrEnqueue(
 readableController)) {
-throw binding.getReadableStreamEnqueueError(stream[_readable]);
+throw binding.getReadableStreamEnqueueError(stream[_readable],
+readableController);
 }
 try {
 binding.ReadableStreamDefaultControllerEnqueue(readableController, chunk);

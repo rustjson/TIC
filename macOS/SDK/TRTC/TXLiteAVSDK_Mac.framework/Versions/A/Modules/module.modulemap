@@ -1,4 +1,0 @@
-module TXLiteAVSDK_Mac {
-    umbrella header "Headers/TXLiteAVSDK.h"
-    export *
-}

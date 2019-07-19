@@ -15,6 +15,7 @@
 #import <ImSDKForMac/ImSDK.h>
 #endif
 #import "TICRecorder.h"
+#import "TICReport.h"
 
 typedef id(^WeakRefBlock)(void);
 typedef id(^MakeWeakRefBlock)(id);
@@ -61,11 +62,14 @@ id makeWeakRef (id object) {
 
 - (void)init:(int)sdkAppId callback:(TICCallback)callback;
 {
+    
     _sdkAppId = sdkAppId;
-    //初始化IMSDK
     TIMSdkConfig *config = [[TIMSdkConfig alloc] init];
     config.sdkAppId = sdkAppId;
+    [self report:TIC_REPORT_INITSDK_START];
     int ret = [[TIMManager sharedInstance] initSdk:config];
+    [self report:TIC_REPORT_INITSDK_END code:ret msg:nil];
+    
     if(ret == 0){
         [[TIMManager sharedInstance] addMessageListener:self];
         TIMUserConfig *userConfig = [[TIMUserConfig alloc] init];
@@ -89,24 +93,34 @@ id makeWeakRef (id object) {
     loginParam.identifier = userId;
     loginParam.userSig = userSig;
     loginParam.appidAt3rd = [@(_sdkAppId) stringValue];
+    [self report:TIC_REPORT_LOGIN_START];
+    __weak typeof(self) ws = self;
     int ret = [[TIMManager sharedInstance] login:loginParam succ:^{
+        [ws report:TIC_REPORT_LOGIN_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil);
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_LOGIN_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
     }];
     if(ret != 0){
+        [ws report:TIC_REPORT_LOGIN_END code:ret msg:nil];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, ret, nil);
     }
 }
 
 - (void)logout:(TICCallback)callback
 {
+    [self report:TIC_REPORT_LOGOUT_START];
+    __weak typeof(self) ws = self;
     int ret = [[TIMManager sharedInstance] logout:^{
+        [ws report:TIC_REPORT_LOGOUT_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil);
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_LOGOUT_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
     }];
     if(ret != 0){
+        [ws report:TIC_REPORT_LOGOUT_END code:ret msg:nil];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, ret, nil);
     }
 };
@@ -121,19 +135,26 @@ id makeWeakRef (id object) {
     groupInfo.groupType = @"Public";
     groupInfo.setAddOpt = YES;
     groupInfo.addOpt = TIM_GROUP_ADD_ANY;
+    [self report:TIC_REPORT_CREATE_GROUP_START];
+    __weak typeof(self) ws = self;
     [[TIMGroupManager sharedInstance] createGroup:groupInfo succ:^(NSString *groupId) {
+        [ws report:TIC_REPORT_CREATE_GROUP_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil);
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_CREATE_GROUP_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
     }];
 }
 
 - (void)destroyClassroom:(int)classId callback:(TICCallback)callback
 {
+    [self report:TIC_REPORT_DELETE_GROUP_START];
     __weak typeof(self) ws = self;
     [[TIMGroupManager sharedInstance] deleteGroup:[@(classId) stringValue] succ:^{
+        [ws report:TIC_REPORT_DELETE_GROUP_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil);
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_DELETE_GROUP_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
     }];
 }
@@ -154,6 +175,7 @@ id makeWeakRef (id object) {
         if(!initParam){
             initParam = [[TEduBoardInitParam alloc] init];
         }
+        [ws report:TIC_REPORT_INIT_BOARD_START];
         ws.boardController = [[TEduBoardController alloc] initWithAuthParam:authParam roomId:ws.option.classId initParam:initParam];
         [ws.boardController addDelegate:ws];
         if(option.boardDelegate){
@@ -161,10 +183,13 @@ id makeWeakRef (id object) {
         }
     };
     
+    [self report:TIC_REPORT_JOIN_GROUP_START];
     //IM进房
     [[TIMGroupManager sharedInstance] joinGroup:[@(_option.classId) stringValue] msg:nil succ:^{
+        [ws report:TIC_REPORT_JOIN_GROUP_END];
         createBoard();
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_JOIN_GROUP_END code:code msg:msg];
         if(code == 10013){
             //已经在群中
             createBoard();
@@ -189,9 +214,13 @@ id makeWeakRef (id object) {
     _option = nil;
     _boardController = nil;
     [[TRTCCloud sharedInstance] exitRoom];
+    [self report:TIC_REPORT_QUIT_GROUP_START];
+    __weak typeof(self) ws = self;
     [[TIMGroupManager sharedInstance] quitGroup:classId succ:^{
+        [ws report:TIC_REPORT_QUIT_GROUP_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil)
     } fail:^(int code, NSString *msg) {
+        [ws report:TIC_REPORT_QUIT_GROUP_END code:code msg:msg];
         if (code == 10009) {
             //群主退群失败
             TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil)
@@ -261,6 +290,7 @@ id makeWeakRef (id object) {
 
 - (void)sendMessage:(TIMMessage *)message toUserId:(NSString *)toUserId callback:(TICCallback)callback
 {
+    [message setPriority:TIM_MSG_PRIORITY_HIGH];
     [self sendMessage:message type:TIM_C2C receiver:toUserId callback:callback];
 }
 
@@ -317,19 +347,17 @@ id makeWeakRef (id object) {
        || errCode == ERR_USER_ID_INVALID
        || errCode == ERR_USER_SIG_INVALID){
         [[TRTCCloud sharedInstance] exitRoom];
+        [self report:TIC_REPORT_ENTER_ROOM_END code:errCode msg:errMsg];
         TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, errCode, errMsg);
     }
-    
-    //TODO: 退房失败
 }
 
 - (void)onEnterRoom:(NSInteger)elapsed
 {
+    [self report:TIC_REPORT_ENTER_ROOM_END];
     _isEnterRoom = YES;
     //录制对时
     [self sendOfflineRecordInfo];
-    //群ID上报
-    [_recorder reportGroupId:[@(_option.classId) stringValue] sdkAppId:_sdkAppId userId:_userId userSig:_userSig];
     //进房回调
     TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, 0, nil);
     _enterCallback = nil;
@@ -349,6 +377,8 @@ id makeWeakRef (id object) {
 
 - (void)onUserVideoAvailable:(NSString *)userId available:(BOOL)available
 {
+    NSString *data = [NSString stringWithFormat:@"{userId:%@,available:%d}", userId, available];
+    [self report:TIC_REPORT_VIDEO_AVAILABLE code:0 msg:nil data:data];
     for (id<TICEventListener> listener in _eventListeners) {
         if(listener && [listener respondsToSelector:@selector(onTICUserVideoAvailable:available:)]){
             [listener onTICUserVideoAvailable:userId available:available];
@@ -358,6 +388,8 @@ id makeWeakRef (id object) {
 
 - (void)onUserSubStreamAvailable:(NSString *)userId available:(BOOL)available
 {
+    NSString *data = [NSString stringWithFormat:@"{userId:%@,available:%d}", userId, available];
+    [self report:TIC_REPORT_SUB_STREAM_AVAILABLE code:0 msg:nil data:data];
     for (id<TICEventListener> listener in _eventListeners) {
         if(listener && [listener respondsToSelector:@selector(onTICUserSubStreamAvailable:available:)]){
             [listener onTICUserSubStreamAvailable:userId available:available];
@@ -367,6 +399,8 @@ id makeWeakRef (id object) {
 
 - (void)onUserAudioAvailable:(NSString *)userId available:(BOOL)available
 {
+    NSString *data = [NSString stringWithFormat:@"{userId:%@,available:%d}", userId, available];
+    [self report:TIC_REPORT_AUDIO_AVAILABLE code:0 msg:nil data:data];
     for (id<TICEventListener> listener in _eventListeners) {
         if(listener && [listener respondsToSelector:@selector(onTICUserAudioAvailable:available:)]){
             [listener onTICUserAudioAvailable:userId available:available];
@@ -416,14 +450,20 @@ id makeWeakRef (id object) {
 }
 
 #pragma mark - board delegate
+- (void)onTEBHistroyDataSyncCompleted
+{
+    [self report:TIC_REPORT_SYNC_BOARD_HISTORY_END];
+}
 - (void)onTEBInit
 {
+    [self report:TIC_REPORT_INIT_BOARD_END];
     TRTCParams *params = [[TRTCParams alloc] init];
     params.sdkAppId = _sdkAppId;
     params.userId = _userId;
     params.userSig = _userSig;
     params.roomId = _option.classId;
     [[TRTCCloud sharedInstance] setDelegate:self];
+    [self report:TIC_REPORT_ENTER_ROOM_START];
     [[TRTCCloud sharedInstance] enterRoom:params appScene:TRTCAppSceneVideoCall];
 #if TARGET_OS_IPHONE
     if(_option.bOpenCamera && _option.renderView){
@@ -450,10 +490,17 @@ id makeWeakRef (id object) {
 
 - (void)onTEBError:(TEduBoardErrorCode)code msg:(NSString *)msg
 {
-    if(code == TEDU_BOARD_ERROR_AUTH || code == TEDU_BOARD_ERROR_LOAD){
+    [self report:TIC_REPORT_BOARD_ERROR code:code msg:msg];
+    if(code == TEDU_BOARD_ERROR_AUTH || code == TEDU_BOARD_ERROR_LOAD || code == TEDU_BOARD_ERROR_INIT){
+        [self report:TIC_REPORT_INIT_BOARD_END code:code msg:msg];
         TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, code, msg);
         _enterCallback = nil;
     }
+}
+
+- (void)onTEBWarning:(TEduBoardWarningCode)code msg:(NSString *)msg
+{
+    [self report:TIC_REPORT_BOARD_WARNING code:code msg:msg];
 }
 
 #pragma mark - im delegate
@@ -617,6 +664,7 @@ id makeWeakRef (id object) {
 
 - (void)onForceOffline
 {
+    [self report:TIC_REPORT_FORCE_OFFLINE];
     if(_isEnterRoom){
         [[TRTCCloud sharedInstance] exitRoom];
         [_boardController removeDelegate:self];
@@ -634,6 +682,7 @@ id makeWeakRef (id object) {
 
 - (void)onUserSigExpired
 {
+    [self report:TIC_REPORT_SIG_EXPIRED];
     if(_isEnterRoom){
         [[TRTCCloud sharedInstance] exitRoom];
         [_boardController removeDelegate:self];
@@ -654,13 +703,40 @@ id makeWeakRef (id object) {
     if(_recorder == nil){
         _recorder = [[TICRecorder alloc] init];
     }
+    [self report:TIC_REPORT_RECORD_INFO_START];
     __weak typeof(self) ws = self;
+    //录制对时
     [_recorder sendOfflineRecordInfo:[@(_option.classId) stringValue] ntpServer:_option.ntpServer callback:^(TICModule module, int code, NSString *desc) {
+        [ws report:TIC_REPORT_RECORD_INFO_END code:code msg:desc];
         for (id<TICEventListener> listener in ws.eventListeners) {
             if (listener && [listener respondsToSelector:@selector(onTICSendOfflineRecordInfo:desc:)]) {
                 [listener onTICSendOfflineRecordInfo:code desc:desc];
             }
         }
     }];
+    //群ID上报
+    [_recorder reportGroupId:[@(_option.classId) stringValue] sdkAppId:_sdkAppId userId:_userId userSig:_userSig];
+}
+
+#pragma mark - report
+- (void)report:(TICReportEvent)event
+{
+    [self report:event code:0 msg:@""];
+}
+- (void)report:(TICReportEvent)event code:(int)code msg:(NSString*)msg
+{
+    [self report:event code:code msg:msg data:nil];
+}
+- (void)report:(TICReportEvent)event code:(int)code msg:(NSString*)msg data:(NSString *)data
+{
+    TICReportParam *param = [[TICReportParam alloc] init];
+    param.sdkAppId = _sdkAppId;
+    param.userId = _userId;
+    param.roomId = _option.classId;
+    param.errorCode = code;
+    param.errorMsg = msg;
+    param.event = event;
+    param.data = data;
+    [TICReport report:param];
 }
 @end

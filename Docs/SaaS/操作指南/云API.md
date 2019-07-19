@@ -23,7 +23,6 @@
     * [4\.4 在线录制开始](#44-%E5%9C%A8%E7%BA%BF%E5%BD%95%E5%88%B6%E5%BC%80%E5%A7%8B)
     * [4\.5 在线录制结束](#45-%E5%9C%A8%E7%BA%BF%E5%BD%95%E5%88%B6%E7%BB%93%E6%9D%9F)
     * [4\.6 转码进度回调](#46-%E8%BD%AC%E7%A0%81%E8%BF%9B%E5%BA%A6%E5%9B%9E%E8%B0%83)
-    * [4\.7 开启/关闭屏幕共享](#47-%E5%BC%80%E5%90%AF%E5%85%B3%E9%97%AD%E5%B1%8F%E5%B9%95%E5%85%B1%E4%BA%AB)
   * [5 企业模块](#5-%E4%BC%81%E4%B8%9A%E6%A8%A1%E5%9D%97)
     * [5\.1 修改企业信息](#51-%E4%BF%AE%E6%94%B9%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF)
     * [5\.2 查询企业信息](#52-%E6%9F%A5%E8%AF%A2%E4%BC%81%E4%B8%9A%E4%BF%A1%E6%81%AF)
@@ -1150,36 +1149,6 @@ __data__
   "title": "PPT名字"
 }
 ```
-
-### 4.7 开启/关闭屏幕共享
-
-__event__
-
-```
-screen_share_open		// 开启
-screen_share_close		// 关闭
-```
-
- __data__ 
-
-| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
-|:--------|:-----|:-------|:-------|:-------|
-| class_id | int | 课堂ID | 是 | - |
-| user_id | int64 | 开启/关闭屏幕共享的用户ID | 是 | - |
-| timestamp | int | 互动课堂后台时间戳，单位秒 | 是 | - |
-| flv_url | string | flv协议旁路播放地址 | 是 | - |
-| hls_url | string | hls协议旁路播放地址 | 是 | - |
-
-```
-{
-	"class_id":100001234,
-	"user_id":"userid",
-	"timestamp":1561690421,
-	"flv_url":"http://8888.liveplay.myqcloud.com/live/8888_8d0261436c375bb0dea901d86d7d70e8.flv",
-	"hls_url":"http://8888.liveplay.myqcloud.com/live/8888_8d0261436c375bb0dea901d86d7d70e8.m3u8"
-}
-```
-
 
 ## 5 企业模块
 

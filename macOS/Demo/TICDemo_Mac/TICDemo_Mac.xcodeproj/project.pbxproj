@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A20E660219186EA0021CA30 /* libc++.tbd */; };
-		6A20E67321918A970021CA30 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A20E67221918A970021CA30 /* libresolv.tbd */; };
 		6A9FC2B2217EBCC6009ACB83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B1217EBCC6009ACB83 /* AppDelegate.m */; };
 		6A9FC2B5217EBCC6009ACB83 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B4217EBCC6009ACB83 /* ViewController.m */; };
 		6A9FC2B7217EBCC7009ACB83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9FC2B6217EBCC7009ACB83 /* Assets.xcassets */; };
@@ -19,11 +18,13 @@
 		CF3FB3412276A2C7001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3372276A2C7001C148E /* TICDef.m */; };
 		CF3FB3422276A2C7001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3392276A2C7001C148E /* TICManager.m */; };
 		CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB33B2276A2C7001C148E /* TICRenderView.m */; };
-		CF3FB3452276A2C7001C148E /* TXLiteAVSDK_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */; };
 		CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; };
 		CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF3FB350227707CC001C148E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CF3FB34D227707CC001C148E /* config.json */; };
 		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
+		CF4B346722E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */; };
+		CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D822D2ECFC003149C9 /* TICDevice.m */; };
+		CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DC22D2F000003149C9 /* TICReachability.m */; };
 		CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */; };
 		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
 		CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445A22953EB1004FFD01 /* NetAssociation.m */; };
@@ -79,11 +80,15 @@
 		CF3FB3392276A2C7001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
 		CF3FB33A2276A2C7001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB33B2276A2C7001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
-		CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_Mac.framework; sourceTree = "<group>"; };
 		CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDKForMac.framework; sourceTree = "<group>"; };
 		CF3FB34D227707CC001C148E /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		CF3FB34E227707CC001C148E /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
 		CF3FB34F227707CC001C148E /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
+		CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC_Mac.framework; sourceTree = "<group>"; };
+		CFA891D722D2ECFC003149C9 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
+		CFA891D822D2ECFC003149C9 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
+		CFA891DB22D2F000003149C9 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
+		CFA891DC22D2F000003149C9 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
 		CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard_Mac.framework; sourceTree = "<group>"; };
 		CFDF44322294FCD1004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
 		CFDF44332294FCD1004FFD01 /* TICRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TICRecorder.mm; sourceTree = "<group>"; };
@@ -106,9 +111,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */,
-				6A20E67321918A970021CA30 /* libresolv.tbd in Frameworks */,
+				CF4B346722E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework in Frameworks */,
 				CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */,
-				CF3FB3452276A2C7001C148E /* TXLiteAVSDK_Mac.framework in Frameworks */,
 				CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +210,10 @@
 				CFDF44332294FCD1004FFD01 /* TICRecorder.mm */,
 				CF16F8B222CEE62F002D3CBB /* TICReport.h */,
 				CF16F8B322CEE62F002D3CBB /* TICReport.m */,
+				CFA891D722D2ECFC003149C9 /* TICDevice.h */,
+				CFA891D822D2ECFC003149C9 /* TICDevice.m */,
+				CFA891DB22D2F000003149C9 /* TICReachability.h */,
+				CFA891DC22D2F000003149C9 /* TICReachability.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -221,7 +229,7 @@
 		CF3FB33E2276A2C7001C148E /* TRTC */ = {
 			isa = PBXGroup;
 			children = (
-				CF3FB33F2276A2C7001C148E /* TXLiteAVSDK_Mac.framework */,
+				CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */,
 			);
 			path = TRTC;
 			sourceTree = "<group>";
@@ -344,9 +352,11 @@
 				CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */,
 				CF3FB3422276A2C7001C148E /* TICManager.m in Sources */,
 				6A9FC2BD217EBCC7009ACB83 /* main.m in Sources */,
+				CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */,
 				6A9FC2B2217EBCC6009ACB83 /* AppDelegate.m in Sources */,
 				CF0AF30022785CFA00B9CD87 /* ColorPickViewController.m in Sources */,
 				CFDF446722953EB2004FFD01 /* NSDate+NetworkClock.m in Sources */,
+				CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */,
 				CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */,
 				CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */,
 				CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */,
@@ -499,7 +509,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -524,7 +534,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

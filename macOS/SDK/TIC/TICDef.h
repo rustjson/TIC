@@ -11,7 +11,7 @@
 #import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 #import <TEduBoard/TEduBoard.h>
 #elif TARGET_OS_MAC
-#import <TXLiteAVSDK_Mac/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK.h>
 #import <TEduBoard_Mac/TEduBoard.h>
 #endif
 

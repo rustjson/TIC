@@ -6,18 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>=====教育SDK开发者DEMO===</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="libs/thirdpart/elementui/index.css">
+  <script src="libs/thirdpart/vue.js"></script>
+
+  <!-- 引入组件库 -->
+  <script src="libs/thirdpart/elementui/index.js"></script>
+
   <style>
-    html {
-      font-size: 75%;
-    }
-
     * {
-      padding: 0;
       margin: 0;
+      padding: 0;
     }
 
-    body {
-      padding: 5px;
+    html,
+    body,
+    #app_box {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
     .title {
@@ -35,13 +42,18 @@
       max-height: 100px;
     }
 
+    .promption {
+      color: #A0A0A0
+    }
+
     .im-log-box {
-      display: inline-block;
       width: 100%;
-      height: 200px;
+      height: 100%;
       border: 1px solid #999;
-      margin: 5px;
+      margin: 0px;
+      box-sizing: border-box;
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .im-log-box li {
@@ -60,310 +72,417 @@
 
     #paint_box {
       position: relative;
-      width: 812px;
-      height: 500px;
+      width: 100%;
+      height: 100%;
       border: 1px solid #888;
       overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .el-header,
+    .el-footer {
+      padding: 0 !important;
+    }
+
+    .el-main {
+      padding: 0 !important;
+      overflow: hidden !important;
+      height: 100%;
+    }
+
+    .el-container {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .el-tabs__header {
+      margin: 0;
+    }
+
+    .el-icon-arrow-left,
+    .el-icon-arrow-right {
+      font-size: 20px;
+    }
+
+    .version-info {
+      font-size: 14px;
+      color: #606266;
     }
   </style>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="./libs/bootstrap.min.css">
-  <script src="./libs/vue.js"></script>
-  <script src="./libs/vue-toasted.js"></script>
-</head>
 
+
+</head>
 
 <body>
   <div id="app_box" class="container-fluid">
-    <h4 class="title">教育SDK_开发者_DEMO</h4>
-    <div class="row" v-if="step == 'first'">
-      <div class="col align-self-center"></div>
-      <div class="col align-self-center">
-        <form>
-          <div class="form-group row">
-            <label for="account" class="col-sm-2 col-form-label">账号</label>
-            <select class="form-control col-sm-10" id="account" v-model="account" name="account">
-              <option v-for="user in users" v-bind:value="user.userId">{{user.userId}}</option>
-            </select>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">推流模式</label>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" v-model.number="pushModel" value="1">
-                自动推流</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" v-model.number="pushModel" value="0">
-                手动推流</label>
-            </div>
-          </div>
+    <el-container style="display: none;" v-show="isShow">
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">角色</label>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" v-model.number="isTeacher" value="1">
-                老师</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" v-model.number="isTeacher" value="0">
-                学生</label>
-            </div>
-          </div>
+      <!--左边栏  -->
+      <el-aside width="300px">
 
-          <div class="form-group row">
-            <label for="roomid" class="col-sm-2 col-form-label">课堂ID</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="roomid" v-model.trim="roomID" placeholder="课堂ID">
-            </div>
-          </div>
+        <!-- 左边栏 用户登录和登出 -->
+        <el-row>
+          <el-col>
+            <el-tabs type="border-card">
+              <el-tab-pane label="账号">
+                <el-form ref="form" label-width="80px" size="mini">
+                  <el-form-item label="用户名">
+                    <el-select :disabled="status >= STATUS_LOGINED" v-model="account" placeholder="请选择帐号">
+                      <el-option v-for="user in users" v-bind:value="user.userId" v-text="user.userId"></el-option>
+                    </el-select>
+                  </el-form-item>
 
-          <button type="button" class="btn btn-primary" @click="start" v-text="isTeacher ? '创建课堂': '进入课堂'"></button>
-        </form>
-      </div>
-      <div class="col align-self-center"></div>
-    </div>
+                  <el-form-item>
+                    <el-button @click="start" :disabled="status >= STATUS_LOGINED" v-text="'登录'"></el-button>
+                  </el-form-item>
 
-    <div v-else>
-      <div class="row">
-        <div class="col-md-4 offset-md-8 text-right">userid： {{account}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; roomID:
-          {{roomID}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning btn-sm"
-            @click="quitClassroom">退出</button>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning btn-sm" v-if="isTeacher"
-            @click="destroyClassroom">销毁</button></div>
-      </div>
+                  <el-form-item>
+                    <el-button @click="logout" :disabled="status < STATUS_LOGINED" v-text="'登 出'"></el-button>
+                  </el-form-item>
+                </el-form>
+              </el-tab-pane>
+            </el-tabs>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-row">
+          </el-col>
+        </el-row>
 
-            <div class="btn-group mr-2" role="group">
-              <button @click="startRTC" type="button" class="btn btn-primary btn-sm">摄像头推流</button>
-              <button @click="pushScreen" class="btn btn-info btn-sm">屏幕分享</button>
-              <button @click="stopPush" class="btn btn-warning btn-sm" v-if="isPushing === 1">停止推流</button>
-            </div>
+        <!--左边栏  房间进入和退出 -->
 
-            <div class="btn-group mr-2" role="group">
-              <template v-if="isPushing === 1">
-                <button class="btn btn-primary btn-sm" @click="toggleCamera">{{enableCamera ? '关闭':
-                  '打开'}}摄像头/屏幕分享</button>
-                <button class="btn btn-primary btn-sm" @click="toggleMic">{{enableMic ? '关闭': '打开'}}麦克风</button>
-              </template>
-            </div>
+        <el-row>
+          <el-col>
+            <el-tabs type="border-card">
+              <!--右边栏 涂鸭操作 -->
+              <el-tab-pane label="课堂">
+                <el-form ref="form" label-width="80px" size="mini">
 
-            <div class="btn-group mr-2" role="group" v-if="isPushing === 1 && isPushCamera">
-              <button @click="getCameraDevices" class="btn btn-success btn-sm">枚举摄像头</button>
-              <select class="form-control col-sm-2" v-model="cameraIndex" @change="switchCamera">
-                <option value="-1">请选择摄像头/枚举摄像头</option>
-                <option v-for="(camera, index) in devices.camera" v-bind:value="index">{{camera.label}}</option>
-              </select>
+                  <el-form-item label="课堂号">
+                    <el-input id="roomid" v-model.trim="roomID" placeholder="课堂ID"></el-input>
+                  </el-form-item>
 
-              <button @click="getMicDevices" class="btn btn-info btn-sm">枚举麦克风</button>
-              <select class="form-control col-sm-2" v-model="micIndex" @change="switchMic">
-                <option value="-1">请选择麦克风/枚举麦克风</option>
-                <option v-for="(mic, index) in devices.mic" v-bind:value="index">{{mic.label}}</option>
-              </select>
-            </div>
-          </div>
+                  <el-form-item>
+                    <el-button @click="createClassroom" :disabled="status < STATUS_LOGINED || status == STATUS_INCLASS"
+                      v-text="'创建房间'"></el-button>
+                  </el-form-item>
 
-          <div class="row" id="video_wrap">
+                  <el-form-item>
+                    <el-button @click="destroyClassroom" :disabled="status < STATUS_LOGINED" v-text="'销毁房间'">
+                    </el-button>
+                  </el-form-item>
 
-          </div>
-        </div>
-      </div>
+                  <el-form-item>
+                    <el-button @click="joinClassroom" :disabled="status < STATUS_LOGINED || status == STATUS_INCLASS"
+                      v-text="'进入房间'"></el-button>
+                  </el-form-item>
 
-      <div>
-        <div class="row">
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#ff0000')">设置全局背景色(红)</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#0000ff')">设置全局背景色(蓝)</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setGlobalColor('#ffffff')">设置全局背景色(白色)</button>
-          </div>
+                  <el-form-item>
+                    <el-button @click="quitClassroom()" :disabled="status < STATUS_LOGINED" v-text="'退出房间'">
+                    </el-button>
+                  </el-form-item>
+                </el-form>
+              </el-tab-pane>
+            </el-tabs>
+          </el-col>
+        </el-row>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="setBgColor('#ffff00')">设置当前背景色(黄)</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setBgColor('#00ff00')">设置当前背景色(绿)</button>
-          </div>
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="setColor('#000000')">笔刷黑色</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setColor('#0000ff')">笔刷蓝色</button>
-          </div>
+        <el-row>
+          <el-col>
+            <el-tabs type="border-card" class="version-info">
+              <!--左边栏 版本 -->
+              <el-tab-pane label="版本">
+                <p v-text="'Board: ' + TEduBoard.getVersion() "></p>
+                <p v-text="'WebRTC: ' + WebRTCAPI.version()"></p>
+                <p v-text="'IM: 1.7.1'"> </p>
+              </el-tab-pane>
+            </el-tabs>
+          </el-col>
+        </el-row>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="setThin(50)">小号笔刷</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setThin(100)">中号笔刷</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setThin(150)">大号笔刷</button>
-          </div>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_TEXT)">文字输入</button>
-          </div>
+      </el-aside>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_PEN)">画笔</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LINE)">直线</button>
-          </div>
+      <!--中间部分  -->
+      <el-main>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL_SOLID)">实心(椭)圆</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL)">空心(椭)圆</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SOLID)">实心矩形</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT)">空心矩形</button>
-          </div>
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ERASER)">橡皮擦</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LASER)">激光笔</button>
-          </div>
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SELECT)">框选</button>
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_POINT_SELECT)">点选</button>
-          </div>
-        </div>
+        <el-container>
 
-        <div class="row" style="margin-top: 10px;">
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="clearDraws">清空当前页涂鸦(保留背景)</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="clear">清空当前页涂鸦 + 背景 (全部清空)</button>
-          </div>
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="revert">撤销</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="process">恢复</button>
-          </div>
+          <!--中间区  视频区 -->
+          <el-header style="height: 130px">
+            <el-container>
+              <el-header style="height: 42px;">
+                <el-button plain @click="startRTC" type="button" :disabled="status < STATUS_INCLASS" v-text="'摄像头推流'"
+                  size="mini"></el-button>
+                <el-button plain @click="pushScreen" :disabled="status < STATUS_INCLASS" v-text="'屏幕分享'" size="mini">
+                </el-button>
+                <el-button @click="stopPush" v-if="isPushing === 1" size="mini">停止推流</el-button>
 
-          <div class="btn-group mr-2" role="group">
-            <div class="custom-file">
-              <input id="file_input" class="custom-file-input" type="file" @change="uploadFile"
-                accept="image/*, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-powerpoint, application/vnd.ms-excel">
-              <label class="custom-file-label" for="file_input">Choose file</label>
-            </div>
-          </div>
+                <template v-if="isPushing === 1">
+                  <el-button @click="toggleCamera" size="mini">{{enableCamera ? '关闭': '打开'}}摄像头/屏幕分享</el-button>
+                  <el-button @click="toggleMic" size="mini">{{enableMic ? '关闭': '打开'}}麦克风</el-button>
+                </template>
+              </el-header>
+              <el-main>
+                <div class="row" id="video_wrap"></div>
+              </el-main>
+            </el-container>
+          </el-header>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="uploadH5File">添加演示H5PPT1</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="uploadH5File2">添加演示H5PPT2</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="setBackgroundH5">设置H5背景</button>
-          </div>
+          <!--中间  白板区 -->
+          <el-main>
+            <el-container>
+              <el-header style="height: 42px;">
+                <el-tabs size="mini" v-model="currentFileId" closable type="card" @tab-remove="onDeleteFileById"
+                  @tab-click="onClickBoardTab">
+                  <el-tab-pane size="mini" :key="file.fid" v-for="file in fileInfoList" :label="file.title"
+                    :name="file.fid">
+                  </el-tab-pane>
+                </el-tabs>
+              </el-header>
+              <el-main>
+                <div id="paint_box" style="background-color: rgb(240, 240, 240);"></div>
+              </el-main>
+            </el-container>
+          </el-main>
 
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="zoom">放大</button>
 
-            <button type="button" class="btn btn-primary btn-sm" @click="shrink">缩小</button>
+          <!--中间区  信息区 -->
+          <el-footer style="height: 200px;margin-top: 1px;">
+            <el-container>
+              <el-main>
+                <ul id="msg_box" class="im-log-box">
+                  <li v-for="msg in msgs">
+                    <span class="send">{{msg.send}}</span>
+                    <span class="content">{{msg.content}}</span>
+                  </li>
+                </ul>
+              </el-main>
+              <el-footer style="margin-top: 5px;">
+                <el-row>
+                  <el-form :inline="true" class="demo-form-inline" size="mini">
+                    <el-form-item label="消息内容">
+                      <el-input v-model="imMsg.common.data" placeholder="text消息"></el-input>
+                    </el-form-item>
+                    <el-form-item label="接收人ID">
+                      <el-input v-model="imMsg.common.toUser" placeholder="不填表示给群组发消息"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                      <el-button type="primary" @click="sendMsg">发送消息</el-button>
+                    </el-form-item>
+                  </el-form>
+                </el-row>
+              </el-footer>
+            </el-container>
+          </el-footer>
 
-            <button type="button" class="btn btn-primary btn-sm"
-              @click="setType(TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ZOOM_DRAG)">移动</button>
-          </div>
-        </div>
-      </div>
+        </el-container>
+      </el-main>
 
-      <div class="row" style="margin-top: 10px;">
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-12">
-              <ul class="nav nav-tabs">
-                <li class="nav-item" v-for="file in boardFileGroup" @click="switchFile(file)">
-                  <a class="nav-link" v-bind:class="{active: file.fid == currentFile}" href="#">{{file.title}}<i
-                      class="fas fa-trash" v-if="file.fid != '#DEFAULT'" style="font-size: 16px;margin-left: 20px;"
-                      @click.stop="deleteFile(file)"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="row" style="margin-top: 10px;">
-            <div class="col-md-12">
-              <div id="paint_box"></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-row">
-            <label class="col-form-label">消息内容</label>
-            <div class="col-3">
-              <input type="text" v-model="imMsg.common.data" class="form-control" placeholder="text消息">
-            </div>
-            <label class="col-form-label">接收人ID</label>
-            <div class="col-3">
-              <input type="text" v-model="imMsg.common.toUser" class="form-control" placeholder="不填表示给群组发消息">
-            </div>
-            <button type="button" class="btn btn-primary btn-sm" @click="sendMsg">发送文本消息</button>
-          </div>
+      <!--右边栏  -->
+      <el-aside width="340px">
+        <el-tabs type="border-card">
 
-          <div class="form-row" style="margin-top: 10px;">
-            <label class="col-form-label">自定义消息</label>
-            <div class="col-1">
-              <input type="text" v-model="imMsg.custom.data" class="form-control" placeholder="data">
-            </div>
-            <label class="col-form-label">接收人ID</label>
-            <div class="col-2">
-              <input type="text" v-model="imMsg.custom.toUser" class="form-control" placeholder="不填表示给群组发消息">
-            </div>
-            <button type="button" class="btn btn-primary btn-sm" @click="sendCustomGroupMsg">发送自定义消息</button>
-          </div>
-          <div class="row">
-            <ul class="im-log-box">
-              <li v-for="msg in msgs">
-                <span class="send">{{msg.send}}</span>
-                <span class="content">{{msg.content}}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          <!--右边栏 涂鸭操作 -->
+          <el-tab-pane label="涂鸭">
 
-      <div class="row" style="margin-top: 10px;">
-        <div class="col-md-6">
-          <div class="btn-group mr-2" role="group">
-            <p>当前页：{{boardData.page.current}} 总页数：{{boardData.page.total}}</p>
-          </div>
-          <div class="btn-group mr-2" role="group">
-            <button type="button" class="btn btn-primary btn-sm" @click="prevBoard">上一页</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="nextBoard">下一页</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="addBoard">新增一页</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="deleteBoard">删除当前页</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="prevStep">上一步动画</button>
-            <button type="button" class="btn btn-primary btn-sm" @click="nextStep">下一步动画</button>
-          </div>
-        </div>
-      </div>
-    </div>
+            <el-form ref="form" label-width="100px" size="mini">
+              <el-form-item>
+                <el-checkbox @change="onSetDrawEnable" v-model.boolean="drawEnable">允许涂鸭</el-checkbox>
+              </el-form-item>
+
+              <el-form-item>
+                <el-button @click="onUndo" :disabled="canUndo == 0" v-text="'撤销'"></el-button>
+                <el-button @click="onRedo" :disabled="canRedo == 0" v-text="'重做'"></el-button>
+              </el-form-item>
+
+              <el-form-item label="清除操作">
+                <el-button @click="onclearDraws" v-text="'清空涂鸭'"></el-button>
+                <el-button @click="onClear" v-text="'清空白板'"></el-button>
+              </el-form-item>
+
+              <el-form-item label="涂鸭工具">
+                <el-select placeholder="工具" v-model="toolType" @change="onSetToolType">
+                  <el-option label="画笔" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_PEN"></el-option>
+                  <el-option label="直线" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LINE"></el-option>
+                  <el-option label="实心(椭)圆" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL_SOLID">
+                  </el-option>
+                  <el-option label="空心(椭)圆" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_OVAL"></el-option>
+                  <el-option label="实心矩形" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SOLID">
+                  </el-option>
+                  <el-option label="空心矩形" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT"></el-option>
+                  <el-option label="文字输入" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_TEXT"></el-option>
+                  <el-option label="橡皮擦" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ERASER"></el-option>
+                  <el-option label="激光笔" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LASER"></el-option>
+                  <el-option label="框选" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_RECT_SELECT"></el-option>
+                  <el-option label="点选" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_POINT_SELECT">
+                  </el-option>
+                  <el-option label="移动" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_ZOOM_DRAG"></el-option>
+                  <el-option label="鼠标" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_MOUSE"></el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="画笔颜色">
+                <el-color-picker @active-change="onSetBrushColor" v-model="brushColor" size="mini"></el-color-picker>
+              </el-form-item>
+
+              <el-form-item label="背景颜色">
+                <el-color-picker @active-change="onSetBackgroudColor" v-model="backgroundColor" size="mini">
+                </el-color-picker>
+              </el-form-item>
+
+              <el-form-item label="字体颜色">
+                <el-color-picker @active-change="onSetTextColor" v-model="textColor" size="mini"></el-color-picker>
+              </el-form-item>
+
+              <el-form-item label="字体大小">
+                <el-slider @change="onSetTextSize" v-model="textSize" max='500'></el-slider>
+              </el-form-item>
+
+              <el-form-item label="画笔粗细">
+                <el-slider @change="onSetThin" v-model="brushThin" max='500'></el-slider>
+              </el-form-item>
+
+              <el-form-item label="白板缩放">
+                <el-slider @change="onSetScale" v-model="scaleSize" max='300'></el-slider>
+              </el-form-item>
+
+              <el-form-item label="设置背景">
+                <el-select placeholder="工具" v-model="backgroundImage" @change="onSetBackgroundImage">
+                  <el-option label="美图1"
+                    v-bind:value="'https://main.qcloudimg.com/raw/36d31e0d6f9d24a9b5727ab5e21b4b8c.jpg'"></el-option>
+                  <el-option label="美图2"
+                    v-bind:value="'https://main.qcloudimg.com/raw/a748528fecffd13a466a3a6c23ad1f45.jpg'"></el-option>
+                  <el-option label="美图3"
+                    v-bind:value="'https://main.qcloudimg.com/raw/5e3f50336b85071ef09affcd967e679d.jpg'"></el-option>
+                  <el-option label="美图4"
+                    v-bind:value="'https://main.qcloudimg.com/raw/4a897d60a49ae211f6e492f6ebe8340f.jpg'"></el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="设置H5背景">
+                <el-select placeholder="工具" v-model="backgroundImageH5" @change="onSetBackgroundH5">
+                  <el-option label="QQ" v-bind:value="'https://www.qq.com/'"></el-option>
+                  <el-option label="腾讯云" v-bind:value="'https://cloud.tencent.com'"></el-option>
+                </el-select>
+              </el-form-item>
+
+            </el-form>
+
+          </el-tab-pane>
+
+          <!--右边栏 白板操作 -->
+          <el-tab-pane label="白板">
+
+            <el-form ref="form" label-width="100px" size="mini">
+
+              <el-form-item label="白板信息">
+                <p>总页数：{{boardData.total}}, 当前页：{{boardData.current}} </p>
+              </el-form-item>
+
+              <el-form-item label="前后翻页">
+                <el-button @click="prevBoard" v-text="'前一页'"></el-button>
+                <el-button @click="nextBoard" v-text="'后一页'"></el-button>
+              </el-form-item>
+
+              <el-form-item label="上下一步">
+                <el-button @click="prevStep" v-text="'上一步'"></el-button>
+                <el-button @click="nextStep" v-text="'下一步'"></el-button>
+              </el-form-item>
+
+              <el-form-item label="新增白板">
+                <el-button @click="addBoard" v-text="'新增白板'"></el-button>
+              </el-form-item>
+
+              <el-form-item label="跳转白板">
+                <el-select @change="onGotoBoard" placeholder="跳转" v-model="boardData.currentBoardId">
+                  <el-option v-for="item in boardData.boardIdlist" :key="item" :label="item" :value="item" />
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="删除白板">
+                <el-select @change="onDeleteBoard" placeholder="删除">
+                  <el-option v-for="item in boardData.boardIdlist" :key="item" :label="item" :value="item" />
+                </el-select>
+                <p class="promption">说明：缺省白板页和PPT白板页不能删除</p>
+              </el-form-item>
+
+            </el-form>
+
+          </el-tab-pane>
+
+
+          <!--右边栏 文件操作 -->
+          <el-tab-pane label="文件">
+            <el-form ref="form" label-width="100px" size="mini">
+              <el-form-item label="新增本地PPT">
+
+                <input id="file_input" type="file" @change="uploadFile"
+                  accept="image/*, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-powerpoint, application/vnd.ms-excel">
+              </el-form-item>
+
+              <el-form-item label="新增H5文件">
+                <el-select placeholder="H5文件" @change="onAddH5File">
+                  <el-option label="Light Animation-blue"
+                    v-bind:value="'https://test04-1257240443.cos.ap-shanghai.myqcloud.com/2019-05-08-15-38-54/index.html'">
+                  </el-option>
+                  <el-option label="Light Animation-peach"
+                    v-bind:value="'https://test04-1257240443.cos.ap-shanghai.myqcloud.com/2019-05-08-15-18-25-0/index.html'">
+                  </el-option>
+                  <el-option label="test50-职上"
+                    v-bind:value="'https://test04-1257240443.cos.ap-shanghai.myqcloud.com/9m4e2mr0ui3e8a215n4g/index.html'">
+                  </el-option>
+                  <el-option label="341-国立教学方案"
+                    v-bind:value="'https://test04-1257240443.cos.ap-shanghai.myqcloud.com/0o5stagbd6b264ei59jb/index.html'">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="切换文件">
+                <el-select @change="onSwitchFile" placeholder="切换">
+                  <el-option v-for="file in fileInfoList" :key="file.fid" :label="file.title" :value="file" />
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="删除文件">
+                <el-select @change="onDeleteFile" placeholder="删除">
+                  <el-option v-for="file in fileInfoList" :key="file.fid" :label="file.title" :value="file" />
+                </el-select>
+                <p class="promption">说明：缺省文件不能删除</p>
+              </el-form-item>
+
+            </el-form>
+
+          </el-tab-pane>
+
+
+        </el-tabs>
+
+      </el-aside>
+
+    </el-container>
+
   </div>
 
   <!-- AXIOS SDK 白板SDK依赖axios（后续版本会去掉该依赖） -->
-  <script src="https://sqimg.qq.com/expert_qq/edu/axios/axios.min.js"></script>
+  <script src="https://tic-res-1259648581.file.myqcloud.com/thirdpart/axios/axios.min.js"></script>
 
   <!-- WebRTC SDK -->
-  <script src="https://sqimg.qq.com/expert_qq/webrtc/3.1.0/WebRTCAPI.min.js"></script>
+  <script src="https://sqimg.qq.com/expert_qq/webrtc/3.4.1/WebRTCAPI.min.js"></script>
   <!-- WebIM SDK -->
-  <script src="https://sqimg.qq.com/expert_qq/webim/1.7.1/webim.min.js"></script>
+  <script src="https://tic-res-1259648581.file.myqcloud.com/webim/1.7.1/webim.min.js"></script>
   <!-- COS SDK -->
-  <script src="https://sqimg.qq.com/expert_qq/tedu/cos/5.1.0/cos.min.js"></script>
+  <script src="https://tic-res-1259648581.file.myqcloud.com/thirdpart/cos/5.1.0/cos.min.js"></script>
   <!-- 白板SDK -->
-  <script src="https://sqimg.qq.com/expert_qq/tedu/board/2.1.0/TEduBoard.min.js"></script>
-  <!-- <script src="./libs/TEduBoard.min.js"></script> -->
+  <script src="https://tic-res-1259648581.file.myqcloud.com/board/2.3.0/TEduBoard.min.js"></script>
+  <!-- <script src="libs/TEduBoard.min.js"></script> -->
 
   <!-- TIC SDK 可根据开源代码自行编译TIC-->
-  <script src="https://sqimg.qq.com/expert_qq/tedu/tic/2.1.0/TIC.min.js"></script>
-  <!-- <script src="./libs/TIC.js"></script> -->
+  <script src="https://tic-res-1259648581.file.myqcloud.com/tic/2.2.1/TIC.min.js"></script>
+  <!-- <script src="libs/TIC.js"></script> -->
 
-  <script src="./libs/purl.js"></script>
-  <script src="./libs/vconsole.min.js"></script>
-  <script src="./js/account_dev.js"></script>
-  <script src="./js/app.js"></script>
+  <script src="libs/thirdpart/purl.js"></script>
+  <script src="libs/thirdpart/vconsole.min.js"></script>
+  <script src="js/account_dev.js"></script>
+  <script src="js/main.js"></script>
 
   <script>
     if (location.href.indexOf('dev') > -1) {
