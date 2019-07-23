@@ -1227,6 +1227,9 @@ __接口__
 | :------ | :--- | :---- | :--------: | :-----: |
 | error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
 | error_msg | string | 错误信息 | 是 | - |
+| enterprise_id | string | 机构id | 是 | - |
+| sdkappid | int | 腾讯云账号下开通TRTC后，会得到一个唯一的项目标识sdkappid | 是 | - |
+| busi_type | string | 业务类型 | 是 | - |
 | name | string | 企业名字 | 是 | - |
 | contact_user | string | 企业联系人 | 是 | - |
 | phone_no | string | 企业联系人电话 | 是 | 空字符串 |
@@ -1234,10 +1237,13 @@ __接口__
 | create_time | int64 | 企业创建时间,单位秒 | 是 | - |
 | valid_time | int64 | 企业账号有效时间,单位秒 | 是 | - |
 | super_admin | string | 企业超级管理员(需要使用互动课堂控制台的企业需要关注此字段) | 是 | - |
+| icon | string | 企业logo | 是 | 空字符串 |
 | tic_key | string | 互动课堂所有的API鉴权都依赖这个字段，用户需妥善`保密保存` | 是 | - |
+| private_key | string | 腾讯云账号的私钥，用户需要妥善`保密保存` | 是 | - |
+| bizid | int | 腾讯云账号的BIZID | 是 | - |
 | call_back_url | string | 事件回调地址 | 是 | 空字符串 |
-| appid | int | 腾讯云账号下的appid(需要ai功能时需关注) | 是 | 0 |
 | project_id | int | 腾讯云账号下的项目ID(需要ai功能时需关注) | 是 | 0 |
+| appid | int | 腾讯云账号下的appid(需要ai功能时需关注) | 是 | 0 |
 | secret_id | string | 腾讯云账号下的密钥对ID(需要ai功能时需关注) | 是 | 空字符串 |
 | secret_key | string | 腾讯云账号下的密钥对KEY(需要ai功能时需关注) | 是 | 空字符串 |
 
@@ -1257,6 +1263,9 @@ response
 {
     "error_code": 0,
     "error_msg": "",
+    "enterprise_id": 10001,
+    "sdkappid": 14000000,
+    "busi_type": "saas",
     "name": "XX教育机构",
     "contact_user":"张三",
     "phone_no":"133xxxxxxxx",
@@ -1264,7 +1273,10 @@ response
     "create_time":1559094591,
     "valid_time":31536000,
     "super_admin":"adminid",
+    "icon": "",
     "tic_key":"xxxxx",
+    "private_key": "xxxxx",
+    "bizid": 1234,
     "call_back_url":"https://xxx/yyy",
     "appid":0,
     "project_id":0,
