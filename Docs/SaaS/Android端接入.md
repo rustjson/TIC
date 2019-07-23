@@ -1,3 +1,5 @@
+
+
 本文主要介绍如何快速地将 TICSaaS 组件集成到您的项目中，只要按照如下步骤进行配置，就可以完成组件的集成工作。
 
 # 开发环境要求
@@ -10,7 +12,7 @@ TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更
 * 第一步：添加 SDK 依赖
 在 dependencies 中添加  TICSaaS 以其它模块 的依赖。
 
-```
+```groovy
  dependencies {
     // TIC SaaS 组件
     implementation "com.tencent.ticsaas:core:0.0.7-alpha"
@@ -27,14 +29,23 @@ TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更
 第二步：指定 App 使用架构
 在 defaultConfig 中，指定 App 使用的 CPU 架构(目前 TICSaaS  支持 armeabi和armeabi-v7a ) 。
 
-```
+```groovy
   defaultConfig {
       ndk {
           abiFilters "armeabi", "armeabi-v7a"
       }
   }
 ```
-第三步：同步 SDK
+第三步：使用JDK 1.8编译
+
+```groovy
+compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+}
+```
+
+第四步：同步 SDK
 单击 Sync Now 按钮，如果您的网络连接 jcenter 没有问题，很快 SDK 就会自动下载集成到工程里。
 
 # 使用方法
@@ -55,7 +66,7 @@ TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更
         }
 ```
 
-## 调起SaaS组件Activity
+## 调起SaaS组件
 只需要传递5个参数，即可调起SaaS组件主页面，分别是结构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
 ```java
     private void launchInActivity(int agencyId, int classID, String userID, String userToken, String userSig) {
