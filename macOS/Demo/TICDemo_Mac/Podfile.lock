@@ -1,0 +1,20 @@
+PODS:
+  - TXIMSDK_Mac (4.4.716)
+  - TXLiteAVSDK_TRTC_Mac (6.5.7272)
+
+DEPENDENCIES:
+  - TXIMSDK_Mac (~> 4.4.627)
+  - TXLiteAVSDK_TRTC_Mac (~> 6.5.7272)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - TXIMSDK_Mac
+    - TXLiteAVSDK_TRTC_Mac
+
+SPEC CHECKSUMS:
+  TXIMSDK_Mac: 67f40899c44ecf1cbce5e571c3726624a431fbd5
+  TXLiteAVSDK_TRTC_Mac: 455cdfbbb1637f02ff76bd98fcff3f14251ba593
+
+PODFILE CHECKSUM: 981ab52e413517a7a13da07c3b4ae8b732b94921
+
+COCOAPODS: 1.7.4
