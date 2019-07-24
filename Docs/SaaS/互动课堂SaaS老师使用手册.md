@@ -4,8 +4,8 @@
 
 ### 1. 客户端下载
 * 下载地址：      
-	windows：http://dldir1.qq.com/hudongzhibo/saas/TClassSetup0.9.4.286_Saas.exe   
- 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-0.9.4.286Saas.dmg          
+		windows：http://dldir1.qq.com/hudongzhibo/saas/TClass_Setup_1.0.0_Demo.exe   
+ 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-1.0.0_Demo.dmg           
 	web：https://tedu.qcloudtrtc.com/     
 
 ### 2. 加入课堂
