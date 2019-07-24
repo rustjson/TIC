@@ -1,5 +1,4 @@
 
-
 本文主要介绍如何快速地将 TICSaaS 组件集成到您的项目中，只要按照如下步骤进行配置，就可以完成组件的集成工作。
 
 # 开发环境要求
@@ -66,6 +65,14 @@ compileOptions {
         }
 ```
 
+## 申请必要权限（Android 6.0以上）
+Android 6.0以上系统，拉起组件前，须动态申请麦克风录音，摄像头和写存储器权限。
+```java
+Manifest.permission.RECORD_AUDIO
+Manifest.permission.CAMERA
+Manifest.permission.WRITE_EXTERNAL_STORAGE
+```
+可参考[请求应用权限](https://developer.android.com/training/permissions/requesting?hl=zh-cn)
 ## 调起SaaS组件
 只需要传递5个参数，即可调起SaaS组件主页面，分别是结构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
 ```java
