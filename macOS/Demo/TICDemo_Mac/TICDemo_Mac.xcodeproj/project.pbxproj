@@ -22,7 +22,6 @@
 		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
 		CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D822D2ECFC003149C9 /* TICDevice.m */; };
 		CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DC22D2F000003149C9 /* TICReachability.m */; };
-		CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */; };
 		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
 		CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445A22953EB1004FFD01 /* NetAssociation.m */; };
 		CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445C22953EB1004FFD01 /* NetworkClock.m */; };
@@ -85,7 +84,6 @@
 		CFA891D822D2ECFC003149C9 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
 		CFA891DB22D2F000003149C9 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
 		CFA891DC22D2F000003149C9 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
-		CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard_Mac.framework; sourceTree = "<group>"; };
 		CFDF44322294FCD1004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
 		CFDF44332294FCD1004FFD01 /* TICRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TICRecorder.mm; sourceTree = "<group>"; };
 		CFDF445822953EB1004FFD01 /* ios-ntp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ios-ntp.h"; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */,
-				CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */,
 				D0077225490D0FA78E07FB85 /* libPods-TICDemo_Mac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,19 +183,10 @@
 		CF3FB3322276A2C7001C148E /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CF3FB3332276A2C7001C148E /* TEduBoard */,
 				CF3FB3352276A2C7001C148E /* TIC */,
 			);
 			name = SDK;
 			path = ../../../SDK;
-			sourceTree = "<group>";
-		};
-		CF3FB3332276A2C7001C148E /* TEduBoard */ = {
-			isa = PBXGroup;
-			children = (
-				CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */,
-			);
-			path = TEduBoard;
 			sourceTree = "<group>";
 		};
 		CF3FB3352276A2C7001C148E /* TIC */ = {
@@ -533,10 +521,7 @@
 				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../SDK/TIC",
@@ -562,10 +547,7 @@
 				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../SDK/TIC",

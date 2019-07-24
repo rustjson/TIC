@@ -30,7 +30,6 @@
 		CF3FB2FE2273191D001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F52273191D001C148E /* TICManager.m */; };
 		CF3FB2FF2273191D001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F72273191D001C148E /* TICRenderView.m */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
-		CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */; };
 		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
 		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
 		CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964622D4992C00E4ADF8 /* TICReport.m */; };
@@ -104,7 +103,6 @@
 		CF3FB2F52273191D001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
 		CF3FB2F62273191D001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB2F72273191D001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
-		CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 		CF7D09E222BA84540088CDD1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -140,7 +138,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */,
-				CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */,
 				7BA57FA3A76AC795D172A538 /* libPods-TICDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,19 +247,10 @@
 		CF3FB2EE2273191D001C148E /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CF3FB2EF2273191D001C148E /* TEduBoard */,
 				CF3FB2F12273191D001C148E /* TIC */,
 			);
 			name = SDK;
 			path = ../../../SDK;
-			sourceTree = "<group>";
-		};
-		CF3FB2EF2273191D001C148E /* TEduBoard */ = {
-			isa = PBXGroup;
-			children = (
-				CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */,
-			);
-			path = TEduBoard;
 			sourceTree = "<group>";
 		};
 		CF3FB2F12273191D001C148E /* TIC */ = {
@@ -614,10 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/TEduBoard",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TICDemo/TICDemo.pch;
 				HEADER_SEARCH_PATHS = (
@@ -651,10 +636,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/TEduBoard",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TICDemo/TICDemo.pch;
 				HEADER_SEARCH_PATHS = (
