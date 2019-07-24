@@ -20,5 +20,5 @@ Pod::Spec.new do |spec|
   spec.source_files = 'iOS/SDK/TEduBoard.framework/Headers/*.h'
   spec.public_header_files = 'iOS/SDK/TEduBoard.framework/Headers/*.h'
   spec.vendored_frameworks = 'iOS/SDK/TEduBoard.framework'
-  spec.xcconfig = { 'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/TEduBoard_iOS/TEduBoard.framework/Headers/'}
+  spec.xcconfig = { 'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/TEduBoard_iOS/iOS/SDK/TEduBoard.framework/Headers/'}
 end
