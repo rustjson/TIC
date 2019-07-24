@@ -48,7 +48,7 @@
 * 聊天窗口（黄色框部分）：用与课堂内的文字聊天，点击右下角浮标，可弹出/收起聊天窗口
 
 #### 工具条
-![-w100](https://main.qcloudimg.com/raw/8154053f8ad1010048fab59ca4fb1273.png)
+![-w100](https://main.qcloudimg.com/raw/61718e27dfdd735d1bd31c893669d4a7.png)
 
 序号 | 说明
 --------- | ---------
