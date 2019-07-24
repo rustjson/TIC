@@ -159,8 +159,13 @@ id makeWeakRef (id object) {
     }];
 }
 
+void TXLiveSetKeyURL(NSString *key, NSString *url) {
+    //此函数目的是修复TRTC_Mac6.5 -ObjC编译错误，6.6版本修复后将会去掉
+}
+
 - (void)joinClassroom:(TICClassroomOption *)option callback:(TICCallback)callback
 {
+    
     _option = option;
     _enterCallback = callback;
     
