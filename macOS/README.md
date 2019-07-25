@@ -1,5 +1,5 @@
 
-本文主要介绍如何快速运行互动课堂iOS/macOS版本Demo
+本文主要介绍如何快速运行互动课堂iOS/macOS版本Demo。
 
 ## 开发环境
 
@@ -13,7 +13,7 @@
 
 #### 1. 安装 CocoaPods
 
-在终端窗口中输入如下命令（需要提前在 Mac 中安装 Ruby 环境）
+在终端窗口中输入如下命令（需要提前在 Mac 中安装 Ruby 环境）：
 
 ```
 sudo gem install cocoapods
@@ -21,13 +21,13 @@ sudo gem install cocoapods
 
 #### 2. 更新并安装 SDK
 
-在终端窗口中输入如下命令以更新本地库文件
+在终端窗口中输入如下命令以更新本地库文件：
 
 ```
 pod install
 ```
 
-或使用以下命令更新本地库版本
+或使用以下命令更新本地库版本：
 
 ```
 pod update
