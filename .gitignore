@@ -9,3 +9,7 @@ Windows/Demo/Release
 *.aps
 Web/Demo/.idea
 /.idea
+macOS/Demo/TICDemo_Mac/TICDemo_Mac.xcworkspace
+macOS/Demo/TICDemo_Mac/Pods
+macOS/Demo/TICDemo/TICDemo.xcworkspace
+macOS/Demo/TICDemo/Pods
