@@ -71,8 +71,8 @@
 
 - (void)reportFromDelegate
 {
-    long ntp = [[[NSDate date] dateByAddingTimeInterval:-self.netAssociation.offset] timeIntervalSince1970] * 1000;
-    long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    uint64_t ntp = [[[NSDate date] dateByAddingTimeInterval:-self.netAssociation.offset] timeIntervalSince1970] * 1000;
+    uint64_t timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
     uint64_t tick = [self getTickCount];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:@(1008) forKey:@"type"];
