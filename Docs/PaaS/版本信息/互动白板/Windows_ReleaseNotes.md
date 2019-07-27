@@ -1,5 +1,9 @@
 # Release Notes - Windows
 
+## 2.3.0.40 @2019.07.27
+- 白板消息优先级调整到最高
+- 修复初始化参数实验性字段为空时crash问题
+
 ## 2.3.0.36 @2019.07.12
 - 更新Windows&Linux的Chromium版本到75.0.3770.100
 - Windows&Linux适配新版CEF接口
@@ -85,3 +89,5 @@
 - 文件展示（静态：支持PPT、PDF、WORD、EXCEL）、多文件支持
 
         
+
+
