@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,20 +18,17 @@
 		CF3FB3412276A2C7001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3372276A2C7001C148E /* TICDef.m */; };
 		CF3FB3422276A2C7001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3392276A2C7001C148E /* TICManager.m */; };
 		CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB33B2276A2C7001C148E /* TICRenderView.m */; };
-		CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; };
-		CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF3FB350227707CC001C148E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CF3FB34D227707CC001C148E /* config.json */; };
 		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
-		CF4B346722E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */; };
 		CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D822D2ECFC003149C9 /* TICDevice.m */; };
 		CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DC22D2F000003149C9 /* TICReachability.m */; };
-		CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */; };
 		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
 		CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445A22953EB1004FFD01 /* NetAssociation.m */; };
 		CFDF446522953EB2004FFD01 /* NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445C22953EB1004FFD01 /* NetworkClock.m */; };
 		CFDF446622953EB2004FFD01 /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = CFDF445D22953EB1004FFD01 /* Notes */; };
 		CFDF446722953EB2004FFD01 /* NSDate+NetworkClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF445F22953EB1004FFD01 /* NSDate+NetworkClock.m */; };
 		CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDF446322953EB2004FFD01 /* GCDAsyncUdpSocket.m */; };
+		D0077225490D0FA78E07FB85 /* libPods-TICDemo_Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7161EF7E766C455AC848E0 /* libPods-TICDemo_Mac.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,7 +38,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CF3FB34B2276E7F9001C148E /* ImSDKForMac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +45,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E7161EF7E766C455AC848E0 /* libPods-TICDemo_Mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TICDemo_Mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A20E660219186EA0021CA30 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		6A20E662219187560021CA30 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		6A20E6642191879E0021CA30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -80,16 +77,13 @@
 		CF3FB3392276A2C7001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
 		CF3FB33A2276A2C7001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB33B2276A2C7001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
-		CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDKForMac.framework; sourceTree = "<group>"; };
 		CF3FB34D227707CC001C148E /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		CF3FB34E227707CC001C148E /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
 		CF3FB34F227707CC001C148E /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
-		CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC_Mac.framework; sourceTree = "<group>"; };
 		CFA891D722D2ECFC003149C9 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
 		CFA891D822D2ECFC003149C9 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
 		CFA891DB22D2F000003149C9 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
 		CFA891DC22D2F000003149C9 /* TICReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICReachability.m; sourceTree = "<group>"; };
-		CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard_Mac.framework; sourceTree = "<group>"; };
 		CFDF44322294FCD1004FFD01 /* TICRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRecorder.h; sourceTree = "<group>"; };
 		CFDF44332294FCD1004FFD01 /* TICRecorder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TICRecorder.mm; sourceTree = "<group>"; };
 		CFDF445822953EB1004FFD01 /* ios-ntp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ios-ntp.h"; sourceTree = "<group>"; };
@@ -103,6 +97,8 @@
 		CFDF446022953EB1004FFD01 /* ntp-log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ntp-log.h"; sourceTree = "<group>"; };
 		CFDF446222953EB2004FFD01 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
 		CFDF446322953EB2004FFD01 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		E784B6796A93459BFAF57367 /* Pods-TICDemo_Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TICDemo_Mac.debug.xcconfig"; path = "Target Support Files/Pods-TICDemo_Mac/Pods-TICDemo_Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		F9A6957509FA4A3D83713A18 /* Pods-TICDemo_Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TICDemo_Mac.release.xcconfig"; path = "Target Support Files/Pods-TICDemo_Mac/Pods-TICDemo_Mac.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A20E661219186EA0021CA30 /* libc++.tbd in Frameworks */,
-				CF4B346722E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework in Frameworks */,
-				CF3FB34A2276E7F9001C148E /* ImSDKForMac.framework in Frameworks */,
-				CFAFF0C4228566C90044DB52 /* TEduBoard_Mac.framework in Frameworks */,
+				D0077225490D0FA78E07FB85 /* libPods-TICDemo_Mac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +128,7 @@
 				6A20E6642191879E0021CA30 /* libsqlite3.tbd */,
 				6A20E662219187560021CA30 /* libiconv.tbd */,
 				6A20E660219186EA0021CA30 /* libc++.tbd */,
+				3E7161EF7E766C455AC848E0 /* libPods-TICDemo_Mac.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -144,6 +139,7 @@
 				6A9FC2AF217EBCC6009ACB83 /* TICDemo_Mac */,
 				6A9FC2AE217EBCC6009ACB83 /* Products */,
 				6A20E65F219186EA0021CA30 /* Frameworks */,
+				86F353C846969B0498D45005 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,24 +171,22 @@
 			path = TICDemo_Mac;
 			sourceTree = "<group>";
 		};
+		86F353C846969B0498D45005 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E784B6796A93459BFAF57367 /* Pods-TICDemo_Mac.debug.xcconfig */,
+				F9A6957509FA4A3D83713A18 /* Pods-TICDemo_Mac.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CF3FB3322276A2C7001C148E /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CF3FB3332276A2C7001C148E /* TEduBoard */,
 				CF3FB3352276A2C7001C148E /* TIC */,
-				CF3FB33C2276A2C7001C148E /* TIM */,
-				CF3FB33E2276A2C7001C148E /* TRTC */,
 			);
 			name = SDK;
 			path = ../../../SDK;
-			sourceTree = "<group>";
-		};
-		CF3FB3332276A2C7001C148E /* TEduBoard */ = {
-			isa = PBXGroup;
-			children = (
-				CFAFF0C3228566C90044DB52 /* TEduBoard_Mac.framework */,
-			);
-			path = TEduBoard;
 			sourceTree = "<group>";
 		};
 		CF3FB3352276A2C7001C148E /* TIC */ = {
@@ -216,22 +210,6 @@
 				CFA891DC22D2F000003149C9 /* TICReachability.m */,
 			);
 			path = TIC;
-			sourceTree = "<group>";
-		};
-		CF3FB33C2276A2C7001C148E /* TIM */ = {
-			isa = PBXGroup;
-			children = (
-				CF3FB3492276E7EF001C148E /* ImSDKForMac.framework */,
-			);
-			path = TIM;
-			sourceTree = "<group>";
-		};
-		CF3FB33E2276A2C7001C148E /* TRTC */ = {
-			isa = PBXGroup;
-			children = (
-				CF4B346622E07063004DFC4D /* TXLiteAVSDK_TRTC_Mac.framework */,
-			);
-			path = TRTC;
 			sourceTree = "<group>";
 		};
 		CF3FB34C227707CC001C148E /* Config */ = {
@@ -276,10 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A9FC2C1217EBCC7009ACB83 /* Build configuration list for PBXNativeTarget "TICDemo_Mac" */;
 			buildPhases = (
+				FE3F6E267C51E145CDEAD550 /* [CP] Check Pods Manifest.lock */,
 				6A9FC2A9217EBCC6009ACB83 /* Sources */,
 				6A9FC2AA217EBCC6009ACB83 /* Frameworks */,
 				6A9FC2AB217EBCC6009ACB83 /* Resources */,
 				CF3FB3482276A452001C148E /* Embed Frameworks */,
+				4D28ABC26E019D61C6733A96 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,6 +320,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D28ABC26E019D61C6733A96 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TICDemo_Mac/Pods-TICDemo_Mac-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TICDemo_Mac/Pods-TICDemo_Mac-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TICDemo_Mac/Pods-TICDemo_Mac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE3F6E267C51E145CDEAD550 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TICDemo_Mac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A9FC2A9217EBCC6009ACB83 /* Sources */ = {
@@ -492,24 +514,25 @@
 		};
 		6A9FC2C2217EBCC7009ACB83 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E784B6796A93459BFAF57367 /* Pods-TICDemo_Mac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../SDK/**",
+					"$(SRCROOT)/../../SDK/TIC",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
 				INFOPLIST_FILE = TICDemo_Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -517,24 +540,25 @@
 		};
 		6A9FC2C3217EBCC7009ACB83 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9A6957509FA4A3D83713A18 /* Pods-TICDemo_Mac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TICDemo_Mac/TICDemo_Mac.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../SDK/**",
+					"$(SRCROOT)/../../SDK/TIC",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
 				INFOPLIST_FILE = TICDemo_Mac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -1,11 +1,11 @@
-# 互动课堂 SaaS 老师使用手册
+# 互动课堂 SaaS 学生使用手册
 
 ## 一、如何加入课堂
 
 ### 1. 客户端下载
 * 下载地址：      
-	windows：http://dldir1.qq.com/hudongzhibo/saas/TClassSetup0.9.4.286_Saas.exe   
- 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-0.9.4.286Saas.dmg          
+	windows：http://dldir1.qq.com/hudongzhibo/saas/TClass_Setup_1.0.0_Demo.exe   
+ 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-1.0.0_Demo.dmg          
 	web：https://tedu.qcloudtrtc.com/     
 
 ### 2. 加入课堂
@@ -44,10 +44,7 @@
 用户 密码 | 由管理员告知。登录App的密码，一般不会变化。
 
 
->注意：App需要点击启动一次才能实现URL拉起。如果没有安装或者运行过App，则直接进入web互动课堂平台。
-
-
-
+> 仅支持Chrome浏览器
 
 
 
@@ -82,4 +79,4 @@ b| 摄像头 | 打开或关闭摄像头
 
 可以通过点击屏幕分享-标题栏中功能区域的成员管理(a)菜单
 
-![](https://main.qcloudimg.com/raw/e076c18690ff0390214dd0a697ab0a14.png)
+![](https://main.qcloudimg.com/raw/0cef3ac022e30dc370d72d7672fbb69a.png)

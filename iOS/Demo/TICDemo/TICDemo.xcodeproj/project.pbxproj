@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		6AAD6A1B20A58E3200348C94 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6A1A20A58E3200348C94 /* main.m */; };
 		6AAD6B1F20AAD90F00348C94 /* ClassroomJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6B1E20AAD90F00348C94 /* ClassroomJoinViewController.m */; };
 		6AAD6B2920AB05DD00348C94 /* ClassroomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AAD6B2720AB05DD00348C94 /* ClassroomViewController.m */; };
+		7BA57FA3A76AC795D172A538 /* libPods-TICDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A005B33256A5C1ACA8C44722 /* libPods-TICDemo.a */; };
 		CF327918227191B500FF817F /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF327917227191B500FF817F /* MenuTableViewController.m */; };
 		CF3279C22271F10200FF817F /* TableSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3279C12271F10200FF817F /* TableSheetView.m */; };
 		CF3279C52271F11300FF817F /* PickSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3279C42271F11300FF817F /* PickSheetView.m */; };
@@ -28,12 +29,7 @@
 		CF3FB2FD2273191D001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F32273191D001C148E /* TICDef.m */; };
 		CF3FB2FE2273191D001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F52273191D001C148E /* TICManager.m */; };
 		CF3FB2FF2273191D001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F72273191D001C148E /* TICRenderView.m */; };
-		CF3FB3002273191D001C148E /* ImSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB2F92273191D001C148E /* ImSDK.framework */; };
-		CF3FB30322731986001C148E /* ImSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF3FB2F92273191D001C148E /* ImSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A8120A5A44900348C94 /* libresolv.tbd */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
-		CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */; };
-		CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */; };
 		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
 		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
 		CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964622D4992C00E4ADF8 /* TICReport.m */; };
@@ -56,7 +52,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CF3FB30322731986001C148E /* ImSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +59,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4ACF32CCD09C514A515DD7E9 /* Pods-TICDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TICDemo.release.xcconfig"; path = "Target Support Files/Pods-TICDemo/Pods-TICDemo.release.xcconfig"; sourceTree = "<group>"; };
+		59DC8B2BDCFD1955945FD01D /* Pods-TICDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TICDemo.debug.xcconfig"; path = "Target Support Files/Pods-TICDemo/Pods-TICDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6A1BF1A820BBEB1600FEA44D /* JMLoadingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMLoadingHUD.h; sourceTree = "<group>"; };
 		6A1BF1A920BBEB1600FEA44D /* JMLoadingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMLoadingHUD.m; sourceTree = "<group>"; };
 		6A1BF1AA20BBEB1600FEA44D /* JMToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMToast.h; sourceTree = "<group>"; };
@@ -90,6 +87,7 @@
 		6AAD6B1E20AAD90F00348C94 /* ClassroomJoinViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassroomJoinViewController.m; sourceTree = "<group>"; };
 		6AAD6B2620AB05DD00348C94 /* ClassroomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassroomViewController.h; sourceTree = "<group>"; };
 		6AAD6B2720AB05DD00348C94 /* ClassroomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassroomViewController.m; sourceTree = "<group>"; };
+		A005B33256A5C1ACA8C44722 /* libPods-TICDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TICDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF327916227191B500FF817F /* MenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		CF327917227191B500FF817F /* MenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		CF3279C02271F10200FF817F /* TableSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableSheetView.h; sourceTree = "<group>"; };
@@ -105,12 +103,9 @@
 		CF3FB2F52273191D001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
 		CF3FB2F62273191D001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB2F72273191D001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
-		CF3FB2F92273191D001C148E /* ImSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ImSDK.framework; sourceTree = "<group>"; };
-		CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TEduBoard.framework; sourceTree = "<group>"; };
 		CF7D09E222BA84540088CDD1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC.framework; sourceTree = "<group>"; };
 		CF9F963B22D4992B00E4ADF8 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
 		CF9F963C22D4992B00E4ADF8 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
 		CF9F963D22D4992B00E4ADF8 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
@@ -142,11 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7D0AE222BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework in Frameworks */,
 				CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */,
-				CF3FB30622758F90001C148E /* libresolv.tbd in Frameworks */,
-				CF4B33BD22E0515F004DFC4D /* TEduBoard.framework in Frameworks */,
-				CF3FB3002273191D001C148E /* ImSDK.framework in Frameworks */,
+				7BA57FA3A76AC795D172A538 /* libPods-TICDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +172,7 @@
 				6AAD6A0A20A58E3200348C94 /* TICDemo */,
 				6AAD6A0920A58E3200348C94 /* Products */,
 				6AAD6A7820A5A44900348C94 /* Frameworks */,
+				B1FA06D271DD9677A5379C35 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,28 +230,27 @@
 				6AAD6A8F20A5A44A00348C94 /* JavaScriptCore.framework */,
 				6AAD6A7920A5A44900348C94 /* libc++.tbd */,
 				6AAD6A8120A5A44900348C94 /* libresolv.tbd */,
+				A005B33256A5C1ACA8C44722 /* libPods-TICDemo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1FA06D271DD9677A5379C35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				59DC8B2BDCFD1955945FD01D /* Pods-TICDemo.debug.xcconfig */,
+				4ACF32CCD09C514A515DD7E9 /* Pods-TICDemo.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		CF3FB2EE2273191D001C148E /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CF3FB2EF2273191D001C148E /* TEduBoard */,
 				CF3FB2F12273191D001C148E /* TIC */,
-				CF3FB2F82273191D001C148E /* TIM */,
-				CF3FB2FA2273191D001C148E /* TRTC */,
 			);
 			name = SDK;
 			path = ../../../SDK;
-			sourceTree = "<group>";
-		};
-		CF3FB2EF2273191D001C148E /* TEduBoard */ = {
-			isa = PBXGroup;
-			children = (
-				CF4B33BC22E0515F004DFC4D /* TEduBoard.framework */,
-			);
-			path = TEduBoard;
 			sourceTree = "<group>";
 		};
 		CF3FB2F12273191D001C148E /* TIC */ = {
@@ -282,22 +274,6 @@
 				CF9F963E22D4992B00E4ADF8 /* TICReachability.m */,
 			);
 			path = TIC;
-			sourceTree = "<group>";
-		};
-		CF3FB2F82273191D001C148E /* TIM */ = {
-			isa = PBXGroup;
-			children = (
-				CF3FB2F92273191D001C148E /* ImSDK.framework */,
-			);
-			path = TIM;
-			sourceTree = "<group>";
-		};
-		CF3FB2FA2273191D001C148E /* TRTC */ = {
-			isa = PBXGroup;
-			children = (
-				CF7D0AE122BA8C720088CDD1 /* TXLiteAVSDK_TRTC.framework */,
-			);
-			path = TRTC;
 			sourceTree = "<group>";
 		};
 		CFDF444322953496004FFD01 /* ios-ntp */ = {
@@ -342,10 +318,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AAD6A1E20A58E3200348C94 /* Build configuration list for PBXNativeTarget "TICDemo" */;
 			buildPhases = (
+				3385E5EA9A5373F81828F408 /* [CP] Check Pods Manifest.lock */,
 				6AAD6A0420A58E3200348C94 /* Sources */,
 				6AAD6A0520A58E3200348C94 /* Frameworks */,
 				6AAD6A0620A58E3200348C94 /* Resources */,
 				CFEB9E7B22705CEF00E56932 /* Embed Frameworks */,
+				A874721B4A38923DA3C2DDF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -407,6 +385,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3385E5EA9A5373F81828F408 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TICDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A874721B4A38923DA3C2DDF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TICDemo/Pods-TICDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TICDemo/Pods-TICDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TICDemo/Pods-TICDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6AAD6A0420A58E3200348C94 /* Sources */ = {
@@ -574,6 +594,7 @@
 		};
 		6AAD6A1F20A58E3200348C94 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59DC8B2BDCFD1955945FD01D /* Pods-TICDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -581,15 +602,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/TEduBoard",
-					"$(SRCROOT)/../../SDK/TIM",
-					"$(SRCROOT)/../../SDK/TRTC",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TICDemo/TICDemo.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../SDK/TIC",
+				);
 				INFOPLIST_FILE = TICDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
@@ -598,7 +617,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.TICDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -609,6 +628,7 @@
 		};
 		6AAD6A2020A58E3200348C94 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ACF32CCD09C514A515DD7E9 /* Pods-TICDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -616,15 +636,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../SDK/TEduBoard",
-					"$(SRCROOT)/../../SDK/TIM",
-					"$(SRCROOT)/../../SDK/TRTC",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TICDemo/TICDemo.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../SDK/TIC";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../SDK/TIC",
+				);
 				INFOPLIST_FILE = TICDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_GENERATE_MAP_FILE = YES;
@@ -632,7 +650,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.TICDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

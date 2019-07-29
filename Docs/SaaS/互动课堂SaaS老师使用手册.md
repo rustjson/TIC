@@ -4,8 +4,8 @@
 
 ### 1. 客户端下载
 * 下载地址：      
-	windows：http://dldir1.qq.com/hudongzhibo/saas/TClassSetup0.9.4.286_Saas.exe   
- 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-0.9.4.286Saas.dmg          
+		windows：http://dldir1.qq.com/hudongzhibo/saas/TClass_Setup_1.0.0_Demo.exe   
+ 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-1.0.0_Demo.dmg           
 	web：https://tedu.qcloudtrtc.com/     
 
 ### 2. 加入课堂
@@ -43,7 +43,7 @@
 用户 ID | 由管理员告知。登录App的账号，一般不会变化。
 用户 密码 | 由管理员告知。登录App的密码，一般不会变化。
 
-
+> 仅支持Chrome浏览器
 
 
 ## 二、如何进行备课
