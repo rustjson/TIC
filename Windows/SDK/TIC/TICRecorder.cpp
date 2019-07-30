@@ -62,7 +62,7 @@ void TICRecorder::sendOfflineRecordInfo(const std::string& ntpServer, std::strin
 void TICRecorder::reportGroupId(bool bTest, int sdkappid, const std::string& userId, const std::string& userSig, const std::string& groupId)
 {
 	const std::string kServer = "https://yun.tim.qq.com/v4/ilvb_edu/record";
-	const std::string kTestServer = "https://test.tim.qq.com/v4/ilvb_test/record";
+	const std::string kTestServer = "https://yun.tim.qq.com/v4/ilvb_test/record";
 
 	std::string url = bTest ? kTestServer : kServer;
 	url += "?sdkappid=" + std::to_string(sdkappid);
