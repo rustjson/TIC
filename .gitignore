@@ -12,6 +12,6 @@ Web/Demo/.idea
 macOS/Demo/TICDemo_Mac/TICDemo_Mac.xcworkspace
 macOS/Demo/TICDemo_Mac/Pods
 macOS/Demo/TICDemo_Mac/Podfile.lock
-macOS/Demo/TICDemo/TICDemo.xcworkspace
-macOS/Demo/TICDemo/Pods
-macOS/Demo/TICDemo/Podfile.lock
+iOS/Demo/TICDemo/TICDemo.xcworkspace
+iOS/Demo/TICDemo/Podfile.lock
+iOS/Demo/TICDemo/Pods
