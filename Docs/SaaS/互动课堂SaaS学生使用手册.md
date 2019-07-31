@@ -2,16 +2,12 @@
 
 ## 一、如何加入课堂
 
-### 1. 客户端下载
-* 下载地址：      
-	windows：http://dldir1.qq.com/hudongzhibo/saas/TClass_Setup_1.0.0_Demo.exe   
- 	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-1.0.0_Demo.dmg          
-	web：https://tedu.qcloudtrtc.com/     
+> 如果您使用的是demo，加入课堂界面会和互动课堂SaaS组件正式版有所区别，[查看详细信息](./Demo%E4%BD%93%E9%AA%8C%E6%89%8B%E5%86%8C.md)
 
-### 2. 加入课堂
+### 1. 加入课堂
 	加入课堂的方式有两种：
 
-#### 2.1 方式1 点击安装好的应用图标
+#### 1.1 方式1 点击安装好的应用图标
 
 点击安装好的应用图标打开 App，界面展示如下：
 ![](https://main.qcloudimg.com/raw/49bb925a1cf8c37c15e2e56982ffb4ed.png)
@@ -30,7 +26,7 @@
 然后点击加入课堂即可进入【课堂ID】对应的课堂中，如果某一个要素输出错误，则会弹出提示框，请根据提示框进行操作。
 
 
-#### 2.2 方法2 通过管理员分享的上课链接地址打开
+#### 1.2 方法2 通过管理员分享的上课链接地址打开
 
 点击管理员分享的上课链接地址，会看到下面的界面
 
