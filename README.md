@@ -40,12 +40,12 @@ git clone https://github.com/tencentyun/TIC.git
 |--|---------|---------|
 | Web | [点击前往](./Web) | [体验链接](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
 |小程序  | [点击前往](./小程序)   | <img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/> |
-| Windows |[点击前往](./Windows)  | [点击下载](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip) |
+| Windows |[点击前往](./Windows)  | [下载安装](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip) |
 |Android  | [点击前往](./Android)  | - |
 | iOS | [点击前往](./iOS) | <img src="https://main.qcloudimg.com/raw/1e40ee772f79317b14a0a55587343ae7.png" width="150"/> |
-| macOS |[点击前往](./macOS)   | [点击下载](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip) |
+| macOS |[点击前往](./macOS)   | [下载安装](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip) |
 
-为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，**点击下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
+下载源码后，为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，**点击下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
 
 |平台|配置文件路径|
 |-|-|
