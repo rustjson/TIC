@@ -152,7 +152,7 @@
         <el-row>
           <el-col>
             <el-tabs type="border-card">
-              <!--右边栏 涂鸭操作 -->
+              <!--右边栏 涂鸦操作 -->
               <el-tab-pane label="课堂">
                 <el-form ref="form" label-width="80px" size="mini">
 
@@ -281,12 +281,12 @@
       <el-aside width="340px">
         <el-tabs type="border-card">
 
-          <!--右边栏 涂鸭操作 -->
-          <el-tab-pane label="涂鸭">
+          <!--右边栏 涂鸦操作 -->
+          <el-tab-pane label="涂鸦">
 
             <el-form ref="form" label-width="100px" size="mini">
               <el-form-item>
-                <el-checkbox @change="onSetDrawEnable" v-model.boolean="drawEnable">允许涂鸭</el-checkbox>
+                <el-checkbox @change="onSetDrawEnable" v-model.boolean="drawEnable">允许涂鸦</el-checkbox>
               </el-form-item>
 
               <el-form-item>
@@ -295,11 +295,11 @@
               </el-form-item>
 
               <el-form-item label="清除操作">
-                <el-button @click="onclearDraws" v-text="'清空涂鸭'"></el-button>
+                <el-button @click="onclearDraws" v-text="'清空涂鸦'"></el-button>
                 <el-button @click="onClear" v-text="'清空白板'"></el-button>
               </el-form-item>
 
-              <el-form-item label="涂鸭工具">
+              <el-form-item label="涂鸦工具">
                 <el-select placeholder="工具" v-model="toolType" @change="onSetToolType">
                   <el-option label="画笔" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_PEN"></el-option>
                   <el-option label="直线" v-bind:value="TEduBoard.TOOL_TYPE.TEDU_BOARD_TOOL_TYPE_LINE"></el-option>
@@ -468,16 +468,15 @@
   <!-- WebRTC SDK -->
   <script src="https://sqimg.qq.com/expert_qq/webrtc/3.4.1/WebRTCAPI.min.js"></script>
   <!-- WebIM SDK -->
-  <script src="https://tic-res-1259648581.file.myqcloud.com/webim/1.7.1/webim.min.js"></script>
+  <script src="https://tic-res-1259648581.file.myqcloud.com/webim/webim.min.js"></script>
+
   <!-- COS SDK -->
   <script src="https://tic-res-1259648581.file.myqcloud.com/thirdpart/cos/5.1.0/cos.min.js"></script>
   <!-- 白板SDK -->
-  <script src="https://tic-res-1259648581.file.myqcloud.com/board/2.3.0/TEduBoard.min.js"></script>
-  <!-- <script src="libs/TEduBoard.min.js"></script> -->
+  <script src="https://tic-res-1259648581.file.myqcloud.com/board/2.3.1/TEduBoard.min.js"></script>
 
   <!-- TIC SDK 可根据开源代码自行编译TIC-->
-  <script src="https://tic-res-1259648581.file.myqcloud.com/tic/2.2.1/TIC.min.js"></script>
-  <!-- <script src="libs/TIC.js"></script> -->
+  <script src="https://tic-res-1259648581.file.myqcloud.com/tic/2.2.2/TIC.min.js"></script>
 
   <script src="libs/thirdpart/purl.js"></script>
   <script src="libs/thirdpart/vconsole.min.js"></script>
