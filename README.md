@@ -10,6 +10,36 @@
 
 虽然抽象出来的这套使用流程已经比较具有通用性，但是考虑到您可能还是会有一些细节上的特殊定制化需求，互动课堂这一层的代码我们以开源的形式放出，您可以根据您的实际需求进行修改定制。
 
+## 下载说明
+
+<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，<font color="#FF0000">勿</font>直接`Download ZIP`。
+```
+git clone https://github.com/tencentyun/TIC.git
+```
+
+如果您访问 Github 缓慢或安装 Git-LFS 遇到问题，请使用腾讯云分流地址下载：
+
+<table>
+    <tr>
+        <th style="text-align:center">Web</th>
+        <th style="text-align:center">小程序</th>
+        <th style="text-align:center">Windows</th>
+        <th style="text-align:center">Android</th>
+        <th style="text-align:center">iOS</th>
+        <th style="text-align:center">macOS</th>
+    </tr>
+    <tr>
+        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="">download</a></td>
+    </tr>
+</table>
+
+## 
+
 
 ## 快速体验
 
@@ -36,7 +66,7 @@ git clone https://github.com/tencentyun/TIC.git
 
 为了便于开发人员以最简明的方式调试接口，我们准备了各个平台的开发demo。
 
-| 平台 | 源码下载 | 快速体验 |
+| 平台 | 源码地址 | 快速体验 |
 |--|---------|---------|
 | Web | [Github](./Web) | [体验链接](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
 |小程序  | [Github](./小程序)   | <img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/> |
