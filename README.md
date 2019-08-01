@@ -29,12 +29,12 @@ git clone https://github.com/tencentyun/TIC.git
         <th style="text-align:center">macOS</th>
     </tr>
     <tr>
-        <td style="text-align:center"><a href="">download</a></td>
-        <td style="text-align:center"><a href="">download</a></td>
-        <td style="text-align:center"><a href="">download</a></td>
-        <td style="text-align:center"><a href="">download</a></td>
-        <td style="text-align:center"><a href="">download</a></td>
-        <td style="text-align:center"><a href="">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/Web.zip">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/小程序.zip">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/windows.zip">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/Android.zip">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/iOS.zip">download</a></td>
+        <td style="text-align:center"><a href="https://tic-res-1259648581.cos.file.com/demo/macOS.zip">download</a></td>
     </tr>
 </table>
 
