@@ -15,7 +15,7 @@ ImHandler.prototype.setIMSession = function (imSession) {
  */
 ImHandler.prototype.sendBoardGroupCustomMessage = function (content) {
   var msg = new webim.Msg(this.imSession, true, -1, Math.round(Math.random() * 4294967296),
-    new Date().getTime(), this.accountModel.userId, webim.GROUP_MSG_SUB_TYPE.COMMON, this.accountModel.userNick);
+    new Date().getTime(), this.accountModel.userId, webim.GROUP_MSG_SUB_TYPE.REDPACKET, this.accountModel.userNick);
   var custom = new webim.Msg.Elem.Custom(content, '', 'TXWhiteBoardExt');
   msg.addCustom(custom);
   msg.PushInfoBoolean = true;

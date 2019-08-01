@@ -26,9 +26,9 @@ window.app = new Vue({
         mic: []
       },
 
-      //board(涂鸭)
-      drawEnable: true, //是否可以涂鸭
-      synDrawEnable: true, //是否将你画的涂鸭同步给其他人
+      //board(涂鸦)
+      drawEnable: true, //是否可以涂鸦
+      synDrawEnable: true, //是否将你画的涂鸦同步给其他人
       toolType: 1,
       brushThin: 100,
       backgroundImage: "背景图",
@@ -116,8 +116,8 @@ window.app = new Vue({
         }
       };
 
-      this.drawEnable = true; //是否可以涂鸭
-      this.synDrawEnable = true; //是否将你画的涂鸭同步给其他人
+      this.drawEnable = true; //是否可以涂鸦
+      this.synDrawEnable = true; //是否将你画的涂鸦同步给其他人
       this.toolType = 1;
       this.brushThin = 100;
       this.backgroundImage = "背景图";
@@ -145,9 +145,6 @@ window.app = new Vue({
       this.enableMic = true;
       this.isPushing = 0;
       this.isPushCamera = 0;
-
-      //房间
-      this.roomID = null;
 
       //白板信息
       this.boardData.currentBoardId = null;
@@ -310,6 +307,7 @@ window.app = new Vue({
       this.tic.joinClassroom(this.roomID, {}, {
         id: 'paint_box',
         ratio: '16:9',
+        smoothLevel: 0,
         boardContentFitMode: 1
       }, res => {
         if (res.code) {
@@ -324,6 +322,7 @@ window.app = new Vue({
           this.showMessageInBox('TIC', "joinClassroom Succ, room=" + this.roomID);
 
           window.teduBoard = this.teduBoard = this.tic.getBoardInstance();
+
           this.initBoardEvent();
 
           window.TRTC = this.TRTC = this.tic.getWebRTCInstance();
@@ -703,6 +702,7 @@ window.app = new Vue({
     pushScreen() {
       var WebRTC = this.tic.getWebRTCInstance();
       WebRTC.getLocalStream({
+        audio: true,
         screen: true,
         screenSources: 'tab',
         attributes: {
@@ -971,27 +971,16 @@ window.app = new Vue({
      * @param {*} data 
      */
     proBoardData(data) {
-      // this.currentFileId = this.teduBoard.getCurrentFile();
-      // this.fileInfoList = this.teduBoard.getFileInfoList();
-      // var currentBoard = this.teduBoard.getCurrentBoard();
-      // var boards = this.teduBoard.getFileBoardList(this.currentFileId);
-
-      // this.boardData = {
-      //   currentBoardId: currentBoard,
-      //   boardIdlist: boards,
-      //   current: boards.indexOf(currentBoard) + 1,
-      //   total: boards.length
-      // }
-
       this.fileInfoList = this.teduBoard.getFileInfoList();
       this.currentFileId = this.teduBoard.getCurrentFile();
       var fileInfo = this.teduBoard.getFileInfo(this.currentFileId);
-
-      this.boardData = {
-        currentBoardId: this.currentFileId,
-        boardIdlist: this.teduBoard.getFileBoardList(this.currentFileId),
-        current: fileInfo.currentPageIndex + 1,
-        total: fileInfo.pageCount
+      if (fileInfo) {
+        this.boardData = {
+          currentBoardId: this.currentFileId,
+          boardIdlist: this.teduBoard.getFileBoardList(this.currentFileId),
+          current: fileInfo.currentPageIndex + 1,
+          total: fileInfo.pageCount
+        }
       }
     },
 
@@ -1000,7 +989,7 @@ window.app = new Vue({
     },
 
     onDeleteFile(file) {
-      onDeleteFileById(file.fid);
+      this.onDeleteFileById(file.fid);
     },
 
     onDeleteFileById(fid) {
@@ -1021,7 +1010,7 @@ window.app = new Vue({
       this.teduBoard.setToolType(toolType);
     },
 
-    //Board(涂鸭操作)
+    //Board(涂鸦操作)
     onSetDrawEnable() {
       this.teduBoard.setDrawEnable(this.drawEnable);
     },
