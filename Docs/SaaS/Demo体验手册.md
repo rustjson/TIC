@@ -5,6 +5,8 @@
 	windows：http://dldir1.qq.com/hudongzhibo/saas/TClass_Setup_1.0.0_Demo.exe   
  	mac：http://dldir1.qq.com/hudongzhibo/saas/TClass-1.0.0_Demo.dmg          
 	web：https://tedu.qcloudtrtc.com/   
+    iOS：https://www.pgyer.com/QEpl
+    Android：应用宝搜索《互动课堂快速版》
 
 ## 功能简介
 
