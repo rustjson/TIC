@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="jsoncpp">
-      <UniqueIdentifier>{eb6a055f-22f6-46c5-a2b0-cc726ee956e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TIC">
       <UniqueIdentifier>{a9792862-dae5-44ea-9613-0943fada1ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TIC\jsoncpp">
+      <UniqueIdentifier>{a6816ab2-d96f-4fd5-8266-5f630117b622}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,12 +38,6 @@
     </ClInclude>
     <ClInclude Include="BoardDlg.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="jsoncpp\json.h">
-      <Filter>jsoncpp</Filter>
-    </ClInclude>
-    <ClInclude Include="jsoncpp\json-forwards.h">
-      <Filter>jsoncpp</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
@@ -66,6 +60,12 @@
     <ClInclude Include="..\SDK\TIC\TICRecorder.h">
       <Filter>TIC</Filter>
     </ClInclude>
+    <ClInclude Include="..\SDK\TIC\jsoncpp\json.h">
+      <Filter>TIC\jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SDK\TIC\jsoncpp\json-forwards.h">
+      <Filter>TIC\jsoncpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TICDemo.cpp">
@@ -82,9 +82,6 @@
     </ClCompile>
     <ClCompile Include="BoardDlg.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="jsoncpp\jsoncpp.cpp">
-      <Filter>jsoncpp</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
@@ -103,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="..\SDK\TIC\TICRecorder.cpp">
       <Filter>TIC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDK\TIC\jsoncpp\jsoncpp.cpp">
+      <Filter>TIC\jsoncpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

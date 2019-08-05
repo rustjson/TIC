@@ -10,6 +10,8 @@
 #include <string>
 #include <Windows.h>
 
+#include "./jsoncpp/json.h"
+
 #ifdef TIC_EXPORTS //若要将TIC导出为DLL,在DLL项目属性中增加预处理器TIC_EXPORTS即可
 #define TIC_API __declspec(dllexport)
 #else
