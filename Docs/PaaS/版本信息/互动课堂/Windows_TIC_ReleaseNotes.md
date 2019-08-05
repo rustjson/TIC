@@ -1,5 +1,8 @@
 # TIC Release Notes - Windows
 
+## 2019.08.05
+- 更新IMSDK 4.4.716
+
 ## 2019.07.27
 - 更新白板SDK 2.3.0.40
 
