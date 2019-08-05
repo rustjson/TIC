@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tencent.ticsdk.trtcdemo">
+    package="com.tencent.tic.demo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +17,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name="com.tencent.ticsdk.trtcdemo.TICSDKDemoApp"
+        android:name="com.tencent.tic.demo.TICSDKDemoApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.tencent.ticsdk.trtcdemo.activities.TICLoginActivity"
+            android:name="com.tencent.tic.demo.activities.TICLoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,13 +35,13 @@
         </activity>
 
         <activity
-            android:name="com.tencent.ticsdk.trtcdemo.activities.TICClassManagerActivity"
+            android:name="com.tencent.tic.demo.activities.TICClassManagerActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.tencent.ticsdk.trtcdemo.activities.TICClassMainActivity"
+            android:name="com.tencent.tic.demo.activities.TICClassMainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
 

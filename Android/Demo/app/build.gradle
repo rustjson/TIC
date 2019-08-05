@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.3"
 
     defaultConfig {
-        applicationId "com.tencent.ticsdk.trtcdemo"
+        applicationId "com.tencent.tic.demo"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1

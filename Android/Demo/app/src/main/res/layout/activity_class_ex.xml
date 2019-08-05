@@ -10,7 +10,7 @@
             android:orientation="vertical">
 
             <!-- TRTC -->
-            <com.tencent.ticsdk.trtcdemo.activities.TICVideoRootView
+            <com.tencent.tic.demo.activities.TICVideoRootView
                 android:id="@+id/trtc_root_view"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
