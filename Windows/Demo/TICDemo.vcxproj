@@ -224,14 +224,14 @@ COPY /Y $(ProjectDir)..\SDK\TRTC\lib $(OutDir) </Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\SDK\TIC\HttpClient.h" />
+    <ClInclude Include="..\SDK\TIC\jsoncpp\json-forwards.h" />
+    <ClInclude Include="..\SDK\TIC\jsoncpp\json.h" />
     <ClInclude Include="..\SDK\TIC\NTP.h" />
     <ClInclude Include="..\SDK\TIC\TICManager.h" />
     <ClInclude Include="..\SDK\TIC\TICManagerImpl.h" />
     <ClInclude Include="..\SDK\TIC\TICRecorder.h" />
     <ClInclude Include="BoardDlg.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="jsoncpp\json-forwards.h" />
-    <ClInclude Include="jsoncpp\json.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -241,13 +241,13 @@ COPY /Y $(ProjectDir)..\SDK\TRTC\lib $(OutDir) </Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SDK\TIC\HttpClient.cpp" />
+    <ClCompile Include="..\SDK\TIC\jsoncpp\jsoncpp.cpp" />
     <ClCompile Include="..\SDK\TIC\NTP.cpp" />
     <ClCompile Include="..\SDK\TIC\TICManager.cpp" />
     <ClCompile Include="..\SDK\TIC\TICManagerImpl.cpp" />
     <ClCompile Include="..\SDK\TIC\TICRecorder.cpp" />
     <ClCompile Include="BoardDlg.cpp" />
     <ClCompile Include="Config.cpp" />
-    <ClCompile Include="jsoncpp\jsoncpp.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
