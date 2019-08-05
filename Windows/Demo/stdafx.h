@@ -32,8 +32,6 @@
 
 #include "..\SDK\TIC\TICManager.h"
 
-#include "jsoncpp/json.h"
-
 std::wstring a2w(const std::string &str, unsigned int codePage = CP_ACP);
 std::string w2a(const std::wstring &wstr, unsigned int codePage = CP_ACP);
 

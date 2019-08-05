@@ -11,6 +11,17 @@
 #pragma comment(lib, "imsdk.lib")
 #pragma comment(lib, "TEduBoard.lib")
 
+static std::string wstr2str(const std::wstring &wstr, unsigned int codePage = CP_ACP)
+{
+	const int nSize = WideCharToMultiByte(codePage, 0, wstr.c_str(), wstr.size(), nullptr, 0, nullptr, nullptr);
+	if (nSize <= 0) return "";
+
+	std::string str(nSize, '\0');
+	WideCharToMultiByte(codePage, 0, wstr.c_str(), wstr.size(), &str[0], str.size(), nullptr, nullptr);
+
+	return str;
+}
+
 TICManagerImpl::TICManagerImpl()
 {
 	
@@ -58,8 +69,8 @@ void TICManagerImpl::Init(int sdkappid, TICCallback callback)
 
 	//指定IMSDK日志路径
 	Json::Value json_value_init;
-	json_value_init[kTIMSdkConfigLogFilePath] = w2a(szIMLogDir).c_str();
-	json_value_init[kTIMSdkConfigConfigFilePath] = w2a(szIMLogDir).c_str();
+	json_value_init[kTIMSdkConfigLogFilePath] = wstr2str(szIMLogDir).c_str();
+	json_value_init[kTIMSdkConfigConfigFilePath] = wstr2str(szIMLogDir).c_str();
 
 	int ret = TIMInit(sdkappid, json_value_init.toStyledString().c_str());
 
