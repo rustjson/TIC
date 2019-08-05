@@ -21,6 +21,7 @@ extern"C"
 * > 回调分两种，一种是指调用接口的异步返回，另外一种指后台推送的通知。回调在ImSDK内部的逻辑线程触发，跟调用接口的线程可能不是同一线程
 * > 在Windows平台，如果调用[TIMInit]()接口进行初始化ImSDK之前，已创建了UI的消息循环，且调用[TIMInit]()接口的线程为主UI线程，则ImSDK内部会将回调抛到主UI线程调用
 *
+* @brief 如果接口的参数字符串包含中文，请使用UTF-8编码
 */
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +208,7 @@ TIM_DECL void TIMSetMsgUpdateCallback(TIMMsgUpdateCallback cb, const void* user_
 * 
 * @note 
 * > 在使用ImSDK进一步操作之前，需要先初始化ImSDK
-* > json_sdk_config 可以为 NULL 或者""空字符串，在此情况下SdkConfig均为默认值。
+* > json_sdk_config 可以为 NULL 空字符串指针或者""空字符串，在此情况下SdkConfig均为默认值。
 * > json_sdk_config 里面的每个Json key都是选填的，详情请参考[SdkConfig](TIMCloudDef.h)
 * 
 */
@@ -235,7 +236,7 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 
 /**
 * @brief  设置额外的用户配置
-* @param json_config 其他配置选项
+* @param json_config 配置选项
 * @param cb 返回设置配置之后所有配置的回调，此回调cb可为空，表示不获取所有配置信息。回调函数定义和参数解析请参考 [TIMCommCallback](TIMCloudCallback.h)
 * @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
 * @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
@@ -315,10 +316,11 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 *     //TIMSetConfig接口调用失败
 * }
 * 
-* @note 
+* @note
+* json_config 可以填 NULL 空字符串指针或者""空字符串，此时若回调cb不为空，则通过回调cb，返回当前所有的配置信息。
 * 目前支持设置的配置有http代理的IP和端口、socks5代理的IP和端口、输出日志的级别、获取群信息/群成员信息的默认选项、是否接受消息已读回执事件等。
 * http代理的IP和端口、socks5代理的IP和端口建议调用[TIMInit]()之前配置。
-* 每项配置可以单独设置，也可以一起配置,详情请参考 [SetConfig](TIMCloudDef.h)
+* 每项配置可以单独设置，也可以一起配置,详情请参考 [SetConfig](TIMCloudDef.h)。
 */
 TIM_DECL int TIMSetConfig(const char* json_config, TIMCommCallback cb, const void* user_data);
 /// @}
@@ -566,7 +568,7 @@ TIM_DECL int TIMMsgSendNewMsg(const char* conv_id, enum TIMConvType conv_type, c
 * @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
 *
 * @note
-* 上报此消息已读状态，最好用接收新消息获取的消息数组里面的消息Json或者用消息定位符查找到的消息Json，避免重复构造消息Json
+* json_msg_param 可以填 NULL 空字符串指针或者""空字符串，此时以会话当前最新消息的时间戳（如果会话存在最新消息）或当前时间为已读时间戳上报.当要指定消息时，则以该指定消息的时间戳为已读时间戳上报，最好用接收新消息获取的消息数组里面的消息Json或者用消息定位符查找到的消息Json，避免重复构造消息Json。
 */
 TIM_DECL int TIMMsgReportReaded(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_param, TIMCommCallback cb, const void* user_data);
 
@@ -729,7 +731,7 @@ TIM_DECL int TIMMsgSaveMsg(const char* conv_id, enum TIMConvType conv_type, cons
 * json_get_msg_param[kTIMMsgGetMsgListParamIsForward] = true;
 * json_get_msg_param[kTIMMsgGetMsgListParamCount] = 100;
 *
-* int ret = TIMMsgGetMsgList("Windows-02", kTIMConv_C2C, json_get_msg_param.toStyledString().c_str(), type, json.c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+* int ret = TIMMsgGetMsgList("Windows-02", kTIMConv_C2C, json_get_msg_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
 * }, this);
 * 
 * // json_get_msg_param.toStyledString().c_str() 得到 json_get_msg_param JSON 字符串如下
