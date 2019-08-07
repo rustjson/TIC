@@ -4,1403 +4,1403 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                      ´íÎóÂë
+//                      é”™è¯¯ç 
 //
 /////////////////////////////////////////////////////////////////////////////////
-//ÏêÏ¸ [´íÎóÂë](https://cloud.tencent.com/document/product/269/1671)£¬ÇëÄúÒÆ²½¹ÙÍø²é¿´
+//è¯¦ç»† [é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671)ï¼Œè¯·æ‚¨ç§»æ­¥å®˜ç½‘æŸ¥çœ‹
 enum TIMErrCode {
      /////////////////////////////////////////////////////////////////////////////////
     //
-    //                      £¨Ò»£©ÖÕ¶Ë IM SDK
+    //                      ï¼ˆä¸€ï¼‰ç»ˆç«¯ IM SDK
     //
     /////////////////////////////////////////////////////////////////////////////////
     
-    // Í¨ÓÃ´íÎóÂë
+    // é€šç”¨é”™è¯¯ç 
     
-    ERR_SUCC                                    = 0,       ///< ÎŞ´íÎó¡£
-    ERR_IN_PROGESS                              = 6015,    ///< Ö´ĞĞÖĞ£¬Çë×öºÃ½Ó¿Úµ÷ÓÃ¿ØÖÆ£¬ÀıÈç£¬µÚÒ»´Î³õÊ¼»¯²Ù×÷ÔÚ»Øµ÷Ç°£¬ºóĞøµÄ³õÊ¼»¯²Ù×÷»á·µ»Ø¸Ã´íÎóÂë¡£
-    ERR_INVALID_PARAMETERS                      = 6017,    ///< ²ÎÊıÎŞĞ§£¬Çë¼ì²é²ÎÊıÊÇ·ñ·ûºÏÒªÇó£¬¾ßÌå¿É²é¿´´íÎóĞÅÏ¢½øÒ»²½¶¨ÒåÄÄ¸ö×Ö¶Î¡£
-    ERR_IO_OPERATION_FAILED                     = 6022,    ///< ²Ù×÷±¾µØ IO ´íÎó£¬¼ì²éÊÇ·ñÓĞ¶ÁĞ´È¨ÏŞ£¬´ÅÅÌÊÇ·ñÒÑÂú¡£
-    ERR_INVALID_JSON                            = 6027,    ///< ´íÎóµÄ JSON ¸ñÊ½£¬Çë¼ì²é²ÎÊıÊÇ·ñ·ûºÏ½Ó¿ÚµÄÒªÇó£¬¾ßÌå¿É²é¿´´íÎóĞÅÏ¢½øÒ»²½¶¨ÒåÄÄ¸ö×Ö¶Î¡£
-    ERR_OUT_OF_MEMORY                           = 6028,    ///< ÄÚ´æ²»×ã£¬¿ÉÄÜ´æÔÚÄÚ´æĞ¹Â©£¬iOS Æ½Ì¨Ê¹ÓÃ Instrument ¹¤¾ß£¬Android Æ½Ì¨Ê¹ÓÃ Profiler ¹¤¾ß£¬·ÖÎö³öÊ²Ã´µØ·½µÄÄÚ´æÕ¼ÓÃ¸ß¡£
-    ERR_PARSE_RESPONSE_FAILED                   = 6001,    ///< PB ½âÎöÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SERIALIZE_REQ_FAILED                    = 6002,    ///< PB ĞòÁĞ»¯Ê§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NOT_INITIALIZED                     = 6013,    ///< IM SDK Î´³õÊ¼»¯£¬³õÊ¼»¯³É¹¦»Øµ÷Ö®ºóÖØÊÔ¡£
-    ERR_LOADMSG_FAILED                          = 6005,    ///< ¼ÓÔØ±¾µØÊı¾İ¿â²Ù×÷Ê§°Ü£¬¿ÉÄÜ´æ´¢ÎÄ¼şÓĞËğ»µ£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) ÁªÏµ¿Í·ş¶¨Î»¾ßÌåÎÊÌâ¡£
-    ERR_DATABASE_OPERATE_FAILED                 = 6019,    ///< ±¾µØÊı¾İ¿â²Ù×÷Ê§°Ü£¬¿ÉÄÜÊÇ²¿·ÖÄ¿Â¼ÎŞÈ¨ÏŞ»òÕßÊı¾İ¿âÎÄ¼şÒÑËğ»µ¡£
-    ERR_SDK_COMM_CROSS_THREAD                   = 7001,    ///< ¿çÏß³Ì´íÎó£¬²»ÄÜÔÚ¿çÔ½²»Í¬Ïß³ÌÖĞÖ´ĞĞ£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_COMM_TINYID_EMPTY                   = 7002,    ///< TinyId Îª¿Õ£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_COMM_INVALID_IDENTIFIER             = 7003,    ///< Identifier ·Ç·¨£¬±ØĞë²»Îª¿Õ£¬ÒªÇó¿É´òÓ¡ ASCII ×Ö·û£¨0x20-0x7e£©£¬³¤¶È²»³¬¹ı32×Ö½Ú¡£
-    ERR_SDK_COMM_FILE_NOT_FOUND                 = 7004,    ///< ÎÄ¼ş²»´æÔÚ£¬Çë¼ì²éÎÄ¼şÂ·¾¶ÊÇ·ñÕıÈ·¡£
-    ERR_SDK_COMM_FILE_TOO_LARGE                 = 7005,    ///< ÎÄ¼ş´óĞ¡³¬³öÁËÏŞÖÆ£¬Èç¹ûÉÏ´«ÎÄ¼ş£¬×î´óÏŞÖÆÊÇ28MB¡£
-    ERR_SDK_COMM_FILE_SIZE_EMPTY                = 7006,    ///< ¿ÕÎÄ¼ş£¬ÒªÇóÎÄ¼ş´óĞ¡²»ÊÇ0×Ö½Ú£¬Èç¹ûÉÏ´«Í¼Æ¬¡¢ÓïÒô¡¢ÊÓÆµ»òÎÄ¼ş£¬Çë¼ì²éÎÄ¼şÊÇ·ñÕıÈ·Éú³É¡£
-    ERR_SDK_COMM_FILE_OPEN_FAILED               = 7007,    ///< ÎÄ¼ş´ò¿ªÊ§°Ü£¬Çë¼ì²éÎÄ¼şÊÇ·ñ´æÔÚ£¬»òÕßÒÑ±»¶ÀÕ¼´ò¿ª£¬ÒıÆğ SDK ´ò¿ªÊ§°Ü¡£
+    ERR_SUCC                                    = 0,       ///< æ— é”™è¯¯ã€‚
+    ERR_IN_PROGESS                              = 6015,    ///< æ‰§è¡Œä¸­ï¼Œè¯·åšå¥½æ¥å£è°ƒç”¨æ§åˆ¶ï¼Œä¾‹å¦‚ï¼Œç¬¬ä¸€æ¬¡åˆå§‹åŒ–æ“ä½œåœ¨å›è°ƒå‰ï¼Œåç»­çš„åˆå§‹åŒ–æ“ä½œä¼šè¿”å›è¯¥é”™è¯¯ç ã€‚
+    ERR_INVALID_PARAMETERS                      = 6017,    ///< å‚æ•°æ— æ•ˆï¼Œè¯·æ£€æŸ¥å‚æ•°æ˜¯å¦ç¬¦åˆè¦æ±‚ï¼Œå…·ä½“å¯æŸ¥çœ‹é”™è¯¯ä¿¡æ¯è¿›ä¸€æ­¥å®šä¹‰å“ªä¸ªå­—æ®µã€‚
+    ERR_IO_OPERATION_FAILED                     = 6022,    ///< æ“ä½œæœ¬åœ° IO é”™è¯¯ï¼Œæ£€æŸ¥æ˜¯å¦æœ‰è¯»å†™æƒé™ï¼Œç£ç›˜æ˜¯å¦å·²æ»¡ã€‚
+    ERR_INVALID_JSON                            = 6027,    ///< é”™è¯¯çš„ JSON æ ¼å¼ï¼Œè¯·æ£€æŸ¥å‚æ•°æ˜¯å¦ç¬¦åˆæ¥å£çš„è¦æ±‚ï¼Œå…·ä½“å¯æŸ¥çœ‹é”™è¯¯ä¿¡æ¯è¿›ä¸€æ­¥å®šä¹‰å“ªä¸ªå­—æ®µã€‚
+    ERR_OUT_OF_MEMORY                           = 6028,    ///< å†…å­˜ä¸è¶³ï¼Œå¯èƒ½å­˜åœ¨å†…å­˜æ³„æ¼ï¼ŒiOS å¹³å°ä½¿ç”¨ Instrument å·¥å…·ï¼ŒAndroid å¹³å°ä½¿ç”¨ Profiler å·¥å…·ï¼Œåˆ†æå‡ºä»€ä¹ˆåœ°æ–¹çš„å†…å­˜å ç”¨é«˜ã€‚
+    ERR_PARSE_RESPONSE_FAILED                   = 6001,    ///< PB è§£æå¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SERIALIZE_REQ_FAILED                    = 6002,    ///< PB åºåˆ—åŒ–å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NOT_INITIALIZED                     = 6013,    ///< IM SDK æœªåˆå§‹åŒ–ï¼Œåˆå§‹åŒ–æˆåŠŸå›è°ƒä¹‹åé‡è¯•ã€‚
+    ERR_LOADMSG_FAILED                          = 6005,    ///< åŠ è½½æœ¬åœ°æ•°æ®åº“æ“ä½œå¤±è´¥ï¼Œå¯èƒ½å­˜å‚¨æ–‡ä»¶æœ‰æŸåï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) è”ç³»å®¢æœå®šä½å…·ä½“é—®é¢˜ã€‚
+    ERR_DATABASE_OPERATE_FAILED                 = 6019,    ///< æœ¬åœ°æ•°æ®åº“æ“ä½œå¤±è´¥ï¼Œå¯èƒ½æ˜¯éƒ¨åˆ†ç›®å½•æ— æƒé™æˆ–è€…æ•°æ®åº“æ–‡ä»¶å·²æŸåã€‚
+    ERR_SDK_COMM_CROSS_THREAD                   = 7001,    ///< è·¨çº¿ç¨‹é”™è¯¯ï¼Œä¸èƒ½åœ¨è·¨è¶Šä¸åŒçº¿ç¨‹ä¸­æ‰§è¡Œï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_COMM_TINYID_EMPTY                   = 7002,    ///< TinyId ä¸ºç©ºï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_COMM_INVALID_IDENTIFIER             = 7003,    ///< Identifier éæ³•ï¼Œå¿…é¡»ä¸ä¸ºç©ºï¼Œè¦æ±‚å¯æ‰“å° ASCII å­—ç¬¦ï¼ˆ0x20-0x7eï¼‰ï¼Œé•¿åº¦ä¸è¶…è¿‡32å­—èŠ‚ã€‚
+    ERR_SDK_COMM_FILE_NOT_FOUND                 = 7004,    ///< æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¯·æ£€æŸ¥æ–‡ä»¶è·¯å¾„æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SDK_COMM_FILE_TOO_LARGE                 = 7005,    ///< æ–‡ä»¶å¤§å°è¶…å‡ºäº†é™åˆ¶ï¼Œå¦‚æœä¸Šä¼ æ–‡ä»¶ï¼Œæœ€å¤§é™åˆ¶æ˜¯28MBã€‚
+    ERR_SDK_COMM_FILE_SIZE_EMPTY                = 7006,    ///< ç©ºæ–‡ä»¶ï¼Œè¦æ±‚æ–‡ä»¶å¤§å°ä¸æ˜¯0å­—èŠ‚ï¼Œå¦‚æœä¸Šä¼ å›¾ç‰‡ã€è¯­éŸ³ã€è§†é¢‘æˆ–æ–‡ä»¶ï¼Œè¯·æ£€æŸ¥æ–‡ä»¶æ˜¯å¦æ­£ç¡®ç”Ÿæˆã€‚
+    ERR_SDK_COMM_FILE_OPEN_FAILED               = 7007,    ///< æ–‡ä»¶æ‰“å¼€å¤±è´¥ï¼Œè¯·æ£€æŸ¥æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œæˆ–è€…å·²è¢«ç‹¬å æ‰“å¼€ï¼Œå¼•èµ· SDK æ‰“å¼€å¤±è´¥ã€‚
     
-    // ÕÊºÅ´íÎóÂë
+    // å¸å·é”™è¯¯ç 
     
-    ERR_SDK_NOT_LOGGED_IN                       = 6014,    ///< IM SDK Î´µÇÂ¼£¬ÇëÏÈµÇÂ¼£¬³É¹¦»Øµ÷Ö®ºóÖØÊÔ£¬»òÕßÒÑ±»ÌßÏÂÏß£¬¿ÉÊ¹ÓÃ TIMManager getLoginUser ¼ì²éµ±Ç°ÊÇ·ñÔÚÏß¡£
-    ERR_NO_PREVIOUS_LOGIN                       = 6026,    ///< ×Ô¶¯µÇÂ¼Ê±£¬²¢Ã»ÓĞµÇÂ¼¹ı¸ÃÓÃ»§£¬ÕâÊ±ºòÇëµ÷ÓÃ login ½Ó¿ÚÖØĞÂµÇÂ¼¡£
-    ERR_USER_SIG_EXPIRED                        = 6206,    ///< UserSig ¹ıÆÚ£¬ĞèÒª¼àÌı UserStatusListener£¬onUserSigExpired ºóÖØĞÂ»ñÈ¡ UserSig µÇÂ¼¡£
-    ERR_LOGIN_KICKED_OFF_BY_OTHER               = 6208,    ///< ÆäËûÖÕ¶ËµÇÂ¼Í¬Ò»¸öÕÊºÅ£¬ÒıÆğÒÑµÇÂ¼µÄÕÊºÅ±»Ìß£¬ĞèÖØĞÂµÇÂ¼¡£
-    ERR_SDK_ACCOUNT_LOGIN_IN_PROCESS            = 7501,    ///< µÇÂ¼ÕıÔÚÖ´ĞĞÖĞ£¬ÀıÈç£¬µÚÒ»´Î login »ò autoLogin ²Ù×÷ÔÚ»Øµ÷Ç°£¬ºóĞøµÄ login »ò autoLogin ²Ù×÷»á·µ»Ø¸Ã´íÎóÂë¡£
-    ERR_SDK_ACCOUNT_LOGOUT_IN_PROCESS           = 7502,    ///< µÇ³öÕıÔÚÖ´ĞĞÖĞ£¬ÀıÈç£¬µÚÒ»´Î logout ²Ù×÷ÔÚ»Øµ÷Ç°£¬ºóĞøµÄ logout ²Ù×÷»á·µ»Ø¸Ã´íÎóÂë¡£
-    ERR_SDK_ACCOUNT_TLS_INIT_FAILED             = 7503,    ///< TLS SDK ³õÊ¼»¯Ê§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_ACCOUNT_TLS_NOT_INITIALIZED         = 7504,    ///< TLS SDK Î´³õÊ¼»¯£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_ACCOUNT_TLS_TRANSPKG_ERROR          = 7505,    ///< TLS SDK TRANS °ü¸ñÊ½´íÎó£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_ACCOUNT_TLS_DECRYPT_FAILED          = 7506,    ///< TLS SDK ½âÃÜÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_ACCOUNT_TLS_REQUEST_FAILED          = 7507,    ///< TLS SDK ÇëÇóÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_ACCOUNT_TLS_REQUEST_TIMEOUT         = 7508,    ///< TLS SDK ÇëÇó³¬Ê±£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
+    ERR_SDK_NOT_LOGGED_IN                       = 6014,    ///< IM SDK æœªç™»å½•ï¼Œè¯·å…ˆç™»å½•ï¼ŒæˆåŠŸå›è°ƒä¹‹åé‡è¯•ï¼Œæˆ–è€…å·²è¢«è¸¢ä¸‹çº¿ï¼Œå¯ä½¿ç”¨ TIMManager getLoginUser æ£€æŸ¥å½“å‰æ˜¯å¦åœ¨çº¿ã€‚
+    ERR_NO_PREVIOUS_LOGIN                       = 6026,    ///< è‡ªåŠ¨ç™»å½•æ—¶ï¼Œå¹¶æ²¡æœ‰ç™»å½•è¿‡è¯¥ç”¨æˆ·ï¼Œè¿™æ—¶å€™è¯·è°ƒç”¨ login æ¥å£é‡æ–°ç™»å½•ã€‚
+    ERR_USER_SIG_EXPIRED                        = 6206,    ///< UserSig è¿‡æœŸï¼Œéœ€è¦ç›‘å¬ UserStatusListenerï¼ŒonUserSigExpired åé‡æ–°è·å– UserSig ç™»å½•ã€‚
+    ERR_LOGIN_KICKED_OFF_BY_OTHER               = 6208,    ///< å…¶ä»–ç»ˆç«¯ç™»å½•åŒä¸€ä¸ªå¸å·ï¼Œå¼•èµ·å·²ç™»å½•çš„å¸å·è¢«è¸¢ï¼Œéœ€é‡æ–°ç™»å½•ã€‚
+    ERR_SDK_ACCOUNT_LOGIN_IN_PROCESS            = 7501,    ///< ç™»å½•æ­£åœ¨æ‰§è¡Œä¸­ï¼Œä¾‹å¦‚ï¼Œç¬¬ä¸€æ¬¡ login æˆ– autoLogin æ“ä½œåœ¨å›è°ƒå‰ï¼Œåç»­çš„ login æˆ– autoLogin æ“ä½œä¼šè¿”å›è¯¥é”™è¯¯ç ã€‚
+    ERR_SDK_ACCOUNT_LOGOUT_IN_PROCESS           = 7502,    ///< ç™»å‡ºæ­£åœ¨æ‰§è¡Œä¸­ï¼Œä¾‹å¦‚ï¼Œç¬¬ä¸€æ¬¡ logout æ“ä½œåœ¨å›è°ƒå‰ï¼Œåç»­çš„ logout æ“ä½œä¼šè¿”å›è¯¥é”™è¯¯ç ã€‚
+    ERR_SDK_ACCOUNT_TLS_INIT_FAILED             = 7503,    ///< TLS SDK åˆå§‹åŒ–å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_ACCOUNT_TLS_NOT_INITIALIZED         = 7504,    ///< TLS SDK æœªåˆå§‹åŒ–ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_ACCOUNT_TLS_TRANSPKG_ERROR          = 7505,    ///< TLS SDK TRANS åŒ…æ ¼å¼é”™è¯¯ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_ACCOUNT_TLS_DECRYPT_FAILED          = 7506,    ///< TLS SDK è§£å¯†å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_ACCOUNT_TLS_REQUEST_FAILED          = 7507,    ///< TLS SDK è¯·æ±‚å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_ACCOUNT_TLS_REQUEST_TIMEOUT         = 7508,    ///< TLS SDK è¯·æ±‚è¶…æ—¶ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
     
-    // ÏûÏ¢´íÎóÂë
+    // æ¶ˆæ¯é”™è¯¯ç 
     
-    ERR_INVALID_CONVERSATION                    = 6004,    ///< »á»°ÎŞĞ§£¬getConversation Ê±¼ì²éÊÇ·ñÒÑ¾­µÇÂ¼£¬ÈçÎ´µÇÂ¼»ñÈ¡»á»°£¬»áÓĞ´Ë´íÎóÂë·µ»Ø¡£
-    ERR_FILE_TRANS_AUTH_FAILED                  = 6006,    ///< ÎÄ¼ş´«Êä¼øÈ¨Ê§°Ü£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_FILE_TRANS_NO_SERVER                    = 6007,    ///< ÎÄ¼ş´«Êä»ñÈ¡ Server ÁĞ±íÊ§°Ü£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_FILE_TRANS_UPLOAD_FAILED                = 6008,    ///< ÎÄ¼ş´«ÊäÉÏ´«Ê§°Ü£¬Çë¼ì²éÍøÂçÊÇ·ñÁ¬½Ó£¬Èç¹ûÉÏ´«µÄÊÇÍ¼Æ¬£¬È·ÈÏÍ¼Æ¬ÄÜ¹»Õı³£´ò¿ª¡£
-    ERR_FILE_TRANS_DOWNLOAD_FAILED              = 6009,    ///< ÎÄ¼ş´«ÊäÏÂÔØÊ§°Ü£¬Çë¼ì²éÍøÂç£¬»òÕßÎÄ¼ş¡¢ÓïÒôÊÇ·ñÒÑ¾­¹ıÆÚ£¬Ä¿Ç°×ÊÔ´ÎÄ¼ş´æ´¢7Ìì¡£
-    ERR_HTTP_REQ_FAILED                         = 6010,    ///< HTTP ÇëÇóÊ§°Ü£¬Çë¼ì²é URL µØÖ·ÊÇ·ñºÏ·¨£¬¿ÉÔÚÍøÒ³ä¯ÀÀÆ÷³¢ÊÔ·ÃÎÊ¸Ã URL µØÖ·¡£
-    ERR_INVALID_MSG_ELEM                        = 6016,    ///< IM SDK ÎŞĞ§ÏûÏ¢ elem£¬¾ßÌå¿É²é¿´´íÎóĞÅÏ¢½øÒ»²½¶¨ÒåÄÄ¸ö×Ö¶Î¡£
-    ERR_INVALID_SDK_OBJECT                      = 6021,    ///< ÎŞĞ§µÄ¶ÔÏó£¬ÀıÈçÓÃ»§×Ô¼ºÉú³É TIMImage ¶ÔÏó£¬»òÄÚ²¿¸³Öµ´íÎóµ¼ÖÂ¶ÔÏóÎŞĞ§¡£
-    ERR_SDK_MSG_BODY_SIZE_LIMIT                 = 8001,    ///< ÏûÏ¢³¤¶È³¬³öÏŞÖÆ£¬ÏûÏ¢³¤¶È²»Òª³¬¹ı8k£¬ÏûÏ¢³¤¶ÈÊÇ¸÷¸ö elem ³¤¶ÈµÄ×ÜºÍ£¬elem ³¤¶ÈÊÇËùÓĞ elem ×Ö¶ÎµÄ³¤¶È×ÜºÍ¡£
-    ERR_SDK_MSG_KEY_REQ_DIFFER_RSP              = 8002,    ///< ÏûÏ¢ KEY ´íÎó£¬ÄÚ²¿´íÎó£¬ÍøÂçÇëÇó°üµÄ KEY ºÍ »Ø¸´°üµÄ²»Ò»ÖÂ¡£
+    ERR_INVALID_CONVERSATION                    = 6004,    ///< ä¼šè¯æ— æ•ˆï¼ŒgetConversation æ—¶æ£€æŸ¥æ˜¯å¦å·²ç»ç™»å½•ï¼Œå¦‚æœªç™»å½•è·å–ä¼šè¯ï¼Œä¼šæœ‰æ­¤é”™è¯¯ç è¿”å›ã€‚
+    ERR_FILE_TRANS_AUTH_FAILED                  = 6006,    ///< æ–‡ä»¶ä¼ è¾“é‰´æƒå¤±è´¥ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_FILE_TRANS_NO_SERVER                    = 6007,    ///< æ–‡ä»¶ä¼ è¾“è·å– Server åˆ—è¡¨å¤±è´¥ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_FILE_TRANS_UPLOAD_FAILED                = 6008,    ///< æ–‡ä»¶ä¼ è¾“ä¸Šä¼ å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œæ˜¯å¦è¿æ¥ï¼Œå¦‚æœä¸Šä¼ çš„æ˜¯å›¾ç‰‡ï¼Œç¡®è®¤å›¾ç‰‡èƒ½å¤Ÿæ­£å¸¸æ‰“å¼€ã€‚
+    ERR_FILE_TRANS_DOWNLOAD_FAILED              = 6009,    ///< æ–‡ä»¶ä¼ è¾“ä¸‹è½½å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œï¼Œæˆ–è€…æ–‡ä»¶ã€è¯­éŸ³æ˜¯å¦å·²ç»è¿‡æœŸï¼Œç›®å‰èµ„æºæ–‡ä»¶å­˜å‚¨7å¤©ã€‚
+    ERR_HTTP_REQ_FAILED                         = 6010,    ///< HTTP è¯·æ±‚å¤±è´¥ï¼Œè¯·æ£€æŸ¥ URL åœ°å€æ˜¯å¦åˆæ³•ï¼Œå¯åœ¨ç½‘é¡µæµè§ˆå™¨å°è¯•è®¿é—®è¯¥ URL åœ°å€ã€‚
+    ERR_INVALID_MSG_ELEM                        = 6016,    ///< IM SDK æ— æ•ˆæ¶ˆæ¯ elemï¼Œå…·ä½“å¯æŸ¥çœ‹é”™è¯¯ä¿¡æ¯è¿›ä¸€æ­¥å®šä¹‰å“ªä¸ªå­—æ®µã€‚
+    ERR_INVALID_SDK_OBJECT                      = 6021,    ///< æ— æ•ˆçš„å¯¹è±¡ï¼Œä¾‹å¦‚ç”¨æˆ·è‡ªå·±ç”Ÿæˆ TIMImage å¯¹è±¡ï¼Œæˆ–å†…éƒ¨èµ‹å€¼é”™è¯¯å¯¼è‡´å¯¹è±¡æ— æ•ˆã€‚
+    ERR_SDK_MSG_BODY_SIZE_LIMIT                 = 8001,    ///< æ¶ˆæ¯é•¿åº¦è¶…å‡ºé™åˆ¶ï¼Œæ¶ˆæ¯é•¿åº¦ä¸è¦è¶…è¿‡8kï¼Œæ¶ˆæ¯é•¿åº¦æ˜¯å„ä¸ª elem é•¿åº¦çš„æ€»å’Œï¼Œelem é•¿åº¦æ˜¯æ‰€æœ‰ elem å­—æ®µçš„é•¿åº¦æ€»å’Œã€‚
+    ERR_SDK_MSG_KEY_REQ_DIFFER_RSP              = 8002,    ///< æ¶ˆæ¯ KEY é”™è¯¯ï¼Œå†…éƒ¨é”™è¯¯ï¼Œç½‘ç»œè¯·æ±‚åŒ…çš„ KEY å’Œ å›å¤åŒ…çš„ä¸ä¸€è‡´ã€‚
     
-    // Èº×é´íÎóÂë
+    // ç¾¤ç»„é”™è¯¯ç 
     
-    ERR_SDK_GROUP_INVALID_ID                    = 8501,    ///< Èº×é ID ·Ç·¨£¬×Ô¶¨ÒåÈº×é ID ±ØĞëÎª¿É´òÓ¡ ASCII ×Ö·û£¨0x20-0x7e£©£¬×î³¤48¸ö×Ö½Ú£¬ÇÒÇ°×º²»ÄÜÎª @TGS#£¨±ÜÃâÓë·şÎñ¶ËÄ¬ÈÏ·ÖÅäµÄÈº×é ID »ìÏı£©¡£
-    ERR_SDK_GROUP_INVALID_NAME                  = 8502,    ///< ÈºÃû³Æ·Ç·¨£¬ÈºÃû³Æ×î³¤30×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_GROUP_INVALID_INTRODUCTION          = 8503,    ///< Èº¼ò½é·Ç·¨£¬Èº¼ò½é×î³¤240×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_GROUP_INVALID_NOTIFICATION          = 8504,    ///< Èº¹«¸æ·Ç·¨£¬Èº¹«¸æ×î³¤300×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_GROUP_INVALID_FACE_URL              = 8505,    ///< ÈºÍ·Ïñ URL ·Ç·¨£¬ÈºÍ·Ïñ URL ×î³¤100×Ö½Ú£¬¿ÉÔÚÍøÒ³ä¯ÀÀÆ÷³¢ÊÔ·ÃÎÊ¸Ã URL µØÖ·¡£
-    ERR_SDK_GROUP_INVALID_NAME_CARD             = 8506,    ///< ÈºÃûÆ¬·Ç·¨£¬ÈºÃûÆ¬×î³¤50×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_GROUP_MEMBER_COUNT_LIMIT            = 8507,    ///< ³¬¹ıÈº×é³ÉÔ±ÊıµÄÏŞÖÆ£¬ÔÚ´´½¨ÈººÍÑûÇë³ÉÔ±Ê±£¬Ö¸¶¨µÄ³ÉÔ±Êı³¬³öÏŞÖÆ£¬×î´óÈº³ÉÔ±ÊıÁ¿£ºË½ÓĞÈºÊÇ200ÈË£¬¹«¿ªÈºÊÇ2000ÈË£¬ÁÄÌìÊÒÊÇ10000ÈË£¬ÒôÊÓÆµÁÄÌìÊÒºÍÔÚÏß³ÉÔ±¹ã²¥´óÈºÎŞÏŞÖÆ¡£
-    ERR_SDK_GROUP_JOIN_PRIVATE_GROUP_DENY       = 8508,    ///< ²»ÔÊĞíÉêÇë¼ÓÈë Private Èº×é£¬ÈÎÒâÈº³ÉÔ±¿ÉÑûÇëÈëÈº£¬ÇÒÎŞĞè±»ÑûÇëÈËÍ¬Òâ¡£
-    ERR_SDK_GROUP_INVITE_SUPER_DENY             = 8509,    ///< ²»ÔÊĞíÑûÇë½ÇÉ«ÎªÈºÖ÷µÄ³ÉÔ±£¬Çë¼ì²é½ÇÉ«×Ö¶ÎÊÇ·ñÌîĞ´ÕıÈ·¡£
-    ERR_SDK_GROUP_INVITE_NO_MEMBER              = 8510,    ///< ²»ÔÊĞíÑûÇë0¸ö³ÉÔ±£¬Çë¼ì²é³ÉÔ±×Ö¶ÎÊÇ·ñÌîĞ´ÕıÈ·¡£
+    ERR_SDK_GROUP_INVALID_ID                    = 8501,    ///< ç¾¤ç»„ ID éæ³•ï¼Œè‡ªå®šä¹‰ç¾¤ç»„ ID å¿…é¡»ä¸ºå¯æ‰“å° ASCII å­—ç¬¦ï¼ˆ0x20-0x7eï¼‰ï¼Œæœ€é•¿48ä¸ªå­—èŠ‚ï¼Œä¸”å‰ç¼€ä¸èƒ½ä¸º @TGS#ï¼ˆé¿å…ä¸æœåŠ¡ç«¯é»˜è®¤åˆ†é…çš„ç¾¤ç»„ ID æ··æ·†ï¼‰ã€‚
+    ERR_SDK_GROUP_INVALID_NAME                  = 8502,    ///< ç¾¤åç§°éæ³•ï¼Œç¾¤åç§°æœ€é•¿30å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_GROUP_INVALID_INTRODUCTION          = 8503,    ///< ç¾¤ç®€ä»‹éæ³•ï¼Œç¾¤ç®€ä»‹æœ€é•¿240å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_GROUP_INVALID_NOTIFICATION          = 8504,    ///< ç¾¤å…¬å‘Šéæ³•ï¼Œç¾¤å…¬å‘Šæœ€é•¿300å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_GROUP_INVALID_FACE_URL              = 8505,    ///< ç¾¤å¤´åƒ URL éæ³•ï¼Œç¾¤å¤´åƒ URL æœ€é•¿100å­—èŠ‚ï¼Œå¯åœ¨ç½‘é¡µæµè§ˆå™¨å°è¯•è®¿é—®è¯¥ URL åœ°å€ã€‚
+    ERR_SDK_GROUP_INVALID_NAME_CARD             = 8506,    ///< ç¾¤åç‰‡éæ³•ï¼Œç¾¤åç‰‡æœ€é•¿50å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_GROUP_MEMBER_COUNT_LIMIT            = 8507,    ///< è¶…è¿‡ç¾¤ç»„æˆå‘˜æ•°çš„é™åˆ¶ï¼Œåœ¨åˆ›å»ºç¾¤å’Œé‚€è¯·æˆå‘˜æ—¶ï¼ŒæŒ‡å®šçš„æˆå‘˜æ•°è¶…å‡ºé™åˆ¶ï¼Œæœ€å¤§ç¾¤æˆå‘˜æ•°é‡ï¼šç§æœ‰ç¾¤æ˜¯200äººï¼Œå…¬å¼€ç¾¤æ˜¯2000äººï¼ŒèŠå¤©å®¤æ˜¯10000äººï¼ŒéŸ³è§†é¢‘èŠå¤©å®¤å’Œåœ¨çº¿æˆå‘˜å¹¿æ’­å¤§ç¾¤æ— é™åˆ¶ã€‚
+    ERR_SDK_GROUP_JOIN_PRIVATE_GROUP_DENY       = 8508,    ///< ä¸å…è®¸ç”³è¯·åŠ å…¥ Private ç¾¤ç»„ï¼Œä»»æ„ç¾¤æˆå‘˜å¯é‚€è¯·å…¥ç¾¤ï¼Œä¸”æ— éœ€è¢«é‚€è¯·äººåŒæ„ã€‚
+    ERR_SDK_GROUP_INVITE_SUPER_DENY             = 8509,    ///< ä¸å…è®¸é‚€è¯·è§’è‰²ä¸ºç¾¤ä¸»çš„æˆå‘˜ï¼Œè¯·æ£€æŸ¥è§’è‰²å­—æ®µæ˜¯å¦å¡«å†™æ­£ç¡®ã€‚
+    ERR_SDK_GROUP_INVITE_NO_MEMBER              = 8510,    ///< ä¸å…è®¸é‚€è¯·0ä¸ªæˆå‘˜ï¼Œè¯·æ£€æŸ¥æˆå‘˜å­—æ®µæ˜¯å¦å¡«å†™æ­£ç¡®ã€‚
     
-    // ¹ØÏµÁ´´íÎóÂë
+    // å…³ç³»é“¾é”™è¯¯ç 
     
-    ERR_SDK_FRIENDSHIP_INVALID_PROFILE_KEY      = 9001,    ///< ×ÊÁÏ×Ö¶Î·Ç·¨£¬×ÊÁÏÖ§³Ö±êÅä×Ö¶Î¼°×Ô¶¨Òå×Ö¶Î£¬ÆäÖĞ×Ô¶¨Òå×Ö¶ÎµÄ¹Ø¼ü×Ö£¬±ØĞëÊÇÓ¢ÎÄ×ÖÄ¸£¬ÇÒ³¤¶È²»µÃ³¬¹ı8×Ö½Ú£¬×Ô¶¨Òå×Ö¶ÎµÄÖµ×î³¤²»ÄÜ³¬¹ı500×Ö½Ú¡£
-    ERR_SDK_FRIENDSHIP_INVALID_ADD_REMARK       = 9002,    ///< ±¸×¢×Ö¶Î·Ç·¨£¬×î´ó96×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_FRIENDSHIP_INVALID_ADD_WORDING      = 9003,    ///< ÇëÇóÌí¼ÓºÃÓÑµÄÇëÇóËµÃ÷×Ö¶Î·Ç·¨£¬×î´ó120×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
-    ERR_SDK_FRIENDSHIP_INVALID_ADD_SOURCE       = 9004,    ///< ÇëÇóÌí¼ÓºÃÓÑµÄÌí¼ÓÀ´Ô´×Ö¶Î·Ç·¨£¬À´Ô´ĞèÒªÌí¼Ó¡°AddSource_Type_¡±Ç°×º¡£
-    ERR_SDK_FRIENDSHIP_FRIEND_GROUP_EMPTY       = 9005,    ///< ºÃÓÑ·Ö×é×Ö¶Î·Ç·¨£¬±ØĞë²»Îª¿Õ£¬Ã¿¸ö·Ö×éµÄÃû³Æ×î³¤30×Ö½Ú£¬×Ö·û±àÂë±ØĞëÊÇ UTF-8 £¬Èç¹û°üº¬ÖĞÎÄ£¬¿ÉÄÜÓÃ¶à¸ö×Ö½Ú±íÊ¾Ò»¸öÖĞÎÄ×Ö·û£¬Çë×¢Òâ¼ì²é×Ö·û´®µÄ×Ö½Ú³¤¶È¡£
+    ERR_SDK_FRIENDSHIP_INVALID_PROFILE_KEY      = 9001,    ///< èµ„æ–™å­—æ®µéæ³•ï¼Œèµ„æ–™æ”¯æŒæ ‡é…å­—æ®µåŠè‡ªå®šä¹‰å­—æ®µï¼Œå…¶ä¸­è‡ªå®šä¹‰å­—æ®µçš„å…³é”®å­—ï¼Œå¿…é¡»æ˜¯è‹±æ–‡å­—æ¯ï¼Œä¸”é•¿åº¦ä¸å¾—è¶…è¿‡8å­—èŠ‚ï¼Œè‡ªå®šä¹‰å­—æ®µçš„å€¼æœ€é•¿ä¸èƒ½è¶…è¿‡500å­—èŠ‚ã€‚
+    ERR_SDK_FRIENDSHIP_INVALID_ADD_REMARK       = 9002,    ///< å¤‡æ³¨å­—æ®µéæ³•ï¼Œæœ€å¤§96å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_FRIENDSHIP_INVALID_ADD_WORDING      = 9003,    ///< è¯·æ±‚æ·»åŠ å¥½å‹çš„è¯·æ±‚è¯´æ˜å­—æ®µéæ³•ï¼Œæœ€å¤§120å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
+    ERR_SDK_FRIENDSHIP_INVALID_ADD_SOURCE       = 9004,    ///< è¯·æ±‚æ·»åŠ å¥½å‹çš„æ·»åŠ æ¥æºå­—æ®µéæ³•ï¼Œæ¥æºéœ€è¦æ·»åŠ â€œAddSource_Type_â€å‰ç¼€ã€‚
+    ERR_SDK_FRIENDSHIP_FRIEND_GROUP_EMPTY       = 9005,    ///< å¥½å‹åˆ†ç»„å­—æ®µéæ³•ï¼Œå¿…é¡»ä¸ä¸ºç©ºï¼Œæ¯ä¸ªåˆ†ç»„çš„åç§°æœ€é•¿30å­—èŠ‚ï¼Œå­—ç¬¦ç¼–ç å¿…é¡»æ˜¯ UTF-8 ï¼Œå¦‚æœåŒ…å«ä¸­æ–‡ï¼Œå¯èƒ½ç”¨å¤šä¸ªå­—èŠ‚è¡¨ç¤ºä¸€ä¸ªä¸­æ–‡å­—ç¬¦ï¼Œè¯·æ³¨æ„æ£€æŸ¥å­—ç¬¦ä¸²çš„å­—èŠ‚é•¿åº¦ã€‚
     
-    // ÍøÂç´íÎóÂë
+    // ç½‘ç»œé”™è¯¯ç 
     
-    ERR_SDK_NET_ENCODE_FAILED                   = 9501,    ///< SSO ¼ÓÃÜÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NET_DECODE_FAILED                   = 9502,    ///< SSO ½âÃÜÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NET_AUTH_INVALID                    = 9503,    ///< SSO Î´Íê³É¼øÈ¨£¬¿ÉÄÜµÇÂ¼Î´Íê³É£¬ÇëÔÚµÇÂ¼Íê³ÉºóÔÙ²Ù×÷¡£
-    ERR_SDK_NET_COMPRESS_FAILED                 = 9504,    ///< Êı¾İ°üÑ¹ËõÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NET_UNCOMPRESS_FAILED               = 9505,    ///< Êı¾İ°ü½âÑ¹Ê§°Ü£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NET_FREQ_LIMIT                      = 9506,    ///< µ÷ÓÃÆµÂÊÏŞÖÆ£¬×î´óÃ¿Ãë·¢Æğ 5 ´ÎÇëÇó¡£
-    ERR_SDK_NET_REQ_COUNT_LIMIT                 = 9507,    ///< ÇëÇó¶ÓÁĞœº£¬³¬¹ıÍ¬Ê±ÇëÇóµÄÊıÁ¿ÏŞÖÆ£¬×î´óÍ¬Ê±·¢Æğ1000¸öÇëÇó¡£
-    ERR_SDK_NET_DISCONNECT                      = 9508,    ///< ÍøÂçÒÑ¶Ï¿ª£¬Î´½¨Á¢Á¬½Ó£¬»òÕß½¨Á¢ socket Á¬½ÓÊ±£¬¼ì²âµ½ÎŞÍøÂç¡£
-    ERR_SDK_NET_ALLREADY_CONN                   = 9509,    ///< ÍøÂçÁ¬½ÓÒÑ½¨Á¢£¬ÖØ¸´´´½¨Á¬½Ó£¬ÄÚ²¿´íÎó¡£
-    ERR_SDK_NET_CONN_TIMEOUT                    = 9510,    ///< ½¨Á¢ÍøÂçÁ¬½Ó³¬Ê±£¬ÇëµÈÍøÂç»Ö¸´ºóÖØÊÔ¡£
-    ERR_SDK_NET_CONN_REFUSE                     = 9511,    ///< ÍøÂçÁ¬½ÓÒÑ±»¾Ü¾ø£¬ÇëÇó¹ıÓÚÆµ·±£¬·şÎñ¶Ë¾Ü¾ø·şÎñ¡£
-    ERR_SDK_NET_NET_UNREACH                     = 9512,    ///< Ã»ÓĞµ½´ïÍøÂçµÄ¿ÉÓÃÂ·ÓÉ£¬ÇëµÈÍøÂç»Ö¸´ºóÖØÊÔ¡£
-    ERR_SDK_NET_SOCKET_NO_BUFF                  = 9513,    ///< ÏµÍ³ÖĞÃ»ÓĞ×ã¹»µÄ»º³åÇø¿Õ¼ä×ÊÔ´¿ÉÓÃÀ´Íê³Éµ÷ÓÃ£¬ÏµÍ³¹ıÓÚ·±Ã¦£¬ÄÚ²¿´íÎó¡£
-    ERR_SDK_NET_RESET_BY_PEER                   = 9514,    ///< ¶Ô¶ËÖØÖÃÁËÁ¬½Ó£¬¿ÉÄÜ·şÎñ¶Ë¹ıÔØ£¬SDK ÄÚ²¿»á×Ô¶¯ÖØÁ¬£¬ÇëµÈÍøÂçÁ¬½Ó³É¹¦ onConnSucc £¨ iOS £© »ò onConnected £¨ Android £© »Øµ÷ºóÖØÊÔ¡£
-    ERR_SDK_NET_SOCKET_INVALID                  = 9515,    ///< socket Ì×½Ó×ÖÎŞĞ§£¬ÄÚ²¿´íÎó£¬¿É [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) Ìá¹©Ê¹ÓÃ½Ó¿Ú¡¢´íÎóÂë¡¢´íÎóĞÅÏ¢¸ø¿Í·ş½â¾ö¡£
-    ERR_SDK_NET_HOST_GETADDRINFO_FAILED         = 9516,    ///< IP µØÖ·½âÎöÊ§°Ü£¬ÄÚ²¿´íÎó£¬¿ÉÄÜÊÇ±¾µØ imsdk_config ÅäÖÃÎÄ¼ş±»Ëğ»µ£¬¶ÁÈ¡µ½µ½ IP µØÖ··Ç·¨¡£
-    ERR_SDK_NET_CONNECT_RESET                   = 9517,    ///< ÍøÂçÁ¬½Óµ½ÖĞ¼ä½Úµã»ò·şÎñ¶ËÖØÖÃ£¬ÒıÆğÁ¬½ÓÊ§Ğ§£¬ÄÚ²¿´íÎó£¬SDK ÄÚ²¿»á×Ô¶¯ÖØÁ¬£¬ÇëµÈÍøÂçÁ¬½Ó³É¹¦ onConnSucc £¨ iOS £© »ò onConnected £¨ Android £© »Øµ÷ºóÖØÊÔ¡£
-    ERR_SDK_NET_WAIT_INQUEUE_TIMEOUT            = 9518,    ///< ÇëÇó°üµÈ´ı½øÈë´ı·¢ËÍ¶ÓÁĞ³¬Ê±£¬·¢ËÍÊ±ÍøÂçÁ¬½Ó½¨Á¢±È½ÏÂı »ò Æµ·±¶ÏÍøÖØÁ¬Ê±£¬»á³öÏÖ¸Ã´íÎó£¬Çë¼ì²éÍøÂçÁ¬½ÓÊÇ·ñÕı³£¡£
-    ERR_SDK_NET_WAIT_SEND_TIMEOUT               = 9519,    ///< ÇëÇó°üÒÑ½øÈë´ı·¢ËÍ¶ÓÁĞ£¬µÈ´ı½øÈëÏµÍ³µÄÍøÂç buffer ³¬Ê±£¬Êı¾İ°ü½Ï¶à »ò ·¢ËÍÏß³Ì´¦Àí²»¹ıÀ´£¬ÄÚ²¿´íÎó¡£
-    ERR_SDK_NET_WAIT_ACK_TIMEOUT                = 9520,    ///< ÇëÇó°üÒÑ½øÈëÏµÍ³µÄÍøÂç buffer £¬µÈ´ı·şÎñ¶Ë»Ø°ü³¬Ê±£¬¿ÉÄÜÇëÇó°üÃ»Àë¿ªÖÕ¶ËÉè±¸¡¢ÖĞ¼äÂ·ÓÉ¶ªÆú¡¢·şÎñ¶ËÒâÍâ¶ª°ü»ò»Ø°ü±»ÏµÍ³ÍøÂç²ã¶ªÆú£¬ÄÚ²¿´íÎó¡£
-    
-    /////////////////////////////////////////////////////////////////////////////////
-    //
-    //                      £¨¶ş£©·şÎñ¶Ë
-    //
-    /////////////////////////////////////////////////////////////////////////////////
-    
-    // SSO ½ÓÈë²ãµÄ´íÎóÂë
-    
-    ERR_SVR_SSO_CONNECT_LIMIT                   = -302  ,  ///< SSO µÄÁ¬½ÓÊıÁ¿³¬³öÏŞÖÆ£¬·şÎñ¶Ë¾Ü¾ø·şÎñ¡£
-    ERR_SVR_SSO_VCODE                           = -10000,  ///< ÏÂ·¢ÑéÖ¤Âë±êÖ¾´íÎó¡£
-    ERR_SVR_SSO_D2_EXPIRED                      = -10001,  ///< D2 ¹ıÆÚ¡£
-    ERR_SVR_SSO_A2_UP_INVALID                   = -10003,  ///< A2 Ğ£ÑéÊ§°ÜµÈ³¡¾°Ê¹ÓÃ¡£
-    ERR_SVR_SSO_A2_DOWN_INVALID                 = -10004,  ///< ´¦ÀíÏÂĞĞ°üÊ±·¢ÏÖ A2 ÑéÖ¤Ã»Í¨¹ı»òÕß±»°²È«´ò»÷¡£
-    ERR_SVR_SSO_EMPTY_KEY                       = -10005,  ///< ²»ÔÊĞí¿Õ D2Key ¼ÓÃÜ¡£
-    ERR_SVR_SSO_UIN_INVALID                     = -10006,  ///< D2 ÖĞµÄ uin ºÍ SSO °üÍ·µÄ uin ²»Æ¥Åä¡£
-    ERR_SVR_SSO_VCODE_TIMEOUT                   = -10007,  ///< ÑéÖ¤ÂëÏÂ·¢³¬Ê±¡£
-    ERR_SVR_SSO_NO_IMEI_AND_A2                  = -10008,  ///< ĞèÒª´øÉÏ IMEI ºÍ A2 ¡£
-    ERR_SVR_SSO_COOKIE_INVALID                  = -10009,  ///< Cookie ·Ç·¨¡£
-    ERR_SVR_SSO_DOWN_TIP                        = -10101,  ///< ÏÂ·¢ÌáÊ¾Óï£¬D2 ¹ıÆÚ¡£
-    ERR_SVR_SSO_DISCONNECT                      = -10102,  ///< ¶ÏÁ´ËøÆÁ¡£
-    ERR_SVR_SSO_IDENTIFIER_INVALID              = -10103,  ///< Ê§Ğ§Éí·İ¡£
-    ERR_SVR_SSO_CLIENT_CLOSE                    = -10104,  ///< ÖÕ¶Ë×Ô¶¯ÍË³ö¡£
-    ERR_SVR_SSO_MSFSDK_QUIT                     = -10105,  ///< MSFSDK ×Ô¶¯ÍË³ö¡£
-    ERR_SVR_SSO_D2KEY_WRONG                     = -10106,  ///< SSO D2key ½âÃÜÊ§°Ü´ÎÊıÌ«¶à£¬Í¨ÖªÖÕ¶ËĞèÒªÖØÖÃ£¬ÖØĞÂË¢ĞÂ D2 ¡£
-    ERR_SVR_SSO_UNSURPPORT                      = -10107,  ///< ²»Ö§³Ö¾ÛºÏ£¬¸øÖÕ¶Ë·µ»ØÍ³Ò»µÄ´íÎóÂë¡£ÖÕ¶ËÔÚ¸Ã TCP ³¤Á¬½ÓÉÏÍ£Ö¹¾ÛºÏ¡£
-    ERR_SVR_SSO_PREPAID_ARREARS                 = -10108,  ///< Ô¤¸¶·ÑÇ··Ñ¡£
-    ERR_SVR_SSO_PACKET_WRONG                    = -10109,  ///< ÇëÇó°ü¸ñÊ½´íÎó¡£
-    ERR_SVR_SSO_APPID_BLACK_LIST                = -10110,  ///< SDKAppID ºÚÃûµ¥¡£
-    ERR_SVR_SSO_CMD_BLACK_LIST                  = -10111,  ///< SDKAppID ÉèÖÃ service cmd ºÚÃûµ¥¡£
-    ERR_SVR_SSO_APPID_WITHOUT_USING             = -10112,  ///< SDKAppID Í£ÓÃ¡£
-    ERR_SVR_SSO_FREQ_LIMIT                      = -10113,  ///< ÆµÂÊÏŞÖÆ(ÓÃ»§)£¬ÆµÂÊÏŞÖÆÊÇÉèÖÃÕë¶ÔÄ³Ò»¸öĞ­ÒéµÄÃ¿ÃëÇëÇóÊıµÄÏŞÖÆ¡£
-    ERR_SVR_SSO_OVERLOAD                        = -10114,  ///< ¹ıÔØ¶ª°ü(ÏµÍ³)£¬Á¬½ÓµÄ·şÎñ¶Ë´¦Àí¹ı¶àÇëÇó£¬´¦Àí²»¹ıÀ´£¬¾Ü¾ø·şÎñ¡£
-    
-    // ×ÊÔ´ÎÄ¼ş´íÎóÂë
-    
-    ERR_SVR_RES_NOT_FOUND                       = 114000,  ///< Òª·¢ËÍµÄ×ÊÔ´ÎÄ¼ş²»´æÔÚ¡£
-    ERR_SVR_RES_ACCESS_DENY                     = 114001,  ///< Òª·¢ËÍµÄ×ÊÔ´ÎÄ¼ş²»ÔÊĞí·ÃÎÊ¡£
-    ERR_SVR_RES_SIZE_LIMIT                      = 114002,  ///< ÎÄ¼ş´óĞ¡³¬¹ıÏŞÖÆ¡£
-    ERR_SVR_RES_SEND_CANCEL                     = 114003,  ///< ÓÃ»§È¡Ïû·¢ËÍ£¬Èç·¢ËÍ¹ı³ÌÖĞµÇ³öµÈÔ­Òò¡£
-    ERR_SVR_RES_READ_FAILED                     = 114004,  ///< ¶ÁÈ¡ÎÄ¼şÄÚÈİÊ§°Ü¡£
-    ERR_SVR_RES_TRANSFER_TIMEOUT                = 114005,  ///< ×ÊÔ´ÎÄ¼ş£¨ÈçÍ¼Æ¬¡¢ÎÄ¼ş¡¢ÓïÒô¡¢ÊÓÆµ£©´«Êä³¬Ê±£¬Ò»°ãÊÇÍøÂçÎÊÌâµ¼ÖÂ¡£
-    ERR_SVR_RES_INVALID_PARAMETERS              = 114011,  ///< ²ÎÊı·Ç·¨¡£
-    ERR_SVR_RES_INVALID_FILE_MD5                = 115066,  ///< ÎÄ¼ş MD5 Ğ£ÑéÊ§°Ü¡£
-    ERR_SVR_RES_INVALID_PART_MD5                = 115068,  ///< ·ÖÆ¬ MD5 Ğ£ÑéÊ§°Ü¡£
-    
-    // ºóÌ¨¹«¹²´íÎóÂë
-    
-    ERR_SVR_COMM_INVALID_HTTP_URL               = 60002,  ///< HTTP ½âÎö´íÎó £¬Çë¼ì²é HTTP ÇëÇó URL ¸ñÊ½¡£
-    ERR_SVR_COMM_REQ_JSON_PARSE_FAILED          = 60003,  ///< HTTP ÇëÇó JSON ½âÎö´íÎó£¬Çë¼ì²é JSON ¸ñÊ½¡£
-    ERR_SVR_COMM_INVALID_ACCOUNT                = 60004,  ///< ÇëÇó URI »ò JSON °üÌåÖĞ Identifier »ò UserSig ´íÎó¡£
-    ERR_SVR_COMM_INVALID_ACCOUNT_EX             = 60005,  ///< ÇëÇó URI »ò JSON °üÌåÖĞ Identifier »ò UserSig ´íÎó¡£
-    ERR_SVR_COMM_INVALID_SDKAPPID               = 60006,  ///< SDKAppID Ê§Ğ§£¬ÇëºË¶Ô SDKAppID ÓĞĞ§ĞÔ¡£
-    ERR_SVR_COMM_REST_FREQ_LIMIT                = 60007,  ///< REST ½Ó¿Úµ÷ÓÃÆµÂÊ³¬¹ıÏŞÖÆ£¬Çë½µµÍÇëÇóÆµÂÊ¡£
-    ERR_SVR_COMM_REQUEST_TIMEOUT                = 60008,  ///< ·şÎñÇëÇó³¬Ê±»ò HTTP ÇëÇó¸ñÊ½´íÎó£¬Çë¼ì²é²¢ÖØÊÔ¡£
-    ERR_SVR_COMM_INVALID_RES                    = 60009,  ///< ÇëÇó×ÊÔ´´íÎó£¬Çë¼ì²éÇëÇó URL¡£
-    ERR_SVR_COMM_ID_NOT_ADMIN                   = 60010,  ///< REST API ÇëÇóµÄ Identifier ×Ö¶ÎÇëÌîĞ´ App ¹ÜÀíÔ±ÕÊºÅ¡£
-    ERR_SVR_COMM_SDKAPPID_FREQ_LIMIT            = 60011,  ///< SDKAppID ÇëÇóÆµÂÊ³¬ÏŞ£¬Çë½µµÍÇëÇóÆµÂÊ¡£
-    ERR_SVR_COMM_SDKAPPID_MISS                  = 60012,  ///< REST ½Ó¿ÚĞèÒª´ø SDKAppID£¬Çë¼ì²éÇëÇó URL ÖĞµÄ SDKAppID¡£
-    ERR_SVR_COMM_RSP_JSON_PARSE_FAILED          = 60013,  ///< HTTP ÏìÓ¦°ü JSON ½âÎö´íÎó¡£
-    ERR_SVR_COMM_EXCHANGE_ACCOUNT_TIMEUT        = 60014,  ///< ÖÃ»»ÕÊºÅ³¬Ê±¡£
-    ERR_SVR_COMM_INVALID_ID_FORMAT              = 60015,  ///< ÇëÇó°üÌå Identifier ÀàĞÍ´íÎó£¬ÇëÈ·ÈÏ Identifier Îª×Ö·û´®¸ñÊ½¡£
-    ERR_SVR_COMM_SDKAPPID_FORBIDDEN             = 60016,  ///< SDKAppID ±»½ûÓÃ£¬Çë [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) ÁªÏµ¿Í·şÈ·ÈÏ¡£
-    ERR_SVR_COMM_REQ_FORBIDDEN                  = 60017,  ///< ÇëÇó±»½ûÓÃ£¬Çë [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) ÁªÏµ¿Í·şÈ·ÈÏ¡£
-    ERR_SVR_COMM_REQ_FREQ_LIMIT                 = 60018,  ///< ÇëÇó¹ıÓÚÆµ·±£¬ÇëÉÔºóÖØÊÔ¡£
-    ERR_SVR_COMM_REQ_FREQ_LIMIT_EX              = 60019,  ///< ÇëÇó¹ıÓÚÆµ·±£¬ÇëÉÔºóÖØÊÔ¡£
-    ERR_SVR_COMM_INVALID_SERVICE                = 60020,  ///< Î´¹ºÂòÌ×²Í°ü»ò¹ºÂòµÄÌ×²Í°üÕıÔÚÅäÖÃÖĞÔİÎ´ÉúĞ§£¬ÇëÎå·ÖÖÓºóÔÙ´Î³¢ÊÔ¡£
-    ERR_SVR_COMM_SENSITIVE_TEXT                 = 80001,  ///< ÎÄ±¾°²È«´ò»÷£¬ÎÄ±¾ÖĞ¿ÉÄÜ°üº¬Ãô¸Ğ´Ê»ã¡£
-    ERR_SVR_COMM_BODY_SIZE_LIMIT                = 80002,  ///< ·¢ÏûÏ¢°üÌå¹ı³¤£¬Ä¿Ç°Ö§³Ö×î´ó8kÏûÏ¢°üÌå³¤¶È£¬Çë¼õÉÙ°üÌå´óĞ¡ÖØÊÔ¡£
-    
-    // ÕÊºÅ´íÎóÂë
-    
-    ERR_SVR_ACCOUNT_USERSIG_EXPIRED             = 70001,  ///< UserSig ÒÑ¹ıÆÚ£¬ÇëÖØĞÂÉú³É UserSig£¬½¨Òé UserSig ÓĞĞ§ÆÚ²»Ğ¡ÓÚ24Ğ¡Ê±¡£
-    ERR_SVR_ACCOUNT_USERSIG_EMPTY               = 70002,  ///< UserSig ³¤¶ÈÎª0£¬Çë¼ì²é´«ÈëµÄ UserSig ÊÇ·ñÕıÈ·¡£
-    ERR_SVR_ACCOUNT_USERSIG_CHECK_FAILED        = 70003,  ///< UserSig Ğ£ÑéÊ§°Ü£¬ÇëÈ·ÈÏÏÂ UserSig ÄÚÈİÊÇ·ñ±»½Ø¶Ï£¬Èç»º³åÇø³¤¶È²»¹»µ¼ÖÂµÄÄÚÈİ½Ø¶Ï¡£
-    ERR_SVR_ACCOUNT_USERSIG_CHECK_FAILED_EX     = 70005,  ///< UserSig Ğ£ÑéÊ§°Ü£¬¿ÉÓÃ¹¤¾ß×ÔĞĞÑéÖ¤Éú³ÉµÄ UserSig ÊÇ·ñÕıÈ·¡£
-    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_PUBLICKEY  = 70009,  ///< ÓÃ¹«Ô¿ÑéÖ¤ UserSig Ê§°Ü£¬ÇëÈ·ÈÏÉú³ÉµÄ UserSig Ê¹ÓÃµÄË½Ô¿ºÍ SDKAppID ÊÇ·ñ¶ÔÓ¦¡£
-    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_ID         = 70013,  ///< ÇëÇóµÄ Identifier ÓëÉú³É UserSig µÄ Identifier ²»Æ¥Åä¡£
-    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_SDKAPPID   = 70014,  ///< ÇëÇóµÄ SDKAppID ÓëÉú³É UserSig µÄ SDKAppID ²»Æ¥Åä¡£
-    ERR_SVR_ACCOUNT_USERSIG_PUBLICKEY_NOT_FOUND = 70016,  ///< ÑéÖ¤ UserSig Ê±¹«Ô¿²»´æÔÚ¡£ÇëÏÈµÇÂ¼¿ØÖÆÌ¨ÏÂÔØË½Ô¿£¬ÏÂÔØË½Ô¿µÄ¾ßÌå·½·¨¿É²Î¿¼ [ÏÂÔØÇ©ÃûÓÃµÄË½Ô¿](https://cloud.tencent.com/document/product/269/32688#.E4.B8.8B.E8.BD.BD.E7.AD.BE.E5.90.8D.E7.94.A8.E7.9A.84.E7.A7.81.E9.92.A5) ¡£
-    ERR_SVR_ACCOUNT_SDKAPPID_NOT_FOUND          = 70020,  ///< SDKAppID Î´ÕÒµ½£¬ÇëÔÚÔÆÍ¨ĞÅ IM ¿ØÖÆÌ¨È·ÈÏÓ¦ÓÃĞÅÏ¢¡£
-    ERR_SVR_ACCOUNT_INVALID_USERSIG             = 70052,  ///< UserSig ÒÑ¾­Ê§Ğ§£¬ÇëÖØĞÂÉú³É£¬ÔÙ´Î³¢ÊÔ¡£
-    ERR_SVR_ACCOUNT_NOT_FOUND                   = 70107,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_ACCOUNT_SEC_RSTR                    = 70114,  ///< °²È«Ô­Òò±»ÏŞÖÆ¡£
-    ERR_SVR_ACCOUNT_INTERNAL_TIMEOUT            = 70169,  ///< ·şÎñ¶ËÄÚ²¿³¬Ê±£¬ÇëÖØÊÔ¡£
-    ERR_SVR_ACCOUNT_INVALID_COUNT               = 70206,  ///< ÇëÇóÖĞÅúÁ¿ÊıÁ¿²»ºÏ·¨¡£
-    ERR_SVR_ACCOUNT_INVALID_PARAMETERS          = 70402,  ///< ²ÎÊı·Ç·¨£¬Çë¼ì²é±ØÌî×Ö¶ÎÊÇ·ñÌî³ä£¬»òÕß×Ö¶ÎµÄÌî³äÊÇ·ñÂú×ãĞ­ÒéÒªÇó¡£
-    ERR_SVR_ACCOUNT_ADMIN_REQUIRED              = 70403,  ///< ÇëÇóĞèÒª App ¹ÜÀíÔ±È¨ÏŞ¡£
-    ERR_SVR_ACCOUNT_FREQ_LIMIT                  = 70050,  ///< ÒòÊ§°ÜÇÒÖØÊÔ´ÎÊı¹ı¶àµ¼ÖÂ±»ÏŞÖÆ£¬Çë¼ì²é UserSig ÊÇ·ñÕıÈ·£¬Ò»·ÖÖÓÖ®ºóÔÙÊÔ¡£
-    ERR_SVR_ACCOUNT_BLACKLIST                   = 70051,  ///< ÕÊºÅ±»À­ÈëºÚÃûµ¥¡£
-    ERR_SVR_ACCOUNT_COUNT_LIMIT                 = 70398,  ///< ´´½¨ÕÊºÅÊıÁ¿³¬¹ıÃâ·ÑÌåÑé°æÊıÁ¿ÏŞÖÆ£¬ÇëÉı¼¶Îª×¨Òµ°æ¡£
-    ERR_SVR_ACCOUNT_INTERNAL_ERROR              = 70500,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    
-    // ×ÊÁÏ´íÎóÂë
-    
-    ERR_SVR_PROFILE_INVALID_PARAMETERS          = 40001,  ///< ÇëÇó²ÎÊı´íÎó£¬Çë¸ù¾İ´íÎóÃèÊö¼ì²éÇëÇóÊÇ·ñÕıÈ·¡£
-    ERR_SVR_PROFILE_ACCOUNT_MISS                = 40002,  ///< ÇëÇó²ÎÊı´íÎó£¬Ã»ÓĞÖ¸¶¨ĞèÒªÀ­È¡×ÊÁÏµÄÓÃ»§ÕÊºÅ¡£
-    ERR_SVR_PROFILE_ACCOUNT_NOT_FOUND           = 40003,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_PROFILE_ADMIN_REQUIRED              = 40004,  ///< ÇëÇóĞèÒª App ¹ÜÀíÔ±È¨ÏŞ¡£
-    ERR_SVR_PROFILE_SENSITIVE_TEXT              = 40005,  ///< ×ÊÁÏ×Ö¶ÎÖĞ°üº¬Ãô¸Ğ´Ê¡£
-    ERR_SVR_PROFILE_INTERNAL_ERROR              = 40006,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÉÔºóÖØÊÔ¡£
-    ERR_SVR_PROFILE_READ_PERMISSION_REQUIRED    = 40007,  ///< Ã»ÓĞ×ÊÁÏ×Ö¶ÎµÄ¶ÁÈ¨ÏŞ£¬ÏêÇé¿É²Î¼û [×ÊÁÏ×Ö¶Î](https://cloud.tencent.com/document/product/269/1500#.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ¡£
-    ERR_SVR_PROFILE_WRITE_PERMISSION_REQUIRED   = 40008,  ///< Ã»ÓĞ×ÊÁÏ×Ö¶ÎµÄĞ´È¨ÏŞ£¬ÏêÇé¿É²Î¼û [×ÊÁÏ×Ö¶Î](https://cloud.tencent.com/document/product/269/1500#.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ¡£
-    ERR_SVR_PROFILE_TAG_NOT_FOUND               = 40009,  ///< ×ÊÁÏ×Ö¶ÎµÄ Tag ²»´æÔÚ¡£
-    ERR_SVR_PROFILE_SIZE_LIMIT                  = 40601,  ///< ×ÊÁÏ×Ö¶ÎµÄ Value ³¤¶È³¬¹ı500×Ö½Ú¡£
-    ERR_SVR_PROFILE_VALUE_ERROR                 = 40605,  ///< ±êÅä×ÊÁÏ×Ö¶ÎµÄ Value ´íÎó£¬ÏêÇé¿É²Î¼û [±êÅä×ÊÁÏ×Ö¶Î](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ¡£
-    ERR_SVR_PROFILE_INVALID_VALUE_FORMAT        = 40610,  ///< ×ÊÁÏ×Ö¶ÎµÄ Value ÀàĞÍ²»Æ¥Åä£¬ÏêÇé¿É²Î¼û [±êÅä×ÊÁÏ×Ö¶Î](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ¡£
-    
-    // ¹ØÏµÁ´´íÎóÂë
-    
-    ERR_SVR_FRIENDSHIP_INVALID_PARAMETERS       = 30001,  ///< ÇëÇó²ÎÊı´íÎó£¬Çë¸ù¾İ´íÎóÃèÊö¼ì²éÇëÇóÊÇ·ñÕıÈ·¡£
-    ERR_SVR_FRIENDSHIP_INVALID_SDKAPPID         = 30002,  ///< SDKAppID ²»Æ¥Åä¡£
-    ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND        = 30003,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_FRIENDSHIP_ADMIN_REQUIRED           = 30004,  ///< ÇëÇóĞèÒª App ¹ÜÀíÔ±È¨ÏŞ¡£
-    ERR_SVR_FRIENDSHIP_SENSITIVE_TEXT           = 30005,  ///< ¹ØÏµÁ´×Ö¶ÎÖĞ°üº¬Ãô¸Ğ´Ê¡£
-    ERR_SVR_FRIENDSHIP_INTERNAL_ERROR           = 30006,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_FRIENDSHIP_NET_TIMEOUT              = 30007,  ///< ÍøÂç³¬Ê±£¬ÇëÉÔºóÖØÊÔ¡£
-    ERR_SVR_FRIENDSHIP_WRITE_CONFLICT           = 30008,  ///< ²¢·¢Ğ´µ¼ÖÂĞ´³åÍ»£¬½¨ÒéÊ¹ÓÃÅúÁ¿·½Ê½¡£
-    ERR_SVR_FRIENDSHIP_ADD_FRIEND_DENY          = 30009,  ///< ºóÌ¨½ûÖ¹¸ÃÓÃ»§·¢Æğ¼ÓºÃÓÑÇëÇó¡£
-    ERR_SVR_FRIENDSHIP_COUNT_LIMIT              = 30010,  ///< ×Ô¼ºµÄºÃÓÑÊıÒÑ´ïÏµÍ³ÉÏÏŞ¡£
-    ERR_SVR_FRIENDSHIP_GROUP_COUNT_LIMIT        = 30011,  ///< ·Ö×éÒÑ´ïÏµÍ³ÉÏÏŞ¡£
-    ERR_SVR_FRIENDSHIP_PENDENCY_LIMIT           = 30012,  ///< Î´¾öÊıÒÑ´ïÏµÍ³ÉÏÏŞ¡£
-    ERR_SVR_FRIENDSHIP_BLACKLIST_LIMIT          = 30013,  ///< ºÚÃûµ¥ÊıÒÑ´ïÏµÍ³ÉÏÏŞ¡£
-    ERR_SVR_FRIENDSHIP_PEER_FRIEND_LIMIT        = 30014,  ///< ¶Ô·½µÄºÃÓÑÊıÒÑ´ïÏµÍ³ÉÏÏŞ¡£
-    ERR_SVR_FRIENDSHIP_IN_SELF_BLACKLIST        = 30515,  ///< ÇëÇóÌí¼ÓºÃÓÑÊ±£¬¶Ô·½ÔÚ×Ô¼ºµÄºÚÃûµ¥ÖĞ£¬²»ÔÊĞí¼ÓºÃÓÑ¡£
-    ERR_SVR_FRIENDSHIP_ALLOW_TYPE_DENY_ANY      = 30516,  ///< ÇëÇóÌí¼ÓºÃÓÑÊ±£¬¶Ô·½µÄ¼ÓºÃÓÑÑéÖ¤·½Ê½ÊÇ²»ÔÊĞíÈÎºÎÈËÌí¼Ó×Ô¼ºÎªºÃÓÑ¡£
-    ERR_SVR_FRIENDSHIP_IN_PEER_BLACKLIST        = 30525,  ///< ÇëÇóÌí¼ÓºÃÓÑÊ±£¬×Ô¼ºÔÚ¶Ô·½µÄºÚÃûµ¥ÖĞ£¬²»ÔÊĞí¼ÓºÃÓÑ¡£
-    ERR_SVR_FRIENDSHIP_ALLOW_TYPE_NEED_CONFIRM  = 30539,  ///< A ÇëÇó¼Ó B ÎªºÃÓÑ£¬B µÄ¼ÓºÃÓÑÑéÖ¤·½Ê½±»ÉèÖÃÎª¡°AllowType_Type_NeedConfirm¡±£¬ÕâÊ± A Óë B Ö®¼äÖ»ÄÜĞÎ³ÉÎ´¾ö¹ØÏµ£¬¸Ã·µ»ØÂëÓÃÓÚ±êÊ¶¼ÓÎ´¾ö³É¹¦£¬ÒÔ±ãÓë¼ÓºÃÓÑ³É¹¦µÄ·µ»ØÂëÇø·Ö¿ª£¬µ÷ÓÃ·½¿ÉÒÔ²¶×½¸Ã´íÎó¸øÓÃ»§Ò»¸öºÏÀíµÄÌáÊ¾¡£
-    ERR_SVR_FRIENDSHIP_ADD_FRIEND_SEC_RSTR      = 30540,  ///< Ìí¼ÓºÃÓÑÇëÇó±»°²È«²ßÂÔ´ò»÷£¬ÇëÎğÆµ·±·¢ÆğÌí¼ÓºÃÓÑÇëÇó¡£
-    ERR_SVR_FRIENDSHIP_PENDENCY_NOT_FOUND       = 30614,  ///< ÇëÇóµÄÎ´¾ö²»´æÔÚ¡£
-    ERR_SVR_FRIENDSHIP_DEL_NONFRIEND            = 31704,  ///< ÓëÇëÇóÉ¾³ıµÄÕÊºÅÖ®¼ä²»´æÔÚºÃÓÑ¹ØÏµ¡£
-    ERR_SVR_FRIENDSHIP_DEL_FRIEND_SEC_RSTR      = 31707,  ///< É¾³ıºÃÓÑÇëÇó±»°²È«²ßÂÔ´ò»÷£¬ÇëÎğÆµ·±·¢ÆğÉ¾³ıºÃÓÑÇëÇó¡£
-    ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND_EX     = 31804,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    
-    // ×î½üÁªÏµÈË´íÎóÂë
-    
-    ERR_SVR_CONV_ACCOUNT_NOT_FOUND              = 50001,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_CONV_INVALID_PARAMETERS             = 50002,  ///< ÇëÇó²ÎÊı´íÎó£¬Çë¸ù¾İ´íÎóÃèÊö¼ì²éÇëÇóÊÇ·ñÕıÈ·¡£
-    ERR_SVR_CONV_ADMIN_REQUIRED                 = 50003,  ///< ÇëÇóĞèÒª App ¹ÜÀíÔ±È¨ÏŞ¡£
-    ERR_SVR_CONV_INTERNAL_ERROR                 = 50004,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_CONV_NET_TIMEOUT                    = 50005,  ///< ÍøÂç³¬Ê±£¬ÇëÉÔºóÖØÊÔ¡£
-    
-    // ÏûÏ¢´íÎóÂë
-    
-    ERR_SVR_MSG_PKG_PARSE_FAILED                = 20001,  ///< ÇëÇó°ü·Ç·¨£¬Çë¼ì²é·¢ËÍ·½ºÍ½ÓÊÕ·½ÕÊºÅÊÇ·ñ´æÔÚ¡£
-    ERR_SVR_MSG_INTERNAL_AUTH_FAILED            = 20002,  ///< ÄÚ²¿¼øÈ¨Ê§°Ü¡£
-    ERR_SVR_MSG_INVALID_ID                      = 20003,  ///< Identifier ÎŞĞ§»òÕß Identifier Î´µ¼ÈëÔÆÍ¨ĞÅ IM¡£
-    ERR_SVR_MSG_NET_ERROR                       = 20004,  ///< ÍøÂçÒì³££¬ÇëÖØÊÔ¡£
-    ERR_SVR_MSG_INTERNAL_ERROR1                 = 20005,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_MSG_PUSH_DENY                       = 20006,  ///< ´¥·¢·¢ËÍµ¥ÁÄÏûÏ¢Ö®Ç°»Øµ÷£¬App ºóÌ¨·µ»Ø½ûÖ¹ÏÂ·¢¸ÃÏûÏ¢¡£
-    ERR_SVR_MSG_IN_PEER_BLACKLIST               = 20007,  ///< ·¢ËÍµ¥ÁÄÏûÏ¢£¬±»¶Ô·½À­ºÚ£¬½ûÖ¹·¢ËÍ¡£
-    ERR_SVR_MSG_BOTH_NOT_FRIEND                 = 20009,  ///< ÏûÏ¢·¢ËÍË«·½»¥Ïà²»ÊÇºÃÓÑ£¬½ûÖ¹·¢ËÍ£¨ÅäÖÃµ¥ÁÄÏûÏ¢Ğ£ÑéºÃÓÑ¹ØÏµ²Å»á³öÏÖ£©¡£
-    ERR_SVR_MSG_NOT_PEER_FRIEND                 = 20010,  ///< ·¢ËÍµ¥ÁÄÏûÏ¢£¬×Ô¼º²»ÊÇ¶Ô·½µÄºÃÓÑ£¨µ¥Ïò¹ØÏµ£©£¬½ûÖ¹·¢ËÍ¡£
-    ERR_SVR_MSG_NOT_SELF_FRIEND                 = 20011,  ///< ·¢ËÍµ¥ÁÄÏûÏ¢£¬¶Ô·½²»ÊÇ×Ô¼ºµÄºÃÓÑ£¨µ¥Ïò¹ØÏµ£©£¬½ûÖ¹·¢ËÍ¡£
-    ERR_SVR_MSG_SHUTUP_DENY                     = 20012,  ///< Òò½ûÑÔ£¬½ûÖ¹·¢ËÍÏûÏ¢¡£
-    ERR_SVR_MSG_REVOKE_TIME_LIMIT               = 20016,  ///< ÏûÏ¢³·»Ø³¬¹ıÁËÊ±¼äÏŞÖÆ£¨Ä¬ÈÏ2·ÖÖÓ£©¡£
-    ERR_SVR_MSG_DEL_RAMBLE_INTERNAL_ERROR       = 20018,  ///< É¾³ıÂşÓÎÄÚ²¿´íÎó¡£
-    ERR_SVR_MSG_JSON_PARSE_FAILED               = 90001,  ///< JSON ¸ñÊ½½âÎöÊ§°Ü£¬Çë¼ì²éÇëÇó°üÊÇ·ñ·ûºÏ JSON ¹æ·¶¡£
-    ERR_SVR_MSG_INVALID_JSON_BODY_FORMAT        = 90002,  ///< JSON ¸ñÊ½ÇëÇó°üÖĞ MsgBody ²»·ûºÏÏûÏ¢¸ñÊ½ÃèÊö£¬»òÕß MsgBody ²»ÊÇ Array ÀàĞÍ£¬Çë²Î¿¼ [TIMMsgElement ¶ÔÏó](https://cloud.tencent.com/document/product/269/2720#.E6.B6.88.E6.81.AF.E5.85.83.E7.B4.A0timmsgelement) µÄ¶¨Òå¡£
-    ERR_SVR_MSG_INVALID_TO_ACCOUNT              = 90003,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞÈ±ÉÙ To_Account ×Ö¶Î»òÕß To_Account ×Ö¶Î²»ÊÇ Integer ÀàĞÍ
-    ERR_SVR_MSG_INVALID_RAND                    = 90005,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞÈ±ÉÙ MsgRandom ×Ö¶Î»òÕß MsgRandom ×Ö¶Î²»ÊÇ Integer ÀàĞÍ
-    ERR_SVR_MSG_INVALID_TIMESTAMP               = 90006,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞÈ±ÉÙ MsgTimeStamp ×Ö¶Î»òÕß MsgTimeStamp ×Ö¶Î²»ÊÇ Integer ÀàĞÍ
-    ERR_SVR_MSG_BODY_NOT_ARRAY                  = 90007,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞ MsgBody ÀàĞÍ²»ÊÇ Array ÀàĞÍ£¬Çë½«ÆäĞŞ¸ÄÎª Array ÀàĞÍ
-    ERR_SVR_MSG_ADMIN_REQUIRED                  = 90009,  ///< ÇëÇóĞèÒª App ¹ÜÀíÔ±È¨ÏŞ¡£
-    ERR_SVR_MSG_INVALID_JSON_FORMAT             = 90010,  ///< JSON ¸ñÊ½ÇëÇó°ü²»·ûºÏÏûÏ¢¸ñÊ½ÃèÊö£¬Çë²Î¿¼ [TIMMsgElement ¶ÔÏó](https://cloud.tencent.com/document/product/269/2720#.E6.B6.88.E6.81.AF.E5.85.83.E7.B4.A0timmsgelement) µÄ¶¨Òå¡£
-    ERR_SVR_MSG_TO_ACCOUNT_COUNT_LIMIT          = 90011,  ///< ÅúÁ¿·¢ÏûÏ¢Ä¿±êÕÊºÅ³¬¹ı500£¬Çë¼õÉÙ To_Account ÖĞÄ¿±êÕÊºÅÊıÁ¿¡£
-    ERR_SVR_MSG_TO_ACCOUNT_NOT_FOUND            = 90012,  ///< To_Account Ã»ÓĞ×¢²á»ò²»´æÔÚ£¬ÇëÈ·ÈÏ To_Account ÊÇ·ñµ¼ÈëÔÆÍ¨ĞÅ IM »òÕßÊÇ·ñÆ´Ğ´´íÎó¡£
-    ERR_SVR_MSG_TIME_LIMIT                      = 90026,  ///< ÏûÏ¢ÀëÏß´æ´¢Ê±¼ä´íÎó£¨×î¶à²»ÄÜ³¬¹ı7Ìì£©¡£
-    ERR_SVR_MSG_INVALID_SYNCOTHERMACHINE        = 90031,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞ SyncOtherMachine ×Ö¶Î²»ÊÇ Integer ÀàĞÍ
-    ERR_SVR_MSG_INVALID_MSGLIFETIME             = 90044,  ///< JSON ¸ñÊ½ÇëÇó°üÌåÖĞ MsgLifeTime ×Ö¶Î²»ÊÇ Integer ÀàĞÍ
-    ERR_SVR_MSG_ACCOUNT_NOT_FOUND               = 90048,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_MSG_INTERNAL_ERROR2                 = 90994,  ///< ·şÎñÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_MSG_INTERNAL_ERROR3                 = 90995,  ///< ·şÎñÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_MSG_INTERNAL_ERROR4                 = 91000,  ///< ·şÎñÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_MSG_INTERNAL_ERROR5                 = 90992,  ///< ·şÎñÄÚ²¿´íÎó£¬ÇëÖØÊÔ£»Èç¹ûËùÓĞÇëÇó¶¼·µ»Ø¸Ã´íÎóÂë£¬ÇÒ App ÅäÖÃÁËµÚÈı·½»Øµ÷£¬Çë¼ì²é App ·şÎñ¶ËÊÇ·ñÕı³£ÏòÔÆÍ¨ĞÅ IM ºóÌ¨·şÎñ¶Ë·µ»Ø»Øµ÷½á¹û¡£
-    ERR_SVR_MSG_BODY_SIZE_LIMIT                 = 93000,  ///< JSON Êı¾İ°ü³¬³¤£¬ÏûÏ¢°üÌåÇë²»Òª³¬¹ı8k¡£
-    ERR_SVR_MSG_LONGPOLLING_COUNT_LIMIT         = 91101,  ///< Web ¶Ë³¤ÂÖÑ¯±»Ìß£¨Web ¶ËÍ¬Ê±ÔÚÏßÊµÀı¸öÊı³¬³öÏŞÖÆ£©¡£
-    // 120001 - 130000,  ///< µ¥ÁÄµÚÈı·½»Øµ÷·µ»ØµÄ×Ô¶¨Òå´íÎóÂë¡£
-    
-    // Èº×é´íÎóÂë
-    
-    ERR_SVR_GROUP_INTERNAL_ERROR                = 10002,  ///< ·şÎñ¶ËÄÚ²¿´íÎó£¬ÇëÖØÊÔ¡£
-    ERR_SVR_GROUP_API_NAME_ERROR                = 10003,  ///< ÇëÇóÖĞµÄ½Ó¿ÚÃû³Æ´íÎó£¬ÇëºË¶Ô½Ó¿ÚÃû³Æ²¢ÖØÊÔ¡£
-    ERR_SVR_GROUP_INVALID_PARAMETERS            = 10004,  ///< ²ÎÊı·Ç·¨£¬Çë¸ù¾İ´íÎóÃèÊö¼ì²éÇëÇóÊÇ·ñÕıÈ·¡£
-    ERR_SVR_GROUP_ACOUNT_COUNT_LIMIT            = 10005,  ///< ÇëÇó°üÌåÖĞĞ¯´øµÄÕÊºÅÊıÁ¿¹ı¶à¡£
-    ERR_SVR_GROUP_FREQ_LIMIT                    = 10006,  ///< ²Ù×÷ÆµÂÊÏŞÖÆ£¬Çë³¢ÊÔ½µµÍµ÷ÓÃµÄÆµÂÊ¡£
-    ERR_SVR_GROUP_PERMISSION_DENY               = 10007,  ///< ²Ù×÷È¨ÏŞ²»×ã£¬±ÈÈç Public Èº×éÖĞÆÕÍ¨³ÉÔ±³¢ÊÔÖ´ĞĞÌßÈË²Ù×÷£¬µ«Ö»ÓĞ App ¹ÜÀíÔ±²ÅÓĞÈ¨ÏŞ¡£
-    ERR_SVR_GROUP_INVALID_REQ                   = 10008,  ///< ÇëÇó·Ç·¨£¬¿ÉÄÜÊÇÇëÇóÖĞĞ¯´øµÄÇ©ÃûĞÅÏ¢ÑéÖ¤²»ÕıÈ·£¬ÇëÔÙ´Î³¢ÊÔ»ò [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) ÁªÏµ¼¼Êõ¿Í·ş¡£
-    ERR_SVR_GROUP_SUPER_NOT_ALLOW_QUIT          = 10009,  ///< ¸ÃÈº²»ÔÊĞíÈºÖ÷Ö÷¶¯ÍË³ö¡£
-    ERR_SVR_GROUP_NOT_FOUND                     = 10010,  ///< Èº×é²»´æÔÚ£¬»òÕßÔø¾­´æÔÚ¹ı£¬µ«ÊÇÄ¿Ç°ÒÑ¾­±»½âÉ¢¡£
-    ERR_SVR_GROUP_JSON_PARSE_FAILED             = 10011,  ///< ½âÎö JSON °üÌåÊ§°Ü£¬Çë¼ì²é°üÌåµÄ¸ñÊ½ÊÇ·ñ·ûºÏ JSON ¸ñÊ½¡£
-    ERR_SVR_GROUP_INVALID_ID                    = 10012,  ///< ·¢Æğ²Ù×÷µÄ Identifier ·Ç·¨£¬Çë¼ì²é·¢Æğ²Ù×÷µÄÓÃ»§ Identifier ÊÇ·ñÌîĞ´ÕıÈ·¡£
-    ERR_SVR_GROUP_ALLREADY_MEMBER               = 10013,  ///< ±»ÑûÇë¼ÓÈëµÄÓÃ»§ÒÑ¾­ÊÇÈº³ÉÔ±¡£
-    ERR_SVR_GROUP_FULL_MEMBER_COUNT             = 10014,  ///< ÈºÒÑÂúÔ±£¬ÎŞ·¨½«ÇëÇóÖĞµÄÓÃ»§¼ÓÈëÈº×é£¬Èç¹ûÊÇÅúÁ¿¼ÓÈË£¬¿ÉÒÔ³¢ÊÔ¼õÉÙ¼ÓÈëÓÃ»§µÄÊıÁ¿¡£
-    ERR_SVR_GROUP_INVALID_GROUPID               = 10015,  ///< Èº×é ID ·Ç·¨£¬Çë¼ì²éÈº×é ID ÊÇ·ñÌîĞ´ÕıÈ·¡£
-    ERR_SVR_GROUP_REJECT_FROM_THIRDPARTY        = 10016,  ///< App ºóÌ¨Í¨¹ıµÚÈı·½»Øµ÷¾Ü¾ø±¾´Î²Ù×÷¡£
-    ERR_SVR_GROUP_SHUTUP_DENY                   = 10017,  ///< Òò±»½ûÑÔ¶ø²»ÄÜ·¢ËÍÏûÏ¢£¬Çë¼ì²é·¢ËÍÕßÊÇ·ñ±»ÉèÖÃ½ûÑÔ¡£
-    ERR_SVR_GROUP_RSP_SIZE_LIMIT                = 10018,  ///< Ó¦´ğ°ü³¤¶È³¬¹ı×î´ó°ü³¤£¨1MB£©£¬ÇëÇóµÄÄÚÈİ¹ı¶à£¬Çë³¢ÊÔ¼õÉÙµ¥´ÎÇëÇóµÄÊı¾İÁ¿¡£
-    ERR_SVR_GROUP_ACCOUNT_NOT_FOUND             = 10019,  ///< ÇëÇóµÄÓÃ»§ÕÊºÅ²»´æÔÚ¡£
-    ERR_SVR_GROUP_GROUPID_IN_USED               = 10021,  ///< Èº×é ID ÒÑ±»Ê¹ÓÃ£¬ÇëÑ¡ÔñÆäËûµÄÈº×é ID¡£
-    ERR_SVR_GROUP_SEND_MSG_FREQ_LIMIT           = 10023,  ///< ·¢ÏûÏ¢µÄÆµÂÊ³¬ÏŞ£¬ÇëÑÓ³¤Á½´Î·¢ÏûÏ¢Ê±¼äµÄ¼ä¸ô¡£
-    ERR_SVR_GROUP_REQ_ALLREADY_BEEN_PROCESSED   = 10024,  ///< ´ËÑûÇë»òÕßÉêÇëÇëÇóÒÑ¾­±»´¦Àí¡£
-    ERR_SVR_GROUP_GROUPID_IN_USED_FOR_SUPER     = 10025,  ///< Èº×é ID ÒÑ±»Ê¹ÓÃ£¬²¢ÇÒ²Ù×÷ÕßÎªÈºÖ÷£¬¿ÉÒÔÖ±½ÓÊ¹ÓÃ¡£
-    ERR_SVR_GROUP_SDKAPPID_DENY                 = 10026,  ///< ¸Ã SDKAppID ÇëÇóµÄÃüÁî×ÖÒÑ±»½ûÓÃ£¬Çë [Ìá½»¹¤µ¥](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) ÁªÏµ¿Í·ş¡£
-    ERR_SVR_GROUP_REVOKE_MSG_NOT_FOUND          = 10030,  ///< ÇëÇó³·»ØµÄÏûÏ¢²»´æÔÚ¡£
-    ERR_SVR_GROUP_REVOKE_MSG_TIME_LIMIT         = 10031,  ///< ÏûÏ¢³·»Ø³¬¹ıÁËÊ±¼äÏŞÖÆ£¨Ä¬ÈÏ2·ÖÖÓ£©¡£
-    ERR_SVR_GROUP_REVOKE_MSG_DENY               = 10032,  ///< ÇëÇó³·»ØµÄÏûÏ¢²»Ö§³Ö³·»Ø²Ù×÷¡£
-    ERR_SVR_GROUP_NOT_ALLOW_REVOKE_MSG          = 10033,  ///< Èº×éÀàĞÍ²»Ö§³ÖÏûÏ¢³·»Ø²Ù×÷¡£
-    ERR_SVR_GROUP_REMOVE_MSG_DENY               = 10034,  ///< ¸ÃÏûÏ¢ÀàĞÍ²»Ö§³ÖÉ¾³ı²Ù×÷¡£
-    ERR_SVR_GROUP_NOT_ALLOW_REMOVE_MSG          = 10035,  ///< ÒôÊÓÆµÁÄÌìÊÒºÍÔÚÏß³ÉÔ±¹ã²¥´óÈº²»Ö§³ÖÉ¾³ıÏûÏ¢¡£
-    ERR_SVR_GROUP_AVCHATROOM_COUNT_LIMIT        = 10036,  ///< ÒôÊÓÆµÁÄÌìÊÒ´´½¨ÊıÁ¿³¬¹ıÁËÏŞÖÆ£¬Çë²Î¿¼ [¼Û¸ñËµÃ÷](https://cloud.tencent.com/document/product/269/11673) ¹ºÂòÔ¤¸¶·ÑÌ×²Í¡°IMÒôÊÓÆµÁÄÌìÊÒ¡±¡£
-    ERR_SVR_GROUP_COUNT_LIMIT                   = 10037,  ///< µ¥¸öÓÃ»§¿É´´½¨ºÍ¼ÓÈëµÄÈº×éÊıÁ¿³¬¹ıÁËÏŞÖÆ£¬Çë²Î¿¼ [¼Û¸ñËµÃ÷](https://cloud.tencent.com/document/product/269/11673) ¹ºÂò»òÉı¼¶Ô¤¸¶·ÑÌ×²Í¡°µ¥ÈË¿É´´½¨Óë¼ÓÈëÈº×éÊı¡±¡£
-    ERR_SVR_GROUP_MEMBER_COUNT_LIMIT            = 10038,  ///< Èº³ÉÔ±ÊıÁ¿³¬¹ıÏŞÖÆ£¬Çë²Î¿¼ [¼Û¸ñËµÃ÷](https://cloud.tencent.com/document/product/269/11673) ¹ºÂò»òÉı¼¶Ô¤¸¶·ÑÌ×²Í¡°À©Õ¹ÈºÈËÊıÉÏÏŞ¡±¡£
+    ERR_SDK_NET_ENCODE_FAILED                   = 9501,    ///< SSO åŠ å¯†å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NET_DECODE_FAILED                   = 9502,    ///< SSO è§£å¯†å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NET_AUTH_INVALID                    = 9503,    ///< SSO æœªå®Œæˆé‰´æƒï¼Œå¯èƒ½ç™»å½•æœªå®Œæˆï¼Œè¯·åœ¨ç™»å½•å®Œæˆåå†æ“ä½œã€‚
+    ERR_SDK_NET_COMPRESS_FAILED                 = 9504,    ///< æ•°æ®åŒ…å‹ç¼©å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NET_UNCOMPRESS_FAILED               = 9505,    ///< æ•°æ®åŒ…è§£å‹å¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NET_FREQ_LIMIT                      = 9506,    ///< è°ƒç”¨é¢‘ç‡é™åˆ¶ï¼Œæœ€å¤§æ¯ç§’å‘èµ· 5 æ¬¡è¯·æ±‚ã€‚
+    ERR_SDK_NET_REQ_COUNT_LIMIT                 = 9507,    ///< è¯·æ±‚é˜Ÿåˆ—æº€ï¼Œè¶…è¿‡åŒæ—¶è¯·æ±‚çš„æ•°é‡é™åˆ¶ï¼Œæœ€å¤§åŒæ—¶å‘èµ·1000ä¸ªè¯·æ±‚ã€‚
+    ERR_SDK_NET_DISCONNECT                      = 9508,    ///< ç½‘ç»œå·²æ–­å¼€ï¼Œæœªå»ºç«‹è¿æ¥ï¼Œæˆ–è€…å»ºç«‹ socket è¿æ¥æ—¶ï¼Œæ£€æµ‹åˆ°æ— ç½‘ç»œã€‚
+    ERR_SDK_NET_ALLREADY_CONN                   = 9509,    ///< ç½‘ç»œè¿æ¥å·²å»ºç«‹ï¼Œé‡å¤åˆ›å»ºè¿æ¥ï¼Œå†…éƒ¨é”™è¯¯ã€‚
+    ERR_SDK_NET_CONN_TIMEOUT                    = 9510,    ///< å»ºç«‹ç½‘ç»œè¿æ¥è¶…æ—¶ï¼Œè¯·ç­‰ç½‘ç»œæ¢å¤åé‡è¯•ã€‚
+    ERR_SDK_NET_CONN_REFUSE                     = 9511,    ///< ç½‘ç»œè¿æ¥å·²è¢«æ‹’ç»ï¼Œè¯·æ±‚è¿‡äºé¢‘ç¹ï¼ŒæœåŠ¡ç«¯æ‹’ç»æœåŠ¡ã€‚
+    ERR_SDK_NET_NET_UNREACH                     = 9512,    ///< æ²¡æœ‰åˆ°è¾¾ç½‘ç»œçš„å¯ç”¨è·¯ç”±ï¼Œè¯·ç­‰ç½‘ç»œæ¢å¤åé‡è¯•ã€‚
+    ERR_SDK_NET_SOCKET_NO_BUFF                  = 9513,    ///< ç³»ç»Ÿä¸­æ²¡æœ‰è¶³å¤Ÿçš„ç¼“å†²åŒºç©ºé—´èµ„æºå¯ç”¨æ¥å®Œæˆè°ƒç”¨ï¼Œç³»ç»Ÿè¿‡äºç¹å¿™ï¼Œå†…éƒ¨é”™è¯¯ã€‚
+    ERR_SDK_NET_RESET_BY_PEER                   = 9514,    ///< å¯¹ç«¯é‡ç½®äº†è¿æ¥ï¼Œå¯èƒ½æœåŠ¡ç«¯è¿‡è½½ï¼ŒSDK å†…éƒ¨ä¼šè‡ªåŠ¨é‡è¿ï¼Œè¯·ç­‰ç½‘ç»œè¿æ¥æˆåŠŸ onConnSucc ï¼ˆ iOS ï¼‰ æˆ– onConnected ï¼ˆ Android ï¼‰ å›è°ƒåé‡è¯•ã€‚
+    ERR_SDK_NET_SOCKET_INVALID                  = 9515,    ///< socket å¥—æ¥å­—æ— æ•ˆï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯ [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) æä¾›ä½¿ç”¨æ¥å£ã€é”™è¯¯ç ã€é”™è¯¯ä¿¡æ¯ç»™å®¢æœè§£å†³ã€‚
+    ERR_SDK_NET_HOST_GETADDRINFO_FAILED         = 9516,    ///< IP åœ°å€è§£æå¤±è´¥ï¼Œå†…éƒ¨é”™è¯¯ï¼Œå¯èƒ½æ˜¯æœ¬åœ° imsdk_config é…ç½®æ–‡ä»¶è¢«æŸåï¼Œè¯»å–åˆ°åˆ° IP åœ°å€éæ³•ã€‚
+    ERR_SDK_NET_CONNECT_RESET                   = 9517,    ///< ç½‘ç»œè¿æ¥åˆ°ä¸­é—´èŠ‚ç‚¹æˆ–æœåŠ¡ç«¯é‡ç½®ï¼Œå¼•èµ·è¿æ¥å¤±æ•ˆï¼Œå†…éƒ¨é”™è¯¯ï¼ŒSDK å†…éƒ¨ä¼šè‡ªåŠ¨é‡è¿ï¼Œè¯·ç­‰ç½‘ç»œè¿æ¥æˆåŠŸ onConnSucc ï¼ˆ iOS ï¼‰ æˆ– onConnected ï¼ˆ Android ï¼‰ å›è°ƒåé‡è¯•ã€‚
+    ERR_SDK_NET_WAIT_INQUEUE_TIMEOUT            = 9518,    ///< è¯·æ±‚åŒ…ç­‰å¾…è¿›å…¥å¾…å‘é€é˜Ÿåˆ—è¶…æ—¶ï¼Œå‘é€æ—¶ç½‘ç»œè¿æ¥å»ºç«‹æ¯”è¾ƒæ…¢ æˆ– é¢‘ç¹æ–­ç½‘é‡è¿æ—¶ï¼Œä¼šå‡ºç°è¯¥é”™è¯¯ï¼Œè¯·æ£€æŸ¥ç½‘ç»œè¿æ¥æ˜¯å¦æ­£å¸¸ã€‚
+    ERR_SDK_NET_WAIT_SEND_TIMEOUT               = 9519,    ///< è¯·æ±‚åŒ…å·²è¿›å…¥å¾…å‘é€é˜Ÿåˆ—ï¼Œç­‰å¾…è¿›å…¥ç³»ç»Ÿçš„ç½‘ç»œ buffer è¶…æ—¶ï¼Œæ•°æ®åŒ…è¾ƒå¤š æˆ– å‘é€çº¿ç¨‹å¤„ç†ä¸è¿‡æ¥ï¼Œå†…éƒ¨é”™è¯¯ã€‚
+    ERR_SDK_NET_WAIT_ACK_TIMEOUT                = 9520,    ///< è¯·æ±‚åŒ…å·²è¿›å…¥ç³»ç»Ÿçš„ç½‘ç»œ buffer ï¼Œç­‰å¾…æœåŠ¡ç«¯å›åŒ…è¶…æ—¶ï¼Œå¯èƒ½è¯·æ±‚åŒ…æ²¡ç¦»å¼€ç»ˆç«¯è®¾å¤‡ã€ä¸­é—´è·¯ç”±ä¸¢å¼ƒã€æœåŠ¡ç«¯æ„å¤–ä¸¢åŒ…æˆ–å›åŒ…è¢«ç³»ç»Ÿç½‘ç»œå±‚ä¸¢å¼ƒï¼Œå†…éƒ¨é”™è¯¯ã€‚
     
     /////////////////////////////////////////////////////////////////////////////////
     //
-    //                      £¨Èı£©V3°æ±¾µÄ´íÎóÂë(´ı·ÏÆú)
+    //                      ï¼ˆäºŒï¼‰æœåŠ¡ç«¯
     //
     /////////////////////////////////////////////////////////////////////////////////
     
-    ERR_NO_SUCC_RESULT                          = 6003,   ///< ÅúÁ¿²Ù×÷ÎŞ³É¹¦½á¹û¡£
-    ERR_TO_USER_INVALID                         = 6011,   ///< ÎŞĞ§½ÓÊÕ·½¡£
-    ERR_REQUEST_TIMEOUT                         = 6012,   ///< ÇëÇó³¬Ê±¡£
-    ERR_INIT_CORE_FAIL                          = 6018,   ///< INIT CORE Ä£¿éÊ§°Ü¡£
-    ERR_EXPIRED_SESSION_NODE                    = 6020,   ///< SessionNode Îª null ¡£
-    ERR_LOGGED_OUT_BEFORE_LOGIN_FINISHED        = 6023,   ///< ÔÚµÇÂ¼Íê³ÉÇ°½øĞĞÁËµÇ³ö£¨ÔÚµÇÂ¼Ê±·µ»Ø£©¡£
-    ERR_TLSSDK_NOT_INITIALIZED                  = 6024,   ///< TLS SDK Î´³õÊ¼»¯¡£
-    ERR_TLSSDK_USER_NOT_FOUND                   = 6025,   ///< TLS SDK Ã»ÓĞÕÒµ½ÏàÓ¦µÄÓÃ»§ĞÅÏ¢¡£
-    ERR_BIND_FAIL_UNKNOWN                       = 6100,   ///< QALSDK Î´ÖªÔ­ÒòBINDÊ§°Ü¡£
-    ERR_BIND_FAIL_NO_SSOTICKET                  = 6101,   ///< È±ÉÙ SSO Æ±¾İ¡£
-    ERR_BIND_FAIL_REPEATD_BIND                  = 6102,   ///< ÖØ¸´ BIND¡£
-    ERR_BIND_FAIL_TINYID_NULL                   = 6103,   ///< TinyId Îª¿Õ¡£
-    ERR_BIND_FAIL_GUID_NULL                     = 6104,   ///< GUID Îª¿Õ¡£
-    ERR_BIND_FAIL_UNPACK_REGPACK_FAILED         = 6105,   ///< ½â×¢²á°üÊ§°Ü¡£
-    ERR_BIND_FAIL_REG_TIMEOUT                   = 6106,   ///< ×¢²á³¬Ê±¡£
-    ERR_BIND_FAIL_ISBINDING                     = 6107,   ///< ÕıÔÚ BIND ²Ù×÷ÖĞ¡£
-    ERR_PACKET_FAIL_UNKNOWN                     = 6120,   ///< ·¢°üÎ´Öª´íÎó¡£
-    ERR_PACKET_FAIL_REQ_NO_NET                  = 6121,   ///< ·¢ËÍÇëÇó°üÊ±Ã»ÓĞÍøÂç¡£
-    ERR_PACKET_FAIL_RESP_NO_NET                 = 6122,   ///< ·¢ËÍ»Ø¸´°üÊ±Ã»ÓĞÍøÂç¡£
-    ERR_PACKET_FAIL_REQ_NO_AUTH                 = 6123,   ///< ·¢ËÍÇëÇó°üÊ±Ã»ÓĞÈ¨ÏŞ¡£
-    ERR_PACKET_FAIL_SSO_ERR                     = 6124,   ///< SSO ´íÎó¡£
-    ERR_PACKET_FAIL_REQ_TIMEOUT                 = 6125,   ///< ÇëÇó³¬Ê±¡£
-    ERR_PACKET_FAIL_RESP_TIMEOUT                = 6126,   ///< »Ø¸´³¬Ê±¡£
-    ERR_PACKET_FAIL_REQ_ON_RESEND               = 6127,   ///< ÖØ·¢Ê§°Ü¡£
-    ERR_PACKET_FAIL_RESP_NO_RESEND              = 6128,   ///< ÖØ·¢Ê±Ã»ÓĞÕæÕı·¢ËÍ¡£
-    ERR_PACKET_FAIL_FLOW_SAVE_FILTERED          = 6129,   ///< ±£´æ±»¹ıÂË¡£
-    ERR_PACKET_FAIL_REQ_OVER_LOAD               = 6130,   ///< ·¢ËÍ¹ıÔØ¡£
-    ERR_PACKET_FAIL_LOGIC_ERR                   = 6131,   ///< Êı¾İÂß¼­´íÎó¡£
-    ERR_FRIENDSHIP_PROXY_NOT_SYNCED             = 6150,   ///< proxy_manager Ã»ÓĞÍê³É·şÎñ¶ËÊı¾İÍ¬²½¡£
-    ERR_FRIENDSHIP_PROXY_SYNCING                = 6151,   ///< proxy_manager ÕıÔÚ½øĞĞ·şÎñ¶ËÊı¾İÍ¬²½¡£
-    ERR_FRIENDSHIP_PROXY_SYNCED_FAIL            = 6152,   ///< proxy_manager Í¬²½Ê§°Ü¡£
-    ERR_FRIENDSHIP_PROXY_LOCAL_CHECK_ERR        = 6153,   ///< proxy_manager ÇëÇó²ÎÊı£¬ÔÚ±¾µØ¼ì²é²»ºÏ·¨¡£
-    ERR_GROUP_INVALID_FIELD                     = 6160,   ///< Group assistant ÇëÇó×Ö¶ÎÖĞ°üº¬·ÇÔ¤Éè×Ö¶Î¡£
-    ERR_GROUP_STORAGE_DISABLED                  = 6161,   ///< Group assistant Èº×ÊÁÏ±¾µØ´æ´¢Ã»ÓĞ¿ªÆô¡£
-    ERR_LOADGRPINFO_FAILED                      = 6162,   ///< ¼ÓÔØÈº×ÊÁÏÊ§°Ü¡£
-    ERR_REQ_NO_NET_ON_REQ                       = 6200,   ///< ÇëÇóµÄÊ±ºòÃ»ÓĞÍøÂç¡£
-    ERR_REQ_NO_NET_ON_RSP                       = 6201,   ///< ÏìÓ¦µÄÊ±ºòÃ»ÓĞÍøÂç¡£
-    ERR_SERIVCE_NOT_READY                       = 6205,   ///< QALSDK ·şÎñÎ´¾ÍĞ÷¡£
-    ERR_LOGIN_AUTH_FAILED                       = 6207,   ///< ÕËºÅÈÏÖ¤Ê§°Ü£¨ TinyId ×ª»»Ê§°Ü£©¡£
-    ERR_NEVER_CONNECT_AFTER_LAUNCH              = 6209,   ///< ÔÚÓ¦ÓÃÆô¶¯ºóÃ»ÓĞ³¢ÊÔÁªÍø¡£
-    ERR_REQ_FAILED                              = 6210,   ///< QALSDK Ö´ĞĞÊ§°Ü¡£
-    ERR_REQ_INVALID_REQ                         = 6211,   ///< ÇëÇó·Ç·¨£¬toMsgService ·Ç·¨¡£
-    ERR_REQ_OVERLOADED                          = 6212,   ///< ÇëÇó¶ÓÁĞÂú¡£
-    ERR_REQ_KICK_OFF                            = 6213,   ///< ÒÑ¾­±»ÆäËûÖÕ¶ËÌßÁË¡£
-    ERR_REQ_SERVICE_SUSPEND                     = 6214,   ///< ·şÎñ±»ÔİÍ£¡£
-    ERR_REQ_INVALID_SIGN                        = 6215,   ///< SSO Ç©Ãû´íÎó¡£
-    ERR_REQ_INVALID_COOKIE                      = 6216,   ///< SSO cookie ÎŞĞ§¡£
-    ERR_LOGIN_TLS_RSP_PARSE_FAILED              = 6217,   ///< µÇÂ¼Ê± TLS SDK »Ø°üĞ£Ñé£¬°üÌå³¤¶È´íÎó¡£
-    ERR_LOGIN_OPENMSG_TIMEOUT                   = 6218,   ///< µÇÂ¼Ê± OPENSTATSVC Ïò OPENMSG ÉÏ±¨×´Ì¬³¬Ê±¡£
-    ERR_LOGIN_OPENMSG_RSP_PARSE_FAILED          = 6219,   ///< µÇÂ¼Ê± OPENSTATSVC Ïò OPENMSG ÉÏ±¨×´Ì¬Ê±½âÎö»Ø°üÊ§°Ü¡£
-    ERR_LOGIN_TLS_DECRYPT_FAILED                = 6220,   ///< µÇÂ¼Ê± TLS SDK ½âÃÜÊ§°Ü¡£
-    ERR_WIFI_NEED_AUTH                          = 6221,   ///< WIFI ĞèÒªÈÏÖ¤¡£
-    ERR_USER_CANCELED                           = 6222,   ///< ÓÃ»§ÒÑÈ¡Ïû¡£
-    ERR_REVOKE_TIME_LIMIT_EXCEED                = 6223,   ///< ÏûÏ¢³·»Ø³¬¹ıÁËÊ±¼äÏŞÖÆ£¨Ä¬ÈÏ2·ÖÖÓ£©¡£
-    ERR_LACK_UGC_EXT                            = 6224,   ///< È±ÉÙ UGC À©Õ¹°ü¡£
-    ERR_AUTOLOGIN_NEED_USERSIG                  = 6226,   ///< ×Ô¶¯µÇÂ¼£¬±¾µØÆ±¾İ¹ıÆÚ£¬ĞèÒª UserSig ÊÖ¶¯µÇÂ¼¡£
-    ERR_QAL_NO_SHORT_CONN_AVAILABLE             = 6300,   ///< Ã»ÓĞ¿ÉÓÃµÄ¶ÌÁ¬½Ó SSO ¡£
-    ERR_REQ_CONTENT_ATTACK                      = 80101,  ///< ÏûÏ¢ÄÚÈİ°²È«´ò»÷¡£
-    ERR_LOGIN_SIG_EXPIRE                        = 70101,  ///< µÇÂ¼·µ»Ø£¬Æ±¾İ¹ıÆÚ¡£
-    ERR_SDK_HAD_INITIALIZED                     = 90101,  ///< IM SDK ÒÑ¾­³õÊ¼»¯ÎŞĞèÖØ¸´³õÊ¼»¯¡£
-    ERR_OPENBDH_BASE                            = 115000, ///< OpenBDH ´íÎóÂë»ù¡£
-    ERR_REQUEST_NO_NET_ONREQ                    = 6250,   ///< ÇëÇóÊ±Ã»ÓĞÍøÂç£¬ÇëµÈÍøÂç»Ö¸´ºóÖØÊÔ¡£
-    ERR_REQUEST_NO_NET_ONRSP                    = 6251,   ///< ÏìÓ¦Ê±Ã»ÓĞÍøÂç£¬ÇëµÈÍøÂç»Ö¸´ºóÖØÊÔ¡£
-    ERR_REQUEST_FAILED                          = 6252,   ///< QALSDK Ö´ĞĞÊ§°Ü¡£
-    ERR_REQUEST_INVALID_REQ                     = 6253,   ///< ÇëÇó·Ç·¨£¬toMsgService ·Ç·¨¡£
-    ERR_REQUEST_OVERLOADED                      = 6254,   ///< ÇëÇó¶ÓÁĞœº¡£
-    ERR_REQUEST_KICK_OFF                        = 6255,   ///< ÒÑ¾­±»ÆäËûÖÕ¶ËÌßÁË¡£
-    ERR_REQUEST_SERVICE_SUSPEND                 = 6256,   ///< ·şÎñ±»ÔİÍ£¡£
-    ERR_REQUEST_INVALID_SIGN                    = 6257,   ///< SSO Ç©Ãû´íÎó¡£
-    ERR_REQUEST_INVALID_COOKIE                  = 6258,   ///< SSO cookie ÎŞĞ§¡£
+    // SSO æ¥å…¥å±‚çš„é”™è¯¯ç 
+    
+    ERR_SVR_SSO_CONNECT_LIMIT                   = -302  ,  ///< SSO çš„è¿æ¥æ•°é‡è¶…å‡ºé™åˆ¶ï¼ŒæœåŠ¡ç«¯æ‹’ç»æœåŠ¡ã€‚
+    ERR_SVR_SSO_VCODE                           = -10000,  ///< ä¸‹å‘éªŒè¯ç æ ‡å¿—é”™è¯¯ã€‚
+    ERR_SVR_SSO_D2_EXPIRED                      = -10001,  ///< D2 è¿‡æœŸã€‚
+    ERR_SVR_SSO_A2_UP_INVALID                   = -10003,  ///< A2 æ ¡éªŒå¤±è´¥ç­‰åœºæ™¯ä½¿ç”¨ã€‚
+    ERR_SVR_SSO_A2_DOWN_INVALID                 = -10004,  ///< å¤„ç†ä¸‹è¡ŒåŒ…æ—¶å‘ç° A2 éªŒè¯æ²¡é€šè¿‡æˆ–è€…è¢«å®‰å…¨æ‰“å‡»ã€‚
+    ERR_SVR_SSO_EMPTY_KEY                       = -10005,  ///< ä¸å…è®¸ç©º D2Key åŠ å¯†ã€‚
+    ERR_SVR_SSO_UIN_INVALID                     = -10006,  ///< D2 ä¸­çš„ uin å’Œ SSO åŒ…å¤´çš„ uin ä¸åŒ¹é…ã€‚
+    ERR_SVR_SSO_VCODE_TIMEOUT                   = -10007,  ///< éªŒè¯ç ä¸‹å‘è¶…æ—¶ã€‚
+    ERR_SVR_SSO_NO_IMEI_AND_A2                  = -10008,  ///< éœ€è¦å¸¦ä¸Š IMEI å’Œ A2 ã€‚
+    ERR_SVR_SSO_COOKIE_INVALID                  = -10009,  ///< Cookie éæ³•ã€‚
+    ERR_SVR_SSO_DOWN_TIP                        = -10101,  ///< ä¸‹å‘æç¤ºè¯­ï¼ŒD2 è¿‡æœŸã€‚
+    ERR_SVR_SSO_DISCONNECT                      = -10102,  ///< æ–­é“¾é”å±ã€‚
+    ERR_SVR_SSO_IDENTIFIER_INVALID              = -10103,  ///< å¤±æ•ˆèº«ä»½ã€‚
+    ERR_SVR_SSO_CLIENT_CLOSE                    = -10104,  ///< ç»ˆç«¯è‡ªåŠ¨é€€å‡ºã€‚
+    ERR_SVR_SSO_MSFSDK_QUIT                     = -10105,  ///< MSFSDK è‡ªåŠ¨é€€å‡ºã€‚
+    ERR_SVR_SSO_D2KEY_WRONG                     = -10106,  ///< SSO D2key è§£å¯†å¤±è´¥æ¬¡æ•°å¤ªå¤šï¼Œé€šçŸ¥ç»ˆç«¯éœ€è¦é‡ç½®ï¼Œé‡æ–°åˆ·æ–° D2 ã€‚
+    ERR_SVR_SSO_UNSURPPORT                      = -10107,  ///< ä¸æ”¯æŒèšåˆï¼Œç»™ç»ˆç«¯è¿”å›ç»Ÿä¸€çš„é”™è¯¯ç ã€‚ç»ˆç«¯åœ¨è¯¥ TCP é•¿è¿æ¥ä¸Šåœæ­¢èšåˆã€‚
+    ERR_SVR_SSO_PREPAID_ARREARS                 = -10108,  ///< é¢„ä»˜è´¹æ¬ è´¹ã€‚
+    ERR_SVR_SSO_PACKET_WRONG                    = -10109,  ///< è¯·æ±‚åŒ…æ ¼å¼é”™è¯¯ã€‚
+    ERR_SVR_SSO_APPID_BLACK_LIST                = -10110,  ///< SDKAppID é»‘åå•ã€‚
+    ERR_SVR_SSO_CMD_BLACK_LIST                  = -10111,  ///< SDKAppID è®¾ç½® service cmd é»‘åå•ã€‚
+    ERR_SVR_SSO_APPID_WITHOUT_USING             = -10112,  ///< SDKAppID åœç”¨ã€‚
+    ERR_SVR_SSO_FREQ_LIMIT                      = -10113,  ///< é¢‘ç‡é™åˆ¶(ç”¨æˆ·)ï¼Œé¢‘ç‡é™åˆ¶æ˜¯è®¾ç½®é’ˆå¯¹æŸä¸€ä¸ªåè®®çš„æ¯ç§’è¯·æ±‚æ•°çš„é™åˆ¶ã€‚
+    ERR_SVR_SSO_OVERLOAD                        = -10114,  ///< è¿‡è½½ä¸¢åŒ…(ç³»ç»Ÿ)ï¼Œè¿æ¥çš„æœåŠ¡ç«¯å¤„ç†è¿‡å¤šè¯·æ±‚ï¼Œå¤„ç†ä¸è¿‡æ¥ï¼Œæ‹’ç»æœåŠ¡ã€‚
+    
+    // èµ„æºæ–‡ä»¶é”™è¯¯ç 
+    
+    ERR_SVR_RES_NOT_FOUND                       = 114000,  ///< è¦å‘é€çš„èµ„æºæ–‡ä»¶ä¸å­˜åœ¨ã€‚
+    ERR_SVR_RES_ACCESS_DENY                     = 114001,  ///< è¦å‘é€çš„èµ„æºæ–‡ä»¶ä¸å…è®¸è®¿é—®ã€‚
+    ERR_SVR_RES_SIZE_LIMIT                      = 114002,  ///< æ–‡ä»¶å¤§å°è¶…è¿‡é™åˆ¶ã€‚
+    ERR_SVR_RES_SEND_CANCEL                     = 114003,  ///< ç”¨æˆ·å–æ¶ˆå‘é€ï¼Œå¦‚å‘é€è¿‡ç¨‹ä¸­ç™»å‡ºç­‰åŸå› ã€‚
+    ERR_SVR_RES_READ_FAILED                     = 114004,  ///< è¯»å–æ–‡ä»¶å†…å®¹å¤±è´¥ã€‚
+    ERR_SVR_RES_TRANSFER_TIMEOUT                = 114005,  ///< èµ„æºæ–‡ä»¶ï¼ˆå¦‚å›¾ç‰‡ã€æ–‡ä»¶ã€è¯­éŸ³ã€è§†é¢‘ï¼‰ä¼ è¾“è¶…æ—¶ï¼Œä¸€èˆ¬æ˜¯ç½‘ç»œé—®é¢˜å¯¼è‡´ã€‚
+    ERR_SVR_RES_INVALID_PARAMETERS              = 114011,  ///< å‚æ•°éæ³•ã€‚
+    ERR_SVR_RES_INVALID_FILE_MD5                = 115066,  ///< æ–‡ä»¶ MD5 æ ¡éªŒå¤±è´¥ã€‚
+    ERR_SVR_RES_INVALID_PART_MD5                = 115068,  ///< åˆ†ç‰‡ MD5 æ ¡éªŒå¤±è´¥ã€‚
+    
+    // åå°å…¬å…±é”™è¯¯ç 
+    
+    ERR_SVR_COMM_INVALID_HTTP_URL               = 60002,  ///< HTTP è§£æé”™è¯¯ ï¼Œè¯·æ£€æŸ¥ HTTP è¯·æ±‚ URL æ ¼å¼ã€‚
+    ERR_SVR_COMM_REQ_JSON_PARSE_FAILED          = 60003,  ///< HTTP è¯·æ±‚ JSON è§£æé”™è¯¯ï¼Œè¯·æ£€æŸ¥ JSON æ ¼å¼ã€‚
+    ERR_SVR_COMM_INVALID_ACCOUNT                = 60004,  ///< è¯·æ±‚ URI æˆ– JSON åŒ…ä½“ä¸­ Identifier æˆ– UserSig é”™è¯¯ã€‚
+    ERR_SVR_COMM_INVALID_ACCOUNT_EX             = 60005,  ///< è¯·æ±‚ URI æˆ– JSON åŒ…ä½“ä¸­ Identifier æˆ– UserSig é”™è¯¯ã€‚
+    ERR_SVR_COMM_INVALID_SDKAPPID               = 60006,  ///< SDKAppID å¤±æ•ˆï¼Œè¯·æ ¸å¯¹ SDKAppID æœ‰æ•ˆæ€§ã€‚
+    ERR_SVR_COMM_REST_FREQ_LIMIT                = 60007,  ///< REST æ¥å£è°ƒç”¨é¢‘ç‡è¶…è¿‡é™åˆ¶ï¼Œè¯·é™ä½è¯·æ±‚é¢‘ç‡ã€‚
+    ERR_SVR_COMM_REQUEST_TIMEOUT                = 60008,  ///< æœåŠ¡è¯·æ±‚è¶…æ—¶æˆ– HTTP è¯·æ±‚æ ¼å¼é”™è¯¯ï¼Œè¯·æ£€æŸ¥å¹¶é‡è¯•ã€‚
+    ERR_SVR_COMM_INVALID_RES                    = 60009,  ///< è¯·æ±‚èµ„æºé”™è¯¯ï¼Œè¯·æ£€æŸ¥è¯·æ±‚ URLã€‚
+    ERR_SVR_COMM_ID_NOT_ADMIN                   = 60010,  ///< REST API è¯·æ±‚çš„ Identifier å­—æ®µè¯·å¡«å†™ App ç®¡ç†å‘˜å¸å·ã€‚
+    ERR_SVR_COMM_SDKAPPID_FREQ_LIMIT            = 60011,  ///< SDKAppID è¯·æ±‚é¢‘ç‡è¶…é™ï¼Œè¯·é™ä½è¯·æ±‚é¢‘ç‡ã€‚
+    ERR_SVR_COMM_SDKAPPID_MISS                  = 60012,  ///< REST æ¥å£éœ€è¦å¸¦ SDKAppIDï¼Œè¯·æ£€æŸ¥è¯·æ±‚ URL ä¸­çš„ SDKAppIDã€‚
+    ERR_SVR_COMM_RSP_JSON_PARSE_FAILED          = 60013,  ///< HTTP å“åº”åŒ… JSON è§£æé”™è¯¯ã€‚
+    ERR_SVR_COMM_EXCHANGE_ACCOUNT_TIMEUT        = 60014,  ///< ç½®æ¢å¸å·è¶…æ—¶ã€‚
+    ERR_SVR_COMM_INVALID_ID_FORMAT              = 60015,  ///< è¯·æ±‚åŒ…ä½“ Identifier ç±»å‹é”™è¯¯ï¼Œè¯·ç¡®è®¤ Identifier ä¸ºå­—ç¬¦ä¸²æ ¼å¼ã€‚
+    ERR_SVR_COMM_SDKAPPID_FORBIDDEN             = 60016,  ///< SDKAppID è¢«ç¦ç”¨ï¼Œè¯· [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) è”ç³»å®¢æœç¡®è®¤ã€‚
+    ERR_SVR_COMM_REQ_FORBIDDEN                  = 60017,  ///< è¯·æ±‚è¢«ç¦ç”¨ï¼Œè¯· [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) è”ç³»å®¢æœç¡®è®¤ã€‚
+    ERR_SVR_COMM_REQ_FREQ_LIMIT                 = 60018,  ///< è¯·æ±‚è¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åé‡è¯•ã€‚
+    ERR_SVR_COMM_REQ_FREQ_LIMIT_EX              = 60019,  ///< è¯·æ±‚è¿‡äºé¢‘ç¹ï¼Œè¯·ç¨åé‡è¯•ã€‚
+    ERR_SVR_COMM_INVALID_SERVICE                = 60020,  ///< æœªè´­ä¹°å¥—é¤åŒ…æˆ–è´­ä¹°çš„å¥—é¤åŒ…æ­£åœ¨é…ç½®ä¸­æš‚æœªç”Ÿæ•ˆï¼Œè¯·äº”åˆ†é’Ÿåå†æ¬¡å°è¯•ã€‚
+    ERR_SVR_COMM_SENSITIVE_TEXT                 = 80001,  ///< æ–‡æœ¬å®‰å…¨æ‰“å‡»ï¼Œæ–‡æœ¬ä¸­å¯èƒ½åŒ…å«æ•æ„Ÿè¯æ±‡ã€‚
+    ERR_SVR_COMM_BODY_SIZE_LIMIT                = 80002,  ///< å‘æ¶ˆæ¯åŒ…ä½“è¿‡é•¿ï¼Œç›®å‰æ”¯æŒæœ€å¤§8kæ¶ˆæ¯åŒ…ä½“é•¿åº¦ï¼Œè¯·å‡å°‘åŒ…ä½“å¤§å°é‡è¯•ã€‚
+    
+    // å¸å·é”™è¯¯ç 
+    
+    ERR_SVR_ACCOUNT_USERSIG_EXPIRED             = 70001,  ///< UserSig å·²è¿‡æœŸï¼Œè¯·é‡æ–°ç”Ÿæˆ UserSigï¼Œå»ºè®® UserSig æœ‰æ•ˆæœŸä¸å°äº24å°æ—¶ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_EMPTY               = 70002,  ///< UserSig é•¿åº¦ä¸º0ï¼Œè¯·æ£€æŸ¥ä¼ å…¥çš„ UserSig æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_CHECK_FAILED        = 70003,  ///< UserSig æ ¡éªŒå¤±è´¥ï¼Œè¯·ç¡®è®¤ä¸‹ UserSig å†…å®¹æ˜¯å¦è¢«æˆªæ–­ï¼Œå¦‚ç¼“å†²åŒºé•¿åº¦ä¸å¤Ÿå¯¼è‡´çš„å†…å®¹æˆªæ–­ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_CHECK_FAILED_EX     = 70005,  ///< UserSig æ ¡éªŒå¤±è´¥ï¼Œå¯ç”¨å·¥å…·è‡ªè¡ŒéªŒè¯ç”Ÿæˆçš„ UserSig æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_PUBLICKEY  = 70009,  ///< ç”¨å…¬é’¥éªŒè¯ UserSig å¤±è´¥ï¼Œè¯·ç¡®è®¤ç”Ÿæˆçš„ UserSig ä½¿ç”¨çš„ç§é’¥å’Œ SDKAppID æ˜¯å¦å¯¹åº”ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_ID         = 70013,  ///< è¯·æ±‚çš„ Identifier ä¸ç”Ÿæˆ UserSig çš„ Identifier ä¸åŒ¹é…ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_MISMATCH_SDKAPPID   = 70014,  ///< è¯·æ±‚çš„ SDKAppID ä¸ç”Ÿæˆ UserSig çš„ SDKAppID ä¸åŒ¹é…ã€‚
+    ERR_SVR_ACCOUNT_USERSIG_PUBLICKEY_NOT_FOUND = 70016,  ///< éªŒè¯ UserSig æ—¶å…¬é’¥ä¸å­˜åœ¨ã€‚è¯·å…ˆç™»å½•æ§åˆ¶å°ä¸‹è½½ç§é’¥ï¼Œä¸‹è½½ç§é’¥çš„å…·ä½“æ–¹æ³•å¯å‚è€ƒ [ä¸‹è½½ç­¾åç”¨çš„ç§é’¥](https://cloud.tencent.com/document/product/269/32688#.E4.B8.8B.E8.BD.BD.E7.AD.BE.E5.90.8D.E7.94.A8.E7.9A.84.E7.A7.81.E9.92.A5) ã€‚
+    ERR_SVR_ACCOUNT_SDKAPPID_NOT_FOUND          = 70020,  ///< SDKAppID æœªæ‰¾åˆ°ï¼Œè¯·åœ¨äº‘é€šä¿¡ IM æ§åˆ¶å°ç¡®è®¤åº”ç”¨ä¿¡æ¯ã€‚
+    ERR_SVR_ACCOUNT_INVALID_USERSIG             = 70052,  ///< UserSig å·²ç»å¤±æ•ˆï¼Œè¯·é‡æ–°ç”Ÿæˆï¼Œå†æ¬¡å°è¯•ã€‚
+    ERR_SVR_ACCOUNT_NOT_FOUND                   = 70107,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_ACCOUNT_SEC_RSTR                    = 70114,  ///< å®‰å…¨åŸå› è¢«é™åˆ¶ã€‚
+    ERR_SVR_ACCOUNT_INTERNAL_TIMEOUT            = 70169,  ///< æœåŠ¡ç«¯å†…éƒ¨è¶…æ—¶ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_ACCOUNT_INVALID_COUNT               = 70206,  ///< è¯·æ±‚ä¸­æ‰¹é‡æ•°é‡ä¸åˆæ³•ã€‚
+    ERR_SVR_ACCOUNT_INVALID_PARAMETERS          = 70402,  ///< å‚æ•°éæ³•ï¼Œè¯·æ£€æŸ¥å¿…å¡«å­—æ®µæ˜¯å¦å¡«å……ï¼Œæˆ–è€…å­—æ®µçš„å¡«å……æ˜¯å¦æ»¡è¶³åè®®è¦æ±‚ã€‚
+    ERR_SVR_ACCOUNT_ADMIN_REQUIRED              = 70403,  ///< è¯·æ±‚éœ€è¦ App ç®¡ç†å‘˜æƒé™ã€‚
+    ERR_SVR_ACCOUNT_FREQ_LIMIT                  = 70050,  ///< å› å¤±è´¥ä¸”é‡è¯•æ¬¡æ•°è¿‡å¤šå¯¼è‡´è¢«é™åˆ¶ï¼Œè¯·æ£€æŸ¥ UserSig æ˜¯å¦æ­£ç¡®ï¼Œä¸€åˆ†é’Ÿä¹‹åå†è¯•ã€‚
+    ERR_SVR_ACCOUNT_BLACKLIST                   = 70051,  ///< å¸å·è¢«æ‹‰å…¥é»‘åå•ã€‚
+    ERR_SVR_ACCOUNT_COUNT_LIMIT                 = 70398,  ///< åˆ›å»ºå¸å·æ•°é‡è¶…è¿‡å…è´¹ä½“éªŒç‰ˆæ•°é‡é™åˆ¶ï¼Œè¯·å‡çº§ä¸ºä¸“ä¸šç‰ˆã€‚
+    ERR_SVR_ACCOUNT_INTERNAL_ERROR              = 70500,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    
+    // èµ„æ–™é”™è¯¯ç 
+    
+    ERR_SVR_PROFILE_INVALID_PARAMETERS          = 40001,  ///< è¯·æ±‚å‚æ•°é”™è¯¯ï¼Œè¯·æ ¹æ®é”™è¯¯æè¿°æ£€æŸ¥è¯·æ±‚æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_PROFILE_ACCOUNT_MISS                = 40002,  ///< è¯·æ±‚å‚æ•°é”™è¯¯ï¼Œæ²¡æœ‰æŒ‡å®šéœ€è¦æ‹‰å–èµ„æ–™çš„ç”¨æˆ·å¸å·ã€‚
+    ERR_SVR_PROFILE_ACCOUNT_NOT_FOUND           = 40003,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_PROFILE_ADMIN_REQUIRED              = 40004,  ///< è¯·æ±‚éœ€è¦ App ç®¡ç†å‘˜æƒé™ã€‚
+    ERR_SVR_PROFILE_SENSITIVE_TEXT              = 40005,  ///< èµ„æ–™å­—æ®µä¸­åŒ…å«æ•æ„Ÿè¯ã€‚
+    ERR_SVR_PROFILE_INTERNAL_ERROR              = 40006,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·ç¨åé‡è¯•ã€‚
+    ERR_SVR_PROFILE_READ_PERMISSION_REQUIRED    = 40007,  ///< æ²¡æœ‰èµ„æ–™å­—æ®µçš„è¯»æƒé™ï¼Œè¯¦æƒ…å¯å‚è§ [èµ„æ–™å­—æ®µ](https://cloud.tencent.com/document/product/269/1500#.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ã€‚
+    ERR_SVR_PROFILE_WRITE_PERMISSION_REQUIRED   = 40008,  ///< æ²¡æœ‰èµ„æ–™å­—æ®µçš„å†™æƒé™ï¼Œè¯¦æƒ…å¯å‚è§ [èµ„æ–™å­—æ®µ](https://cloud.tencent.com/document/product/269/1500#.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ã€‚
+    ERR_SVR_PROFILE_TAG_NOT_FOUND               = 40009,  ///< èµ„æ–™å­—æ®µçš„ Tag ä¸å­˜åœ¨ã€‚
+    ERR_SVR_PROFILE_SIZE_LIMIT                  = 40601,  ///< èµ„æ–™å­—æ®µçš„ Value é•¿åº¦è¶…è¿‡500å­—èŠ‚ã€‚
+    ERR_SVR_PROFILE_VALUE_ERROR                 = 40605,  ///< æ ‡é…èµ„æ–™å­—æ®µçš„ Value é”™è¯¯ï¼Œè¯¦æƒ…å¯å‚è§ [æ ‡é…èµ„æ–™å­—æ®µ](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ã€‚
+    ERR_SVR_PROFILE_INVALID_VALUE_FORMAT        = 40610,  ///< èµ„æ–™å­—æ®µçš„ Value ç±»å‹ä¸åŒ¹é…ï¼Œè¯¦æƒ…å¯å‚è§ [æ ‡é…èµ„æ–™å­—æ®µ](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) ã€‚
+    
+    // å…³ç³»é“¾é”™è¯¯ç 
+    
+    ERR_SVR_FRIENDSHIP_INVALID_PARAMETERS       = 30001,  ///< è¯·æ±‚å‚æ•°é”™è¯¯ï¼Œè¯·æ ¹æ®é”™è¯¯æè¿°æ£€æŸ¥è¯·æ±‚æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_FRIENDSHIP_INVALID_SDKAPPID         = 30002,  ///< SDKAppID ä¸åŒ¹é…ã€‚
+    ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND        = 30003,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_FRIENDSHIP_ADMIN_REQUIRED           = 30004,  ///< è¯·æ±‚éœ€è¦ App ç®¡ç†å‘˜æƒé™ã€‚
+    ERR_SVR_FRIENDSHIP_SENSITIVE_TEXT           = 30005,  ///< å…³ç³»é“¾å­—æ®µä¸­åŒ…å«æ•æ„Ÿè¯ã€‚
+    ERR_SVR_FRIENDSHIP_INTERNAL_ERROR           = 30006,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_FRIENDSHIP_NET_TIMEOUT              = 30007,  ///< ç½‘ç»œè¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•ã€‚
+    ERR_SVR_FRIENDSHIP_WRITE_CONFLICT           = 30008,  ///< å¹¶å‘å†™å¯¼è‡´å†™å†²çªï¼Œå»ºè®®ä½¿ç”¨æ‰¹é‡æ–¹å¼ã€‚
+    ERR_SVR_FRIENDSHIP_ADD_FRIEND_DENY          = 30009,  ///< åå°ç¦æ­¢è¯¥ç”¨æˆ·å‘èµ·åŠ å¥½å‹è¯·æ±‚ã€‚
+    ERR_SVR_FRIENDSHIP_COUNT_LIMIT              = 30010,  ///< è‡ªå·±çš„å¥½å‹æ•°å·²è¾¾ç³»ç»Ÿä¸Šé™ã€‚
+    ERR_SVR_FRIENDSHIP_GROUP_COUNT_LIMIT        = 30011,  ///< åˆ†ç»„å·²è¾¾ç³»ç»Ÿä¸Šé™ã€‚
+    ERR_SVR_FRIENDSHIP_PENDENCY_LIMIT           = 30012,  ///< æœªå†³æ•°å·²è¾¾ç³»ç»Ÿä¸Šé™ã€‚
+    ERR_SVR_FRIENDSHIP_BLACKLIST_LIMIT          = 30013,  ///< é»‘åå•æ•°å·²è¾¾ç³»ç»Ÿä¸Šé™ã€‚
+    ERR_SVR_FRIENDSHIP_PEER_FRIEND_LIMIT        = 30014,  ///< å¯¹æ–¹çš„å¥½å‹æ•°å·²è¾¾ç³»ç»Ÿä¸Šé™ã€‚
+    ERR_SVR_FRIENDSHIP_IN_SELF_BLACKLIST        = 30515,  ///< è¯·æ±‚æ·»åŠ å¥½å‹æ—¶ï¼Œå¯¹æ–¹åœ¨è‡ªå·±çš„é»‘åå•ä¸­ï¼Œä¸å…è®¸åŠ å¥½å‹ã€‚
+    ERR_SVR_FRIENDSHIP_ALLOW_TYPE_DENY_ANY      = 30516,  ///< è¯·æ±‚æ·»åŠ å¥½å‹æ—¶ï¼Œå¯¹æ–¹çš„åŠ å¥½å‹éªŒè¯æ–¹å¼æ˜¯ä¸å…è®¸ä»»ä½•äººæ·»åŠ è‡ªå·±ä¸ºå¥½å‹ã€‚
+    ERR_SVR_FRIENDSHIP_IN_PEER_BLACKLIST        = 30525,  ///< è¯·æ±‚æ·»åŠ å¥½å‹æ—¶ï¼Œè‡ªå·±åœ¨å¯¹æ–¹çš„é»‘åå•ä¸­ï¼Œä¸å…è®¸åŠ å¥½å‹ã€‚
+    ERR_SVR_FRIENDSHIP_ALLOW_TYPE_NEED_CONFIRM  = 30539,  ///< A è¯·æ±‚åŠ  B ä¸ºå¥½å‹ï¼ŒB çš„åŠ å¥½å‹éªŒè¯æ–¹å¼è¢«è®¾ç½®ä¸ºâ€œAllowType_Type_NeedConfirmâ€ï¼Œè¿™æ—¶ A ä¸ B ä¹‹é—´åªèƒ½å½¢æˆæœªå†³å…³ç³»ï¼Œè¯¥è¿”å›ç ç”¨äºæ ‡è¯†åŠ æœªå†³æˆåŠŸï¼Œä»¥ä¾¿ä¸åŠ å¥½å‹æˆåŠŸçš„è¿”å›ç åŒºåˆ†å¼€ï¼Œè°ƒç”¨æ–¹å¯ä»¥æ•æ‰è¯¥é”™è¯¯ç»™ç”¨æˆ·ä¸€ä¸ªåˆç†çš„æç¤ºã€‚
+    ERR_SVR_FRIENDSHIP_ADD_FRIEND_SEC_RSTR      = 30540,  ///< æ·»åŠ å¥½å‹è¯·æ±‚è¢«å®‰å…¨ç­–ç•¥æ‰“å‡»ï¼Œè¯·å‹¿é¢‘ç¹å‘èµ·æ·»åŠ å¥½å‹è¯·æ±‚ã€‚
+    ERR_SVR_FRIENDSHIP_PENDENCY_NOT_FOUND       = 30614,  ///< è¯·æ±‚çš„æœªå†³ä¸å­˜åœ¨ã€‚
+    ERR_SVR_FRIENDSHIP_DEL_NONFRIEND            = 31704,  ///< ä¸è¯·æ±‚åˆ é™¤çš„å¸å·ä¹‹é—´ä¸å­˜åœ¨å¥½å‹å…³ç³»ã€‚
+    ERR_SVR_FRIENDSHIP_DEL_FRIEND_SEC_RSTR      = 31707,  ///< åˆ é™¤å¥½å‹è¯·æ±‚è¢«å®‰å…¨ç­–ç•¥æ‰“å‡»ï¼Œè¯·å‹¿é¢‘ç¹å‘èµ·åˆ é™¤å¥½å‹è¯·æ±‚ã€‚
+    ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND_EX     = 31804,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    
+    // æœ€è¿‘è”ç³»äººé”™è¯¯ç 
+    
+    ERR_SVR_CONV_ACCOUNT_NOT_FOUND              = 50001,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_CONV_INVALID_PARAMETERS             = 50002,  ///< è¯·æ±‚å‚æ•°é”™è¯¯ï¼Œè¯·æ ¹æ®é”™è¯¯æè¿°æ£€æŸ¥è¯·æ±‚æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_CONV_ADMIN_REQUIRED                 = 50003,  ///< è¯·æ±‚éœ€è¦ App ç®¡ç†å‘˜æƒé™ã€‚
+    ERR_SVR_CONV_INTERNAL_ERROR                 = 50004,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_CONV_NET_TIMEOUT                    = 50005,  ///< ç½‘ç»œè¶…æ—¶ï¼Œè¯·ç¨åé‡è¯•ã€‚
+    
+    // æ¶ˆæ¯é”™è¯¯ç 
+    
+    ERR_SVR_MSG_PKG_PARSE_FAILED                = 20001,  ///< è¯·æ±‚åŒ…éæ³•ï¼Œè¯·æ£€æŸ¥å‘é€æ–¹å’Œæ¥æ”¶æ–¹å¸å·æ˜¯å¦å­˜åœ¨ã€‚
+    ERR_SVR_MSG_INTERNAL_AUTH_FAILED            = 20002,  ///< å†…éƒ¨é‰´æƒå¤±è´¥ã€‚
+    ERR_SVR_MSG_INVALID_ID                      = 20003,  ///< Identifier æ— æ•ˆæˆ–è€… Identifier æœªå¯¼å…¥äº‘é€šä¿¡ IMã€‚
+    ERR_SVR_MSG_NET_ERROR                       = 20004,  ///< ç½‘ç»œå¼‚å¸¸ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_MSG_INTERNAL_ERROR1                 = 20005,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_MSG_PUSH_DENY                       = 20006,  ///< è§¦å‘å‘é€å•èŠæ¶ˆæ¯ä¹‹å‰å›è°ƒï¼ŒApp åå°è¿”å›ç¦æ­¢ä¸‹å‘è¯¥æ¶ˆæ¯ã€‚
+    ERR_SVR_MSG_IN_PEER_BLACKLIST               = 20007,  ///< å‘é€å•èŠæ¶ˆæ¯ï¼Œè¢«å¯¹æ–¹æ‹‰é»‘ï¼Œç¦æ­¢å‘é€ã€‚
+    ERR_SVR_MSG_BOTH_NOT_FRIEND                 = 20009,  ///< æ¶ˆæ¯å‘é€åŒæ–¹äº’ç›¸ä¸æ˜¯å¥½å‹ï¼Œç¦æ­¢å‘é€ï¼ˆé…ç½®å•èŠæ¶ˆæ¯æ ¡éªŒå¥½å‹å…³ç³»æ‰ä¼šå‡ºç°ï¼‰ã€‚
+    ERR_SVR_MSG_NOT_PEER_FRIEND                 = 20010,  ///< å‘é€å•èŠæ¶ˆæ¯ï¼Œè‡ªå·±ä¸æ˜¯å¯¹æ–¹çš„å¥½å‹ï¼ˆå•å‘å…³ç³»ï¼‰ï¼Œç¦æ­¢å‘é€ã€‚
+    ERR_SVR_MSG_NOT_SELF_FRIEND                 = 20011,  ///< å‘é€å•èŠæ¶ˆæ¯ï¼Œå¯¹æ–¹ä¸æ˜¯è‡ªå·±çš„å¥½å‹ï¼ˆå•å‘å…³ç³»ï¼‰ï¼Œç¦æ­¢å‘é€ã€‚
+    ERR_SVR_MSG_SHUTUP_DENY                     = 20012,  ///< å› ç¦è¨€ï¼Œç¦æ­¢å‘é€æ¶ˆæ¯ã€‚
+    ERR_SVR_MSG_REVOKE_TIME_LIMIT               = 20016,  ///< æ¶ˆæ¯æ’¤å›è¶…è¿‡äº†æ—¶é—´é™åˆ¶ï¼ˆé»˜è®¤2åˆ†é’Ÿï¼‰ã€‚
+    ERR_SVR_MSG_DEL_RAMBLE_INTERNAL_ERROR       = 20018,  ///< åˆ é™¤æ¼«æ¸¸å†…éƒ¨é”™è¯¯ã€‚
+    ERR_SVR_MSG_JSON_PARSE_FAILED               = 90001,  ///< JSON æ ¼å¼è§£æå¤±è´¥ï¼Œè¯·æ£€æŸ¥è¯·æ±‚åŒ…æ˜¯å¦ç¬¦åˆ JSON è§„èŒƒã€‚
+    ERR_SVR_MSG_INVALID_JSON_BODY_FORMAT        = 90002,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä¸­ MsgBody ä¸ç¬¦åˆæ¶ˆæ¯æ ¼å¼æè¿°ï¼Œæˆ–è€… MsgBody ä¸æ˜¯ Array ç±»å‹ï¼Œè¯·å‚è€ƒ [TIMMsgElement å¯¹è±¡](https://cloud.tencent.com/document/product/269/2720#.E6.B6.88.E6.81.AF.E5.85.83.E7.B4.A0timmsgelement) çš„å®šä¹‰ã€‚
+    ERR_SVR_MSG_INVALID_TO_ACCOUNT              = 90003,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ç¼ºå°‘ To_Account å­—æ®µæˆ–è€… To_Account å­—æ®µä¸æ˜¯ Integer ç±»å‹
+    ERR_SVR_MSG_INVALID_RAND                    = 90005,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ç¼ºå°‘ MsgRandom å­—æ®µæˆ–è€… MsgRandom å­—æ®µä¸æ˜¯ Integer ç±»å‹
+    ERR_SVR_MSG_INVALID_TIMESTAMP               = 90006,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ç¼ºå°‘ MsgTimeStamp å­—æ®µæˆ–è€… MsgTimeStamp å­—æ®µä¸æ˜¯ Integer ç±»å‹
+    ERR_SVR_MSG_BODY_NOT_ARRAY                  = 90007,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ MsgBody ç±»å‹ä¸æ˜¯ Array ç±»å‹ï¼Œè¯·å°†å…¶ä¿®æ”¹ä¸º Array ç±»å‹
+    ERR_SVR_MSG_ADMIN_REQUIRED                  = 90009,  ///< è¯·æ±‚éœ€è¦ App ç®¡ç†å‘˜æƒé™ã€‚
+    ERR_SVR_MSG_INVALID_JSON_FORMAT             = 90010,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä¸ç¬¦åˆæ¶ˆæ¯æ ¼å¼æè¿°ï¼Œè¯·å‚è€ƒ [TIMMsgElement å¯¹è±¡](https://cloud.tencent.com/document/product/269/2720#.E6.B6.88.E6.81.AF.E5.85.83.E7.B4.A0timmsgelement) çš„å®šä¹‰ã€‚
+    ERR_SVR_MSG_TO_ACCOUNT_COUNT_LIMIT          = 90011,  ///< æ‰¹é‡å‘æ¶ˆæ¯ç›®æ ‡å¸å·è¶…è¿‡500ï¼Œè¯·å‡å°‘ To_Account ä¸­ç›®æ ‡å¸å·æ•°é‡ã€‚
+    ERR_SVR_MSG_TO_ACCOUNT_NOT_FOUND            = 90012,  ///< To_Account æ²¡æœ‰æ³¨å†Œæˆ–ä¸å­˜åœ¨ï¼Œè¯·ç¡®è®¤ To_Account æ˜¯å¦å¯¼å…¥äº‘é€šä¿¡ IM æˆ–è€…æ˜¯å¦æ‹¼å†™é”™è¯¯ã€‚
+    ERR_SVR_MSG_TIME_LIMIT                      = 90026,  ///< æ¶ˆæ¯ç¦»çº¿å­˜å‚¨æ—¶é—´é”™è¯¯ï¼ˆæœ€å¤šä¸èƒ½è¶…è¿‡7å¤©ï¼‰ã€‚
+    ERR_SVR_MSG_INVALID_SYNCOTHERMACHINE        = 90031,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ SyncOtherMachine å­—æ®µä¸æ˜¯ Integer ç±»å‹
+    ERR_SVR_MSG_INVALID_MSGLIFETIME             = 90044,  ///< JSON æ ¼å¼è¯·æ±‚åŒ…ä½“ä¸­ MsgLifeTime å­—æ®µä¸æ˜¯ Integer ç±»å‹
+    ERR_SVR_MSG_ACCOUNT_NOT_FOUND               = 90048,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_MSG_INTERNAL_ERROR2                 = 90994,  ///< æœåŠ¡å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_MSG_INTERNAL_ERROR3                 = 90995,  ///< æœåŠ¡å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_MSG_INTERNAL_ERROR4                 = 91000,  ///< æœåŠ¡å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_MSG_INTERNAL_ERROR5                 = 90992,  ///< æœåŠ¡å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ï¼›å¦‚æœæ‰€æœ‰è¯·æ±‚éƒ½è¿”å›è¯¥é”™è¯¯ç ï¼Œä¸” App é…ç½®äº†ç¬¬ä¸‰æ–¹å›è°ƒï¼Œè¯·æ£€æŸ¥ App æœåŠ¡ç«¯æ˜¯å¦æ­£å¸¸å‘äº‘é€šä¿¡ IM åå°æœåŠ¡ç«¯è¿”å›å›è°ƒç»“æœã€‚
+    ERR_SVR_MSG_BODY_SIZE_LIMIT                 = 93000,  ///< JSON æ•°æ®åŒ…è¶…é•¿ï¼Œæ¶ˆæ¯åŒ…ä½“è¯·ä¸è¦è¶…è¿‡8kã€‚
+    ERR_SVR_MSG_LONGPOLLING_COUNT_LIMIT         = 91101,  ///< Web ç«¯é•¿è½®è¯¢è¢«è¸¢ï¼ˆWeb ç«¯åŒæ—¶åœ¨çº¿å®ä¾‹ä¸ªæ•°è¶…å‡ºé™åˆ¶ï¼‰ã€‚
+    // 120001 - 130000,  ///< å•èŠç¬¬ä¸‰æ–¹å›è°ƒè¿”å›çš„è‡ªå®šä¹‰é”™è¯¯ç ã€‚
+    
+    // ç¾¤ç»„é”™è¯¯ç 
+    
+    ERR_SVR_GROUP_INTERNAL_ERROR                = 10002,  ///< æœåŠ¡ç«¯å†…éƒ¨é”™è¯¯ï¼Œè¯·é‡è¯•ã€‚
+    ERR_SVR_GROUP_API_NAME_ERROR                = 10003,  ///< è¯·æ±‚ä¸­çš„æ¥å£åç§°é”™è¯¯ï¼Œè¯·æ ¸å¯¹æ¥å£åç§°å¹¶é‡è¯•ã€‚
+    ERR_SVR_GROUP_INVALID_PARAMETERS            = 10004,  ///< å‚æ•°éæ³•ï¼Œè¯·æ ¹æ®é”™è¯¯æè¿°æ£€æŸ¥è¯·æ±‚æ˜¯å¦æ­£ç¡®ã€‚
+    ERR_SVR_GROUP_ACOUNT_COUNT_LIMIT            = 10005,  ///< è¯·æ±‚åŒ…ä½“ä¸­æºå¸¦çš„å¸å·æ•°é‡è¿‡å¤šã€‚
+    ERR_SVR_GROUP_FREQ_LIMIT                    = 10006,  ///< æ“ä½œé¢‘ç‡é™åˆ¶ï¼Œè¯·å°è¯•é™ä½è°ƒç”¨çš„é¢‘ç‡ã€‚
+    ERR_SVR_GROUP_PERMISSION_DENY               = 10007,  ///< æ“ä½œæƒé™ä¸è¶³ï¼Œæ¯”å¦‚ Public ç¾¤ç»„ä¸­æ™®é€šæˆå‘˜å°è¯•æ‰§è¡Œè¸¢äººæ“ä½œï¼Œä½†åªæœ‰ App ç®¡ç†å‘˜æ‰æœ‰æƒé™ã€‚
+    ERR_SVR_GROUP_INVALID_REQ                   = 10008,  ///< è¯·æ±‚éæ³•ï¼Œå¯èƒ½æ˜¯è¯·æ±‚ä¸­æºå¸¦çš„ç­¾åä¿¡æ¯éªŒè¯ä¸æ­£ç¡®ï¼Œè¯·å†æ¬¡å°è¯•æˆ– [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) è”ç³»æŠ€æœ¯å®¢æœã€‚
+    ERR_SVR_GROUP_SUPER_NOT_ALLOW_QUIT          = 10009,  ///< è¯¥ç¾¤ä¸å…è®¸ç¾¤ä¸»ä¸»åŠ¨é€€å‡ºã€‚
+    ERR_SVR_GROUP_NOT_FOUND                     = 10010,  ///< ç¾¤ç»„ä¸å­˜åœ¨ï¼Œæˆ–è€…æ›¾ç»å­˜åœ¨è¿‡ï¼Œä½†æ˜¯ç›®å‰å·²ç»è¢«è§£æ•£ã€‚
+    ERR_SVR_GROUP_JSON_PARSE_FAILED             = 10011,  ///< è§£æ JSON åŒ…ä½“å¤±è´¥ï¼Œè¯·æ£€æŸ¥åŒ…ä½“çš„æ ¼å¼æ˜¯å¦ç¬¦åˆ JSON æ ¼å¼ã€‚
+    ERR_SVR_GROUP_INVALID_ID                    = 10012,  ///< å‘èµ·æ“ä½œçš„ Identifier éæ³•ï¼Œè¯·æ£€æŸ¥å‘èµ·æ“ä½œçš„ç”¨æˆ· Identifier æ˜¯å¦å¡«å†™æ­£ç¡®ã€‚
+    ERR_SVR_GROUP_ALLREADY_MEMBER               = 10013,  ///< è¢«é‚€è¯·åŠ å…¥çš„ç”¨æˆ·å·²ç»æ˜¯ç¾¤æˆå‘˜ã€‚
+    ERR_SVR_GROUP_FULL_MEMBER_COUNT             = 10014,  ///< ç¾¤å·²æ»¡å‘˜ï¼Œæ— æ³•å°†è¯·æ±‚ä¸­çš„ç”¨æˆ·åŠ å…¥ç¾¤ç»„ï¼Œå¦‚æœæ˜¯æ‰¹é‡åŠ äººï¼Œå¯ä»¥å°è¯•å‡å°‘åŠ å…¥ç”¨æˆ·çš„æ•°é‡ã€‚
+    ERR_SVR_GROUP_INVALID_GROUPID               = 10015,  ///< ç¾¤ç»„ ID éæ³•ï¼Œè¯·æ£€æŸ¥ç¾¤ç»„ ID æ˜¯å¦å¡«å†™æ­£ç¡®ã€‚
+    ERR_SVR_GROUP_REJECT_FROM_THIRDPARTY        = 10016,  ///< App åå°é€šè¿‡ç¬¬ä¸‰æ–¹å›è°ƒæ‹’ç»æœ¬æ¬¡æ“ä½œã€‚
+    ERR_SVR_GROUP_SHUTUP_DENY                   = 10017,  ///< å› è¢«ç¦è¨€è€Œä¸èƒ½å‘é€æ¶ˆæ¯ï¼Œè¯·æ£€æŸ¥å‘é€è€…æ˜¯å¦è¢«è®¾ç½®ç¦è¨€ã€‚
+    ERR_SVR_GROUP_RSP_SIZE_LIMIT                = 10018,  ///< åº”ç­”åŒ…é•¿åº¦è¶…è¿‡æœ€å¤§åŒ…é•¿ï¼ˆ1MBï¼‰ï¼Œè¯·æ±‚çš„å†…å®¹è¿‡å¤šï¼Œè¯·å°è¯•å‡å°‘å•æ¬¡è¯·æ±‚çš„æ•°æ®é‡ã€‚
+    ERR_SVR_GROUP_ACCOUNT_NOT_FOUND             = 10019,  ///< è¯·æ±‚çš„ç”¨æˆ·å¸å·ä¸å­˜åœ¨ã€‚
+    ERR_SVR_GROUP_GROUPID_IN_USED               = 10021,  ///< ç¾¤ç»„ ID å·²è¢«ä½¿ç”¨ï¼Œè¯·é€‰æ‹©å…¶ä»–çš„ç¾¤ç»„ IDã€‚
+    ERR_SVR_GROUP_SEND_MSG_FREQ_LIMIT           = 10023,  ///< å‘æ¶ˆæ¯çš„é¢‘ç‡è¶…é™ï¼Œè¯·å»¶é•¿ä¸¤æ¬¡å‘æ¶ˆæ¯æ—¶é—´çš„é—´éš”ã€‚
+    ERR_SVR_GROUP_REQ_ALLREADY_BEEN_PROCESSED   = 10024,  ///< æ­¤é‚€è¯·æˆ–è€…ç”³è¯·è¯·æ±‚å·²ç»è¢«å¤„ç†ã€‚
+    ERR_SVR_GROUP_GROUPID_IN_USED_FOR_SUPER     = 10025,  ///< ç¾¤ç»„ ID å·²è¢«ä½¿ç”¨ï¼Œå¹¶ä¸”æ“ä½œè€…ä¸ºç¾¤ä¸»ï¼Œå¯ä»¥ç›´æ¥ä½¿ç”¨ã€‚
+    ERR_SVR_GROUP_SDKAPPID_DENY                 = 10026,  ///< è¯¥ SDKAppID è¯·æ±‚çš„å‘½ä»¤å­—å·²è¢«ç¦ç”¨ï¼Œè¯· [æäº¤å·¥å•](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) è”ç³»å®¢æœã€‚
+    ERR_SVR_GROUP_REVOKE_MSG_NOT_FOUND          = 10030,  ///< è¯·æ±‚æ’¤å›çš„æ¶ˆæ¯ä¸å­˜åœ¨ã€‚
+    ERR_SVR_GROUP_REVOKE_MSG_TIME_LIMIT         = 10031,  ///< æ¶ˆæ¯æ’¤å›è¶…è¿‡äº†æ—¶é—´é™åˆ¶ï¼ˆé»˜è®¤2åˆ†é’Ÿï¼‰ã€‚
+    ERR_SVR_GROUP_REVOKE_MSG_DENY               = 10032,  ///< è¯·æ±‚æ’¤å›çš„æ¶ˆæ¯ä¸æ”¯æŒæ’¤å›æ“ä½œã€‚
+    ERR_SVR_GROUP_NOT_ALLOW_REVOKE_MSG          = 10033,  ///< ç¾¤ç»„ç±»å‹ä¸æ”¯æŒæ¶ˆæ¯æ’¤å›æ“ä½œã€‚
+    ERR_SVR_GROUP_REMOVE_MSG_DENY               = 10034,  ///< è¯¥æ¶ˆæ¯ç±»å‹ä¸æ”¯æŒåˆ é™¤æ“ä½œã€‚
+    ERR_SVR_GROUP_NOT_ALLOW_REMOVE_MSG          = 10035,  ///< éŸ³è§†é¢‘èŠå¤©å®¤å’Œåœ¨çº¿æˆå‘˜å¹¿æ’­å¤§ç¾¤ä¸æ”¯æŒåˆ é™¤æ¶ˆæ¯ã€‚
+    ERR_SVR_GROUP_AVCHATROOM_COUNT_LIMIT        = 10036,  ///< éŸ³è§†é¢‘èŠå¤©å®¤åˆ›å»ºæ•°é‡è¶…è¿‡äº†é™åˆ¶ï¼Œè¯·å‚è€ƒ [ä»·æ ¼è¯´æ˜](https://cloud.tencent.com/document/product/269/11673) è´­ä¹°é¢„ä»˜è´¹å¥—é¤â€œIMéŸ³è§†é¢‘èŠå¤©å®¤â€ã€‚
+    ERR_SVR_GROUP_COUNT_LIMIT                   = 10037,  ///< å•ä¸ªç”¨æˆ·å¯åˆ›å»ºå’ŒåŠ å…¥çš„ç¾¤ç»„æ•°é‡è¶…è¿‡äº†é™åˆ¶ï¼Œè¯·å‚è€ƒ [ä»·æ ¼è¯´æ˜](https://cloud.tencent.com/document/product/269/11673) è´­ä¹°æˆ–å‡çº§é¢„ä»˜è´¹å¥—é¤â€œå•äººå¯åˆ›å»ºä¸åŠ å…¥ç¾¤ç»„æ•°â€ã€‚
+    ERR_SVR_GROUP_MEMBER_COUNT_LIMIT            = 10038,  ///< ç¾¤æˆå‘˜æ•°é‡è¶…è¿‡é™åˆ¶ï¼Œè¯·å‚è€ƒ [ä»·æ ¼è¯´æ˜](https://cloud.tencent.com/document/product/269/11673) è´­ä¹°æˆ–å‡çº§é¢„ä»˜è´¹å¥—é¤â€œæ‰©å±•ç¾¤äººæ•°ä¸Šé™â€ã€‚
+    
+    /////////////////////////////////////////////////////////////////////////////////
+    //
+    //                      ï¼ˆä¸‰ï¼‰V3ç‰ˆæœ¬çš„é”™è¯¯ç (å¾…åºŸå¼ƒ)
+    //
+    /////////////////////////////////////////////////////////////////////////////////
+    
+    ERR_NO_SUCC_RESULT                          = 6003,   ///< æ‰¹é‡æ“ä½œæ— æˆåŠŸç»“æœã€‚
+    ERR_TO_USER_INVALID                         = 6011,   ///< æ— æ•ˆæ¥æ”¶æ–¹ã€‚
+    ERR_REQUEST_TIMEOUT                         = 6012,   ///< è¯·æ±‚è¶…æ—¶ã€‚
+    ERR_INIT_CORE_FAIL                          = 6018,   ///< INIT CORE æ¨¡å—å¤±è´¥ã€‚
+    ERR_EXPIRED_SESSION_NODE                    = 6020,   ///< SessionNode ä¸º null ã€‚
+    ERR_LOGGED_OUT_BEFORE_LOGIN_FINISHED        = 6023,   ///< åœ¨ç™»å½•å®Œæˆå‰è¿›è¡Œäº†ç™»å‡ºï¼ˆåœ¨ç™»å½•æ—¶è¿”å›ï¼‰ã€‚
+    ERR_TLSSDK_NOT_INITIALIZED                  = 6024,   ///< TLS SDK æœªåˆå§‹åŒ–ã€‚
+    ERR_TLSSDK_USER_NOT_FOUND                   = 6025,   ///< TLS SDK æ²¡æœ‰æ‰¾åˆ°ç›¸åº”çš„ç”¨æˆ·ä¿¡æ¯ã€‚
+    ERR_BIND_FAIL_UNKNOWN                       = 6100,   ///< QALSDK æœªçŸ¥åŸå› BINDå¤±è´¥ã€‚
+    ERR_BIND_FAIL_NO_SSOTICKET                  = 6101,   ///< ç¼ºå°‘ SSO ç¥¨æ®ã€‚
+    ERR_BIND_FAIL_REPEATD_BIND                  = 6102,   ///< é‡å¤ BINDã€‚
+    ERR_BIND_FAIL_TINYID_NULL                   = 6103,   ///< TinyId ä¸ºç©ºã€‚
+    ERR_BIND_FAIL_GUID_NULL                     = 6104,   ///< GUID ä¸ºç©ºã€‚
+    ERR_BIND_FAIL_UNPACK_REGPACK_FAILED         = 6105,   ///< è§£æ³¨å†ŒåŒ…å¤±è´¥ã€‚
+    ERR_BIND_FAIL_REG_TIMEOUT                   = 6106,   ///< æ³¨å†Œè¶…æ—¶ã€‚
+    ERR_BIND_FAIL_ISBINDING                     = 6107,   ///< æ­£åœ¨ BIND æ“ä½œä¸­ã€‚
+    ERR_PACKET_FAIL_UNKNOWN                     = 6120,   ///< å‘åŒ…æœªçŸ¥é”™è¯¯ã€‚
+    ERR_PACKET_FAIL_REQ_NO_NET                  = 6121,   ///< å‘é€è¯·æ±‚åŒ…æ—¶æ²¡æœ‰ç½‘ç»œã€‚
+    ERR_PACKET_FAIL_RESP_NO_NET                 = 6122,   ///< å‘é€å›å¤åŒ…æ—¶æ²¡æœ‰ç½‘ç»œã€‚
+    ERR_PACKET_FAIL_REQ_NO_AUTH                 = 6123,   ///< å‘é€è¯·æ±‚åŒ…æ—¶æ²¡æœ‰æƒé™ã€‚
+    ERR_PACKET_FAIL_SSO_ERR                     = 6124,   ///< SSO é”™è¯¯ã€‚
+    ERR_PACKET_FAIL_REQ_TIMEOUT                 = 6125,   ///< è¯·æ±‚è¶…æ—¶ã€‚
+    ERR_PACKET_FAIL_RESP_TIMEOUT                = 6126,   ///< å›å¤è¶…æ—¶ã€‚
+    ERR_PACKET_FAIL_REQ_ON_RESEND               = 6127,   ///< é‡å‘å¤±è´¥ã€‚
+    ERR_PACKET_FAIL_RESP_NO_RESEND              = 6128,   ///< é‡å‘æ—¶æ²¡æœ‰çœŸæ­£å‘é€ã€‚
+    ERR_PACKET_FAIL_FLOW_SAVE_FILTERED          = 6129,   ///< ä¿å­˜è¢«è¿‡æ»¤ã€‚
+    ERR_PACKET_FAIL_REQ_OVER_LOAD               = 6130,   ///< å‘é€è¿‡è½½ã€‚
+    ERR_PACKET_FAIL_LOGIC_ERR                   = 6131,   ///< æ•°æ®é€»è¾‘é”™è¯¯ã€‚
+    ERR_FRIENDSHIP_PROXY_NOT_SYNCED             = 6150,   ///< proxy_manager æ²¡æœ‰å®ŒæˆæœåŠ¡ç«¯æ•°æ®åŒæ­¥ã€‚
+    ERR_FRIENDSHIP_PROXY_SYNCING                = 6151,   ///< proxy_manager æ­£åœ¨è¿›è¡ŒæœåŠ¡ç«¯æ•°æ®åŒæ­¥ã€‚
+    ERR_FRIENDSHIP_PROXY_SYNCED_FAIL            = 6152,   ///< proxy_manager åŒæ­¥å¤±è´¥ã€‚
+    ERR_FRIENDSHIP_PROXY_LOCAL_CHECK_ERR        = 6153,   ///< proxy_manager è¯·æ±‚å‚æ•°ï¼Œåœ¨æœ¬åœ°æ£€æŸ¥ä¸åˆæ³•ã€‚
+    ERR_GROUP_INVALID_FIELD                     = 6160,   ///< Group assistant è¯·æ±‚å­—æ®µä¸­åŒ…å«éé¢„è®¾å­—æ®µã€‚
+    ERR_GROUP_STORAGE_DISABLED                  = 6161,   ///< Group assistant ç¾¤èµ„æ–™æœ¬åœ°å­˜å‚¨æ²¡æœ‰å¼€å¯ã€‚
+    ERR_LOADGRPINFO_FAILED                      = 6162,   ///< åŠ è½½ç¾¤èµ„æ–™å¤±è´¥ã€‚
+    ERR_REQ_NO_NET_ON_REQ                       = 6200,   ///< è¯·æ±‚çš„æ—¶å€™æ²¡æœ‰ç½‘ç»œã€‚
+    ERR_REQ_NO_NET_ON_RSP                       = 6201,   ///< å“åº”çš„æ—¶å€™æ²¡æœ‰ç½‘ç»œã€‚
+    ERR_SERIVCE_NOT_READY                       = 6205,   ///< QALSDK æœåŠ¡æœªå°±ç»ªã€‚
+    ERR_LOGIN_AUTH_FAILED                       = 6207,   ///< è´¦å·è®¤è¯å¤±è´¥ï¼ˆ TinyId è½¬æ¢å¤±è´¥ï¼‰ã€‚
+    ERR_NEVER_CONNECT_AFTER_LAUNCH              = 6209,   ///< åœ¨åº”ç”¨å¯åŠ¨åæ²¡æœ‰å°è¯•è”ç½‘ã€‚
+    ERR_REQ_FAILED                              = 6210,   ///< QALSDK æ‰§è¡Œå¤±è´¥ã€‚
+    ERR_REQ_INVALID_REQ                         = 6211,   ///< è¯·æ±‚éæ³•ï¼ŒtoMsgService éæ³•ã€‚
+    ERR_REQ_OVERLOADED                          = 6212,   ///< è¯·æ±‚é˜Ÿåˆ—æ»¡ã€‚
+    ERR_REQ_KICK_OFF                            = 6213,   ///< å·²ç»è¢«å…¶ä»–ç»ˆç«¯è¸¢äº†ã€‚
+    ERR_REQ_SERVICE_SUSPEND                     = 6214,   ///< æœåŠ¡è¢«æš‚åœã€‚
+    ERR_REQ_INVALID_SIGN                        = 6215,   ///< SSO ç­¾åé”™è¯¯ã€‚
+    ERR_REQ_INVALID_COOKIE                      = 6216,   ///< SSO cookie æ— æ•ˆã€‚
+    ERR_LOGIN_TLS_RSP_PARSE_FAILED              = 6217,   ///< ç™»å½•æ—¶ TLS SDK å›åŒ…æ ¡éªŒï¼ŒåŒ…ä½“é•¿åº¦é”™è¯¯ã€‚
+    ERR_LOGIN_OPENMSG_TIMEOUT                   = 6218,   ///< ç™»å½•æ—¶ OPENSTATSVC å‘ OPENMSG ä¸ŠæŠ¥çŠ¶æ€è¶…æ—¶ã€‚
+    ERR_LOGIN_OPENMSG_RSP_PARSE_FAILED          = 6219,   ///< ç™»å½•æ—¶ OPENSTATSVC å‘ OPENMSG ä¸ŠæŠ¥çŠ¶æ€æ—¶è§£æå›åŒ…å¤±è´¥ã€‚
+    ERR_LOGIN_TLS_DECRYPT_FAILED                = 6220,   ///< ç™»å½•æ—¶ TLS SDK è§£å¯†å¤±è´¥ã€‚
+    ERR_WIFI_NEED_AUTH                          = 6221,   ///< WIFI éœ€è¦è®¤è¯ã€‚
+    ERR_USER_CANCELED                           = 6222,   ///< ç”¨æˆ·å·²å–æ¶ˆã€‚
+    ERR_REVOKE_TIME_LIMIT_EXCEED                = 6223,   ///< æ¶ˆæ¯æ’¤å›è¶…è¿‡äº†æ—¶é—´é™åˆ¶ï¼ˆé»˜è®¤2åˆ†é’Ÿï¼‰ã€‚
+    ERR_LACK_UGC_EXT                            = 6224,   ///< ç¼ºå°‘ UGC æ‰©å±•åŒ…ã€‚
+    ERR_AUTOLOGIN_NEED_USERSIG                  = 6226,   ///< è‡ªåŠ¨ç™»å½•ï¼Œæœ¬åœ°ç¥¨æ®è¿‡æœŸï¼Œéœ€è¦ UserSig æ‰‹åŠ¨ç™»å½•ã€‚
+    ERR_QAL_NO_SHORT_CONN_AVAILABLE             = 6300,   ///< æ²¡æœ‰å¯ç”¨çš„çŸ­è¿æ¥ SSO ã€‚
+    ERR_REQ_CONTENT_ATTACK                      = 80101,  ///< æ¶ˆæ¯å†…å®¹å®‰å…¨æ‰“å‡»ã€‚
+    ERR_LOGIN_SIG_EXPIRE                        = 70101,  ///< ç™»å½•è¿”å›ï¼Œç¥¨æ®è¿‡æœŸã€‚
+    ERR_SDK_HAD_INITIALIZED                     = 90101,  ///< IM SDK å·²ç»åˆå§‹åŒ–æ— éœ€é‡å¤åˆå§‹åŒ–ã€‚
+    ERR_OPENBDH_BASE                            = 115000, ///< OpenBDH é”™è¯¯ç åŸºã€‚
+    ERR_REQUEST_NO_NET_ONREQ                    = 6250,   ///< è¯·æ±‚æ—¶æ²¡æœ‰ç½‘ç»œï¼Œè¯·ç­‰ç½‘ç»œæ¢å¤åé‡è¯•ã€‚
+    ERR_REQUEST_NO_NET_ONRSP                    = 6251,   ///< å“åº”æ—¶æ²¡æœ‰ç½‘ç»œï¼Œè¯·ç­‰ç½‘ç»œæ¢å¤åé‡è¯•ã€‚
+    ERR_REQUEST_FAILED                          = 6252,   ///< QALSDK æ‰§è¡Œå¤±è´¥ã€‚
+    ERR_REQUEST_INVALID_REQ                     = 6253,   ///< è¯·æ±‚éæ³•ï¼ŒtoMsgService éæ³•ã€‚
+    ERR_REQUEST_OVERLOADED                      = 6254,   ///< è¯·æ±‚é˜Ÿåˆ—æº€ã€‚
+    ERR_REQUEST_KICK_OFF                        = 6255,   ///< å·²ç»è¢«å…¶ä»–ç»ˆç«¯è¸¢äº†ã€‚
+    ERR_REQUEST_SERVICE_SUSPEND                 = 6256,   ///< æœåŠ¡è¢«æš‚åœã€‚
+    ERR_REQUEST_INVALID_SIGN                    = 6257,   ///< SSO ç­¾åé”™è¯¯ã€‚
+    ERR_REQUEST_INVALID_COOKIE                  = 6258,   ///< SSO cookie æ— æ•ˆã€‚
 };
 
 
-/// @name ³£ÓÃºêºÍ»ù´¡ÅäÖÃÑ¡Ïî
+/// @name å¸¸ç”¨å®å’ŒåŸºç¡€é…ç½®é€‰é¡¹
 /// @{
 /**
-* @brief µ÷ÓÃ½Ó¿ÚµÄ·µ»ØÖµ
+* @brief è°ƒç”¨æ¥å£çš„è¿”å›å€¼
 *
 * @note
-* Èô½Ó¿Ú²ÎÊıÖĞÓĞ»Øµ÷£¬Ö»ÓĞµ±½Ó¿Ú·µ»ØTIM_SUCCÊ±£¬»Øµ÷²Å»á±»µ÷ÓÃ
+* è‹¥æ¥å£å‚æ•°ä¸­æœ‰å›è°ƒï¼Œåªæœ‰å½“æ¥å£è¿”å›TIM_SUCCæ—¶ï¼Œå›è°ƒæ‰ä¼šè¢«è°ƒç”¨
 */
 enum TIMResult {
-    TIM_SUCC = 0,          // ½Ó¿Úµ÷ÓÃ³É¹¦
-    TIM_ERR_SDKUNINIT = -1,// ½Ó¿Úµ÷ÓÃÊ§°Ü£¬ImSDKÎ´³õÊ¼»¯
-    TIM_ERR_NOTLOGIN = -2, // ½Ó¿Úµ÷ÓÃÊ§°Ü£¬ÓÃ»§Î´µÇÂ¼
-    TIM_ERR_JSON = -3,     // ½Ó¿Úµ÷ÓÃÊ§°Ü£¬´íÎóµÄJson¸ñÊ½»òJson Key
-    TIM_ERR_PARAM = -4,    // ½Ó¿Úµ÷ÓÃ³É¹¦£¬²ÎÊı´íÎó
-    TIM_ERR_CONV = -5,     // ½Ó¿Úµ÷ÓÃ³É¹¦£¬ÎŞĞ§µÄ»á»°
-    TIM_ERR_GROUP = -6,    // ½Ó¿Úµ÷ÓÃ³É¹¦£¬ÎŞĞ§µÄÈº×é
+    TIM_SUCC = 0,          // æ¥å£è°ƒç”¨æˆåŠŸ
+    TIM_ERR_SDKUNINIT = -1,// æ¥å£è°ƒç”¨å¤±è´¥ï¼ŒImSDKæœªåˆå§‹åŒ–
+    TIM_ERR_NOTLOGIN = -2, // æ¥å£è°ƒç”¨å¤±è´¥ï¼Œç”¨æˆ·æœªç™»å½•
+    TIM_ERR_JSON = -3,     // æ¥å£è°ƒç”¨å¤±è´¥ï¼Œé”™è¯¯çš„Jsonæ ¼å¼æˆ–Json Key
+    TIM_ERR_PARAM = -4,    // æ¥å£è°ƒç”¨æˆåŠŸï¼Œå‚æ•°é”™è¯¯
+    TIM_ERR_CONV = -5,     // æ¥å£è°ƒç”¨æˆåŠŸï¼Œæ— æ•ˆçš„ä¼šè¯
+    TIM_ERR_GROUP = -6,    // æ¥å£è°ƒç”¨æˆåŠŸï¼Œæ— æ•ˆçš„ç¾¤ç»„
 };
 
 /**
-* @brief ÈÕÖ¾¼¶±ğ
+* @brief æ—¥å¿—çº§åˆ«
 */
 enum TIMLogLevel {
-    kTIMLog_Off,     // ¹Ø±ÕÈÕÖ¾Êä³ö
-    kTIMLog_Verbose, // ¿ª·¢µ÷ÊÔ¹ı³ÌÖĞÒ»Ğ©ÏêÏ¸ĞÅÏ¢ÈÕÖ¾
-    kTIMLog_Debug,   // µ÷ÊÔÈÕÖ¾
-    kTIMLog_Info,    // ĞÅÏ¢ÈÕÖ¾
-    kTIMLog_Warn,    // ¾¯¸æÈÕÖ¾
-    kTIMLog_Error,   // ´íÎóÈÕÖ¾
-    kTIMLog_Assert,  // ¶ÏÑÔÈÕÖ¾
+    kTIMLog_Off,     // å…³é—­æ—¥å¿—è¾“å‡º
+    kTIMLog_Verbose, // å¼€å‘è°ƒè¯•è¿‡ç¨‹ä¸­ä¸€äº›è¯¦ç»†ä¿¡æ¯æ—¥å¿—
+    kTIMLog_Debug,   // è°ƒè¯•æ—¥å¿—
+    kTIMLog_Info,    // ä¿¡æ¯æ—¥å¿—
+    kTIMLog_Warn,    // è­¦å‘Šæ—¥å¿—
+    kTIMLog_Error,   // é”™è¯¯æ—¥å¿—
+    kTIMLog_Assert,  // æ–­è¨€æ—¥å¿—
 };
 
 /**
-* @brief Á¬½ÓÊÂ¼şÀàĞÍ
+* @brief è¿æ¥äº‹ä»¶ç±»å‹
 */
 enum TIMNetworkStatus {
-    kTIMConnected,       // ÒÑÁ¬½Ó
-    kTIMDisconnected,    // Ê§È¥Á¬½Ó
-    kTIMConnecting,      // ÕıÔÚÁ¬½Ó
-    kTIMConnectFailed,   // Á¬½ÓÊ§°Ü
+    kTIMConnected,       // å·²è¿æ¥
+    kTIMDisconnected,    // å¤±å»è¿æ¥
+    kTIMConnecting,      // æ­£åœ¨è¿æ¥
+    kTIMConnectFailed,   // è¿æ¥å¤±è´¥
 };
 
 /**
-* @brief »á»°ÊÂ¼şÀàĞÍ
+* @brief ä¼šè¯äº‹ä»¶ç±»å‹
 */
 enum TIMConvEvent {
-    kTIMConvEvent_Add,    // »á»°ĞÂÔö,±ÈÈçÊÕµ½Ò»ÌõĞÂÏûÏ¢,²úÉúÒ»¸öĞÂµÄ»á»°ÊÇÊÂ¼ş´¥·¢
-    kTIMConvEvent_Del,    // »á»°É¾³ı,±ÈÈç×Ô¼ºÉ¾³ıÄ³»á»°Ê±»á´¥·¢
-    kTIMConvEvent_Update, // »á»°¸üĞÂ,»á»°ÄÚÏûÏ¢µÄÎ´¶Á¼ÆÊı±ä»¯ºÍÊÕµ½ĞÂÏûÏ¢Ê±´¥·¢
+    kTIMConvEvent_Add,    // ä¼šè¯æ–°å¢,æ¯”å¦‚æ”¶åˆ°ä¸€æ¡æ–°æ¶ˆæ¯,äº§ç”Ÿä¸€ä¸ªæ–°çš„ä¼šè¯æ˜¯äº‹ä»¶è§¦å‘
+    kTIMConvEvent_Del,    // ä¼šè¯åˆ é™¤,æ¯”å¦‚è‡ªå·±åˆ é™¤æŸä¼šè¯æ—¶ä¼šè§¦å‘
+    kTIMConvEvent_Update, // ä¼šè¯æ›´æ–°,ä¼šè¯å†…æ¶ˆæ¯çš„æœªè¯»è®¡æ•°å˜åŒ–å’Œæ”¶åˆ°æ–°æ¶ˆæ¯æ—¶è§¦å‘
 };
 
 /**
-* @brief »á»°ÀàĞÍ
+* @brief ä¼šè¯ç±»å‹
 */
 enum TIMConvType {
-    kTIMConv_Invalid, // ÎŞĞ§»á»°
-    kTIMConv_C2C,     // ¸öÈË»á»°
-    kTIMConv_Group,   // Èº×é»á»°
-    kTIMConv_System,  // ÏµÍ³»á»°
+    kTIMConv_Invalid, // æ— æ•ˆä¼šè¯
+    kTIMConv_C2C,     // ä¸ªäººä¼šè¯
+    kTIMConv_Group,   // ç¾¤ç»„ä¼šè¯
+    kTIMConv_System,  // ç³»ç»Ÿä¼šè¯
 };
 
 /**
-* @brief ³õÊ¼»¯ImSDKµÄÅäÖÃ
+* @brief åˆå§‹åŒ–ImSDKçš„é…ç½®
 */
 // Struct SdKConfig JsonKey
-static const char* kTIMSdkConfigConfigFilePath     = "sdk_config_config_file_path";// string, Ö»Ğ´(±ØÌî), ÅäÖÃÎÄ¼şÂ·¾¶
-static const char* kTIMSdkConfigLogFilePath        = "sdk_config_log_file_path";   // string, Ö»Ğ´(±ØÌî), ÈÕÖ¾ÎÄ¼şÂ·¾¶,Ä¬ÈÏÂ·¾¶Îª"/"
+static const char* kTIMSdkConfigConfigFilePath     = "sdk_config_config_file_path";// string, åªå†™(å¿…å¡«), é…ç½®æ–‡ä»¶è·¯å¾„
+static const char* kTIMSdkConfigLogFilePath        = "sdk_config_log_file_path";   // string, åªå†™(å¿…å¡«), æ—¥å¿—æ–‡ä»¶è·¯å¾„,é»˜è®¤è·¯å¾„ä¸º"/"
 // EndStruct
 
 
 /**
-* @brief Èº×é³ÉÔ±ĞÅÏ¢±êÊ¶
+* @brief ç¾¤ç»„æˆå‘˜ä¿¡æ¯æ ‡è¯†
 */
 enum TIMGroupMemberInfoFlag {
-    kTIMGroupMemberInfoFlag_None         = 0x00,       // ÎŞ
-    kTIMGroupMemberInfoFlag_JoinTime     = 0x01,       // ¼ÓÈëÊ±¼ä
-    kTIMGroupMemberInfoFlag_MsgFlag      = 0x01 << 1,  // ÈºÏûÏ¢½ÓÊÕÑ¡Ïî
-    kTIMGroupMemberInfoFlag_MsgSeq       = 0x01 << 2,  // ³ÉÔ±ÒÑ¶ÁÏûÏ¢seq
-    kTIMGroupMemberInfoFlag_MemberRole   = 0x01 << 3,  // ³ÉÔ±½ÇÉ«
-    kTIMGroupMemberInfoFlag_ShutupUntill = 0x01 << 4,  // ½ûÑÔÊ±¼ä¡£0: Ã»ÓĞ½ûÑÔ
-    kTIMGroupMemberInfoFlag_NameCard     = 0x01 << 5,  // ÈºÃûÆ¬
+    kTIMGroupMemberInfoFlag_None         = 0x00,       // æ— 
+    kTIMGroupMemberInfoFlag_JoinTime     = 0x01,       // åŠ å…¥æ—¶é—´
+    kTIMGroupMemberInfoFlag_MsgFlag      = 0x01 << 1,  // ç¾¤æ¶ˆæ¯æ¥æ”¶é€‰é¡¹
+    kTIMGroupMemberInfoFlag_MsgSeq       = 0x01 << 2,  // æˆå‘˜å·²è¯»æ¶ˆæ¯seq
+    kTIMGroupMemberInfoFlag_MemberRole   = 0x01 << 3,  // æˆå‘˜è§’è‰²
+    kTIMGroupMemberInfoFlag_ShutupUntill = 0x01 << 4,  // ç¦è¨€æ—¶é—´ã€‚0: æ²¡æœ‰ç¦è¨€
+    kTIMGroupMemberInfoFlag_NameCard     = 0x01 << 5,  // ç¾¤åç‰‡
 };
 
 /**
-* @brief Èº×é³ÉÔ±½ÇÉ«±êÊ¶
+* @brief ç¾¤ç»„æˆå‘˜è§’è‰²æ ‡è¯†
 */
 enum TIMGroupMemberRoleFlag {
-    kTIMGroupMemberRoleFlag_All    = 0x00,       // »ñÈ¡È«²¿½ÇÉ«ÀàĞÍ
-    kTIMGroupMemberRoleFlag_Owner  = 0x01,       // »ñÈ¡ËùÓĞÕß(ÈºÖ÷)
-    kTIMGroupMemberRoleFlag_Admin  = 0x01 << 1,  // »ñÈ¡¹ÜÀíÔ±£¬²»°üÀ¨ÈºÖ÷
-    kTIMGroupMemberRoleFlag_Member = 0x01 << 2,  // »ñÈ¡ÆÕÍ¨Èº³ÉÔ±£¬²»°üÀ¨ÈºÖ÷ºÍ¹ÜÀíÔ±
+    kTIMGroupMemberRoleFlag_All    = 0x00,       // è·å–å…¨éƒ¨è§’è‰²ç±»å‹
+    kTIMGroupMemberRoleFlag_Owner  = 0x01,       // è·å–æ‰€æœ‰è€…(ç¾¤ä¸»)
+    kTIMGroupMemberRoleFlag_Admin  = 0x01 << 1,  // è·å–ç®¡ç†å‘˜ï¼Œä¸åŒ…æ‹¬ç¾¤ä¸»
+    kTIMGroupMemberRoleFlag_Member = 0x01 << 2,  // è·å–æ™®é€šç¾¤æˆå‘˜ï¼Œä¸åŒ…æ‹¬ç¾¤ä¸»å’Œç®¡ç†å‘˜
 };
 
 /**
-* @brief »ñÈ¡Èº×é³ÉÔ±ĞÅÏ¢µÄÑ¡Ïî
+* @brief è·å–ç¾¤ç»„æˆå‘˜ä¿¡æ¯çš„é€‰é¡¹
 */
 // Struct GroupMemberGetInfoOption JsonKey
-static const char* kTIMGroupMemberGetInfoOptionInfoFlag    = "group_member_get_info_option_info_flag";     // uint64 [TIMGroupMemberInfoFlag](), ¶ÁĞ´(Ñ¡Ìî), ¸ù¾İÏëÒª»ñÈ¡µÄĞÅÏ¢¹ıÂË£¬Ä¬ÈÏÖµÎª0xffffffff(»ñÈ¡È«²¿ĞÅÏ¢)
-static const char* kTIMGroupMemberGetInfoOptionRoleFlag    = "group_member_get_info_option_role_flag";     // uint64 [TIMGroupMemberRoleFlag](), ¶ÁĞ´(Ñ¡Ìî), ¸ù¾İ³ÉÔ±½ÇÉ«¹ıÂË£¬Ä¬ÈÏÖµÎªkTIMGroupMemberRoleFlag_All£¬»ñÈ¡ËùÓĞ½ÇÉ«
-static const char* kTIMGroupMemberGetInfoOptionCustomArray = "group_member_get_info_option_custom_array";  // array string, Ö»Ğ´(Ñ¡Ìî), Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupMemberGetInfoOptionInfoFlag    = "group_member_get_info_option_info_flag";     // uint64 [TIMGroupMemberInfoFlag](), è¯»å†™(é€‰å¡«), æ ¹æ®æƒ³è¦è·å–çš„ä¿¡æ¯è¿‡æ»¤ï¼Œé»˜è®¤å€¼ä¸º0xffffffff(è·å–å…¨éƒ¨ä¿¡æ¯)
+static const char* kTIMGroupMemberGetInfoOptionRoleFlag    = "group_member_get_info_option_role_flag";     // uint64 [TIMGroupMemberRoleFlag](), è¯»å†™(é€‰å¡«), æ ¹æ®æˆå‘˜è§’è‰²è¿‡æ»¤ï¼Œé»˜è®¤å€¼ä¸ºkTIMGroupMemberRoleFlag_Allï¼Œè·å–æ‰€æœ‰è§’è‰²
+static const char* kTIMGroupMemberGetInfoOptionCustomArray = "group_member_get_info_option_custom_array";  // array string, åªå†™(é€‰å¡«), è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 
 /**
-* @brief Èº×é³ÉÔ±ĞÅÏ¢±êÊ¶
+* @brief ç¾¤ç»„æˆå‘˜ä¿¡æ¯æ ‡è¯†
 */
 enum TIMGroupGetInfoFlag {
     kTIMGroupInfoFlag_None         = 0x00,
-    kTIMGroupInfoFlag_Name         = 0x01,       // Èº×éÃû³Æ
-    kTIMGroupInfoFlag_CreateTime   = 0x01 << 1,  // Èº×é´´½¨Ê±¼ä
-    kTIMGroupInfoFlag_OwnerUin     = 0x01 << 2,  // Èº×é´´½¨ÕßÕÊºÅ
+    kTIMGroupInfoFlag_Name         = 0x01,       // ç¾¤ç»„åç§°
+    kTIMGroupInfoFlag_CreateTime   = 0x01 << 1,  // ç¾¤ç»„åˆ›å»ºæ—¶é—´
+    kTIMGroupInfoFlag_OwnerUin     = 0x01 << 2,  // ç¾¤ç»„åˆ›å»ºè€…å¸å·
     kTIMGroupInfoFlag_Seq          = 0x01 << 3,  
-    kTIMGroupInfoFlag_LastTime     = 0x01 << 4,  // Èº×éĞÅÏ¢×îºóĞŞ¸ÄÊ±¼ä
+    kTIMGroupInfoFlag_LastTime     = 0x01 << 4,  // ç¾¤ç»„ä¿¡æ¯æœ€åä¿®æ”¹æ—¶é—´
     kTIMGroupInfoFlag_NextMsgSeq   = 0x01 << 5,  
-    kTIMGroupInfoFlag_LastMsgTime  = 0X01 << 6,  // ×îĞÂÈº×éÏûÏ¢Ê±¼ä
+    kTIMGroupInfoFlag_LastMsgTime  = 0X01 << 6,  // æœ€æ–°ç¾¤ç»„æ¶ˆæ¯æ—¶é—´
     kTIMGroupInfoFlag_AppId        = 0x01 << 7,
-    kTIMGroupInfoFlag_MemberNum    = 0x01 << 8,  // Èº×é³ÉÔ±ÊıÁ¿
-    kTIMGroupInfoFlag_MaxMemberNum = 0x01 << 9,  // Èº×é³ÉÔ±×î´óÊıÁ¿
-    kTIMGroupInfoFlag_Notification = 0x01 << 10, // Èº¹«¸æÄÚÈİ
-    kTIMGroupInfoFlag_Introduction = 0x01 << 11, // Èº¼ò½éÄÚÈİ
-    kTIMGroupInfoFlag_FaceUrl      = 0x01 << 12, // ÈºÍ·ÏñURL
-    kTIMGroupInfoFlag_AddOpton     = 0x01 << 13, // ¼ÓÈºÑ¡Ïî
-    kTIMGroupInfoFlag_GroupType    = 0x01 << 14, // ÈºÀàĞÍ
-    kTIMGroupInfoFlag_LastMsg      = 0x01 << 15, // Èº×éÄÚ×îĞÂÒ»ÌõÏûÏ¢
-    kTIMGroupInfoFlag_OnlineNum    = 0x01 << 16, // Èº×éÔÚÏß³ÉÔ±Êı
-    kTIMGroupInfoFlag_Visible      = 0x01 << 17, // Èº×éÊÇ·ñ¿É¼û
-    kTIMGroupInfoFlag_Searchable   = 0x01 << 18, // Èº×éÊÇ·ñ¿ÉÒÔËÑË÷
-    kTIMGroupInfoFlag_ShutupAll    = 0x01 << 19, // Èº×éÊÇ·ñÈ«½ûÑÔ
+    kTIMGroupInfoFlag_MemberNum    = 0x01 << 8,  // ç¾¤ç»„æˆå‘˜æ•°é‡
+    kTIMGroupInfoFlag_MaxMemberNum = 0x01 << 9,  // ç¾¤ç»„æˆå‘˜æœ€å¤§æ•°é‡
+    kTIMGroupInfoFlag_Notification = 0x01 << 10, // ç¾¤å…¬å‘Šå†…å®¹
+    kTIMGroupInfoFlag_Introduction = 0x01 << 11, // ç¾¤ç®€ä»‹å†…å®¹
+    kTIMGroupInfoFlag_FaceUrl      = 0x01 << 12, // ç¾¤å¤´åƒURL
+    kTIMGroupInfoFlag_AddOpton     = 0x01 << 13, // åŠ ç¾¤é€‰é¡¹
+    kTIMGroupInfoFlag_GroupType    = 0x01 << 14, // ç¾¤ç±»å‹
+    kTIMGroupInfoFlag_LastMsg      = 0x01 << 15, // ç¾¤ç»„å†…æœ€æ–°ä¸€æ¡æ¶ˆæ¯
+    kTIMGroupInfoFlag_OnlineNum    = 0x01 << 16, // ç¾¤ç»„åœ¨çº¿æˆå‘˜æ•°
+    kTIMGroupInfoFlag_Visible      = 0x01 << 17, // ç¾¤ç»„æ˜¯å¦å¯è§
+    kTIMGroupInfoFlag_Searchable   = 0x01 << 18, // ç¾¤ç»„æ˜¯å¦å¯ä»¥æœç´¢
+    kTIMGroupInfoFlag_ShutupAll    = 0x01 << 19, // ç¾¤ç»„æ˜¯å¦å…¨ç¦è¨€
 };
 
 /**
-* @brief »ñÈ¡Èº×éĞÅÏ¢µÄÑ¡Ïî
+* @brief è·å–ç¾¤ç»„ä¿¡æ¯çš„é€‰é¡¹
 */
 // Struct GroupGetInfoOption JsonKey
-static const char* kTIMGroupGetInfoOptionInfoFlag    = "group_get_info_option_info_flag";     // uint64 [TIMGroupGetInfoFlag](), ¶ÁĞ´(Ñ¡Ìî), ¸ù¾İÏëÒª»ñÈ¡µÄĞÅÏ¢¹ıÂË£¬Ä¬ÈÏÖµÎª0xffffffff(»ñÈ¡È«²¿ĞÅÏ¢)
-static const char* kTIMGroupGetInfoOptionCustomArray = "group_get_info_option_custom_array";  // array string, Ö»Ğ´(Ñ¡Ìî), Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupGetInfoOptionInfoFlag    = "group_get_info_option_info_flag";     // uint64 [TIMGroupGetInfoFlag](), è¯»å†™(é€‰å¡«), æ ¹æ®æƒ³è¦è·å–çš„ä¿¡æ¯è¿‡æ»¤ï¼Œé»˜è®¤å€¼ä¸º0xffffffff(è·å–å…¨éƒ¨ä¿¡æ¯)
+static const char* kTIMGroupGetInfoOptionCustomArray = "group_get_info_option_custom_array";  // array string, åªå†™(é€‰å¡«), è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
-* @brief ÓÃÓÚÅäÖÃĞÅÏ¢
+* @brief ç”¨äºé…ç½®ä¿¡æ¯
 */
 // Struct UserConfig JsonKey
-static const char* kTIMUserConfigIsReadReceipt            = "user_config_is_read_receipt";             // bool, Ö»Ğ´(Ñ¡Ìî), true±íÊ¾ÒªÊÕÒÑ¶Á»ØÖ´ÊÂ¼ş
-static const char* kTIMUserConfigIsSyncReport             = "user_config_is_sync_report";              // bool, Ö»Ğ´(Ñ¡Ìî), true±íÊ¾·şÎñ¶ËÒªÉ¾µôÒÑ¶Á×´Ì¬
-static const char* kTIMUserConfigIsIngoreGroupTipsUnRead  = "user_config_is_ingore_grouptips_unread";  // bool, Ö»Ğ´(Ñ¡Ìî), true±íÊ¾Èºtips²»¼ÆÈëÈºÏûÏ¢ÒÑ¶Á¼ÆÊı
-static const char* kTIMUserConfigIsDisableStorage         = "user_config_is_is_disable_storage";       // bool, Ö»Ğ´(Ñ¡Ìî), ÊÇ·ñ½ûÓÃ±¾µØÊı¾İ¿â£¬true±íÊ¾½ûÓÃ£¬false±íÊ¾²»½ûÓÃ¡£Ä¬ÈÏÊÇfalse
-static const char* kTIMUserConfigGroupGetInfoOption       = "user_config_group_getinfo_option";        // object [GroupGetInfoOption](),  Ö»Ğ´(Ñ¡Ìî),»ñÈ¡Èº×éĞÅÏ¢Ä¬ÈÏÑ¡Ïî
-static const char* kTIMUserConfigGroupMemberGetInfoOption = "user_config_group_member_getinfo_option"; // object [GroupMemberGetInfoOption](),  Ö»Ğ´(Ñ¡Ìî),»ñÈ¡Èº×é³ÉÔ±ĞÅÏ¢Ä¬ÈÏÑ¡Ïî
+static const char* kTIMUserConfigIsReadReceipt            = "user_config_is_read_receipt";             // bool, åªå†™(é€‰å¡«), trueè¡¨ç¤ºè¦æ”¶å·²è¯»å›æ‰§äº‹ä»¶
+static const char* kTIMUserConfigIsSyncReport             = "user_config_is_sync_report";              // bool, åªå†™(é€‰å¡«), trueè¡¨ç¤ºæœåŠ¡ç«¯è¦åˆ æ‰å·²è¯»çŠ¶æ€
+static const char* kTIMUserConfigIsIngoreGroupTipsUnRead  = "user_config_is_ingore_grouptips_unread";  // bool, åªå†™(é€‰å¡«), trueè¡¨ç¤ºç¾¤tipsä¸è®¡å…¥ç¾¤æ¶ˆæ¯å·²è¯»è®¡æ•°
+static const char* kTIMUserConfigIsDisableStorage         = "user_config_is_is_disable_storage";       // bool, åªå†™(é€‰å¡«), æ˜¯å¦ç¦ç”¨æœ¬åœ°æ•°æ®åº“ï¼Œtrueè¡¨ç¤ºç¦ç”¨ï¼Œfalseè¡¨ç¤ºä¸ç¦ç”¨ã€‚é»˜è®¤æ˜¯false
+static const char* kTIMUserConfigGroupGetInfoOption       = "user_config_group_getinfo_option";        // object [GroupGetInfoOption](),  åªå†™(é€‰å¡«),è·å–ç¾¤ç»„ä¿¡æ¯é»˜è®¤é€‰é¡¹
+static const char* kTIMUserConfigGroupMemberGetInfoOption = "user_config_group_member_getinfo_option"; // object [GroupMemberGetInfoOption](),  åªå†™(é€‰å¡«),è·å–ç¾¤ç»„æˆå‘˜ä¿¡æ¯é»˜è®¤é€‰é¡¹
 // EndStruct
 
 /**
-* @brief HTTP´úÀíĞÅÏ¢
+* @brief HTTPä»£ç†ä¿¡æ¯
 */
 // Struct HttpProxyInfo JsonKey
-static const char* kTIMHttpProxyInfoIp      = "http_proxy_info_ip";   // string, Ö»Ğ´(±ØÌî), ´úÀíµÄIP
-static const char* kTIMHttpProxyInfoPort    = "http_proxy_info_port"; // int,    Ö»Ğ´(±ØÌî), ´úÀíµÄ¶Ë¿Ú
+static const char* kTIMHttpProxyInfoIp      = "http_proxy_info_ip";   // string, åªå†™(å¿…å¡«), ä»£ç†çš„IP
+static const char* kTIMHttpProxyInfoPort    = "http_proxy_info_port"; // int,    åªå†™(å¿…å¡«), ä»£ç†çš„ç«¯å£
 // EndStruct
 
 /**
-* @brief SOCKS5´úÀíĞÅÏ¢
+* @brief SOCKS5ä»£ç†ä¿¡æ¯
 */
 // Struct Socks5ProxyInfo JsonKey
-static const char* kTIMSocks5ProxyInfoIp       = "socks5_proxy_info_ip";       // string, Ö»Ğ´(±ØÌî), socks5´úÀíµÄIP
-static const char* kTIMSocks5ProxyInfoPort     = "socks5_proxy_info_port";     // int,    Ö»Ğ´(±ØÌî), socks5´úÀíµÄ¶Ë¿Ú
-static const char* kTIMSocks5ProxyInfoUserName = "socks5_proxy_info_username"; // string, Ö»Ğ´(Ñ¡Ìî), ÈÏÖ¤µÄÓÃ»§Ãû
-static const char* kTIMSocks5ProxyInfoPassword = "socks5_proxy_info_password"; // string, Ö»Ğ´(Ñ¡Ìî), ÈÏÖ¤µÄÃÜÂë
+static const char* kTIMSocks5ProxyInfoIp       = "socks5_proxy_info_ip";       // string, åªå†™(å¿…å¡«), socks5ä»£ç†çš„IP
+static const char* kTIMSocks5ProxyInfoPort     = "socks5_proxy_info_port";     // int,    åªå†™(å¿…å¡«), socks5ä»£ç†çš„ç«¯å£
+static const char* kTIMSocks5ProxyInfoUserName = "socks5_proxy_info_username"; // string, åªå†™(é€‰å¡«), è®¤è¯çš„ç”¨æˆ·å
+static const char* kTIMSocks5ProxyInfoPassword = "socks5_proxy_info_password"; // string, åªå†™(é€‰å¡«), è®¤è¯çš„å¯†ç 
 // EndStruct
 
 /**
-* @brief ¸üĞÂÅäÖÃ
-* > ×Ô¶¨ÒåÊı¾İ
-* + ¿ª·¢Õß¿ÉÒÔ×Ô¶¨ÒåµÄÊı¾İ(³¤¶ÈÏŞÖÆÎª64¸ö×Ö½Ú)£¬ImSDKÖ»¸ºÔğÍ¸´«¸øÔÆÍ¨ĞÅIMºóÌ¨ºó£¬¿ÉÒÔÍ¨¹ıµÚÈı·½»Øµ÷[×´Ì¬±ä¸ü»Øµ÷](https://cloud.tencent.com/document/product/269/2570)¸æÖª¿ª·¢ÕßÒµÎñºóÌ¨¡£
-* > HTTP´úÀí
-* + HTTP´úÀíÖ÷ÒªÓÃÔÚ·¢ËÍÍ¼Æ¬¡¢ÓïÒô¡¢ÎÄ¼ş¡¢Î¢ÊÓÆµµÈÏûÏ¢Ê±£¬½«Ïà¹ØÎÄ¼şÉÏ´«µ½COS£¬ÒÔ¼°½ÓÊÕµ½Í¼Æ¬¡¢ÓïÒô¡¢ÎÄ¼ş¡¢Î¢ÊÓÆµµÈÏûÏ¢£¬½«Ïà¹ØÎÄ¼şÏÂÔØµ½±¾µØÊ±ÓÃµ½¡£
-*   ÉèÖÃÊ±£¬ÉèÖÃµÄIP²»ÄÜÎª¿Õ£¬¶Ë¿Ú²»ÄÜÎª0.Èç¹ûĞèÒªÈ¡ÏûHTTP´úÀí£¬Ö»Ğè½«´úÀíµÄIPÉèÖÃÎª¿Õ×Ö·û´®£¬¶Ë¿ÚÉèÖÃÎª0
-* > SOCKS5´úÀí
-* + SOCKS5´úÀíĞèÒªÔÚ³õÊ¼»¯Ö®Ç°ÉèÖÃ¡£ÉèÖÃÖ®ºóImSDK·¢ËÍµÄËùÓĞĞ­Òé»áÍ¨¹ıSOCKS5´úÀí·şÎñÆ÷·¢ËÍµÄÔÆÍ¨ĞÅIMºóÌ¨¡£
+* @brief æ›´æ–°é…ç½®
+* > è‡ªå®šä¹‰æ•°æ®
+* + å¼€å‘è€…å¯ä»¥è‡ªå®šä¹‰çš„æ•°æ®(é•¿åº¦é™åˆ¶ä¸º64ä¸ªå­—èŠ‚)ï¼ŒImSDKåªè´Ÿè´£é€ä¼ ç»™äº‘é€šä¿¡IMåå°åï¼Œå¯ä»¥é€šè¿‡ç¬¬ä¸‰æ–¹å›è°ƒ[çŠ¶æ€å˜æ›´å›è°ƒ](https://cloud.tencent.com/document/product/269/2570)å‘ŠçŸ¥å¼€å‘è€…ä¸šåŠ¡åå°ã€‚
+* > HTTPä»£ç†
+* + HTTPä»£ç†ä¸»è¦ç”¨åœ¨å‘é€å›¾ç‰‡ã€è¯­éŸ³ã€æ–‡ä»¶ã€å¾®è§†é¢‘ç­‰æ¶ˆæ¯æ—¶ï¼Œå°†ç›¸å…³æ–‡ä»¶ä¸Šä¼ åˆ°COSï¼Œä»¥åŠæ¥æ”¶åˆ°å›¾ç‰‡ã€è¯­éŸ³ã€æ–‡ä»¶ã€å¾®è§†é¢‘ç­‰æ¶ˆæ¯ï¼Œå°†ç›¸å…³æ–‡ä»¶ä¸‹è½½åˆ°æœ¬åœ°æ—¶ç”¨åˆ°ã€‚
+*   è®¾ç½®æ—¶ï¼Œè®¾ç½®çš„IPä¸èƒ½ä¸ºç©ºï¼Œç«¯å£ä¸èƒ½ä¸º0.å¦‚æœéœ€è¦å–æ¶ˆHTTPä»£ç†ï¼Œåªéœ€å°†ä»£ç†çš„IPè®¾ç½®ä¸ºç©ºå­—ç¬¦ä¸²ï¼Œç«¯å£è®¾ç½®ä¸º0
+* > SOCKS5ä»£ç†
+* + SOCKS5ä»£ç†éœ€è¦åœ¨åˆå§‹åŒ–ä¹‹å‰è®¾ç½®ã€‚è®¾ç½®ä¹‹åImSDKå‘é€çš„æ‰€æœ‰åè®®ä¼šé€šè¿‡SOCKS5ä»£ç†æœåŠ¡å™¨å‘é€çš„äº‘é€šä¿¡IMåå°ã€‚
 */
 // Struct SetConfig JsonKey
-static const char* kTIMSetConfigLogLevel           = "set_config_log_level";             // uint [TIMLogLevel](),  Ö»Ğ´(Ñ¡Ìî), Êä³öµ½ÈÕÖ¾ÎÄ¼şµÄÈÕ×Ó¼¶±ğ
-static const char* kTIMSetConfigCackBackLogLevel   = "set_config_callback_log_level";    // uint [TIMLogLevel](),  Ö»Ğ´(Ñ¡Ìî), ÈÕ×Ó»Øµ÷µÄÈÕÖ¾¼¶±ğ 
-static const char* kTIMSetConfigIsLogOutputConsole = "set_config_is_log_output_console"; // bool,                  Ö»Ğ´(Ñ¡Ìî), ÊÇ·ñÊä³öµ½¿ØÖÆÌ¨ 
-static const char* kTIMSetConfigUserConfig         = "set_config_user_config";           // object [UserConfig](), Ö»Ğ´(Ñ¡Ìî), ÓÃ»§ÅäÖÃ
-static const char* kTIMSetConfigUserDefineData     = "set_config_user_define_data";      // string,                Ö»Ğ´(Ñ¡Ìî), ×Ô¶¨ÒåÊı¾İ£¬Èç¹ûĞèÒª£¬³õÊ¼»¯Ç°ÉèÖÃ
-static const char* kTIMSetConfigHttpProxyInfo      = "set_config_http_proxy_info";       // object [HttpProxyInfo](),  Ö»Ğ´(Ñ¡Ìî), ÉèÖÃHTTP´úÀí£¬Èç¹ûĞèÒª£¬ÔÚ·¢ËÍÍ¼Æ¬¡¢ÎÄ¼ş¡¢ÓïÒô¡¢ÊÓÆµÇ°ÉèÖÃ
-static const char* kTIMSetConfigSocks5ProxyInfo    = "set_config_socks5_proxy_info";     // object [Socks5ProxyInfo](), Ö»Ğ´(Ñ¡Ìî), ÉèÖÃSOCKS5´úÀí£¬Èç¹ûĞèÒª£¬³õÊ¼»¯Ç°ÉèÖÃ
+static const char* kTIMSetConfigLogLevel           = "set_config_log_level";             // uint [TIMLogLevel](),  åªå†™(é€‰å¡«), è¾“å‡ºåˆ°æ—¥å¿—æ–‡ä»¶çš„æ—¥å­çº§åˆ«
+static const char* kTIMSetConfigCackBackLogLevel   = "set_config_callback_log_level";    // uint [TIMLogLevel](),  åªå†™(é€‰å¡«), æ—¥å­å›è°ƒçš„æ—¥å¿—çº§åˆ« 
+static const char* kTIMSetConfigIsLogOutputConsole = "set_config_is_log_output_console"; // bool,                  åªå†™(é€‰å¡«), æ˜¯å¦è¾“å‡ºåˆ°æ§åˆ¶å° 
+static const char* kTIMSetConfigUserConfig         = "set_config_user_config";           // object [UserConfig](), åªå†™(é€‰å¡«), ç”¨æˆ·é…ç½®
+static const char* kTIMSetConfigUserDefineData     = "set_config_user_define_data";      // string,                åªå†™(é€‰å¡«), è‡ªå®šä¹‰æ•°æ®ï¼Œå¦‚æœéœ€è¦ï¼Œåˆå§‹åŒ–å‰è®¾ç½®
+static const char* kTIMSetConfigHttpProxyInfo      = "set_config_http_proxy_info";       // object [HttpProxyInfo](),  åªå†™(é€‰å¡«), è®¾ç½®HTTPä»£ç†ï¼Œå¦‚æœéœ€è¦ï¼Œåœ¨å‘é€å›¾ç‰‡ã€æ–‡ä»¶ã€è¯­éŸ³ã€è§†é¢‘å‰è®¾ç½®
+static const char* kTIMSetConfigSocks5ProxyInfo    = "set_config_socks5_proxy_info";     // object [Socks5ProxyInfo](), åªå†™(é€‰å¡«), è®¾ç½®SOCKS5ä»£ç†ï¼Œå¦‚æœéœ€è¦ï¼Œåˆå§‹åŒ–å‰è®¾ç½®
 // EndStruct
 /// @}
 
-/// @name ÏûÏ¢¹Ø¼üÀàĞÍ
-/// @brief ÏûÏ¢Ïà¹Øºê¶¨Òå£¬ÒÔ¼°Ïà¹Ø½á¹¹³ÉÔ±´æÈ¡Json Key¶¨Òå
+/// @name æ¶ˆæ¯å…³é”®ç±»å‹
+/// @brief æ¶ˆæ¯ç›¸å…³å®å®šä¹‰ï¼Œä»¥åŠç›¸å…³ç»“æ„æˆå‘˜å­˜å–Json Keyå®šä¹‰
 /// @{
 /**
-* @brief ÏûÏ¢µ±Ç°×´Ì¬¶¨Òå
+* @brief æ¶ˆæ¯å½“å‰çŠ¶æ€å®šä¹‰
 */
 enum TIMMsgStatus {
-    kTIMMsg_Sending = 1,        // ÏûÏ¢ÕıÔÚ·¢ËÍ
-    kTIMMsg_SendSucc = 2,       // ÏûÏ¢·¢ËÍ³É¹¦
-    kTIMMsg_SendFail = 3,       // ÏûÏ¢·¢ËÍÊ§°Ü
-    kTIMMsg_Deleted = 4,        // ÏûÏ¢ÒÑÉ¾³ı
-    kTIMMsg_LocalImported = 5,  // ÏûÏ¢µ¼Èë×´Ì¬
-    kTIMMsg_Revoked = 6,        // ÏûÏ¢³·»Ø×´Ì¬
+    kTIMMsg_Sending = 1,        // æ¶ˆæ¯æ­£åœ¨å‘é€
+    kTIMMsg_SendSucc = 2,       // æ¶ˆæ¯å‘é€æˆåŠŸ
+    kTIMMsg_SendFail = 3,       // æ¶ˆæ¯å‘é€å¤±è´¥
+    kTIMMsg_Deleted = 4,        // æ¶ˆæ¯å·²åˆ é™¤
+    kTIMMsg_LocalImported = 5,  // æ¶ˆæ¯å¯¼å…¥çŠ¶æ€
+    kTIMMsg_Revoked = 6,        // æ¶ˆæ¯æ’¤å›çŠ¶æ€
 };
 
 /**
-* @brief ±êÊ¶ÏûÏ¢µÄÓÅÏÈ¼¶£¬Êı×ÖÔ½´óÓÅÏÈ¼¶Ô½µÍ
+* @brief æ ‡è¯†æ¶ˆæ¯çš„ä¼˜å…ˆçº§ï¼Œæ•°å­—è¶Šå¤§ä¼˜å…ˆçº§è¶Šä½
 */
 enum TIMMsgPriority {
-    kTIMMsgPriority_High,   // ÓÅÏÈ¼¶×î¸ß£¬Ò»°ãÎªºì°ü»òÕßÀñÎïÏûÏ¢
-    kTIMMsgPriority_Normal, // ±íÊ¾ÓÅÏÈ¼¶´ÎÖ®£¬½¨ÒéÎªÆÕÍ¨ÏûÏ¢
-    kTIMMsgPriority_Low,    // ½¨ÒéÎªµãÔŞÏûÏ¢µÈ
-    kTIMMsgPriority_Lowest, // ÓÅÏÈ¼¶×îµÍ£¬Ò»°ãÎª³ÉÔ±½øÍËÈºÍ¨Öª(ºóÌ¨ÏÂ·¢)
+    kTIMMsgPriority_High,   // ä¼˜å…ˆçº§æœ€é«˜ï¼Œä¸€èˆ¬ä¸ºçº¢åŒ…æˆ–è€…ç¤¼ç‰©æ¶ˆæ¯
+    kTIMMsgPriority_Normal, // è¡¨ç¤ºä¼˜å…ˆçº§æ¬¡ä¹‹ï¼Œå»ºè®®ä¸ºæ™®é€šæ¶ˆæ¯
+    kTIMMsgPriority_Low,    // å»ºè®®ä¸ºç‚¹èµæ¶ˆæ¯ç­‰
+    kTIMMsgPriority_Lowest, // ä¼˜å…ˆçº§æœ€ä½ï¼Œä¸€èˆ¬ä¸ºæˆå‘˜è¿›é€€ç¾¤é€šçŸ¥(åå°ä¸‹å‘)
 };
 
 /**
-* @brief ÏûÏ¢Json Keys
+* @brief æ¶ˆæ¯Json Keys
 *
 * @note 
-* > ¶ÔÓ¦ElemµÄË³Ğò
-* + Ä¿Ç°ÎÄ¼şºÍÓïÒôElem²»Ò»¶¨»á°´ÕÕÌí¼ÓË³Ğò´«Êä£¬ÆäËûElem°´ÕÕË³Ğò£¬²»¹ı½¨Òé²»Òª¹ıÓÚÒÀÀµElemË³Ğò½øĞĞ´¦Àí£¬Ó¦¸ÃÖğ¸ö°´ÕÕElemÀàĞÍ´¦Àí£¬·ÀÖ¹Òì³£Çé¿öÏÂ½ø³ÌCrash¡£
-* > Õë¶ÔÈº×éµÄºì°üºÍµãÔŞÏûÏ¢
-* + ¶ÔÓÚÖ±²¥³¡¾°£¬»áÓĞµãÔŞºÍ·¢ºì°ü¹¦ÄÜ£¬µãÔŞÏà¶ÔÓÅÏÈ¼¶½ÏµÍ£¬ºì°üÏûÏ¢ÓÅÏÈ¼¶½Ï¸ß£¬¾ßÌåÏûÏ¢ÄÚÈİ¿ÉÒÔÊ¹ÓÃ×Ô¶¨ÒåÏûÏ¢[CustomElem]()½øĞĞ¶¨Òå£¬·¢ËÍÏûÏ¢Ê±£¬¿ÉÍ¨¹ı kTIMMsgPriority ¶¨ÒåÏûÏ¢ÓÅÏÈ¼¶¡£
-* > ÔÄºó¼´·ÙÏûÏ¢
-* + ¿ª·¢ÕßÍ¨¹ıÉèÖÃ kTIMMsgIsOnlineMsg ×Ö¶ÎÎªtrueÊ±£¬±íÊ¾·¢ËÍÔÄºó¼´·ÙÏûÏ¢,¸ÃÏûÏ¢ÓĞÈçÏÂÌØĞÔ
-* >>C2C»á»°,µ±´ËÏûÏ¢·¢ËÍÊ±£¬Ö»ÓĞ¶Ô·½ÔÚÏß£¬¶Ô·½²Å»áÊÕµ½¡£Èç¹ûµ±Ê±ÀëÏß£¬ºóĞøÔÙµÇÂ¼Ò²ÊÕ²»µ½´ËÏûÏ¢¡£
-* >>Èº»á»°,µ±´ËÏûÏ¢·¢ËÍÊ±£¬Ö»ÓĞÈºÀïÔÚÏßµÄ³ÉÔ±²Å»áÊÕµ½¡£Èç¹ûµ±Ê±ÀëÏß£¬ºóĞøÔÙµÇÂ¼Ò²ÊÕ²»µ½´ËÏûÏ¢¡£
-* >>´ËÏûÏ¢·şÎñÆ÷²»»á±£´æ
-* >>´ËÏûÏ¢²»¼ÆÈëÎ´¶Á¼ÆÊı
-* >>´ËÏûÏ¢ÔÚ±¾µØ²»»á´æ´¢
-* > ÏûÏ¢×Ô¶¨Òå×Ö¶Î
-* + ¿ª·¢Õß¿ÉÒÔ¶ÔÏûÏ¢Ôö¼Ó×Ô¶¨Òå×Ö¶Î£¬Èç×Ô¶¨ÒåÕûÊı(Í¨¹ı kTIMMsgCustomInt Ö¸¶¨)¡¢×Ô¶¨Òå¶ş½øÖÆÊı¾İ(Í¨¹ı kTIMMsgCustomStr Ö¸¶¨£¬±ØĞë×ª»»³ÉString£¬Json²»Ö§³Ö¶ş½øÖÆ´«Êä)£¬¿ÉÒÔ¸ù¾İÕâÁ½¸ö×Ö¶Î×ö³ö¸÷ÖÖ²»Í¬Ğ§¹û£¬±ÈÈçÓïÒôÏûÏ¢ÊÇ·ñÒÑ¾­²¥·ÅµÈµÈ¡£ÁíÍâĞèÒª×¢Òâ£¬´Ë×Ô¶¨Òå×Ö¶Î½ö´æ´¢ÓÚ±¾µØ£¬²»»áÍ¬²½µ½Server£¬¸ü»»ÖÕ¶Ë»ñÈ¡²»µ½¡£
+* > å¯¹åº”Elemçš„é¡ºåº
+* + ç›®å‰æ–‡ä»¶å’Œè¯­éŸ³Elemä¸ä¸€å®šä¼šæŒ‰ç…§æ·»åŠ é¡ºåºä¼ è¾“ï¼Œå…¶ä»–ElemæŒ‰ç…§é¡ºåºï¼Œä¸è¿‡å»ºè®®ä¸è¦è¿‡äºä¾èµ–Elemé¡ºåºè¿›è¡Œå¤„ç†ï¼Œåº”è¯¥é€ä¸ªæŒ‰ç…§Elemç±»å‹å¤„ç†ï¼Œé˜²æ­¢å¼‚å¸¸æƒ…å†µä¸‹è¿›ç¨‹Crashã€‚
+* > é’ˆå¯¹ç¾¤ç»„çš„çº¢åŒ…å’Œç‚¹èµæ¶ˆæ¯
+* + å¯¹äºç›´æ’­åœºæ™¯ï¼Œä¼šæœ‰ç‚¹èµå’Œå‘çº¢åŒ…åŠŸèƒ½ï¼Œç‚¹èµç›¸å¯¹ä¼˜å…ˆçº§è¾ƒä½ï¼Œçº¢åŒ…æ¶ˆæ¯ä¼˜å…ˆçº§è¾ƒé«˜ï¼Œå…·ä½“æ¶ˆæ¯å†…å®¹å¯ä»¥ä½¿ç”¨è‡ªå®šä¹‰æ¶ˆæ¯[CustomElem]()è¿›è¡Œå®šä¹‰ï¼Œå‘é€æ¶ˆæ¯æ—¶ï¼Œå¯é€šè¿‡ kTIMMsgPriority å®šä¹‰æ¶ˆæ¯ä¼˜å…ˆçº§ã€‚
+* > é˜…åå³ç„šæ¶ˆæ¯
+* + å¼€å‘è€…é€šè¿‡è®¾ç½® kTIMMsgIsOnlineMsg å­—æ®µä¸ºtrueæ—¶ï¼Œè¡¨ç¤ºå‘é€é˜…åå³ç„šæ¶ˆæ¯,è¯¥æ¶ˆæ¯æœ‰å¦‚ä¸‹ç‰¹æ€§
+* >>C2Cä¼šè¯,å½“æ­¤æ¶ˆæ¯å‘é€æ—¶ï¼Œåªæœ‰å¯¹æ–¹åœ¨çº¿ï¼Œå¯¹æ–¹æ‰ä¼šæ”¶åˆ°ã€‚å¦‚æœå½“æ—¶ç¦»çº¿ï¼Œåç»­å†ç™»å½•ä¹Ÿæ”¶ä¸åˆ°æ­¤æ¶ˆæ¯ã€‚
+* >>ç¾¤ä¼šè¯,å½“æ­¤æ¶ˆæ¯å‘é€æ—¶ï¼Œåªæœ‰ç¾¤é‡Œåœ¨çº¿çš„æˆå‘˜æ‰ä¼šæ”¶åˆ°ã€‚å¦‚æœå½“æ—¶ç¦»çº¿ï¼Œåç»­å†ç™»å½•ä¹Ÿæ”¶ä¸åˆ°æ­¤æ¶ˆæ¯ã€‚
+* >>æ­¤æ¶ˆæ¯æœåŠ¡å™¨ä¸ä¼šä¿å­˜
+* >>æ­¤æ¶ˆæ¯ä¸è®¡å…¥æœªè¯»è®¡æ•°
+* >>æ­¤æ¶ˆæ¯åœ¨æœ¬åœ°ä¸ä¼šå­˜å‚¨
+* > æ¶ˆæ¯è‡ªå®šä¹‰å­—æ®µ
+* + å¼€å‘è€…å¯ä»¥å¯¹æ¶ˆæ¯å¢åŠ è‡ªå®šä¹‰å­—æ®µï¼Œå¦‚è‡ªå®šä¹‰æ•´æ•°(é€šè¿‡ kTIMMsgCustomInt æŒ‡å®š)ã€è‡ªå®šä¹‰äºŒè¿›åˆ¶æ•°æ®(é€šè¿‡ kTIMMsgCustomStr æŒ‡å®šï¼Œå¿…é¡»è½¬æ¢æˆStringï¼ŒJsonä¸æ”¯æŒäºŒè¿›åˆ¶ä¼ è¾“)ï¼Œå¯ä»¥æ ¹æ®è¿™ä¸¤ä¸ªå­—æ®µåšå‡ºå„ç§ä¸åŒæ•ˆæœï¼Œæ¯”å¦‚è¯­éŸ³æ¶ˆæ¯æ˜¯å¦å·²ç»æ’­æ”¾ç­‰ç­‰ã€‚å¦å¤–éœ€è¦æ³¨æ„ï¼Œæ­¤è‡ªå®šä¹‰å­—æ®µä»…å­˜å‚¨äºæœ¬åœ°ï¼Œä¸ä¼šåŒæ­¥åˆ°Serverï¼Œæ›´æ¢ç»ˆç«¯è·å–ä¸åˆ°ã€‚
 */
 // Struct Message JsonKey
-static const char* kTIMMsgElemArray   = "message_elem_array";    //array [Elem](), ¶ÁĞ´(±ØÌî), ÏûÏ¢ÄÚÔªËØÁĞ±í
-static const char* kTIMMsgConvId      = "message_conv_id";       //string,         ¶ÁĞ´(Ñ¡Ìî),       ÏûÏ¢ËùÊô»á»°ID
-static const char* kTIMMsgConvType    = "message_conv_type";     //uint [TIMConvType](), ¶ÁĞ´(Ñ¡Ìî), ÏûÏ¢ËùÊô»á»°ÀàĞÍ
-static const char* kTIMMsgSender      = "message_sender";        //string,         ¶ÁĞ´(Ñ¡Ìî),       ÏûÏ¢µÄ·¢ËÍÕß
-static const char* kTIMMsgPriority    = "message_priority";      //uint [TIMMsgPriority](), ¶ÁĞ´(Ñ¡Ìî), ÏûÏ¢ÓÅÏÈ¼¶
-static const char* kTIMMsgClientTime  = "message_client_time";   //uint64,         ¶ÁĞ´(Ñ¡Ìî),       ¿Í»§¶ËÊ±¼ä
-static const char* kTIMMsgServerTime  = "message_server_time";   //uint64,         ¶ÁĞ´(Ñ¡Ìî),       ·şÎñ¶ËÊ±¼ä
-static const char* kTIMMsgIsFormSelf  = "message_is_from_self";  //bool,           ¶ÁĞ´(Ñ¡Ìî),       ÏûÏ¢ÊÇ·ñÀ´×Ô×Ô¼º
-static const char* kTIMMsgIsRead      = "message_is_read";       //bool,           ¶ÁĞ´(Ñ¡Ìî),       ÏûÏ¢ÊÇ·ñÒÑ¶Á
-static const char* kTIMMsgIsOnlineMsg = "message_is_online_msg"; //bool,           ¶ÁĞ´(Ñ¡Ìî),       ÏûÏ¢ÊÇ·ñÊÇÔÚÏßÏûÏ¢£¬Ä¬ÈÏÎªfalse±íÊ¾ÆÕÍ¨ÏûÏ¢,true±íÊ¾ÔÄºó¼´·ÙÏûÏ¢
-static const char* kTIMMsgIsPeerRead  = "message_is_peer_read";  //bool,           Ö»¶Á,            ÏûÏ¢ÊÇ·ñ±»»á»°¶Ô·½ÒÑ¶Á
-static const char* kTIMMsgStatus      = "message_status";        //uint [TIMMsgStatus](), ¶ÁĞ´(Ñ¡Ìî), ÏûÏ¢µ±Ç°×´Ì¬
-static const char* kTIMMsgUniqueId    = "message_unique_id";     //uint64,         Ö»¶Á,       ÏûÏ¢µÄÎ¨Ò»±êÊ¶
-static const char* kTIMMsgRand        = "message_rand";          //uint64,         Ö»¶Á,       ÏûÏ¢µÄËæ»úÂë
-static const char* kTIMMsgSeq         = "message_seq";           //uint64,         Ö»¶Á,       ÏûÏ¢ĞòÁĞ
-static const char* kTIMMsgCustomInt   = "message_custom_int";    //uint32_t,       ¶ÁĞ´(Ñ¡Ìî), ×Ô¶¨ÒåÕûÊıÖµ×Ö¶Î
-static const char* kTIMMsgCustomStr   = "message_custom_str";    //string,         ¶ÁĞ´(Ñ¡Ìî), ×Ô¶¨ÒåÊı¾İ×Ö¶Î
+static const char* kTIMMsgElemArray   = "message_elem_array";    //array [Elem](), è¯»å†™(å¿…å¡«), æ¶ˆæ¯å†…å…ƒç´ åˆ—è¡¨
+static const char* kTIMMsgConvId      = "message_conv_id";       //string,         è¯»å†™(é€‰å¡«),       æ¶ˆæ¯æ‰€å±ä¼šè¯ID
+static const char* kTIMMsgConvType    = "message_conv_type";     //uint [TIMConvType](), è¯»å†™(é€‰å¡«), æ¶ˆæ¯æ‰€å±ä¼šè¯ç±»å‹
+static const char* kTIMMsgSender      = "message_sender";        //string,         è¯»å†™(é€‰å¡«),       æ¶ˆæ¯çš„å‘é€è€…
+static const char* kTIMMsgPriority    = "message_priority";      //uint [TIMMsgPriority](), è¯»å†™(é€‰å¡«), æ¶ˆæ¯ä¼˜å…ˆçº§
+static const char* kTIMMsgClientTime  = "message_client_time";   //uint64,         è¯»å†™(é€‰å¡«),       å®¢æˆ·ç«¯æ—¶é—´
+static const char* kTIMMsgServerTime  = "message_server_time";   //uint64,         è¯»å†™(é€‰å¡«),       æœåŠ¡ç«¯æ—¶é—´
+static const char* kTIMMsgIsFormSelf  = "message_is_from_self";  //bool,           è¯»å†™(é€‰å¡«),       æ¶ˆæ¯æ˜¯å¦æ¥è‡ªè‡ªå·±
+static const char* kTIMMsgIsRead      = "message_is_read";       //bool,           è¯»å†™(é€‰å¡«),       æ¶ˆæ¯æ˜¯å¦å·²è¯»
+static const char* kTIMMsgIsOnlineMsg = "message_is_online_msg"; //bool,           è¯»å†™(é€‰å¡«),       æ¶ˆæ¯æ˜¯å¦æ˜¯åœ¨çº¿æ¶ˆæ¯ï¼Œé»˜è®¤ä¸ºfalseè¡¨ç¤ºæ™®é€šæ¶ˆæ¯,trueè¡¨ç¤ºé˜…åå³ç„šæ¶ˆæ¯
+static const char* kTIMMsgIsPeerRead  = "message_is_peer_read";  //bool,           åªè¯»,            æ¶ˆæ¯æ˜¯å¦è¢«ä¼šè¯å¯¹æ–¹å·²è¯»
+static const char* kTIMMsgStatus      = "message_status";        //uint [TIMMsgStatus](), è¯»å†™(é€‰å¡«), æ¶ˆæ¯å½“å‰çŠ¶æ€
+static const char* kTIMMsgUniqueId    = "message_unique_id";     //uint64,         åªè¯»,       æ¶ˆæ¯çš„å”¯ä¸€æ ‡è¯†
+static const char* kTIMMsgRand        = "message_rand";          //uint64,         åªè¯»,       æ¶ˆæ¯çš„éšæœºç 
+static const char* kTIMMsgSeq         = "message_seq";           //uint64,         åªè¯»,       æ¶ˆæ¯åºåˆ—
+static const char* kTIMMsgCustomInt   = "message_custom_int";    //uint32_t,       è¯»å†™(é€‰å¡«), è‡ªå®šä¹‰æ•´æ•°å€¼å­—æ®µ
+static const char* kTIMMsgCustomStr   = "message_custom_str";    //string,         è¯»å†™(é€‰å¡«), è‡ªå®šä¹‰æ•°æ®å­—æ®µ
 // EndStruct
 
 /**
-* @brief ÏûÏ¢ÒÑ¶Á»ØÖ´
+* @brief æ¶ˆæ¯å·²è¯»å›æ‰§
 */
 // Struct MessageReceipt JsonKey
-static const char* kTIMMsgReceiptConvId    = "msg_receipt_conv_id";     //string, Ö»¶Á, »á»°ID
-static const char* kTIMMsgReceiptConvType  = "msg_receipt_conv_type";   //uint [TIMConvType](), Ö»¶Á, »á»°ÀàĞÍ
-static const char* kTIMMsgReceiptTimeStamp = "msg_receipt_time_stamp";  //uint64, Ö»¶Á, Ê±¼ä´Á
+static const char* kTIMMsgReceiptConvId    = "msg_receipt_conv_id";     //string, åªè¯», ä¼šè¯ID
+static const char* kTIMMsgReceiptConvType  = "msg_receipt_conv_type";   //uint [TIMConvType](), åªè¯», ä¼šè¯ç±»å‹
+static const char* kTIMMsgReceiptTimeStamp = "msg_receipt_time_stamp";  //uint64, åªè¯», æ—¶é—´æˆ³
 // EndStruct
 
 /**
-* @brief ÔªËØµÄÀàĞÍ
+* @brief å…ƒç´ çš„ç±»å‹
 */
 enum TIMElemType {
-    kTIMElem_Text,           // ÎÄ±¾ÔªËØ
-    kTIMElem_Image,          // Í¼Æ¬ÔªËØ
-    kTIMElem_Sound,          // ÉùÒôÔªËØ
-    kTIMElem_Custom,         // ×Ô¶¨ÒåÔªËØ
-    kTIMElem_File,           // ÎÄ¼şÔªËØ
-    kTIMElem_GroupTips,      // Èº×éÏµÍ³ÏûÏ¢ÔªËØ
-    kTIMElem_Face,           // ±íÇéÔªËØ
-    kTIMElem_Location,       // Î»ÖÃÔªËØ
-    kTIMElem_GroupReport,    // Èº×éÏµÍ³Í¨ÖªÔªËØ
-    kTIMElem_Video,          // ÊÓÆµÔªËØ
+    kTIMElem_Text,           // æ–‡æœ¬å…ƒç´ 
+    kTIMElem_Image,          // å›¾ç‰‡å…ƒç´ 
+    kTIMElem_Sound,          // å£°éŸ³å…ƒç´ 
+    kTIMElem_Custom,         // è‡ªå®šä¹‰å…ƒç´ 
+    kTIMElem_File,           // æ–‡ä»¶å…ƒç´ 
+    kTIMElem_GroupTips,      // ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯å…ƒç´ 
+    kTIMElem_Face,           // è¡¨æƒ…å…ƒç´ 
+    kTIMElem_Location,       // ä½ç½®å…ƒç´ 
+    kTIMElem_GroupReport,    // ç¾¤ç»„ç³»ç»Ÿé€šçŸ¥å…ƒç´ 
+    kTIMElem_Video,          // è§†é¢‘å…ƒç´ 
 };
 
 /**
-* @brief ÔªËØµÄÀàĞÍ
+* @brief å…ƒç´ çš„ç±»å‹
 */
 // Struct Elem JsonKey
-static const char* kTIMElemType         = "elem_type";    // uint [TIMElemType](), ¶ÁĞ´(±ØÌî), ÔªËØÀàĞÍ
+static const char* kTIMElemType         = "elem_type";    // uint [TIMElemType](), è¯»å†™(å¿…å¡«), å…ƒç´ ç±»å‹
 // EndStruct
 
 /**
-* @brief ÎÄ±¾ÔªËØ
+* @brief æ–‡æœ¬å…ƒç´ 
 */
 // Struct TextElem JsonKey
-static const char* kTIMTextElemContent  = "text_elem_content"; // string, ¶ÁĞ´(±ØÌî), ÎÄ±¾ÄÚÈİ
+static const char* kTIMTextElemContent  = "text_elem_content"; // string, è¯»å†™(å¿…å¡«), æ–‡æœ¬å†…å®¹
 // EndStruct
 
 /**
-* @brief ±íÇéÔªËØ
+* @brief è¡¨æƒ…å…ƒç´ 
 *
 * @note 
-* ImSDK²¢²»Ìá¹©±íÇé°ü£¬Èç¹û¿ª·¢ÕßÓĞ±íÇé°ü£¬¿ÉÊ¹ÓÃ kTIMFaceElemIndex ´æ´¢±íÇéÔÚ±íÇé°üÖĞµÄË÷Òı£¬ÓÉÓÃ»§×Ô¶¨Òå¡£
-* »òÕßÖ±½ÓÊ¹ÓÃ kTIMFaceElemBuf ´æ´¢±íÇé¶ş½øÖÆĞÅÏ¢(±ØĞë×ª»»³ÉString£¬Json²»Ö§³Ö¶ş½øÖÆ´«Êä)£¬ÓÉÓÃ»§×Ô¶¨Òå£¬ImSDKÄÚ²¿Ö»×öÍ¸´«¡£
+* ImSDKå¹¶ä¸æä¾›è¡¨æƒ…åŒ…ï¼Œå¦‚æœå¼€å‘è€…æœ‰è¡¨æƒ…åŒ…ï¼Œå¯ä½¿ç”¨ kTIMFaceElemIndex å­˜å‚¨è¡¨æƒ…åœ¨è¡¨æƒ…åŒ…ä¸­çš„ç´¢å¼•ï¼Œç”±ç”¨æˆ·è‡ªå®šä¹‰ã€‚
+* æˆ–è€…ç›´æ¥ä½¿ç”¨ kTIMFaceElemBuf å­˜å‚¨è¡¨æƒ…äºŒè¿›åˆ¶ä¿¡æ¯(å¿…é¡»è½¬æ¢æˆStringï¼ŒJsonä¸æ”¯æŒäºŒè¿›åˆ¶ä¼ è¾“)ï¼Œç”±ç”¨æˆ·è‡ªå®šä¹‰ï¼ŒImSDKå†…éƒ¨åªåšé€ä¼ ã€‚
 */
 // Struct FaceElem JsonKey
-static const char* kTIMFaceElemIndex          = "face_elem_index";  // int,    ¶ÁĞ´(±ØÌî), ±íÇéË÷Òı
-static const char* kTIMFaceElemBuf            = "face_elem_buf";    // string, ¶ÁĞ´(Ñ¡Ìî), ÆäËû¶îÍâÊı¾İ,¿ÉÓÉÓÃ»§×Ô¶¨ÒåÌîĞ´¡£ÈôÒª´«Êä¶ş½øÖÆ£¬Âé·³ÏÈ×ªÂë³É×Ö·û´®¡£JsonÖ»Ö§³Ö×Ö·û´®
+static const char* kTIMFaceElemIndex          = "face_elem_index";  // int,    è¯»å†™(å¿…å¡«), è¡¨æƒ…ç´¢å¼•
+static const char* kTIMFaceElemBuf            = "face_elem_buf";    // string, è¯»å†™(é€‰å¡«), å…¶ä»–é¢å¤–æ•°æ®,å¯ç”±ç”¨æˆ·è‡ªå®šä¹‰å¡«å†™ã€‚è‹¥è¦ä¼ è¾“äºŒè¿›åˆ¶ï¼Œéº»çƒ¦å…ˆè½¬ç æˆå­—ç¬¦ä¸²ã€‚Jsonåªæ”¯æŒå­—ç¬¦ä¸²
 // EndStruct
 
 /**
-* @brief Î»ÖÃÔªËØ
+* @brief ä½ç½®å…ƒç´ 
 */
 // Struct LocationElem JsonKey
-static const char* kTIMLocationElemDesc       = "location_elem_desc";          // string, ¶ÁĞ´(Ñ¡Ìî), Î»ÖÃÃèÊö
-static const char* kTIMLocationElemLongitude  = "location_elem_longitude";     // double, ¶ÁĞ´(±ØÌî), ¾­¶È
-static const char* kTIMLocationElemlatitude   = "location_elem_latitude";      // double, ¶ÁĞ´(±ØÌî), Î³¶È
+static const char* kTIMLocationElemDesc       = "location_elem_desc";          // string, è¯»å†™(é€‰å¡«), ä½ç½®æè¿°
+static const char* kTIMLocationElemLongitude  = "location_elem_longitude";     // double, è¯»å†™(å¿…å¡«), ç»åº¦
+static const char* kTIMLocationElemlatitude   = "location_elem_latitude";      // double, è¯»å†™(å¿…å¡«), çº¬åº¦
 // EndStruct
 
 
 /**
-* @brief Í¼Æ¬ÖÊÁ¿¼¶±ğ
+* @brief å›¾ç‰‡è´¨é‡çº§åˆ«
 */
 enum TIMImageLevel {
-    kTIMImageLevel_Orig,        // Ô­Í¼·¢ËÍ
-    kTIMImageLevel_Compression, // ¸ßÑ¹ËõÂÊÍ¼·¢ËÍ(Í¼Æ¬½ÏĞ¡,Ä¬ÈÏÖµ)
-    kTIMImageLevel_HD,          // ¸ßÇåÍ¼·¢ËÍ(Í¼Æ¬½Ï´ó)
+    kTIMImageLevel_Orig,        // åŸå›¾å‘é€
+    kTIMImageLevel_Compression, // é«˜å‹ç¼©ç‡å›¾å‘é€(å›¾ç‰‡è¾ƒå°,é»˜è®¤å€¼)
+    kTIMImageLevel_HD,          // é«˜æ¸…å›¾å‘é€(å›¾ç‰‡è¾ƒå¤§)
 };
 
 /**
-* @brief Í¼Æ¬ÔªËØ
+* @brief å›¾ç‰‡å…ƒç´ 
 *
 * @note
-* >  Í¼Æ¬¹æ¸ñËµÃ÷£ºÃ¿·ùÍ¼Æ¬ÓĞÈıÖÖ¹æ¸ñ£¬·Ö±ğÊÇOriginal£¨Ô­Í¼£©¡¢Large£¨´óÍ¼£©¡¢Thumb£¨ËõÂÔÍ¼£©¡£
-* >> Ô­Í¼£ºÖ¸ÓÃ»§·¢ËÍµÄÔ­Ê¼Í¼Æ¬£¬³ß´çºÍ´óĞ¡¶¼±£³Ö²»±ä¡£
-* >> ´óÍ¼£ºÊÇ½«Ô­Í¼µÈ±ÈÑ¹Ëõ£¬Ñ¹Ëõºó¿í¡¢¸ßÖĞ½ÏĞ¡µÄÒ»¸öµÈÓÚ720ÏñËØ¡£
-* >> ËõÂÔÍ¼£ºÊÇ½«Ô­Í¼µÈ±ÈÑ¹Ëõ£¬Ñ¹Ëõºó¿í¡¢¸ßÖĞ½ÏĞ¡µÄÒ»¸öµÈÓÚ198ÏñËØ
-* >  Èç¹ûÔ­Í¼³ß´ç¾ÍĞ¡ÓÚ198ÏñËØ£¬ÔòÈıÖÖ¹æ¸ñ¶¼±£³ÖÔ­Ê¼³ß´ç£¬²»ĞèÑ¹Ëõ¡£
-* >  Èç¹ûÔ­Í¼³ß´çÔÚ198-720Ö®¼ä£¬Ôò´óÍ¼ºÍÔ­Í¼Ò»Ñù£¬²»ĞèÑ¹Ëõ¡£
-* >  ÔÚÊÖ»úÉÏÕ¹Ê¾Í¼Æ¬Ê±£¬½¨ÒéÓÅÏÈÕ¹Ê¾ËõÂÔÍ¼£¬ÓÃ»§µ¥»÷ËõÂÔÍ¼Ê±ÔÙÏÂÔØ´óÍ¼£¬µ¥»÷´óÍ¼Ê±ÔÙÏÂÔØÔ­Í¼¡£µ±È»¿ª·¢ÕßÒ²¿ÉÒÔÑ¡ÔñÌø¹ı´óÍ¼£¬µ¥»÷ËõÂÔÍ¼Ê±Ö±½ÓÏÂÔØÔ­Í¼¡£
-* >  ÔÚPad»òPCÉÏÕ¹Ê¾Í¼Æ¬Ê±£¬ÓÉÓÚ·Ö±æÂÊ½Ï´ó£¬ÇÒ»ù±¾¶¼ÊÇWi-Fi»òÓĞÏßÍøÂç£¬½¨ÒéÖ±½ÓÏÔÊ¾´óÍ¼£¬ÓÃ»§µ¥»÷´óÍ¼Ê±ÔÙÏÂÔØÔ­Í¼¡£
+* >  å›¾ç‰‡è§„æ ¼è¯´æ˜ï¼šæ¯å¹…å›¾ç‰‡æœ‰ä¸‰ç§è§„æ ¼ï¼Œåˆ†åˆ«æ˜¯Originalï¼ˆåŸå›¾ï¼‰ã€Largeï¼ˆå¤§å›¾ï¼‰ã€Thumbï¼ˆç¼©ç•¥å›¾ï¼‰ã€‚
+* >> åŸå›¾ï¼šæŒ‡ç”¨æˆ·å‘é€çš„åŸå§‹å›¾ç‰‡ï¼Œå°ºå¯¸å’Œå¤§å°éƒ½ä¿æŒä¸å˜ã€‚
+* >> å¤§å›¾ï¼šæ˜¯å°†åŸå›¾ç­‰æ¯”å‹ç¼©ï¼Œå‹ç¼©åå®½ã€é«˜ä¸­è¾ƒå°çš„ä¸€ä¸ªç­‰äº720åƒç´ ã€‚
+* >> ç¼©ç•¥å›¾ï¼šæ˜¯å°†åŸå›¾ç­‰æ¯”å‹ç¼©ï¼Œå‹ç¼©åå®½ã€é«˜ä¸­è¾ƒå°çš„ä¸€ä¸ªç­‰äº198åƒç´ 
+* >  å¦‚æœåŸå›¾å°ºå¯¸å°±å°äº198åƒç´ ï¼Œåˆ™ä¸‰ç§è§„æ ¼éƒ½ä¿æŒåŸå§‹å°ºå¯¸ï¼Œä¸éœ€å‹ç¼©ã€‚
+* >  å¦‚æœåŸå›¾å°ºå¯¸åœ¨198-720ä¹‹é—´ï¼Œåˆ™å¤§å›¾å’ŒåŸå›¾ä¸€æ ·ï¼Œä¸éœ€å‹ç¼©ã€‚
+* >  åœ¨æ‰‹æœºä¸Šå±•ç¤ºå›¾ç‰‡æ—¶ï¼Œå»ºè®®ä¼˜å…ˆå±•ç¤ºç¼©ç•¥å›¾ï¼Œç”¨æˆ·å•å‡»ç¼©ç•¥å›¾æ—¶å†ä¸‹è½½å¤§å›¾ï¼Œå•å‡»å¤§å›¾æ—¶å†ä¸‹è½½åŸå›¾ã€‚å½“ç„¶å¼€å‘è€…ä¹Ÿå¯ä»¥é€‰æ‹©è·³è¿‡å¤§å›¾ï¼Œå•å‡»ç¼©ç•¥å›¾æ—¶ç›´æ¥ä¸‹è½½åŸå›¾ã€‚
+* >  åœ¨Padæˆ–PCä¸Šå±•ç¤ºå›¾ç‰‡æ—¶ï¼Œç”±äºåˆ†è¾¨ç‡è¾ƒå¤§ï¼Œä¸”åŸºæœ¬éƒ½æ˜¯Wi-Fiæˆ–æœ‰çº¿ç½‘ç»œï¼Œå»ºè®®ç›´æ¥æ˜¾ç¤ºå¤§å›¾ï¼Œç”¨æˆ·å•å‡»å¤§å›¾æ—¶å†ä¸‹è½½åŸå›¾ã€‚
 */
 // Struct ImageElem JsonKey
-static const char* kTIMImageElemOrigPath        = "image_elem_orig_path";        // string, ¶ÁĞ´(±ØÌî), ·¢ËÍÍ¼Æ¬µÄÂ·¾¶
-static const char* kTIMImageElemLevel           = "image_elem_level";            // uint[TIMImageLevel](), ¶ÁĞ´(±ØÌî), ·¢ËÍÍ¼Æ¬µÄÖÊÁ¿¼¶±ğ
-static const char* kTIMImageElemFormat          = "image_elem_format";           // int,    ¶ÁĞ´(±ØÌî), ·¢ËÍÍ¼Æ¬¸ñÊ½
-static const char* kTIMImageElemOrigId          = "image_elem_orig_id";          // string, Ö»¶Á,       Ô­Í¼µÄuuid
-static const char* kTIMImageElemOrigPicHeight   = "image_elem_orig_pic_height";  // int,    Ö»¶Á,       Ô­Í¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemOrigPicWidth    = "image_elem_orig_pic_width";   // int,    Ö»¶Á,       Ô­Í¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemOrigPicSize     = "image_elem_orig_pic_size";    // int,    Ö»¶Á,       Ô­Í¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemThumbId         = "image_elem_thumb_id";         // string, Ö»¶Á,       ÂÔËõÍ¼uuid
-static const char* kTIMImageElemThumbPicHeight  = "image_elem_thumb_pic_height"; // int,    Ö»¶Á,       ÂÔËõÍ¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemThumbPicWidth   = "image_elem_thumb_pic_width";  // int,    Ö»¶Á,       ÂÔËõÍ¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemThumbPicSize    = "image_elem_thumb_pic_size";   // int,    Ö»¶Á,       ÂÔËõÍ¼µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemLargeId         = "image_elem_large_id";         // string, Ö»¶Á,       ´óÍ¼Æ¬uuid
-static const char* kTIMImageElemLargePicHeight  = "image_elem_large_pic_height"; // int,    Ö»¶Á,       ´óÍ¼Æ¬µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemLargePicWidth   = "image_elem_large_pic_width";  // int,    Ö»¶Á,       ´óÍ¼Æ¬µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemLargePicSize    = "image_elem_large_pic_size";   // int,    Ö»¶Á,       ´óÍ¼Æ¬µÄÍ¼Æ¬¸ß¶È
-static const char* kTIMImageElemOrigUrl         = "image_elem_orig_url";         // string, Ö»¶Á,       Ô­Í¼URL
-static const char* kTIMImageElemThumbUrl        = "image_elem_thumb_url";        // string, Ö»¶Á,       ÂÔËõÍ¼URL
-static const char* kTIMImageElemLargeUrl        = "image_elem_large_url";        // string, Ö»¶Á,       ´óÍ¼Æ¬URL
-static const char* kTIMImageElemTaskId          = "image_elem_task_id";          // int,    Ö»¶Á,       ÈÎÎñID
+static const char* kTIMImageElemOrigPath        = "image_elem_orig_path";        // string, è¯»å†™(å¿…å¡«), å‘é€å›¾ç‰‡çš„è·¯å¾„
+static const char* kTIMImageElemLevel           = "image_elem_level";            // uint[TIMImageLevel](), è¯»å†™(å¿…å¡«), å‘é€å›¾ç‰‡çš„è´¨é‡çº§åˆ«
+static const char* kTIMImageElemFormat          = "image_elem_format";           // int,    è¯»å†™(å¿…å¡«), å‘é€å›¾ç‰‡æ ¼å¼
+static const char* kTIMImageElemOrigId          = "image_elem_orig_id";          // string, åªè¯»,       åŸå›¾çš„uuid
+static const char* kTIMImageElemOrigPicHeight   = "image_elem_orig_pic_height";  // int,    åªè¯»,       åŸå›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemOrigPicWidth    = "image_elem_orig_pic_width";   // int,    åªè¯»,       åŸå›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemOrigPicSize     = "image_elem_orig_pic_size";    // int,    åªè¯»,       åŸå›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemThumbId         = "image_elem_thumb_id";         // string, åªè¯»,       ç•¥ç¼©å›¾uuid
+static const char* kTIMImageElemThumbPicHeight  = "image_elem_thumb_pic_height"; // int,    åªè¯»,       ç•¥ç¼©å›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemThumbPicWidth   = "image_elem_thumb_pic_width";  // int,    åªè¯»,       ç•¥ç¼©å›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemThumbPicSize    = "image_elem_thumb_pic_size";   // int,    åªè¯»,       ç•¥ç¼©å›¾çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemLargeId         = "image_elem_large_id";         // string, åªè¯»,       å¤§å›¾ç‰‡uuid
+static const char* kTIMImageElemLargePicHeight  = "image_elem_large_pic_height"; // int,    åªè¯»,       å¤§å›¾ç‰‡çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemLargePicWidth   = "image_elem_large_pic_width";  // int,    åªè¯»,       å¤§å›¾ç‰‡çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemLargePicSize    = "image_elem_large_pic_size";   // int,    åªè¯»,       å¤§å›¾ç‰‡çš„å›¾ç‰‡é«˜åº¦
+static const char* kTIMImageElemOrigUrl         = "image_elem_orig_url";         // string, åªè¯»,       åŸå›¾URL
+static const char* kTIMImageElemThumbUrl        = "image_elem_thumb_url";        // string, åªè¯»,       ç•¥ç¼©å›¾URL
+static const char* kTIMImageElemLargeUrl        = "image_elem_large_url";        // string, åªè¯»,       å¤§å›¾ç‰‡URL
+static const char* kTIMImageElemTaskId          = "image_elem_task_id";          // int,    åªè¯»,       ä»»åŠ¡ID
 // EndStruct
 
 /**
-* @brief ÉùÒôÔªËØ
+* @brief å£°éŸ³å…ƒç´ 
 *
 * @note
-* > ÓïÒôÊÇ·ñÒÑ¾­²¥·Å£¬¿ÉÊ¹ÓÃ ÏûÏ¢×Ô¶¨Òå×Ö¶Î ÊµÏÖ£¬Èç¶¨ÒåÒ»¸ö×Ö¶ÎÖµ0±íÊ¾Î´²¥·Å£¬1±íÊ¾²¥·Å£¬µ±ÓÃ»§µ¥»÷²¥·Åºó¿ÉÉèÖÃ¸Ä×Ö¶ÎµÄÖµÎª1
-* > Ò»ÌõÏûÏ¢Ö»ÄÜÌí¼ÓÒ»¸öÉùÒôÔªËØ£¬Ìí¼Ó¶à¸öÉùÒôÔªËØÊ±£¬·¢ËÍÏûÏ¢¿ÉÄÜÊ§°Ü¡£
+* > è¯­éŸ³æ˜¯å¦å·²ç»æ’­æ”¾ï¼Œå¯ä½¿ç”¨ æ¶ˆæ¯è‡ªå®šä¹‰å­—æ®µ å®ç°ï¼Œå¦‚å®šä¹‰ä¸€ä¸ªå­—æ®µå€¼0è¡¨ç¤ºæœªæ’­æ”¾ï¼Œ1è¡¨ç¤ºæ’­æ”¾ï¼Œå½“ç”¨æˆ·å•å‡»æ’­æ”¾åå¯è®¾ç½®æ”¹å­—æ®µçš„å€¼ä¸º1
+* > ä¸€æ¡æ¶ˆæ¯åªèƒ½æ·»åŠ ä¸€ä¸ªå£°éŸ³å…ƒç´ ï¼Œæ·»åŠ å¤šä¸ªå£°éŸ³å…ƒç´ æ—¶ï¼Œå‘é€æ¶ˆæ¯å¯èƒ½å¤±è´¥ã€‚
 */
 // Struct SoundElem JsonKey
-static const char* kTIMSoundElemFilePath        = "sound_elem_file_path";        // string, ¶ÁĞ´(±ØÌî), ÓïÒôÎÄ¼şÂ·¾¶,ĞèÒª¿ª·¢Õß×Ô¼ºÏÈ±£´æÓïÑÔÈ»ºóÖ¸¶¨Â·¾¶
-static const char* kTIMSoundElemFileSize        = "sound_elem_file_size";        // int,    ¶ÁĞ´(±ØÌî), ÓïÑÔÊı¾İÎÄ¼ş´óĞ¡£¬ÒÔÃëÎªµ¥Î»
-static const char* kTIMSoundElemFileTime        = "sound_elem_file_time";        // int,    ¶ÁĞ´(±ØÌî), ÓïÒôÊ±³¤
-static const char* kTIMSoundElemFileId          = "sound_elem_file_id";          // string, Ö»¶Á,       ÏÂÔØÉùÒôÎÄ¼şÊ±µÄID
-static const char* kTIMSoundElemBusinessId      = "sound_elem_business_id";      // int,    Ö»¶Á,       ÏÂÔØÊ±ÓÃµ½µÄbusinessID
-static const char* kTIMSoundElemDownloadFlag    = "sound_elem_download_flag";    // int,    Ö»¶Á,       ÊÇ·ñĞèÒªÉêÇëÏÂÔØµØÖ·(0:µ½¼ÜÆ½ÉêÇë£¬1:µ½cosÉêÇë£¬2:²»ĞèÒªÉêÇë,Ö±½ÓÄÃurlÏÂÔØ)
-static const char* kTIMSoundElemUrl             = "sound_elem_url";              // string, Ö»¶Á,       ÏÂÔØµÄURL
-static const char* kTIMSoundElemTaskId          = "sound_elem_task_id";          // int,    Ö»¶Á,       ÈÎÎñID
+static const char* kTIMSoundElemFilePath        = "sound_elem_file_path";        // string, è¯»å†™(å¿…å¡«), è¯­éŸ³æ–‡ä»¶è·¯å¾„,éœ€è¦å¼€å‘è€…è‡ªå·±å…ˆä¿å­˜è¯­è¨€ç„¶åæŒ‡å®šè·¯å¾„
+static const char* kTIMSoundElemFileSize        = "sound_elem_file_size";        // int,    è¯»å†™(å¿…å¡«), è¯­è¨€æ•°æ®æ–‡ä»¶å¤§å°ï¼Œä»¥ç§’ä¸ºå•ä½
+static const char* kTIMSoundElemFileTime        = "sound_elem_file_time";        // int,    è¯»å†™(å¿…å¡«), è¯­éŸ³æ—¶é•¿
+static const char* kTIMSoundElemFileId          = "sound_elem_file_id";          // string, åªè¯»,       ä¸‹è½½å£°éŸ³æ–‡ä»¶æ—¶çš„ID
+static const char* kTIMSoundElemBusinessId      = "sound_elem_business_id";      // int,    åªè¯»,       ä¸‹è½½æ—¶ç”¨åˆ°çš„businessID
+static const char* kTIMSoundElemDownloadFlag    = "sound_elem_download_flag";    // int,    åªè¯»,       æ˜¯å¦éœ€è¦ç”³è¯·ä¸‹è½½åœ°å€(0:åˆ°æ¶å¹³ç”³è¯·ï¼Œ1:åˆ°cosç”³è¯·ï¼Œ2:ä¸éœ€è¦ç”³è¯·,ç›´æ¥æ‹¿urlä¸‹è½½)
+static const char* kTIMSoundElemUrl             = "sound_elem_url";              // string, åªè¯»,       ä¸‹è½½çš„URL
+static const char* kTIMSoundElemTaskId          = "sound_elem_task_id";          // int,    åªè¯»,       ä»»åŠ¡ID
 // EndStruct
 
 /**
-* @brief ×Ô¶¨ÒåÔªËØ
+* @brief è‡ªå®šä¹‰å…ƒç´ 
 *
 * @note
-* ×Ô¶¨ÒåÏûÏ¢ÊÇÖ¸µ±ÄÚÖÃµÄÏûÏ¢ÀàĞÍÎŞ·¨Âú×ãÌØÊâĞèÇó£¬¿ª·¢Õß¿ÉÒÔ×Ô¶¨ÒåÏûÏ¢¸ñÊ½£¬ÄÚÈİÈ«²¿ÓÉ¿ª·¢Õß¶¨Òå£¬ImSDKÖ»¸ºÔğÍ¸´«¡£
+* è‡ªå®šä¹‰æ¶ˆæ¯æ˜¯æŒ‡å½“å†…ç½®çš„æ¶ˆæ¯ç±»å‹æ— æ³•æ»¡è¶³ç‰¹æ®Šéœ€æ±‚ï¼Œå¼€å‘è€…å¯ä»¥è‡ªå®šä¹‰æ¶ˆæ¯æ ¼å¼ï¼Œå†…å®¹å…¨éƒ¨ç”±å¼€å‘è€…å®šä¹‰ï¼ŒImSDKåªè´Ÿè´£é€ä¼ ã€‚
 */
 // Struct CustomElem JsonKey
-static const char* kTIMCustomElemData   = "custom_elem_data";   // string,  ¶ÁĞ´, Êı¾İ,Ö§³Ö¶ş½øÖÆÊı¾İ
-static const char* kTIMCustomElemDesc   = "custom_elem_desc";   // string,  ¶ÁĞ´, ×Ô¶¨ÒåÃèÊö
-static const char* kTIMCustomElemExt    = "custom_elem_ext";    // string,  ¶ÁĞ´, ºóÌ¨ÍÆËÍ¶ÔÓ¦µÄext×Ö¶Î
-static const char* kTIMCustomElemSound  = "custom_elem_sound";  // string,  ¶ÁĞ´, ×Ô¶¨ÒåÉùÒô,Õâ¸öÉùÒôÊÇ¸øË­ÌıµÄ
+static const char* kTIMCustomElemData   = "custom_elem_data";   // string,  è¯»å†™, æ•°æ®,æ”¯æŒäºŒè¿›åˆ¶æ•°æ®
+static const char* kTIMCustomElemDesc   = "custom_elem_desc";   // string,  è¯»å†™, è‡ªå®šä¹‰æè¿°
+static const char* kTIMCustomElemExt    = "custom_elem_ext";    // string,  è¯»å†™, åå°æ¨é€å¯¹åº”çš„extå­—æ®µ
+static const char* kTIMCustomElemSound  = "custom_elem_sound";  // string,  è¯»å†™, è‡ªå®šä¹‰å£°éŸ³,è¿™ä¸ªå£°éŸ³æ˜¯ç»™è°å¬çš„
 // EndStruct
 
 /**
-* @brief ÎÄ¼şÔªËØ
+* @brief æ–‡ä»¶å…ƒç´ 
 *
 * @note
-* Ò»ÌõÏûÏ¢Ö»ÄÜÌí¼ÓÒ»¸öÎÄ¼şÔªËØ£¬Ìí¼Ó¶à¸öÎÄ¼şÊ±£¬·¢ËÍÏûÏ¢¿ÉÄÜÊ§°Ü¡£
+* ä¸€æ¡æ¶ˆæ¯åªèƒ½æ·»åŠ ä¸€ä¸ªæ–‡ä»¶å…ƒç´ ï¼Œæ·»åŠ å¤šä¸ªæ–‡ä»¶æ—¶ï¼Œå‘é€æ¶ˆæ¯å¯èƒ½å¤±è´¥ã€‚
 */
 // Struct FileElem JsonKey
-static const char* kTIMFileElemFilePath      = "file_elem_file_path";      // string,   ¶ÁĞ´(±ØÌî), ÎÄ¼şËùÔÚÂ·¾¶£¨°üº¬ÎÄ¼şÃû£©
-static const char* kTIMFileElemFileName      = "file_elem_file_name";      // string,   ¶ÁĞ´(Ñ¡Ìî), ÎÄ¼şÃû£¬ÏÔÊ¾µÄÃû³Æ
-static const char* kTIMFileElemFileSize      = "file_elem_file_size";      // int,      ¶ÁĞ´(±ØÌî),  ÎÄ¼ş´óĞ¡
-static const char* kTIMFileElemFileId        = "file_elem_file_id";        // string,   Ö»¶Á, ÏÂÔØÊÓÆµÊ±µÄuuid
-static const char* kTIMFileElemBusinessId    = "file_elem_business_id";    // int,      Ö»¶Á, ÏÂÔØÊ±ÓÃµ½µÄbusinessID
-static const char* kTIMFileElemDownloadFlag  = "file_elem_download_flag";  // int,      Ö»¶Á, ÎÄ¼şÏÂÔØflag
-static const char* kTIMFileElemUrl           = "file_elem_url";            // string,   Ö»¶Á, ÎÄ¼şÏÂÔØµÄURL
-static const char* kTIMFileElemTaskId        = "file_elem_task_id";        // int,      Ö»¶Á, ÈÎÎñID 
+static const char* kTIMFileElemFilePath      = "file_elem_file_path";      // string,   è¯»å†™(å¿…å¡«), æ–‡ä»¶æ‰€åœ¨è·¯å¾„ï¼ˆåŒ…å«æ–‡ä»¶åï¼‰
+static const char* kTIMFileElemFileName      = "file_elem_file_name";      // string,   è¯»å†™(é€‰å¡«), æ–‡ä»¶åï¼Œæ˜¾ç¤ºçš„åç§°
+static const char* kTIMFileElemFileSize      = "file_elem_file_size";      // int,      è¯»å†™(å¿…å¡«),  æ–‡ä»¶å¤§å°
+static const char* kTIMFileElemFileId        = "file_elem_file_id";        // string,   åªè¯», ä¸‹è½½è§†é¢‘æ—¶çš„uuid
+static const char* kTIMFileElemBusinessId    = "file_elem_business_id";    // int,      åªè¯», ä¸‹è½½æ—¶ç”¨åˆ°çš„businessID
+static const char* kTIMFileElemDownloadFlag  = "file_elem_download_flag";  // int,      åªè¯», æ–‡ä»¶ä¸‹è½½flag
+static const char* kTIMFileElemUrl           = "file_elem_url";            // string,   åªè¯», æ–‡ä»¶ä¸‹è½½çš„URL
+static const char* kTIMFileElemTaskId        = "file_elem_task_id";        // int,      åªè¯», ä»»åŠ¡ID 
 // EndStruct
 
 /**
-* @brief ÊÓÆµÔªËØ
+* @brief è§†é¢‘å…ƒç´ 
 */
 // Struct VideoElem JsonKey
-static const char* kTIMVideoElemVideoType          = "video_elem_video_type";           // string, ¶ÁĞ´(±ØÌî), ÊÓÆµÎÄ¼şÀàĞÍ£¬·¢ËÍÏûÏ¢Ê±½øĞĞÉèÖÃ
-static const char* kTIMVideoElemVideoSize          = "video_elem_video_size";           // uint,   ¶ÁĞ´(±ØÌî), ÊÓÆµÎÄ¼ş´óĞ¡
-static const char* kTIMVideoElemVideoDuration      = "video_elem_video_duration";       // uint,   ¶ÁĞ´(±ØÌî), ÊÓÆµÊ±³¤£¬·¢ËÍÏûÏ¢Ê±½øĞĞÉèÖÃ
-static const char* kTIMVideoElemVideoPath          = "video_elem_video_path";           // string, ¶ÁĞ´(±ØÌî), ÊÊÅäÎÄ¼şÂ·¾¶ 
-static const char* kTIMVideoElemVideoId            = "video_elem_video_id";             // string, Ö»¶Á, ÏÂÔØÊÓÆµÊ±µÄuuid
-static const char* kTIMVideoElemBusinessId         = "video_elem_business_id";          // int,    Ö»¶Á, ÏÂÔØÊ±ÓÃµ½µÄbusinessID
-static const char* kTIMVideoElemVideoDownloadFlag  = "video_elem_video_download_flag";  // int,    Ö»¶Á, ÊÓÆµÎÄ¼şÏÂÔØflag 
-static const char* kTIMVideoElemVideoUrl           = "video_elem_video_url";            // string, Ö»¶Á, ÊÓÆµÎÄ¼şÏÂÔØµÄURL 
-static const char* kTIMVideoElemImageType          = "video_elem_image_type";           // string, ¶ÁĞ´(±ØÌî), ½ØÍ¼ÎÄ¼şÀàĞÍ£¬·¢ËÍÏûÏ¢Ê±½øĞĞÉèÖÃ
-static const char* kTIMVideoElemImageSize          = "video_elem_image_size";           // uint,   ¶ÁĞ´(±ØÌî), ½ØÍ¼ÎÄ¼ş´óĞ¡
-static const char* kTIMVideoElemImageWidth         = "video_elem_image_width";          // uint,   ¶ÁĞ´(±ØÌî), ½ØÍ¼¸ß¶È£¬·¢ËÍÏûÏ¢Ê±½øĞĞÉèÖÃ
-static const char* kTIMVideoElemImageHeight        = "video_elem_image_height";         // uint,   ¶ÁĞ´(±ØÌî), ½ØÍ¼¿í¶È£¬·¢ËÍÏûÏ¢Ê±½øĞĞÉèÖÃ
-static const char* kTIMVideoElemImagePath          = "video_elem_image_path";           // string, ¶ÁĞ´(±ØÌî), ±£´æ½ØÍ¼µÄÂ·¾¶
-static const char* kTIMVideoElemImageId            = "video_elem_image_id";             // string, Ö»¶Á, ÏÂÔØÊÓÆµ½ØÍ¼Ê±µÄID
-static const char* kTIMVideoElemImageDownloadFlag  = "video_elem_image_download_flag";  // int,    Ö»¶Á, ½ØÍ¼ÎÄ¼şÏÂÔØflag 
-static const char* kTIMVideoElemImageUrl           = "video_elem_image_url";            // string, Ö»¶Á, ½ØÍ¼ÎÄ¼şÏÂÔØµÄURL 
-static const char* kTIMVideoElemTaskId             = "video_elem_task_id";              // uint,   Ö»¶Á, ÈÎÎñID
+static const char* kTIMVideoElemVideoType          = "video_elem_video_type";           // string, è¯»å†™(å¿…å¡«), è§†é¢‘æ–‡ä»¶ç±»å‹ï¼Œå‘é€æ¶ˆæ¯æ—¶è¿›è¡Œè®¾ç½®
+static const char* kTIMVideoElemVideoSize          = "video_elem_video_size";           // uint,   è¯»å†™(å¿…å¡«), è§†é¢‘æ–‡ä»¶å¤§å°
+static const char* kTIMVideoElemVideoDuration      = "video_elem_video_duration";       // uint,   è¯»å†™(å¿…å¡«), è§†é¢‘æ—¶é•¿ï¼Œå‘é€æ¶ˆæ¯æ—¶è¿›è¡Œè®¾ç½®
+static const char* kTIMVideoElemVideoPath          = "video_elem_video_path";           // string, è¯»å†™(å¿…å¡«), é€‚é…æ–‡ä»¶è·¯å¾„ 
+static const char* kTIMVideoElemVideoId            = "video_elem_video_id";             // string, åªè¯», ä¸‹è½½è§†é¢‘æ—¶çš„uuid
+static const char* kTIMVideoElemBusinessId         = "video_elem_business_id";          // int,    åªè¯», ä¸‹è½½æ—¶ç”¨åˆ°çš„businessID
+static const char* kTIMVideoElemVideoDownloadFlag  = "video_elem_video_download_flag";  // int,    åªè¯», è§†é¢‘æ–‡ä»¶ä¸‹è½½flag 
+static const char* kTIMVideoElemVideoUrl           = "video_elem_video_url";            // string, åªè¯», è§†é¢‘æ–‡ä»¶ä¸‹è½½çš„URL 
+static const char* kTIMVideoElemImageType          = "video_elem_image_type";           // string, è¯»å†™(å¿…å¡«), æˆªå›¾æ–‡ä»¶ç±»å‹ï¼Œå‘é€æ¶ˆæ¯æ—¶è¿›è¡Œè®¾ç½®
+static const char* kTIMVideoElemImageSize          = "video_elem_image_size";           // uint,   è¯»å†™(å¿…å¡«), æˆªå›¾æ–‡ä»¶å¤§å°
+static const char* kTIMVideoElemImageWidth         = "video_elem_image_width";          // uint,   è¯»å†™(å¿…å¡«), æˆªå›¾é«˜åº¦ï¼Œå‘é€æ¶ˆæ¯æ—¶è¿›è¡Œè®¾ç½®
+static const char* kTIMVideoElemImageHeight        = "video_elem_image_height";         // uint,   è¯»å†™(å¿…å¡«), æˆªå›¾å®½åº¦ï¼Œå‘é€æ¶ˆæ¯æ—¶è¿›è¡Œè®¾ç½®
+static const char* kTIMVideoElemImagePath          = "video_elem_image_path";           // string, è¯»å†™(å¿…å¡«), ä¿å­˜æˆªå›¾çš„è·¯å¾„
+static const char* kTIMVideoElemImageId            = "video_elem_image_id";             // string, åªè¯», ä¸‹è½½è§†é¢‘æˆªå›¾æ—¶çš„ID
+static const char* kTIMVideoElemImageDownloadFlag  = "video_elem_image_download_flag";  // int,    åªè¯», æˆªå›¾æ–‡ä»¶ä¸‹è½½flag 
+static const char* kTIMVideoElemImageUrl           = "video_elem_image_url";            // string, åªè¯», æˆªå›¾æ–‡ä»¶ä¸‹è½½çš„URL 
+static const char* kTIMVideoElemTaskId             = "video_elem_task_id";              // uint,   åªè¯», ä»»åŠ¡ID
 // EndStruct
 
 /**
-* @brief Èº×éĞÅÏ¢ĞŞ¸ÄµÄÀàĞÍ
+* @brief ç¾¤ç»„ä¿¡æ¯ä¿®æ”¹çš„ç±»å‹
 */
 enum TIMGroupTipGroupChangeFlag {
-    kTIMGroupTipChangeFlag_Name = 0xa,   // ĞŞ¸ÄÈº×éÃû³Æ
-    kTIMGroupTipChangeFlag_Introduction, // ĞŞ¸ÄÈº¼ò½é
-    kTIMGroupTipChangeFlag_Notification, // ĞŞ¸ÄÈº¹«¸æ
-    kTIMGroupTipChangeFlag_FaceUrl,      // ĞŞ¸ÄÈºÍ·ÏñURL
-    kTIMGroupTipChangeFlag_Owner,        // ĞŞ¸ÄÈºËùÓĞÕß
+    kTIMGroupTipChangeFlag_Name = 0xa,   // ä¿®æ”¹ç¾¤ç»„åç§°
+    kTIMGroupTipChangeFlag_Introduction, // ä¿®æ”¹ç¾¤ç®€ä»‹
+    kTIMGroupTipChangeFlag_Notification, // ä¿®æ”¹ç¾¤å…¬å‘Š
+    kTIMGroupTipChangeFlag_FaceUrl,      // ä¿®æ”¹ç¾¤å¤´åƒURL
+    kTIMGroupTipChangeFlag_Owner,        // ä¿®æ”¹ç¾¤æ‰€æœ‰è€…
 };
 
 /**
-* @brief Èº×éÏµÍ³ÏûÏ¢-Èº×éĞÅÏ¢ĞŞ¸Ä
+* @brief ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯-ç¾¤ç»„ä¿¡æ¯ä¿®æ”¹
 */
 // Struct GroupTipGroupChangeInfo JsonKey
-static const char* kTIMGroupTipGroupChangeInfoFlag        = "group_tips_group_change_info_flag";         // uint [TIMGroupTipGroupChangeFlag](), Ö»¶Á, ÈºÏûÏ¢ĞŞ¸ÄÈºĞÅÏ¢±êÖ¾
-static const char* kTIMGroupTipGroupChangeInfoValue       = "group_tips_group_change_info_value";        // string, Ö»¶Á, ĞŞ¸ÄµÄºóÖµ,²»Í¬µÄ info_flag ×Ö¶Î,¾ßÓĞ²»Í¬µÄº¬Òå
+static const char* kTIMGroupTipGroupChangeInfoFlag        = "group_tips_group_change_info_flag";         // uint [TIMGroupTipGroupChangeFlag](), åªè¯», ç¾¤æ¶ˆæ¯ä¿®æ”¹ç¾¤ä¿¡æ¯æ ‡å¿—
+static const char* kTIMGroupTipGroupChangeInfoValue       = "group_tips_group_change_info_value";        // string, åªè¯», ä¿®æ”¹çš„åå€¼,ä¸åŒçš„ info_flag å­—æ®µ,å…·æœ‰ä¸åŒçš„å«ä¹‰
 // EndStruct
 
 /**
-* @brief Èº×éÏµÍ³ÏûÏ¢-Èº×é³ÉÔ±½ûÑÔ
+* @brief ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯-ç¾¤ç»„æˆå‘˜ç¦è¨€
 */
 // Struct GroupTipMemberChangeInfo JsonKey
-static const char* kTIMGroupTipMemberChangeInfoIdentifier  = "group_tips_member_change_info_identifier";     // string, Ö»¶Á, Èº×é³ÉÔ±ID
-static const char* kTIMGroupTipMemberChangeInfoShutupTime  = "group_tips_member_change_info_shutupTime";     // uint,   Ö»¶Á, ½ûÑÔÊ±¼ä
+static const char* kTIMGroupTipMemberChangeInfoIdentifier  = "group_tips_member_change_info_identifier";     // string, åªè¯», ç¾¤ç»„æˆå‘˜ID
+static const char* kTIMGroupTipMemberChangeInfoShutupTime  = "group_tips_member_change_info_shutupTime";     // uint,   åªè¯», ç¦è¨€æ—¶é—´
 // EndStruct
 
 /**
-* @brief ÓÃ»§¸öÈË×ÊÁÏ
+* @brief ç”¨æˆ·ä¸ªäººèµ„æ–™
 */
 // Struct UserProfile JsonKey
-static const char* kTIMUserProfileIdentifier    = "user_profile_identifier";      // string, Ö»¶Á, ÓÃ»§ID
-static const char* kTIMUserProfileNickName      = "user_profile_nick_name";       // string, Ö»¶Á, ÓÃ»§µÄêÇ³Æ
-static const char* kTIMUserProfileFaceURL       = "user_profile_face_url";        // string, Ö»¶Á, ÓÃ»§Í·ÏñURL
-static const char* kTIMUserProfileSelfSignature = "user_profile_self_signature";  // string, Ö»¶Á, ÓÃ»§¸öÈËÇ©Ãû
-static const char* kTIMUserProfileRemark        = "user_profile_remark";          // string, Ö»¶Á, ÓÃ»§±¸×¢
+static const char* kTIMUserProfileIdentifier    = "user_profile_identifier";      // string, åªè¯», ç”¨æˆ·ID
+static const char* kTIMUserProfileNickName      = "user_profile_nick_name";       // string, åªè¯», ç”¨æˆ·çš„æ˜µç§°
+static const char* kTIMUserProfileFaceURL       = "user_profile_face_url";        // string, åªè¯», ç”¨æˆ·å¤´åƒURL
+static const char* kTIMUserProfileSelfSignature = "user_profile_self_signature";  // string, åªè¯», ç”¨æˆ·ä¸ªäººç­¾å
+static const char* kTIMUserProfileRemark        = "user_profile_remark";          // string, åªè¯», ç”¨æˆ·å¤‡æ³¨
 // EndStruct
 
 /**
-* @brief Èº×éÏµÍ³ÏûÏ¢ÀàĞÍ
+* @brief ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯ç±»å‹
 */
 enum TIMGroupTipType {
-    kTIMGroupTip_None,              // ÎŞĞ§µÄÈºÌáÊ¾
-    kTIMGroupTip_Invite,            // ÑûÇë¼ÓÈëÌáÊ¾
-    kTIMGroupTip_Quit,              // ÍËÈºÌáÊ¾
-    kTIMGroupTip_Kick,              // ÌßÈËÌáÊ¾
-    kTIMGroupTip_SetAdmin,          // ÉèÖÃ¹ÜÀíÔ±ÌáÊ¾
-    kTIMGroupTip_CancelAdmin,       // È¡Ïû¹ÜÀíÔ±ÌáÊ¾
-    kTIMGroupTip_GroupInfoChange,   // ÈºĞÅÏ¢ĞŞ¸ÄÌáÊ¾
-    kTIMGroupTip_MemberInfoChange,  // Èº³ÉÔ±ĞÅÏ¢ĞŞ¸ÄÌáÊ¾
+    kTIMGroupTip_None,              // æ— æ•ˆçš„ç¾¤æç¤º
+    kTIMGroupTip_Invite,            // é‚€è¯·åŠ å…¥æç¤º
+    kTIMGroupTip_Quit,              // é€€ç¾¤æç¤º
+    kTIMGroupTip_Kick,              // è¸¢äººæç¤º
+    kTIMGroupTip_SetAdmin,          // è®¾ç½®ç®¡ç†å‘˜æç¤º
+    kTIMGroupTip_CancelAdmin,       // å–æ¶ˆç®¡ç†å‘˜æç¤º
+    kTIMGroupTip_GroupInfoChange,   // ç¾¤ä¿¡æ¯ä¿®æ”¹æç¤º
+    kTIMGroupTip_MemberInfoChange,  // ç¾¤æˆå‘˜ä¿¡æ¯ä¿®æ”¹æç¤º
 };
 
 /**
-* @brief Èº×éÏµÍ³ÏûÏ¢ÔªËØ(Õë¶ÔËùÓĞÈº³ÉÔ±)
+* @brief ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯å…ƒç´ (é’ˆå¯¹æ‰€æœ‰ç¾¤æˆå‘˜)
 */
 // Struct GroupTipsElem JsonKey
-static const char* kTIMGroupTipsElemTipType                     = "group_tips_elem_tip_type";                       // uint [TIMGroupTipType](), Ö»¶Á, ÈºÏûÏ¢ÀàĞÍ
-static const char* kTIMGroupTipsElemOpUser                      = "group_tips_elem_op_user";                        // string,   Ö»¶Á, ²Ù×÷ÕßID
-static const char* kTIMGroupTipsElemGroupName                   = "group_tips_elem_group_name";                     // string,   Ö»¶Á, Èº×éÃû³Æ
-static const char* kTIMGroupTipsElemGroupId                     = "group_tips_elem_group_id";                       // string,   Ö»¶Á, Èº×éID
-static const char* kTIMGroupTipsElemTime                        = "group_tips_elem_time";                           // uint,     Ö»¶Á, ÈºÏûÏ¢Ê±¼ä
-static const char* kTIMGroupTipsElemUserArray                   = "group_tips_elem_user_array";                     // array string, Ö»¶Á, ±»²Ù×÷µÄÕÊºÅÁĞ±í
-static const char* kTIMGroupTipsElemGroupChangeInfoArray        = "group_tips_elem_group_change_info_array";        // array [GroupTipGroupChangeInfo](),  Ö»¶Á, Èº×ÊÁÏ±ä¸üĞÅÏ¢ÁĞ±í,½öµ± tips_type ÖµÎª kTIMGroupTip_GroupInfoChange Ê±ÓĞĞ§
-static const char* kTIMGroupTipsElemMemberChangeInfoArray       = "group_tips_elem_member_change_info_array";       // array [GroupTipMemberChangeInfo](), Ö»¶Á, Èº³ÉÔ±±ä¸üĞÅÏ¢ÁĞ±í,½öµ± tips_type ÖµÎª kTIMGroupTip_MemberInfoChange Ê±ÓĞĞ§
-static const char* kTIMGroupTipsElemOpUserInfo                  = "group_tips_elem_op_user_info";                   // object [UserProfile](),              Ö»¶Á, ²Ù×÷Õß¸öÈË×ÊÁÏ
-static const char* kTIMGroupTipsElemOpGroupMemberInfo           = "group_tips_elem_op_group_memberinfo";            // object [GroupMemberInfo](),          Ö»¶Á, Èº³ÉÔ±ĞÅÏ¢
-static const char* kTIMGroupTipsElemChangedUserInfoArray        = "group_tips_elem_changed_user_info_array";        // array [UserProfile](),               Ö»¶Á, ±»²Ù×÷ÕßÁĞ±í×ÊÁÏ
-static const char* kTIMGroupTipsElemChangedGroupMemberInfoArray = "group_tips_elem_changed_group_memberinfo_array"; // array [GroupMemberInfo](),       Ö»¶Á, Èº³ÉÔ±ĞÅÏ¢ÁĞ±í
-static const char* kTIMGroupTipsElemMemberNum                   = "group_tips_elem_member_num";                     // uint,   Ö»¶Á, µ±Ç°Èº³ÉÔ±Êı,Ö»ÓĞµ±ÊÂ¼şÏûÏ¢ÀàĞÍÎª kTIMGroupTip_Invite ¡¢ kTIMGroupTip_Quit ¡¢ kTIMGroupTip_Kick Ê±ÓĞĞ§
-static const char* kTIMGroupTipsElemPlatform                    = "group_tips_elem_platform";                       // string, Ö»¶Á, ²Ù×÷·½Æ½Ì¨ĞÅÏ¢
+static const char* kTIMGroupTipsElemTipType                     = "group_tips_elem_tip_type";                       // uint [TIMGroupTipType](), åªè¯», ç¾¤æ¶ˆæ¯ç±»å‹
+static const char* kTIMGroupTipsElemOpUser                      = "group_tips_elem_op_user";                        // string,   åªè¯», æ“ä½œè€…ID
+static const char* kTIMGroupTipsElemGroupName                   = "group_tips_elem_group_name";                     // string,   åªè¯», ç¾¤ç»„åç§°
+static const char* kTIMGroupTipsElemGroupId                     = "group_tips_elem_group_id";                       // string,   åªè¯», ç¾¤ç»„ID
+static const char* kTIMGroupTipsElemTime                        = "group_tips_elem_time";                           // uint,     åªè¯», ç¾¤æ¶ˆæ¯æ—¶é—´
+static const char* kTIMGroupTipsElemUserArray                   = "group_tips_elem_user_array";                     // array string, åªè¯», è¢«æ“ä½œçš„å¸å·åˆ—è¡¨
+static const char* kTIMGroupTipsElemGroupChangeInfoArray        = "group_tips_elem_group_change_info_array";        // array [GroupTipGroupChangeInfo](),  åªè¯», ç¾¤èµ„æ–™å˜æ›´ä¿¡æ¯åˆ—è¡¨,ä»…å½“ tips_type å€¼ä¸º kTIMGroupTip_GroupInfoChange æ—¶æœ‰æ•ˆ
+static const char* kTIMGroupTipsElemMemberChangeInfoArray       = "group_tips_elem_member_change_info_array";       // array [GroupTipMemberChangeInfo](), åªè¯», ç¾¤æˆå‘˜å˜æ›´ä¿¡æ¯åˆ—è¡¨,ä»…å½“ tips_type å€¼ä¸º kTIMGroupTip_MemberInfoChange æ—¶æœ‰æ•ˆ
+static const char* kTIMGroupTipsElemOpUserInfo                  = "group_tips_elem_op_user_info";                   // object [UserProfile](),              åªè¯», æ“ä½œè€…ä¸ªäººèµ„æ–™
+static const char* kTIMGroupTipsElemOpGroupMemberInfo           = "group_tips_elem_op_group_memberinfo";            // object [GroupMemberInfo](),          åªè¯», ç¾¤æˆå‘˜ä¿¡æ¯
+static const char* kTIMGroupTipsElemChangedUserInfoArray        = "group_tips_elem_changed_user_info_array";        // array [UserProfile](),               åªè¯», è¢«æ“ä½œè€…åˆ—è¡¨èµ„æ–™
+static const char* kTIMGroupTipsElemChangedGroupMemberInfoArray = "group_tips_elem_changed_group_memberinfo_array"; // array [GroupMemberInfo](),       åªè¯», ç¾¤æˆå‘˜ä¿¡æ¯åˆ—è¡¨
+static const char* kTIMGroupTipsElemMemberNum                   = "group_tips_elem_member_num";                     // uint,   åªè¯», å½“å‰ç¾¤æˆå‘˜æ•°,åªæœ‰å½“äº‹ä»¶æ¶ˆæ¯ç±»å‹ä¸º kTIMGroupTip_Invite ã€ kTIMGroupTip_Quit ã€ kTIMGroupTip_Kick æ—¶æœ‰æ•ˆ
+static const char* kTIMGroupTipsElemPlatform                    = "group_tips_elem_platform";                       // string, åªè¯», æ“ä½œæ–¹å¹³å°ä¿¡æ¯
 // EndStruct
 
 /**
-* @brief Èº×éÏµÍ³Í¨ÖªÀàĞÍ
+* @brief ç¾¤ç»„ç³»ç»Ÿé€šçŸ¥ç±»å‹
 */
 enum TIMGroupReportType {
-    kTIMGroupReport_None,         // Î´ÖªÀàĞÍ
-    kTIMGroupReport_AddRequest,   // ÉêÇë¼ÓÈº(Ö»ÓĞ¹ÜÀíÔ±»á½ÓÊÕµ½)
-    kTIMGroupReport_AddAccept,    // ÉêÇë¼ÓÈº±»Í¬Òâ(Ö»ÓĞÉêÇëÈË×Ô¼º½ÓÊÕµ½)
-    kTIMGroupReport_AddRefuse,    // ÉêÇë¼ÓÈº±»¾Ü¾ø(Ö»ÓĞÉêÇëÈË×Ô¼º½ÓÊÕµ½)
-    kTIMGroupReport_BeKicked,     // ±»¹ÜÀíÔ±Ìß³öÈº(Ö»ÓĞ±»ÌßÕß½ÓÊÕµ½)
-    kTIMGroupReport_Delete,       // Èº±»½âÉ¢(È«Ô±½ÓÊÕ)
-    kTIMGroupReport_Create,       // ´´½¨Èº(´´½¨Õß½ÓÊÕ, ²»Õ¹Ê¾)
-    kTIMGroupReport_Invite,       // ÑûÇë¼ÓÈº(±»ÑûÇëÕß½ÓÊÕ)
-    kTIMGroupReport_Quit,         // Ö÷¶¯ÍËÈº(Ö÷¶¯ÍË³öÕß½ÓÊÕ, ²»Õ¹Ê¾)
-    kTIMGroupReport_GrantAdmin,   // ÉèÖÃ¹ÜÀíÔ±(±»ÉèÖÃÕß½ÓÊÕ)
-    kTIMGroupReport_CancelAdmin,  // È¡Ïû¹ÜÀíÔ±(±»È¡ÏûÕß½ÓÊÕ)
-    kTIMGroupReport_RevokeAdmin,  // ÈºÒÑ±»»ØÊÕ(È«Ô±½ÓÊÕ, ²»Õ¹Ê¾)
-    kTIMGroupReport_InviteReq,    // ÑûÇë¼ÓÈº(Ö»ÓĞ±»ÑûÇëÕß»á½ÓÊÕµ½)
-    kTIMGroupReport_InviteAccept, // ÑûÇë¼ÓÈº±»Í¬Òâ(Ö»ÓĞ·¢³öÑûÇëÕß»á½ÓÊÕµ½)
-    kTIMGroupReport_InviteRefuse, // ÑûÇë¼ÓÈº±»¾Ü¾ø(Ö»ÓĞ·¢³öÑûÇëÕß»á½ÓÊÕµ½)
-    kTIMGroupReport_ReadedSync,   // ÒÑ¶ÁÉÏ±¨¶àÖÕ¶ËÍ¬²½Í¨Öª(Ö»ÓĞÉÏ±¨ÈË×Ô¼ºÊÕµ½)
-    kTIMGroupReport_UserDefine,   // ÓÃ»§×Ô¶¨ÒåÍ¨Öª(Ä¬ÈÏÈ«Ô±½ÓÊÕ)
+    kTIMGroupReport_None,         // æœªçŸ¥ç±»å‹
+    kTIMGroupReport_AddRequest,   // ç”³è¯·åŠ ç¾¤(åªæœ‰ç®¡ç†å‘˜ä¼šæ¥æ”¶åˆ°)
+    kTIMGroupReport_AddAccept,    // ç”³è¯·åŠ ç¾¤è¢«åŒæ„(åªæœ‰ç”³è¯·äººè‡ªå·±æ¥æ”¶åˆ°)
+    kTIMGroupReport_AddRefuse,    // ç”³è¯·åŠ ç¾¤è¢«æ‹’ç»(åªæœ‰ç”³è¯·äººè‡ªå·±æ¥æ”¶åˆ°)
+    kTIMGroupReport_BeKicked,     // è¢«ç®¡ç†å‘˜è¸¢å‡ºç¾¤(åªæœ‰è¢«è¸¢è€…æ¥æ”¶åˆ°)
+    kTIMGroupReport_Delete,       // ç¾¤è¢«è§£æ•£(å…¨å‘˜æ¥æ”¶)
+    kTIMGroupReport_Create,       // åˆ›å»ºç¾¤(åˆ›å»ºè€…æ¥æ”¶, ä¸å±•ç¤º)
+    kTIMGroupReport_Invite,       // é‚€è¯·åŠ ç¾¤(è¢«é‚€è¯·è€…æ¥æ”¶)
+    kTIMGroupReport_Quit,         // ä¸»åŠ¨é€€ç¾¤(ä¸»åŠ¨é€€å‡ºè€…æ¥æ”¶, ä¸å±•ç¤º)
+    kTIMGroupReport_GrantAdmin,   // è®¾ç½®ç®¡ç†å‘˜(è¢«è®¾ç½®è€…æ¥æ”¶)
+    kTIMGroupReport_CancelAdmin,  // å–æ¶ˆç®¡ç†å‘˜(è¢«å–æ¶ˆè€…æ¥æ”¶)
+    kTIMGroupReport_RevokeAdmin,  // ç¾¤å·²è¢«å›æ”¶(å…¨å‘˜æ¥æ”¶, ä¸å±•ç¤º)
+    kTIMGroupReport_InviteReq,    // é‚€è¯·åŠ ç¾¤(åªæœ‰è¢«é‚€è¯·è€…ä¼šæ¥æ”¶åˆ°)
+    kTIMGroupReport_InviteAccept, // é‚€è¯·åŠ ç¾¤è¢«åŒæ„(åªæœ‰å‘å‡ºé‚€è¯·è€…ä¼šæ¥æ”¶åˆ°)
+    kTIMGroupReport_InviteRefuse, // é‚€è¯·åŠ ç¾¤è¢«æ‹’ç»(åªæœ‰å‘å‡ºé‚€è¯·è€…ä¼šæ¥æ”¶åˆ°)
+    kTIMGroupReport_ReadedSync,   // å·²è¯»ä¸ŠæŠ¥å¤šç»ˆç«¯åŒæ­¥é€šçŸ¥(åªæœ‰ä¸ŠæŠ¥äººè‡ªå·±æ”¶åˆ°)
+    kTIMGroupReport_UserDefine,   // ç”¨æˆ·è‡ªå®šä¹‰é€šçŸ¥(é»˜è®¤å…¨å‘˜æ¥æ”¶)
 };
 
 /**
-* @brief Èº×éÏµÍ³Í¨ÖªÔªËØ(Õë¶Ô¸öÈË)
+* @brief ç¾¤ç»„ç³»ç»Ÿé€šçŸ¥å…ƒç´ (é’ˆå¯¹ä¸ªäºº)
 */
 // Struct GroupReportElem JsonKey
-static const char* kTIMGroupReportElemReportType        = "group_report_elem_report_type";          // uint [TIMGroupReportType](), Ö»¶Á, ÀàĞÍ
-static const char* kTIMGroupReportElemGroupId           = "group_report_elem_group_id";             // string, Ö»¶Á, Èº×éID
-static const char* kTIMGroupReportElemGroupName         = "group_report_elem_group_name";           // string, Ö»¶Á, Èº×éÃû³Æ
-static const char* kTIMGroupReportElemOpUser            = "group_report_elem_op_user";              // string, Ö»¶Á, ²Ù×÷ÕßID
-static const char* kTIMGroupReportElemMsg               = "group_report_elem_msg";                  // string, Ö»¶Á, ²Ù×÷ÀíÓÉ
-static const char* kTIMGroupReportElemUserData          = "group_report_elem_user_data";            // string, Ö»¶Á, ²Ù×÷ÕßÌîµÄ×Ô¶¨ÒåÊı¾İ
-static const char* kTIMGroupReportElemOpUserInfo        = "group_report_elem_op_user_info";         // object [UserProfile](), Ö»¶Á, ²Ù×÷Õß¸öÈË×ÊÁÏ
-static const char* kTIMGroupReportElemOpGroupMemberInfo = "group_report_elem_op_group_memberinfo";  // object [GroupMemberInfo](), Ö»¶Á,²Ù×÷ÕßÈºÄÚ×ÊÁÏ
-static const char* kTIMGroupReportElemPlatform          = "group_report_elem_platform";             // string, Ö»¶Á, ²Ù×÷·½Æ½Ì¨ĞÅÏ¢
+static const char* kTIMGroupReportElemReportType        = "group_report_elem_report_type";          // uint [TIMGroupReportType](), åªè¯», ç±»å‹
+static const char* kTIMGroupReportElemGroupId           = "group_report_elem_group_id";             // string, åªè¯», ç¾¤ç»„ID
+static const char* kTIMGroupReportElemGroupName         = "group_report_elem_group_name";           // string, åªè¯», ç¾¤ç»„åç§°
+static const char* kTIMGroupReportElemOpUser            = "group_report_elem_op_user";              // string, åªè¯», æ“ä½œè€…ID
+static const char* kTIMGroupReportElemMsg               = "group_report_elem_msg";                  // string, åªè¯», æ“ä½œç†ç”±
+static const char* kTIMGroupReportElemUserData          = "group_report_elem_user_data";            // string, åªè¯», æ“ä½œè€…å¡«çš„è‡ªå®šä¹‰æ•°æ®
+static const char* kTIMGroupReportElemOpUserInfo        = "group_report_elem_op_user_info";         // object [UserProfile](), åªè¯», æ“ä½œè€…ä¸ªäººèµ„æ–™
+static const char* kTIMGroupReportElemOpGroupMemberInfo = "group_report_elem_op_group_memberinfo";  // object [GroupMemberInfo](), åªè¯»,æ“ä½œè€…ç¾¤å†…èµ„æ–™
+static const char* kTIMGroupReportElemPlatform          = "group_report_elem_platform";             // string, åªè¯», æ“ä½œæ–¹å¹³å°ä¿¡æ¯
 // EndStruct
 
 /**
-* @brief ÏûÏ¢Èº·¢½Ó¿ÚµÄ²ÎÊı
+* @brief æ¶ˆæ¯ç¾¤å‘æ¥å£çš„å‚æ•°
 */
 // Struct MsgBatchSendParam JsonKey
-static const char* kTIMMsgBatchSendParamIdentifierArray = "msg_batch_send_param_identifier_array"; // array string,       Ö»Ğ´(±ØÌî), Èº·¢µÄIDÁĞ±í
-static const char* kTIMMsgBatchSendParamMsg             = "msg_batch_send_param_msg";              // object [Message](), Ö»Ğ´(±ØÌî), Èº·¢µÄÏûÏ¢
+static const char* kTIMMsgBatchSendParamIdentifierArray = "msg_batch_send_param_identifier_array"; // array string,       åªå†™(å¿…å¡«), ç¾¤å‘çš„IDåˆ—è¡¨
+static const char* kTIMMsgBatchSendParamMsg             = "msg_batch_send_param_msg";              // object [Message](), åªå†™(å¿…å¡«), ç¾¤å‘çš„æ¶ˆæ¯
 // EndStruct
 
 /**
-* @brief ÏûÏ¢Èº·¢½Ó¿ÚµÄ·µ»Ø
+* @brief æ¶ˆæ¯ç¾¤å‘æ¥å£çš„è¿”å›
 */
 // Struct MsgBatchSendResult JsonKey
-static const char* kTIMMsgBatchSendResultIdentifier = "msg_batch_send_result_identifier";  // string, Ö»¶Á, Èº·¢µÄµ¥¸öID
-static const char* kTIMMsgBatchSendResultCode       = "msg_batch_send_result_code";        // int [´íÎóÂë](https://cloud.tencent.com/document/product/269/1671), Ö»¶Á, ÏûÏ¢·¢ËÍ½á¹û
-static const char* kTIMMsgBatchSendResultDesc       = "msg_batch_send_result_desc";        // string, Ö»¶Á, ÏûÏ¢·¢ËÍµÄÃèÊö
-static const char* kTIMMsgBatchSendResultMsg        = "msg_batch_send_result_msg";         // object [Message](), Ö»¶Á, ·¢ËÍµÄÏûÏ¢
+static const char* kTIMMsgBatchSendResultIdentifier = "msg_batch_send_result_identifier";  // string, åªè¯», ç¾¤å‘çš„å•ä¸ªID
+static const char* kTIMMsgBatchSendResultCode       = "msg_batch_send_result_code";        // int [é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671), åªè¯», æ¶ˆæ¯å‘é€ç»“æœ
+static const char* kTIMMsgBatchSendResultDesc       = "msg_batch_send_result_desc";        // string, åªè¯», æ¶ˆæ¯å‘é€çš„æè¿°
+static const char* kTIMMsgBatchSendResultMsg        = "msg_batch_send_result_msg";         // object [Message](), åªè¯», å‘é€çš„æ¶ˆæ¯
 // EndStruct
 
 /**
-* @brief ÏûÏ¢¶¨Î»·û
+* @brief æ¶ˆæ¯å®šä½ç¬¦
 */
 // Struct MsgLocator JsonKey
-static const char* kTIMMsgLocatorConvId    = "message_locator_conv_id";    // bool,   ¶ÁĞ´,       Òª²éÕÒµÄÏûÏ¢ÊÇ·ñÊÇ±»³·»Ø¡£true±»³·»ØµÄ£¬false·Ç³·»ØµÄ¡£Ä¬ÈÏÖµÎªfalse
-static const char* kTIMMsgLocatorConvType  = "message_locator_conv_type";  // bool,   ¶ÁĞ´,       Òª²éÕÒµÄÏûÏ¢ÊÇ·ñÊÇ±»³·»Ø¡£true±»³·»ØµÄ£¬false·Ç³·»ØµÄ¡£Ä¬ÈÏÖµÎªfalse
-static const char* kTIMMsgLocatorIsRevoked = "message_locator_is_revoked"; // bool,   ¶ÁĞ´(±ØÌî), Òª²éÕÒµÄÏûÏ¢ÊÇ·ñÊÇ±»³·»Ø¡£true±»³·»ØµÄ£¬false·Ç³·»ØµÄ¡£Ä¬ÈÏÖµÎªfalse
-static const char* kTIMMsgLocatorTime      = "message_locator_time";       // uint64, ¶ÁĞ´(±ØÌî), Òª²éÕÒµÄÏûÏ¢µÄÊ±¼ä´Á
-static const char* kTIMMsgLocatorSeq       = "message_locator_seq";        // uint64, ¶ÁĞ´(±ØÌî), Òª²éÕÒµÄÏûÏ¢µÄĞòÁĞºÅ
-static const char* kTIMMsgLocatorIsSelf    = "message_locator_is_self";    // bool,   ¶ÁĞ´(±ØÌî), Òª²éÕÒµÄÏûÏ¢µÄ·¢ËÍÕßÊÇ·ñÊÇ×Ô¼º¡£true·¢ËÍÕßÊÇ×Ô¼º£¬false·¢ËÍÕß²»ÊÇ×Ô¼º¡£Ä¬ÈÏÖµÎªfalse
-static const char* kTIMMsgLocatorRand      = "message_locator_rand";       // uint64, ¶ÁĞ´(±ØÌî), Òª²éÕÒµÄÏûÏ¢Ëæ»úÂë
+static const char* kTIMMsgLocatorConvId    = "message_locator_conv_id";    // bool,   è¯»å†™,       è¦æŸ¥æ‰¾çš„æ¶ˆæ¯æ˜¯å¦æ˜¯è¢«æ’¤å›ã€‚trueè¢«æ’¤å›çš„ï¼Œfalseéæ’¤å›çš„ã€‚é»˜è®¤å€¼ä¸ºfalse
+static const char* kTIMMsgLocatorConvType  = "message_locator_conv_type";  // bool,   è¯»å†™,       è¦æŸ¥æ‰¾çš„æ¶ˆæ¯æ˜¯å¦æ˜¯è¢«æ’¤å›ã€‚trueè¢«æ’¤å›çš„ï¼Œfalseéæ’¤å›çš„ã€‚é»˜è®¤å€¼ä¸ºfalse
+static const char* kTIMMsgLocatorIsRevoked = "message_locator_is_revoked"; // bool,   è¯»å†™(å¿…å¡«), è¦æŸ¥æ‰¾çš„æ¶ˆæ¯æ˜¯å¦æ˜¯è¢«æ’¤å›ã€‚trueè¢«æ’¤å›çš„ï¼Œfalseéæ’¤å›çš„ã€‚é»˜è®¤å€¼ä¸ºfalse
+static const char* kTIMMsgLocatorTime      = "message_locator_time";       // uint64, è¯»å†™(å¿…å¡«), è¦æŸ¥æ‰¾çš„æ¶ˆæ¯çš„æ—¶é—´æˆ³
+static const char* kTIMMsgLocatorSeq       = "message_locator_seq";        // uint64, è¯»å†™(å¿…å¡«), è¦æŸ¥æ‰¾çš„æ¶ˆæ¯çš„åºåˆ—å·
+static const char* kTIMMsgLocatorIsSelf    = "message_locator_is_self";    // bool,   è¯»å†™(å¿…å¡«), è¦æŸ¥æ‰¾çš„æ¶ˆæ¯çš„å‘é€è€…æ˜¯å¦æ˜¯è‡ªå·±ã€‚trueå‘é€è€…æ˜¯è‡ªå·±ï¼Œfalseå‘é€è€…ä¸æ˜¯è‡ªå·±ã€‚é»˜è®¤å€¼ä¸ºfalse
+static const char* kTIMMsgLocatorRand      = "message_locator_rand";       // uint64, è¯»å†™(å¿…å¡«), è¦æŸ¥æ‰¾çš„æ¶ˆæ¯éšæœºç 
 // EndStruct
 
 
 /**
-* @brief ÏûÏ¢»ñÈ¡½Ó¿ÚµÄ²ÎÊı
+* @brief æ¶ˆæ¯è·å–æ¥å£çš„å‚æ•°
 */
 // Struct MsgGetMsgListParam JsonKey
-static const char* kTIMMsgGetMsgListParamLastMsg   = "msg_getmsglist_param_last_msg";   // object [Message](), Ö»Ğ´(Ñ¡Ìî), Ö¸¶¨µÄÏûÏ¢£¬²»ÔÊĞíÎªnull
-static const char* kTIMMsgGetMsgListParamCount     = "msg_getmsglist_param_count";      // uint,               Ö»Ğ´(Ñ¡Ìî), ´ÓÖ¸¶¨ÏûÏ¢ÍùºóµÄÏûÏ¢Êı
-static const char* kTIMMsgGetMsgListParamIsRamble  = "msg_getmsglist_param_is_remble";  // bool,               Ö»Ğ´(Ñ¡Ìî), ÊÇ·ñÂşÓÎÏûÏ¢
-static const char* kTIMMsgGetMsgListParamIsForward = "msg_getmsglist_param_is_forward"; // bool,               Ö»Ğ´(Ñ¡Ìî), ÊÇ·ñÏòÇ°ÅÅĞò
+static const char* kTIMMsgGetMsgListParamLastMsg   = "msg_getmsglist_param_last_msg";   // object [Message](), åªå†™(é€‰å¡«), æŒ‡å®šçš„æ¶ˆæ¯ï¼Œä¸å…è®¸ä¸ºnull
+static const char* kTIMMsgGetMsgListParamCount     = "msg_getmsglist_param_count";      // uint,               åªå†™(é€‰å¡«), ä»æŒ‡å®šæ¶ˆæ¯å¾€åçš„æ¶ˆæ¯æ•°
+static const char* kTIMMsgGetMsgListParamIsRamble  = "msg_getmsglist_param_is_remble";  // bool,               åªå†™(é€‰å¡«), æ˜¯å¦æ¼«æ¸¸æ¶ˆæ¯
+static const char* kTIMMsgGetMsgListParamIsForward = "msg_getmsglist_param_is_forward"; // bool,               åªå†™(é€‰å¡«), æ˜¯å¦å‘å‰æ’åº
 // EndStruct
 
 
 
 /**
-* @brief ÏûÏ¢É¾³ı½Ó¿ÚµÄ²ÎÊı
+* @brief æ¶ˆæ¯åˆ é™¤æ¥å£çš„å‚æ•°
 */
 // Struct MsgDeleteParam JsonKey
-static const char* kTIMMsgDeleteParamMsg       = "msg_delete_param_msg";        // object [Message](), Ö»Ğ´(Ñ¡Ìî), Ö¸¶¨ÔÚ»á»°ÖĞÒªÉ¾³ıµÄÏûÏ¢
-static const char* kTIMMsgDeleteParamIsRamble  = "msg_delete_param_is_remble";  // bool, Ö»Ğ´(Ñ¡Ìî), ÊÇ·ñÉ¾³ı±¾µØ/ÂşÓÎËùÓĞÏûÏ¢¡£trueÉ¾³ıÂşÓÎÏûÏ¢£¬falseÉ¾³ı±¾µØÏûÏ¢£¬Ä¬ÈÏÖµfalse
+static const char* kTIMMsgDeleteParamMsg       = "msg_delete_param_msg";        // object [Message](), åªå†™(é€‰å¡«), æŒ‡å®šåœ¨ä¼šè¯ä¸­è¦åˆ é™¤çš„æ¶ˆæ¯
+static const char* kTIMMsgDeleteParamIsRamble  = "msg_delete_param_is_remble";  // bool, åªå†™(é€‰å¡«), æ˜¯å¦åˆ é™¤æœ¬åœ°/æ¼«æ¸¸æ‰€æœ‰æ¶ˆæ¯ã€‚trueåˆ é™¤æ¼«æ¸¸æ¶ˆæ¯ï¼Œfalseåˆ é™¤æœ¬åœ°æ¶ˆæ¯ï¼Œé»˜è®¤å€¼false
 // EndStruct
 
 /**
-* @brief UUIDÀàĞÍ
+* @brief UUIDç±»å‹
 */
 enum TIMDownloadType {
-    kTIMDownload_VideoThumb = 0, // ÊÓÆµËõÂÔÍ¼
-    kTIMDownload_File,           // ÎÄ¼ş
-    kTIMDownload_Video,          // ÊÓÆµ
-    kTIMDownload_Sound,          // ÉùÒô
+    kTIMDownload_VideoThumb = 0, // è§†é¢‘ç¼©ç•¥å›¾
+    kTIMDownload_File,           // æ–‡ä»¶
+    kTIMDownload_Video,          // è§†é¢‘
+    kTIMDownload_Sound,          // å£°éŸ³
 };
 
 /**
-* @brief ÏÂÔØÔªËØ½Ó¿ÚµÄ²ÎÊı
+* @brief ä¸‹è½½å…ƒç´ æ¥å£çš„å‚æ•°
 */
 // Struct DownloadElemParam JsonKey
-static const char* kTIMMsgDownloadElemParamFlag       = "msg_download_elem_param_flag";         // uint,   Ö»Ğ´, ´ÓÏûÏ¢ÔªËØÀïÃæÈ¡³öÀ´,ÔªËØµÄÏÂÔØÀàĞÍ
-static const char* kTIMMsgDownloadElemParamType       = "msg_download_elem_param_type";         // uint [TIMDownladType](), Ö»Ğ´, ´ÓÏûÏ¢ÔªËØÀïÃæÈ¡³öÀ´,ÔªËØµÄÀàĞÍ
-static const char* kTIMMsgDownloadElemParamId         = "msg_download_elem_param_id";           // string, Ö»Ğ´, ´ÓÏûÏ¢ÔªËØÀïÃæÈ¡³öÀ´,ÔªËØµÄID
-static const char* kTIMMsgDownloadElemParamBusinessId = "msg_download_elem_param_business_id";  // uint,   Ö»Ğ´, ´ÓÏûÏ¢ÔªËØÀïÃæÈ¡³öÀ´,ÔªËØµÄBusinessID
-static const char* kTIMMsgDownloadElemParamUrl        = "msg_download_elem_param_url";          // string, Ö»Ğ´, ´ÓÏûÏ¢ÔªËØÀïÃæÈ¡³öÀ´,ÔªËØURL
+static const char* kTIMMsgDownloadElemParamFlag       = "msg_download_elem_param_flag";         // uint,   åªå†™, ä»æ¶ˆæ¯å…ƒç´ é‡Œé¢å–å‡ºæ¥,å…ƒç´ çš„ä¸‹è½½ç±»å‹
+static const char* kTIMMsgDownloadElemParamType       = "msg_download_elem_param_type";         // uint [TIMDownladType](), åªå†™, ä»æ¶ˆæ¯å…ƒç´ é‡Œé¢å–å‡ºæ¥,å…ƒç´ çš„ç±»å‹
+static const char* kTIMMsgDownloadElemParamId         = "msg_download_elem_param_id";           // string, åªå†™, ä»æ¶ˆæ¯å…ƒç´ é‡Œé¢å–å‡ºæ¥,å…ƒç´ çš„ID
+static const char* kTIMMsgDownloadElemParamBusinessId = "msg_download_elem_param_business_id";  // uint,   åªå†™, ä»æ¶ˆæ¯å…ƒç´ é‡Œé¢å–å‡ºæ¥,å…ƒç´ çš„BusinessID
+static const char* kTIMMsgDownloadElemParamUrl        = "msg_download_elem_param_url";          // string, åªå†™, ä»æ¶ˆæ¯å…ƒç´ é‡Œé¢å–å‡ºæ¥,å…ƒç´ URL
 // EndStruct
 
 /**
-* @brief ÏÂÔØÔªËØ½Ó¿ÚµÄ·µ»Ø
+* @brief ä¸‹è½½å…ƒç´ æ¥å£çš„è¿”å›
 */
 // Struct MsgDownloadElemResult JsonKey
-static const char* kTIMMsgDownloadElemResultCurrentSize = "msg_download_elem_result_current_size";       // uint, Ö»¶Á, µ±Ç°ÒÑÏÂÔØµÄ´óĞ¡
-static const char* kTIMMsgDownloadElemResultTotalSize   = "msg_download_elem_result_total_size";         // uint, Ö»¶Á, ĞèÒªÏÂÔØµÄÎÄ¼ş×Ü´óĞ¡
+static const char* kTIMMsgDownloadElemResultCurrentSize = "msg_download_elem_result_current_size";       // uint, åªè¯», å½“å‰å·²ä¸‹è½½çš„å¤§å°
+static const char* kTIMMsgDownloadElemResultTotalSize   = "msg_download_elem_result_total_size";         // uint, åªè¯», éœ€è¦ä¸‹è½½çš„æ–‡ä»¶æ€»å¤§å°
 // EndStruct
 
 /// @}
 
 
-/// @name »á»°¹Ø¼üÀàĞÍ
-/// @brief »á»°Ïà¹Øºê¶¨Òå£¬ÒÔ¼°Ïà¹Ø½á¹¹³ÉÔ±´æÈ¡Json Key¶¨Òå
+/// @name ä¼šè¯å…³é”®ç±»å‹
+/// @brief ä¼šè¯ç›¸å…³å®å®šä¹‰ï¼Œä»¥åŠç›¸å…³ç»“æ„æˆå‘˜å­˜å–Json Keyå®šä¹‰
 /// @{
 /**
-* @brief ²İ¸åĞÅÏ¢
+* @brief è‰ç¨¿ä¿¡æ¯
 */
 // Struct Draft JsonKey
-static const char* kTIMDraftMsg              = "draft_msg";         // object [Message](), Ö»¶Á, ²İ¸åÄÚµÄÏûÏ¢
-static const char* kTIMDraftUserDefine       = "draft_user_define"; // string, Ö»¶Á, ÓÃ»§×Ô¶¨ÒåÊı¾İ
-static const char* kTIMDraftEditTime         = "draft_edit_time";   // uint, Ö»¶Á, ²İ¸å×îĞÂ±à¼­Ê±¼ä
+static const char* kTIMDraftMsg              = "draft_msg";         // object [Message](), åªè¯», è‰ç¨¿å†…çš„æ¶ˆæ¯
+static const char* kTIMDraftUserDefine       = "draft_user_define"; // string, åªè¯», ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®
+static const char* kTIMDraftEditTime         = "draft_edit_time";   // uint, åªè¯», è‰ç¨¿æœ€æ–°ç¼–è¾‘æ—¶é—´
 // EndStruct
 
 /**
-* @brief ²İ¸åĞÅÏ¢
+* @brief è‰ç¨¿ä¿¡æ¯
 */
 // Struct ConvInfo JsonKey
-static const char* kTIMConvId           = "conv_id";             // string, Ö»¶Á, »á»°ID
-static const char* kTIMConvType         = "conv_type";           // uint [TIMConvType](), Ö»¶Á, »á»°ÀàĞÍ
-static const char* kTIMConvOwner        = "conv_owner";          // string, Ö»¶Á, »á»°ËùÓĞÕß
-static const char* kTIMConvUnReadNum    = "conv_unread_num";     // uint64, Ö»¶Á, »á»°Î´¶Á¼ÆÊı
-static const char* kTIMConvActiveTime   = "conv_active_time";    // uint64, Ö»¶Á, »á»°µÄ¼¤»îÊ±¼ä
-static const char* kTIMConvIsHasLastMsg = "conv_is_has_lastmsg"; // bool, Ö»¶Á, »á»°ÊÇ·ñÓĞ×îºóÒ»ÌõÏûÏ¢
-static const char* kTIMConvLastMsg      = "conv_last_msg";       // object [Message](), Ö»¶Á, »á»°×îºóÒ»ÌõÏûÏ¢
-static const char* kTIMConvIsHasDraft   = "conv_is_has_draft";   // bool, Ö»¶Á, »á»°²İ¸å
-static const char* kTIMConvDraft        = "conv_draft";          // object [Draft](), Ö»¶Á(Ñ¡Ìî), »á»°²İ¸å
+static const char* kTIMConvId           = "conv_id";             // string, åªè¯», ä¼šè¯ID
+static const char* kTIMConvType         = "conv_type";           // uint [TIMConvType](), åªè¯», ä¼šè¯ç±»å‹
+static const char* kTIMConvOwner        = "conv_owner";          // string, åªè¯», ä¼šè¯æ‰€æœ‰è€…
+static const char* kTIMConvUnReadNum    = "conv_unread_num";     // uint64, åªè¯», ä¼šè¯æœªè¯»è®¡æ•°
+static const char* kTIMConvActiveTime   = "conv_active_time";    // uint64, åªè¯», ä¼šè¯çš„æ¿€æ´»æ—¶é—´
+static const char* kTIMConvIsHasLastMsg = "conv_is_has_lastmsg"; // bool, åªè¯», ä¼šè¯æ˜¯å¦æœ‰æœ€åä¸€æ¡æ¶ˆæ¯
+static const char* kTIMConvLastMsg      = "conv_last_msg";       // object [Message](), åªè¯», ä¼šè¯æœ€åä¸€æ¡æ¶ˆæ¯
+static const char* kTIMConvIsHasDraft   = "conv_is_has_draft";   // bool, åªè¯», ä¼šè¯è‰ç¨¿
+static const char* kTIMConvDraft        = "conv_draft";          // object [Draft](), åªè¯»(é€‰å¡«), ä¼šè¯è‰ç¨¿
 // EndStruct
 /// @}
 
-/// @name Èº×é¹Ø¼üÀàĞÍ
-/// @brief Èº×éÏà¹Øºê¶¨Òå£¬ÒÔ¼°Ïà¹Ø½á¹¹³ÉÔ±´æÈ¡Json Key¶¨Òå
+/// @name ç¾¤ç»„å…³é”®ç±»å‹
+/// @brief ç¾¤ç»„ç›¸å…³å®å®šä¹‰ï¼Œä»¥åŠç›¸å…³ç»“æ„æˆå‘˜å­˜å–Json Keyå®šä¹‰
 /// @{
 /**
-* @brief Èº×é¼ÓÈºÑ¡Ïî
+* @brief ç¾¤ç»„åŠ ç¾¤é€‰é¡¹
 */
 enum TIMGroupAddOption {
-    kTIMGroupAddOpt_Forbid = 0,  // ½ûÖ¹¼ÓÈº
-    kTIMGroupAddOpt_Auth = 1,    // ĞèÒª¹ÜÀíÔ±ÉóÅú
-    kTIMGroupAddOpt_Any = 2,     // ÈÎºÎÈË¶¼¿ÉÒÔ¼ÓÈº
+    kTIMGroupAddOpt_Forbid = 0,  // ç¦æ­¢åŠ ç¾¤
+    kTIMGroupAddOpt_Auth = 1,    // éœ€è¦ç®¡ç†å‘˜å®¡æ‰¹
+    kTIMGroupAddOpt_Any = 2,     // ä»»ä½•äººéƒ½å¯ä»¥åŠ ç¾¤
 };
 
 /**
-* @brief Èº×éÀàĞÍ
+* @brief ç¾¤ç»„ç±»å‹
 */
 enum TIMGroupType {
-    kTIMGroup_Public,     // ¹«¿ªÈº
-    kTIMGroup_Private,    // Ë½ÓĞÈº
-    kTIMGroup_ChatRoom,   // ÁÄÌìÊÒ
-    kTIMGroup_BChatRoom,  // ÔÚÏß³ÉÔ±¹ã²¥´óÈº
-    kTIMGroup_AVChatRoom, // »¥¶¯Ö±²¥ÁÄÌìÊÒ
+    kTIMGroup_Public,     // å…¬å¼€ç¾¤
+    kTIMGroup_Private,    // ç§æœ‰ç¾¤
+    kTIMGroup_ChatRoom,   // èŠå¤©å®¤
+    kTIMGroup_BChatRoom,  // åœ¨çº¿æˆå‘˜å¹¿æ’­å¤§ç¾¤
+    kTIMGroup_AVChatRoom, // äº’åŠ¨ç›´æ’­èŠå¤©å®¤
 };
 
 /**
-* @brief Èº×é³ÉÔ±½ÇÉ«ÀàĞÍ
+* @brief ç¾¤ç»„æˆå‘˜è§’è‰²ç±»å‹
 */
 enum TIMGroupMemberRole {
-    kTIMMemberRole_Normal,     // Èº³ÉÔ±
-    kTIMMemberRole_Admin,      // ¹ÜÀíÔ±
-    kTIMMemberRole_SuperAdmin, // ³¬¼¶¹ÜÀíÔ±
+    kTIMMemberRole_Normal,     // ç¾¤æˆå‘˜
+    kTIMMemberRole_Admin,      // ç®¡ç†å‘˜
+    kTIMMemberRole_SuperAdmin, // è¶…çº§ç®¡ç†å‘˜
 };
 
 /**
- * @brief Èº×é³ÉÔ±ĞÅÏ¢×Ô¶¨Òå×Ö¶Î
+ * @brief ç¾¤ç»„æˆå‘˜ä¿¡æ¯è‡ªå®šä¹‰å­—æ®µ
  */
 // Struct GroupMemberInfoCustemString JsonKey
-static const char* kTIMGroupMemberInfoCustemStringInfoKey   = "group_member_info_custom_string_info_key";   // string, Ö»Ğ´, ×Ô¶¨Òå×Ö¶ÎµÄkey
-static const char* kTIMGroupMemberInfoCustemStringInfoValue = "group_member_info_custom_string_info_value"; // string, Ö»Ğ´, ×Ô¶¨Òå×Ö¶ÎµÄvalue
+static const char* kTIMGroupMemberInfoCustemStringInfoKey   = "group_member_info_custom_string_info_key";   // string, åªå†™, è‡ªå®šä¹‰å­—æ®µçš„key
+static const char* kTIMGroupMemberInfoCustemStringInfoValue = "group_member_info_custom_string_info_value"; // string, åªå†™, è‡ªå®šä¹‰å­—æ®µçš„value
 // EndStruct
 
 /**
-* @brief Èº×é³ÉÔ±ĞÅÏ¢
+* @brief ç¾¤ç»„æˆå‘˜ä¿¡æ¯
 */
 // Struct GroupMemberInfo JsonKey
-static const char* kTIMGroupMemberInfoIdentifier = "group_member_info_identifier";   // string, ¶ÁĞ´(±ØÌî), Èº×é³ÉÔ±ID
-static const char* kTIMGroupMemberInfoJoinTime   = "group_member_info_join_time";    // uint,  Ö»¶Á, Èº×é³ÉÔ±¼ÓÈëÊ±¼ä
-static const char* kTIMGroupMemberInfoMemberRole = "group_member_info_member_role";  // uint [TIMGroupMemberRole](), ¶ÁĞ´(Ñ¡Ìî), Èº×é³ÉÔ±½ÇÉ«
-static const char* kTIMGroupMemberInfoMsgFlag    = "group_member_info_msg_flag";     // uint,  Ö»¶Á, ³ÉÔ±½ÓÊÕÏûÏ¢µÄÑ¡Ïî
-static const char* kTIMGroupMemberInfoMsgSeq     = "group_member_info_msg_seq";      // uint,  Ö»¶Á, 
-static const char* kTIMGroupMemberInfoShutupTime = "group_member_info_shutup_time";  // uint,  Ö»¶Á, ³ÉÔ±½ûÑÔÊ±¼ä
-static const char* kTIMGroupMemberInfoNameCard   = "group_member_info_name_card";    // string, Ö»¶Á, ³ÉÔ±ÈºÃûÆ¬
-static const char* kTIMGroupMemberInfoCustomInfo = "group_member_info_custom_info";  // array [GroupMemberInfoCustemString](), Ö»¶Á, Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupMemberInfoIdentifier = "group_member_info_identifier";   // string, è¯»å†™(å¿…å¡«), ç¾¤ç»„æˆå‘˜ID
+static const char* kTIMGroupMemberInfoJoinTime   = "group_member_info_join_time";    // uint,  åªè¯», ç¾¤ç»„æˆå‘˜åŠ å…¥æ—¶é—´
+static const char* kTIMGroupMemberInfoMemberRole = "group_member_info_member_role";  // uint [TIMGroupMemberRole](), è¯»å†™(é€‰å¡«), ç¾¤ç»„æˆå‘˜è§’è‰²
+static const char* kTIMGroupMemberInfoMsgFlag    = "group_member_info_msg_flag";     // uint,  åªè¯», æˆå‘˜æ¥æ”¶æ¶ˆæ¯çš„é€‰é¡¹
+static const char* kTIMGroupMemberInfoMsgSeq     = "group_member_info_msg_seq";      // uint,  åªè¯», 
+static const char* kTIMGroupMemberInfoShutupTime = "group_member_info_shutup_time";  // uint,  åªè¯», æˆå‘˜ç¦è¨€æ—¶é—´
+static const char* kTIMGroupMemberInfoNameCard   = "group_member_info_name_card";    // string, åªè¯», æˆå‘˜ç¾¤åç‰‡
+static const char* kTIMGroupMemberInfoCustomInfo = "group_member_info_custom_info";  // array [GroupMemberInfoCustemString](), åªè¯», è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
- * @brief Èº×é³ÉÔ±ĞÅÏ¢×Ô¶¨Òå×Ö¶Î
+ * @brief ç¾¤ç»„æˆå‘˜ä¿¡æ¯è‡ªå®šä¹‰å­—æ®µ
  */
 // Struct GroupInfoCustemString JsonKey
-static const char* kTIMGroupInfoCustemStringInfoKey   = "group_info_custom_string_info_key";   // string, Ö»Ğ´, ×Ô¶¨Òå×Ö¶ÎµÄkey
-static const char* kTIMGroupInfoCustemStringInfoValue = "group_info_custom_string_info_value"; // string, Ö»Ğ´, ×Ô¶¨Òå×Ö¶ÎµÄvalue
+static const char* kTIMGroupInfoCustemStringInfoKey   = "group_info_custom_string_info_key";   // string, åªå†™, è‡ªå®šä¹‰å­—æ®µçš„key
+static const char* kTIMGroupInfoCustemStringInfoValue = "group_info_custom_string_info_value"; // string, åªå†™, è‡ªå®šä¹‰å­—æ®µçš„value
 // EndStruct
 
 /**
-* @brief ´´½¨Èº×é½Ó¿ÚµÄ²ÎÊı
+* @brief åˆ›å»ºç¾¤ç»„æ¥å£çš„å‚æ•°
 */
 // Struct CreateGroupParam JsonKey
-static const char* kTIMCreateGroupParamGroupName        = "create_group_param_group_name";          // string, Ö»Ğ´(±ØÌî), Èº×éÃû³Æ
-static const char* kTIMCreateGroupParamGroupId          = "create_group_param_group_id";            // string, Ö»Ğ´(Ñ¡Ìî), Èº×éID,²»ÌîÊ±´´½¨³É¹¦»Øµ÷»á·µ»ØÒ»¸öºóÌ¨·ÖÅäµÄÈºID
-static const char* kTIMCreateGroupParamGroupType        = "create_group_param_group_type";          // uint[TIMGroupType](), Ö»Ğ´(Ñ¡Ìî), Èº×éÀàĞÍ,Ä¬ÈÏÎªPublic
-static const char* kTIMCreateGroupParamGroupMemberArray = "create_group_param_group_member_array";  // array [GroupMemberInfo](), Ö»Ğ´(Ñ¡Ìî), Èº×é³õÊ¼³ÉÔ±Êı×é
-static const char* kTIMCreateGroupParamNotification     = "create_group_param_notification";        // string, Ö»Ğ´(Ñ¡Ìî), Èº×é¹«¸æ,
-static const char* kTIMCreateGroupParamIntroduction     = "create_group_param_introduction";        // string, Ö»Ğ´(Ñ¡Ìî), Èº×é¼ò½é,
-static const char* kTIMCreateGroupParamFaceUrl          = "create_group_param_face_url";            // string, Ö»Ğ´(Ñ¡Ìî), Èº×éÍ·ÏñURL
-static const char* kTIMCreateGroupParamAddOption        = "create_group_param_add_option";          // uint [TIMGroupAddOption](),   Ö»Ğ´(Ñ¡Ìî), ¼ÓÈºÑ¡Ïî£¬Ä¬ÈÏÎªAny
-static const char* kTIMCreateGroupParamMaxMemberCount   = "create_group_param_max_member_num";      // uint,   Ö»Ğ´(Ñ¡Ìî), Èº×é×î´ó³ÉÔ±Êı
-static const char* kTIMCreateGroupParamCustomInfo       = "create_group_param_custom_info";         // array [GroupInfoCustemString](), Ö»¶Á(Ñ¡Ìî), Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMCreateGroupParamGroupName        = "create_group_param_group_name";          // string, åªå†™(å¿…å¡«), ç¾¤ç»„åç§°
+static const char* kTIMCreateGroupParamGroupId          = "create_group_param_group_id";            // string, åªå†™(é€‰å¡«), ç¾¤ç»„ID,ä¸å¡«æ—¶åˆ›å»ºæˆåŠŸå›è°ƒä¼šè¿”å›ä¸€ä¸ªåå°åˆ†é…çš„ç¾¤ID
+static const char* kTIMCreateGroupParamGroupType        = "create_group_param_group_type";          // uint[TIMGroupType](), åªå†™(é€‰å¡«), ç¾¤ç»„ç±»å‹,é»˜è®¤ä¸ºPublic
+static const char* kTIMCreateGroupParamGroupMemberArray = "create_group_param_group_member_array";  // array [GroupMemberInfo](), åªå†™(é€‰å¡«), ç¾¤ç»„åˆå§‹æˆå‘˜æ•°ç»„
+static const char* kTIMCreateGroupParamNotification     = "create_group_param_notification";        // string, åªå†™(é€‰å¡«), ç¾¤ç»„å…¬å‘Š,
+static const char* kTIMCreateGroupParamIntroduction     = "create_group_param_introduction";        // string, åªå†™(é€‰å¡«), ç¾¤ç»„ç®€ä»‹,
+static const char* kTIMCreateGroupParamFaceUrl          = "create_group_param_face_url";            // string, åªå†™(é€‰å¡«), ç¾¤ç»„å¤´åƒURL
+static const char* kTIMCreateGroupParamAddOption        = "create_group_param_add_option";          // uint [TIMGroupAddOption](),   åªå†™(é€‰å¡«), åŠ ç¾¤é€‰é¡¹ï¼Œé»˜è®¤ä¸ºAny
+static const char* kTIMCreateGroupParamMaxMemberCount   = "create_group_param_max_member_num";      // uint,   åªå†™(é€‰å¡«), ç¾¤ç»„æœ€å¤§æˆå‘˜æ•°
+static const char* kTIMCreateGroupParamCustomInfo       = "create_group_param_custom_info";         // array [GroupInfoCustemString](), åªè¯»(é€‰å¡«), è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
-* @brief ´´½¨Èº×é½Ó¿ÚµÄ·µ»Ø
+* @brief åˆ›å»ºç¾¤ç»„æ¥å£çš„è¿”å›
 */
 // Struct CreateGroupResult JsonKey
-static const char* kTIMCreateGroupResultGroupId         = "create_group_result_groupid"; // string, Ö»¶Á, ´´½¨µÄÈºID
+static const char* kTIMCreateGroupResultGroupId         = "create_group_result_groupid"; // string, åªè¯», åˆ›å»ºçš„ç¾¤ID
 // EndStruct
 
 /**
-* @brief ÑûÇë³ÉÔ±½Ó¿ÚµÄ²ÎÊı
+* @brief é‚€è¯·æˆå‘˜æ¥å£çš„å‚æ•°
 */
 // Struct GroupInviteMemberParam JsonKey
-static const char* kTIMGroupInviteMemberParamGroupId         = "group_invite_member_param_group_id";         // string, Ö»Ğ´(±ØÌî), Èº×éID
-static const char* kTIMGroupInviteMemberParamIdentifierArray = "group_invite_member_param_identifier_array"; // array string, Ö»Ğ´(±ØÌî), ±»ÑûÇë¼ÓÈëÈº×éÓÃ»§IDÊı×é
-static const char* kTIMGroupInviteMemberParamUserData        = "group_invite_member_param_user_data";        // string, Ö»Ğ´(Ñ¡Ìî), ÓÃÓÚ×Ô¶¨ÒåÊı¾İ
+static const char* kTIMGroupInviteMemberParamGroupId         = "group_invite_member_param_group_id";         // string, åªå†™(å¿…å¡«), ç¾¤ç»„ID
+static const char* kTIMGroupInviteMemberParamIdentifierArray = "group_invite_member_param_identifier_array"; // array string, åªå†™(å¿…å¡«), è¢«é‚€è¯·åŠ å…¥ç¾¤ç»„ç”¨æˆ·IDæ•°ç»„
+static const char* kTIMGroupInviteMemberParamUserData        = "group_invite_member_param_user_data";        // string, åªå†™(é€‰å¡«), ç”¨äºè‡ªå®šä¹‰æ•°æ®
 // EndStruct
 
 
 /**
-* @brief Èº×é»ù´¡ĞÅÏ¢
+* @brief ç¾¤ç»„åŸºç¡€ä¿¡æ¯
 */
 enum HandleGroupMemberResult {
-    kTIMGroupMember_HandledErr, // Ê§°Ü
-    kTIMGroupMember_HandledSuc, // ³É¹¦
-    kTIMGroupMember_Included,   // ÒÑÊÇÈº³ÉÔ±
-    kTIMGroupMember_Invited,    // ÒÑ·¢ËÍÑûÇë
+    kTIMGroupMember_HandledErr, // å¤±è´¥
+    kTIMGroupMember_HandledSuc, // æˆåŠŸ
+    kTIMGroupMember_Included,   // å·²æ˜¯ç¾¤æˆå‘˜
+    kTIMGroupMember_Invited,    // å·²å‘é€é‚€è¯·
 };
 
 
 /**
-* @brief ÑûÇë³ÉÔ±½Ó¿ÚµÄ·µ»Ø
+* @brief é‚€è¯·æˆå‘˜æ¥å£çš„è¿”å›
 */
 // Struct GroupInviteMemberResult JsonKey
-static const char* kTIMGroupInviteMemberResultIdentifier = "group_invite_member_result_identifier"; // string, Ö»¶Á, ±»ÑûÇë¼ÓÈëÈº×éµÄÓÃ»§ID
-static const char* kTIMGroupInviteMemberResultResult     = "group_invite_member_result_result";     // uint [HandleGroupMemberResult](), Ö»¶Á, ÑûÇë½á¹û
+static const char* kTIMGroupInviteMemberResultIdentifier = "group_invite_member_result_identifier"; // string, åªè¯», è¢«é‚€è¯·åŠ å…¥ç¾¤ç»„çš„ç”¨æˆ·ID
+static const char* kTIMGroupInviteMemberResultResult     = "group_invite_member_result_result";     // uint [HandleGroupMemberResult](), åªè¯», é‚€è¯·ç»“æœ
 // EndStruct
 
 /**
-* @brief É¾³ı³ÉÔ±½Ó¿ÚµÄ²ÎÊı
+* @brief åˆ é™¤æˆå‘˜æ¥å£çš„å‚æ•°
 */
 // Struct GroupDeleteMemberParam JsonKey
-static const char* kTIMGroupDeleteMemberParamGroupId         = "group_delete_member_param_group_id";          // string, Ö»Ğ´(±ØÌî), Èº×éID
-static const char* kTIMGroupDeleteMemberParamIdentifierArray = "group_delete_member_param_identifier_array";  // array string, Ö»Ğ´(±ØÌî), ±»É¾³ıÈº×é³ÉÔ±Êı×é
-static const char* kTIMGroupDeleteMemberParamUserData        = "group_delete_member_param_user_data";         // string, Ö»Ğ´(Ñ¡Ìî), ÓÃÓÚ×Ô¶¨ÒåÊı¾İ
+static const char* kTIMGroupDeleteMemberParamGroupId         = "group_delete_member_param_group_id";          // string, åªå†™(å¿…å¡«), ç¾¤ç»„ID
+static const char* kTIMGroupDeleteMemberParamIdentifierArray = "group_delete_member_param_identifier_array";  // array string, åªå†™(å¿…å¡«), è¢«åˆ é™¤ç¾¤ç»„æˆå‘˜æ•°ç»„
+static const char* kTIMGroupDeleteMemberParamUserData        = "group_delete_member_param_user_data";         // string, åªå†™(é€‰å¡«), ç”¨äºè‡ªå®šä¹‰æ•°æ®
 // EndStruct
 
 /**
-* @brief É¾³ı³ÉÔ±½Ó¿ÚµÄ·µ»Ø
+* @brief åˆ é™¤æˆå‘˜æ¥å£çš„è¿”å›
 */
 // Struct GroupDeleteMemberResult JsonKey
-static const char* kTIMGroupDeleteMemberResultIdentifier  = "group_delete_member_result_identifier"; // string, Ö»¶Á, É¾³ıµÄ³ÉÔ±ID
-static const char* kTIMGroupDeleteMemberResultResult      = "group_delete_member_result_result";     // uint [HandleGroupMemberResult](), Ö»¶Á, É¾³ı½á¹û
+static const char* kTIMGroupDeleteMemberResultIdentifier  = "group_delete_member_result_identifier"; // string, åªè¯», åˆ é™¤çš„æˆå‘˜ID
+static const char* kTIMGroupDeleteMemberResultResult      = "group_delete_member_result_result";     // uint [HandleGroupMemberResult](), åªè¯», åˆ é™¤ç»“æœ
 // EndStruct
 
 
 /**
-* @brief Èº×éÏûÏ¢½ÓÊÕÑ¡Ïî
+* @brief ç¾¤ç»„æ¶ˆæ¯æ¥æ”¶é€‰é¡¹
 */    
 enum TIMGroupReceiveMessageOpt {
-    kTIMRecvGroupMsgOpt_ReceiveAndNotify,  // ½ÓÊÕÈºÏûÏ¢ ²¢ÌáÊ¾
-    kTIMRecvGroupMsgOpt_NotReceive,        // ²»½ÓÊÕÈºÏûÏ¢, ·şÎñÆ÷²»»á½øĞĞ×ª·¢
-    kTIMRecvGroupMsgOpt_ReceiveNotNotify,  // ½ÓÊÕÈºÏûÏ¢,²»ÌáÊ¾
+    kTIMRecvGroupMsgOpt_ReceiveAndNotify,  // æ¥æ”¶ç¾¤æ¶ˆæ¯ å¹¶æç¤º
+    kTIMRecvGroupMsgOpt_NotReceive,        // ä¸æ¥æ”¶ç¾¤æ¶ˆæ¯, æœåŠ¡å™¨ä¸ä¼šè¿›è¡Œè½¬å‘
+    kTIMRecvGroupMsgOpt_ReceiveNotNotify,  // æ¥æ”¶ç¾¤æ¶ˆæ¯,ä¸æç¤º
 };
 
 /**
-* @brief Èº×éÄÚ±¾ÈËµÄĞÅÏ¢
+* @brief ç¾¤ç»„å†…æœ¬äººçš„ä¿¡æ¯
 */
 // Struct GroupSelfInfo JsonKey
-static const char* kTIMGroupSelfInfoJoinTime   = "group_self_info_join_time";   // uint, Ö»¶Á, ¼ÓÈëÈº×éÊ±¼ä
-static const char* kTIMGroupSelfInfoRole       = "group_self_info_role";        // uint, Ö»¶Á, ÓÃ»§ÔÚÈº×éÖĞµÄ½ÇÉ«
-static const char* kTIMGroupSelfInfoUnReadNum  = "group_self_info_unread_num";  // uint, Ö»¶Á, ÏûÏ¢Î´¶Á¼ÆÊı
-static const char* kTIMGroupSelfInfoMsgFlag    = "group_self_info_msg_flag";    // uint [TIMGroupReceiveMessageOpt](), Ö»¶Á, ÈºÏûÏ¢½ÓÊÕÑ¡Ïî
+static const char* kTIMGroupSelfInfoJoinTime   = "group_self_info_join_time";   // uint, åªè¯», åŠ å…¥ç¾¤ç»„æ—¶é—´
+static const char* kTIMGroupSelfInfoRole       = "group_self_info_role";        // uint, åªè¯», ç”¨æˆ·åœ¨ç¾¤ç»„ä¸­çš„è§’è‰²
+static const char* kTIMGroupSelfInfoUnReadNum  = "group_self_info_unread_num";  // uint, åªè¯», æ¶ˆæ¯æœªè¯»è®¡æ•°
+static const char* kTIMGroupSelfInfoMsgFlag    = "group_self_info_msg_flag";    // uint [TIMGroupReceiveMessageOpt](), åªè¯», ç¾¤æ¶ˆæ¯æ¥æ”¶é€‰é¡¹
 // EndStruct
 
 /**
-* @brief »ñÈ¡ÒÑ¼ÓÈëÈº×éÁĞ±í½Ó¿ÚµÄ·µ»Ø(Èº×é»ù´¡ĞÅÏ¢)
+* @brief è·å–å·²åŠ å…¥ç¾¤ç»„åˆ—è¡¨æ¥å£çš„è¿”å›(ç¾¤ç»„åŸºç¡€ä¿¡æ¯)
 */
 // Struct GroupBaseInfo JsonKey
-static const char* kTIMGroupBaseInfoGroupId      = "group_base_info_group_id";       // string, Ö»¶Á, Èº×éID
-static const char* kTIMGroupBaseInfoGroupName    = "group_base_info_group_name";     // string, Ö»¶Á, Èº×éÃû³Æ
-static const char* kTIMGroupBaseInfoGroupType    = "group_base_info_group_type";     // string [TIMGroupType](), Ö»¶Á, Èº×éÀàĞÍ
-static const char* kTIMGroupBaseInfoFaceUrl      = "group_base_info_face_url";       // string, Ö»¶Á, Èº×éÍ·ÏñURL
-static const char* kTIMGroupBaseInfoInfoSeq      = "group_base_info_info_seq";       // uint,   Ö»¶Á, Èº×ÊÁÏµÄSeq£¬Èº×ÊÁÏµÄÃ¿´Î±ä¸ü¶¼»áÔö¼ÓÕâ¸ö×Ö¶ÎµÄÖµ
-static const char* kTIMGroupBaseInfoLastestSeq   = "group_base_info_lastest_seq";    // uint,   Ö»¶Á, Èº×îĞÂÏûÏ¢µÄSeq¡£Èº×éÄÚÃ¿Ò»ÌõÏûÏ¢¶¼ÓĞÒ»ÌõÎ¨Ò»µÄÏûÏ¢Seq£¬ÇÒ¸ÃSeqÊÇ°´ÕÕ·¢ÏûÏ¢Ë³Ğò¶øÁ¬ĞøµÄ¡£´Ó1¿ªÊ¼£¬ÈºÄÚÃ¿Ôö¼ÓÒ»ÌõÏûÏ¢£¬LastestSeq¾Í»áÔö¼Ó1
-static const char* kTIMGroupBaseInfoReadedSeq    = "group_base_info_readed_seq";     // uint,   Ö»¶Á, ÓÃ»§ËùÔÚÈºÒÑ¶ÁµÄÏûÏ¢Seq
-static const char* kTIMGroupBaseInfoMsgFlag      = "group_base_info_msg_flag";       // uint,   Ö»¶Á, ÏûÏ¢½ÓÊÕÑ¡Ïî
-static const char* kTIMGroupBaseInfoIsShutupAll  = "group_base_info_is_shutup_all";  // bool,   Ö»¶Á, µ±Ç°Èº×éÊÇ·ñÉèÖÃÁËÈ«Ô±½ûÑÔ
-static const char* kTIMGroupBaseInfoSelfInfo     = "group_base_info_self_info";      // object [GroupSelfInfo](), Ö»¶Á, ÓÃ»§ËùÔÚÈºµÄ¸öÈËĞÅÏ¢
+static const char* kTIMGroupBaseInfoGroupId      = "group_base_info_group_id";       // string, åªè¯», ç¾¤ç»„ID
+static const char* kTIMGroupBaseInfoGroupName    = "group_base_info_group_name";     // string, åªè¯», ç¾¤ç»„åç§°
+static const char* kTIMGroupBaseInfoGroupType    = "group_base_info_group_type";     // string [TIMGroupType](), åªè¯», ç¾¤ç»„ç±»å‹
+static const char* kTIMGroupBaseInfoFaceUrl      = "group_base_info_face_url";       // string, åªè¯», ç¾¤ç»„å¤´åƒURL
+static const char* kTIMGroupBaseInfoInfoSeq      = "group_base_info_info_seq";       // uint,   åªè¯», ç¾¤èµ„æ–™çš„Seqï¼Œç¾¤èµ„æ–™çš„æ¯æ¬¡å˜æ›´éƒ½ä¼šå¢åŠ è¿™ä¸ªå­—æ®µçš„å€¼
+static const char* kTIMGroupBaseInfoLastestSeq   = "group_base_info_lastest_seq";    // uint,   åªè¯», ç¾¤æœ€æ–°æ¶ˆæ¯çš„Seqã€‚ç¾¤ç»„å†…æ¯ä¸€æ¡æ¶ˆæ¯éƒ½æœ‰ä¸€æ¡å”¯ä¸€çš„æ¶ˆæ¯Seqï¼Œä¸”è¯¥Seqæ˜¯æŒ‰ç…§å‘æ¶ˆæ¯é¡ºåºè€Œè¿ç»­çš„ã€‚ä»1å¼€å§‹ï¼Œç¾¤å†…æ¯å¢åŠ ä¸€æ¡æ¶ˆæ¯ï¼ŒLastestSeqå°±ä¼šå¢åŠ 1
+static const char* kTIMGroupBaseInfoReadedSeq    = "group_base_info_readed_seq";     // uint,   åªè¯», ç”¨æˆ·æ‰€åœ¨ç¾¤å·²è¯»çš„æ¶ˆæ¯Seq
+static const char* kTIMGroupBaseInfoMsgFlag      = "group_base_info_msg_flag";       // uint,   åªè¯», æ¶ˆæ¯æ¥æ”¶é€‰é¡¹
+static const char* kTIMGroupBaseInfoIsShutupAll  = "group_base_info_is_shutup_all";  // bool,   åªè¯», å½“å‰ç¾¤ç»„æ˜¯å¦è®¾ç½®äº†å…¨å‘˜ç¦è¨€
+static const char* kTIMGroupBaseInfoSelfInfo     = "group_base_info_self_info";      // object [GroupSelfInfo](), åªè¯», ç”¨æˆ·æ‰€åœ¨ç¾¤çš„ä¸ªäººä¿¡æ¯
 // EndStruct
 
 /**
-* @brief Èº×éÏêÏ¸ĞÅÏ¢
+* @brief ç¾¤ç»„è¯¦ç»†ä¿¡æ¯
 */
 // Struct GroupDetailInfo JsonKey
-static const char* kTIMGroupDetialInfoGroupId          = "group_detial_info_group_id";           // string, Ö»¶Á, Èº×éID
-static const char* kTIMGroupDetialInfoGroupType        = "group_detial_info_group_type";         // uint [TIMGroupType](), Ö»¶Á, Èº×éÀàĞÍ
-static const char* kTIMGroupDetialInfoGroupName        = "group_detial_info_group_name";         // string, Ö»¶Á, Èº×éÃû³Æ
-static const char* kTIMGroupDetialInfoNotification     = "group_detial_info_notification";       // string, Ö»¶Á, Èº×é¹«¸æ
-static const char* kTIMGroupDetialInfoIntroduction     = "group_detial_info_introduction";       // string, Ö»¶Á, Èº×é¼ò½é
-static const char* kTIMGroupDetialInfoFaceUrl          = "group_detial_info_face_url";           // string, Ö»¶Á, Èº×éÍ·ÏñURL
-static const char* kTIMGroupDetialInfoCreateTime       = "group_detial_info_create_time";        // uint,   Ö»¶Á, Èº×é´´½¨Ê±¼ä
-static const char* kTIMGroupDetialInfoInfoSeq          = "group_detial_info_info_seq";           // uint,   Ö»¶Á, Èº×ÊÁÏµÄSeq£¬Èº×ÊÁÏµÄÃ¿´Î±ä¸ü¶¼»áÔö¼ÓÕâ¸ö×Ö¶ÎµÄÖµ
-static const char* kTIMGroupDetialInfoLastInfoTime     = "group_detial_info_last_info_time";     // uint,   Ö»¶Á, Èº×éĞÅÏ¢×îºóĞŞ¸ÄÊ±¼ä
-static const char* kTIMGroupDetialInfoNextMsgSeq       = "group_detial_info_next_msg_seq";       // uint,   Ö»¶Á, Èº×îĞÂÏûÏ¢µÄSeq
-static const char* kTIMGroupDetialInfoLastMsgTime      = "group_detial_info_last_msg_time";      // uint,   Ö»¶Á, ×îĞÂÈº×éÏûÏ¢Ê±¼ä
-static const char* kTIMGroupDetialInfoMemberNum        = "group_detial_info_member_num";         // uint,   Ö»¶Á, Èº×éµ±Ç°³ÉÔ±ÊıÁ¿
-static const char* kTIMGroupDetialInfoMaxMemberNum     = "group_detial_info_max_member_num";     // uint,   Ö»¶Á, Èº×é×î´ó³ÉÔ±ÊıÁ¿
-static const char* kTIMGroupDetialInfoAddOption        = "group_detial_info_add_option";         // uint [TIMGroupAddOption](), Ö»¶Á, Èº×é¼ÓÈºÑ¡Ïî
-static const char* kTIMGroupDetialInfoOnlineMemberNum  = "group_detial_info_online_member_num";  // uint,   Ö»¶Á, Èº×éÔÚÏß³ÉÔ±ÊıÁ¿
-static const char* kTIMGroupDetialInfoVisible          = "group_detial_info_visible";            // uint,   Ö»¶Á, Èº×é³ÉÔ±ÊÇ·ñ¶ÔÍâ¿É¼û
-static const char* kTIMGroupDetialInfoSearchable       = "group_detial_info_searchable";         // uint,   Ö»¶Á, Èº×éÊÇ·ñÄÜ±»ËÑË÷
-static const char* kTIMGroupDetialInfoIsShutupAll      = "group_detial_info_is_shutup_all";      // bool,   Ö»¶Á, Èº×éÊÇ·ñ±»ÉèÖÃÁËÈ«Ô±½ûÑÔ
-static const char* kTIMGroupDetialInfoOwnerIdentifier  = "group_detial_info_owener_identifier";  // string, Ö»¶Á, Èº×éËùÓĞÕßID
-static const char* kTIMGroupDetialInfoCustomInfo       = "group_detial_info_custom_info";        // array [GroupInfoCustemString](), Ö»¶Á, Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupDetialInfoGroupId          = "group_detial_info_group_id";           // string, åªè¯», ç¾¤ç»„ID
+static const char* kTIMGroupDetialInfoGroupType        = "group_detial_info_group_type";         // uint [TIMGroupType](), åªè¯», ç¾¤ç»„ç±»å‹
+static const char* kTIMGroupDetialInfoGroupName        = "group_detial_info_group_name";         // string, åªè¯», ç¾¤ç»„åç§°
+static const char* kTIMGroupDetialInfoNotification     = "group_detial_info_notification";       // string, åªè¯», ç¾¤ç»„å…¬å‘Š
+static const char* kTIMGroupDetialInfoIntroduction     = "group_detial_info_introduction";       // string, åªè¯», ç¾¤ç»„ç®€ä»‹
+static const char* kTIMGroupDetialInfoFaceUrl          = "group_detial_info_face_url";           // string, åªè¯», ç¾¤ç»„å¤´åƒURL
+static const char* kTIMGroupDetialInfoCreateTime       = "group_detial_info_create_time";        // uint,   åªè¯», ç¾¤ç»„åˆ›å»ºæ—¶é—´
+static const char* kTIMGroupDetialInfoInfoSeq          = "group_detial_info_info_seq";           // uint,   åªè¯», ç¾¤èµ„æ–™çš„Seqï¼Œç¾¤èµ„æ–™çš„æ¯æ¬¡å˜æ›´éƒ½ä¼šå¢åŠ è¿™ä¸ªå­—æ®µçš„å€¼
+static const char* kTIMGroupDetialInfoLastInfoTime     = "group_detial_info_last_info_time";     // uint,   åªè¯», ç¾¤ç»„ä¿¡æ¯æœ€åä¿®æ”¹æ—¶é—´
+static const char* kTIMGroupDetialInfoNextMsgSeq       = "group_detial_info_next_msg_seq";       // uint,   åªè¯», ç¾¤æœ€æ–°æ¶ˆæ¯çš„Seq
+static const char* kTIMGroupDetialInfoLastMsgTime      = "group_detial_info_last_msg_time";      // uint,   åªè¯», æœ€æ–°ç¾¤ç»„æ¶ˆæ¯æ—¶é—´
+static const char* kTIMGroupDetialInfoMemberNum        = "group_detial_info_member_num";         // uint,   åªè¯», ç¾¤ç»„å½“å‰æˆå‘˜æ•°é‡
+static const char* kTIMGroupDetialInfoMaxMemberNum     = "group_detial_info_max_member_num";     // uint,   åªè¯», ç¾¤ç»„æœ€å¤§æˆå‘˜æ•°é‡
+static const char* kTIMGroupDetialInfoAddOption        = "group_detial_info_add_option";         // uint [TIMGroupAddOption](), åªè¯», ç¾¤ç»„åŠ ç¾¤é€‰é¡¹
+static const char* kTIMGroupDetialInfoOnlineMemberNum  = "group_detial_info_online_member_num";  // uint,   åªè¯», ç¾¤ç»„åœ¨çº¿æˆå‘˜æ•°é‡
+static const char* kTIMGroupDetialInfoVisible          = "group_detial_info_visible";            // uint,   åªè¯», ç¾¤ç»„æˆå‘˜æ˜¯å¦å¯¹å¤–å¯è§
+static const char* kTIMGroupDetialInfoSearchable       = "group_detial_info_searchable";         // uint,   åªè¯», ç¾¤ç»„æ˜¯å¦èƒ½è¢«æœç´¢
+static const char* kTIMGroupDetialInfoIsShutupAll      = "group_detial_info_is_shutup_all";      // bool,   åªè¯», ç¾¤ç»„æ˜¯å¦è¢«è®¾ç½®äº†å…¨å‘˜ç¦è¨€
+static const char* kTIMGroupDetialInfoOwnerIdentifier  = "group_detial_info_owener_identifier";  // string, åªè¯», ç¾¤ç»„æ‰€æœ‰è€…ID
+static const char* kTIMGroupDetialInfoCustomInfo       = "group_detial_info_custom_info";        // array [GroupInfoCustemString](), åªè¯», è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
-* @brief »ñÈ¡Èº×éĞÅÏ¢ÁĞ±í½Ó¿ÚµÄ·µ»Ø
+* @brief è·å–ç¾¤ç»„ä¿¡æ¯åˆ—è¡¨æ¥å£çš„è¿”å›
 */
 // Struct GetGroupInfoResult JsonKey
-static const char* kTIMGetGroupInfoResultCode  = "get_groups_info_result_code";    // int [´íÎóÂë](https://cloud.tencent.com/document/product/269/1671),   Ö»¶Á, »ñÈ¡Èº×éÏêÏ¸ĞÅÏ¢µÄ½á¹û
-static const char* kTIMGetGroupInfoResultDesc  = "get_groups_info_result_desc";    // string, Ö»¶Á, »ñÈ¡Èº×éÏêÏ¸Ê§°ÜµÄÃèÊöĞÅÏ¢
-static const char* kTIMGetGroupInfoResultInfo  = "get_groups_info_result_info";    // json object [GroupDetailInfo](), Ö»¶Á, Èº×éÏêÏ¸ĞÅÏ¢
+static const char* kTIMGetGroupInfoResultCode  = "get_groups_info_result_code";    // int [é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671),   åªè¯», è·å–ç¾¤ç»„è¯¦ç»†ä¿¡æ¯çš„ç»“æœ
+static const char* kTIMGetGroupInfoResultDesc  = "get_groups_info_result_desc";    // string, åªè¯», è·å–ç¾¤ç»„è¯¦ç»†å¤±è´¥çš„æè¿°ä¿¡æ¯
+static const char* kTIMGetGroupInfoResultInfo  = "get_groups_info_result_info";    // json object [GroupDetailInfo](), åªè¯», ç¾¤ç»„è¯¦ç»†ä¿¡æ¯
 // EndStruct
 
 /**
-* @brief ÉèÖÃ(ĞŞ¸Ä)Èº×éĞÅÏ¢µÄÀàĞÍ
+* @brief è®¾ç½®(ä¿®æ”¹)ç¾¤ç»„ä¿¡æ¯çš„ç±»å‹
 */
 enum TIMGroupModifyInfoFlag {
     kTIMGroupModifyInfoFlag_None         = 0x00,
-    kTIMGroupModifyInfoFlag_Name         = 0x01,       // ĞŞ¸ÄÈº×éÃû³Æ,      
-    kTIMGroupModifyInfoFlag_Notification = 0x01 << 1,  // ĞŞ¸ÄÈº¹«¸æ,        
-    kTIMGroupModifyInfoFlag_Introduction = 0x01 << 2,  // ĞŞ¸ÄÈº¼ò½é         
-    kTIMGroupModifyInfoFlag_FaceUrl      = 0x01 << 3,  // ĞŞ¸ÄÈºÍ·ÏñURL      
-    kTIMGroupModifyInfoFlag_AddOption    = 0x01 << 4,  // ĞŞ¸ÄÈº×éÌí¼ÓÑ¡Ïî,  
-    kTIMGroupModifyInfoFlag_MaxMmeberNum = 0x01 << 5,  // ĞŞ¸ÄÈº×î´ó³ÉÔ±Êı,  
-    kTIMGroupModifyInfoFlag_Visible      = 0x01 << 6,  // ĞŞ¸ÄÈºÊÇ·ñ¿É¼û,    
-    kTIMGroupModifyInfoFlag_Searchable   = 0x01 << 7,  // ĞŞ¸ÄÈºÊÇ·ñ±»ËÑË÷,  
-    kTIMGroupModifyInfoFlag_ShutupAll    = 0x01 << 8,  // ĞŞ¸ÄÈºÊÇ·ñÈ«Ìå½ûÑÔ,
-    kTIMGroupModifyInfoFlag_Owner        = 0x01 << 31, // ĞŞ¸ÄÈºÖ÷
+    kTIMGroupModifyInfoFlag_Name         = 0x01,       // ä¿®æ”¹ç¾¤ç»„åç§°,      
+    kTIMGroupModifyInfoFlag_Notification = 0x01 << 1,  // ä¿®æ”¹ç¾¤å…¬å‘Š,        
+    kTIMGroupModifyInfoFlag_Introduction = 0x01 << 2,  // ä¿®æ”¹ç¾¤ç®€ä»‹         
+    kTIMGroupModifyInfoFlag_FaceUrl      = 0x01 << 3,  // ä¿®æ”¹ç¾¤å¤´åƒURL      
+    kTIMGroupModifyInfoFlag_AddOption    = 0x01 << 4,  // ä¿®æ”¹ç¾¤ç»„æ·»åŠ é€‰é¡¹,  
+    kTIMGroupModifyInfoFlag_MaxMmeberNum = 0x01 << 5,  // ä¿®æ”¹ç¾¤æœ€å¤§æˆå‘˜æ•°,  
+    kTIMGroupModifyInfoFlag_Visible      = 0x01 << 6,  // ä¿®æ”¹ç¾¤æ˜¯å¦å¯è§,    
+    kTIMGroupModifyInfoFlag_Searchable   = 0x01 << 7,  // ä¿®æ”¹ç¾¤æ˜¯å¦è¢«æœç´¢,  
+    kTIMGroupModifyInfoFlag_ShutupAll    = 0x01 << 8,  // ä¿®æ”¹ç¾¤æ˜¯å¦å…¨ä½“ç¦è¨€,
+    kTIMGroupModifyInfoFlag_Owner        = 0x01 << 31, // ä¿®æ”¹ç¾¤ä¸»
 };
 
 /**
-* @brief ÉèÖÃÈºĞÅÏ¢½Ó¿ÚµÄ²ÎÊı
+* @brief è®¾ç½®ç¾¤ä¿¡æ¯æ¥å£çš„å‚æ•°
 */
 // Struct GroupModifyInfoParam JsonKey
-static const char* kTIMGroupModifyInfoParamGroupId           = "group_modify_info_param_group_id";        // string, Ö»Ğ´(±ØÌî), Èº×éID
-static const char* kTIMGroupModifyInfoParamModifyFlag        = "group_modify_info_param_modify_flag";     // uint [TIMGroupSetInfoFlag](),  Ö»Ğ´(±ØÌî), ĞŞ¸Ä±êÊ¶,¿ÉÉèÖÃ¶à¸öÖµ°´Î»»ò
-static const char* kTIMGroupModifyInfoParamGroupName         = "group_modify_info_param_group_name";      // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈº×éÃû³Æ,      µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Name Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamNotification      = "group_modify_info_param_notification";    // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈº¹«¸æ,        µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Notification Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamIntroduction      = "group_modify_info_param_introduction";    // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈº¼ò½é,        µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Introduction Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamFaceUrl           = "group_modify_info_param_face_url";        // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÍ·ÏñURL,     µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_FaceUrl Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamAddOption         = "group_modify_info_param_add_option";      // uint,  Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈº×éÌí¼ÓÑ¡Ïî,    µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_AddOption Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamMaxMemberNum      = "group_modify_info_param_max_member_num";  // uint,  Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈº×î´ó³ÉÔ±Êı,    µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_MaxMmeberNum Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamVisible           = "group_modify_info_param_visible";         // uint,  Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÊÇ·ñ¿É¼û,      µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Visible Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamSearchAble        = "group_modify_info_param_searchable";      // uint,  Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÊÇ·ñ±»ËÑË÷,    µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Searchable Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamIsShutupAll       = "group_modify_info_param_is_shutup_all";   // bool,   Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÊÇ·ñÈ«Ìå½ûÑÔ,  µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_ShutupAll Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyInfoParamOwner             = "group_modify_info_param_owner";           // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÖ÷ËùÓĞÕß,     µ± modify_flag °üº¬ kTIMGroupModifyInfoFlag_Owner Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî¡£´ËÊ± modify_flag ²»ÄÜ°üº¬ÆäËûÖµ£¬µ±ĞŞ¸ÄÈºÖ÷Ê±£¬Í¬Ê±ĞŞ¸ÄÆäËûĞÅÏ¢ÒÑÎŞÒâÒå
-static const char* kTIMGroupModifyInfoParamCustomInfo        = "group_modify_info_param_custom_info";     // array [GroupInfoCustemString](), Ö»Ğ´(Ñ¡Ìî), Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupModifyInfoParamGroupId           = "group_modify_info_param_group_id";        // string, åªå†™(å¿…å¡«), ç¾¤ç»„ID
+static const char* kTIMGroupModifyInfoParamModifyFlag        = "group_modify_info_param_modify_flag";     // uint [TIMGroupSetInfoFlag](),  åªå†™(å¿…å¡«), ä¿®æ”¹æ ‡è¯†,å¯è®¾ç½®å¤šä¸ªå€¼æŒ‰ä½æˆ–
+static const char* kTIMGroupModifyInfoParamGroupName         = "group_modify_info_param_group_name";      // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤ç»„åç§°,      å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Name æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamNotification      = "group_modify_info_param_notification";    // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤å…¬å‘Š,        å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Notification æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamIntroduction      = "group_modify_info_param_introduction";    // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤ç®€ä»‹,        å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Introduction æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamFaceUrl           = "group_modify_info_param_face_url";        // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤å¤´åƒURL,     å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_FaceUrl æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamAddOption         = "group_modify_info_param_add_option";      // uint,  åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤ç»„æ·»åŠ é€‰é¡¹,    å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_AddOption æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamMaxMemberNum      = "group_modify_info_param_max_member_num";  // uint,  åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤æœ€å¤§æˆå‘˜æ•°,    å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_MaxMmeberNum æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamVisible           = "group_modify_info_param_visible";         // uint,  åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤æ˜¯å¦å¯è§,      å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Visible æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamSearchAble        = "group_modify_info_param_searchable";      // uint,  åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤æ˜¯å¦è¢«æœç´¢,    å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Searchable æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamIsShutupAll       = "group_modify_info_param_is_shutup_all";   // bool,   åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤æ˜¯å¦å…¨ä½“ç¦è¨€,  å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_ShutupAll æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyInfoParamOwner             = "group_modify_info_param_owner";           // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤ä¸»æ‰€æœ‰è€…,     å½“ modify_flag åŒ…å« kTIMGroupModifyInfoFlag_Owner æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«ã€‚æ­¤æ—¶ modify_flag ä¸èƒ½åŒ…å«å…¶ä»–å€¼ï¼Œå½“ä¿®æ”¹ç¾¤ä¸»æ—¶ï¼ŒåŒæ—¶ä¿®æ”¹å…¶ä»–ä¿¡æ¯å·²æ— æ„ä¹‰
+static const char* kTIMGroupModifyInfoParamCustomInfo        = "group_modify_info_param_custom_info";     // array [GroupInfoCustemString](), åªå†™(é€‰å¡«), è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
-* @brief »ñÈ¡Èº³ÉÔ±ÁĞ±í½Ó¿ÚµÄ²ÎÊı
+* @brief è·å–ç¾¤æˆå‘˜åˆ—è¡¨æ¥å£çš„å‚æ•°
 */
 // Struct GroupGetMemberInfoListParam JsonKey
-static const char* kTIMGroupGetMemberInfoListParamGroupId         = "group_get_members_info_list_param_group_id";          // string,       Ö»Ğ´(±ØÌî), Èº×éID
-static const char* kTIMGroupGetMemberInfoListParamIdentifierArray = "group_get_members_info_list_param_identifier_array";  // array string, Ö»Ğ´(Ñ¡Ìî), Èº³ÉÔ±IDÁĞ±í
-static const char* kTIMGroupGetMemberInfoListParamOption          = "group_get_members_info_list_param_option";            // object [GroupMemberGetInfoOption](), Ö»Ğ´(Ñ¡Ìî), »ñÈ¡Èº³ÉÔ±ĞÅÏ¢µÄÑ¡Ïî
-static const char* kTIMGroupGetMemberInfoListParamNextSeq         = "group_get_members_info_list_param_next_seq";          // uint64, Ö»Ğ´(Ñ¡Ìî), ·ÖÒ³À­È¡±êÖ¾,µÚÒ»´ÎÀ­È¡Ìî0,»Øµ÷³É¹¦Èç¹û²»ÎªÁã,ĞèÒª·ÖÒ³,´«ÈëÔÙ´ÎÀ­È¡,Ö±ÖÁÎª0
+static const char* kTIMGroupGetMemberInfoListParamGroupId         = "group_get_members_info_list_param_group_id";          // string,       åªå†™(å¿…å¡«), ç¾¤ç»„ID
+static const char* kTIMGroupGetMemberInfoListParamIdentifierArray = "group_get_members_info_list_param_identifier_array";  // array string, åªå†™(é€‰å¡«), ç¾¤æˆå‘˜IDåˆ—è¡¨
+static const char* kTIMGroupGetMemberInfoListParamOption          = "group_get_members_info_list_param_option";            // object [GroupMemberGetInfoOption](), åªå†™(é€‰å¡«), è·å–ç¾¤æˆå‘˜ä¿¡æ¯çš„é€‰é¡¹
+static const char* kTIMGroupGetMemberInfoListParamNextSeq         = "group_get_members_info_list_param_next_seq";          // uint64, åªå†™(é€‰å¡«), åˆ†é¡µæ‹‰å–æ ‡å¿—,ç¬¬ä¸€æ¬¡æ‹‰å–å¡«0,å›è°ƒæˆåŠŸå¦‚æœä¸ä¸ºé›¶,éœ€è¦åˆ†é¡µ,ä¼ å…¥å†æ¬¡æ‹‰å–,ç›´è‡³ä¸º0
 // EndStruct
 
 /**
-* @brief »ñÈ¡Èº³ÉÔ±ÁĞ±í½Ó¿ÚµÄ·µ»Ø
+* @brief è·å–ç¾¤æˆå‘˜åˆ—è¡¨æ¥å£çš„è¿”å›
 */
 // Struct GroupGetMemberInfoListResult JsonKey
-static const char* kTIMGroupGetMemberInfoListResultNexSeq     = "group_get_memeber_info_list_result_next_seq";   // uint64, Ö»¶Á, ÏÂÒ»´ÎÀ­È¡µÄ±êÖ¾,server·µ»Ø0±íÊ¾Ã»ÓĞ¸ü¶àµÄÊı¾İ,·ñÔòÔÚÏÂ´Î»ñÈ¡Êı¾İÊ±ÌîÈëÕâ¸ö±êÖ¾
-static const char* kTIMGroupGetMemberInfoListResultInfoArray  = "group_get_memeber_info_list_result_info_array"; // array [GroupMemberInfo](), Ö»¶Á, ³ÉÔ±ĞÅÏ¢ÁĞ±í
+static const char* kTIMGroupGetMemberInfoListResultNexSeq     = "group_get_memeber_info_list_result_next_seq";   // uint64, åªè¯», ä¸‹ä¸€æ¬¡æ‹‰å–çš„æ ‡å¿—,serverè¿”å›0è¡¨ç¤ºæ²¡æœ‰æ›´å¤šçš„æ•°æ®,å¦åˆ™åœ¨ä¸‹æ¬¡è·å–æ•°æ®æ—¶å¡«å…¥è¿™ä¸ªæ ‡å¿—
+static const char* kTIMGroupGetMemberInfoListResultInfoArray  = "group_get_memeber_info_list_result_info_array"; // array [GroupMemberInfo](), åªè¯», æˆå‘˜ä¿¡æ¯åˆ—è¡¨
 // EndStruct
 
 
 /**
-* @brief ÉèÖÃ(ĞŞ¸Ä)Èº³ÉÔ±ĞÅÏ¢µÄÀàĞÍ
+* @brief è®¾ç½®(ä¿®æ”¹)ç¾¤æˆå‘˜ä¿¡æ¯çš„ç±»å‹
 */
 enum TIMGroupMemberModifyInfoFlag {
     kTIMGroupMemberModifyFlag_None       = 0x00,      // 
-    kTIMGroupMemberModifyFlag_MsgFlag    = 0x01,      // ĞŞ¸ÄÏûÏ¢½ÓÊÕÑ¡Ïî
-    kTIMGroupMemberModifyFlag_MemberRole = 0x01 << 1, // ĞŞ¸Ä³ÉÔ±½ÇÉ«
-    kTIMGroupMemberModifyFlag_ShutupTime = 0x01 << 2, // ĞŞ¸Ä½ûÑÔÊ±¼ä
-    kTIMGroupMemberModifyFlag_NameCard   = 0x01 << 3, // ĞŞ¸ÄÈºÃûÆ¬
+    kTIMGroupMemberModifyFlag_MsgFlag    = 0x01,      // ä¿®æ”¹æ¶ˆæ¯æ¥æ”¶é€‰é¡¹
+    kTIMGroupMemberModifyFlag_MemberRole = 0x01 << 1, // ä¿®æ”¹æˆå‘˜è§’è‰²
+    kTIMGroupMemberModifyFlag_ShutupTime = 0x01 << 2, // ä¿®æ”¹ç¦è¨€æ—¶é—´
+    kTIMGroupMemberModifyFlag_NameCard   = 0x01 << 3, // ä¿®æ”¹ç¾¤åç‰‡
 };
 
 
 /**
-* @brief ÉèÖÃÈº³ÉÔ±ĞÅÏ¢½Ó¿ÚµÄ²ÎÊı
+* @brief è®¾ç½®ç¾¤æˆå‘˜ä¿¡æ¯æ¥å£çš„å‚æ•°
 */
 // Struct GroupModifyMemberInfoParam JsonKey
-static const char* kTIMGroupModifyMemberInfoParamGroupId     = "group_modify_member_info_group_id";       // string, Ö»Ğ´(±ØÌî), Èº×éID
-static const char* kTIMGroupModifyMemberInfoParamIdentifier  = "group_modify_member_info_identifier";     // string, Ö»Ğ´(±ØÌî), ±»ÉèÖÃĞÅÏ¢µÄ³ÉÔ±ID
-static const char* kTIMGroupModifyMemberInfoParamModifyFlag  = "group_modify_member_info_modify_flag";    // uint [TIMGroupMemberModifyInfoFlag](), Ö»Ğ´(±ØÌî), ĞŞ¸ÄÀàĞÍ,¿ÉÉèÖÃ¶à¸öÖµ°´Î»»ò
-static const char* kTIMGroupModifyMemberInfoParamMsgFlag     = "group_modify_member_info_msg_flag";       // uint,   Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÏûÏ¢½ÓÊÕÑ¡Ïî,                  µ± modify_flag °üº¬ kTIMGroupMemberModifyFlag_MsgFlag Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyMemberInfoParamMemberRole  = "group_modify_member_info_member_role";    // uint [TIMGroupMemberRole](), Ö»Ğ´(Ñ¡Ìî), ĞŞ¸Ä³ÉÔ±½ÇÉ«, µ± modify_flag °üº¬ kTIMGroupMemberModifyFlag_MemberRole Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyMemberInfoParamShutupTime  = "group_modify_member_info_shutup_time";    // uint,   Ö»Ğ´(Ñ¡Ìî), ĞŞ¸Ä½ûÑÔÊ±¼ä,                      µ± modify_flag °üº¬ kTIMGroupMemberModifyFlag_ShutupTime Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyMemberInfoParamNameCard    = "group_modify_member_info_name_card";      // string, Ö»Ğ´(Ñ¡Ìî), ĞŞ¸ÄÈºÃûÆ¬,                        µ± modify_flag °üº¬ kTIMGroupMemberModifyFlag_NameCard Ê±±ØÌî,ÆäËûÇé¿ö²»ÓÃÌî
-static const char* kTIMGroupModifyMemberInfoParamCustomInfo  = "group_modify_member_info_custom_info";    // array [GroupMemberInfoCustemString](), Ö»Ğ´(Ñ¡Ìî), Çë²Î¿¼[×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+static const char* kTIMGroupModifyMemberInfoParamGroupId     = "group_modify_member_info_group_id";       // string, åªå†™(å¿…å¡«), ç¾¤ç»„ID
+static const char* kTIMGroupModifyMemberInfoParamIdentifier  = "group_modify_member_info_identifier";     // string, åªå†™(å¿…å¡«), è¢«è®¾ç½®ä¿¡æ¯çš„æˆå‘˜ID
+static const char* kTIMGroupModifyMemberInfoParamModifyFlag  = "group_modify_member_info_modify_flag";    // uint [TIMGroupMemberModifyInfoFlag](), åªå†™(å¿…å¡«), ä¿®æ”¹ç±»å‹,å¯è®¾ç½®å¤šä¸ªå€¼æŒ‰ä½æˆ–
+static const char* kTIMGroupModifyMemberInfoParamMsgFlag     = "group_modify_member_info_msg_flag";       // uint,   åªå†™(é€‰å¡«), ä¿®æ”¹æ¶ˆæ¯æ¥æ”¶é€‰é¡¹,                  å½“ modify_flag åŒ…å« kTIMGroupMemberModifyFlag_MsgFlag æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyMemberInfoParamMemberRole  = "group_modify_member_info_member_role";    // uint [TIMGroupMemberRole](), åªå†™(é€‰å¡«), ä¿®æ”¹æˆå‘˜è§’è‰², å½“ modify_flag åŒ…å« kTIMGroupMemberModifyFlag_MemberRole æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyMemberInfoParamShutupTime  = "group_modify_member_info_shutup_time";    // uint,   åªå†™(é€‰å¡«), ä¿®æ”¹ç¦è¨€æ—¶é—´,                      å½“ modify_flag åŒ…å« kTIMGroupMemberModifyFlag_ShutupTime æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyMemberInfoParamNameCard    = "group_modify_member_info_name_card";      // string, åªå†™(é€‰å¡«), ä¿®æ”¹ç¾¤åç‰‡,                        å½“ modify_flag åŒ…å« kTIMGroupMemberModifyFlag_NameCard æ—¶å¿…å¡«,å…¶ä»–æƒ…å†µä¸ç”¨å¡«
+static const char* kTIMGroupModifyMemberInfoParamCustomInfo  = "group_modify_member_info_custom_info";    // array [GroupMemberInfoCustemString](), åªå†™(é€‰å¡«), è¯·å‚è€ƒ[è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 // EndStruct
 
 /**
-* @brief »ñÈ¡ÈºÎ´¾öĞÅÏ¢ÁĞ±íµÄ²ÎÊı
+* @brief è·å–ç¾¤æœªå†³ä¿¡æ¯åˆ—è¡¨çš„å‚æ•°
 */
 // Struct GroupPendencyOption JsonKey
-static const char* kTIMGroupPendencyOptionStartTime     = "group_pendency_option_start_time";       // uint64, Ö»Ğ´(±ØÌî), ÉèÖÃÀ­È¡Ê±¼ä´Á,µÚÒ»´ÎÇëÇóÌî0,ºó±ß¸ù¾İserver·µ»ØµÄ[GroupPendencyResult]()¼ükTIMGroupPendencyResultNextStartTimeÖ¸¶¨µÄÊ±¼ä´Á½øĞĞÌîĞ´
-static const char* kTIMGroupPendencyOptionMaxLimited    = "group_pendency_option_max_limited";      // uint,   Ö»Ğ´(Ñ¡Ìî), À­È¡µÄ½¨ÒéÊıÁ¿,server¿É¸ù¾İĞèÒª·µ»Ø»ò¶à»òÉÙ,²»ÄÜ×÷ÎªÍê³ÉÓë·ñµÄ±êÖ¾
+static const char* kTIMGroupPendencyOptionStartTime     = "group_pendency_option_start_time";       // uint64, åªå†™(å¿…å¡«), è®¾ç½®æ‹‰å–æ—¶é—´æˆ³,ç¬¬ä¸€æ¬¡è¯·æ±‚å¡«0,åè¾¹æ ¹æ®serverè¿”å›çš„[GroupPendencyResult]()é”®kTIMGroupPendencyResultNextStartTimeæŒ‡å®šçš„æ—¶é—´æˆ³è¿›è¡Œå¡«å†™
+static const char* kTIMGroupPendencyOptionMaxLimited    = "group_pendency_option_max_limited";      // uint,   åªå†™(é€‰å¡«), æ‹‰å–çš„å»ºè®®æ•°é‡,serverå¯æ ¹æ®éœ€è¦è¿”å›æˆ–å¤šæˆ–å°‘,ä¸èƒ½ä½œä¸ºå®Œæˆä¸å¦çš„æ ‡å¿—
 // EndStruct
 
 
 /**
-* @brief Î´¾öÇëÇóÀàĞÍ
+* @brief æœªå†³è¯·æ±‚ç±»å‹
 */
 enum TIMGroupPendencyType {
-    kTIMGroupPendency_RequestJoin = 0,  // ÇëÇó¼ÓÈº
-    kTIMGroupPendency_InviteJoin = 1,   // ÑûÇë¼ÓÈº
-    kTIMGroupPendency_ReqAndInvite = 2, // ÑûÇëºÍÇëÇóµÄ
+    kTIMGroupPendency_RequestJoin = 0,  // è¯·æ±‚åŠ ç¾¤
+    kTIMGroupPendency_InviteJoin = 1,   // é‚€è¯·åŠ ç¾¤
+    kTIMGroupPendency_ReqAndInvite = 2, // é‚€è¯·å’Œè¯·æ±‚çš„
 };
 
 /**
-* @brief ÈºÎ´¾ö´¦Àí×´Ì¬
+* @brief ç¾¤æœªå†³å¤„ç†çŠ¶æ€
 */
 enum TIMGroupPendencyHandle {
-    kTIMGroupPendency_NotHandle = 0,      // Î´´¦Àí
-    kTIMGroupPendency_OtherHandle = 1,    // ËûÈË´¦Àí
-    kTIMGroupPendency_OperatorHandle = 2, // ²Ù×÷·½´¦Àí
+    kTIMGroupPendency_NotHandle = 0,      // æœªå¤„ç†
+    kTIMGroupPendency_OtherHandle = 1,    // ä»–äººå¤„ç†
+    kTIMGroupPendency_OperatorHandle = 2, // æ“ä½œæ–¹å¤„ç†
 };
 
 /**
-* @brief ÈºÎ´¾ö´¦Àí²Ù×÷ÀàĞÍ
+* @brief ç¾¤æœªå†³å¤„ç†æ“ä½œç±»å‹
 */
 enum TIMGroupPendencyHandleResult {
-    kTIMGroupPendency_Refuse = 0,  // ¾Ü¾ø
-    kTIMGroupPendency_Accept = 1,  // Í¬Òâ
+    kTIMGroupPendency_Refuse = 0,  // æ‹’ç»
+    kTIMGroupPendency_Accept = 1,  // åŒæ„
 };
 
 /**
-* @brief ÈºÎ´¾öĞÅÏ¢¶¨Òå
+* @brief ç¾¤æœªå†³ä¿¡æ¯å®šä¹‰
 */
 // Struct GroupPendency JsonKey
-static const char* kTIMGroupPendencyGroupId             = "group_pendency_group_id";                //string,  ¶ÁĞ´, Èº×éID
-static const char* kTIMGroupPendencyFromIdentifier      = "group_pendency_form_identifier";         //string,  ¶ÁĞ´, ÇëÇóÕßµÄID,±ÈÈç£ºÇëÇó¼ÓÈº:ÇëÇóÕß,ÑûÇë¼ÓÈº:ÑûÇëÈË¡£
-static const char* kTIMGroupPendencyToIdentifier        = "group_pendency_to_identifier";           //string,  ¶ÁĞ´, ÅĞ¾öÕßµÄID,ÇëÇó¼ÓÈº:"",ÑûÇë¼ÓÈº:±»ÑûÇëÈË¡£
-static const char* kTIMGroupPendencyAddTime             = "group_pendency_add_time";                //uint64,  Ö»¶Á, Î´¾öĞÅÏ¢Ìí¼ÓÊ±¼ä
-static const char* kTIMGroupPendencyPendencyType        = "group_pendency_pendency_type";           //uint [TIMGroupPendencyType](),  Ö»¶Á, Î´¾öÇëÇóÀàĞÍ
-static const char* kTIMGroupPendencyHandled             = "group_pendency_handled";                 //uint [TIMGroupPendencyHandle](),Ö»¶Á, ÈºÎ´¾ö´¦Àí×´Ì¬
-static const char* kTIMGroupPendencyHandleResult        = "group_pendency_handle_result";           //uint [TIMGroupPendencyHandleResult](), Ö»¶Á, ÈºÎ´¾ö´¦Àí²Ù×÷ÀàĞÍ
-static const char* kTIMGroupPendencyApplyInviteMsg      = "group_pendency_apply_invite_msg";        //string, Ö»¶Á, ÉêÇë»òÑûÇë¸½¼ÓĞÅÏ¢
-static const char* kTIMGroupPendencyFromUserDefinedData = "group_pendency_form_user_defined_data";  //string, Ö»¶Á, ÉêÇë»òÑûÇëÕß×Ô¶¨Òå×Ö¶Î
-static const char* kTIMGroupPendencyApprovalMsg         = "group_pendency_approval_msg";            //string, Ö»¶Á, ÉóÅúĞÅÏ¢£ºÍ¬Òâ»ò¾Ü¾øĞÅÏ¢
-static const char* kTIMGroupPendencyToUserDefinedData   = "group_pendency_to_user_defined_data";    //string, Ö»¶Á, ÉóÅúÕß×Ô¶¨Òå×Ö¶Î
+static const char* kTIMGroupPendencyGroupId             = "group_pendency_group_id";                //string,  è¯»å†™, ç¾¤ç»„ID
+static const char* kTIMGroupPendencyFromIdentifier      = "group_pendency_form_identifier";         //string,  è¯»å†™, è¯·æ±‚è€…çš„ID,æ¯”å¦‚ï¼šè¯·æ±‚åŠ ç¾¤:è¯·æ±‚è€…,é‚€è¯·åŠ ç¾¤:é‚€è¯·äººã€‚
+static const char* kTIMGroupPendencyToIdentifier        = "group_pendency_to_identifier";           //string,  è¯»å†™, åˆ¤å†³è€…çš„ID,è¯·æ±‚åŠ ç¾¤:"",é‚€è¯·åŠ ç¾¤:è¢«é‚€è¯·äººã€‚
+static const char* kTIMGroupPendencyAddTime             = "group_pendency_add_time";                //uint64,  åªè¯», æœªå†³ä¿¡æ¯æ·»åŠ æ—¶é—´
+static const char* kTIMGroupPendencyPendencyType        = "group_pendency_pendency_type";           //uint [TIMGroupPendencyType](),  åªè¯», æœªå†³è¯·æ±‚ç±»å‹
+static const char* kTIMGroupPendencyHandled             = "group_pendency_handled";                 //uint [TIMGroupPendencyHandle](),åªè¯», ç¾¤æœªå†³å¤„ç†çŠ¶æ€
+static const char* kTIMGroupPendencyHandleResult        = "group_pendency_handle_result";           //uint [TIMGroupPendencyHandleResult](), åªè¯», ç¾¤æœªå†³å¤„ç†æ“ä½œç±»å‹
+static const char* kTIMGroupPendencyApplyInviteMsg      = "group_pendency_apply_invite_msg";        //string, åªè¯», ç”³è¯·æˆ–é‚€è¯·é™„åŠ ä¿¡æ¯
+static const char* kTIMGroupPendencyFromUserDefinedData = "group_pendency_form_user_defined_data";  //string, åªè¯», ç”³è¯·æˆ–é‚€è¯·è€…è‡ªå®šä¹‰å­—æ®µ
+static const char* kTIMGroupPendencyApprovalMsg         = "group_pendency_approval_msg";            //string, åªè¯», å®¡æ‰¹ä¿¡æ¯ï¼šåŒæ„æˆ–æ‹’ç»ä¿¡æ¯
+static const char* kTIMGroupPendencyToUserDefinedData   = "group_pendency_to_user_defined_data";    //string, åªè¯», å®¡æ‰¹è€…è‡ªå®šä¹‰å­—æ®µ
 // EndStruct
 
 /**
-* @brief »ñÈ¡ÈºÎ´¾öĞÅÏ¢ÁĞ±íµÄ·µ»Ø
+* @brief è·å–ç¾¤æœªå†³ä¿¡æ¯åˆ—è¡¨çš„è¿”å›
 */
 // Struct GroupPendencyResult JsonKey
-static const char* kTIMGroupPendencyResultNextStartTime = "group_pendency_result_next_start_time";  // uint64, Ö»¶Á, ÏÂÒ»´ÎÀ­È¡µÄÆğÊ¼Ê±´Á,server·µ»Ø0±íÊ¾Ã»ÓĞ¸ü¶àµÄÊı¾İ,·ñÔòÔÚÏÂ´Î»ñÈ¡Êı¾İÊ±ÒÔÕâ¸öÊ±¼ä´Á×÷Îª¿ªÊ¼Ê±¼ä´Á
-static const char* kTIMGroupPendencyResultReadTimeSeq   = "group_pendency_result_read_time_seq";    // uint64, Ö»¶Á, ÒÑ¶ÁÉÏ±¨µÄÊ±¼ä´Á
-static const char* kTIMGroupPendencyResultUnReadNum     = "group_pendency_result_unread_num";       // uint,   Ö»¶Á, Î´¾öÇëÇóµÄÎ´¶ÁÊı ?
-static const char* kTIMGroupPendencyResultPendencyArray = "group_pendency_result_pendency_array";   // array [GroupPendency](), Ö»¶Á, ÈºÎ´¾öĞÅÏ¢ÁĞ±í
+static const char* kTIMGroupPendencyResultNextStartTime = "group_pendency_result_next_start_time";  // uint64, åªè¯», ä¸‹ä¸€æ¬¡æ‹‰å–çš„èµ·å§‹æ—¶æˆ³,serverè¿”å›0è¡¨ç¤ºæ²¡æœ‰æ›´å¤šçš„æ•°æ®,å¦åˆ™åœ¨ä¸‹æ¬¡è·å–æ•°æ®æ—¶ä»¥è¿™ä¸ªæ—¶é—´æˆ³ä½œä¸ºå¼€å§‹æ—¶é—´æˆ³
+static const char* kTIMGroupPendencyResultReadTimeSeq   = "group_pendency_result_read_time_seq";    // uint64, åªè¯», å·²è¯»ä¸ŠæŠ¥çš„æ—¶é—´æˆ³
+static const char* kTIMGroupPendencyResultUnReadNum     = "group_pendency_result_unread_num";       // uint,   åªè¯», æœªå†³è¯·æ±‚çš„æœªè¯»æ•° ?
+static const char* kTIMGroupPendencyResultPendencyArray = "group_pendency_result_pendency_array";   // array [GroupPendency](), åªè¯», ç¾¤æœªå†³ä¿¡æ¯åˆ—è¡¨
 // EndStruct
 
 /**
-* @brief ´¦ÀíÈºÎ´¾öÏûÏ¢½Ó¿ÚµÄ²ÎÊı
+* @brief å¤„ç†ç¾¤æœªå†³æ¶ˆæ¯æ¥å£çš„å‚æ•°
 */
 // Struct GroupHandlePendencyParam JsonKey
-static const char* kTIMGroupHandlePendencyParamIsAccept   = "group_handle_pendency_param_is_accept";  // bool,   Ö»Ğ´(Ñ¡Ìî), true±íÊ¾½ÓÊÜ£¬false±íÊ¾¾Ü¾ø¡£Ä¬ÈÏÎªfalse
-static const char* kTIMGroupHandlePendencyParamHandleMsg  = "group_handle_pendency_param_handle_msg"; // string, Ö»Ğ´(Ñ¡Ìî), Í¬Òâ»ò¾Ü¾øĞÅÏ¢,Ä¬ÈÏÎª¿Õ×Ö·û´®
-static const char* kTIMGroupHandlePendencyParamPendency   = "group_handle_pendency_param_pendency";   // object [GroupPendency](), Ö»Ğ´(±ØÌî), Î´¾öĞÅÏ¢ÏêÇé
+static const char* kTIMGroupHandlePendencyParamIsAccept   = "group_handle_pendency_param_is_accept";  // bool,   åªå†™(é€‰å¡«), trueè¡¨ç¤ºæ¥å—ï¼Œfalseè¡¨ç¤ºæ‹’ç»ã€‚é»˜è®¤ä¸ºfalse
+static const char* kTIMGroupHandlePendencyParamHandleMsg  = "group_handle_pendency_param_handle_msg"; // string, åªå†™(é€‰å¡«), åŒæ„æˆ–æ‹’ç»ä¿¡æ¯,é»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²
+static const char* kTIMGroupHandlePendencyParamPendency   = "group_handle_pendency_param_pendency";   // object [GroupPendency](), åªå†™(å¿…å¡«), æœªå†³ä¿¡æ¯è¯¦æƒ…
 // EndStruct
 
 /// @}
