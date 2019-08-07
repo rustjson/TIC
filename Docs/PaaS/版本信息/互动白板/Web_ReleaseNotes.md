@@ -1,5 +1,12 @@
 # Release Notes - Web
 
+## 2.3.2 @ 2019.08.07
+1. 白板
+    - 直线支持设置样式，包括实线，虚线，箭头
+    - 圆和椭圆支持固定圆心
+    - 新增addTranscodeFile接口支持restapi转码结果
+    - 废弃setTextFontFamily(设置文字输入字体)和getTextFontFamily(获取文字输入字体)接口
+
 ## 2.3.1 @ 2019.08.01
 1. 白板
     - 修复文本框选不精确问题；
