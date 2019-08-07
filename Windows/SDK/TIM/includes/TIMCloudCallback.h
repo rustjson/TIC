@@ -9,63 +9,63 @@ extern"C"
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ImSDKÊÂ¼ş»Øµ÷
+//                       ImSDKäº‹ä»¶å›è°ƒ
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ImSDKÊÂ¼ş»Øµ÷
+/// @name ImSDKäº‹ä»¶å›è°ƒ
 /// @{
 /**
-* @brief ĞÂÏûÏ¢»Øµ÷
+* @brief æ–°æ¶ˆæ¯å›è°ƒ
 *
-* @param json_msg_array ĞÂÏûÏ¢Êı×é
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_msg_array æ–°æ¶ˆæ¯æ•°ç»„
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 * 
 * @note
-* ´Ë»Øµ÷¿ÉÒÔ»ñÈ¡ĞÂ½ÓÊÕµÄÏûÏ¢Êı×é¡£×¢Òâ ÏûÏ¢ÄÚµÄÔªËØÒ²ÊÇÒ»¸öÊı×é¡£Ã¿¸öÔªËØµÄ¶¨ÒåÓÉ elem_type ×Ö¶Î¾ö¶¨
+* æ­¤å›è°ƒå¯ä»¥è·å–æ–°æ¥æ”¶çš„æ¶ˆæ¯æ•°ç»„ã€‚æ³¨æ„ æ¶ˆæ¯å†…çš„å…ƒç´ ä¹Ÿæ˜¯ä¸€ä¸ªæ•°ç»„ã€‚æ¯ä¸ªå…ƒç´ çš„å®šä¹‰ç”± elem_type å­—æ®µå†³å®š
 *
 */
 typedef void (*TIMRecvNewMsgCallback)(const char* json_msg_array, const void* user_data);
 /***
 *
-* @example ÏûÏ¢Êı×é½âÎöÊ¾Àı
-* Json::Value json_value_msgs; // ½âÎöÏûÏ¢
+* @example æ¶ˆæ¯æ•°ç»„è§£æç¤ºä¾‹
+* Json::Value json_value_msgs; // è§£ææ¶ˆæ¯
 * Json::Reader reader;
 * if (!reader.parse(json_msg_array, json_value_msgs)) {
 *     printf("reader parse failure!%s", reader.getFormattedErrorMessages().c_str());
 *     return;
 * }
-* for (Json::ArrayIndex i = 0; i < json_value_msgs.size(); i++) {  // ±éÀúMessage
+* for (Json::ArrayIndex i = 0; i < json_value_msgs.size(); i++) {  // éå†Message
 *     Json::Value& json_value_msg = json_value_msgs[i];
 *     Json::Value& elems = json_value_msg[kTIMMsgElemArray];
-*     for (Json::ArrayIndex m = 0; m < elems.size(); m++) {   // ±éÀúElem
+*     for (Json::ArrayIndex m = 0; m < elems.size(); m++) {   // éå†Elem
 *         Json::Value& elem = elems[i];
 *
 *         uint32_t elem_type = elem[kTIMElemType].asUInt();
-*         if (elem_type == TIMElemType::kTIMElem_Text) {  // ÎÄ±¾
+*         if (elem_type == TIMElemType::kTIMElem_Text) {  // æ–‡æœ¬
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Sound) {  // ÉùÒô
+*         } else if (elem_type == TIMElemType::kTIMElem_Sound) {  // å£°éŸ³
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_File) {  // ÎÄ¼ş
+*         } else if (elem_type == TIMElemType::kTIMElem_File) {  // æ–‡ä»¶
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Image) { // Í¼Æ¬
+*         } else if (elem_type == TIMElemType::kTIMElem_Image) { // å›¾ç‰‡
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Custom) { // ×Ô¶¨ÒåÔªËØ
+*         } else if (elem_type == TIMElemType::kTIMElem_Custom) { // è‡ªå®šä¹‰å…ƒç´ 
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_GroupTips) { // Èº×éÏµÍ³ÏûÏ¢
+*         } else if (elem_type == TIMElemType::kTIMElem_GroupTips) { // ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Face) { // ±íÇé
+*         } else if (elem_type == TIMElemType::kTIMElem_Face) { // è¡¨æƒ…
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Location) { // Î»ÖÃ
+*         } else if (elem_type == TIMElemType::kTIMElem_Location) { // ä½ç½®
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_GroupReport) { // Èº×éÏµÍ³Í¨Öª
+*         } else if (elem_type == TIMElemType::kTIMElem_GroupReport) { // ç¾¤ç»„ç³»ç»Ÿé€šçŸ¥
 *             
-*         } else if (elem_type == TIMElemType::kTIMElem_Video) { // ÊÓÆµ
+*         } else if (elem_type == TIMElemType::kTIMElem_Video) { // è§†é¢‘
 *             
 *         }
 *     }
 * }
 * 
-* @example ·µ»ØÒ»¸öÎÄ±¾ÏûÏ¢µÄJsonÊ¾Àı¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡¢[TextElem](TIMCloudDef.h)
+* @example è¿”å›ä¸€ä¸ªæ–‡æœ¬æ¶ˆæ¯çš„Jsonç¤ºä¾‹ã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€[TextElem](TIMCloudDef.h)
 * [
 *    {
 *       "message_client_time" : 1551080111,
@@ -87,7 +87,7 @@ typedef void (*TIMRecvNewMsgCallback)(const char* json_msg_array, const void* us
 *    }
 * ]
 *
-* @example ·µ»ØÒ»¸öÈºÍ¨ÖªÏûÏ¢µÄJsonÊ¾Àı¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡¢[GroupReportElem](TIMCloudDef.h)
+* @example è¿”å›ä¸€ä¸ªç¾¤é€šçŸ¥æ¶ˆæ¯çš„Jsonç¤ºä¾‹ã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€[GroupReportElem](TIMCloudDef.h)
 * [
 *    {
 *       "message_client_time" : 1551344977,
@@ -125,7 +125,7 @@ typedef void (*TIMRecvNewMsgCallback)(const char* json_msg_array, const void* us
 *    }
 * ]
 * 
-* @example ·µ»ØÒ»¸öÈºÌáÊ¾ÏûÏ¢µÄJsonÊ¾Àı¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡¢[GroupTipsElem](TIMCloudDef.h)
+* @example è¿”å›ä¸€ä¸ªç¾¤æç¤ºæ¶ˆæ¯çš„Jsonç¤ºä¾‹ã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€[GroupTipsElem](TIMCloudDef.h)
 * [
 *    {
 *       "message_client_time" : 1551412814,
@@ -175,17 +175,17 @@ typedef void (*TIMRecvNewMsgCallback)(const char* json_msg_array, const void* us
 
 
 /**
-* @brief ÏûÏ¢ÒÑ¶Á»ØÖ´»Øµ÷
+* @brief æ¶ˆæ¯å·²è¯»å›æ‰§å›è°ƒ
 *
-* @param json_msg_readed_receipt_array ÏûÏ¢ÒÑ¶Á»ØÖ´Êı×é
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_msg_readed_receipt_array æ¶ˆæ¯å·²è¯»å›æ‰§æ•°ç»„
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 *
 * @example
 * void MsgReadedReceiptCallback(const char* json_msg_readed_receipt_array, const void* user_data) {
 *     Json::Value json_value_receipts;
 *     Json::Reader reader;
 *     if (!reader.parse(json_msg_readed_receipt_array, json_value_receipts)) {
-*         // Json ½âÎöÊ§°Ü
+*         // Json è§£æå¤±è´¥
 *         return;
 *     }
 *     
@@ -196,24 +196,24 @@ typedef void (*TIMRecvNewMsgCallback)(const char* json_msg_array, const void* us
 *         uint32_t conv_type = json_value_receipt[kTIMMsgReceiptConvType].asUInt();
 *         uint64_t timestamp = json_value_receipt[kTIMMsgReceiptTimeStamp].asUInt64();
 *     
-*         // ÏûÏ¢ÒÑ¶ÁÂß¼­
+*         // æ¶ˆæ¯å·²è¯»é€»è¾‘
 *     }
 * }
 */
 typedef void (*TIMMsgReadedReceiptCallback)(const char* json_msg_readed_receipt_array, const void* user_data);
 
 /**
-* @brief ½ÓÊÕµÄÏûÏ¢±»³·»Ø»Øµ÷
+* @brief æ¥æ”¶çš„æ¶ˆæ¯è¢«æ’¤å›å›è°ƒ
 *
-* @param json_msg_locator_array ÏûÏ¢¶¨Î»·ûÊı×é
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_msg_locator_array æ¶ˆæ¯å®šä½ç¬¦æ•°ç»„
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 * 
 * @example
 * void MsgRevokeCallback(const char* json_msg_locator_array, const void* user_data) {
 *     Json::Value json_value_locators;
 *     Json::Reader reader;
 *     if (!reader.parse(json_msg_locator_array, json_value_locators)) {
-*         // Json ½âÎöÊ§°Ü
+*         // Json è§£æå¤±è´¥
 *         return;
 *     }
 *     for (Json::ArrayIndex i = 0; i < json_value_locators.size(); i++) {
@@ -227,7 +227,7 @@ typedef void (*TIMMsgReadedReceiptCallback)(const char* json_msg_readed_receipt_
 *         uint64_t rand      = json_value_locator[kTIMMsgLocatorRand].asUInt64();
 *         bool isself        = json_value_locator[kTIMMsgLocatorIsSelf].asBool();
 *     
-*         // ÏûÏ¢³·»ØÂß¼­
+*         // æ¶ˆæ¯æ’¤å›é€»è¾‘
 *     }
 * }
 * 
@@ -235,25 +235,25 @@ typedef void (*TIMMsgReadedReceiptCallback)(const char* json_msg_readed_receipt_
 typedef void (*TIMMsgRevokeCallback)(const char* json_msg_locator_array, const void* user_data);
 
 /**
-* @brief ÏûÏ¢ÄÚÔªËØÏà¹ØÎÄ¼şÉÏ´«½ø¶È»Øµ÷
+* @brief æ¶ˆæ¯å†…å…ƒç´ ç›¸å…³æ–‡ä»¶ä¸Šä¼ è¿›åº¦å›è°ƒ
 *
-* @param json_msg ĞÂÏûÏ¢
-* @param index ÉÏ´« Elem ÔªËØÔÚ json_msg ÏûÏ¢µÄÏÂ±ê
-* @param cur_size ÉÏ´«µ±Ç°´óĞ¡
-* @param total_size ÉÏ´«×Ü´óĞ¡
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_msg æ–°æ¶ˆæ¯
+* @param index ä¸Šä¼  Elem å…ƒç´ åœ¨ json_msg æ¶ˆæ¯çš„ä¸‹æ ‡
+* @param cur_size ä¸Šä¼ å½“å‰å¤§å°
+* @param total_size ä¸Šä¼ æ€»å¤§å°
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 *
 * @example
 * void MsgElemUploadProgressCallback(const char* json_msg, uint32_t index, uint32_t cur_size, uint32_t total_size, const void* user_data) {
 *     Json::Value json_value_msg;
 *     Json::Reader reader;
 *     if (!reader.parse(json_msg, json_value_msg)) {
-*         // Json ½âÎöÊ§°Ü
+*         // Json è§£æå¤±è´¥
 *         return;
 *     }
 *     Json::Value& elems = json_value_msg[kTIMMsgElemArray];
 *     if (index >= elems.size()) {
-*         // index ³¬¹ıÏûÏ¢ÔªËØ¸öÊı·¶Î§
+*         // index è¶…è¿‡æ¶ˆæ¯å…ƒç´ ä¸ªæ•°èŒƒå›´
 *         return;
 *     }
 *     uint32_t elem_type = elems[index][kTIMElemType].asUInt();
@@ -270,7 +270,7 @@ typedef void (*TIMMsgRevokeCallback)(const char* json_msg_locator_array, const v
 *
 *     }
 *     else {
-*         // ÆäËûÀàĞÍÔªËØ²»·ûºÏÉÏ´«ÒªÇó
+*         // å…¶ä»–ç±»å‹å…ƒç´ ä¸ç¬¦åˆä¸Šä¼ è¦æ±‚
 *     }
 * }
 */
@@ -279,31 +279,31 @@ typedef void (*TIMMsgElemUploadProgressCallback)(const char* json_msg, uint32_t 
 
 
 /**
-* @brief ÈºÊÂ¼ş»Øµ÷
+* @brief ç¾¤äº‹ä»¶å›è°ƒ
 *
-* @param json_group_tip_array ÈºÌáÊ¾ÁĞ±í
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_group_tip_array ç¾¤æç¤ºåˆ—è¡¨
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 */
 typedef void (*TIMGroupTipsEventCallback)(const char* json_group_tip_array, const void* user_data);
 
 /**
-* @brief »á»°ÊÂ¼ş»Øµ÷
+* @brief ä¼šè¯äº‹ä»¶å›è°ƒ
 *
-* @param conv_event »á»°ÊÂ¼şÀàĞÍ£¬Çë²Î¿¼[TIMConvEvent](TIMCloudDef.h)
-* @param json_conv_array »á»°ĞÅÏ¢ÁĞ±í
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param conv_event ä¼šè¯äº‹ä»¶ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvEvent](TIMCloudDef.h)
+* @param json_conv_array ä¼šè¯ä¿¡æ¯åˆ—è¡¨
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 *
-* @example »á»°ÊÂ¼ş»Øµ÷Êı¾İ½âÎö
+* @example ä¼šè¯äº‹ä»¶å›è°ƒæ•°æ®è§£æ
 * void ConvEventCallback(TIMConvEvent conv_event, const char* json_conv_array, const void* user_data) {
 *     Json::Reader reader;
 *     Json::Value json_value;
 *     if (!reader.parse(json_conv_array, json_value)) {
-*         // Json ½âÎöÊ§°Ü
+*         // Json è§£æå¤±è´¥
 *         return;
 *     }
-*     for (Json::ArrayIndex i = 0; i < json_value.size(); i++) { // ±éÀú»á»°Àà±ğ
+*     for (Json::ArrayIndex i = 0; i < json_value.size(); i++) { // éå†ä¼šè¯ç±»åˆ«
 *         Json::Value& convinfo = json_value[i];
-*         // Çø·Ö»á»°ÊÂ¼şÀàĞÍ
+*         // åŒºåˆ†ä¼šè¯äº‹ä»¶ç±»å‹
 *         if (conv_event == kTIMConvEvent_Add) {
 *
 *         }
@@ -319,17 +319,17 @@ typedef void (*TIMGroupTipsEventCallback)(const char* json_group_tip_array, cons
 typedef void (*TIMConvEventCallback)(enum TIMConvEvent conv_event, const char* json_conv_array, const void* user_data);
 
 /**
-* @brief ÍøÂç×´Ì¬»Øµ÷
+* @brief ç½‘ç»œçŠ¶æ€å›è°ƒ
 *
-* @param status ÍøÂç×´Ì¬£¬Çë²Î¿¼[TIMNetworkStatus](TIMCloudDef.h)
-* @param code ÖµÎªERR_SUCC±íÊ¾³É¹¦£¬ÆäËûÖµ±íÊ¾Ê§°Ü¡£ÏêÇéÇë²Î¿¼ [´íÎóÂë](https://cloud.tencent.com/document/product/269/1671)
-* @param desc ´íÎóÃèÊö×Ö·û´®
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param status ç½‘ç»œçŠ¶æ€ï¼Œè¯·å‚è€ƒ[TIMNetworkStatus](TIMCloudDef.h)
+* @param code å€¼ä¸ºERR_SUCCè¡¨ç¤ºæˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºå¤±è´¥ã€‚è¯¦æƒ…è¯·å‚è€ƒ [é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671)
+* @param desc é”™è¯¯æè¿°å­—ç¬¦ä¸²
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 */
 typedef void (*TIMNetworkStatusListenerCallback)(enum TIMNetworkStatus status, int32_t code, const char* desc, const void* user_data);
 /***
 *
-* @example ¸ĞÖªÍøÂç×´Ì¬µÄ»Øµ÷´¦Àí
+* @example æ„ŸçŸ¥ç½‘ç»œçŠ¶æ€çš„å›è°ƒå¤„ç†
 * void NetworkStatusListenerCallback(TIMNetworkStatus status, int32_t code, const char* desc, const void* user_data) {
 *     switch(status) {
 *     case kTIMConnected: {
@@ -353,36 +353,36 @@ typedef void (*TIMNetworkStatusListenerCallback)(enum TIMNetworkStatus status, i
 **/
 
 /**
-* @brief ±»ÌßÏÂÏß»Øµ÷
+* @brief è¢«è¸¢ä¸‹çº¿å›è°ƒ
 *
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 */
 typedef void (*TIMKickedOfflineCallback)(const void* user_data);
 
 /**
-* @brief ÓÃ»§Æ±¾İ¹ıÆÚ»Øµ÷
+* @brief ç”¨æˆ·ç¥¨æ®è¿‡æœŸå›è°ƒ
 *
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 */
 typedef void (*TIMUserSigExpiredCallback)(const void* user_data);
 
 /**
-* @brief ÈÕÖ¾»Øµ÷
+* @brief æ—¥å¿—å›è°ƒ
 *
-* @param level ÈÕÖ¾¼¶±ğ,Çë²Î¿¼[TIMLogLevel](TIMCloudDef.h)
-* @param log ÈÕ×Ó×Ö·û´®
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param level æ—¥å¿—çº§åˆ«,è¯·å‚è€ƒ[TIMLogLevel](TIMCloudDef.h)
+* @param log æ—¥å­å­—ç¬¦ä¸²
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 */
 typedef void (*TIMLogCallback)(enum TIMLogLevel level, const char* log, const void* user_data);
 
 /**
-* @brief ÏûÏ¢¸üĞÂ»Øµ÷
+* @brief æ¶ˆæ¯æ›´æ–°å›è°ƒ
 *
-* @param json_msg_array ¸üĞÂµÄÏûÏ¢Êı×é
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param json_msg_array æ›´æ–°çš„æ¶ˆæ¯æ•°ç»„
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 *
 * @note
-* Çë²Î¿¼ [TIMRecvNewMsgCallback]()
+* è¯·å‚è€ƒ [TIMRecvNewMsgCallback]()
 */
 typedef void (*TIMMsgUpdateCallback)(const char* json_msg_array, const void* user_data);
 /// @}
@@ -390,26 +390,26 @@ typedef void (*TIMMsgUpdateCallback)(const char* json_msg_array, const void* use
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ImSDK½Ó¿Ú»Øµ÷
+//                       ImSDKæ¥å£å›è°ƒ
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ImSDK½Ó¿Ú»Øµ÷
+/// @name ImSDKæ¥å£å›è°ƒ
 /// @{
 /**
-* @brief ½Ó¿Ú»Øµ÷¶¨Òå
+* @brief æ¥å£å›è°ƒå®šä¹‰
 *
-* @param code ÖµÎªERR_SUCC±íÊ¾³É¹¦£¬ÆäËûÖµ±íÊ¾Ê§°Ü¡£ÏêÇéÇë²Î¿¼ [´íÎóÂë](https://cloud.tencent.com/document/product/269/1671)
-* @param desc ´íÎóÃèÊö×Ö·û´®
-* @param json_params Json×Ö·û´®£¬²»Í¬µÄ½Ó¿Ú£¬Json×Ö·û´®²»Ò»Ñù
-* @param user_data ImSDK¸ºÔğÍ¸´«µÄÓÃ»§×Ô¶¨ÒåÊı¾İ£¬Î´×öÈÎºÎ´¦Àí
+* @param code å€¼ä¸ºERR_SUCCè¡¨ç¤ºæˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºå¤±è´¥ã€‚è¯¦æƒ…è¯·å‚è€ƒ [é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671)
+* @param desc é”™è¯¯æè¿°å­—ç¬¦ä¸²
+* @param json_params Jsonå­—ç¬¦ä¸²ï¼Œä¸åŒçš„æ¥å£ï¼ŒJsonå­—ç¬¦ä¸²ä¸ä¸€æ ·
+* @param user_data ImSDKè´Ÿè´£é€ä¼ çš„ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼Œæœªåšä»»ä½•å¤„ç†
 *
 * @note
-* ËùÓĞ»Øµ÷¾ùĞèÅĞ¶ÏcodeÊÇ·ñµÈÓÚERR_SUC£¬Èô²»µÈÓÚËµÃ÷½Ó¿Úµ÷ÓÃÊ§°ÜÁË£¬¾ßÌåÔ­Òò¿ÉÒÔ¿´codeµÄÖµÒÔ¼°descÃèÊö¡£ÏêÇéÇë²Î¿¼[´íÎóÂë](https://cloud.tencent.com/document/product/269/1671)
+* æ‰€æœ‰å›è°ƒå‡éœ€åˆ¤æ–­codeæ˜¯å¦ç­‰äºERR_SUCï¼Œè‹¥ä¸ç­‰äºè¯´æ˜æ¥å£è°ƒç”¨å¤±è´¥äº†ï¼Œå…·ä½“åŸå› å¯ä»¥çœ‹codeçš„å€¼ä»¥åŠdescæè¿°ã€‚è¯¦æƒ…è¯·å‚è€ƒ[é”™è¯¯ç ](https://cloud.tencent.com/document/product/269/1671)
 */
 typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json_params, const void* user_data);
 /***
 * 
-* @example ½Ó¿Ú[TIMSetConfig](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[SetConfig](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMSetConfig](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[SetConfig](TIMCloudDef.h)ã€‚
 * {
 *    "set_config_callback_log_level" : 2,
 *    "set_config_is_log_output_console" : true,
@@ -435,7 +435,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * }
 *
-* @example ½Ó¿Ú[TIMConvCreate](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[ConvInfo](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMConvCreate](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[ConvInfo](TIMCloudDef.h)ã€‚
 * {
 *    "conv_active_time" : 1551269275,
 *    "conv_id" : "user2",
@@ -464,7 +464,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    "conv_unread_num" : 1
 * }
 * 
-* @example ½Ó¿Ú[TIMConvGetConvList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[ConvInfo](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMConvGetConvList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[ConvInfo](TIMCloudDef.h)ã€‚
 * [
 *    {
 *       "conv_active_time" : 1551269275,
@@ -494,7 +494,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *       "conv_unread_num" : 0
 *    }
 * ]
-* @example ½Ó¿Ú[TIMMsgSendNewMsg](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMMsgSendNewMsg](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€‚
 * {
 *    "message_client_time" : 1558598732,
 *    "message_conv_id" : "asd12341",
@@ -519,7 +519,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    "message_status" : 2
 * }
 *
-* @example ½Ó¿Ú[TIMMsgFindByMsgLocatorList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMMsgFindByMsgLocatorList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€‚
 * [
 *    {
 *       "message_client_time" : 1551080111,
@@ -542,7 +542,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    ...
 * ]
 * 
-* @example ½Ó¿Ú[TIMMsgGetMsgList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[Message](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMMsgGetMsgList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[Message](TIMCloudDef.h)ã€‚
 * [
 *    {
 *       "message_client_time" : 1551080111,
@@ -565,13 +565,13 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    ...
 * ]
 *
-* @example ½Ó¿Ú[TIMMsgDownloadElemToPath](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[MsgDownloadElemResult](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMMsgDownloadElemToPath](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[MsgDownloadElemResult](TIMCloudDef.h)ã€‚
 * {
 *   "msg_download_elem_result_current_size" : 10,
 *   "msg_download_elem_result_total_size" : 100
 * }
 * 
-* @example ½Ó¿Ú[TIMMsgBatchSend](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[MsgBatchSendResult](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMMsgBatchSend](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[MsgBatchSendResult](TIMCloudDef.h)ã€‚
 * [
 *    {
 *       "msg_batch_send_result_code" : 0,
@@ -631,13 +631,13 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * ]
 *
-* @example ½Ó¿Ú[TIMGroupCreate](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[CreateGroupResult](TIMCloudDef.h)¡£
+* @example æ¥å£[TIMGroupCreate](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[CreateGroupResult](TIMCloudDef.h)ã€‚
 * {
 *    "create_group_result_groupid" : "first group id"
 * }
 * 
 *
-* @example ½Ó¿Ú[TIMGroupInviteMember](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GroupInviteMemberResult](TIMCloudDef.h)
+* @example æ¥å£[TIMGroupInviteMember](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GroupInviteMemberResult](TIMCloudDef.h)
 * [
 *    {
 *       "group_invite_member_result_identifier" : "user2",
@@ -649,7 +649,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * ]
 * 
-* @example ½Ó¿Ú[TIMGroupDeleteMember](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GroupDeleteMemberResult](TIMCloudDef.h)
+* @example æ¥å£[TIMGroupDeleteMember](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GroupDeleteMemberResult](TIMCloudDef.h)
 * [
 *    {
 *       "group_delete_member_result_identifier" : "user2",
@@ -661,7 +661,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * ]
 * 
-* @example ½Ó¿Ú[TIMGroupGetJoinedGroupList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GroupBaseInfo](TIMCloudDef.h)
+* @example æ¥å£[TIMGroupGetJoinedGroupList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GroupBaseInfo](TIMCloudDef.h)
 * [
 *    {
 *       "group_base_info_face_url" : "group face url",
@@ -682,7 +682,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * ]
 *
-* @example ½Ó¿Ú[TIMGroupGetGroupInfoList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GetGroupInfoResult](TIMCloudDef.h)
+* @example æ¥å£[TIMGroupGetGroupInfoList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GetGroupInfoResult](TIMCloudDef.h)
 * [
 *    {
 *       "get_groups_info_result_code" : 0,
@@ -712,7 +712,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    }
 * ]
 *
-* @example ½Ó¿Ú[TIMGroupGetMemberInfoList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GroupGetMemberInfoListResult](TIMCloudDef.h)
+* @example æ¥å£[TIMGroupGetMemberInfoList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GroupGetMemberInfoListResult](TIMCloudDef.h)
 * {
 *    "group_get_memeber_info_list_result_info_array" : [
 *       {
@@ -729,7 +729,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    "group_get_memeber_info_list_result_next_seq" : 0
 * }
 * 
-* @example ½Ó¿Ú[TIMGroupGetPendencyList](TIMCloud.h)µÄ»Øµ÷TIMCommCallback²ÎÊıjson_paramsµÄJson¡£Json KeyÇë²Î¿¼[GroupPendencyResult](TIMCloudDef.h) 
+* @example æ¥å£[TIMGroupGetPendencyList](TIMCloud.h)çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramsçš„Jsonã€‚Json Keyè¯·å‚è€ƒ[GroupPendencyResult](TIMCloudDef.h) 
 * {
 *    "group_pendency_result_next_start_time" : 0,
 *    "group_pendency_result_pendency_array" : [
@@ -751,7 +751,7 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    "group_pendency_result_unread_num" : 1
 * }
 *
-* @note ÒÔÏÂ½Ó¿ÚµÄ»Øµ÷TIMCommCallback²ÎÊıjson_params¾ùÎª¿Õ×Ö·û´®""
+* @note ä»¥ä¸‹æ¥å£çš„å›è°ƒTIMCommCallbackå‚æ•°json_paramså‡ä¸ºç©ºå­—ç¬¦ä¸²""
 * > [TIMLogin](TIMCloud.h) 
 * > [TIMLogout](TIMCloud.h)
 * > [TIMMsgSaveMsg](TIMCloud.h)

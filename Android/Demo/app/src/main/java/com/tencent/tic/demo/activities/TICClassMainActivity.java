@@ -318,11 +318,6 @@ public class TICClassMainActivity extends BaseActvity
         }
 
         @Override
-        public void onSetTextFamily(String family) {
-            mBoard.setTextFamily(family);
-        }
-
-        @Override
         public void onSetBackgroundColore(int color) {
             TEduBoardController.TEduBoardColor eduBoardColor = new TEduBoardController.TEduBoardColor(color);
             mBoard.setBackgroundColor(eduBoardColor);
@@ -503,7 +498,6 @@ public class TICClassMainActivity extends BaseActvity
                 settingCacheData.FitMode = mBoard.getBoardContentFitMode();
 
                 settingCacheData.TextStyle = mBoard.getTextStyle();
-                settingCacheData.TextFamily = mBoard.getTextFamily();
                 settingCacheData.canRedo = mCanRedo;
                 settingCacheData.canUndo = mCanUndo;
 
@@ -878,25 +872,25 @@ public class TICClassMainActivity extends BaseActvity
 
         @Override
         public void onTEBAddFile(String fileId) {
-
         }
 
         @Override
         public void onTEBDeleteFile(String fileId) {
-
         }
 
         @Override
         public void onTEBSwitchFile(String fileId) {
-
         }
         @Override
         public void onTEBAddH5PPTFile(String fileId) {
-
         }
 
+         @Override
+         public void onTEBAddTranscodeFile(String s) {
+         }
 
-        @Override
+
+         @Override
         public void onTEBUndoStatusChanged(boolean canUndo) {
             TICClassMainActivity activityEx = mActivityRef.get();
             if (activityEx != null) {

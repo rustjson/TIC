@@ -727,48 +727,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp">
             <TextView
-                android:text="字体"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                android:textColor="@color/line_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                />
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7">
-                <Spinner
-                    android:id="@+id/sp_setTextFamily"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_height="wrap_content"
-                    android:layout_width="160dp"
-                    android:layout_marginBottom="2dp"/>
-
-                <Button
-                    android:id="@+id/btn_setTextFamily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="确定"
-                    android:textSize="14sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:clickable="true"/>
-            </RelativeLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp">
-            <TextView
                 android:text="字体样式"
                 android:textSize="16sp"
                 android:layout_gravity="center"

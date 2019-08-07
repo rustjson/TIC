@@ -1,4 +1,4 @@
-package com.tencent.ticsdk.core.impl;
+package com.tencent.tic.core.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,12 +29,12 @@ import com.tencent.imsdk.TIMSdkConfig;
 import com.tencent.imsdk.TIMTextElem;
 import com.tencent.imsdk.TIMValueCallBack;
 import com.tencent.teduboard.TEduBoardController;
-import com.tencent.ticsdk.core.TICClassroomOption;
-import com.tencent.ticsdk.core.TICManager;
-import com.tencent.ticsdk.core.impl.observer.TICEventObservable;
-import com.tencent.ticsdk.core.impl.observer.TICIMStatusObservable;
-import com.tencent.ticsdk.core.impl.observer.TICMessageObservable;
-import com.tencent.ticsdk.core.impl.utils.CallbackUtil;
+import com.tencent.tic.core.TICClassroomOption;
+import com.tencent.tic.core.TICManager;
+import com.tencent.tic.core.impl.observer.TICEventObservable;
+import com.tencent.tic.core.impl.observer.TICIMStatusObservable;
+import com.tencent.tic.core.impl.observer.TICMessageObservable;
+import com.tencent.tic.core.impl.utils.CallbackUtil;
 import com.tencent.trtc.TRTCCloud;
 import com.tencent.trtc.TRTCCloudDef;
 import com.tencent.trtc.TRTCStatistics;
@@ -984,6 +984,10 @@ public class TICManagerImpl  extends TICManager{
         @Override
         public void onTEBAddH5PPTFile(String s) {
 
+        }
+
+        @Override
+        public void onTEBAddTranscodeFile(String s) {
         }
 
         @Override
