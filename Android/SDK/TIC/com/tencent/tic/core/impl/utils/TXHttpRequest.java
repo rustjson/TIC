@@ -1,4 +1,4 @@
-package com.tencent.ticsdk.core.impl.utils;
+package com.tencent.tic.core.impl.utils;
 
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -6,8 +6,6 @@ import android.os.Looper;
 import android.text.TextUtils;
 
 import com.tencent.liteav.basic.log.TXCLog;
-
-import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
