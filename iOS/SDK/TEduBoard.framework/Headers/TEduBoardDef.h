@@ -103,6 +103,7 @@ typedef NS_ENUM(NSInteger, TEduBoardWarningCode)
     TEDU_BOARD_WARNING_SYNC_DATA_PARSE_FAILED       = 1,    //接收到其他端的同步数据解析失败
     TEDU_BOARD_WARNING_TIM_SEND_MSG_FAILED          = 2,    //腾讯IMSDK发送消息失败
     TEDU_BOARD_WARNING_H5PPT_ALREADY_EXISTS         = 3,    //当要添加的H5PPT已存在时抛出该警告
+    TEDU_BOARD_WARNING_ILLEGAL_OPERATION            = 5,    //白板历史数据加载完成之前禁止操作
 };
 
 /**
