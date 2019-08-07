@@ -371,7 +371,58 @@ response
   ]
 }
 ```
+### 1.6 上课
+客户端老师调用，标志着开始上课
 
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/class/start?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+
+```json
+{
+    "class_id": 1234354
+}
+```
+
+response
+
+```json
+{
+    "error_code": 0,
+    "error_msg": ""
+}
+```
+### 1.7 下课
+客户端老师调用，标志着下课
+一期：可以不调用下课接口，只通过“预约的结束时间”作为下课的唯一判断标示
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/class/stop?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+```json
+{
+    "class_id": 1234354
+}
+```
+
+response
+
+```json
+{
+    "error_code": 0,
+    "error_msg": ""
+}
+```
 ## 2 账号模块
 ### 2.1 创建账号
 __接口__ 
@@ -1285,6 +1336,311 @@ response
 }
 ```
 
+## 6 成员模块
+
+### 6.1 获取实时课堂成员列表
+获取房间实时成员列表，游客不在列表内, 支持分段拉取，每次获取100条数据
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/runtime/list?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+```json
+{
+    "class_id":12345,
+    "index":0,
+    "size":20
+}
+```
+
+response
+```json
+{
+    "error_code":0,
+    "error_msg":"",
+    "finish":false,
+    "total":100,
+    "list":[
+        {
+            "user_id":"user1",
+            "nickname":"user1_nickname",
+            "avatar":"https://xxxx/head.png",
+            "platform": "iOS",
+            "enter_time": 1550546356,
+            "role":"student",
+            "status": {
+                "camera": 1,
+                "mic": 1,
+                "speaker": 1,
+                "silence": 0,
+                "hand_up":1,
+            }
+        }
+    ]
+}
+```
+
+| 字段 | 类型 | 描述 | 是否必填 |
+|:---------|:---------|:---------|:---------|
+| index | int  | 第一次拉取填0 | 是 |
+| total | int  | 总数 | 是 |
+| finish | bool  | 是否拉取完所有成员 true-全部拉取/false-未拉完 | 是 |
+| camera | int  | 0-关闭摄像头/1-打开摄像头 | 是 |
+| mic | int  | 0-关闭麦克风/1-打开麦克风 | 是 |
+| speaker | int  | 0-关闭摄像头/1-打开摄像头 | 是 |
+| silence | int  | 0-畅聊/1-被禁言 | 是 |
+| hand_up | int  | 0-未举手/1-举手 | 是 |
+
+### 6.2 获取实时成员总数
+获取课堂实时成员总数(只有`课堂内的成员|管理员`才能调用)
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/runtime/total/?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+|调用方|客户端|
+
+request
+```json
+{
+    "class_id":1000001234,
+}
+```
+
+response
+```
+{
+    "error_code":0,
+    "error_msg":"",
+    "total":100
+}
+```
+| 字段 | 类型 | 描述 | 是否必填 |
+|:---------|:---------|:---------|:---------|
+| total | int  | 课堂实时成员总数 | 是 |
+
+### 6.3 获取课堂历史成员列表
+获取房间历史成员列表，只有管理员有权限拉取，返回所有进入过课堂的注册用户
+
+游客不在列表内, 支持分段拉取，每次获取100条数据
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/history/list?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+```json
+{
+    "class_id":12345,
+    "index":0,
+    "size":10
+}
+```
+
+response
+```json
+{
+    "error_code":0,
+    "error_msg":"",
+    "total":100,
+    "finish":false,
+    "list":[
+        {
+            "user_id":"user1",
+            "nickname":"user1_nickname",
+            "avatar":"https://xxxx/head.png",
+            "platform": "iOS",
+            "enter_time": 1550546356,
+            "quit_time": 1550546356,
+            "role":"student"
+        }
+    ]
+}
+```
+
+
+| 字段 | 类型 | 描述 | 是否必填 |
+|:---------|:---------|:---------|:---------|
+| index | int  | 第一次拉取填0 | 是 |
+| total | int  | 总成员数 | 是 |
+| finish | bool  | 是否拉取完所有成员 true-全部拉取/false-未拉完 | 是 |
+
+- __quit_time=0的用户还在房间里__
+
+### 6.4 获取历史成员总数
+获取课堂实时成员总数(只有`课堂内的成员|管理员`才能调用)
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/history/total/?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+|调用方|客户端|
+
+请求和响应同`获取实时成员总数`
+
+### 6.5 加入课堂
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/join?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+|调用方|客户端|
+
+request
+```json
+{
+	"class_id":12345,
+	"platform":"iOS",
+	"password": "12341",
+	"camera": 1,
+	"mic": 1,
+	"speaker": 1,
+}
+```
+
+response
+```
+{
+    "error_code":0,
+    "error_msg":"",
+    "role":"student"
+}
+```
+| 字段 | 类型 | 描述 | 是否必填 |
+|:---------|:---------|:---------|:---------|
+| role | string  | 用户的课堂角色 | 是 |
+
+### 6.6 退出课堂
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/quit?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+|调用方|客户端|
+
+request
+```json
+{
+    "class_id":12345
+}
+```
+
+response
+```
+{
+    "error_code":0,
+    "error_msg":""
+}
+```
+
+### 6.7 添加预约成员
+一期：管理员 可以调用此接口
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/add?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+```json
+{
+    "class_id": 1234354,
+    "list": [
+		{
+			"role": "student",
+			"user_id": "user1"
+		},
+		{
+			"role": "teacher",
+			"user_id": "user2"
+		}
+    ],
+}
+```
+
+response
+```json
+{
+    "error_code": 0,
+    "error_msg": ""
+}
+```
+
+### 6.8 删除预约成员
+一期：管理员 可以调用此接口
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/delete?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|token鉴权|
+
+request
+```json
+{
+    "class_id": 1234354,
+    "list": [
+		"user1",
+		"user2"
+    ],
+}
+```
+
+response
+```json
+{
+    "error_code": 0,
+    "error_msg": ""
+}
+```
+
+### 10. 游客进入房间
+
+游客通过classId和课堂密码，进入房间。后台通过classid找到对应的机构，再生成对应的临时游客账号，并返回游客信息和课堂信息，使用此接口之后，不需要再调用登录接口
+
+|请求基本信息|描述|
+|--|--|
+|方法|POST|
+|请求URL|https://domain/saas/v1/member/visitor/join?sdkappid=0&user_id=&sign=f30c31384bc967f359bbf7247e8ecb98&random=1234|
+|header|Content-Type:application/json|
+|鉴权方式|sign鉴权|
+request
+```json
+{
+	"class_id":1000001234,
+	"password":"1234",
+	"nickname":"游客昵称",
+	"platform":"ios"
+}
+```
+
+response
+```json
+{
+	"error_code": 0,
+	"error_msg": "",
+	"visitor_info":{
+		"sdkappid":1400127140,
+		"user_id":"游客临时id",
+		"user_token":"游客登录密码",
+		"token":"游客token"
+	}
+}
+```
 ## 附录
 
 ### 附录1: API公共参数
