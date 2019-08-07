@@ -130,7 +130,6 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
         void onSetBrushColor(int color);
         void onSetTextColor(int color);
         void onSetTextStyle(int style);
-        void onSetTextFamily(String family);
         void onSetBackgroundColore(int color);
         void onSetBackgroundImage(String path);
         void onSetBackgroundH5(String url);
@@ -406,16 +405,6 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
         spTextStyle.setSelection(pos_textstyle, false);
         findViewById(R.id.btn_setTextStyle).setOnClickListener(this);
 
-        ArrayAdapter<String> textfamily = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item, android.R.id.text1);
-        if (!TextUtils.isEmpty(settingData.TextFamily)) {
-            textfamily.add(settingData.TextFamily);
-            Spinner spTextFamily = (Spinner)findViewById(R.id.sp_setTextFamily);
-            spTextFamily.setAdapter(textfamily);
-            spTextFamily.setSelection(0, false);
-        }
-        findViewById(R.id.btn_setTextFamily).setOnClickListener(this);
-
-
         Spinner spbackgroundColor = (Spinner)findViewById(R.id.sp_setBackgroundColor);
         spbackgroundColor.setAdapter(colors);
         spbackgroundColor.setSelection(pos_backgroundcolor, false);
@@ -686,16 +675,6 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
                     int type = TextStyle[postext].type;
                     listener.onSetTextStyle(type);
                 }
-                break;
-
-            case R.id.btn_setTextFamily:
-            {
-                Object pos4 = ((Spinner)findViewById(R.id.sp_setTextFamily)).getSelectedItem();
-                if (pos4 != null && pos4 instanceof String) {
-                    final String family = (String)pos4;
-                    listener.onSetTextFamily(family);
-                }
-            }
                 break;
 
             case R.id.btn_setBackgroundColor:

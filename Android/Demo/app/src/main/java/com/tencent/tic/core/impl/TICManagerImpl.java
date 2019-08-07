@@ -987,6 +987,10 @@ public class TICManagerImpl  extends TICManager{
         }
 
         @Override
+        public void onTEBAddTranscodeFile(String s) {
+        }
+
+        @Override
         public void onTEBDeleteFile(String s) {
 
         }
