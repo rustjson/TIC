@@ -1,5 +1,22 @@
 # Release Notes - iOS & macOS
 
+## 2.3.2 @ 2019.08.07
+
+- 废弃接口
+    - addFile
+    - addH5PPTFile
+- 废弃回调
+    - onTEBAddFile
+    - onTEBAddH5PPTFile
+- 增加接口
+    - addTranscodeFile 添加转码文件
+    - setLineStyle 设置直线样式（虚线/箭头）
+    - getLineStyle 获取直线样式
+    - setOvalDrawMode 设置椭圆绘制模式
+    - getOvalDrawMode 获取椭圆绘制模式
+- 增加回调
+    - onTEBAddTranscodeFile 添加转码文件回调
+
 ## 2.3.1 @ 2019.08.01
 - 激光笔优化
 - 修复iOS8背景图片白板涂鸦闪屏问题

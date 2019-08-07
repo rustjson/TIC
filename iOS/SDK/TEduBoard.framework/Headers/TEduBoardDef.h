@@ -123,6 +123,35 @@ typedef NS_ENUM(NSInteger, TEduBoardBackgroundH5Status)
     TEDU_BOARD_BACKGROUND_H5_STATUS_LOAD_FINISH   = 2,    //H5背景加载完成
 };
 
+/**
+ * 直线类型
+ */
+typedef NS_ENUM(NSInteger, TEduBoardLineType)
+{
+    TEDU_BOARD_LINE_TYPE_SOLID    = 1,    //实线
+    TEDU_BOARD_LINE_TYPE_DOTTED   = 2,    //虚线
+};
+
+/**
+ * 箭头方向
+ */
+typedef NS_ENUM(NSInteger, TEduBoardArrowType)
+{
+    TEDU_BOARD_ARROW_TYPE_NONE     = 1,    //无箭头
+    TEDU_BOARD_ARROW_TYPE_NORMAL   = 2,    //普通箭头
+    TEDU_BOARD_ARROW_TYPE_SOLID    = 3,    //实心箭头
+};
+
+/**
+ * 椭圆绘制模式
+ */
+typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
+{
+    TEDU_BOARD_OVAL_DRAW_MODE_FIX_START     = 1,    //固定起始点，起始点和终点的中点为圆心
+    TEDU_BOARD_OVAL_DRAW_MODE_FIX_CENTER    = 2,    //固定圆心，起始点为圆心
+};
+
+
 
 /**
  * 白板信息
@@ -200,6 +229,26 @@ typedef NS_ENUM(NSInteger, TEduBoardBackgroundH5Status)
 @end
 
 
+@interface TEduBoardLineStyle : NSObject
+//直线类型，默认TEDU_BOARD_LINE_TYPE_SOLID
+@property (nonatomic, assign) TEduBoardLineType lineType;
+//起点箭头类型，默认TEDU_BOARD_ARROW_TYPE_NONE
+@property (nonatomic, assign) TEduBoardArrowType startArrowType;
+//终点箭头类型，默认TEDU_BOARD_ARROW_TYPE_NONE
+@property (nonatomic, assign) TEduBoardArrowType endArrowType;
+@end
+
+
+@interface TEduBoardTranscodeFileResult : NSObject
+//文件名
+@property (nonatomic, strong) NSString *title;
+//文件下载链接
+@property (nonatomic, strong) NSString *url;
+//文件分辨率，如@"1024x768"
+@property (nonatomic, strong) NSString *resolution;
+//文件总页数
+@property (nonatomic, assign) int pages;
+@end
 
 @protocol TEduBoardDelegate <NSObject>
 /*************************************************************************************************
@@ -303,13 +352,21 @@ typedef NS_ENUM(NSInteger, TEduBoardBackgroundH5Status)
  * @param fileId        增加的文件ID
  * @brief 文件上传完成后才会触发该回调
  */
-- (void)onTEBAddFile:(NSString *)fileId;
+- (void)onTEBAddFile:(NSString *)fileId
+__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
 /**
  * 增加H5动画PPT文件回调
  * @param fileId        增加的文件ID
  * @brief 文件加载完成后才会触发该回调
  */
-- (void)onTEBAddH5PPTFile:(NSString *)fileId;
+- (void)onTEBAddH5PPTFile:(NSString *)fileId
+__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
+/**
+ * 增加转码文件回调
+ * @param fileId        增加的文件ID
+ * @brief 文件加载完成后才会触发该回调
+ */
+- (void)onTEBAddTranscodeFile:(NSString *)fileId;
 /**
  * 删除文件回调
  * @param fileId        删除的文件ID

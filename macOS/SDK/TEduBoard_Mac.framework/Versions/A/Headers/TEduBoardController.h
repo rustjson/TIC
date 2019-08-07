@@ -214,6 +214,30 @@
 - (UInt32)getTextSize;
 
 
+/**
+ * 设置直线样式
+ * @param style  直线样式
+ * @brief 在TEduBoardToolType设置为TEDU_BOARD_TOOL_TYPE_LINE有效
+ */
+- (void)setLineStyle:(TEduBoardLineStyle *)style;
+/**
+ * 获取直线样式
+ * @return 直线样式
+ */
+- (TEduBoardLineStyle *)getLineStyle;
+
+/**
+ * 设置椭圆绘制模式
+ * @param mode  椭圆绘制模式
+ * @brief 在TEduBoardToolType设置为TEDU_BOARD_TOOL_TYPE_OVAL和TEDU_BOARD_TOOL_TYPE_OVAL_SOLID有效
+ */
+- (void)setOvalDrawMode:(TEduBoardOvalDrawMode)mode;
+/**
+ * 获取椭圆绘制模式
+ * @return 椭圆绘制模式
+ */
+- (TEduBoardOvalDrawMode)getOvalDrawMode;
+
 
 /**
  * 撤销当前白板页上一次动作
@@ -356,14 +380,22 @@
  * @return NSString 文件Id
  * @brief 支持 PPT、PDF、Word、Excel，调用该接口后，SDK会先将文件上传到COS后再执行后续操作，因此该接口会触发文件上传相关回调，文件上传成功后，将自动切换到该文件
  */
-- (NSString *)addFile:(NSString *)path;
+- (NSString *)addFile:(NSString *)path
+__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
 /**
  * 增加H5动画PPT文件
  * @param url       要增加的H5动画PPT的URL
  * @return NSString 文件Id
  * @brief 调用该接口后，SDK会在后台进行H5加载，期间用户可正常进行其它操作，加载成功或失败后会触发相应回调，H5加载成功后，将自动切换到该文件
  */
-- (NSString *)addH5PPTFile:(NSString *)url;
+- (NSString *)addH5PPTFile:(NSString *)url
+__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
+/**
+ * 添加转码文件
+ * @param result 文件转码结果
+ * @return NSString 文件Id
+ */
+- (NSString *)addTranscodeFile:(TEduBoardTranscodeFileResult *)result;
 /**
  * 删除文件
  * @param fileId        要删除的文件ID
