@@ -15,7 +15,6 @@ struct TICBoardInitParam
 	TEduBoardColor		textColor;
 	uint32_t			textSize;
 	TEduBoardTextStyle	textStyle;
-	std::string			textFamily;
 	bool				timSync;
 	bool				dataSyncEnable;
 	uint32_t			preloadDepth;
@@ -33,7 +32,6 @@ struct TICBoardInitParam
 		textColor = param.textColor;
 		textSize = param.textSize;
 		textStyle = param.textStyle;
-		textFamily = param.textFamily;
 		timSync = param.timSync;
 		dataSyncEnable = param.dataSyncEnable;
 		preloadDepth = param.preloadDepth;
@@ -53,7 +51,6 @@ struct TICBoardInitParam
 		param.textColor = textColor;
 		param.textSize = textSize;
 		param.textStyle = textStyle;
-		param.textFamily = textFamily.c_str();
 		param.timSync = timSync;
 		param.dataSyncEnable = dataSyncEnable;
 		param.preloadDepth = preloadDepth;
