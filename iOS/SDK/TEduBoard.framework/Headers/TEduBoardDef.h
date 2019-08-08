@@ -214,8 +214,6 @@ typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
 @property (nonatomic, assign) int textSize;
 //文本样式，默认TEDU_BOARD_TEXT_STYLE_NORMAL
 @property (nonatomic, assign) TEduBoardTextStyle textStyle;
-//文本字体，默认"sans-serif,serif,monospace"
-@property (nonatomic, strong) NSString *textFamily;
 //是否使用腾讯云IMSDK进行实时数据同步，默认YES
 @property (nonatomic, assign) BOOL timSync;
 //是否启用数据同步，禁用后将导致本地白板操作不会被同步给远端

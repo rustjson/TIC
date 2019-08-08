@@ -9,168 +9,168 @@ extern"C"
 #endif
 
 /// @overview TIMCloud
-/// @overbrief è…¾è®¯äº‘é€šä¿¡IMçš„è·¨å¹³å°Cæ¥å£(API)
+/// @overbrief ÌÚÑ¶ÔÆÍ¨ĞÅIMµÄ¿çÆ½Ì¨C½Ó¿Ú(API)
 /*
-* @brief å„ä¸ªå¹³å°çš„ä¸‹è½½é“¾æ¥
-* > Windowså¹³å°[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Windows),Windowså¿«é€Ÿå¼€å§‹[é›†æˆImSDK](https://cloud.tencent.com/document/product/269/33489)å’Œ[è·‘é€šdemo](https://cloud.tencent.com/document/product/269/33488).æš‚ä¸æ”¯æŒ64ä½ç¼–è¯‘.
-* > iOSå¹³å°[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/iOS)
-* > Macå¹³å°[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Mac)
-* > Androidå¹³å°[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Android)
+* @brief ¸÷¸öÆ½Ì¨µÄÏÂÔØÁ´½Ó
+* > WindowsÆ½Ì¨[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Windows),Windows¿ìËÙ¿ªÊ¼[¼¯³ÉImSDK](https://cloud.tencent.com/document/product/269/33489)ºÍ[ÅÜÍ¨demo](https://cloud.tencent.com/document/product/269/33488).Ôİ²»Ö§³Ö64Î»±àÒë.
+* > iOSÆ½Ì¨[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/iOS)
+* > MacÆ½Ì¨[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Mac)
+* > AndroidÆ½Ì¨[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Android)
 *
-* @brief å…³äºå›è°ƒçš„è¯´æ˜
-* > å›è°ƒåˆ†ä¸¤ç§ï¼Œä¸€ç§æ˜¯æŒ‡è°ƒç”¨æ¥å£çš„å¼‚æ­¥è¿”å›ï¼Œå¦å¤–ä¸€ç§æŒ‡åå°æ¨é€çš„é€šçŸ¥ã€‚å›è°ƒåœ¨ImSDKå†…éƒ¨çš„é€»è¾‘çº¿ç¨‹è§¦å‘ï¼Œè·Ÿè°ƒç”¨æ¥å£çš„çº¿ç¨‹å¯èƒ½ä¸æ˜¯åŒä¸€çº¿ç¨‹
-* > åœ¨Windowså¹³å°ï¼Œå¦‚æœè°ƒç”¨[TIMInit]()æ¥å£è¿›è¡Œåˆå§‹åŒ–ImSDKä¹‹å‰ï¼Œå·²åˆ›å»ºäº†UIçš„æ¶ˆæ¯å¾ªç¯ï¼Œä¸”è°ƒç”¨[TIMInit]()æ¥å£çš„çº¿ç¨‹ä¸ºä¸»UIçº¿ç¨‹ï¼Œåˆ™ImSDKå†…éƒ¨ä¼šå°†å›è°ƒæŠ›åˆ°ä¸»UIçº¿ç¨‹è°ƒç”¨
+* @brief ¹ØÓÚ»Øµ÷µÄËµÃ÷
+* > »Øµ÷·ÖÁ½ÖÖ£¬Ò»ÖÖÊÇÖ¸µ÷ÓÃ½Ó¿ÚµÄÒì²½·µ»Ø£¬ÁíÍâÒ»ÖÖÖ¸ºóÌ¨ÍÆËÍµÄÍ¨Öª¡£»Øµ÷ÔÚImSDKÄÚ²¿µÄÂß¼­Ïß³Ì´¥·¢£¬¸úµ÷ÓÃ½Ó¿ÚµÄÏß³Ì¿ÉÄÜ²»ÊÇÍ¬Ò»Ïß³Ì
+* > ÔÚWindowsÆ½Ì¨£¬Èç¹ûµ÷ÓÃ[TIMInit]()½Ó¿Ú½øĞĞ³õÊ¼»¯ImSDKÖ®Ç°£¬ÒÑ´´½¨ÁËUIµÄÏûÏ¢Ñ­»·£¬ÇÒµ÷ÓÃ[TIMInit]()½Ó¿ÚµÄÏß³ÌÎªÖ÷UIÏß³Ì£¬ÔòImSDKÄÚ²¿»á½«»Øµ÷Å×µ½Ö÷UIÏß³Ìµ÷ÓÃ
 *
-* @brief å¦‚æœæ¥å£çš„å‚æ•°å­—ç¬¦ä¸²åŒ…å«ä¸­æ–‡ï¼Œè¯·ä½¿ç”¨UTF-8ç¼–ç 
+* @brief Èç¹û½Ó¿ÚµÄ²ÎÊı×Ö·û´®°üº¬ÖĞÎÄ£¬ÇëÊ¹ÓÃUTF-8±àÂë
 */
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//  æ³¨å†ŒSDKå›è°ƒ
+//  ×¢²áSDK»Øµ÷
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name äº‹ä»¶å›è°ƒæ¥å£
+/// @name ÊÂ¼ş»Øµ÷½Ó¿Ú
 /// @{
 /**
-* @brief å¢åŠ æ¥æ”¶æ–°æ¶ˆæ¯å›è°ƒ
-* @param cb æ–°æ¶ˆæ¯å›è°ƒå‡½æ•°ï¼Œè¯·å‚è€ƒ[TIMRecvNewMsgCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief Ôö¼Ó½ÓÊÕĞÂÏûÏ¢»Øµ÷
+* @param cb ĞÂÏûÏ¢»Øµ÷º¯Êı£¬Çë²Î¿¼[TIMRecvNewMsgCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note 
-* å¦‚æœç”¨æˆ·æ˜¯ç™»å½•çŠ¶æ€ï¼ŒImSDKæ”¶åˆ°æ–°æ¶ˆæ¯ä¼šé€šè¿‡æ­¤æ¥å£è®¾ç½®çš„å›è°ƒæŠ›å‡ºï¼Œå¦å¤–éœ€è¦æ³¨æ„ï¼ŒæŠ›å‡ºçš„æ¶ˆæ¯ä¸ä¸€å®šæ˜¯æœªè¯»çš„æ¶ˆæ¯ï¼Œ
-* åªæ˜¯æœ¬åœ°æ›¾ç»æ²¡æœ‰è¿‡çš„æ¶ˆæ¯ï¼ˆä¾‹å¦‚åœ¨å¦å¤–ä¸€ä¸ªç»ˆç«¯å·²è¯»ï¼Œæ‹‰å–æœ€è¿‘è”ç³»äººæ¶ˆæ¯æ—¶å¯ä»¥è·å–ä¼šè¯æœ€åä¸€æ¡æ¶ˆæ¯ï¼Œå¦‚æœæœ¬åœ°æ²¡æœ‰ï¼Œä¼šé€šè¿‡æ­¤æ–¹æ³•æŠ›å‡ºï¼‰ã€‚
-* åœ¨ç”¨æˆ·ç™»å½•ä¹‹åï¼ŒImSDKä¼šæ‹‰å–ç¦»çº¿æ¶ˆæ¯ï¼Œä¸ºäº†ä¸æ¼æ‰æ¶ˆæ¯é€šçŸ¥ï¼Œéœ€è¦åœ¨ç™»å½•ä¹‹å‰æ³¨å†Œæ–°æ¶ˆæ¯é€šçŸ¥ã€‚
+* Èç¹ûÓÃ»§ÊÇµÇÂ¼×´Ì¬£¬ImSDKÊÕµ½ĞÂÏûÏ¢»áÍ¨¹ı´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷Å×³ö£¬ÁíÍâĞèÒª×¢Òâ£¬Å×³öµÄÏûÏ¢²»Ò»¶¨ÊÇÎ´¶ÁµÄÏûÏ¢£¬
+* Ö»ÊÇ±¾µØÔø¾­Ã»ÓĞ¹ıµÄÏûÏ¢£¨ÀıÈçÔÚÁíÍâÒ»¸öÖÕ¶ËÒÑ¶Á£¬À­È¡×î½üÁªÏµÈËÏûÏ¢Ê±¿ÉÒÔ»ñÈ¡»á»°×îºóÒ»ÌõÏûÏ¢£¬Èç¹û±¾µØÃ»ÓĞ£¬»áÍ¨¹ı´Ë·½·¨Å×³ö£©¡£
+* ÔÚÓÃ»§µÇÂ¼Ö®ºó£¬ImSDK»áÀ­È¡ÀëÏßÏûÏ¢£¬ÎªÁË²»Â©µôÏûÏ¢Í¨Öª£¬ĞèÒªÔÚµÇÂ¼Ö®Ç°×¢²áĞÂÏûÏ¢Í¨Öª¡£
 */
 TIM_DECL void TIMAddRecvNewMsgCallback(TIMRecvNewMsgCallback cb, const void* user_data);
 
 /**
-* @brief åˆ é™¤æ¥æ”¶æ–°æ¶ˆæ¯å›è°ƒ
-* @param cb æ–°æ¶ˆæ¯å›è°ƒå‡½æ•°ï¼Œè¯·å‚è€ƒ[TIMRecvNewMsgCallback](TIMCloudCallback.h)
+* @brief É¾³ı½ÓÊÕĞÂÏûÏ¢»Øµ÷
+* @param cb ĞÂÏûÏ¢»Øµ÷º¯Êı£¬Çë²Î¿¼[TIMRecvNewMsgCallback](TIMCloudCallback.h)
 *
 * @note
-* å‚æ•°cbéœ€è¦è·Ÿ[TIMAddRecvNewMsgCallback]()ä¼ å…¥çš„cbä¸€è‡´ï¼Œå¦åˆ™åˆ é™¤å›è°ƒå¤±è´¥
+* ²ÎÊıcbĞèÒª¸ú[TIMAddRecvNewMsgCallback]()´«ÈëµÄcbÒ»ÖÂ£¬·ñÔòÉ¾³ı»Øµ÷Ê§°Ü
 */
 TIM_DECL void TIMRemoveRecvNewMsgCallback(TIMRecvNewMsgCallback cb);
 
 /**
-* @brief è®¾ç½®æ¶ˆæ¯å·²è¯»å›æ‰§å›è°ƒ
-* @param cb æ¶ˆæ¯å·²è¯»å›æ‰§å›è°ƒï¼Œè¯·å‚è€ƒ[TIMMsgReadedReceiptCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÏûÏ¢ÒÑ¶Á»ØÖ´»Øµ÷
+* @param cb ÏûÏ¢ÒÑ¶Á»ØÖ´»Øµ÷£¬Çë²Î¿¼[TIMMsgReadedReceiptCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note 
-* å‘é€æ–¹å‘é€æ¶ˆæ¯ï¼Œæ¥æ”¶æ–¹è°ƒç”¨æ¥å£[TIMMsgReportReaded]()ä¸ŠæŠ¥è¯¥æ¶ˆæ¯å·²è¯»ï¼Œå‘é€æ–¹ImSDKä¼šé€šè¿‡æ­¤æ¥å£è®¾ç½®çš„å›è°ƒæŠ›å‡ºã€‚
+* ·¢ËÍ·½·¢ËÍÏûÏ¢£¬½ÓÊÕ·½µ÷ÓÃ½Ó¿Ú[TIMMsgReportReaded]()ÉÏ±¨¸ÃÏûÏ¢ÒÑ¶Á£¬·¢ËÍ·½ImSDK»áÍ¨¹ı´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷Å×³ö¡£
 */
 TIM_DECL void TIMSetMsgReadedReceiptCallback(TIMMsgReadedReceiptCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®æ¥æ”¶çš„æ¶ˆæ¯è¢«æ’¤å›å›è°ƒ
-* @param cb æ¶ˆæ¯æ’¤å›é€šçŸ¥å›è°ƒ,è¯·å‚è€ƒ[TIMMsgRevokeCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃ½ÓÊÕµÄÏûÏ¢±»³·»Ø»Øµ÷
+* @param cb ÏûÏ¢³·»ØÍ¨Öª»Øµ÷,Çë²Î¿¼[TIMMsgRevokeCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note 
-* å‘é€æ–¹å‘é€æ¶ˆæ¯ï¼Œæ¥æ”¶æ–¹æ”¶åˆ°æ¶ˆæ¯ã€‚æ­¤æ—¶å‘é€æ–¹è°ƒç”¨æ¥å£[TIMMsgRevoke]()æ’¤å›è¯¥æ¶ˆæ¯ï¼Œæ¥æ”¶æ–¹çš„ImSDKä¼šé€šè¿‡æ­¤æ¥å£è®¾ç½®çš„å›è°ƒæŠ›å‡ºã€‚
+* ·¢ËÍ·½·¢ËÍÏûÏ¢£¬½ÓÊÕ·½ÊÕµ½ÏûÏ¢¡£´ËÊ±·¢ËÍ·½µ÷ÓÃ½Ó¿Ú[TIMMsgRevoke]()³·»Ø¸ÃÏûÏ¢£¬½ÓÊÕ·½µÄImSDK»áÍ¨¹ı´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷Å×³ö¡£
 */
 TIM_DECL void TIMSetMsgRevokeCallback(TIMMsgRevokeCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®æ¶ˆæ¯å†…å…ƒç´ ç›¸å…³æ–‡ä»¶ä¸Šä¼ è¿›åº¦å›è°ƒ
-* @param cb æ–‡ä»¶ä¸Šä¼ è¿›åº¦å›è°ƒï¼Œè¯·å‚è€ƒ[TIMMsgElemUploadProgressCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÏûÏ¢ÄÚÔªËØÏà¹ØÎÄ¼şÉÏ´«½ø¶È»Øµ÷
+* @param cb ÎÄ¼şÉÏ´«½ø¶È»Øµ÷£¬Çë²Î¿¼[TIMMsgElemUploadProgressCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note
-* è®¾ç½®æ¶ˆæ¯å…ƒç´ ä¸Šä¼ è¿›åº¦å›è°ƒã€‚å½“æ¶ˆæ¯å†…åŒ…å«å›¾ç‰‡ã€å£°éŸ³ã€æ–‡ä»¶ã€è§†é¢‘å…ƒç´ æ—¶ï¼ŒImSDKä¼šä¸Šä¼ è¿™äº›æ–‡ä»¶ï¼Œå¹¶è§¦å‘æ­¤æ¥å£è®¾ç½®çš„å›è°ƒï¼Œç”¨æˆ·å¯ä»¥æ ¹æ®å›è°ƒæ„ŸçŸ¥ä¸Šä¼ çš„è¿›åº¦
+* ÉèÖÃÏûÏ¢ÔªËØÉÏ´«½ø¶È»Øµ÷¡£µ±ÏûÏ¢ÄÚ°üº¬Í¼Æ¬¡¢ÉùÒô¡¢ÎÄ¼ş¡¢ÊÓÆµÔªËØÊ±£¬ImSDK»áÉÏ´«ÕâĞ©ÎÄ¼ş£¬²¢´¥·¢´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷£¬ÓÃ»§¿ÉÒÔ¸ù¾İ»Øµ÷¸ĞÖªÉÏ´«µÄ½ø¶È
 */
 TIM_DECL void TIMSetMsgElemUploadProgressCallback(TIMMsgElemUploadProgressCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯å›è°ƒ
-* @param cb ç¾¤æ¶ˆæ¯å›è°ƒï¼Œè¯·å‚è€ƒ[TIMGroupTipsEventCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÈº×éÏµÍ³ÏûÏ¢»Øµ÷
+* @param cb ÈºÏûÏ¢»Øµ÷£¬Çë²Î¿¼[TIMGroupTipsEventCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note 
-* ç¾¤ç»„ç³»ç»Ÿæ¶ˆæ¯äº‹ä»¶åŒ…æ‹¬ åŠ å…¥ç¾¤ã€é€€å‡ºç¾¤ã€è¸¢å‡ºç¾¤ã€è®¾ç½®ç®¡ç†å‘˜ã€å–æ¶ˆç®¡ç†å‘˜ã€ç¾¤èµ„æ–™å˜æ›´ã€ç¾¤æˆå‘˜èµ„æ–™å˜æ›´ã€‚æ­¤æ¶ˆæ¯æ˜¯é’ˆå¯¹æ‰€æœ‰ç¾¤ç»„æˆå‘˜ä¸‹å‘çš„
+* Èº×éÏµÍ³ÏûÏ¢ÊÂ¼ş°üÀ¨ ¼ÓÈëÈº¡¢ÍË³öÈº¡¢Ìß³öÈº¡¢ÉèÖÃ¹ÜÀíÔ±¡¢È¡Ïû¹ÜÀíÔ±¡¢Èº×ÊÁÏ±ä¸ü¡¢Èº³ÉÔ±×ÊÁÏ±ä¸ü¡£´ËÏûÏ¢ÊÇÕë¶ÔËùÓĞÈº×é³ÉÔ±ÏÂ·¢µÄ
 */
 TIM_DECL void TIMSetGroupTipsEventCallback(TIMGroupTipsEventCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®ä¼šè¯äº‹ä»¶å›è°ƒ
-* @param cb ä¼šè¯äº‹ä»¶å›è°ƒï¼Œè¯·å‚è€ƒ[TIMConvEventCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃ»á»°ÊÂ¼ş»Øµ÷
+* @param cb »á»°ÊÂ¼ş»Øµ÷£¬Çë²Î¿¼[TIMConvEventCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 *
 * @note
-* > ä¼šè¯äº‹ä»¶åŒ…æ‹¬ï¼š
-* >> ä¼šè¯æ–°å¢
-* >> ä¼šè¯åˆ é™¤
-* >> ä¼šè¯æ›´æ–°ã€‚
-* > ä»»ä½•äº§ç”Ÿä¸€ä¸ªæ–°ä¼šè¯çš„æ“ä½œéƒ½ä¼šè§¦å‘ä¼šè¯æ–°å¢äº‹ä»¶ï¼Œæ¯”å¦‚è°ƒç”¨æ¥å£[TIMConvCreate]()åˆ›å»ºä¼šè¯ï¼Œæ¥æ”¶åˆ°æœªçŸ¥ä¼šè¯çš„ç¬¬ä¸€æ¡æ¶ˆæ¯ç­‰ã€‚
-* ä»»ä½•å·²æœ‰ä¼šè¯å˜åŒ–çš„æ“ä½œéƒ½ä¼šè§¦å‘ä¼šè¯æ›´æ–°äº‹ä»¶ï¼Œæ¯”å¦‚æ”¶åˆ°ä¼šè¯æ–°æ¶ˆæ¯ï¼Œæ¶ˆæ¯æ’¤å›ï¼Œå·²è¯»ä¸ŠæŠ¥ç­‰ã€‚
-* è°ƒç”¨æ¥å£[TIMConvDelete]()åˆ é™¤ä¼šè¯æˆåŠŸæ—¶ä¼šè§¦å‘ä¼šè¯åˆ é™¤äº‹ä»¶ã€‚
+* > »á»°ÊÂ¼ş°üÀ¨£º
+* >> »á»°ĞÂÔö
+* >> »á»°É¾³ı
+* >> »á»°¸üĞÂ¡£
+* > ÈÎºÎ²úÉúÒ»¸öĞÂ»á»°µÄ²Ù×÷¶¼»á´¥·¢»á»°ĞÂÔöÊÂ¼ş£¬±ÈÈçµ÷ÓÃ½Ó¿Ú[TIMConvCreate]()´´½¨»á»°£¬½ÓÊÕµ½Î´Öª»á»°µÄµÚÒ»ÌõÏûÏ¢µÈ¡£
+* ÈÎºÎÒÑÓĞ»á»°±ä»¯µÄ²Ù×÷¶¼»á´¥·¢»á»°¸üĞÂÊÂ¼ş£¬±ÈÈçÊÕµ½»á»°ĞÂÏûÏ¢£¬ÏûÏ¢³·»Ø£¬ÒÑ¶ÁÉÏ±¨µÈ¡£
+* µ÷ÓÃ½Ó¿Ú[TIMConvDelete]()É¾³ı»á»°³É¹¦Ê±»á´¥·¢»á»°É¾³ıÊÂ¼ş¡£
 */
 TIM_DECL void TIMSetConvEventCallback(TIMConvEventCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®ç½‘ç»œè¿æ¥çŠ¶æ€ç›‘å¬å›è°ƒ
-* @param cb è¿æ¥äº‹ä»¶å›è°ƒï¼Œè¯·å‚è€ƒ[TIMNetworkStatusListenerCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÍøÂçÁ¬½Ó×´Ì¬¼àÌı»Øµ÷
+* @param cb Á¬½ÓÊÂ¼ş»Øµ÷£¬Çë²Î¿¼[TIMNetworkStatusListenerCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note
-* > å½“è°ƒç”¨æ¥å£ [TIMInit]() æ—¶ï¼ŒImSDKä¼šå»è¿æ¥äº‘åå°ã€‚æ­¤æ¥å£è®¾ç½®çš„å›è°ƒç”¨äºç›‘å¬ç½‘ç»œè¿æ¥çš„çŠ¶æ€ã€‚
-* > ç½‘ç»œè¿æ¥çŠ¶æ€åŒ…å«å››ä¸ªï¼šæ­£åœ¨è¿æ¥ã€è¿æ¥å¤±è´¥ã€è¿æ¥æˆåŠŸã€å·²è¿æ¥ã€‚è¿™é‡Œçš„ç½‘ç»œäº‹ä»¶ä¸è¡¨ç¤ºç”¨æˆ·æœ¬åœ°ç½‘ç»œçŠ¶æ€ï¼Œä»…æŒ‡æ˜ImSDKæ˜¯å¦ä¸äº‘é€šä¿¡IMäº‘Serverè¿æ¥çŠ¶æ€ã€‚
-* > å¯é€‰è®¾ç½®ï¼Œå¦‚æœè¦ç”¨æˆ·æ„ŸçŸ¥æ˜¯å¦å·²ç»è¿æ¥æœåŠ¡å™¨ï¼Œéœ€è¦è®¾ç½®æ­¤å›è°ƒï¼Œç”¨äºé€šçŸ¥è°ƒç”¨è€…è·Ÿé€šè®¯åå°é“¾æ¥çš„è¿æ¥å’Œæ–­å¼€äº‹ä»¶ï¼Œå¦å¤–ï¼Œå¦‚æœæ–­å¼€ç½‘ç»œï¼Œç­‰ç½‘ç»œæ¢å¤åä¼šè‡ªåŠ¨é‡è¿ï¼Œè‡ªåŠ¨æ‹‰å–æ¶ˆæ¯é€šçŸ¥ç”¨æˆ·ï¼Œç”¨æˆ·æ— éœ€å…³å¿ƒç½‘ç»œçŠ¶æ€ï¼Œä»…ä½œé€šçŸ¥ä¹‹ç”¨
-* > åªè¦ç”¨æˆ·å¤„äºç™»å½•çŠ¶æ€ï¼ŒImSDKå†…éƒ¨ä¼šè¿›è¡Œæ–­ç½‘é‡è¿ï¼Œç”¨æˆ·æ— éœ€å…³å¿ƒã€‚
+* > µ±µ÷ÓÃ½Ó¿Ú [TIMInit]() Ê±£¬ImSDK»áÈ¥Á¬½ÓÔÆºóÌ¨¡£´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷ÓÃÓÚ¼àÌıÍøÂçÁ¬½ÓµÄ×´Ì¬¡£
+* > ÍøÂçÁ¬½Ó×´Ì¬°üº¬ËÄ¸ö£ºÕıÔÚÁ¬½Ó¡¢Á¬½ÓÊ§°Ü¡¢Á¬½Ó³É¹¦¡¢ÒÑÁ¬½Ó¡£ÕâÀïµÄÍøÂçÊÂ¼ş²»±íÊ¾ÓÃ»§±¾µØÍøÂç×´Ì¬£¬½öÖ¸Ã÷ImSDKÊÇ·ñÓëÔÆÍ¨ĞÅIMÔÆServerÁ¬½Ó×´Ì¬¡£
+* > ¿ÉÑ¡ÉèÖÃ£¬Èç¹ûÒªÓÃ»§¸ĞÖªÊÇ·ñÒÑ¾­Á¬½Ó·şÎñÆ÷£¬ĞèÒªÉèÖÃ´Ë»Øµ÷£¬ÓÃÓÚÍ¨Öªµ÷ÓÃÕß¸úÍ¨Ñ¶ºóÌ¨Á´½ÓµÄÁ¬½ÓºÍ¶Ï¿ªÊÂ¼ş£¬ÁíÍâ£¬Èç¹û¶Ï¿ªÍøÂç£¬µÈÍøÂç»Ö¸´ºó»á×Ô¶¯ÖØÁ¬£¬×Ô¶¯À­È¡ÏûÏ¢Í¨ÖªÓÃ»§£¬ÓÃ»§ÎŞĞè¹ØĞÄÍøÂç×´Ì¬£¬½ö×÷Í¨ÖªÖ®ÓÃ
+* > Ö»ÒªÓÃ»§´¦ÓÚµÇÂ¼×´Ì¬£¬ImSDKÄÚ²¿»á½øĞĞ¶ÏÍøÖØÁ¬£¬ÓÃ»§ÎŞĞè¹ØĞÄ¡£
 */
 TIM_DECL void TIMSetNetworkStatusListenerCallback(TIMNetworkStatusListenerCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®è¢«è¸¢ä¸‹çº¿é€šçŸ¥å›è°ƒ
-* @param cb è¸¢ä¸‹çº¿å›è°ƒï¼Œè¯·å‚è€ƒ[TIMKickedOfflineCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃ±»ÌßÏÂÏßÍ¨Öª»Øµ÷
+* @param cb ÌßÏÂÏß»Øµ÷£¬Çë²Î¿¼[TIMKickedOfflineCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note
-* > ç”¨æˆ·å¦‚æœåœ¨å…¶ä»–ç»ˆç«¯ç™»å½•ï¼Œä¼šè¢«è¸¢ä¸‹çº¿ï¼Œè¿™æ—¶ä¼šæ”¶åˆ°ç”¨æˆ·è¢«è¸¢ä¸‹çº¿çš„é€šçŸ¥ï¼Œå‡ºç°è¿™ç§æƒ…å†µå¸¸è§„çš„åšæ³•æ˜¯æç¤ºç”¨æˆ·è¿›è¡Œæ“ä½œï¼ˆé€€å‡ºï¼Œæˆ–è€…å†æ¬¡æŠŠå¯¹æ–¹è¸¢ä¸‹çº¿ï¼‰ã€‚
-* > ç”¨æˆ·å¦‚æœåœ¨ç¦»çº¿çŠ¶æ€ä¸‹è¢«è¸¢ï¼Œä¸‹æ¬¡ç™»å½•å°†ä¼šå¤±è´¥ï¼Œå¯ä»¥ç»™ç”¨æˆ·ä¸€ä¸ªéå¸¸å¼ºçš„æé†’ï¼ˆç™»å½•é”™è¯¯ç ERR_IMSDK_KICKED_BY_OTHERSï¼š6208ï¼‰ï¼Œå¼€å‘è€…ä¹Ÿå¯ä»¥é€‰æ‹©å¿½ç•¥è¿™æ¬¡é”™è¯¯ï¼Œå†æ¬¡ç™»å½•å³å¯ã€‚
-* > ç”¨æˆ·åœ¨çº¿æƒ…å†µä¸‹çš„äº’è¸¢æƒ…å†µï¼š
-* +  ç”¨æˆ·åœ¨è®¾å¤‡1ç™»å½•ï¼Œä¿æŒåœ¨çº¿çŠ¶æ€ä¸‹ï¼Œè¯¥ç”¨æˆ·åˆåœ¨è®¾å¤‡2ç™»å½•ï¼Œè¿™æ—¶ç”¨æˆ·ä¼šåœ¨è®¾å¤‡1ä¸Šå¼ºåˆ¶ä¸‹çº¿ï¼Œæ”¶åˆ° TIMKickedOfflineCallback å›è°ƒã€‚
-*    ç”¨æˆ·åœ¨è®¾å¤‡1ä¸Šæ”¶åˆ°å›è°ƒåï¼Œæç¤ºç”¨æˆ·ï¼Œå¯ç»§ç»­è°ƒç”¨loginä¸Šçº¿ï¼Œå¼ºåˆ¶è®¾å¤‡2ä¸‹çº¿ã€‚è¿™é‡Œæ˜¯åœ¨çº¿æƒ…å†µä¸‹äº’è¸¢è¿‡ç¨‹ã€‚
-* > ç”¨æˆ·ç¦»çº¿çŠ¶æ€äº’è¸¢:
-* +  ç”¨æˆ·åœ¨è®¾å¤‡1ç™»å½•ï¼Œæ²¡æœ‰è¿›è¡Œlogoutæƒ…å†µä¸‹è¿›ç¨‹é€€å‡ºã€‚è¯¥ç”¨æˆ·åœ¨è®¾å¤‡2ç™»å½•ï¼Œæ­¤æ—¶ç”±äºç”¨æˆ·ä¸åœ¨çº¿ï¼Œæ— æ³•æ„ŸçŸ¥æ­¤äº‹ä»¶ï¼Œ
-*    ä¸ºäº†æ˜¾å¼æé†’ç”¨æˆ·ï¼Œé¿å…æ— æ„ŸçŸ¥çš„äº’è¸¢ï¼Œç”¨æˆ·åœ¨è®¾å¤‡1é‡æ–°ç™»å½•æ—¶ï¼Œä¼šè¿”å›ï¼ˆERR_IMSDK_KICKED_BY_OTHERSï¼š6208ï¼‰é”™è¯¯ç ï¼Œè¡¨æ˜ä¹‹å‰è¢«è¸¢ï¼Œæ˜¯å¦éœ€è¦æŠŠå¯¹æ–¹è¸¢ä¸‹çº¿ã€‚
-*    å¦‚æœéœ€è¦ï¼Œåˆ™å†æ¬¡è°ƒç”¨loginå¼ºåˆ¶ä¸Šçº¿ï¼Œè®¾å¤‡2çš„ç™»å½•çš„å®ä¾‹å°†ä¼šæ”¶åˆ° TIMKickedOfflineCallback å›è°ƒã€‚
+* > ÓÃ»§Èç¹ûÔÚÆäËûÖÕ¶ËµÇÂ¼£¬»á±»ÌßÏÂÏß£¬ÕâÊ±»áÊÕµ½ÓÃ»§±»ÌßÏÂÏßµÄÍ¨Öª£¬³öÏÖÕâÖÖÇé¿ö³£¹æµÄ×ö·¨ÊÇÌáÊ¾ÓÃ»§½øĞĞ²Ù×÷£¨ÍË³ö£¬»òÕßÔÙ´Î°Ñ¶Ô·½ÌßÏÂÏß£©¡£
+* > ÓÃ»§Èç¹ûÔÚÀëÏß×´Ì¬ÏÂ±»Ìß£¬ÏÂ´ÎµÇÂ¼½«»áÊ§°Ü£¬¿ÉÒÔ¸øÓÃ»§Ò»¸ö·Ç³£Ç¿µÄÌáĞÑ£¨µÇÂ¼´íÎóÂëERR_IMSDK_KICKED_BY_OTHERS£º6208£©£¬¿ª·¢ÕßÒ²¿ÉÒÔÑ¡ÔñºöÂÔÕâ´Î´íÎó£¬ÔÙ´ÎµÇÂ¼¼´¿É¡£
+* > ÓÃ»§ÔÚÏßÇé¿öÏÂµÄ»¥ÌßÇé¿ö£º
+* +  ÓÃ»§ÔÚÉè±¸1µÇÂ¼£¬±£³ÖÔÚÏß×´Ì¬ÏÂ£¬¸ÃÓÃ»§ÓÖÔÚÉè±¸2µÇÂ¼£¬ÕâÊ±ÓÃ»§»áÔÚÉè±¸1ÉÏÇ¿ÖÆÏÂÏß£¬ÊÕµ½ TIMKickedOfflineCallback »Øµ÷¡£
+*    ÓÃ»§ÔÚÉè±¸1ÉÏÊÕµ½»Øµ÷ºó£¬ÌáÊ¾ÓÃ»§£¬¿É¼ÌĞøµ÷ÓÃloginÉÏÏß£¬Ç¿ÖÆÉè±¸2ÏÂÏß¡£ÕâÀïÊÇÔÚÏßÇé¿öÏÂ»¥Ìß¹ı³Ì¡£
+* > ÓÃ»§ÀëÏß×´Ì¬»¥Ìß:
+* +  ÓÃ»§ÔÚÉè±¸1µÇÂ¼£¬Ã»ÓĞ½øĞĞlogoutÇé¿öÏÂ½ø³ÌÍË³ö¡£¸ÃÓÃ»§ÔÚÉè±¸2µÇÂ¼£¬´ËÊ±ÓÉÓÚÓÃ»§²»ÔÚÏß£¬ÎŞ·¨¸ĞÖª´ËÊÂ¼ş£¬
+*    ÎªÁËÏÔÊ½ÌáĞÑÓÃ»§£¬±ÜÃâÎŞ¸ĞÖªµÄ»¥Ìß£¬ÓÃ»§ÔÚÉè±¸1ÖØĞÂµÇÂ¼Ê±£¬»á·µ»Ø£¨ERR_IMSDK_KICKED_BY_OTHERS£º6208£©´íÎóÂë£¬±íÃ÷Ö®Ç°±»Ìß£¬ÊÇ·ñĞèÒª°Ñ¶Ô·½ÌßÏÂÏß¡£
+*    Èç¹ûĞèÒª£¬ÔòÔÙ´Îµ÷ÓÃloginÇ¿ÖÆÉÏÏß£¬Éè±¸2µÄµÇÂ¼µÄÊµÀı½«»áÊÕµ½ TIMKickedOfflineCallback »Øµ÷¡£
 */
 TIM_DECL void TIMSetKickedOfflineCallback(TIMKickedOfflineCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®ç¥¨æ®è¿‡æœŸå›è°ƒ
-* @param cb ç¥¨æ®è¿‡æœŸå›è°ƒï¼Œè¯·å‚è€ƒ[TIMUserSigExpiredCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÆ±¾İ¹ıÆÚ»Øµ÷
+* @param cb Æ±¾İ¹ıÆÚ»Øµ÷£¬Çë²Î¿¼[TIMUserSigExpiredCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 *
 * @note
-* ç”¨æˆ·ç¥¨æ®ï¼Œå¯èƒ½ä¼šå­˜åœ¨è¿‡æœŸçš„æƒ…å†µï¼Œå¦‚æœç”¨æˆ·ç¥¨æ®è¿‡æœŸï¼Œæ­¤æ¥å£è®¾ç½®çš„å›è°ƒä¼šè°ƒç”¨ã€‚
-* [TIMLogin]()ä¹Ÿå°†ä¼šè¿”å›70001é”™è¯¯ç ã€‚å¼€å‘è€…å¯æ ¹æ®é”™è¯¯ç æˆ–è€…ç¥¨æ®è¿‡æœŸå›è°ƒè¿›è¡Œç¥¨æ®æ›´æ¢
+* ÓÃ»§Æ±¾İ£¬¿ÉÄÜ»á´æÔÚ¹ıÆÚµÄÇé¿ö£¬Èç¹ûÓÃ»§Æ±¾İ¹ıÆÚ£¬´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷»áµ÷ÓÃ¡£
+* [TIMLogin]()Ò²½«»á·µ»Ø70001´íÎóÂë¡£¿ª·¢Õß¿É¸ù¾İ´íÎóÂë»òÕßÆ±¾İ¹ıÆÚ»Øµ÷½øĞĞÆ±¾İ¸ü»»
 */
 TIM_DECL void TIMSetUserSigExpiredCallback(TIMUserSigExpiredCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®æ—¥å¿—å›è°ƒ
-* @param cb æ—¥å¿—å›è°ƒï¼Œè¯·å‚è€ƒ[TIMLogCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÈÕÖ¾»Øµ÷
+* @param cb ÈÕÖ¾»Øµ÷£¬Çë²Î¿¼[TIMLogCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 *
 * @note
-* è®¾ç½®æ—¥å¿—ç›‘å¬çš„å›è°ƒä¹‹åï¼ŒImSDKå†…éƒ¨çš„æ—¥å¿—ä¼šå›ä¼ åˆ°æ­¤æ¥å£è®¾ç½®çš„å›è°ƒã€‚
-* å¼€å‘è€…å¯ä»¥é€šè¿‡æ¥å£[TIMSetConfig]()é…ç½®å“ªäº›æ—¥å¿—çº§åˆ«çš„æ—¥å¿—å›ä¼ åˆ°å›è°ƒå‡½æ•°ã€‚
+* ÉèÖÃÈÕÖ¾¼àÌıµÄ»Øµ÷Ö®ºó£¬ImSDKÄÚ²¿µÄÈÕÖ¾»á»Ø´«µ½´Ë½Ó¿ÚÉèÖÃµÄ»Øµ÷¡£
+* ¿ª·¢Õß¿ÉÒÔÍ¨¹ı½Ó¿Ú[TIMSetConfig]()ÅäÖÃÄÄĞ©ÈÕÖ¾¼¶±ğµÄÈÕÖ¾»Ø´«µ½»Øµ÷º¯Êı¡£
 */
 TIM_DECL void TIMSetLogCallback(TIMLogCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®æ¶ˆæ¯åœ¨äº‘ç«¯è¢«ä¿®æ”¹åå›ä¼ å›æ¥çš„æ¶ˆæ¯æ›´æ–°é€šçŸ¥å›è°ƒ
-* @param cb æ¶ˆæ¯æ›´æ–°å›è°ƒï¼Œè¯·å‚è€ƒ[TIMMsgUpdateCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
+* @brief ÉèÖÃÏûÏ¢ÔÚÔÆ¶Ë±»ĞŞ¸Äºó»Ø´«»ØÀ´µÄÏûÏ¢¸üĞÂÍ¨Öª»Øµ÷
+* @param cb ÏûÏ¢¸üĞÂ»Øµ÷£¬Çë²Î¿¼[TIMMsgUpdateCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
 * 
 * @note 
-* > å½“æ‚¨å‘é€çš„æ¶ˆæ¯åœ¨æœåŠ¡ç«¯è¢«ä¿®æ”¹åï¼ŒImSDKä¼šé€šè¿‡è¯¥å›è°ƒé€šçŸ¥ç»™æ‚¨ 
-* > æ‚¨å¯ä»¥åœ¨æ‚¨è‡ªå·±çš„æœåŠ¡å™¨ä¸Šæ‹¦æˆªæ‰€æœ‰äº‘é€šä¿¡IMæ¶ˆæ¯ [å‘å•èŠæ¶ˆæ¯ä¹‹å‰å›è°ƒ](https://cloud.tencent.com/document/product/269/1632)
-* > è®¾ç½®æˆåŠŸä¹‹åï¼Œäº‘é€šä¿¡IMæœåŠ¡å™¨ä¼šå°†æ‚¨çš„ç”¨æˆ·å‘é€çš„æ¯æ¡æ¶ˆæ¯éƒ½åŒæ­¥åœ°é€šçŸ¥ç»™æ‚¨çš„ä¸šåŠ¡æœåŠ¡å™¨ã€‚
-* > æ‚¨çš„ä¸šåŠ¡æœåŠ¡å™¨å¯ä»¥å¯¹è¯¥æ¡æ¶ˆæ¯è¿›è¡Œä¿®æ”¹ï¼ˆæ¯”å¦‚è¿‡æ»¤æ•æ„Ÿè¯ï¼‰ï¼Œå¦‚æœæ‚¨çš„æœåŠ¡å™¨å¯¹æ¶ˆæ¯è¿›è¡Œäº†ä¿®æ”¹ï¼ŒImSDKå°±ä¼šé€šè¿‡æ­¤å›è°ƒé€šçŸ¥æ‚¨ã€‚
+* > µ±Äú·¢ËÍµÄÏûÏ¢ÔÚ·şÎñ¶Ë±»ĞŞ¸Äºó£¬ImSDK»áÍ¨¹ı¸Ã»Øµ÷Í¨Öª¸øÄú 
+* > Äú¿ÉÒÔÔÚÄú×Ô¼ºµÄ·şÎñÆ÷ÉÏÀ¹½ØËùÓĞÔÆÍ¨ĞÅIMÏûÏ¢ [·¢µ¥ÁÄÏûÏ¢Ö®Ç°»Øµ÷](https://cloud.tencent.com/document/product/269/1632)
+* > ÉèÖÃ³É¹¦Ö®ºó£¬ÔÆÍ¨ĞÅIM·şÎñÆ÷»á½«ÄúµÄÓÃ»§·¢ËÍµÄÃ¿ÌõÏûÏ¢¶¼Í¬²½µØÍ¨Öª¸øÄúµÄÒµÎñ·şÎñÆ÷¡£
+* > ÄúµÄÒµÎñ·şÎñÆ÷¿ÉÒÔ¶Ô¸ÃÌõÏûÏ¢½øĞĞĞŞ¸Ä£¨±ÈÈç¹ıÂËÃô¸Ğ´Ê£©£¬Èç¹ûÄúµÄ·şÎñÆ÷¶ÔÏûÏ¢½øĞĞÁËĞŞ¸Ä£¬ImSDK¾Í»áÍ¨¹ı´Ë»Øµ÷Í¨ÖªÄú¡£
 */
 TIM_DECL void TIMSetMsgUpdateCallback(TIMMsgUpdateCallback cb, const void* user_data);
 /// @}
@@ -178,17 +178,17 @@ TIM_DECL void TIMSetMsgUpdateCallback(TIMMsgUpdateCallback cb, const void* user_
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ImSDKåˆå§‹åŒ–
+//                       ImSDK³õÊ¼»¯
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ImSDKåˆå§‹åŒ–ç›¸å…³æ¥å£
+/// @name ImSDK³õÊ¼»¯Ïà¹Ø½Ó¿Ú
 /// @{
 /**
-* @brief ImSDKåˆå§‹åŒ–
+* @brief ImSDK³õÊ¼»¯
 *
-* @param sdk_app_id å®˜ç½‘ç”³è¯·çš„SDKAppid
-* @param json_sdk_config ImSDKé…ç½®é€‰é¡¹Jsonå­—ç¬¦ä¸²,è¯¦æƒ…è¯·å‚è€ƒ[SdkConfig](TIMCloudDef.h)
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param sdk_app_id ¹ÙÍøÉêÇëµÄSDKAppid
+* @param json_sdk_config ImSDKÅäÖÃÑ¡ÏîJson×Ö·û´®,ÏêÇéÇë²Î¿¼[SdkConfig](TIMCloudDef.h)
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 * @example
 * Json::Value json_value_init;
@@ -197,70 +197,70 @@ TIM_DECL void TIMSetMsgUpdateCallback(TIMMsgUpdateCallback cb, const void* user_
 * 
 * uint64_t sdk_app_id = 1234567890;
 * if (TIM_SUCC != TIMInit(sdk_app_id, json_value_init.toStyledString().c_str())) {
-*     // TIMInit æ¥å£è°ƒç”¨é”™è¯¯ï¼ŒImSDKåˆå§‹åŒ–å¤±è´¥   
+*     // TIMInit ½Ó¿Úµ÷ÓÃ´íÎó£¬ImSDK³õÊ¼»¯Ê§°Ü   
 * }
 * 
-* // json_value_init.toStyledString() å¾—åˆ° json_sdk_config JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_init.toStyledString() µÃµ½ json_sdk_config JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "sdk_config_config_file_path" : "D:\\",
 *    "sdk_config_log_file_path" : "D:\\"
 * }
 * 
 * @note 
-* > åœ¨ä½¿ç”¨ImSDKè¿›ä¸€æ­¥æ“ä½œä¹‹å‰ï¼Œéœ€è¦å…ˆåˆå§‹åŒ–ImSDK
-* > json_sdk_config å¯ä»¥ä¸º NULL ç©ºå­—ç¬¦ä¸²æŒ‡é’ˆæˆ–è€…""ç©ºå­—ç¬¦ä¸²ï¼Œåœ¨æ­¤æƒ…å†µä¸‹SdkConfigå‡ä¸ºé»˜è®¤å€¼ã€‚
-* > json_sdk_config é‡Œé¢çš„æ¯ä¸ªJson keyéƒ½æ˜¯é€‰å¡«çš„ï¼Œè¯¦æƒ…è¯·å‚è€ƒ[SdkConfig](TIMCloudDef.h)
+* > ÔÚÊ¹ÓÃImSDK½øÒ»²½²Ù×÷Ö®Ç°£¬ĞèÒªÏÈ³õÊ¼»¯ImSDK
+* > json_sdk_config ¿ÉÒÔÎª NULL ¿Õ×Ö·û´®Ö¸Õë»òÕß""¿Õ×Ö·û´®£¬ÔÚ´ËÇé¿öÏÂSdkConfig¾ùÎªÄ¬ÈÏÖµ¡£
+* > json_sdk_config ÀïÃæµÄÃ¿¸öJson key¶¼ÊÇÑ¡ÌîµÄ£¬ÏêÇéÇë²Î¿¼[SdkConfig](TIMCloudDef.h)
 * 
 */
 TIM_DECL int TIMInit(uint64_t sdk_app_id, const char* json_sdk_config);
 
 /**
-* @brief  ImSDKå¸è½½
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @brief  ImSDKĞ¶ÔØ
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 * @example
 * if (TIM_SUCC != TIMUninit()) {
-*     // ImSDKå¸è½½å¤±è´¥  
+*     // ImSDKĞ¶ÔØÊ§°Ü  
 * }
 * @note
-* å¸è½½DLLæˆ–é€€å‡ºè¿›ç¨‹å‰éœ€æ­¤æ¥å£å¸è½½ImSDKï¼Œæ¸…ç†ImSDKç›¸å…³èµ„æº
+* Ğ¶ÔØDLL»òÍË³ö½ø³ÌÇ°Ğè´Ë½Ó¿ÚĞ¶ÔØImSDK£¬ÇåÀíImSDKÏà¹Ø×ÊÔ´
 *
 */
 TIM_DECL int TIMUninit(void);
 
 /**
-* @brief  è·å–ImSDKç‰ˆæœ¬å·
-* @return const char* è¿”å›ImSDKçš„ç‰ˆæœ¬å·
+* @brief  »ñÈ¡ImSDK°æ±¾ºÅ
+* @return const char* ·µ»ØImSDKµÄ°æ±¾ºÅ
 */
 TIM_DECL const char* const TIMGetSDKVersion(void);
 
 /**
-* @brief  è®¾ç½®é¢å¤–çš„ç”¨æˆ·é…ç½®
-* @param json_config é…ç½®é€‰é¡¹
-* @param cb è¿”å›è®¾ç½®é…ç½®ä¹‹åæ‰€æœ‰é…ç½®çš„å›è°ƒï¼Œæ­¤å›è°ƒcbå¯ä¸ºç©ºï¼Œè¡¨ç¤ºä¸è·å–æ‰€æœ‰é…ç½®ä¿¡æ¯ã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @brief  ÉèÖÃ¶îÍâµÄÓÃ»§ÅäÖÃ
+* @param json_config ÅäÖÃÑ¡Ïî
+* @param cb ·µ»ØÉèÖÃÅäÖÃÖ®ºóËùÓĞÅäÖÃµÄ»Øµ÷£¬´Ë»Øµ÷cb¿ÉÎª¿Õ£¬±íÊ¾²»»ñÈ¡ËùÓĞÅäÖÃĞÅÏ¢¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value json_user_config;
-* json_user_config[kTIMUserConfigIsReadReceipt] = true;  // å¼€å¯å·²è¯»å›æ‰§
+* json_user_config[kTIMUserConfigIsReadReceipt] = true;  // ¿ªÆôÒÑ¶Á»ØÖ´
 * Json::Value json_config;
 * json_config[kTIMSetConfigUserConfig] = json_user_config;
 *
 * if (TIM_SUCC != TIMSetConfig(json_config.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
-*     // å›è°ƒå†…éƒ¨
+*     // »Øµ÷ÄÚ²¿
 * }, this)) {
-*     //TIMSetConfigæ¥å£è°ƒç”¨å¤±è´¥
+*     //TIMSetConfig½Ó¿Úµ÷ÓÃÊ§°Ü
 * } 
 *
-* // json_config.toStyledString().c_str() å¾—åˆ° json_config JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_config.toStyledString().c_str() µÃµ½ json_config JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "set_config_user_config" : {
 *       "user_config_is_read_receipt" : true
 *    }
 * }
 *
-* @example è®¾ç½®Httpä»£ç†
+* @example ÉèÖÃHttp´úÀí
 * Json::Value json_http_proxy;
 * json_http_proxy[kTIMHttpProxyInfoIp] = "http://http-proxy.xxxxx.com";
 * json_http_proxy[kTIMHttpProxyInfoPort] = 8888;
@@ -268,12 +268,12 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 * json_config[kTIMSetConfigHttpProxyInfo] = json_http_proxy;
 *
 * if (TIM_SUCC != TIMSetConfig(json_config.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
-*     // å›è°ƒå†…éƒ¨
+*     // »Øµ÷ÄÚ²¿
 * }, this)) {
-*     // TIMSetConfigæ¥å£è°ƒç”¨å¤±è´¥
+*     // TIMSetConfig½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 *
-* @example å–æ¶ˆHttpä»£ç†
+* @example È¡ÏûHttp´úÀí
 * Json::Value json_http_proxy;
 * json_http_proxy[kTIMHttpProxyInfoIp] = "";
 * json_http_proxy[kTIMHttpProxyInfoPort] = 0;
@@ -281,12 +281,12 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 * json_config[kTIMSetConfigHttpProxyInfo] = json_http_proxy;
 *
 * if (TIM_SUCC != TIMSetConfig(json_config.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
-*     // å›è°ƒå†…éƒ¨
+*     // »Øµ÷ÄÚ²¿
 * }, this)) {
-*     // TIMSetConfigæ¥å£è°ƒç”¨å¤±è´¥
+*     // TIMSetConfig½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 *
-* @example è®¾ç½®socks5ä»£ç†
+* @example ÉèÖÃsocks5´úÀí
 * Json::Value json_socks5_value;
 * json_socks5_value[kTIMSocks5ProxyInfoIp] = "111.222.333.444";
 * json_socks5_value[kTIMSocks5ProxyInfoPort] = 8888;
@@ -296,12 +296,12 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 * json_config[kTIMSetConfigSocks5ProxyInfo] = json_socks5_value;
 *
 * if (TIM_SUCC != TIMSetConfig(json_config.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
-*     // å›è°ƒå†…éƒ¨
+*     // »Øµ÷ÄÚ²¿
 * }, this)) {
-*     //TIMSetConfigæ¥å£è°ƒç”¨å¤±è´¥
+*     //TIMSetConfig½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 *
-* @example å–æ¶ˆsocks5ä»£ç†
+* @example È¡Ïûsocks5´úÀí
 * Json::Value json_socks5_value;
 * json_socks5_value[kTIMSocks5ProxyInfoIp] = "";
 * json_socks5_value[kTIMSocks5ProxyInfoPort] = 0;
@@ -311,16 +311,16 @@ TIM_DECL const char* const TIMGetSDKVersion(void);
 * json_config[kTIMSetConfigSocks5ProxyInfo] = json_socks5_value;
 *
 * if (TIM_SUCC != TIMSetConfig(json_config.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
-*     // å›è°ƒå†…éƒ¨
+*     // »Øµ÷ÄÚ²¿
 * }, this)) {
-*     //TIMSetConfigæ¥å£è°ƒç”¨å¤±è´¥
+*     //TIMSetConfig½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 * 
 * @note
-* json_config å¯ä»¥å¡« NULL ç©ºå­—ç¬¦ä¸²æŒ‡é’ˆæˆ–è€…""ç©ºå­—ç¬¦ä¸²ï¼Œæ­¤æ—¶è‹¥å›è°ƒcbä¸ä¸ºç©ºï¼Œåˆ™é€šè¿‡å›è°ƒcbï¼Œè¿”å›å½“å‰æ‰€æœ‰çš„é…ç½®ä¿¡æ¯ã€‚
-* ç›®å‰æ”¯æŒè®¾ç½®çš„é…ç½®æœ‰httpä»£ç†çš„IPå’Œç«¯å£ã€socks5ä»£ç†çš„IPå’Œç«¯å£ã€è¾“å‡ºæ—¥å¿—çš„çº§åˆ«ã€è·å–ç¾¤ä¿¡æ¯/ç¾¤æˆå‘˜ä¿¡æ¯çš„é»˜è®¤é€‰é¡¹ã€æ˜¯å¦æ¥å—æ¶ˆæ¯å·²è¯»å›æ‰§äº‹ä»¶ç­‰ã€‚
-* httpä»£ç†çš„IPå’Œç«¯å£ã€socks5ä»£ç†çš„IPå’Œç«¯å£å»ºè®®è°ƒç”¨[TIMInit]()ä¹‹å‰é…ç½®ã€‚
-* æ¯é¡¹é…ç½®å¯ä»¥å•ç‹¬è®¾ç½®ï¼Œä¹Ÿå¯ä»¥ä¸€èµ·é…ç½®,è¯¦æƒ…è¯·å‚è€ƒ [SetConfig](TIMCloudDef.h)ã€‚
+* json_config ¿ÉÒÔÌî NULL ¿Õ×Ö·û´®Ö¸Õë»òÕß""¿Õ×Ö·û´®£¬´ËÊ±Èô»Øµ÷cb²»Îª¿Õ£¬ÔòÍ¨¹ı»Øµ÷cb£¬·µ»Øµ±Ç°ËùÓĞµÄÅäÖÃĞÅÏ¢¡£
+* Ä¿Ç°Ö§³ÖÉèÖÃµÄÅäÖÃÓĞhttp´úÀíµÄIPºÍ¶Ë¿Ú¡¢socks5´úÀíµÄIPºÍ¶Ë¿Ú¡¢Êä³öÈÕÖ¾µÄ¼¶±ğ¡¢»ñÈ¡ÈºĞÅÏ¢/Èº³ÉÔ±ĞÅÏ¢µÄÄ¬ÈÏÑ¡Ïî¡¢ÊÇ·ñ½ÓÊÜÏûÏ¢ÒÑ¶Á»ØÖ´ÊÂ¼şµÈ¡£
+* http´úÀíµÄIPºÍ¶Ë¿Ú¡¢socks5´úÀíµÄIPºÍ¶Ë¿Ú½¨Òéµ÷ÓÃ[TIMInit]()Ö®Ç°ÅäÖÃ¡£
+* Ã¿ÏîÅäÖÃ¿ÉÒÔµ¥¶ÀÉèÖÃ£¬Ò²¿ÉÒÔÒ»ÆğÅäÖÃ,ÏêÇéÇë²Î¿¼ [SetConfig](TIMCloudDef.h)¡£
 */
 TIM_DECL int TIMSetConfig(const char* json_config, TIMCommCallback cb, const void* user_data);
 /// @}
@@ -328,34 +328,34 @@ TIM_DECL int TIMSetConfig(const char* json_config, TIMCommCallback cb, const voi
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ç™»å½•/ç™»å‡º
+//                       µÇÂ¼/µÇ³ö
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ç™»å½•ç™»å‡ºç›¸å…³æ¥å£
+/// @name µÇÂ¼µÇ³öÏà¹Ø½Ó¿Ú
 /// @{
 /**
-* @brief ç™»å½•
+* @brief µÇÂ¼
 *
-* @param user_id ç”¨æˆ·çš„indentifier
-* @param user_sig ç”¨æˆ·çš„sig
-* @param cb ç™»å½•æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param user_id ÓÃ»§µÄindentifier
+* @param user_sig ÓÃ»§µÄsig
+* @param cb µÇÂ¼³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note 
-* ç”¨æˆ·ç™»å½•è…¾è®¯åå°æœåŠ¡å™¨åæ‰èƒ½æ­£å¸¸æ”¶å‘æ¶ˆæ¯ï¼Œç™»å½•éœ€è¦ç”¨æˆ·æä¾›identifierã€userSigç­‰ä¿¡æ¯ï¼Œå…·ä½“å«ä¹‰è¯·å‚è€ƒ[ç™»å½•é‰´æƒ](https://cloud.tencent.com/document/product/269/31999)
+* ÓÃ»§µÇÂ¼ÌÚÑ¶ºóÌ¨·şÎñÆ÷ºó²ÅÄÜÕı³£ÊÕ·¢ÏûÏ¢£¬µÇÂ¼ĞèÒªÓÃ»§Ìá¹©identifier¡¢userSigµÈĞÅÏ¢£¬¾ßÌåº¬ÒåÇë²Î¿¼[µÇÂ¼¼øÈ¨](https://cloud.tencent.com/document/product/269/31999)
 */
 TIM_DECL int TIMLogin(const char* user_id, const char* user_sig, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief  ç™»å‡º
+* @brief  µÇ³ö
 *
-* @param cb ç™»å‡ºæˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param cb µÇ³ö³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* å¦‚ç”¨æˆ·ä¸»åŠ¨ç™»å‡ºæˆ–éœ€è¦è¿›è¡Œç”¨æˆ·çš„åˆ‡æ¢ï¼Œåˆ™éœ€è¦è°ƒç”¨ç™»å‡ºæ“ä½œ
+* ÈçÓÃ»§Ö÷¶¯µÇ³ö»òĞèÒª½øĞĞÓÃ»§µÄÇĞ»»£¬ÔòĞèÒªµ÷ÓÃµÇ³ö²Ù×÷
 */
 TIM_DECL int TIMLogout(TIMCommCallback cb, const void* user_data);
 /// @}
@@ -363,107 +363,107 @@ TIM_DECL int TIMLogout(TIMCommCallback cb, const void* user_data);
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ä¼šè¯ç›¸å…³æ¥å£
+//                       »á»°Ïà¹Ø½Ó¿Ú
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ä¼šè¯ç›¸å…³æ¥å£
+/// @name »á»°Ïà¹Ø½Ó¿Ú
 /*
 * @brief
-* ImSDKä¸­ä¼šè¯ï¼ˆConversationï¼‰åˆ†ä¸ºä¸¤ç§
-* > C2Cä¼šè¯ï¼Œè¡¨ç¤ºå•èŠæƒ…å†µè‡ªå·±ä¸å¯¹æ–¹å»ºç«‹çš„å¯¹è¯ï¼Œè¯»å–æ¶ˆæ¯å’Œå‘é€æ¶ˆæ¯éƒ½æ˜¯é€šè¿‡ä¼šè¯å®Œæˆ
-* > ç¾¤ä¼šè¯ï¼Œè¡¨ç¤ºç¾¤èŠæƒ…å†µä¸‹ï¼Œç¾¤å†…æˆå‘˜ç»„æˆçš„ä¼šè¯ï¼Œç¾¤ä¼šè¯å†…å‘é€æ¶ˆæ¯ç¾¤æˆå‘˜éƒ½å¯æ¥æ”¶åˆ°ã€‚
+* ImSDKÖĞ»á»°£¨Conversation£©·ÖÎªÁ½ÖÖ
+* > C2C»á»°£¬±íÊ¾µ¥ÁÄÇé¿ö×Ô¼ºÓë¶Ô·½½¨Á¢µÄ¶Ô»°£¬¶ÁÈ¡ÏûÏ¢ºÍ·¢ËÍÏûÏ¢¶¼ÊÇÍ¨¹ı»á»°Íê³É
+* > Èº»á»°£¬±íÊ¾ÈºÁÄÇé¿öÏÂ£¬ÈºÄÚ³ÉÔ±×é³ÉµÄ»á»°£¬Èº»á»°ÄÚ·¢ËÍÏûÏ¢Èº³ÉÔ±¶¼¿É½ÓÊÕµ½¡£
 */
 /// @{
 /**
-* @brief åˆ›å»ºä¼šè¯
+* @brief ´´½¨»á»°
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param cb åˆ›å»ºä¼šè¯çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param cb ´´½¨»á»°µÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
-* @example è·å–å¯¹æ–¹identifierä¸ºWindows-02çš„å•èŠä¼šè¯ç¤ºä¾‹ï¼š
-* const void* user_data = nullptr; // å›è°ƒå‡½æ•°å›ä¼ 
+* @example »ñÈ¡¶Ô·½identifierÎªWindows-02µÄµ¥ÁÄ»á»°Ê¾Àı£º
+* const void* user_data = nullptr; // »Øµ÷º¯Êı»Ø´«
 * const char* userid = "Windows-02";
 * int ret = TIMConvCreate(userid, kTIMConv_C2C, [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) {
 *         return;
 *     }
-*     // å›è°ƒè¿”å›ä¼šè¯çš„å…·ä½“ä¿¡æ¯
+*     // »Øµ÷·µ»Ø»á»°µÄ¾ßÌåĞÅÏ¢
 * }, user_data);
 * if (ret != TIM_SUCC) {
-*     // è°ƒç”¨ TIMConvCreate æ¥å£å¤±è´¥
+*     // µ÷ÓÃ TIMConvCreate ½Ó¿ÚÊ§°Ü
 * }
 * 
-* @example è·å–ç¾¤ç»„IDä¸ºWindows-Group-01çš„ç¾¤èŠä¼šè¯ç¤ºä¾‹ï¼š
-* const void* user_data = nullptr; // å›è°ƒå‡½æ•°å›ä¼ 
+* @example »ñÈ¡Èº×éIDÎªWindows-Group-01µÄÈºÁÄ»á»°Ê¾Àı£º
+* const void* user_data = nullptr; // »Øµ÷º¯Êı»Ø´«
 * const char* userid = "Windows-Group-01";
 * int ret = TIMConvCreate(userid, kTIMConv_Group, [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) {
 *         return;
 *     }
-*     // å›è°ƒè¿”å›ä¼šè¯çš„å…·ä½“ä¿¡æ¯
+*     // »Øµ÷·µ»Ø»á»°µÄ¾ßÌåĞÅÏ¢
 * }, user_data);
 * if (ret != TIM_SUCC) {
-*     // è°ƒç”¨ TIMConvCreate æ¥å£å¤±è´¥
+*     // µ÷ÓÃ TIMConvCreate ½Ó¿ÚÊ§°Ü
 * }
 * 
 * @note
-* > ä¼šè¯æ˜¯æŒ‡é¢å‘ä¸€ä¸ªäººæˆ–è€…ä¸€ä¸ªç¾¤ç»„çš„å¯¹è¯ï¼Œé€šè¿‡ä¸å•ä¸ªäººæˆ–ç¾¤ç»„ä¹‹é—´ä¼šè¯æ”¶å‘æ¶ˆæ¯
-* > æ­¤æ¥å£åˆ›å»ºæˆ–è€…è·å–ä¼šè¯ä¿¡æ¯ï¼Œéœ€è¦æŒ‡å®šä¼šè¯ç±»å‹ï¼ˆç¾¤ç»„æˆ–è€…å•èŠï¼‰ï¼Œä»¥åŠä¼šè¯å¯¹æ–¹æ ‡å¿—ï¼ˆå¯¹æ–¹å¸å·æˆ–è€…ç¾¤å·ï¼‰ã€‚ä¼šè¯ä¿¡æ¯é€šè¿‡cbå›ä¼ ã€‚
+* > »á»°ÊÇÖ¸ÃæÏòÒ»¸öÈË»òÕßÒ»¸öÈº×éµÄ¶Ô»°£¬Í¨¹ıÓëµ¥¸öÈË»òÈº×éÖ®¼ä»á»°ÊÕ·¢ÏûÏ¢
+* > ´Ë½Ó¿Ú´´½¨»òÕß»ñÈ¡»á»°ĞÅÏ¢£¬ĞèÒªÖ¸¶¨»á»°ÀàĞÍ£¨Èº×é»òÕßµ¥ÁÄ£©£¬ÒÔ¼°»á»°¶Ô·½±êÖ¾£¨¶Ô·½ÕÊºÅ»òÕßÈººÅ£©¡£»á»°ĞÅÏ¢Í¨¹ıcb»Ø´«¡£
 */
 TIM_DECL int TIMConvCreate(const char* conv_id, enum TIMConvType conv_type, TIMCommCallback cb, const void* user_data); 
 
 /**
-* @brief åˆ é™¤ä¼šè¯
+* @brief É¾³ı»á»°
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param cb åˆ é™¤ä¼šè¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param cb É¾³ı»á»°³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* æ­¤æ¥å£ç”¨äºåˆ é™¤ä¼šè¯ï¼Œåˆ é™¤ä¼šè¯æ˜¯å¦æˆåŠŸé€šè¿‡å›è°ƒè¿”å›ã€‚
+* ´Ë½Ó¿ÚÓÃÓÚÉ¾³ı»á»°£¬É¾³ı»á»°ÊÇ·ñ³É¹¦Í¨¹ı»Øµ÷·µ»Ø¡£
 */
 TIM_DECL int TIMConvDelete(const char* conv_id, enum TIMConvType conv_type, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–æœ¬åœ°ç¼“å­˜çš„ä¼šè¯åˆ—è¡¨
+* @brief »ñÈ¡±¾µØ»º´æµÄ»á»°ÁĞ±í
 * 
-* @param cb è·å–ä¼šè¯ç¼“å­˜åˆ—è¡¨çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param cb »ñÈ¡»á»°»º´æÁĞ±íµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 */
 TIM_DECL int TIMConvGetConvList(TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è®¾ç½®æŒ‡å®šä¼šè¯çš„è‰ç¨¿
+* @brief ÉèÖÃÖ¸¶¨»á»°µÄ²İ¸å
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_draft_param è¢«è®¾ç½®çš„è‰ç¨¿Jsonå­—ç¬¦ä¸²
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_draft_param ±»ÉèÖÃµÄ²İ¸åJson×Ö·û´®
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 * @example
-* Json::Value json_value_text;  // æ„é€ æ¶ˆæ¯
+* Json::Value json_value_text;  // ¹¹ÔìÏûÏ¢
 * json_value_text[kTIMElemType] = kTIMElem_Text;
 * json_value_text[kTIMTextElemContent] = "this draft";
 * Json::Value json_value_msg;
 * json_value_msg[kTIMMsgElemArray].append(json_value_text);
 * 
-* Json::Value json_value_draft; // æ„é€ è‰ç¨¿
+* Json::Value json_value_draft; // ¹¹Ôì²İ¸å
 * json_value_draft[kTIMDraftEditTime] = time(NULL);
 * json_value_draft[kTIMDraftUserDefine] = "this is userdefine";
 * json_value_draft[kTIMDraftMsg] = json_value_msg;
 * 
 * if (TIM_SUCC != TIMConvSetDraft(userid.c_str(), TIMConvType::kTIMConv_C2C, json_value_draft.toStyledString().c_str())) {
-*     // TIMConvSetDraft æ¥å£è°ƒç”¨å¤±è´¥
+*     // TIMConvSetDraft ½Ó¿Úµ÷ÓÃÊ§°Ü
 * } 
 *
-* // json_value_draft.toStyledString().c_str() å¾—åˆ° json_draft_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_draft.toStyledString().c_str() µÃµ½ json_draft_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "draft_edit_time" : 1551271429,
 *    "draft_msg" : {
@@ -478,16 +478,16 @@ TIM_DECL int TIMConvGetConvList(TIMCommCallback cb, const void* user_data);
 * }
 *
 * @note
-* ä¼šè¯è‰ç¨¿ä¸€èˆ¬ç”¨åœ¨ä¿å­˜ç”¨æˆ·å½“å‰è¾“å…¥çš„æœªå‘é€çš„æ¶ˆæ¯ã€‚
+* »á»°²İ¸åÒ»°ãÓÃÔÚ±£´æÓÃ»§µ±Ç°ÊäÈëµÄÎ´·¢ËÍµÄÏûÏ¢¡£
 */
 TIM_DECL int TIMConvSetDraft(const char* conv_id, enum TIMConvType conv_type, const char* json_draft_param);
 
 /**
-* @brief åˆ é™¤æŒ‡å®šä¼šè¯çš„è‰ç¨¿
+* @brief É¾³ıÖ¸¶¨»á»°µÄ²İ¸å
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 */
 TIM_DECL int TIMConvCancelDraft(const char* conv_id, enum TIMConvType conv_type);
@@ -495,21 +495,21 @@ TIM_DECL int TIMConvCancelDraft(const char* conv_id, enum TIMConvType conv_type)
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       æ¶ˆæ¯ç›¸å…³æ¥å£
+//                       ÏûÏ¢Ïà¹Ø½Ó¿Ú
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name æ¶ˆæ¯ç›¸å…³æ¥å£
-/// @brief æ¶ˆæ¯ä»‹ç»è¯·å‚è€ƒ [å•èŠæ¶ˆæ¯](https://cloud.tencent.com/document/product/269/3662)ã€[ç¾¤ç»„æ¶ˆæ¯](https://cloud.tencent.com/document/product/269/3663)å’Œ[æ¶ˆæ¯æ ¼å¼æè¿°](https://cloud.tencent.com/document/product/269/2720)
+/// @name ÏûÏ¢Ïà¹Ø½Ó¿Ú
+/// @brief ÏûÏ¢½éÉÜÇë²Î¿¼ [µ¥ÁÄÏûÏ¢](https://cloud.tencent.com/document/product/269/3662)¡¢[Èº×éÏûÏ¢](https://cloud.tencent.com/document/product/269/3663)ºÍ[ÏûÏ¢¸ñÊ½ÃèÊö](https://cloud.tencent.com/document/product/269/2720)
 /// @{
 /**
-* @brief å‘é€æ–°æ¶ˆæ¯
+* @brief ·¢ËÍĞÂÏûÏ¢
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_param  æ¶ˆæ¯jsonå­—ç¬¦ä¸²
-* @param cb å‘é€æ–°æ¶ˆæ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_param  ÏûÏ¢json×Ö·û´®
+* @param cb ·¢ËÍĞÂÏûÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example 
 * Json::Value json_value_text;
@@ -523,13 +523,13 @@ TIM_DECL int TIMConvCancelDraft(const char* conv_id, enum TIMConvType conv_type)
 *
 * int ret = TIMMsgSendNewMsg(conv_id.c_str(), kTIMConv_C2C, json_value_msg.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) {
-*         // æ¶ˆæ¯å‘é€å¤±è´¥
+*         // ÏûÏ¢·¢ËÍÊ§°Ü
 *         return;
 *     }
-*     // æ¶ˆæ¯å‘é€æˆåŠŸ
+*     // ÏûÏ¢·¢ËÍ³É¹¦
 * }, this);
 *
-* // json_value_msg.toStyledString().c_str() å¾—åˆ° json_msg_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_msg.toStyledString().c_str() µÃµ½ json_msg_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "message_client_time" : 1551446728,
 *    "message_elem_array" : [
@@ -542,45 +542,45 @@ TIM_DECL int TIMConvCancelDraft(const char* conv_id, enum TIMConvType conv_type)
 *    "message_server_time" : 1551446728
 * }
 * @note
-* >  å‘é€æ–°æ¶ˆæ¯ï¼Œå•èŠæ¶ˆæ¯å’Œç¾¤æ¶ˆæ¯çš„å‘é€å‡é‡‡ç”¨æ­¤æ¥å£ã€‚
-* >> å‘é€å•èŠæ¶ˆæ¯æ—¶ conv_id ä¸ºå¯¹æ–¹çš„identifierï¼Œ conv_type ä¸º kTIMConv_C2C 
-* >> å‘é€ç¾¤èŠæ¶ˆæ¯æ—¶ conv_id ä¸ºç¾¤IDï¼Œ conv_type ä¸º kTIMConv_Group ã€‚
-* >  å‘é€æ¶ˆæ¯æ—¶ä¸èƒ½å‘é€ kTIMElem_GroupTips ã€ kTIMElem_GroupReport ï¼Œä»–ä»¬ç”±ä¸ºåå°ä¸‹å‘ï¼Œç”¨äºæ›´æ–°(é€šçŸ¥)ç¾¤çš„ä¿¡æ¯ã€‚å¯ä»¥çš„å‘é€æ¶ˆæ¯å†…å…ƒç´ 
-* >>   æ–‡æœ¬æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [TextElem](TIMCloudDef.h)
-* >>   è¡¨æƒ…æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [FaceElem](TIMCloudDef.h)
-* >>   ä½ç½®æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [LocationElem](TIMCloudDef.h)
-* >>   å›¾ç‰‡æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [ImageElem](TIMCloudDef.h)
-* >>   å£°éŸ³æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [SoundElem](TIMCloudDef.h)
-* >>   è‡ªå®šä¹‰æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [CustomElem](TIMCloudDef.h)
-* >>   æ–‡ä»¶æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [FileElem](TIMCloudDef.h)
-* >>   è§†é¢‘æ¶ˆæ¯å…ƒç´ ï¼Œè¯·å‚è€ƒ [VideoElem](TIMCloudDef.h)
+* >  ·¢ËÍĞÂÏûÏ¢£¬µ¥ÁÄÏûÏ¢ºÍÈºÏûÏ¢µÄ·¢ËÍ¾ù²ÉÓÃ´Ë½Ó¿Ú¡£
+* >> ·¢ËÍµ¥ÁÄÏûÏ¢Ê± conv_id Îª¶Ô·½µÄidentifier£¬ conv_type Îª kTIMConv_C2C 
+* >> ·¢ËÍÈºÁÄÏûÏ¢Ê± conv_id ÎªÈºID£¬ conv_type Îª kTIMConv_Group ¡£
+* >  ·¢ËÍÏûÏ¢Ê±²»ÄÜ·¢ËÍ kTIMElem_GroupTips ¡¢ kTIMElem_GroupReport £¬ËûÃÇÓÉÎªºóÌ¨ÏÂ·¢£¬ÓÃÓÚ¸üĞÂ(Í¨Öª)ÈºµÄĞÅÏ¢¡£¿ÉÒÔµÄ·¢ËÍÏûÏ¢ÄÚÔªËØ
+* >>   ÎÄ±¾ÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [TextElem](TIMCloudDef.h)
+* >>   ±íÇéÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [FaceElem](TIMCloudDef.h)
+* >>   Î»ÖÃÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [LocationElem](TIMCloudDef.h)
+* >>   Í¼Æ¬ÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [ImageElem](TIMCloudDef.h)
+* >>   ÉùÒôÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [SoundElem](TIMCloudDef.h)
+* >>   ×Ô¶¨ÒåÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [CustomElem](TIMCloudDef.h)
+* >>   ÎÄ¼şÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [FileElem](TIMCloudDef.h)
+* >>   ÊÓÆµÏûÏ¢ÔªËØ£¬Çë²Î¿¼ [VideoElem](TIMCloudDef.h)
 */
 TIM_DECL int TIMMsgSendNewMsg(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief æ¶ˆæ¯ä¸ŠæŠ¥å·²è¯»
+* @brief ÏûÏ¢ÉÏ±¨ÒÑ¶Á
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_param  æ¶ˆæ¯jsonå­—ç¬¦ä¸²
-* @param cb æ¶ˆæ¯ä¸ŠæŠ¥å·²è¯»æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_param  ÏûÏ¢json×Ö·û´®
+* @param cb ÏûÏ¢ÉÏ±¨ÒÑ¶Á³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* json_msg_param å¯ä»¥å¡« NULL ç©ºå­—ç¬¦ä¸²æŒ‡é’ˆæˆ–è€…""ç©ºå­—ç¬¦ä¸²ï¼Œæ­¤æ—¶ä»¥ä¼šè¯å½“å‰æœ€æ–°æ¶ˆæ¯çš„æ—¶é—´æˆ³ï¼ˆå¦‚æœä¼šè¯å­˜åœ¨æœ€æ–°æ¶ˆæ¯ï¼‰æˆ–å½“å‰æ—¶é—´ä¸ºå·²è¯»æ—¶é—´æˆ³ä¸ŠæŠ¥.å½“è¦æŒ‡å®šæ¶ˆæ¯æ—¶ï¼Œåˆ™ä»¥è¯¥æŒ‡å®šæ¶ˆæ¯çš„æ—¶é—´æˆ³ä¸ºå·²è¯»æ—¶é—´æˆ³ä¸ŠæŠ¥ï¼Œæœ€å¥½ç”¨æ¥æ”¶æ–°æ¶ˆæ¯è·å–çš„æ¶ˆæ¯æ•°ç»„é‡Œé¢çš„æ¶ˆæ¯Jsonæˆ–è€…ç”¨æ¶ˆæ¯å®šä½ç¬¦æŸ¥æ‰¾åˆ°çš„æ¶ˆæ¯Jsonï¼Œé¿å…é‡å¤æ„é€ æ¶ˆæ¯Jsonã€‚
+* json_msg_param ¿ÉÒÔÌî NULL ¿Õ×Ö·û´®Ö¸Õë»òÕß""¿Õ×Ö·û´®£¬´ËÊ±ÒÔ»á»°µ±Ç°×îĞÂÏûÏ¢µÄÊ±¼ä´Á£¨Èç¹û»á»°´æÔÚ×îĞÂÏûÏ¢£©»òµ±Ç°Ê±¼äÎªÒÑ¶ÁÊ±¼ä´ÁÉÏ±¨.µ±ÒªÖ¸¶¨ÏûÏ¢Ê±£¬ÔòÒÔ¸ÃÖ¸¶¨ÏûÏ¢µÄÊ±¼ä´ÁÎªÒÑ¶ÁÊ±¼ä´ÁÉÏ±¨£¬×îºÃÓÃ½ÓÊÕĞÂÏûÏ¢»ñÈ¡µÄÏûÏ¢Êı×éÀïÃæµÄÏûÏ¢Json»òÕßÓÃÏûÏ¢¶¨Î»·û²éÕÒµ½µÄÏûÏ¢Json£¬±ÜÃâÖØ¸´¹¹ÔìÏûÏ¢Json¡£
 */
 TIM_DECL int TIMMsgReportReaded(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief æ¶ˆæ¯æ’¤å›
+* @brief ÏûÏ¢³·»Ø
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_param  æ¶ˆæ¯jsonå­—ç¬¦ä¸²
-* @param cb æ¶ˆæ¯æ’¤å›æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_param  ÏûÏ¢json×Ö·û´®
+* @param cb ÏûÏ¢³·»Ø³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value json_value_text;
@@ -591,38 +591,38 @@ TIM_DECL int TIMMsgReportReaded(const char* conv_id, enum TIMConvType conv_type,
 *
 * int ret = TIMMsgSendNewMsg("test_win_03", kTIMConv_C2C, json_value_msg.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) {
-*         // æ¶ˆæ¯å‘é€å¤±è´¥
+*         // ÏûÏ¢·¢ËÍÊ§°Ü
 *         return;
 *     }
-*     // æ¶ˆæ¯å‘é€æˆåŠŸ json_param è¿”å›å‘é€åçš„æ¶ˆæ¯jsonå­—ç¬¦ä¸²
+*     // ÏûÏ¢·¢ËÍ³É¹¦ json_param ·µ»Ø·¢ËÍºóµÄÏûÏ¢json×Ö·û´®
 *     TIMMsgRevoke("test_win_03", kTIMConv_C2C, json_param, [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *         if (ERR_SUCC != code) {
-*             // æ¶ˆæ¯æ’¤å›å¤±è´¥
+*             // ÏûÏ¢³·»ØÊ§°Ü
 *             return;
 *         }
-*         // æ¶ˆæ¯æ’¤å›æˆåŠŸ
+*         // ÏûÏ¢³·»Ø³É¹¦
 *
 *     }, user_data);
 * }, this);
 *
 * @note
-* æ¶ˆæ¯æ’¤å›ã€‚ä½¿ç”¨ä¿å­˜çš„æ¶ˆæ¯Jsonæˆ–è€…ç”¨æ¶ˆæ¯å®šä½ç¬¦æŸ¥æ‰¾åˆ°çš„æ¶ˆæ¯Jsonï¼Œé¿å…é‡å¤æ„é€ æ¶ˆæ¯Json.
+* ÏûÏ¢³·»Ø¡£Ê¹ÓÃ±£´æµÄÏûÏ¢Json»òÕßÓÃÏûÏ¢¶¨Î»·û²éÕÒµ½µÄÏûÏ¢Json£¬±ÜÃâÖØ¸´¹¹ÔìÏûÏ¢Json.
 */
 TIM_DECL int TIMMsgRevoke(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief æ ¹æ®æ¶ˆæ¯å®šä½ç²¾å‡†æŸ¥æ‰¾æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯
+* @brief ¸ù¾İÏûÏ¢¶¨Î»¾«×¼²éÕÒÖ¸¶¨»á»°µÄÏûÏ¢
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_Locator_array  æ¶ˆæ¯å®šä½ç¬¦æ•°ç»„
-* @param cb æ ¹æ®æ¶ˆæ¯å®šä½ç²¾å‡†æŸ¥æ‰¾æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_Locator_array  ÏûÏ¢¶¨Î»·ûÊı×é
+* @param cb ¸ù¾İÏûÏ¢¶¨Î»¾«×¼²éÕÒÖ¸¶¨»á»°µÄÏûÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * @example
-* Json::Value json_msg_locator;                      //ä¸€æ¡æ¶ˆæ¯å¯¹åº”ä¸€ä¸ªæ¶ˆæ¯å®šä½ç¬¦(ç²¾å‡†å®šä½)
-* json_msg_locator[kTIMMsgLocatorIsRevoked] = false; //æ¶ˆæ¯æ˜¯å¦è¢«æ’¤å›
-* json_msg_locator[kTIMMsgLocatorTime] = 123;        //å¡«å…¥æ¶ˆæ¯çš„æ—¶é—´
+* Json::Value json_msg_locator;                      //Ò»ÌõÏûÏ¢¶ÔÓ¦Ò»¸öÏûÏ¢¶¨Î»·û(¾«×¼¶¨Î»)
+* json_msg_locator[kTIMMsgLocatorIsRevoked] = false; //ÏûÏ¢ÊÇ·ñ±»³·»Ø
+* json_msg_locator[kTIMMsgLocatorTime] = 123;        //ÌîÈëÏûÏ¢µÄÊ±¼ä
 * json_msg_locator[kTIMMsgLocatorSeq] = 1;           
 * json_msg_locator[kTIMMsgLocatorIsSelf] = false;    
 * json_msg_locator[kTIMMsgLocatorRand] = 12345678;   
@@ -633,7 +633,7 @@ TIM_DECL int TIMMsgRevoke(const char* conv_id, enum TIMConvType conv_type, const
 *     
 * }, nullptr);
 * 
-* // json_msg_locators.toStyledString().c_str() çš„åˆ° json_msg_Locator_array JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_msg_locators.toStyledString().c_str() µÄµ½ json_msg_Locator_array JSON ×Ö·û´®ÈçÏÂ
 * [
 *    {
 *       "message_locator_is_revoked" : false,
@@ -645,40 +645,40 @@ TIM_DECL int TIMMsgRevoke(const char* conv_id, enum TIMConvType conv_type, const
 * ]
 * 
 * @note
-* > æ­¤æ¥å£æ ¹æ®æ¶ˆæ¯å®šä½ç¬¦ç²¾å‡†æŸ¥æ‰¾æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯ï¼Œè¯¥åŠŸèƒ½ä¸€èˆ¬ç”¨äºæ¶ˆæ¯æ’¤å›æ—¶æŸ¥æ‰¾æŒ‡å®šæ¶ˆæ¯ç­‰
-* > ä¸€ä¸ªæ¶ˆæ¯å®šä½ç¬¦å¯¹åº”ä¸€æ¡æ¶ˆæ¯
+* > ´Ë½Ó¿Ú¸ù¾İÏûÏ¢¶¨Î»·û¾«×¼²éÕÒÖ¸¶¨»á»°µÄÏûÏ¢£¬¸Ã¹¦ÄÜÒ»°ãÓÃÓÚÏûÏ¢³·»ØÊ±²éÕÒÖ¸¶¨ÏûÏ¢µÈ
+* > Ò»¸öÏûÏ¢¶¨Î»·û¶ÔÓ¦Ò»ÌõÏûÏ¢
 */
 TIM_DECL int TIMMsgFindByMsgLocatorList(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_Locator_array, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief å¯¼å…¥æ¶ˆæ¯åˆ—è¡¨åˆ°æŒ‡å®šä¼šè¯
+* @brief µ¼ÈëÏûÏ¢ÁĞ±íµ½Ö¸¶¨»á»°
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_array  æ¶ˆæ¯æ•°ç»„
-* @param cb å¯¼å…¥æ¶ˆæ¯åˆ—è¡¨åˆ°æŒ‡å®šä¼šè¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_array  ÏûÏ¢Êı×é
+* @param cb µ¼ÈëÏûÏ¢ÁĞ±íµ½Ö¸¶¨»á»°³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
-* Json::Value json_value_elem; //æ„é€ æ¶ˆæ¯æ–‡æœ¬å…ƒç´ 
+* Json::Value json_value_elem; //¹¹ÔìÏûÏ¢ÎÄ±¾ÔªËØ
 * json_value_elem[kTIMElemType] = TIMElemType::kTIMElem_Text;
 * json_value_elem[kTIMTextElemContent] = "this is import msg";
 * 
-* Json::Value json_value_msg; //æ„é€ æ¶ˆæ¯
+* Json::Value json_value_msg; //¹¹ÔìÏûÏ¢
 * json_value_msg[kTIMMsgSender] = login_id;
 * json_value_msg[kTIMMsgClientTime] = time(NULL);
 * json_value_msg[kTIMMsgServerTime] = time(NULL);
 * json_value_msg[kTIMMsgElemArray].append(json_value_elem);
 *
-* Json::Value json_value_msgs;  //æ¶ˆæ¯æ•°ç»„
+* Json::Value json_value_msgs;  //ÏûÏ¢Êı×é
 * json_value_msgs.append(json_value_msg);
 *
 * TIMMsgImportMsgList("user2", kTIMConv_C2C, json_value_msgs.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     
 * }, nullptr);
 *
-* // json_value_msgs.toStyledString().c_str() å¾—åˆ°json_msg_array JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_msgs.toStyledString().c_str() µÃµ½json_msg_array JSON ×Ö·û´®ÈçÏÂ
 * [
 *    {
 *       "message_client_time" : 1551446728,
@@ -694,37 +694,37 @@ TIM_DECL int TIMMsgFindByMsgLocatorList(const char* conv_id, enum TIMConvType co
 * ]
 * 
 * @note
-* æ‰¹é‡å¯¼å…¥æ¶ˆæ¯ï¼Œå¯ä»¥è‡ªå·±æ„é€ æ¶ˆæ¯å»å¯¼å…¥ã€‚ä¹Ÿå¯ä»¥å°†ä¹‹å‰è¦å¯¼å…¥çš„æ¶ˆæ¯æ•°ç»„Jsonä¿å­˜ï¼Œç„¶åå¯¼å…¥çš„æ—¶å€™ç›´æ¥è°ƒç”¨æ¥å£ï¼Œé¿å…æ„é€ æ¶ˆæ¯æ•°ç»„
+* ÅúÁ¿µ¼ÈëÏûÏ¢£¬¿ÉÒÔ×Ô¼º¹¹ÔìÏûÏ¢È¥µ¼Èë¡£Ò²¿ÉÒÔ½«Ö®Ç°Òªµ¼ÈëµÄÏûÏ¢Êı×éJson±£´æ£¬È»ºóµ¼ÈëµÄÊ±ºòÖ±½Óµ÷ÓÃ½Ó¿Ú£¬±ÜÃâ¹¹ÔìÏûÏ¢Êı×é
 */
 TIM_DECL int TIMMsgImportMsgList(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_array, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ä¿å­˜è‡ªå®šä¹‰æ¶ˆæ¯
+* @brief ±£´æ×Ô¶¨ÒåÏûÏ¢
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msg_param  æ¶ˆæ¯jsonå­—ç¬¦ä¸²
-* @param cb ä¿å­˜è‡ªå®šä¹‰æ¶ˆæ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msg_param  ÏûÏ¢json×Ö·û´®
+* @param cb ±£´æ×Ô¶¨ÒåÏûÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 * @note
-* æ¶ˆæ¯ä¿å­˜æ¥å£ï¼Œä¸€èˆ¬æ˜¯è‡ªå·±æ„é€ ä¸€ä¸ªæ¶ˆæ¯Jsonå­—ç¬¦ä¸²ï¼Œç„¶åä¿å­˜åˆ°æŒ‡å®šä¼šè¯
+* ÏûÏ¢±£´æ½Ó¿Ú£¬Ò»°ãÊÇ×Ô¼º¹¹ÔìÒ»¸öÏûÏ¢Json×Ö·û´®£¬È»ºó±£´æµ½Ö¸¶¨»á»°
 */
 TIM_DECL int TIMMsgSaveMsg(const char* conv_id, enum TIMConvType conv_type, const char* json_msg_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯åˆ—è¡¨
+* @brief »ñÈ¡Ö¸¶¨»á»°µÄÏûÏ¢ÁĞ±í
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_get_msg_param æ¶ˆæ¯è·å–å‚æ•°
-* @param cb è·å–æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯åˆ—è¡¨æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_get_msg_param ÏûÏ¢»ñÈ¡²ÎÊı
+* @param cb »ñÈ¡Ö¸¶¨»á»°µÄÏûÏ¢ÁĞ±í³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
-* @example ç»™C2Cä¼šè¯ Windows-02ã€kTIMConv_C2Cå¯¼å…¥æ¶ˆæ¯åˆ—è¡¨
-* Json::Value json_msg(Json::objectValue); // æ„é€ Message
+* @example ¸øC2C»á»° Windows-02¡¢kTIMConv_C2Cµ¼ÈëÏûÏ¢ÁĞ±í
+* Json::Value json_msg(Json::objectValue); // ¹¹ÔìMessage
 * Json::Value json_get_msg_param;
 * json_get_msg_param[kTIMMsgGetMsgListParamLastMsg] = json_msg;
 * json_get_msg_param[kTIMMsgGetMsgListParamIsRamble] = false;
@@ -734,7 +734,7 @@ TIM_DECL int TIMMsgSaveMsg(const char* conv_id, enum TIMConvType conv_type, cons
 * int ret = TIMMsgGetMsgList("Windows-02", kTIMConv_C2C, json_get_msg_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
 * }, this);
 * 
-* // json_get_msg_param.toStyledString().c_str() å¾—åˆ° json_get_msg_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_get_msg_param.toStyledString().c_str() µÃµ½ json_get_msg_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "msg_getmsglist_param_count" : 100,
 *    "msg_getmsglist_param_is_forward" : true,
@@ -743,20 +743,20 @@ TIM_DECL int TIMMsgSaveMsg(const char* conv_id, enum TIMConvType conv_type, cons
 * }
 *   
 * @note
-* ä» kTIMMsgGetMsgListParamLastMsg æŒ‡å®šçš„æ¶ˆæ¯å¼€å§‹è·å–æœ¬åœ°æ¶ˆæ¯åˆ—è¡¨ï¼ŒkTIMMsgGetMsgListParamCount ä¸ºè¦è·å–çš„æ¶ˆæ¯æ•°ç›®ã€‚
-* è‹¥æŒ‡å®š kTIMMsgGetMsgListParamIsRamble ä¸ºtrueåˆ™æœ¬åœ°æ¶ˆæ¯è·å–ä¸å¤ŸæŒ‡å®šæ•°ç›®æ—¶ï¼Œåˆ™ä¼šå»è·å–äº‘ç«¯æ¼«æ¸¸æ¶ˆæ¯ã€‚kTIMMsgGetMsgListParamIsForward æŒ‡å®šå‘å‰è·å–è¿˜æ˜¯å‘åè·å–
+* ´Ó kTIMMsgGetMsgListParamLastMsg Ö¸¶¨µÄÏûÏ¢¿ªÊ¼»ñÈ¡±¾µØÏûÏ¢ÁĞ±í£¬kTIMMsgGetMsgListParamCount ÎªÒª»ñÈ¡µÄÏûÏ¢ÊıÄ¿¡£
+* ÈôÖ¸¶¨ kTIMMsgGetMsgListParamIsRamble ÎªtrueÔò±¾µØÏûÏ¢»ñÈ¡²»¹»Ö¸¶¨ÊıÄ¿Ê±£¬Ôò»áÈ¥»ñÈ¡ÔÆ¶ËÂşÓÎÏûÏ¢¡£kTIMMsgGetMsgListParamIsForward Ö¸¶¨ÏòÇ°»ñÈ¡»¹ÊÇÏòºó»ñÈ¡
 */
 TIM_DECL int TIMMsgGetMsgList(const char* conv_id, enum TIMConvType conv_type, const char* json_get_msg_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief åˆ é™¤æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯
+* @brief É¾³ıÖ¸¶¨»á»°µÄÏûÏ¢
 *
-* @param conv_id   ä¼šè¯çš„ID
-* @param conv_type ä¼šè¯ç±»å‹ï¼Œè¯·å‚è€ƒ[TIMConvType](TIMCloudDef.h)
-* @param json_msgdel_param æ¶ˆæ¯è·å–å‚æ•°
-* @param cb åˆ é™¤æŒ‡å®šä¼šè¯çš„æ¶ˆæ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param conv_id   »á»°µÄID
+* @param conv_type »á»°ÀàĞÍ£¬Çë²Î¿¼[TIMConvType](TIMCloudDef.h)
+* @param json_msgdel_param ÏûÏ¢»ñÈ¡²ÎÊı
+* @param cb É¾³ıÖ¸¶¨»á»°µÄÏûÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 * 
 * @example 
 * Json::Value json_value_msg(Json::objectValue);
@@ -767,27 +767,27 @@ TIM_DECL int TIMMsgGetMsgList(const char* conv_id, enum TIMConvType conv_type, c
 * 
 * }, nullptr);
 * 
-* // json_value_msgdelete.toStyledString().c_str() å¾—åˆ° json_msgdel_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_msgdelete.toStyledString().c_str() µÃµ½ json_msgdel_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *   "msg_delete_param_is_remble" : false,
 *   "msg_delete_param_msg" : {}
 * }
 *
 * @note 
-* > å½“è®¾ç½® kTIMMsgDeleteParamMsg æ—¶ï¼Œåœ¨ä¼šè¯ä¸­åˆ é™¤æŒ‡å®šæœ¬åœ°æ¶ˆæ¯
-* > å½“æœªè®¾ç½® kTIMMsgDeleteParamMsg æ—¶ï¼Œ kTIMMsgDeleteParamIsRamble ä¸ºfalseè¡¨ç¤ºåˆ é™¤ä¼šè¯æ‰€æœ‰æœ¬åœ°æ¶ˆæ¯ï¼Œtrue è¡¨ç¤ºåˆ é™¤ä¼šè¯æ‰€æœ‰æ¼«æ¸¸æ¶ˆæ¯(åˆ é™¤æ¼«æ¸¸æ¶ˆæ¯æš‚æ—¶ä¸æ”¯æŒ)
-* > ä¸€èˆ¬ç›´æ¥ä½¿ç”¨ä¿å­˜çš„æ¶ˆæ¯Jsonï¼Œæˆ–è€…é€šè¿‡æ¶ˆæ¯å®šä½ç¬¦æŸ¥æ‰¾å¾—åˆ°çš„Jsonã€‚ä¸ç”¨åˆ é™¤çš„æ—¶å€™æ„é€ æ¶ˆæ¯Json
+* > µ±ÉèÖÃ kTIMMsgDeleteParamMsg Ê±£¬ÔÚ»á»°ÖĞÉ¾³ıÖ¸¶¨±¾µØÏûÏ¢
+* > µ±Î´ÉèÖÃ kTIMMsgDeleteParamMsg Ê±£¬ kTIMMsgDeleteParamIsRamble Îªfalse±íÊ¾É¾³ı»á»°ËùÓĞ±¾µØÏûÏ¢£¬true ±íÊ¾É¾³ı»á»°ËùÓĞÂşÓÎÏûÏ¢(É¾³ıÂşÓÎÏûÏ¢ÔİÊ±²»Ö§³Ö)
+* > Ò»°ãÖ±½ÓÊ¹ÓÃ±£´æµÄÏûÏ¢Json£¬»òÕßÍ¨¹ıÏûÏ¢¶¨Î»·û²éÕÒµÃµ½µÄJson¡£²»ÓÃÉ¾³ıµÄÊ±ºò¹¹ÔìÏûÏ¢Json
 */
 TIM_DECL int TIMMsgDelete(const char* conv_id, enum TIMConvType conv_type, const char* json_msgdel_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ä¸‹è½½æ¶ˆæ¯å†…å…ƒç´ åˆ°æŒ‡å®šæ–‡ä»¶è·¯å¾„(å›¾ç‰‡ã€è§†é¢‘ã€éŸ³é¢‘ã€æ–‡ä»¶)
+* @brief ÏÂÔØÏûÏ¢ÄÚÔªËØµ½Ö¸¶¨ÎÄ¼şÂ·¾¶(Í¼Æ¬¡¢ÊÓÆµ¡¢ÒôÆµ¡¢ÎÄ¼ş)
 *
-* @param json_download_elem_param  ä¸‹è½½çš„å‚æ•°Jsonå­—ç¬¦ä¸²
-* @param path ä¸‹è½½æ–‡ä»¶ä¿å­˜è·¯å¾„
-* @param cb ä¸‹è½½æˆåŠŸä¸å¦çš„å›è°ƒä»¥åŠä¸‹è½½è¿›åº¦å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_download_elem_param  ÏÂÔØµÄ²ÎÊıJson×Ö·û´®
+* @param path ÏÂÔØÎÄ¼ş±£´æÂ·¾¶
+* @param cb ÏÂÔØ³É¹¦Óë·ñµÄ»Øµ÷ÒÔ¼°ÏÂÔØ½ø¶È»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value download_param;
@@ -802,43 +802,43 @@ TIM_DECL int TIMMsgDelete(const char* conv_id, enum TIMConvType conv_type, const
 * }, this);
 * 
 * @note
-* æ­¤æ¥å£ç”¨äºä¸‹è½½æ¶ˆæ¯å†…å›¾ç‰‡ã€æ–‡ä»¶ã€å£°éŸ³ã€è§†é¢‘ç­‰å…ƒç´ ã€‚ä¸‹è½½çš„å‚æ•° kTIMMsgDownloadElemParamFlagã€kTIMMsgDownloadElemParamIdã€kTIMMsgDownloadElemParamBusinessIdã€kTIMMsgDownloadElemParamUrl å‡å¯ä»¥
-* åœ¨ç›¸åº”å…ƒç´ å†…æ‰¾åˆ°ã€‚å…¶ä¸­ kTIMMsgDownloadElemParamType ä¸ºä¸‹è½½æ–‡ä»¶ç±»å‹ [TIMDownloadType](TIMCloudDef.h)
+* ´Ë½Ó¿ÚÓÃÓÚÏÂÔØÏûÏ¢ÄÚÍ¼Æ¬¡¢ÎÄ¼ş¡¢ÉùÒô¡¢ÊÓÆµµÈÔªËØ¡£ÏÂÔØµÄ²ÎÊı kTIMMsgDownloadElemParamFlag¡¢kTIMMsgDownloadElemParamId¡¢kTIMMsgDownloadElemParamBusinessId¡¢kTIMMsgDownloadElemParamUrl ¾ù¿ÉÒÔ
+* ÔÚÏàÓ¦ÔªËØÄÚÕÒµ½¡£ÆäÖĞ kTIMMsgDownloadElemParamType ÎªÏÂÔØÎÄ¼şÀàĞÍ [TIMDownloadType](TIMCloudDef.h)
 */
 TIM_DECL int TIMMsgDownloadElemToPath(const char* json_download_elem_param, const char* path, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ç¾¤å‘æ¶ˆæ¯
+* @brief Èº·¢ÏûÏ¢
 *
-* @param json_batch_send_param  ç¾¤å‘æ¶ˆæ¯jsonå­—ç¬¦ä¸²
-* @param cb ç¾¤å‘æ¶ˆæ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_batch_send_param  Èº·¢ÏûÏ¢json×Ö·û´®
+* @param cb Èº·¢ÏûÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example 
-* //æ„é€ æ¶ˆæ¯æ–‡æœ¬å…ƒç´ 
+* //¹¹ÔìÏûÏ¢ÎÄ±¾ÔªËØ
 * Json::Value json_value_elem;
 * json_value_elem[kTIMElemType] = TIMElemType::kTIMElem_Text;
 * json_value_elem[kTIMTextElemContent] = "this is batch send msg";
-* //æ„é€ æ¶ˆæ¯
+* //¹¹ÔìÏûÏ¢
 * Json::Value json_value_msg;
 * json_value_msg[kTIMMsgSender] = login_id;
 * json_value_msg[kTIMMsgClientTime] = time(NULL);
 * json_value_msg[kTIMMsgServerTime] = time(NULL);
 * json_value_msg[kTIMMsgElemArray].append(json_value_elem);
 *
-* // æ„é€ æ‰¹é‡å‘é€IDæ•°ç»„åˆ—è¡¨
+* // ¹¹ÔìÅúÁ¿·¢ËÍIDÊı×éÁĞ±í
 * Json::Value json_value_ids(Json::arrayValue);
 * json_value_ids.append("user2");
 * json_value_ids.append("user3");
-* // æ„é€ æ‰¹é‡å‘é€æ¥å£å‚æ•°
+* // ¹¹ÔìÅúÁ¿·¢ËÍ½Ó¿Ú²ÎÊı
 * Json::Value json_value_batchsend;
 * json_value_batchsend[kTIMMsgBatchSendParamIdentifierArray] = json_value_ids;
 * json_value_batchsend[kTIMMsgBatchSendParamMsg] = json_value_msg;
 * int ret = TIMMsgBatchSend(json_value_batchsend.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 * }, nullptr);
 * 
-* // json_value_batchsend.toStyledString().c_str() å¾—åˆ° json_batch_send_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_batchsend.toStyledString().c_str() µÃµ½ json_batch_send_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "msg_batch_send_param_identifier_array" : [ "user2", "user3" ],
 *    "msg_batch_send_param_msg" : {
@@ -855,7 +855,7 @@ TIM_DECL int TIMMsgDownloadElemToPath(const char* json_download_elem_param, cons
 * }
 *
 * @note
-* æ‰¹é‡å‘é€æ¶ˆæ¯çš„æ¥å£ï¼Œæ¯ä¸ªidentifierå‘é€æˆåŠŸä¸å¦ï¼Œé€šè¿‡å›è°ƒcbè¿”å›ã€‚
+* ÅúÁ¿·¢ËÍÏûÏ¢µÄ½Ó¿Ú£¬Ã¿¸öidentifier·¢ËÍ³É¹¦Óë·ñ£¬Í¨¹ı»Øµ÷cb·µ»Ø¡£
 */
 TIM_DECL int TIMMsgBatchSend(const char* json_batch_send_param, TIMCommCallback cb, const void* user_data);
 /// @}
@@ -863,19 +863,19 @@ TIM_DECL int TIMMsgBatchSend(const char* json_batch_send_param, TIMCommCallback 
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-//                       ç¾¤ç»„ç›¸å…³æ¥å£
+//                       Èº×éÏà¹Ø½Ó¿Ú
 //
 /////////////////////////////////////////////////////////////////////////////////
-/// @name ç¾¤ç»„ç›¸å…³æ¥å£
-/// @brief ç¾¤ç»„ç›¸å…³ä»‹ç»è¯·å‚è€ƒ [ç¾¤ç»„ç³»ç»Ÿ](https://cloud.tencent.com/document/product/269/1502)ã€[ç¾¤ç»„ç®¡ç†](https://cloud.tencent.com/document/product/269/3661)å’Œ [ç¾¤ç»„è‡ªå®šä¹‰å­—æ®µ](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
+/// @name Èº×éÏà¹Ø½Ó¿Ú
+/// @brief Èº×éÏà¹Ø½éÉÜÇë²Î¿¼ [Èº×éÏµÍ³](https://cloud.tencent.com/document/product/269/1502)¡¢[Èº×é¹ÜÀí](https://cloud.tencent.com/document/product/269/3661)ºÍ [Èº×é×Ô¶¨Òå×Ö¶Î](https://cloud.tencent.com/document/product/269/1502#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.AD.97.E6.AE.B5)
 /// @{
 /**
-* @brief åˆ›å»ºç¾¤ç»„
+* @brief ´´½¨Èº×é
 *
-* @param json_group_create_param åˆ›å»ºç¾¤ç»„çš„å‚æ•°Jsonå­—ç¬¦ä¸²
-* @param cb åˆ›å»ºç¾¤ç»„æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_create_param ´´½¨Èº×éµÄ²ÎÊıJson×Ö·û´®
+* @param cb ´´½¨Èº×é³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 *
@@ -893,20 +893,20 @@ TIM_DECL int TIMMsgBatchSend(const char* json_batch_send_param, TIMCommCallback 
 * json_value_param[kTIMCreateGroupParamMaxMemberCount] = 2000;
 * json_value_param[kTIMCreateGroupParamAddOption] = kTIMGroupAddOpt_Any;
 *
-* const void* user_data = nullptr; // å›è°ƒå‡½æ•°å›ä¼ 
+* const void* user_data = nullptr; // »Øµ÷º¯Êı»Ø´«
 * int ret = TIMGroupCreate(json_value_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
 *    if (ERR_SUCC != code) { 
-*         // åˆ›å»ºç¾¤ç»„å¤±è´¥
+*         // ´´½¨Èº×éÊ§°Ü
 *         return;
 *     }
 *     
-*     // åˆ›å»ºç¾¤ç»„æˆåŠŸ è§£æJsonè·å–åˆ›å»ºåçš„GroupID
+*     // ´´½¨Èº×é³É¹¦ ½âÎöJson»ñÈ¡´´½¨ºóµÄGroupID
 * }, user_data);
 * if (TIM_SUCC != ret) {
-*     // TIMGroupCreate æ¥å£è°ƒç”¨å¤±è´¥
+*     // TIMGroupCreate ½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 *
-* // json_value_param.toStyledString().c_str() å¾—åˆ° json_group_create_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_param.toStyledString().c_str() µÃµ½ json_group_create_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "create_group_param_add_option" : 2,
 *    "create_group_param_face_url" : "group face url",
@@ -920,69 +920,69 @@ TIM_DECL int TIMMsgBatchSend(const char* json_batch_send_param, TIMCommCallback 
 * }
 *
 * @note
-* > åˆ›å»ºç¾¤ç»„æ—¶å¯ä»¥æŒ‡å®šç¾¤IDï¼Œè‹¥æœªæŒ‡å®šæ—¶IMé€šè®¯äº‘æœåŠ¡å™¨ä¼šç”Ÿæˆä¸€ä¸ªå”¯ä¸€çš„IDï¼Œä»¥ä¾¿åç»­æ“ä½œï¼Œç¾¤ç»„IDé€šè¿‡åˆ›å»ºç¾¤ç»„æ—¶ä¼ å…¥çš„å›è°ƒè¿”å›
-* > åˆ›å»ºç¾¤å‚æ•°çš„Json Keyè¯¦æƒ…è¯·å‚è€ƒ[CreateGroupParam](TIMCloudDef.h)
+* > ´´½¨Èº×éÊ±¿ÉÒÔÖ¸¶¨ÈºID£¬ÈôÎ´Ö¸¶¨Ê±IMÍ¨Ñ¶ÔÆ·şÎñÆ÷»áÉú³ÉÒ»¸öÎ¨Ò»µÄID£¬ÒÔ±ãºóĞø²Ù×÷£¬Èº×éIDÍ¨¹ı´´½¨Èº×éÊ±´«ÈëµÄ»Øµ÷·µ»Ø
+* > ´´½¨Èº²ÎÊıµÄJson KeyÏêÇéÇë²Î¿¼[CreateGroupParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupCreate(const char* json_group_create_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief åˆ é™¤(è§£æ•£)ç¾¤ç»„
+* @brief É¾³ı(½âÉ¢)Èº×é
 *
-* @param group_id è¦åˆ é™¤çš„ç¾¤ç»„ID
-* @param cb åˆ é™¤ç¾¤ç»„æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param group_id ÒªÉ¾³ıµÄÈº×éID
+* @param cb É¾³ıÈº×é³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >>   å¯¹äºç§æœ‰ç¾¤ï¼Œä»»ä½•äººéƒ½æ— æ³•è§£æ•£ç¾¤ç»„ã€‚
-* >>   å¯¹äºå…¬å¼€ç¾¤ã€èŠå¤©å®¤å’Œç›´æ’­å¤§ç¾¤ï¼Œç¾¤ä¸»å¯ä»¥è§£æ•£ç¾¤ç»„ã€‚
-* > åˆ é™¤æŒ‡å®šç¾¤ç»„group_idçš„æ¥å£ï¼Œåˆ é™¤æˆåŠŸä¸å¦å¯æ ¹æ®å›è°ƒcbçš„å‚æ•°åˆ¤æ–­ã€‚
+* > È¨ÏŞËµÃ÷£º
+* >>   ¶ÔÓÚË½ÓĞÈº£¬ÈÎºÎÈË¶¼ÎŞ·¨½âÉ¢Èº×é¡£
+* >>   ¶ÔÓÚ¹«¿ªÈº¡¢ÁÄÌìÊÒºÍÖ±²¥´óÈº£¬ÈºÖ÷¿ÉÒÔ½âÉ¢Èº×é¡£
+* > É¾³ıÖ¸¶¨Èº×égroup_idµÄ½Ó¿Ú£¬É¾³ı³É¹¦Óë·ñ¿É¸ù¾İ»Øµ÷cbµÄ²ÎÊıÅĞ¶Ï¡£
 */
 TIM_DECL int TIMGroupDelete(const char* group_id, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ç”³è¯·åŠ å…¥ç¾¤ç»„
+* @brief ÉêÇë¼ÓÈëÈº×é
 *
-* @param group_id è¦åŠ å…¥çš„ç¾¤ç»„ID
-* @param hello_msg ç”³è¯·ç†ç”±ï¼ˆé€‰å¡«ï¼‰
-* @param cb ç”³è¯·åŠ å…¥ç¾¤ç»„æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param group_id Òª¼ÓÈëµÄÈº×éID
+* @param hello_msg ÉêÇëÀíÓÉ£¨Ñ¡Ìî£©
+* @param cb ÉêÇë¼ÓÈëÈº×é³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >> ç§æœ‰ç¾¤ä¸èƒ½ç”±ç”¨æˆ·ä¸»åŠ¨ç”³è¯·å…¥ç¾¤ã€‚
-* >> å…¬å¼€ç¾¤å’ŒèŠå¤©å®¤å¯ä»¥ä¸»åŠ¨ç”³è¯·è¿›å…¥ã€‚
-* +  å¦‚æœç¾¤ç»„è®¾ç½®ä¸ºéœ€è¦å®¡æ ¸ï¼Œç”³è¯·åç®¡ç†å‘˜å’Œç¾¤ä¸»ä¼šå—åˆ°ç”³è¯·å…¥ç¾¤ç³»ç»Ÿæ¶ˆæ¯ï¼Œéœ€è¦ç­‰å¾…ç®¡ç†å‘˜æˆ–è€…ç¾¤ä¸»å®¡æ ¸ï¼Œå¦‚æœç¾¤ä¸»è®¾ç½®ä¸ºä»»ä½•äººå¯åŠ å…¥ï¼Œåˆ™ç›´æ¥å…¥ç¾¤æˆåŠŸã€‚
-*    ç›´æ’­å¤§ç¾¤å¯ä»¥ä»»æ„åŠ å…¥ç¾¤ç»„ã€‚
-* > ç”³è¯·åŠ å…¥æŒ‡å®šç¾¤ç»„group_idçš„æ¥å£ï¼Œç”³è¯·åŠ å…¥çš„æ“ä½œæˆåŠŸä¸å¦å¯æ ¹æ®å›è°ƒcbçš„å‚æ•°åˆ¤æ–­ã€‚
+* > È¨ÏŞËµÃ÷£º
+* >> Ë½ÓĞÈº²»ÄÜÓÉÓÃ»§Ö÷¶¯ÉêÇëÈëÈº¡£
+* >> ¹«¿ªÈººÍÁÄÌìÊÒ¿ÉÒÔÖ÷¶¯ÉêÇë½øÈë¡£
+* +  Èç¹ûÈº×éÉèÖÃÎªĞèÒªÉóºË£¬ÉêÇëºó¹ÜÀíÔ±ºÍÈºÖ÷»áÊÜµ½ÉêÇëÈëÈºÏµÍ³ÏûÏ¢£¬ĞèÒªµÈ´ı¹ÜÀíÔ±»òÕßÈºÖ÷ÉóºË£¬Èç¹ûÈºÖ÷ÉèÖÃÎªÈÎºÎÈË¿É¼ÓÈë£¬ÔòÖ±½ÓÈëÈº³É¹¦¡£
+*    Ö±²¥´óÈº¿ÉÒÔÈÎÒâ¼ÓÈëÈº×é¡£
+* > ÉêÇë¼ÓÈëÖ¸¶¨Èº×égroup_idµÄ½Ó¿Ú£¬ÉêÇë¼ÓÈëµÄ²Ù×÷³É¹¦Óë·ñ¿É¸ù¾İ»Øµ÷cbµÄ²ÎÊıÅĞ¶Ï¡£
 */
 TIM_DECL int TIMGroupJoin(const char* group_id, const char* hello_msg, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief é€€å‡ºç¾¤ç»„
+* @brief ÍË³öÈº×é
 *
-* @param group_id è¦é€€å‡ºçš„ç¾¤ç»„ID
-* @param cb é€€å‡ºç¾¤ç»„æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param group_id ÒªÍË³öµÄÈº×éID
+* @param cb ÍË³öÈº×é³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >>   å¯¹äºç§æœ‰ç¾¤ï¼Œå…¨å‘˜å¯é€€å‡ºç¾¤ç»„ã€‚
-* >>   å¯¹äºå…¬å¼€ç¾¤ã€èŠå¤©å®¤å’Œç›´æ’­å¤§ç¾¤ï¼Œç¾¤ä¸»ä¸èƒ½é€€å‡ºã€‚
-* > é€€å‡ºæŒ‡å®šç¾¤ç»„group_idçš„æ¥å£ï¼Œé€€å‡ºæˆåŠŸä¸å¦å¯æ ¹æ®å›è°ƒcbçš„å‚æ•°åˆ¤æ–­ã€‚
+* > È¨ÏŞËµÃ÷£º
+* >>   ¶ÔÓÚË½ÓĞÈº£¬È«Ô±¿ÉÍË³öÈº×é¡£
+* >>   ¶ÔÓÚ¹«¿ªÈº¡¢ÁÄÌìÊÒºÍÖ±²¥´óÈº£¬ÈºÖ÷²»ÄÜÍË³ö¡£
+* > ÍË³öÖ¸¶¨Èº×égroup_idµÄ½Ó¿Ú£¬ÍË³ö³É¹¦Óë·ñ¿É¸ù¾İ»Øµ÷cbµÄ²ÎÊıÅĞ¶Ï¡£
 */
 TIM_DECL int TIMGroupQuit(const char* group_id, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief é‚€è¯·åŠ å…¥ç¾¤ç»„
+* @brief ÑûÇë¼ÓÈëÈº×é
 *
-* @param json_group_invite_param é‚€è¯·åŠ å…¥ç¾¤ç»„çš„Jsonå­—ç¬¦ä¸²
-* @param cb é‚€è¯·åŠ å…¥ç¾¤ç»„æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_invite_param ÑûÇë¼ÓÈëÈº×éµÄJson×Ö·û´®
+* @param cb ÑûÇë¼ÓÈëÈº×é³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value json_value_invite;
@@ -991,40 +991,40 @@ TIM_DECL int TIMGroupQuit(const char* group_id, TIMCommCallback cb, const void* 
 * json_value_invite[kTIMGroupInviteMemberParamIdentifierArray].append("user1");
 * json_value_invite[kTIMGroupInviteMemberParamIdentifierArray].append("user2");
 *
-* const void* user_data = nullptr; // å›è°ƒå‡½æ•°å›ä¼ ;
+* const void* user_data = nullptr; // »Øµ÷º¯Êı»Ø´«;
 * int ret = TIMGroupInviteMember(json_value_invite.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
 *     if (ERR_SUCC != code) { 
-*         // é‚€è¯·æˆå‘˜åˆ—è¡¨å¤±è´¥
+*         // ÑûÇë³ÉÔ±ÁĞ±íÊ§°Ü
 *         return;
 *     }
-*     // é‚€è¯·æˆå‘˜åˆ—è¡¨æˆåŠŸï¼Œè§£æJSONè·å–æ¯ä¸ªæˆå‘˜é‚€è¯·ç»“æœ
+*     // ÑûÇë³ÉÔ±ÁĞ±í³É¹¦£¬½âÎöJSON»ñÈ¡Ã¿¸ö³ÉÔ±ÑûÇë½á¹û
 * }, user_data);
 * if (TIM_SUCC != ret) {
-*     // TIMGroupInviteMember æ¥å£è°ƒç”¨å¤±è´¥
+*     // TIMGroupInviteMember ½Ó¿Úµ÷ÓÃÊ§°Ü
 * }
 * 
-* // json_value_invite.toStyledString().c_str() å¾—åˆ° json_group_invite_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_invite.toStyledString().c_str() µÃµ½ json_group_invite_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_invite_member_param_group_id" : "first group id",
 *    "group_invite_member_param_identifier_array" : [ "user1", "user2" ],
 *    "group_invite_member_param_user_data" : "userdata"
 * }
 * @note
-* > æƒé™è¯´æ˜:
-* >>   åªæœ‰ç§æœ‰ç¾¤å¯ä»¥æ‹‰ç”¨æˆ·å…¥ç¾¤
-* >>   å…¬å¼€ç¾¤ã€èŠå¤©å®¤é‚€è¯·ç”¨æˆ·å…¥ç¾¤
-* >>   éœ€è¦ç”¨æˆ·åŒæ„ï¼›ç›´æ’­å¤§ç¾¤ä¸èƒ½é‚€è¯·ç”¨æˆ·å…¥ç¾¤ã€‚
-* > æ­¤æ¥å£æ”¯æŒæ‰¹é‡é‚€è¯·æˆå‘˜åŠ å…¥ç¾¤ç»„,Json Keyè¯¦æƒ…è¯·å‚è€ƒ[GroupInviteMemberParam](TIMCloudDef.h)
+* > È¨ÏŞËµÃ÷:
+* >>   Ö»ÓĞË½ÓĞÈº¿ÉÒÔÀ­ÓÃ»§ÈëÈº
+* >>   ¹«¿ªÈº¡¢ÁÄÌìÊÒÑûÇëÓÃ»§ÈëÈº
+* >>   ĞèÒªÓÃ»§Í¬Òâ£»Ö±²¥´óÈº²»ÄÜÑûÇëÓÃ»§ÈëÈº¡£
+* > ´Ë½Ó¿ÚÖ§³ÖÅúÁ¿ÑûÇë³ÉÔ±¼ÓÈëÈº×é,Json KeyÏêÇéÇë²Î¿¼[GroupInviteMemberParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupInviteMember(const char* json_group_invite_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief åˆ é™¤ç¾¤ç»„æˆå‘˜
+* @brief É¾³ıÈº×é³ÉÔ±
 *
-* @param json_group_delete_param åˆ é™¤ç¾¤ç»„æˆå‘˜çš„Jsonå­—ç¬¦ä¸²
-* @param cb åˆ é™¤ç¾¤ç»„æˆå‘˜æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_delete_param É¾³ıÈº×é³ÉÔ±µÄJson×Ö·û´®
+* @param cb É¾³ıÈº×é³ÉÔ±³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value json_value_delete;
@@ -1037,7 +1037,7 @@ TIM_DECL int TIMGroupInviteMember(const char* json_group_invite_param, TIMCommCa
 *       
 * }, this));
 * 
-* // json_value_delete.toStyledString().c_str() å¾—åˆ° json_group_delete_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_delete.toStyledString().c_str() µÃµ½ json_group_delete_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *   "group_delete_member_param_group_id" : "third group id",
 *   "group_delete_member_param_identifier_array" : [ "user2", "user3" ],
@@ -1045,36 +1045,36 @@ TIM_DECL int TIMGroupInviteMember(const char* json_group_invite_param, TIMCommCa
 * }
 * 
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >>   å¯¹äºç§æœ‰ç¾¤ï¼šåªæœ‰åˆ›å»ºè€…å¯åˆ é™¤ç¾¤ç»„æˆå‘˜ã€‚
-* >>   å¯¹äºå…¬å¼€ç¾¤å’ŒèŠå¤©å®¤ï¼šåªæœ‰ç®¡ç†å‘˜å’Œç¾¤ä¸»å¯ä»¥è¸¢äººã€‚
-* >>   å¯¹äºç›´æ’­å¤§ç¾¤ï¼šä¸èƒ½è¸¢äººã€‚
-* > æ­¤æ¥å£æ”¯æŒæ‰¹é‡åˆ é™¤ç¾¤æˆå‘˜,Json Keyè¯¦æƒ…è¯·å‚è€ƒ[GroupDeleteMemberParam](TIMCloudDef.h)
+* > È¨ÏŞËµÃ÷£º
+* >>   ¶ÔÓÚË½ÓĞÈº£ºÖ»ÓĞ´´½¨Õß¿ÉÉ¾³ıÈº×é³ÉÔ±¡£
+* >>   ¶ÔÓÚ¹«¿ªÈººÍÁÄÌìÊÒ£ºÖ»ÓĞ¹ÜÀíÔ±ºÍÈºÖ÷¿ÉÒÔÌßÈË¡£
+* >>   ¶ÔÓÚÖ±²¥´óÈº£º²»ÄÜÌßÈË¡£
+* > ´Ë½Ó¿ÚÖ§³ÖÅúÁ¿É¾³ıÈº³ÉÔ±,Json KeyÏêÇéÇë²Î¿¼[GroupDeleteMemberParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupDeleteMember(const char* json_group_delete_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–å·²åŠ å…¥ç¾¤ç»„åˆ—è¡¨
+* @brief »ñÈ¡ÒÑ¼ÓÈëÈº×éÁĞ±í
 *
-* @param cb è·å–å·²åŠ å…¥ç¾¤ç»„åˆ—è¡¨æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param cb »ñÈ¡ÒÑ¼ÓÈëÈº×éÁĞ±í³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >>   æ­¤æ¥å£å¯ä»¥è·å–è‡ªå·±æ‰€åŠ å…¥çš„ç¾¤åˆ—è¡¨
-* >>   æ­¤æ¥å£åªèƒ½è·å¾—åŠ å…¥çš„éƒ¨åˆ†ç›´æ’­å¤§çš„åˆ—è¡¨ã€‚
-* > æ­¤æ¥å£ç”¨äºè·å–å½“å‰ç”¨æˆ·å·²åŠ å…¥çš„ç¾¤ç»„åˆ—è¡¨ï¼Œè¿”å›ç¾¤ç»„çš„åŸºç¡€ä¿¡æ¯ã€‚å…·ä½“è¿”å›çš„ç¾¤ç»„åŸºæœ¬ä¿¡æ¯å­—æ®µå‚è€ƒ[GroupBaseInfo](TIMCloudDef.h)
+* > È¨ÏŞËµÃ÷£º
+* >>   ´Ë½Ó¿Ú¿ÉÒÔ»ñÈ¡×Ô¼ºËù¼ÓÈëµÄÈºÁĞ±í
+* >>   ´Ë½Ó¿ÚÖ»ÄÜ»ñµÃ¼ÓÈëµÄ²¿·ÖÖ±²¥´óµÄÁĞ±í¡£
+* > ´Ë½Ó¿ÚÓÃÓÚ»ñÈ¡µ±Ç°ÓÃ»§ÒÑ¼ÓÈëµÄÈº×éÁĞ±í£¬·µ»ØÈº×éµÄ»ù´¡ĞÅÏ¢¡£¾ßÌå·µ»ØµÄÈº×é»ù±¾ĞÅÏ¢×Ö¶Î²Î¿¼[GroupBaseInfo](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupGetJoinedGroupList(TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–ç¾¤ç»„ä¿¡æ¯åˆ—è¡¨
+* @brief »ñÈ¡Èº×éĞÅÏ¢ÁĞ±í
 *
-* @param json_group_getinfo_param è·å–ç¾¤ç»„ä¿¡æ¯åˆ—è¡¨å‚æ•°çš„Jsonå­—ç¬¦ä¸²
-* @param cb è·å–ç¾¤ç»„ä¿¡æ¯åˆ—è¡¨æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_getinfo_param »ñÈ¡Èº×éĞÅÏ¢ÁĞ±í²ÎÊıµÄJson×Ö·û´®
+* @param cb »ñÈ¡Èº×éĞÅÏ¢ÁĞ±í³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value groupids;
@@ -1085,23 +1085,23 @@ TIM_DECL int TIMGroupGetJoinedGroupList(TIMCommCallback cb, const void* user_dat
 *
 * }, this);
 *
-* // groupids.toStyledString().c_str() å¾—åˆ°json_group_getinfo_paramå¦‚ä¸‹
+* // groupids.toStyledString().c_str() µÃµ½json_group_getinfo_paramÈçÏÂ
 * [ "third group id", "second group id", "first group id" ]
 *
 * @note
-* æ­¤æ¥å£ç”¨äºè·å–æŒ‡å®šç¾¤IDåˆ—è¡¨çš„ç¾¤è¯¦ç»†ä¿¡æ¯ã€‚å…·ä½“è¿”å›çš„ç¾¤ç»„è¯¦ç»†ä¿¡æ¯å­—æ®µå‚è€ƒ[GroupDetailInfo](TIMCloudDef.h)
+* ´Ë½Ó¿ÚÓÃÓÚ»ñÈ¡Ö¸¶¨ÈºIDÁĞ±íµÄÈºÏêÏ¸ĞÅÏ¢¡£¾ßÌå·µ»ØµÄÈº×éÏêÏ¸ĞÅÏ¢×Ö¶Î²Î¿¼[GroupDetailInfo](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupGetGroupInfoList(const char* json_group_getinfo_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ä¿®æ”¹ç¾¤ä¿¡æ¯
+* @brief ĞŞ¸ÄÈºĞÅÏ¢
 *
-* @param json_group_modifyinfo_param è®¾ç½®ç¾¤ä¿¡æ¯å‚æ•°çš„Jsonå­—ç¬¦ä¸²Jsonå­—ç¬¦ä¸²
-* @param cb è®¾ç½®ç¾¤ä¿¡æ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_modifyinfo_param ÉèÖÃÈºĞÅÏ¢²ÎÊıµÄJson×Ö·û´®Json×Ö·û´®
+* @param cb ÉèÖÃÈºĞÅÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
-* @example è®¾ç½®ç¾¤æ‰€æœ‰è€…
+* @example ÉèÖÃÈºËùÓĞÕß
 * Json::Value json_value_modifygroupinfo;
 * json_value_modifygroupinfo[kTIMGroupModifyInfoParamGroupId] = "first group id";
 * json_value_modifygroupinfo[kTIMGroupModifyInfoParamModifyFlag] = kTIMGroupModifyInfoFlag_Owner;
@@ -1111,14 +1111,14 @@ TIM_DECL int TIMGroupGetGroupInfoList(const char* json_group_getinfo_param, TIMC
 *
 * }, nullptr);
 *
-* // json_value_modifygroupinfo.toStyledString().c_str() å¾—åˆ°json_group_modifyinfo_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_modifygroupinfo.toStyledString().c_str() µÃµ½json_group_modifyinfo_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *   "group_modify_info_param_group_id" : "first group id",
 *   "group_modify_info_param_modify_flag" : -2147483648,
 *   "group_modify_info_param_owner" : "user2"
 * }
 *
-* @example è®¾ç½®ç¾¤åç§°å’Œç¾¤é€šçŸ¥
+* @example ÉèÖÃÈºÃû³ÆºÍÈºÍ¨Öª
 * Json::Value json_value_modifygroupinfo;
 * json_value_modifygroupinfo[kTIMGroupModifyInfoParamGroupId] = "first group id";
 * json_value_modifygroupinfo[kTIMGroupModifyInfoParamModifyFlag] = kTIMGroupModifyInfoFlag_Name | kTIMGroupModifyInfoFlag_Notification;
@@ -1129,7 +1129,7 @@ TIM_DECL int TIMGroupGetGroupInfoList(const char* json_group_getinfo_param, TIMC
 *
 * }, nullptr);
 * 
-* // json_value_modifygroupinfo.toStyledString().c_str() å¾—åˆ°json_group_modifyinfo_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_modifygroupinfo.toStyledString().c_str() µÃµ½json_group_modifyinfo_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_modify_info_param_group_id" : "first group id",
 *    "group_modify_info_param_group_name" : "first group name to other name",
@@ -1138,23 +1138,23 @@ TIM_DECL int TIMGroupGetGroupInfoList(const char* json_group_getinfo_param, TIMC
 * }
 *
 * @note
-* > ä¿®æ”¹ç¾¤ä¸»ï¼ˆç¾¤è½¬è®©ï¼‰çš„æƒé™è¯´æ˜ï¼š
-* >>   åªæœ‰ç¾¤ä¸»æ‰æœ‰æƒé™è¿›è¡Œç¾¤è½¬è®©æ“ä½œã€‚
-* >>   ç›´æ’­å¤§ç¾¤ä¸èƒ½è¿›è¡Œç¾¤è½¬è®©æ“ä½œã€‚
-* > ä¿®æ”¹ç¾¤å…¶ä»–ä¿¡æ¯çš„æƒé™è¯´æ˜:
-* >>   å¯¹äºå…¬å¼€ç¾¤ã€èŠå¤©å®¤å’Œç›´æ’­å¤§ç¾¤ï¼Œåªæœ‰ç¾¤ä¸»æˆ–è€…ç®¡ç†å‘˜å¯ä»¥ä¿®æ”¹ç¾¤ç®€ä»‹ã€‚
-* >>   å¯¹äºç§æœ‰ç¾¤ï¼Œä»»ä½•äººå¯ä¿®æ”¹ç¾¤ç®€ä»‹ã€‚
-* > kTIMGroupModifyInfoParamModifyFlag å¯ä»¥æŒ‰ä½æˆ–è®¾ç½®å¤šä¸ªå€¼ã€‚ä¸åŒçš„flagè®¾ç½®ä¸åŒçš„é”®,è¯¦æƒ…è¯·å‚è€ƒ[GroupSetInfoParam](TIMCloudDef.h)
+* > ĞŞ¸ÄÈºÖ÷£¨Èº×ªÈÃ£©µÄÈ¨ÏŞËµÃ÷£º
+* >>   Ö»ÓĞÈºÖ÷²ÅÓĞÈ¨ÏŞ½øĞĞÈº×ªÈÃ²Ù×÷¡£
+* >>   Ö±²¥´óÈº²»ÄÜ½øĞĞÈº×ªÈÃ²Ù×÷¡£
+* > ĞŞ¸ÄÈºÆäËûĞÅÏ¢µÄÈ¨ÏŞËµÃ÷:
+* >>   ¶ÔÓÚ¹«¿ªÈº¡¢ÁÄÌìÊÒºÍÖ±²¥´óÈº£¬Ö»ÓĞÈºÖ÷»òÕß¹ÜÀíÔ±¿ÉÒÔĞŞ¸ÄÈº¼ò½é¡£
+* >>   ¶ÔÓÚË½ÓĞÈº£¬ÈÎºÎÈË¿ÉĞŞ¸ÄÈº¼ò½é¡£
+* > kTIMGroupModifyInfoParamModifyFlag ¿ÉÒÔ°´Î»»òÉèÖÃ¶à¸öÖµ¡£²»Í¬µÄflagÉèÖÃ²»Í¬µÄ¼ü,ÏêÇéÇë²Î¿¼[GroupSetInfoParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupModifyGroupInfo(const char* json_group_modifyinfo_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–ç¾¤æˆå‘˜ä¿¡æ¯åˆ—è¡¨
+* @brief »ñÈ¡Èº³ÉÔ±ĞÅÏ¢ÁĞ±í
 *
-* @param json_group_getmeminfos_param è·å–ç¾¤æˆå‘˜ä¿¡æ¯åˆ—è¡¨å‚æ•°çš„Jsonå­—ç¬¦ä¸²
-* @param cb è·å–ç¾¤æˆå‘˜ä¿¡æ¯åˆ—è¡¨æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_getmeminfos_param »ñÈ¡Èº³ÉÔ±ĞÅÏ¢ÁĞ±í²ÎÊıµÄJson×Ö·û´®
+* @param cb »ñÈ¡Èº³ÉÔ±ĞÅÏ¢ÁĞ±í³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value identifiers(Json::arrayValue); 
@@ -1175,7 +1175,7 @@ TIM_DECL int TIMGroupModifyGroupInfo(const char* json_group_modifyinfo_param, TI
 * 
 * }, this);
 *
-* // getmeminfo_opt.toStyledString().c_str() å¾—åˆ°json_group_getmeminfos_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // getmeminfo_opt.toStyledString().c_str() µÃµ½json_group_getmeminfos_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_get_members_info_list_param_group_id" : "first group id",
 *    "group_get_members_info_list_param_identifier_array" : [],
@@ -1188,20 +1188,20 @@ TIM_DECL int TIMGroupModifyGroupInfo(const char* json_group_modifyinfo_param, TI
 * }
 *
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >>   ä»»ä½•ç¾¤ç»„ç±»å‹éƒ½å¯ä»¥è·å–æˆå‘˜åˆ—è¡¨ã€‚
-* >>   ç›´æ’­å¤§ç¾¤åªèƒ½æ‹‰å–éƒ¨åˆ†æˆå‘˜åˆ—è¡¨ï¼šåŒ…æ‹¬ç¾¤ä¸»ã€ç®¡ç†å‘˜å’Œéƒ¨åˆ†æˆå‘˜ã€‚
-* > æ ¹æ®ä¸åŒçš„é€‰é¡¹ï¼Œè·å–ç¾¤æˆå‘˜ä¿¡æ¯åˆ—è¡¨ã€‚æˆå‘˜ä¿¡æ¯çš„å„ä¸ªå­—æ®µå«ä¹‰è¯·å‚è€ƒ[GroupMemberInfo](TIMCloudDef.h)
+* > È¨ÏŞËµÃ÷£º
+* >>   ÈÎºÎÈº×éÀàĞÍ¶¼¿ÉÒÔ»ñÈ¡³ÉÔ±ÁĞ±í¡£
+* >>   Ö±²¥´óÈºÖ»ÄÜÀ­È¡²¿·Ö³ÉÔ±ÁĞ±í£º°üÀ¨ÈºÖ÷¡¢¹ÜÀíÔ±ºÍ²¿·Ö³ÉÔ±¡£
+* > ¸ù¾İ²»Í¬µÄÑ¡Ïî£¬»ñÈ¡Èº³ÉÔ±ĞÅÏ¢ÁĞ±í¡£³ÉÔ±ĞÅÏ¢µÄ¸÷¸ö×Ö¶Îº¬ÒåÇë²Î¿¼[GroupMemberInfo](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupGetMemberInfoList(const char* json_group_getmeminfos_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ä¿®æ”¹ç¾¤æˆå‘˜ä¿¡æ¯
+* @brief ĞŞ¸ÄÈº³ÉÔ±ĞÅÏ¢
 *
-* @param json_group_modifymeminfo_param è®¾ç½®ç¾¤ä¿¡æ¯å‚æ•°çš„Jsonå­—ç¬¦ä¸²
-* @param cb è®¾ç½®ç¾¤æˆå‘˜ä¿¡æ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_modifymeminfo_param ÉèÖÃÈºĞÅÏ¢²ÎÊıµÄJson×Ö·û´®
+* @param cb ÉèÖÃÈº³ÉÔ±ĞÅÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value json_value_setgroupmeminfo;
@@ -1215,7 +1215,7 @@ TIM_DECL int TIMGroupGetMemberInfoList(const char* json_group_getmeminfos_param,
 *   
 * }, nullptr);
 * 
-* // json_value_modifygroupmeminfo.toStyledString().c_str() å¾—åˆ°json_group_modifymeminfo_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // json_value_modifygroupmeminfo.toStyledString().c_str() µÃµ½json_group_modifymeminfo_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_modify_member_info_group_id" : "third group id",
 *    "group_modify_member_info_identifier" : "user2",
@@ -1225,22 +1225,22 @@ TIM_DECL int TIMGroupGetMemberInfoList(const char* json_group_getmeminfos_param,
 * }
 * 
 * @note
-* > æƒé™è¯´æ˜ï¼š
-* >> åªæœ‰ç¾¤ä¸»æˆ–è€…ç®¡ç†å‘˜å¯ä»¥è¿›è¡Œå¯¹ç¾¤æˆå‘˜çš„èº«ä»½è¿›è¡Œä¿®æ”¹ã€‚
-* >> ç›´æ’­å¤§ç¾¤ä¸æ”¯æŒä¿®æ”¹ç”¨æˆ·ç¾¤å†…èº«ä»½ã€‚
-* >> åªæœ‰ç¾¤ä¸»æˆ–è€…ç®¡ç†å‘˜å¯ä»¥è¿›è¡Œå¯¹ç¾¤æˆå‘˜è¿›è¡Œç¦è¨€ã€‚ 
-* > kTIMGroupModifyMemberInfoParamModifyFlag å¯ä»¥æŒ‰ä½æˆ–è®¾ç½®å¤šä¸ªå€¼ï¼Œä¸åŒçš„flagè®¾ç½®ä¸åŒçš„é”®ã€‚è¯·å‚è€ƒ[GroupSetMemberInfoParam](TIMCloudDef.h)
+* > È¨ÏŞËµÃ÷£º
+* >> Ö»ÓĞÈºÖ÷»òÕß¹ÜÀíÔ±¿ÉÒÔ½øĞĞ¶ÔÈº³ÉÔ±µÄÉí·İ½øĞĞĞŞ¸Ä¡£
+* >> Ö±²¥´óÈº²»Ö§³ÖĞŞ¸ÄÓÃ»§ÈºÄÚÉí·İ¡£
+* >> Ö»ÓĞÈºÖ÷»òÕß¹ÜÀíÔ±¿ÉÒÔ½øĞĞ¶ÔÈº³ÉÔ±½øĞĞ½ûÑÔ¡£ 
+* > kTIMGroupModifyMemberInfoParamModifyFlag ¿ÉÒÔ°´Î»»òÉèÖÃ¶à¸öÖµ£¬²»Í¬µÄflagÉèÖÃ²»Í¬µÄ¼ü¡£Çë²Î¿¼[GroupSetMemberInfoParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupModifyMemberInfo(const char* json_group_modifymeminfo_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief è·å–ç¾¤æœªå†³ä¿¡æ¯åˆ—è¡¨
-*        ç¾¤æœªå†³ä¿¡æ¯æ˜¯æŒ‡è¿˜æ²¡æœ‰å¤„ç†çš„æ“ä½œï¼Œä¾‹å¦‚ï¼Œé‚€è¯·åŠ ç¾¤æˆ–è€…è¯·æ±‚åŠ ç¾¤æ“ä½œè¿˜æ²¡æœ‰è¢«å¤„ç†ï¼Œç§°ä¹‹ä¸ºç¾¤æœªå†³ä¿¡æ¯
+* @brief »ñÈ¡ÈºÎ´¾öĞÅÏ¢ÁĞ±í
+*        ÈºÎ´¾öĞÅÏ¢ÊÇÖ¸»¹Ã»ÓĞ´¦ÀíµÄ²Ù×÷£¬ÀıÈç£¬ÑûÇë¼ÓÈº»òÕßÇëÇó¼ÓÈº²Ù×÷»¹Ã»ÓĞ±»´¦Àí£¬³ÆÖ®ÎªÈºÎ´¾öĞÅÏ¢
 *
-* @param json_group_getpendence_list_param è®¾ç½®ç¾¤æœªå†³ä¿¡æ¯å‚æ•°çš„Jsonå­—ç¬¦ä¸²
-* @param cb è·å–ç¾¤æœªå†³ä¿¡æ¯åˆ—è¡¨æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰å’Œå‚æ•°è§£æè¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_getpendence_list_param ÉèÖÃÈºÎ´¾öĞÅÏ¢²ÎÊıµÄJson×Ö·û´®
+* @param cb »ñÈ¡ÈºÎ´¾öĞÅÏ¢ÁĞ±í³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåºÍ²ÎÊı½âÎöÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example
 * Json::Value get_pendency_option;
@@ -1248,51 +1248,51 @@ TIM_DECL int TIMGroupModifyMemberInfo(const char* json_group_modifymeminfo_param
 * get_pendency_option[kTIMGroupPendencyOptionMaxLimited] = 0;
 * int ret = TIMGroupGetPendencyList(get_pendency_option.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) { 
-*         // è·å–ç¾¤æœªå†³ä¿¡æ¯å¤±è´¥
+*         // »ñÈ¡ÈºÎ´¾öĞÅÏ¢Ê§°Ü
 *         return;
 *     }
 * }, nullptr);
 * 
-* // get_pendency_option.toStyledString().c_str() å¾—åˆ°json_group_getpendence_list_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // get_pendency_option.toStyledString().c_str() µÃµ½json_group_getpendence_list_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_pendency_option_max_limited" : 0,
 *    "group_pendency_option_start_time" : 0
 * }
 *
 * @note 
-* > æ­¤å¤„çš„ç¾¤æœªå†³æ¶ˆæ¯æ³›æŒ‡æ‰€æœ‰éœ€è¦å®¡æ‰¹çš„ç¾¤ç›¸å…³çš„æ“ä½œã€‚ä¾‹å¦‚ï¼šåŠ ç¾¤å¾…å®¡æ‰¹ï¼Œæ‹‰äººå…¥ç¾¤å¾…å®¡æ‰¹ç­‰ç­‰ã€‚å³ä¾¿å®¡æ ¸é€šè¿‡æˆ–è€…æ‹’ç»åï¼Œè¯¥æ¡ä¿¡æ¯ä¹Ÿå¯é€šè¿‡æ­¤æ¥å£æ‹‰å›ï¼Œæ‹‰å›çš„ä¿¡æ¯ä¸­æœ‰å·²å†³æ ‡å¿—ã€‚
-* > UserAç”³è¯·åŠ å…¥ç¾¤GroupAï¼Œåˆ™ç¾¤ç®¡ç†å‘˜å¯è·å–æ­¤æœªå†³ç›¸å…³ä¿¡æ¯ï¼ŒUserAå› ä¸ºæ²¡æœ‰å®¡æ‰¹æƒé™ï¼Œä¸éœ€è¦è·å–æ­¤æœªå†³ä¿¡æ¯ã€‚
-* > å¦‚æœAdminAæ‹‰UserAè¿›å»GroupAï¼Œåˆ™UserAå¯ä»¥æ‹‰å–æ­¤æœªå†³ç›¸å…³ä¿¡æ¯ï¼Œå› ä¸ºè¯¥æœªå†³ä¿¡æ¯å¾…UserAå®¡æ‰¹
-* > æƒé™è¯´æ˜ï¼š
-* >> åªæœ‰å®¡æ‰¹äººæœ‰æƒé™æ‹‰å–ç›¸å…³æœªå†³ä¿¡æ¯ã€‚
-* > kTIMGroupPendencyOptionStartTime è®¾ç½®æ‹‰å–æ—¶é—´æˆ³,ç¬¬ä¸€æ¬¡è¯·æ±‚å¡«0,åè¾¹æ ¹æ®serverè¿”å›çš„ [GroupPendencyResult](TIMCloudDef.h) é”® kTIMGroupPendencyResultNextStartTime æŒ‡å®šçš„æ—¶é—´æˆ³è¿›è¡Œå¡«å†™ã€‚
-* > kTIMGroupPendencyOptionMaxLimited æ‹‰å–çš„å»ºè®®æ•°é‡,serverå¯æ ¹æ®éœ€è¦è¿”å›æˆ–å¤šæˆ–å°‘,ä¸èƒ½ä½œä¸ºå®Œæˆä¸å¦çš„æ ‡å¿—
+* > ´Ë´¦µÄÈºÎ´¾öÏûÏ¢·ºÖ¸ËùÓĞĞèÒªÉóÅúµÄÈºÏà¹ØµÄ²Ù×÷¡£ÀıÈç£º¼ÓÈº´ıÉóÅú£¬À­ÈËÈëÈº´ıÉóÅúµÈµÈ¡£¼´±ãÉóºËÍ¨¹ı»òÕß¾Ü¾øºó£¬¸ÃÌõĞÅÏ¢Ò²¿ÉÍ¨¹ı´Ë½Ó¿ÚÀ­»Ø£¬À­»ØµÄĞÅÏ¢ÖĞÓĞÒÑ¾ö±êÖ¾¡£
+* > UserAÉêÇë¼ÓÈëÈºGroupA£¬ÔòÈº¹ÜÀíÔ±¿É»ñÈ¡´ËÎ´¾öÏà¹ØĞÅÏ¢£¬UserAÒòÎªÃ»ÓĞÉóÅúÈ¨ÏŞ£¬²»ĞèÒª»ñÈ¡´ËÎ´¾öĞÅÏ¢¡£
+* > Èç¹ûAdminAÀ­UserA½øÈ¥GroupA£¬ÔòUserA¿ÉÒÔÀ­È¡´ËÎ´¾öÏà¹ØĞÅÏ¢£¬ÒòÎª¸ÃÎ´¾öĞÅÏ¢´ıUserAÉóÅú
+* > È¨ÏŞËµÃ÷£º
+* >> Ö»ÓĞÉóÅúÈËÓĞÈ¨ÏŞÀ­È¡Ïà¹ØÎ´¾öĞÅÏ¢¡£
+* > kTIMGroupPendencyOptionStartTime ÉèÖÃÀ­È¡Ê±¼ä´Á,µÚÒ»´ÎÇëÇóÌî0,ºó±ß¸ù¾İserver·µ»ØµÄ [GroupPendencyResult](TIMCloudDef.h) ¼ü kTIMGroupPendencyResultNextStartTime Ö¸¶¨µÄÊ±¼ä´Á½øĞĞÌîĞ´¡£
+* > kTIMGroupPendencyOptionMaxLimited À­È¡µÄ½¨ÒéÊıÁ¿,server¿É¸ù¾İĞèÒª·µ»Ø»ò¶à»òÉÙ,²»ÄÜ×÷ÎªÍê³ÉÓë·ñµÄ±êÖ¾
 */
 TIM_DECL int TIMGroupGetPendencyList(const char* json_group_getpendence_list_param, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief ä¸ŠæŠ¥ç¾¤æœªå†³ä¿¡æ¯å·²è¯»
+* @brief ÉÏ±¨ÈºÎ´¾öĞÅÏ¢ÒÑ¶Á
 *
-* @param time_stamp å·²è¯»æ—¶é—´æˆ³(å•ä½ç§’)ã€‚ä¸[GroupPendency](TIMCloudDef.h)é”® kTIMGroupPendencyAddTime æŒ‡å®šçš„æ—¶é—´æ¯”è¾ƒ
-* @param cb ä¸ŠæŠ¥ç¾¤æœªå†³ä¿¡æ¯å·²è¯»æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param time_stamp ÒÑ¶ÁÊ±¼ä´Á(µ¥Î»Ãë)¡£Óë[GroupPendency](TIMCloudDef.h)¼ü kTIMGroupPendencyAddTime Ö¸¶¨µÄÊ±¼ä±È½Ï
+* @param cb ÉÏ±¨ÈºÎ´¾öĞÅÏ¢ÒÑ¶Á³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @note
-* æ—¶é—´æˆ³time_stampä»¥å‰çš„ç¾¤æœªå†³è¯·æ±‚éƒ½å°†ç½®ä¸ºå·²è¯»ã€‚ä¸ŠæŠ¥å·²è¯»åï¼Œä»ç„¶å¯ä»¥æ‹‰å–åˆ°è¿™äº›æœªå†³ä¿¡æ¯ï¼Œä½†å¯é€šè¿‡å¯¹å·²è¯»æ—¶æˆ³çš„åˆ¤æ–­åˆ¤å®šæœªå†³ä¿¡æ¯æ˜¯å¦å·²è¯»ã€‚
+* Ê±¼ä´Átime_stampÒÔÇ°µÄÈºÎ´¾öÇëÇó¶¼½«ÖÃÎªÒÑ¶Á¡£ÉÏ±¨ÒÑ¶Áºó£¬ÈÔÈ»¿ÉÒÔÀ­È¡µ½ÕâĞ©Î´¾öĞÅÏ¢£¬µ«¿ÉÍ¨¹ı¶ÔÒÑ¶ÁÊ±´ÁµÄÅĞ¶ÏÅĞ¶¨Î´¾öĞÅÏ¢ÊÇ·ñÒÑ¶Á¡£
 */
 TIM_DECL int TIMGroupReportPendencyReaded(uint64_t time_stamp, TIMCommCallback cb, const void* user_data);
 
 /**
-* @brief å¤„ç†ç¾¤æœªå†³ä¿¡æ¯
+* @brief ´¦ÀíÈºÎ´¾öĞÅÏ¢
 *
-* @param json_group_handle_pendency_param å¤„ç†ç¾¤æœªå†³ä¿¡æ¯å‚æ•°çš„Jsonå­—ç¬¦ä¸²
-* @param cb å¤„ç†ç¾¤æœªå†³ä¿¡æ¯æˆåŠŸä¸å¦çš„å›è°ƒã€‚å›è°ƒå‡½æ•°å®šä¹‰è¯·å‚è€ƒ [TIMCommCallback](TIMCloudCallback.h)
-* @param user_data ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®ï¼ŒImSDKåªè´Ÿè´£ä¼ å›ç»™å›è°ƒå‡½æ•°cbï¼Œä¸åšä»»ä½•å¤„ç†
-* @return int è¿”å›TIM_SUCCè¡¨ç¤ºæ¥å£è°ƒç”¨æˆåŠŸï¼ˆæ¥å£åªæœ‰è¿”å›TIM_SUCCï¼Œå›è°ƒcbæ‰ä¼šè¢«è°ƒç”¨ï¼‰ï¼Œå…¶ä»–å€¼è¡¨ç¤ºæ¥å£è°ƒç”¨å¤±è´¥ã€‚æ¯ä¸ªè¿”å›å€¼çš„å®šä¹‰è¯·å‚è€ƒ [TIMResult](TIMCloudDef.h)
+* @param json_group_handle_pendency_param ´¦ÀíÈºÎ´¾öĞÅÏ¢²ÎÊıµÄJson×Ö·û´®
+* @param cb ´¦ÀíÈºÎ´¾öĞÅÏ¢³É¹¦Óë·ñµÄ»Øµ÷¡£»Øµ÷º¯Êı¶¨ÒåÇë²Î¿¼ [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data ÓÃ»§×Ô¶¨ÒåÊı¾İ£¬ImSDKÖ»¸ºÔğ´«»Ø¸ø»Øµ÷º¯Êıcb£¬²»×öÈÎºÎ´¦Àí
+* @return int ·µ»ØTIM_SUCC±íÊ¾½Ó¿Úµ÷ÓÃ³É¹¦£¨½Ó¿ÚÖ»ÓĞ·µ»ØTIM_SUCC£¬»Øµ÷cb²Å»á±»µ÷ÓÃ£©£¬ÆäËûÖµ±íÊ¾½Ó¿Úµ÷ÓÃÊ§°Ü¡£Ã¿¸ö·µ»ØÖµµÄ¶¨ÒåÇë²Î¿¼ [TIMResult](TIMCloudDef.h)
 *
 * @example 
-* Json::Value pendency; //æ„é€  GroupPendency
+* Json::Value pendency; //¹¹Ôì GroupPendency
 * ...
 * Json::Value handle_pendency;
 * handle_pendency[kTIMGroupHandlePendencyParamIsAccept] = true;
@@ -1300,12 +1300,12 @@ TIM_DECL int TIMGroupReportPendencyReaded(uint64_t time_stamp, TIMCommCallback c
 * handle_pendency[kTIMGroupHandlePendencyParamPendency] = pendency;
 * int ret = TIMGroupHandlePendency(handle_pendency.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
 *     if (ERR_SUCC != code) {
-*         // ä¸ŠæŠ¥ç¾¤æœªå†³ä¿¡æ¯å·²è¯»å¤±è´¥
+*         // ÉÏ±¨ÈºÎ´¾öĞÅÏ¢ÒÑ¶ÁÊ§°Ü
 *         return;
 *     }
 * }, nullptr);
 *
-* // handle_pendency.toStyledString().c_str() å¾—åˆ°json_group_handle_pendency_param JSON å­—ç¬¦ä¸²å¦‚ä¸‹
+* // handle_pendency.toStyledString().c_str() µÃµ½json_group_handle_pendency_param JSON ×Ö·û´®ÈçÏÂ
 * {
 *    "group_handle_pendency_param_handle_msg" : "I accept this pendency",
 *    "group_handle_pendency_param_is_accept" : true,
@@ -1325,9 +1325,9 @@ TIM_DECL int TIMGroupReportPendencyReaded(uint64_t time_stamp, TIMCommCallback c
 * }
 * 
 * @note 
-* > å¯¹äºç¾¤çš„æœªå†³ä¿¡æ¯ï¼ŒImSDKå¢åŠ äº†å¤„ç†æ¥å£ã€‚å®¡æ‰¹äººå¯ä»¥é€‰æ‹©å¯¹å•æ¡ä¿¡æ¯è¿›è¡ŒåŒæ„æˆ–è€…æ‹’ç»ã€‚å·²å¤„ç†æˆåŠŸè¿‡çš„æœªå†³ä¿¡æ¯ä¸èƒ½å†æ¬¡å¤„ç†ã€‚
-* > å¤„ç†æœªå†³ä¿¡æ¯æ—¶éœ€è¦å¸¦ä¸€ä¸ªæœªå†³ä¿¡æ¯[GroupPendency](TIMCloudDef.h)ï¼Œå¯ä»¥åœ¨æ¥å£[TIMGroupGetPendencyList]()è¿”å›çš„æœªå†³ä¿¡æ¯åˆ—è¡¨å°†æœªå†³ä¿¡æ¯ä¿å­˜ä¸‹æ¥ï¼Œ
-*   åœ¨å¤„ç†æœªå†³ä¿¡æ¯çš„æ—¶å€™å°†[GroupPendency](TIMCloudDef.h)ä¼ å…¥é”® kTIMGroupHandlePendencyParamPendency ã€‚
+* > ¶ÔÓÚÈºµÄÎ´¾öĞÅÏ¢£¬ImSDKÔö¼ÓÁË´¦Àí½Ó¿Ú¡£ÉóÅúÈË¿ÉÒÔÑ¡Ôñ¶Ôµ¥ÌõĞÅÏ¢½øĞĞÍ¬Òâ»òÕß¾Ü¾ø¡£ÒÑ´¦Àí³É¹¦¹ıµÄÎ´¾öĞÅÏ¢²»ÄÜÔÙ´Î´¦Àí¡£
+* > ´¦ÀíÎ´¾öĞÅÏ¢Ê±ĞèÒª´øÒ»¸öÎ´¾öĞÅÏ¢[GroupPendency](TIMCloudDef.h)£¬¿ÉÒÔÔÚ½Ó¿Ú[TIMGroupGetPendencyList]()·µ»ØµÄÎ´¾öĞÅÏ¢ÁĞ±í½«Î´¾öĞÅÏ¢±£´æÏÂÀ´£¬
+*   ÔÚ´¦ÀíÎ´¾öĞÅÏ¢µÄÊ±ºò½«[GroupPendency](TIMCloudDef.h)´«Èë¼ü kTIMGroupHandlePendencyParamPendency ¡£
 */
 TIM_DECL int TIMGroupHandlePendency(const char* json_group_handle_pendency_param, TIMCommCallback cb, const void* user_data);
 /// @}

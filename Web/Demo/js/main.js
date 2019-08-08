@@ -307,7 +307,7 @@ window.app = new Vue({
       this.tic.joinClassroom(this.roomID, {}, {
         id: 'paint_box',
         ratio: '16:9',
-        smoothLevel: 0,
+        smoothLevel: 0.1,
         boardContentFitMode: 1
       }, res => {
         if (res.code) {
@@ -442,6 +442,12 @@ window.app = new Vue({
       // 增加文件回调
       teduBoard.on(TEduBoard.EVENT.TEB_ADDFILE, (fid) => {
         console.log('======================:  ', 'TEB_ADDFILE', ' fid:', fid);
+        this.proBoardData();
+      });
+
+      // 增加转码文件回调
+      teduBoard.on(TEduBoard.EVENT.TEB_ADDTRANSCODEFILE, (fid) => {
+        console.log('======================:  ', 'TEB_ADDTRANSCODEFILE', ' fid:', fid);
         this.proBoardData();
       });
 
@@ -810,7 +816,7 @@ window.app = new Vue({
 
       if (this.imMsg.common.toUser) {
 
-        this.tic.sendTextMessage(this.imMsg.common.toUser, text, function (res) {
+        this.tic.sendTextMessage(this.imMsg.common.toUser, text, (res) => {
           if (res.code !== 0) {
             this.showMessageInBox('TIC', 'sendTextMessage failed, code=' + res.code + " content:" + text);
           }
@@ -823,7 +829,7 @@ window.app = new Vue({
           return;
         }
 
-        this.tic.sendGroupTextMessage(text, function (res) {
+        this.tic.sendGroupTextMessage(text, (res) => {
           if (res.code !== 0) {
             this.showMessageInBox('TIC', 'sendGroupTextMessage failed, code=' + res.code + " content:" + text);
           }

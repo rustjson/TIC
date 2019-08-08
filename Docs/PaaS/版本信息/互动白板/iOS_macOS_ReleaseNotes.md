@@ -5,6 +5,9 @@
 - 废弃接口
     - addFile
     - addH5PPTFile
+    - setTextFamily
+    - getTextFamily
+    - TEduBoardAuthParam.textFamily
 - 废弃回调
     - onTEBAddFile
     - onTEBAddH5PPTFile
