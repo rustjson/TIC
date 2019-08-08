@@ -190,18 +190,6 @@
 - (TEduBoardTextStyle)getTextStyle;
 
 /**
- * 设置文本字体
- * @param family     要设置的文本字体
- */
-- (void)setTextFamily:(NSString *)family;
-
-/**
- * 获取文本字体
- * @return 文本字体
- */
-- (NSString *)getTextFamily;
-
-/**
  * 设置文本大小
  * @param size      要设置的文本大小
  * @brief 实际像素值取值(size * 白板的高度 / 10000)px
