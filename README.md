@@ -47,12 +47,12 @@ git clone https://github.com/tencentyun/TIC.git
 
 | 平台 | 快速体验 |
 |---------|---------|
-| Web | 即将推出 |
+| Web | [立即体验](https://tedu.qcloudtrtc.com/) |
 | 小程序 | 即将推出 |
-| Windows |  [申请体验](./Docs/购买指南.md) |
-| Android | 即将推出 |
-| iOS | 即将推出 |
-| macOS | [申请体验](./Docs/购买指南.md)  |
+| Windows | [立即体验](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Demo.exe)|
+| Android | [立即体验](https://sj.qq.com/myapp/detail.htm?apkName=com.tencent.ticsaas.demo) |
+| iOS | [立即体验](https://www.pgyer.com/QEpl) |
+| macOS | [立即体验](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Demo.dmg)  |
 
 #### 开发Demo
 
@@ -60,12 +60,12 @@ git clone https://github.com/tencentyun/TIC.git
 
 | 平台 | 源码地址 | 快速体验 |
 |--|---------|---------|
-| Web | [Github](./Web) | [体验链接](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
+| Web | [Github](./Web) | [立即体验](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
 |小程序  | [Github](./小程序)   | <img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/> |
-| Windows |[Github](./Windows)  | [下载安装](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip) |
+| Windows |[Github](./Windows)  | [立即体验](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip) |
 |Android  | [Github](./Android)  |  <img src="https://main.qcloudimg.com/raw/cd2145e71c50374ddafae1714ee9f6e8.png" width="150"/> |
 | iOS | [Github](./iOS) | <img src="https://main.qcloudimg.com/raw/1e40ee772f79317b14a0a55587343ae7.png" width="150"/> |
-| macOS |[Github](./macOS)   | [下载安装](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip) |
+| macOS |[Github](./macOS)   | [立即体验](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip) |
 
 下载源码后，为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，**点击下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
 
