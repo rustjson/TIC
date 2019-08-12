@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "NTP.h"
 
 #include <WS2tcpip.h>

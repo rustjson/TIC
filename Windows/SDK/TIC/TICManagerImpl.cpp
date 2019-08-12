@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TICManagerImpl.h"
 #include <TIMCloud.h>
 #include <chrono>
