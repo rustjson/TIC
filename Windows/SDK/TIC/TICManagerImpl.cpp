@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TICManagerImpl.h"
 #include <TIMCloud.h>
 #include <chrono>
@@ -96,7 +95,7 @@ void TICManagerImpl::Uninit(TICCallback callback)
 	getTRTCShareInstance()->removeCallback(this);
 
 	TICCallbackUtil util(this, callback);
-	util.IMCallback(ret, "IMSDK uninit failed");
+	util.IMCallback(ret, (ret == 0) ? "" : "IMSDK unInit failed");
 }
 
 void TICManagerImpl::Login(const std::string& userId, const std::string& userSig, TICCallback callback)
