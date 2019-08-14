@@ -131,7 +131,7 @@
         return;
     }
     __weak typeof(self) ws = self;
-    [[TICManager sharedInstance] createClassroom:[classId intValue] callback:^(TICModule module, int code, NSString *desc) {
+    [[TICManager sharedInstance] createClassroom:[classId intValue] classScene:TIC_CLASS_SCENE_VIDEO_CALL callback:^(TICModule module, int code, NSString *desc) {
         if(code == 0){
         }
         else{

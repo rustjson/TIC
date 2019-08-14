@@ -33,7 +33,7 @@
         return;
     }
     [JMLoadingHUD show];
-    [[TICManager sharedInstance] createClassroom:[classId intValue] callback:^(TICModule module, int code, NSString *desc) {
+    [[TICManager sharedInstance] createClassroom:[classId intValue] classScene:TIC_CLASS_SCENE_VIDEO_CALL callback:^(TICModule module, int code, NSString *desc) {
         if(code == 0){
             [[JMToast sharedToast] showDialogWithMsg:@"创建课堂成功，请\"加入课堂\""];
         }

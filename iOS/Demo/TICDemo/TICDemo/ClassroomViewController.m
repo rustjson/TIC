@@ -207,11 +207,6 @@ static const NSString *staticClassID = @"";
     [[[TICManager sharedInstance] getBoardController] setTextStyle:(TEduBoardTextStyle)style];
 }
 
-- (void)onSetTextFamily:(NSString *)family
-{
-    [[[TICManager sharedInstance] getBoardController] setTextFamily:family];
-}
-
 - (void)onUndo
 {
     [[[TICManager sharedInstance] getBoardController] undo];
