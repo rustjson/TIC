@@ -19,6 +19,7 @@ import com.tencent.imsdk.TIMCustomElem;
 import com.tencent.imsdk.TIMElem;
 import com.tencent.imsdk.TIMElemType;
 import com.tencent.imsdk.TIMGroupAddOpt;
+import com.tencent.imsdk.TIMGroupEventListener;
 import com.tencent.imsdk.TIMGroupManager;
 import com.tencent.imsdk.TIMGroupSystemElem;
 import com.tencent.imsdk.TIMGroupSystemElemType;
@@ -60,7 +61,7 @@ public class TICManagerImpl  extends TICManager{
 
     //IM
     private TIMMessageListener mTIMListener;
-
+    private TIMGroupEventListener mGroupEventListener;
     //Board
     private TEduBoardController mBoard;
     private BoardCallback mBoardCallback;
@@ -124,6 +125,14 @@ public class TICManagerImpl  extends TICManager{
                 .enableLogPrint(true)
                 .setLogLevel(TIMLogLevel.DEBUG); //TODO::在正式发布时，设置TIMLogLevel.OFF
         TIMManager.getInstance().init(context, timSdkConfig);
+
+
+        mGroupEventListener = new TIMGroupEventListener() {
+            @Override
+            public void onGroupTipsEvent(TIMGroupTipsElem timGroupTipsElem) {
+                handleGroupTipsMessage(timGroupTipsElem);
+            }
+        };
 
         mTIMListener = new TIMMessageListener() {
             @Override
@@ -313,6 +322,7 @@ public class TICManagerImpl  extends TICManager{
                 //成功登录后，加入消息和状态监听
                 TIMManager.getInstance().getUserConfig().setUserStatusListener(mStatusListner);
                 TIMManager.getInstance().addMessageListener(mTIMListener);
+                TIMManager.getInstance().getUserConfig().setGroupEventListener(mGroupEventListener);
 
                 if (null != callBack) {
                     callBack.onSuccess("");
@@ -356,6 +366,7 @@ public class TICManagerImpl  extends TICManager{
         //退出登录后，去掉消息的监听
         TIMManager.getInstance().removeMessageListener(mTIMListener);
         TIMManager.getInstance().getUserConfig().setUserStatusListener(null);
+        TIMManager.getInstance().getUserConfig().setGroupEventListener(null);
     }
 
     @Override
@@ -723,6 +734,10 @@ public class TICManagerImpl  extends TICManager{
         return false;
     }
 
+    private void handleGroupTipsMessage(TIMGroupTipsElem timGroupTipsElem) {
+        onGroupTipMessageReceived(timGroupTipsElem);
+    }
+
     private void handleGroupSystemMessage(TIMMessage message) {
         if (classroomOption == null) {
             TXCLog.e(TAG, "TICManager: handleGroupSystemMessage: not in class now.");
@@ -773,7 +788,6 @@ public class TICManagerImpl  extends TICManager{
                     onChatMessageReceived(message, elem);
                     break;
                 case GroupTips:
-                    onGroupTipMessageReceived((TIMGroupTipsElem) elem);
                     continue;
                 default:
                     break;
