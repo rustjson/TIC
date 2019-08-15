@@ -1,4 +1,3 @@
-
 本文主要介绍如何快速地将 TICSaaS 组件集成到您的项目中，只要按照如下步骤进行配置，就可以完成组件的集成工作。
 
 # 开发环境要求
@@ -14,12 +13,11 @@ TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更
 ```groovy
  dependencies {
     // TIC SaaS 组件
-    implementation "com.tencent.ticsaas:core:0.0.7-alpha"
+    implementation "com.tencent.ticsaas:core:0.1.12-alpha"
     // 实时音视频
-    implementation "com.tencent.liteav:LiteAVSDK_TRTC:6.5.7272"
+    implementation "com.tencent.liteav:LiteAVSDK_TRTC:6.6.7458"
     // 云通信 IM SDK
-    implementation "com.tencent.imsdk:imsdk:4.3.145"
-    implementation "com.tencent.imsdk:mobilepbforimsdk:1.6.0.45"
+    implementation "com.tencent.imsdk:imsdk:4.4.900"
     // 腾讯云互动白板
     implementation "com.tencent.teduboard:TEduBoardSdk:2.2.2.99"
 }
@@ -74,13 +72,13 @@ Manifest.permission.WRITE_EXTERNAL_STORAGE
 ```
 可参考[请求应用权限](https://developer.android.com/training/permissions/requesting?hl=zh-cn)
 ## 调起SaaS组件
-只需要传递5个参数，即可调起SaaS组件主页面，分别是结构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
+只需要传递5个参数，即可调起SaaS组件主页面，分别是机构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
 ```java
-    private void launchInActivity(int agencyId, int classID, String userID, String userToken, String userSig) {
+    private void launchInActivity(int companyID, int classID, String userID, String userToken, String userSig) {
         Intent intent = new Intent(this, InClassActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         Bundle bundle = new Bundle();
-        bundle.putInt("agency_id", agencyId);
+        bundle.putInt("company_id", companyID);
         bundle.putInt("class_id", classID);
         bundle.putString("user_id", userID);
         bundle.putString("user_token", userToken);
