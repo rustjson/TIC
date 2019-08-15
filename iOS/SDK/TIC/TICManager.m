@@ -382,7 +382,7 @@ id makeWeakRef (id object) {
     TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, 0, nil);
     _enterCallback = nil;
     //启动对时
-    if(_option.classScene == TIC_CLASS_SCENE_LIVE) {
+    if(_option.classScene == TIC_CLASS_SCENE_LIVE && _option.roleType == TIC_ROLE_TYPE_ANCHOR) {
         [self startSyncTimer];
     }
 }
