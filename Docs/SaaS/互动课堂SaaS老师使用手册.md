@@ -1,6 +1,6 @@
 # 互动课堂 SaaS 老师使用手册
 
-本文描述互动课堂SaaS组件使用方式，可以依照[官方文档](https://cloud.tencent.com/document/product/680/34356)的流程获取该组件
+本文描述互动课堂SaaS组件使用方式，可以依照[官方文档](https://cloud.tencent.com/document/product/680/34356)的开通互动课堂
 
 ## 一、如何加入课堂
 
