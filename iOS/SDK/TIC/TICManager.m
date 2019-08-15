@@ -765,14 +765,26 @@ id makeWeakRef (id object) {
 - (void)syncRemoteTime
 {
     uint64_t syncTime = [[[TICManager sharedInstance] getBoardController] getSyncTime];
-    NSData *data = [NSData dataWithBytes:&syncTime length:sizeof(syncTime)];
+    NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+    [dataDic setObject:[NSNumber numberWithLongLong:syncTime] forKey:@"syncTime"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:nil];
+    NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [[[TICManager sharedInstance] getTRTCCloud] sendSEIMsg:data repeatCount:1];
 }
 
 - (void)onRecvSEIMsg:(NSString *)userId message:(NSData *)message
 {
-    uint64_t remoteTime = *(uint64_t *)[message bytes];
-    [[[TICManager sharedInstance] getBoardController] syncRemoteTime:userId timestamp:remoteTime];
+    NSError *error;
+    NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:message options:0 error:&error];
+    if(!error){
+        if([dataDic isKindOfClass:[NSDictionary class]]){
+            NSNumber *remoteTimeNum = [dataDic objectForKey:@"syncTime"];
+            if(remoteTimeNum){
+                uint64_t remoteTime = [remoteTimeNum longLongValue];
+                [[[TICManager sharedInstance] getBoardController] syncRemoteTime:userId timestamp:remoteTime];
+            }
+        }
+    }
 }
 
 #pragma mark - report
