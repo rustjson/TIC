@@ -27,6 +27,17 @@ public class TICClassroomOption{
      */
     public TEduBoardController.TEduBoardCallback boardCallback = null;
 
+    /**
+     * 课堂场景（默认TIC_CLASS_SCENE_VIDEO_CALL）
+     **/
+    public int classScene = TICManager.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL;
+
+    /**
+     * 课堂角色
+     * @brief 只有在classScene为TIC_CLASS_SCENE_LIVE时有效，默认TIC_ROLE_TYPE_ANCHOR
+     **/
+    public int roleType = TICManager.TICRoleType.TIC_ROLE_TYPE_ANCHOR;
+
 
     public int getClassId() {
         return classId;

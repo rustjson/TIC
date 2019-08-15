@@ -1,11 +1,14 @@
 package com.tencent.tic.core.impl;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 
 
@@ -41,10 +44,15 @@ import com.tencent.trtc.TRTCStatistics;
 import com.tencent.trtc.TRTCCloudListener;
 import com.tencent.liteav.basic.log.TXCLog;
 
+import org.json.JSONObject;
+
 public class TICManagerImpl  extends TICManager{
 
     private final static String TAG = "TICManager";
+    private final static String SYNCTIME = "syncTime";
     TICCallback mEnterRoomCallback; // 进房callback
+    private Handler mMainHandler;
+    boolean mIsSendSyncTime = false;  //
 
     //TRTC
     private TRTCCloud mTrtcCloud;              /// TRTC SDK 实例对象
@@ -89,6 +97,8 @@ public class TICManagerImpl  extends TICManager{
     }
 
     private TICManagerImpl() {
+        mMainHandler = new Handler(Looper.getMainLooper());
+
         userInfo = new UserInfo();
 
         mEventListner = new TICEventObservable();
@@ -172,6 +182,77 @@ public class TICManagerImpl  extends TICManager{
         }
         return mBoard;
     }
+
+    public void switchRole(int role) {
+
+        if (mTrtcCloud != null) {
+            mTrtcCloud.switchRole(role);
+        }
+
+        if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE
+                && role == TICRoleType.TIC_ROLE_TYPE_ANCHOR) {
+            startSyncTimer();
+        }
+        else {
+            stopSyncTimer();
+        }
+    }
+
+    void startSyncTimer() {
+        TXCLog.i(TAG, "TICManager: startSyncTimer synctime: " + mIsSendSyncTime);
+        if (!mIsSendSyncTime) {
+            mMainHandler.postDelayed(new mySyncTimeRunnable(this), 5000);
+            mIsSendSyncTime = true;
+        }
+    }
+
+    void stopSyncTimer() {
+        mIsSendSyncTime = false;
+        TXCLog.i(TAG, "TICManager: stopSyncTimer synctime: " + mIsSendSyncTime);
+    }
+
+    void sendSyncTimeBySEI() {
+        if (mTrtcCloud != null && mBoard != null) {
+
+            if (mIsSendSyncTime) {
+
+                long time = mBoard.getSyncTime();
+                TXCLog.i(TAG, "TICManager: sendSyncTimeBySEI synctime: " + time);
+                if (time != 0) {
+                    String result = "";
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put(SYNCTIME, time);
+                        result = json.toString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (!TextUtils.isEmpty(result)) {
+                        mTrtcCloud.sendSEIMsg(result.getBytes(), 1);
+                    }
+                }
+
+                mMainHandler.postDelayed(new mySyncTimeRunnable(this), 5000);
+            }
+        }
+    }
+
+    static class mySyncTimeRunnable implements Runnable {
+        WeakReference<TICManagerImpl> mTICManagerRef;
+
+        mySyncTimeRunnable (TICManagerImpl ticManager) {
+            mTICManagerRef = new WeakReference<TICManagerImpl>(ticManager);
+        }
+
+        @Override
+        public void run() {
+            TICManagerImpl ticManager = mTICManagerRef.get();
+            if (ticManager != null) {
+                ticManager.sendSyncTimeBySEI();
+            }
+        }
+    }
+
 
     @Override
     public void addEventListener(TICEventListener callback) {
@@ -431,6 +512,10 @@ public class TICManagerImpl  extends TICManager{
             }
         });
 
+        //停止同步时间
+        stopSyncTimer();
+
+        //
         releaseClass();
     }
 
@@ -779,6 +864,11 @@ public class TICManagerImpl  extends TICManager{
                 mEnterRoomCallback.onSuccess("succ");
             }
             sendOfflineRecordInfo();
+
+            if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE
+                    && classroomOption.roleType == TICRoleType.TIC_ROLE_TYPE_ANCHOR) {
+                startSyncTimer();
+            }
         }
 
         @Override
@@ -886,6 +976,27 @@ public class TICManagerImpl  extends TICManager{
         public void onAudioRouteChanged(int var1, int var2) {
         }
 
+        @Override
+        public void onRecvSEIMsg(String userid, byte[] bytes) {
+            super.onRecvSEIMsg(userid, bytes);
+            try {
+                String str = new String(bytes);
+                JSONObject jsonObject = new JSONObject(str);
+                boolean isSyncTime = jsonObject.has(SYNCTIME);
+                TXCLog.i(TAG, "TICManager: onRecvSEIMsg  synctime 1: " + isSyncTime);
+                if (isSyncTime) {
+                    long time =  jsonObject.getLong(SYNCTIME);
+                    TXCLog.i(TAG, "TICManager: onRecvSEIMsg  synctime 2: " + userid +  "|" + time);
+                    if (mBoard != null) {
+                        mBoard.syncRemoteTime(userid, time);
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     /////////////////
