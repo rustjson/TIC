@@ -306,7 +306,7 @@ void CTICDemoDlg::OnBtnCreateRoom()
 	btnCreateRoom_.EnableWindow(FALSE);
 
 	std::weak_ptr< CTICDemoDlg> weakSelf = this->shared_from_this();
-	TICManager::GetInstance().CreateClassroom(classId, [this, weakSelf](TICModule module, int code, const char *desc) {
+	TICManager::GetInstance().CreateClassroom(classId, TIC_CLASS_SCENE_VIDEO_CALL,[this, weakSelf](TICModule module, int code, const char *desc) {
 		std::shared_ptr<CTICDemoDlg> self = weakSelf.lock();
 		if (!self)
 		{

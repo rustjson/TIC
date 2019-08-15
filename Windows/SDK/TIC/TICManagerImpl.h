@@ -105,12 +105,13 @@ public:
 	virtual void Login(const std::string& userId, const std::string& userSig, TICCallback callback) override;
 	virtual void Logout(TICCallback callback) override;
 
-	virtual void CreateClassroom(int classId, TICCallback callback) override;
+	virtual void CreateClassroom(int classId, TICClassScene classScene, TICCallback callback) override;
 	virtual void DestroyClassroom(int classId, TICCallback callback) override;
 
 	virtual void JoinClassroom(const TICClassroomOption& option, TICCallback callback) override;
 	virtual void QuitClassroom(bool clearBoard, TICCallback callback) override;
 
+	virtual void SwitchRole(TICRoleType role) override;
 
 	virtual void SendTextMessage(const std::string& userId, const std::string& text, TICCallback callback) override;
 	virtual void SendCustomMessage(const std::string& userId, const std::string& data, TICCallback callback) override;
@@ -150,6 +151,7 @@ private:
 	virtual void onUserSubStreamAvailable(const char* userId, bool available) override;
 	virtual void onUserAudioAvailable(const char* userId, bool available) override;
 	virtual void onDeviceChange(const char* deviceId, TRTCDeviceType type, TRTCDeviceState state) override;
+	virtual void onRecvSEIMsg(const char* userId, const uint8_t* message, uint32_t msgSize) override;
 
 	// Í¨¹ý TEduBoardCallback ¼Ì³Ð
 	virtual void onTEBError(TEduBoardErrorCode code, const char * msg) override;
@@ -165,6 +167,10 @@ private:
 
 	void ReportGroupId();
 
+	void StartSyncTimer();
+	void StopSyncTimer();
+	void SendSEISyncMsg();
+
 	void OnIMNewMsg(const char *json_msg_array);
 	void OnIMC2CMsg(const Json::Value &jsonMsg);
 	bool OnIMGroupMsg(const Json::Value &jsonMsg);
@@ -172,6 +178,8 @@ private:
 
 	void OnIMKickedOffline();
 	void OnIMUserSigExpired();
+
+	void OnIMGroupTipsEvent(const char *jsonTips);
 
 private:
 	int sdkAppId_ = 0;
@@ -194,6 +202,11 @@ private:
 	TEduBoardController *boardCtrl_ = nullptr;
 
 	TICRecorder recorder_;
+
+	UINT_PTR syncTimer_ = 0;
+
+	TICClassScene classScene_ = TIC_CLASS_SCENE_VIDEO_CALL;
+	TICRoleType roleType_ = TIC_ROLE_TYPE_ANCHOR;
 
 	std::mutex							mutMsgListeners_;
 	std::vector<TICMessageListener*>	msgListeners_;

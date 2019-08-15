@@ -29,6 +29,23 @@ enum TICModule{
 };
 
 /**
+ * 课堂场景
+ **/
+enum TICClassScene{
+	TIC_CLASS_SCENE_VIDEO_CALL = 0,	//实时通话模式，支持1000人以下场景，低延时
+	TIC_CLASS_SCENE_LIVE = 1,		//直播模式，支持1000人以上场景，会增加600ms左右延时
+};
+
+/**
+ * 房间角色
+ * @brief 仅适用于直播模式(TIC_CLASS_SCENE_LIVE)，角色TIC_ROLE_TYPE_ANCHOR具有上行权限
+ **/
+enum TICRoleType{
+	TIC_ROLE_TYPE_ANCHOR = 20,		//主播
+	TIC_ROLE_TYPE_AUDIENCE = 21,	//观众
+};
+
+/**
  * TIC通用回调
  * @param module	出错的模块
  * @param code		错误码
@@ -173,6 +190,9 @@ struct TICClassroomOption
 	
 	TEduBoardInitParam boardInitParam;	//初始化白板参数
 	TEduBoardCallback* boardCallback = nullptr; //白板事件回调监听;请在此设置白板事件监听,不推荐自己使用白板sdk的AddCallback()函数;
+	
+	TICClassScene classScene = TIC_CLASS_SCENE_VIDEO_CALL; //课堂场景;默认TIC_CLASS_SCENE_VIDEO_CALL
+	TICRoleType roleType = TIC_ROLE_TYPE_ANCHOR; //课堂角色;只有在classScene为TIC_CLASS_SCENE_LIVE时有效，默认TIC_ROLE_TYPE_ANCHOR
 };
 
 /**
@@ -226,7 +246,7 @@ public:
 	 * @param classId			课堂ID，由业务生成和维护
 	 * @param callback			回调
 	 */ 
-	virtual void CreateClassroom(int classId, TICCallback callback) = 0;
+	virtual void CreateClassroom(int classId, TICClassScene classScene, TICCallback callback) = 0;
 
 	/**
 	 * 销毁课堂
@@ -249,6 +269,12 @@ public:
 	 */ 
 	virtual void QuitClassroom(bool clearBoard, TICCallback callback) = 0;
 
+	/**
+	 * 切换角色
+	 * @param role 角色
+	 * @brief 只在classScene为TIC_CLASS_SCENE_LIVE时有效
+	 **/
+	virtual void SwitchRole(TICRoleType role) = 0;
 
 	/*********************************************************************************************
 	 *
