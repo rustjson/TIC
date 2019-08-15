@@ -44,6 +44,23 @@ typedef NS_ENUM(NSInteger, TICModule) {
 };
 
 /**
+ * 课堂场景
+ **/
+typedef NS_ENUM(NSInteger, TICClassScene) {
+    TIC_CLASS_SCENE_VIDEO_CALL     = 0,     //实时通话模式，支持1000人以下场景，低延时
+    TIC_CLASS_SCENE_LIVE           = 1,     //直播模式，支持1000人以上场景，会增加600ms左右延时
+};
+
+/**
+ * 房间角色
+ * @brief 仅适用于直播场景（TIC_CLASS_SCENE_LIVE），角色TIC_ROLE_TYPE_ANCHOR具有上行权限
+ **/
+typedef NS_ENUM(NSInteger, TICRoleType) {
+    TIC_ROLE_TYPE_ANCHOR     = 20,     //主播
+    TIC_ROLE_TYPE_AUDIENCE   = 21,     //观众
+};
+
+/**
  * 回调
  * @param module        当前模块
  * @param code          错误码
@@ -106,6 +123,15 @@ typedef void (^TICCallback)(TICModule module, int code, NSString *desc);
  * @brief 业务层设置此字段可以处理白板更多回调
  **/
 @property (nonatomic, weak) id<TEduBoardDelegate> boardDelegate;
+/**
+ * 课堂场景（默认TIC_CLASS_SCENE_VIDEO_CALL）
+ **/
+@property (nonatomic, assign) TICClassScene classScene;
+/**
+ * 课堂角色
+ * @brief 只有在classScene为TIC_CLASS_SCENE_LIVE时有效，默认TIC_ROLE_TYPE_ANCHOR
+ **/
+@property (nonatomic, assign) TICRoleType roleType;
 @end
 
 /*********************************************************************************************************

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TICManagerImpl.h"
 #include <TIMCloud.h>
 #include <chrono>
@@ -52,6 +51,11 @@ void TICManagerImpl::Init(int sdkappid, TICCallback callback)
 		pThis->OnIMUserSigExpired();
 	}, this);
 
+	TIMSetGroupTipsEventCallback([](const char* json_group_tip_array, const void* user_data) {
+		TICManagerImpl *pThis = (TICManagerImpl*)user_data;
+		pThis->OnIMGroupTipsEvent(json_group_tip_array);
+	}, this);
+
 	Json::Value json_user_config;
 	json_user_config[kTIMUserConfigIsSyncReport] = true; //服务端删掉已读状态
 	Json::Value json_config;
@@ -96,7 +100,7 @@ void TICManagerImpl::Uninit(TICCallback callback)
 	getTRTCShareInstance()->removeCallback(this);
 
 	TICCallbackUtil util(this, callback);
-	util.IMCallback(ret, "IMSDK uninit failed");
+	util.IMCallback(ret, (ret == 0) ? "" : "IMSDK unInit failed");
 }
 
 void TICManagerImpl::Login(const std::string& userId, const std::string& userSig, TICCallback callback)
@@ -130,12 +134,12 @@ void TICManagerImpl::Logout(TICCallback callback)
 	}
 }
 
-void TICManagerImpl::CreateClassroom(int classId, TICCallback callback)
+void TICManagerImpl::CreateClassroom(int classId, TICClassScene classScene, TICCallback callback)
 {
 	std::string groupId = std::to_string(classId);
 	Json::Value json_value_param;
 	json_value_param[kTIMCreateGroupParamGroupId] = groupId;
-	json_value_param[kTIMCreateGroupParamGroupType] = kTIMGroup_Public;
+	json_value_param[kTIMCreateGroupParamGroupType] = (classScene == TIC_CLASS_SCENE_LIVE) ? kTIMGroup_AVChatRoom : kTIMGroup_Public;
 	json_value_param[kTIMCreateGroupParamGroupName] = groupId;
 	json_value_param[kTIMCreateGroupParamGroupMemberArray] = Json::Value(Json::arrayValue);
 	json_value_param[kTIMCreateGroupParamAddOption] = kTIMGroupAddOpt_Any;
@@ -179,6 +183,8 @@ void TICManagerImpl::JoinClassroom(const TICClassroomOption &option, TICCallback
 	ntpServer_ = option.ntpServer;
 	boardInitParam_.copy(option.boardInitParam);
 	boardCallback_ = option.boardCallback;
+	classScene_ = option.classScene;
+	roleType_ = option.roleType;
 
 	int ret = TIMGroupJoin(groupId_.c_str(), NULL, [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
 		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
@@ -208,6 +214,7 @@ void TICManagerImpl::JoinClassroom(const TICClassroomOption &option, TICCallback
 
 void TICManagerImpl::QuitClassroom(bool clearBoard, TICCallback callback)
 {
+	StopSyncTimer();
 	TRTCExitRoom(); //执行TRTC退房
 	BoardDestroy(clearBoard); //销毁白板控制器
 
@@ -228,6 +235,20 @@ void TICManagerImpl::QuitClassroom(bool clearBoard, TICCallback callback)
 	}
 }
 
+void TICManagerImpl::SwitchRole(TICRoleType role)
+{
+	getTRTCShareInstance()->switchRole((TRTCRoleType)role);
+	if (role == TIC_ROLE_TYPE_ANCHOR)
+	{
+		StartSyncTimer();
+	}
+	else
+	{
+		StopSyncTimer();
+	}
+
+	roleType_ = role;
+}
 
 void TICManagerImpl::SendTextMessage(const std::string& userId, const std::string& text, TICCallback callback)
 {
@@ -474,6 +495,11 @@ void TICManagerImpl::onEnterRoom(uint64_t elapsed)
 		delete joinClassroomCallbackUtil;
 		joinClassroomCallbackUtil = nullptr;
 	}
+
+	if (classScene_ == TIC_CLASS_SCENE_LIVE && roleType_ == TIC_ROLE_TYPE_ANCHOR)
+	{
+		StartSyncTimer();
+	}
 }
 
 void TICManagerImpl::onExitRoom(int reason)
@@ -534,6 +560,19 @@ void TICManagerImpl::onDeviceChange(const char * deviceId, TRTCDeviceType type, 
 	{
 		(*iter)->onTICDevice(deviceId, type, state);
 	}
+}
+
+void TICManagerImpl::onRecvSEIMsg(const char* userId, const uint8_t* message, uint32_t msgSize)
+{
+	if (!boardCtrl_) return;
+
+	Json::Reader reader;
+	Json::Value root;
+	if (!reader.parse(std::string((const char*)message, msgSize), root)) return;
+	if (root["syncTime"].isNull()) return;
+	uint64_t syncTime = root["syncTime"].asUInt64();
+	
+	boardCtrl_->SyncRemoteTime(userId, syncTime);
 }
 
 void TICManagerImpl::onTEBError(TEduBoardErrorCode code, const char * msg)
@@ -643,6 +682,37 @@ void TICManagerImpl::ReportGroupId()
 	recorder_.reportGroupId(false, sdkAppId_, userId_, userSig_, groupId_);
 }
 
+void TICManagerImpl::StartSyncTimer()
+{
+	StopSyncTimer();
+	syncTimer_ = ::SetTimer(NULL, 0, 5000, [](HWND hwnd, UINT msg, UINT_PTR timerid, DWORD dwTime) {
+		TICManagerImpl* pThis = static_cast<TICManagerImpl*>(&TICManager::GetInstance());
+		if (pThis) pThis->SendSEISyncMsg();
+	});
+}
+
+void TICManagerImpl::StopSyncTimer()
+{
+	if (syncTimer_ != 0)
+	{
+		::KillTimer(0, syncTimer_);
+		syncTimer_ = 0;
+	}
+}
+
+void TICManagerImpl::SendSEISyncMsg()
+{
+	if (!boardCtrl_) return;
+
+	Json::Value root;
+	root["syncTime"] = boardCtrl_->GetSyncTime();
+	Json::FastWriter writer;
+	writer.omitEndingLineFeed();
+	std::string strSend = writer.write(root);
+
+	bool bRet = getTRTCShareInstance()->sendSEIMsg((const uint8_t*)strSend.data(), strSend.length(), 1);
+}
+
 void TICManagerImpl::OnIMNewMsg(const char *json_msg_array)
 {
 	if (strlen(json_msg_array) == 0) return;
@@ -722,7 +792,7 @@ void TICManagerImpl::OnIMC2CMsg(const Json::Value  &jsonMsg)
 	}
 }
 
-bool TICManagerImpl::OnIMGroupMsg(const Json::Value  &jsonMsg)
+bool TICManagerImpl::OnIMGroupMsg(const Json::Value &jsonMsg)
 {
 	bool bFilted = false; //是否为需要过滤掉的消息
 
@@ -766,47 +836,6 @@ bool TICManagerImpl::OnIMGroupMsg(const Json::Value  &jsonMsg)
 		}
 		case kTIMElem_GroupTips:
 		{
-			TIMGroupTipType groupTipType = (TIMGroupTipType)jsonMsgElems[i][kTIMGroupTipsElemTipType].asInt();
-			if (groupTipType == kTIMGroupTip_Invite) //进群
-			{
-				std::vector<std::string> userIds;
-				const Json::Value& userArray = jsonMsgElems[i][kTIMGroupTipsElemUserArray];
-				for (Json::ArrayIndex idx = 0; idx < userArray.size(); ++idx)
-				{
-					std::string szUserId = userArray[idx].asString();
-					if (szUserId != userId_) userIds.emplace_back(szUserId);
-				}
-				std::lock_guard<std::mutex> lk(mutEventListeners_);
-				for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
-				{
-					(*iter)->onTICMemberJoin(userIds);
-				}
-			}
-			else if (groupTipType == kTIMGroupTip_Quit) //退群
-			{
-				std::vector<std::string> userIds;
-				std::string userId = jsonMsgElems[i][kTIMGroupTipsElemOpUser].asString();
-				userIds.emplace_back(userId);
-				std::lock_guard<std::mutex> lk(mutEventListeners_);
-				for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
-				{
-					(*iter)->onTICMemberQuit(userIds);
-				}
-			}
-			else if (groupTipType == kTIMGroupTip_Kick) //踢出群
-			{
-				std::vector<std::string> userIds;
-				const Json::Value& userArray = jsonMsgElems[i][kTIMGroupTipsElemUserArray];
-				for (Json::ArrayIndex idx = 0; idx < userArray.size(); ++idx)
-				{
-					userIds.emplace_back(userArray[idx].asString());
-				}
-				std::lock_guard<std::mutex> lk(mutEventListeners_);
-				for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
-				{
-					(*iter)->onTICMemberQuit(userIds);
-				}
-			}
 			break;
 		}
 		default: break;
@@ -869,6 +898,54 @@ void TICManagerImpl::OnIMUserSigExpired()
 	for (auto iter = statusListeners_.begin(); iter != statusListeners_.end(); ++iter)
 	{
 		(*iter)->onTICUserSigExpired();
+	}
+}
+
+void TICManagerImpl::OnIMGroupTipsEvent(const char *jsonTips)
+{
+	Json::Value root;
+	if (!Json::Reader().parse(jsonTips, root)) return;
+
+	TIMGroupTipType groupTipType = (TIMGroupTipType)root[kTIMGroupTipsElemTipType].asInt();
+	if (groupTipType == kTIMGroupTip_Invite) //进群
+	{
+		std::vector<std::string> userIds;
+		const Json::Value& userArray = root[kTIMGroupTipsElemUserArray];
+		for (Json::ArrayIndex idx = 0; idx < userArray.size(); ++idx)
+		{
+			std::string szUserId = userArray[idx].asString();
+			if (szUserId != userId_) userIds.emplace_back(szUserId);
+		}
+		std::lock_guard<std::mutex> lk(mutEventListeners_);
+		for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
+		{
+			(*iter)->onTICMemberJoin(userIds);
+		}
+	}
+	else if (groupTipType == kTIMGroupTip_Quit) //退群
+	{
+		std::vector<std::string> userIds;
+		std::string userId = root[kTIMGroupTipsElemOpUser].asString();
+		userIds.emplace_back(userId);
+		std::lock_guard<std::mutex> lk(mutEventListeners_);
+		for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
+		{
+			(*iter)->onTICMemberQuit(userIds);
+		}
+	}
+	else if (groupTipType == kTIMGroupTip_Kick) //踢出群
+	{
+		std::vector<std::string> userIds;
+		const Json::Value& userArray = root[kTIMGroupTipsElemUserArray];
+		for (Json::ArrayIndex idx = 0; idx < userArray.size(); ++idx)
+		{
+			userIds.emplace_back(userArray[idx].asString());
+		}
+		std::lock_guard<std::mutex> lk(mutEventListeners_);
+		for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
+		{
+			(*iter)->onTICMemberQuit(userIds);
+		}
 	}
 }
 

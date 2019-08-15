@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "HttpClient.h"
 #include <time.h>
 #include <algorithm>

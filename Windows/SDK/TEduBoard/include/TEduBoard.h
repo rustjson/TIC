@@ -766,6 +766,19 @@ public:
     virtual void SetBoardRenderViewPos(int32_t x, int32_t y, uint32_t width, uint32_t height) = 0;
 
 	/**
+	 * 获取同步时间戳
+	 * @return 毫秒级同步时间戳
+	 */
+	virtual uint64_t GetSyncTime() = 0;
+
+	/**
+	 * 同步远端时间戳
+	 * @userId					远端用户ID
+	 * @timestamp				远端用户毫秒级同步时间戳
+	 */
+	virtual void SyncRemoteTime(const char *userId, uint64_t timestamp) = 0;
+
+	/**
 	 * 调用白板实验性接口
 	 * @param apiExp			要执行的白板相关JS代码
 	 * @return JS执行后的返回值转换而来的字符串

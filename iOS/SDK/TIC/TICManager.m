@@ -11,11 +11,12 @@
 #import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 #import <ImSDK/ImSDK.h>
 #else
-#import <TXLiteAVSDK_Mac/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK.h>
 #import <ImSDKForMac/ImSDK.h>
 #endif
 #import "TICRecorder.h"
 #import "TICReport.h"
+#import "TICWeakProxy.h"
 
 typedef id(^WeakRefBlock)(void);
 typedef id(^MakeWeakRefBlock)(id);
@@ -27,7 +28,7 @@ id makeWeakRef (id object) {
     return block();
 }
 
-@interface TICManager () <TIMUserStatusListener, TIMMessageListener, TRTCCloudDelegate, TEduBoardDelegate>
+@interface TICManager () <TIMUserStatusListener, TIMMessageListener, TRTCCloudDelegate, TEduBoardDelegate, TIMGroupEventListener>
 @property (nonatomic, assign) int sdkAppId;
 @property (nonatomic, strong) TICClassroomOption *option;
 @property (nonatomic, strong) NSString *userId;
@@ -42,6 +43,9 @@ id makeWeakRef (id object) {
 
 @property (nonatomic, strong) TEduBoardController *boardController;
 @property (nonatomic, strong) TICRecorder *recorder;
+
+
+@property (nonatomic, strong) NSTimer *syncTimer;
 @end
 
 @implementation TICManager
@@ -74,6 +78,7 @@ id makeWeakRef (id object) {
         [[TIMManager sharedInstance] addMessageListener:self];
         TIMUserConfig *userConfig = [[TIMUserConfig alloc] init];
         userConfig.userStatusListener = self;
+        userConfig.groupEventListener = self;
         userConfig.disableAutoReport = NO;
         [[TIMManager sharedInstance] setUserConfig:userConfig];
     }
@@ -82,7 +87,7 @@ id makeWeakRef (id object) {
 
 - (void)unInit
 {
-    
+    [[TIMManager sharedInstance] unInit];
 }
 
 - (void)login:(NSString *)userId userSig:(NSString *)userSig callback:(TICCallback)callback
@@ -125,14 +130,18 @@ id makeWeakRef (id object) {
     }
 };
 
-
-- (void)createClassroom:(int)classId callback:(TICCallback)callback
+- (void)createClassroom:(int)classId classScene:(TICClassScene)scene callback:(TICCallback)callback
 {
     TIMCreateGroupInfo *groupInfo = [[TIMCreateGroupInfo alloc] init];
     NSString *roomIdStr = [@(classId) stringValue];
     groupInfo.group = roomIdStr;
     groupInfo.groupName = roomIdStr;
-    groupInfo.groupType = @"Public";
+    if(scene == TIC_CLASS_SCENE_LIVE){
+        groupInfo.groupType = @"AVChatRoom";
+    }
+    else{
+        groupInfo.groupType = @"Public";
+    }
     groupInfo.setAddOpt = YES;
     groupInfo.addOpt = TIM_GROUP_ADD_ANY;
     [self report:TIC_REPORT_CREATE_GROUP_START];
@@ -202,6 +211,7 @@ id makeWeakRef (id object) {
 
 - (void)quitClassroom:(BOOL)clearBoard callback:(TICCallback)callback
 {
+    [self stopSyncTimer];
     if(clearBoard){
         [self.boardController reset];
     }
@@ -231,6 +241,16 @@ id makeWeakRef (id object) {
     }];
 }
 
+- (void)switchRole:(TICRoleType)role
+{
+    [[TRTCCloud sharedInstance] switchRole:(TRTCRoleType)role];
+    if(role == TIC_ROLE_TYPE_ANCHOR){
+        [self startSyncTimer];
+    }
+    else{
+        [self stopSyncTimer];
+    }
+}
 #pragma mark - manager
 - (TEduBoardController *)getBoardController
 {
@@ -361,6 +381,10 @@ id makeWeakRef (id object) {
     //进房回调
     TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, 0, nil);
     _enterCallback = nil;
+    //启动对时
+    if(_option.classScene == TIC_CLASS_SCENE_LIVE && _option.roleType == TIC_ROLE_TYPE_ANCHOR) {
+        [self startSyncTimer];
+    }
 }
 
 - (void)onExitRoom:(NSInteger)reason
@@ -462,9 +486,12 @@ id makeWeakRef (id object) {
     params.userId = _userId;
     params.userSig = _userSig;
     params.roomId = _option.classId;
+    if(_option.classScene == TIC_CLASS_SCENE_LIVE){
+        params.role = (TRTCRoleType)_option.roleType;
+    }
     [[TRTCCloud sharedInstance] setDelegate:self];
     [self report:TIC_REPORT_ENTER_ROOM_START];
-    [[TRTCCloud sharedInstance] enterRoom:params appScene:TRTCAppSceneVideoCall];
+    [[TRTCCloud sharedInstance] enterRoom:params appScene:(TRTCAppScene)_option.classScene];
 #if TARGET_OS_IPHONE
     if(_option.bOpenCamera && _option.renderView){
         [[TRTCCloud sharedInstance] startLocalPreview:_option.bFrontCamera view:_option.renderView];
@@ -588,38 +615,7 @@ id makeWeakRef (id object) {
                 }
             }
             else if ([elem isKindOfClass:[TIMGroupTipsElem class]]) {
-                TIMGroupTipsElem *tipElem = (TIMGroupTipsElem *)elem;
-                switch (tipElem.type) {
-                    case TIM_GROUP_TIPS_TYPE_INVITE: // 用户加入群
-                    {
-                        if([[@(_option.classId) stringValue] isEqualToString:tipElem.group]) {
-                            for (id<TICEventListener> listener in _eventListeners) {
-                                if (listener && [listener respondsToSelector:@selector(onTICMemberJoin:)]) {
-                                    [listener onTICMemberJoin:tipElem.userList];
-                                }
-                            }
-                        }
-                    }
-                        break;
-                    case TIM_GROUP_TIPS_TYPE_QUIT_GRP: // 用户退出群
-                    case TIM_GROUP_TIPS_TYPE_KICKED: // 用户被踢出群
-                    {
-                        if([[@(_option.classId) stringValue] isEqualToString:tipElem.group]) {
-                            for (id<TICEventListener> listener in _eventListeners) {
-                                if (listener && [listener respondsToSelector:@selector(onTICMemberQuit:)]) {
-                                    NSArray *arr = tipElem.userList;
-                                    if (tipElem.userList.count == 0) {
-                                        arr = @[tipElem.opUser];
-                                    }
-                                    [listener onTICMemberQuit:arr];
-                                }
-                            }
-                        }
-                    }
-                        break;
-                    default:
-                        break;
-                }
+                
             } else if ([elem isKindOfClass:[TIMGroupSystemElem class]]) {
                 TIMGroupSystemElem *sysElem = (TIMGroupSystemElem *)elem;
                 switch (sysElem.type) {
@@ -716,6 +712,79 @@ id makeWeakRef (id object) {
     }];
     //群ID上报
     [_recorder reportGroupId:[@(_option.classId) stringValue] sdkAppId:_sdkAppId userId:_userId userSig:_userSig];
+}
+
+- (void)onGroupTipsEvent:(TIMGroupTipsElem *)elem
+{
+    switch (elem.type) {
+        case TIM_GROUP_TIPS_TYPE_INVITE: // 用户加入群
+        {
+            if([[@(_option.classId) stringValue] isEqualToString:elem.group]) {
+                for (id<TICEventListener> listener in _eventListeners) {
+                    if (listener && [listener respondsToSelector:@selector(onTICMemberJoin:)]) {
+                        [listener onTICMemberJoin:elem.userList];
+                    }
+                }
+            }
+        }
+            break;
+        case TIM_GROUP_TIPS_TYPE_QUIT_GRP: // 用户退出群
+        case TIM_GROUP_TIPS_TYPE_KICKED: // 用户被踢出群
+        {
+            if([[@(_option.classId) stringValue] isEqualToString:elem.group]) {
+                for (id<TICEventListener> listener in _eventListeners) {
+                    if (listener && [listener respondsToSelector:@selector(onTICMemberQuit:)]) {
+                        NSArray *arr = elem.userList;
+                        if (elem.userList.count == 0) {
+                            arr = @[elem.opUser];
+                        }
+                        [listener onTICMemberQuit:arr];
+                    }
+                }
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark - LIVE
+- (void)startSyncTimer
+{
+    [self stopSyncTimer];
+    _syncTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:[TICWeakProxy proxyWithTarget:self] selector:@selector(syncRemoteTime) userInfo:nil repeats:YES];
+}
+
+- (void)stopSyncTimer
+{
+    if(_syncTimer){
+        [_syncTimer invalidate];
+        _syncTimer = nil;
+    }
+}
+- (void)syncRemoteTime
+{
+    uint64_t syncTime = [[[TICManager sharedInstance] getBoardController] getSyncTime];
+    NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+    [dataDic setObject:[NSNumber numberWithLongLong:syncTime] forKey:@"syncTime"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:nil];
+    NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [[[TICManager sharedInstance] getTRTCCloud] sendSEIMsg:data repeatCount:1];
+}
+
+- (void)onRecvSEIMsg:(NSString *)userId message:(NSData *)message
+{
+    NSError *error;
+    NSDictionary *dataDic = [NSJSONSerialization JSONObjectWithData:message options:0 error:&error];
+    if(!error){
+        if([dataDic isKindOfClass:[NSDictionary class]]){
+            NSNumber *remoteTimeNum = [dataDic objectForKey:@"syncTime"];
+            if(remoteTimeNum){
+                uint64_t remoteTime = [remoteTimeNum longLongValue];
+                [[[TICManager sharedInstance] getBoardController] syncRemoteTime:userId timestamp:remoteTime];
+            }
+        }
+    }
 }
 
 #pragma mark - report

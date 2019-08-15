@@ -12,7 +12,7 @@
 #import <TEduBoard/TEduBoard.h>
 #import <ImSDK/ImSDK.h>
 #else
-#import <TXLiteAVSDK_Mac/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK.h>
 #import <TEduBoard_Mac/TEduBoard.h>
 #import <ImSDKForMac/ImSDK.h>
 #endif
@@ -59,9 +59,10 @@
 /**
  * 创建课堂
  * @param classId 课堂Id【必填】
+ * @param scene   课堂场景【必填】
  * @param callback 回调【选填】
  **/
-- (void)createClassroom:(int)classId callback:(TICCallback)callback;
+- (void)createClassroom:(int)classId classScene:(TICClassScene)scene callback:(TICCallback)callback;
 /**
  * 销毁课堂
  * @param classId 课堂Id【必填】
@@ -81,7 +82,12 @@
  **/
 - (void)quitClassroom:(BOOL)clearBoard callback:(TICCallback)callback;
 
-
+/**
+ * 切换角色
+ * @param role 角色
+ * @brief 只在classScene为TIC_CLASS_SCENE_LIVE时有效
+ **/
+- (void)switchRole:(TICRoleType)role;
 
 /*********************************************************************************************************
  *
