@@ -13,7 +13,7 @@ TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更
 ```groovy
  dependencies {
     // TIC SaaS 组件
-    implementation "com.tencent.ticsaas:core:0.1.11-alpha"
+    implementation "com.tencent.ticsaas:core:0.1.12-alpha"
     // 实时音视频
     implementation "com.tencent.liteav:LiteAVSDK_TRTC:6.6.7458"
     // 云通信 IM SDK
