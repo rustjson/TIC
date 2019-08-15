@@ -116,10 +116,10 @@ TICClassroomViewController.h | 课堂主页视图控制器，承载了课堂主�
  */
 @interface TICClassroomConfig : NSObject
 
-@property (nonatomic, copy) NSString *classId;  // 课堂ID
+@property (nonatomic, copy) NSString *classID;  // 课堂ID
 @property (nonatomic, copy) NSString *userID;   // 用户ID
 @property (nonatomic, copy) NSString *userToken;// 用户密码
-@property (nonatomic, strong) NSNumber *organCode;  // 机构码（腾讯云互动课堂后台为每个注册企业的分配唯一标识码）
+@property (nonatomic, strong) NSNumber *companyID;  // 机构码（腾讯云互动课堂后台为每个注册企业的分配唯一标识码）
 @property (nonatomic, copy) NSString *userSig;  // 用户签名（没有在腾讯云互动课堂后台设置IM私钥的，必填；设置了IM私钥的填 nil）
 
 @end
