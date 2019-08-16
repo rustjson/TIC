@@ -1,5 +1,5 @@
 /**
- * ��Ѷ�ưװ�SDK��Window��Linuxƽ̨ͷ�ļ�
+ * 腾讯云白板SDK，Window、Linux平台头文件
  */
 
 #pragma once
@@ -50,51 +50,51 @@ class TEduBoardController;
 
 /*************************************************************************************************
  *
- * SDK�����ӿ�
+ * SDK导出接口
  *
  *************************************************************************************************/
 
 extern "C" {
     /**
-     * �����װ������ʵ��
-     * @param disableCefInit                �Ƿ����CEF��ܳ�ʼ����ͨ����Ĭ��ֵ����
-     * @return �װ������ʵ��ָ��
-     * @warning �ýӿڱ��������̵߳���
-     * @info ����SDK����CEF���(BSD-licensed)ʵ�֣������ĳ�����Ҳʹ����CEF��ܣ����ܻ���ڳ�ͻ��
-     *       �� disableCefInit == true ʱ�������õ�SDK�ڲ���CEF��ʼ��������������ڱ����ͻ��
-     *       �������г�ʼ��CEFʱ����ؽ� CefSettings::browser_subprocess_path �ֶ�ָ��TEduBoardRender�����Ա�֤SDK����������
+     * 创建白板控制类实例
+     * @param disableCefInit                是否禁用CEF框架初始化，通常传默认值即可
+     * @return 白板控制类实例指针
+     * @warning 该接口必须在主线程调用
+     * @info 由于SDK基于CEF框架(BSD-licensed)实现，若您的程序中也使用了CEF框架，可能会存在冲突。
+     *       当 disableCefInit == true 时，将禁用掉SDK内部的CEF初始化，这可能有助于避免冲突。
+     *       当您自行初始化CEF时，务必将 CefSettings::browser_subprocess_path 字段指向TEduBoardRender程序以保证SDK正常工作。
      */
     EDUSDK_API TEduBoardController *CreateTEduBoardController(bool disableCefInit = false);
 
     /**
-     * ���ٰװ������
-     * @param ppBoardController	ָ��װ������ָ��
-     * @param ppBoardControllerָ��ᱻ�Զ��ÿ�
+     * 销毁白板控制类
+     * @param ppBoardController	指向白板控制类指针
+     * @param ppBoardController指针会被自动置空
      */
     EDUSDK_API void DestroyTEduBoardController(TEduBoardController **ppBoardController);
 
     /**
-     * ���ðװ�������Ⱦ
-     * @return ����������Ⱦ�Ƿ�ɹ�
-     * @info ����������Ⱦʱ��SDK���ٴ����װ�VIEW������ͨ��onTEBOffscreenPaint�ص��ӿڽ��װ�������Ⱦ�����������׳�
-     * @warning �ýӿڱ���Ҫ�ڵ�һ�ε���CreateTEduBoardController֮ǰ���ò���Ч�����򽫻�ʧ��
+     * 启用白板离屏渲染
+     * @return 启用离屏渲染是否成功
+     * @info 启用离屏渲染时，SDK不再创建白板VIEW，而是通过onTEBOffscreenPaint回调接口将白板离屏渲染的像素数据抛出
+     * @warning 该接口必须要在第一次调用CreateTEduBoardController之前调用才有效，否则将会失败
      */
     EDUSDK_API bool EnableTEduBoardOffscreenRender();
 
 	/**
-	 * ���ðװ���־�ļ�·��
-	 * @param logFilePath					Ҫ���õİװ���־�ļ�·���������ļ������ļ���׺��UTF8���룬Ϊ�ջ�nullptr��ʾʹ��Ĭ��·��
-	 * @return ���ðװ���־�ļ�·���Ƿ�ɹ�
-	 * @warning �ýӿڱ���Ҫ�ڵ�һ�ε���CreateTEduBoardController֮ǰ���ò���Ч�����򽫻�ʧ��
-	 * @info Ĭ��·����Windows��Ϊ��%AppData%\Local\TIC\teduboard.log
-	 * @info Ĭ��·����Linux��Ϊ��~/TIC/teduboard.log
+	 * 设置白板日志文件路径
+	 * @param logFilePath					要设置的白板日志文件路径，包含文件名及文件后缀，UTF8编码，为空或nullptr表示使用默认路径
+	 * @return 设置白板日志文件路径是否成功
+	 * @warning 该接口必须要在第一次调用CreateTEduBoardController之前调用才有效，否则将会失败
+	 * @info 默认路径，Windows下为：%AppData%\Local\TIC\teduboard.log
+	 * @info 默认路径，Linux下为：~/TIC/teduboard.log
 	 */
 	EDUSDK_API bool SetTEduBoardLogFilePath(const char *logFilePath);
 
 	/**
-	 * ��ȡSDK�汾��
-	 * @return SDK�汾��
-	 * @info ����ֵ�ڴ���SDK�ڲ��������û�����Ҫ�Լ��ͷ�
+	 * 获取SDK版本号
+	 * @return SDK版本号
+	 * @info 返回值内存由SDK内部管理，用户不需要自己释放
 	 */
 	EDUSDK_API const char * GetTEduBoardVersion();
 }
@@ -102,143 +102,143 @@ extern "C" {
 
 /*************************************************************************************************
  *
- * a. ����ö��ֵ
+ * a. 参数枚举值
  *
  *************************************************************************************************/
 
 /**
- * �װ�����붨�壨���أ�
+ * 白板错误码定义（严重）
  */
-enum TEduBoardErrorCode {						//�¼�˵��
-	TEDU_BOARD_ERROR_INIT				= 1,	//��ʼ��ʧ��
-	TEDU_BOARD_ERROR_AUTH				= 2, 	//�����Ȩʧ�ܣ����ȹ������
-    TEDU_BOARD_ERROR_LOAD				= 3,	//�ļ�����ʧ��
-	TEDU_BOARD_ERROR_TIM_INVALID    	= 5,    //��Ѷ��IMSDK������
-	TEDU_BOARD_ERROR_HISTORYDATA		= 6,	//ͬ����ʷ����ʧ��
-	TEDU_BOARD_ERROR_RUNTIME			= 7,	//�װ����д���
+enum TEduBoardErrorCode {						//事件说明
+	TEDU_BOARD_ERROR_INIT				= 1,	//初始化失败
+	TEDU_BOARD_ERROR_AUTH				= 2, 	//服务鉴权失败，请先购买服务
+    TEDU_BOARD_ERROR_LOAD				= 3,	//文件加载失败
+	TEDU_BOARD_ERROR_TIM_INVALID    	= 5,    //腾讯云IMSDK不可用
+	TEDU_BOARD_ERROR_HISTORYDATA		= 6,	//同步历史数据失败
+	TEDU_BOARD_ERROR_RUNTIME			= 7,	//白板运行错误
 };
 
 /**
- * �װ�����붨�壨���棩
+ * 白板错误码定义（警告）
  */
-enum TEduBoardWarningCode {							//�¼�˵��
-	TEDU_BOARD_WARNING_SYNC_DATA_PARSE_FAILED       = 1,    //���յ������˵�ͬ�����ݽ�������
-	TEDU_BOARD_WARNING_TIM_SEND_MSG_FAILED          = 2,    //��Ѷ��IMSDK������Ϣʧ��
-	TEDU_BOARD_WARNING_H5PPT_ALREADY_EXISTS			= 3,    //Ҫ���ӵ�H5PPT�Ѵ���
-	TEDU_BOARD_WARNING_BOARD_LOAD_FAILED			= 4,	//�װ���Դ����ʧ�ܣ������ڲ�����
-	TEDU_BOARD_WARNING_ILLEGAL_OPERATION			= 5,	//�װ���ʷ���ݼ������֮ǰ��ֹ����
+enum TEduBoardWarningCode {							//事件说明
+	TEDU_BOARD_WARNING_SYNC_DATA_PARSE_FAILED       = 1,    //接收到其他端的同步数据解析错误
+	TEDU_BOARD_WARNING_TIM_SEND_MSG_FAILED          = 2,    //腾讯云IMSDK发送消息失败
+	TEDU_BOARD_WARNING_H5PPT_ALREADY_EXISTS			= 3,    //要添加的H5PPT已存在
+	TEDU_BOARD_WARNING_BOARD_LOAD_FAILED			= 4,	//白板资源加载失败，正在内部重试
+	TEDU_BOARD_WARNING_ILLEGAL_OPERATION			= 5,	//白板历史数据加载完成之前禁止操作
 };
 
 /**
- * �װ幤�߶���
+ * 白板工具定义
  */
-enum TEduBoardToolType {						//��������
-    TEDU_BOARD_TOOL_TYPE_MOUSE			= 0,	//���
-    TEDU_BOARD_TOOL_TYPE_PEN			= 1,	//����
-	TEDU_BOARD_TOOL_TYPE_ERASER			= 2,	//��Ƥ��
-	TEDU_BOARD_TOOL_TYPE_LASER			= 3,	//�����
-	TEDU_BOARD_TOOL_TYPE_LINE			= 4,	//ֱ��
-	TEDU_BOARD_TOOL_TYPE_OVAL			= 5,	//������Բ
-	TEDU_BOARD_TOOL_TYPE_RECT			= 6,	//���ľ���
-	TEDU_BOARD_TOOL_TYPE_OVAL_SOLID		= 7,	//ʵ����Բ
-	TEDU_BOARD_TOOL_TYPE_RECT_SOLID		= 8,	//ʵ�ľ���
-    TEDU_BOARD_TOOL_TYPE_POINT_SELECT	= 9,	//��ѡ����
-	TEDU_BOARD_TOOL_TYPE_RECT_SELECT    = 10,	//��ѡ����
-	TEDU_BOARD_TOOL_TYPE_TEXT			= 11,	//�ı�����
-	TEDU_BOARD_TOOL_TYPE_ZOOM_DRAG		= 12,	//�����ƶ��װ幤��
+enum TEduBoardToolType {						//工具名称
+    TEDU_BOARD_TOOL_TYPE_MOUSE			= 0,	//鼠标
+    TEDU_BOARD_TOOL_TYPE_PEN			= 1,	//画笔
+	TEDU_BOARD_TOOL_TYPE_ERASER			= 2,	//橡皮擦
+	TEDU_BOARD_TOOL_TYPE_LASER			= 3,	//激光笔
+	TEDU_BOARD_TOOL_TYPE_LINE			= 4,	//直线
+	TEDU_BOARD_TOOL_TYPE_OVAL			= 5,	//空心椭圆
+	TEDU_BOARD_TOOL_TYPE_RECT			= 6,	//空心矩形
+	TEDU_BOARD_TOOL_TYPE_OVAL_SOLID		= 7,	//实心椭圆
+	TEDU_BOARD_TOOL_TYPE_RECT_SOLID		= 8,	//实心矩形
+    TEDU_BOARD_TOOL_TYPE_POINT_SELECT	= 9,	//点选工具
+	TEDU_BOARD_TOOL_TYPE_RECT_SELECT    = 10,	//框选工具
+	TEDU_BOARD_TOOL_TYPE_TEXT			= 11,	//文本工具
+	TEDU_BOARD_TOOL_TYPE_ZOOM_DRAG		= 12,	//缩放移动白板工具
 };
 
 /**
- * �װ�ͼƬ������ģʽ����
- * @info ���Կ��Ȼ�׼�ȱ����Ŵ������;���ͬ���ж���Ч��һ�£����Ը߶Ȼ�׼�ȱ����Ŵ���Ӷ��;ӵ�ͬ���ж���Ч��һ��
+ * 白板图片填充对齐模式定义
+ * @info 当以宽度基准等比例放大，则居左和居右同居中对齐效果一致；当以高度基准等比例放大，则居顶和居底同居中对齐效果一致
  */
 enum TEduBoardImageFitMode {
-	TEDU_BOARD_IMAGE_FIT_MODE_CENTER	= 0,	//�Կ��Ȼ��߸߶�Ϊ��׼���ж���ȱ����Ŵ�
-	TEDU_BOARD_IMAGE_FIT_MODE_LEFT		= 4,	//�Կ��Ȼ��߸߶�Ϊ��׼�����ȱ����Ŵ�
-	TEDU_BOARD_IMAGE_FIT_MODE_TOP		= 5,	//�Կ��Ȼ��߸߶�Ϊ��׼������ȱ����Ŵ�
-	TEDU_BOARD_IMAGE_FIT_MODE_RIGHT		= 6,	//�Կ��Ȼ��߸߶�Ϊ��׼�Ҷ���ȱ����Ŵ�
-	TEDU_BOARD_IMAGE_FIT_MODE_BOTTOM	= 7,	//�Կ��Ȼ��߸߶�Ϊ��׼�׶���ȱ����Ŵ�
+	TEDU_BOARD_IMAGE_FIT_MODE_CENTER	= 0,	//以宽度或者高度为基准居中对齐等比例放大
+	TEDU_BOARD_IMAGE_FIT_MODE_LEFT		= 4,	//以宽度或者高度为基准左对齐等比例放大
+	TEDU_BOARD_IMAGE_FIT_MODE_TOP		= 5,	//以宽度或者高度为基准顶对齐等比例放大
+	TEDU_BOARD_IMAGE_FIT_MODE_RIGHT		= 6,	//以宽度或者高度为基准右对齐等比例放大
+	TEDU_BOARD_IMAGE_FIT_MODE_BOTTOM	= 7,	//以宽度或者高度为基准底对齐等比例放大
 };
 
 /**
- * �װ�ͼƬ״̬����
+ * 白板图片状态定义
  */
-enum TEduBoardImageStatus {						//״̬����
-	TEDU_BOARD_IMAGE_STATUS_LOADING		= 1,	//����ͼƬ���ڼ���
-	TEDU_BOARD_IMAGE_STATUS_LOAD_DONE	= 2,	//����ͼƬ�������
-	TEDU_BOARD_IMAGE_STATUS_LOAD_ABORT	= 3,	//����ͼƬ�����ж�
-	TEDU_BOARD_IMAGE_STATUS_LOAD_ERROR	= 4,	//����ͼƬ���ش���
+enum TEduBoardImageStatus {						//状态描述
+	TEDU_BOARD_IMAGE_STATUS_LOADING		= 1,	//背景图片正在加载
+	TEDU_BOARD_IMAGE_STATUS_LOAD_DONE	= 2,	//背景图片加载完成
+	TEDU_BOARD_IMAGE_STATUS_LOAD_ABORT	= 3,	//背景图片加载中断
+	TEDU_BOARD_IMAGE_STATUS_LOAD_ERROR	= 4,	//背景图片加载错误
 };
 
 /**
- * �װ��ı���ʽ
+ * 白板文本样式
  */
 enum TEduBoardTextStyle{
-    TEDU_BOARD_TEXT_STYLE_NORMAL		= 0,	//������ʽ
-    TEDU_BOARD_TEXT_STYLE_BOLD			= 1,	//������ʽ
-    TEDU_BOARD_TEXT_STYLE_ITALIC		= 2,	//б����ʽ
-    TEDU_BOARD_TEXT_STYLE_BOLD_ITALIC	= 3,	//��б����ʽ
+    TEDU_BOARD_TEXT_STYLE_NORMAL		= 0,	//常规样式
+    TEDU_BOARD_TEXT_STYLE_BOLD			= 1,	//粗体样式
+    TEDU_BOARD_TEXT_STYLE_ITALIC		= 2,	//斜体样式
+    TEDU_BOARD_TEXT_STYLE_BOLD_ITALIC	= 3,	//粗斜体样式
 };
 
 /**
- * �װ��ϴ�״̬
+ * 白板上传状态
  */
 enum TEduBoardUploadStatus{
-    TEDU_BOARD_UPLOAD_STATUS_SUCCEED	= 1,	//�ϴ��ɹ�
-    TEDU_BOARD_UPLOAD_STATUS_FAILED		= 2,	//�ϴ�ʧ��
+    TEDU_BOARD_UPLOAD_STATUS_SUCCEED	= 1,	//上传成功
+    TEDU_BOARD_UPLOAD_STATUS_FAILED		= 2,	//上传失败
 };
 
 /**
- * H5����״̬����
+ * H5背景状态定义
  */
 enum TEduBoardBackgroundH5Status{
-    TEDU_BOARD_BACKGROUND_H5_STATUS_LOADING        = 1,    //H5�������ڼ���
-    TEDU_BOARD_BACKGROUND_H5_STATUS_LOAD_FINISH    = 2,    //H5�����������
+    TEDU_BOARD_BACKGROUND_H5_STATUS_LOADING        = 1,    //H5背景正在加载
+    TEDU_BOARD_BACKGROUND_H5_STATUS_LOAD_FINISH    = 2,    //H5背景加载完成
 };
 
 /**
- * �װ���������Ӧģʽ�����ݰ���ͼƬ���ļ���PPT������
+ * 白板内容自适应模式（内容包括图片、文件、PPT动画）
  */
 enum TEduBoardContentFitMode {
-	TEDU_BOARD_CONTENT_FIT_MODE_NONE 			= 0,		//��ʹ����������Ӧ��Ĭ��ģʽ�����Զ������װ���߱ȣ����ݵȱ������ž�����ʾ�����ݿ���<=�װ����
-	TEDU_BOARD_CONTENT_FIT_MODE_CENTER_INSIDE 	= 1,		//�Զ������װ���߱�������һ�£����������װ壬�װ�ȱ������ž�����ʾ���װ����<=��������
-	TEDU_BOARD_CONTENT_FIT_MODE_CENTER_COVER 	= 2,		//�Զ������װ���߱�������һ�£����������װ壬�װ�ȱ������ž�����ʾ���װ����>=��������
+	TEDU_BOARD_CONTENT_FIT_MODE_NONE 			= 0,		//不使用内容自适应，默认模式，不自动调整白板宽高比，内容等比例缩放居中显示，内容宽高<=白板宽高
+	TEDU_BOARD_CONTENT_FIT_MODE_CENTER_INSIDE 	= 1,		//自动调整白板宽高比与内容一致，内容铺满白板，白板等比例缩放居中显示，白板宽高<=容器宽高
+	TEDU_BOARD_CONTENT_FIT_MODE_CENTER_COVER 	= 2,		//自动调整白板宽高比与内容一致，内容铺满白板，白板等比例缩放居中显示，白板宽高>=容器宽高
 };
 
 /**
- * ֱ������
+ * 直线类型
  */
 enum TEduBoardLineType {
-	TEDU_BOARD_LINE_TYPE_SOLID    = 1,    //ʵ��
-    TEDU_BOARD_LINE_TYPE_DOTTED   = 2,    //����
+	TEDU_BOARD_LINE_TYPE_SOLID    = 1,    //实线
+    TEDU_BOARD_LINE_TYPE_DOTTED   = 2,    //虚线
 };
 
 /**
- * ��ͷ����
+ * 箭头类型
  */
 enum TEduBoardArrowType {
-	TEDU_BOARD_ARROW_TYPE_NONE 		= 1,	//�޼�ͷ
-	TEDU_BOARD_ARROW_TYPE_NORMAL	= 2, 	//��ͨ��ͷ
-	TEDU_BOARD_ARROW_TYPE_SOLID 	= 3, 	//ʵ�ļ�ͷ
+	TEDU_BOARD_ARROW_TYPE_NONE 		= 1,	//无箭头
+	TEDU_BOARD_ARROW_TYPE_NORMAL	= 2, 	//普通箭头
+	TEDU_BOARD_ARROW_TYPE_SOLID 	= 3, 	//实心箭头
 };
 
 /**
- * ��Բ����ģʽ
+ * 椭圆绘制模式
  */
 enum TEduBoardOvalDrawMode {
-	TEDU_BOARD_OVAL_DRAW_MODE_FIX_START     = 1,    //�̶���ʼ�㣬��ʼ����յ���е�ΪԲ��
-    TEDU_BOARD_OVAL_DRAW_MODE_FIX_CENTER    = 2,    //�̶�Բ�ģ���ʼ��ΪԲ��
+	TEDU_BOARD_OVAL_DRAW_MODE_FIX_START     = 1,    //固定起始点，起始点和终点的中点为圆心
+    TEDU_BOARD_OVAL_DRAW_MODE_FIX_CENTER    = 2,    //固定圆心，起始点为圆心
 };
 
 
 /*************************************************************************************************
  *
- * b. �����ṹ��
+ * b. 参数结构体
  *
  *************************************************************************************************/
 
 /**
- * ��Ȩ����
+ * 授权参数
  */
 struct TEduBoardAuthParam {
 	uint32_t sdkAppId;
@@ -263,7 +263,7 @@ struct TEduBoardAuthParam {
 };
 
 /**
- * ��ɫ�������������Դ����������Ͷ��壬��ʹ�������������ͣ�
+ * 颜色参数（若语言自带有类似类型定义，可使用语言内置类型）
  */
 struct TEduBoardColor {
 	uint8_t red = 0;
@@ -291,25 +291,25 @@ struct TEduBoardColor {
 };
 
 /**
- * �װ��ʼ������
+ * 白板初始化参数
  */
 struct TEduBoardInitParam {
-	bool progressEnable;					//�Ƿ�����SDK����Loadingͼ��
-    const char * ratio;                     //Ĭ�ϰװ���߱ȣ��ɴ���ʽ�硰4:3������16:9�����ַ�����
-    bool drawEnable;                        //�Ƿ�����Ϳѻ
-    TEduBoardColor globalBackgroundColor;   //ȫ�ֱ���ɫ
-    TEduBoardToolType toolType;			    //�װ幤��
-    TEduBoardColor brushColor;              //������ɫ
-    uint32_t brushThin;						//���ʴ�ϸ
-    TEduBoardColor textColor;               //�ı���ɫ
-    uint32_t textSize;                      //�ı���ϸ
-    TEduBoardTextStyle textStyle;           //�ı���ʽ
-    bool timSync;                           //�Ƿ�ʹ����Ѷ��IMSDK����ʵʱ����ͬ��
-	bool dataSyncEnable;					//�Ƿ���������ͬ�������ú󽫵��±��ذװ�������ᱻͬ����Զ��
-	uint32_t preloadDepth;					//ͼƬԤ������ȣ�Ĭ��ֵ5����ʾԤ���ص�ǰҳǰ��5ҳ��ͼƬ
-	double smoothLevel;						//�ʼ�ƽ��ϵ����Ĭ��0.1����Χ [0��1]
-	TEduBoardContentFitMode contentFitMode; //��������Ӧģʽ
-	const char * experimental;				//ʵ���Բ��������ֵ�����JSON��
+	bool progressEnable;					//是否启用SDK内置Loading图标
+    const char * ratio;                     //默认白板宽高比（可传格式如“4:3”、“16:9”的字符串）
+    bool drawEnable;                        //是否允许涂鸦
+    TEduBoardColor globalBackgroundColor;   //全局背景色
+    TEduBoardToolType toolType;			    //白板工具
+    TEduBoardColor brushColor;              //画笔颜色
+    uint32_t brushThin;						//画笔粗细
+    TEduBoardColor textColor;               //文本颜色
+    uint32_t textSize;                      //文本粗细
+    TEduBoardTextStyle textStyle;           //文本样式
+    bool timSync;                           //是否使用腾讯云IMSDK进行实时数据同步
+	bool dataSyncEnable;					//是否启用数据同步，禁用后将导致本地白板操作不会被同步给远端
+	uint32_t preloadDepth;					//图片预加载深度，默认值5，表示预加载当前页前后5页的图片
+	double smoothLevel;						//笔迹平滑系数，默认0.1，范围 [0，1]
+	TEduBoardContentFitMode contentFitMode; //内容自适应模式
+	const char * experimental;				//实验性参数集，字典类型JSON串
 
     TEduBoardInitParam()
             : progressEnable(false)
@@ -334,12 +334,12 @@ struct TEduBoardInitParam {
 };
 
 /**
- * ֱ����ʽ
+ * 直线样式
  */
 struct TEduBoardLineStyle {
-	TEduBoardLineType lineType;			//ֱ������
-	TEduBoardArrowType startArrowType;	//����ͷ����
-	TEduBoardArrowType endArrowType; 	//�յ��ͷ����
+	TEduBoardLineType lineType;			//直线类型
+	TEduBoardArrowType startArrowType;	//起点箭头类型
+	TEduBoardArrowType endArrowType; 	//终点肩头类型
 
 	TEduBoardLineStyle()
 			: lineType(TEDU_BOARD_LINE_TYPE_SOLID)
@@ -351,10 +351,10 @@ struct TEduBoardLineStyle {
 };
 
 struct TEduBoardTranscodeFileResult {
-	char title[256];		//�ļ�����
-	char url[1024];			//�ļ���������
-	char resolution[32];	//�ļ��ֱ���
-	uint32_t pages;			//�ļ���ҳ��
+	char title[256];		//文件标题
+	char url[1024];			//文件下载链接
+	char resolution[32];	//文件分辨率
+	uint32_t pages;			//文件总页数
 
 	TEduBoardTranscodeFileResult() 
 			: pages(0)
@@ -366,12 +366,12 @@ struct TEduBoardTranscodeFileResult {
 };
 
 /**
- * �װ���Ϣ
+ * 白板信息
  */
 struct TEduBoardInfo {
-    const char * boardId;		        //�װ�ID
-    const char * backgroundUrl;		    //�װ屳��ͼ���߱���H5ҳ���URL
-    TEduBoardColor backgroundColor;     //�װ屳��ɫ
+    const char * boardId;		        //白板ID
+    const char * backgroundUrl;		    //白板背景图或者背景H5页面的URL
+    TEduBoardColor backgroundColor;     //白板背景色
 
     TEduBoardInfo()
             : boardId(nullptr)
@@ -390,7 +390,7 @@ struct TEduBoardInfo {
 };
 
 /**
- * �װ���Ϣ�б�
+ * 白板信息列表
  */
 class TEduBoardInfoList {
 protected:
@@ -398,26 +398,26 @@ protected:
 
 public:
     /**
-     * @return �װ���Ϣ����
+     * @return 白板信息个数
      */
     virtual uint32_t GetCount() const = 0;
 
     /**
-     * @return �װ���Ϣ
+     * @return 白板信息
      */
     virtual TEduBoardInfo GetBoardInfo(uint32_t index) const = 0;
 };
 
 /**
- * �ļ���Ϣ
+ * 文件信息
  */
 struct TEduBoardFileInfo {
-	const char * fileId;						//�ļ�ID
-	const char * title;							//�ļ���
-	const char * downloadUrl; 					//�ļ����ص�ַ
-    uint32_t pageIndex;							//�ļ���ǰ��ʾ��ҳ��
-    uint32_t pageCount;							//�ļ�ҳ��
-	const TEduBoardInfoList *boardInfoList;		//�װ���Ϣ�б�
+	const char * fileId;						//文件ID
+	const char * title;							//文件名
+	const char * downloadUrl; 					//文件下载地址
+    uint32_t pageIndex;							//文件当前显示的页数
+    uint32_t pageCount;							//文件页数
+	const TEduBoardInfoList *boardInfoList;		//白板信息列表
 
     TEduBoardFileInfo()
             : fileId(nullptr)
@@ -443,7 +443,7 @@ struct TEduBoardFileInfo {
 };
 
 /**
- * �ļ���Ϣ�б�
+ * 文件信息列表
  */
 class TEduBoardFileInfoList {
 protected:
@@ -451,24 +451,24 @@ protected:
 
 public:
 	/**
-	 * @return �ļ���Ϣ����
+	 * @return 文件信息个数
 	 */
 	virtual uint32_t GetCount() const = 0;
 
 	/**
-	 * @return �ļ���Ϣ
+	 * @return 文件信息
 	 */
 	virtual TEduBoardFileInfo GetFileInfo(uint32_t index) const = 0;
 
 	/**
-	 * �ͷ��ļ���Ϣ�б�
-	 * @warning �ļ���Ϣ�б�ʹ����֮����ص��øýӿ����ͷ��ڴ�
+	 * 释放文件信息列表
+	 * @warning 文件信息列表使用完之后，务必调用该接口以释放内存
 	 */
 	virtual void Release() = 0;
 };
 
 /**
- * �װ�ID�б�
+ * 白板ID列表
  */
 class TEduBoardList {
 protected:
@@ -476,19 +476,19 @@ protected:
 
 public:
 	/**
-	 * @return �װ����
+	 * @return 白板个数
 	 */
 	virtual uint32_t GetCount() const = 0;
 
 	/**
-	 * @return �װ�ID
-	 * @info ����ֵ�ڴ���SDK�ڲ�����������Ҫ�û������ͷ�
+	 * @return 白板ID
+	 * @info 返回值内存由SDK内部管理，不需要用户自行释放
 	 */
 	virtual const char * GetBoard(uint32_t index) const = 0;
 
 	/**
-	 * �ͷŰװ�ID�б�
-	 * @warning �װ�ID�б�ʹ����֮����ص��øýӿ����ͷ��ڴ�
+	 * 释放白板ID列表
+	 * @warning 白板ID列表使用完之后，务必调用该接口以释放内存
 	 */
 	virtual void Release() = 0;
 };
@@ -496,183 +496,183 @@ public:
 
 /*************************************************************************************************
  *
- * c. �¼��ص��ӿ�
+ * c. 事件回调接口
  *
  *************************************************************************************************/
 struct TEduBoardCallback {
 	/*********************************************************************************************
 	 *
-	 *										һ���������̻ص�
+	 *										一、基本流程回调
 	 *
 	 *********************************************************************************************/
 	 /**
-	  * �װ����ص�
-	  * @param code				�����룬�μ�TEduBoardErrorCode����
-	  * @param msg				������Ϣ�������ʽΪUTF8
+	  * 白板错误回调
+	  * @param code				错误码，参见TEduBoardErrorCode定义
+	  * @param msg				错误信息，编码格式为UTF8
 	  */
 	virtual void onTEBError(TEduBoardErrorCode code, const char *msg) = 0;
 
 	/**
-	 * �װ徯��ص�
-	 * @param code				�����룬�μ�TEduBoardWarningCode����
-	 * @param msg				������Ϣ�������ʽΪUTF8
+	 * 白板警告回调
+	 * @param code				错误码，参见TEduBoardWarningCode定义
+	 * @param msg				错误信息，编码格式为UTF8
 	 */
 	virtual void onTEBWarning(TEduBoardWarningCode code, const char *msg) = 0;
 
 	/**
-	 * �װ��ʼ����ɻص����յ��ûص����ʾ�װ��Ѵ��ڿ���������״̬����ʱ�װ�Ϊ�հװװ壬��ʷ������δ��ȡ����
+	 * 白板初始化完成回调，收到该回调后表示白板已处于可正常工作状态（此时白板为空白白板，历史数据尚未拉取到）
 	 */
 	virtual void onTEBInit() = 0;
 
 	/**
-	 * �װ���ʷ����ͬ����ɻص�
+	 * 白板历史数据同步完成回调
 	 */
 	virtual void onTEBHistroyDataSyncCompleted() {};
 
 	/**
-	 * �װ�ͬ�����ݻص�
-	 * @param data				�װ�ͬ�����ݣ�JSON��ʽ�ַ�����
-	 * @info �յ��ûص�ʱ��Ҫ���ص�����ͨ������ͨ�����͸������������ˣ��������յ������AddSyncData�ӿڽ��������ӵ��װ���ʵ������ͬ��
-	 * @info �ûص����ڶ���װ�������ͬ����ʹ����Ѷ��IMSDK����ʵʱ����ͬ��ʱ�������յ��ûص�
+	 * 白板同步数据回调
+	 * @param data				白板同步数据（JSON格式字符串）
+	 * @info 收到该回调时需要将回调数据通过信令通道发送给房间内其他人，接受者收到后调用AddSyncData接口将数据添加到白板以实现数据同步
+	 * @info 该回调用于多个白板间的数据同步，使用腾讯云IMSDK进行实时数据同步时，不会收到该回调
 	 */
 	virtual void onTEBSyncData(const char *data) {};
 
 	/**
-	 * �װ�ɳ���״̬�ı�ص�
-	 * @param canUndo			�װ嵱ǰ�Ƿ���ִ��Undo����
+	 * 白板可撤销状态改变回调
+	 * @param canUndo			白板当前是否还能执行Undo操作
 	 */
 	virtual void onTEBUndoStatusChanged(bool canUndo) {};
 
 	/**
-	 * �װ������״̬�ı�ص�
-	 * @param canRedo			�װ嵱ǰ�Ƿ���ִ��Redo����
+	 * 白板可重做状态改变回调
+	 * @param canRedo			白板当前是否还能执行Redo操作
 	 */
 	virtual void onTEBRedoStatusChanged(bool canRedo) {};
 
 	/**
-	 * �װ�������Ⱦ�ص�
-	 * @param buffer            �װ��������ݣ���СΪwidth * height * 4�������԰װ����Ϸ�Ϊԭ������Ҵ��ϵ��°�BGRA����
-	 * @param width             �װ��������ݵĿ���
-	 * @param height            �װ��������ݵĸ߶�
-	 * @info �ûص�ֻ��������������Ⱦʱ�Żᱻ����
+	 * 白板离屏渲染回调
+	 * @param buffer            白板像素数据，大小为width * height * 4，像素以白板左上方为原点从左到右从上到下按BGRA排列
+	 * @param width             白板像素数据的宽度
+	 * @param height            白板像素数据的高度
+	 * @info 该回调只有在启用离屏渲染时才会被触发
 	 */
 	virtual void onTEBOffscreenPaint(const void* buffer, uint32_t width, uint32_t height) {};
 
 
 	/*********************************************************************************************
 	 *
-	 *										����Ϳѻ��ػص�
+	 *										二、涂鸦相关回调
 	 *
 	 *********************************************************************************************/
 	 /**
-	  * �װ�ͼƬ״̬�ı�ص�
-	  * @param boardId			�װ�ID
-	  * @param url				�װ�ͼƬURL
-	  * @param status			�µİװ�ͼƬ״̬
+	  * 白板图片状态改变回调
+	  * @param boardId			白板ID
+	  * @param url				白板图片URL
+	  * @param status			新的白板图片状态
 	  */
 	virtual void onTEBImageStatusChanged(const char *boardId, const char *url, TEduBoardImageStatus status) {};
 
 	/**
-	 * ���ðװ屳��ͼƬ�ص�
-	 * @param url				����SetBackgroundImageʱ�����URL
-	 * @info ֻ�б��ص���SetBackgroundImageʱ���յ��ûص�
-	 * @info �յ��ûص���ʾ����ͼƬ�Ѿ��ϴ������سɹ���������ʾ����
+	 * 设置白板背景图片回调
+	 * @param url				调用SetBackgroundImage时传入的URL
+	 * @info 只有本地调用SetBackgroundImage时会收到该回调
+	 * @info 收到该回调表示背景图片已经上传或下载成功，并且显示出来
 	 */
 	virtual void onTEBSetBackgroundImage(const char *url) {};
 
 	/**
-	 * ���ðװ屳��H5״̬�ı�ص�
-	 * @param boardId           �װ�ID
-	 * @param url               �װ�ͼƬURL
-	 * @param status            �µİװ�ͼƬ״̬
+	 * 设置白板背景H5状态改变回调
+	 * @param boardId           白板ID
+	 * @param url               白板图片URL
+	 * @param status            新的白板图片状态
 	 */
 	virtual void onTEBBackgroundH5StatusChanged(const char *boardId, const char *url, TEduBoardBackgroundH5Status status) {};
 
 
 	/*********************************************************************************************
 	 *
-	 *										�����װ�ҳ�����ص�
+	 *										三、白板页操作回调
 	 *
 	 *********************************************************************************************/
 	 /**
-	  * ���Ӱװ�ҳ�ص�
-	  * @param boardList		���ӵİװ�ҳID�б���ʹ�ú���Ҫ���е���Release�����ͷţ�SDK�ڲ��Զ��ͷţ�
-	  * @param fileId			���ӵİװ�ҳ�������ļ�ID��Ŀǰ�汾ֻ����Ϊ#DEFAULT��
+	  * 增加白板页回调
+	  * @param boardList		增加的白板页ID列表（使用后不需要自行调用Release方法释放，SDK内部自动释放）
+	  * @param fileId			增加的白板页所属的文件ID（目前版本只可能为#DEFAULT）
 	  */
 	virtual void onTEBAddBoard(const TEduBoardList *boardList, const char *fileId) {};
 
 	/**
-	 * ɾ���װ�ҳ�ص�
-	 * @param boardList			ɾ���İװ�ҳID��ʹ�ú���Ҫ���е���Release�����ͷţ�SDK�ڲ��Զ��ͷţ�
-	 * @param fileId			ɾ���İװ�ҳ�������ļ�ID��Ŀǰ�汾ֻ����Ϊ#DEFAULT��
+	 * 删除白板页回调
+	 * @param boardList			删除的白板页ID（使用后不需要自行调用Release方法释放，SDK内部自动释放）
+	 * @param fileId			删除的白板页所属的文件ID（目前版本只可能为#DEFAULT）
 	 */
 	virtual void onTEBDeleteBoard(const TEduBoardList *boardList, const char *fileId) {};
 
 	/**
-	 * ��ת�װ�ҳ�ص�
-	 * @param boardId			��ת���İװ�ҳID
-	 * @param fileId			��ת���İװ�ҳ�������ļ�ID
+	 * 跳转白板页回调
+	 * @param boardId			跳转到的白板页ID
+	 * @param fileId			跳转到的白板页所属的文件ID
 	 */
 	virtual void onTEBGotoBoard(const char *boardId, const char *fileId) {};
 
 
 	/*********************************************************************************************
 	 *
-	 *										�ġ��ļ������ص�
+	 *										四、文件操作回调
 	 *
 	 *********************************************************************************************/
 
 	 /**
-	  * �����ļ��ص�
-	  * @deprecated �ûص��ѷ����������ᱻɾ����������ʹ�ã������ļ���ͳһʹ��AddTranscodeFile�ӿ�
-	  * @param fileId			���ӵ��ļ�ID
-	  * @info �ļ��ϴ���ɺ�Żᴥ���ûص�
+	  * 增加文件回调
+	  * @deprecated 该回调已废弃，后续会被删除，不建议使用，添加文件请统一使用AddTranscodeFile接口
+	  * @param fileId			增加的文件ID
+	  * @info 文件上传完成后才会触发该回调
 	  */
 	virtual void onTEBAddFile(const char *fileId) {};
 
 	/**
-	 * ����H5����PPT�ļ��ص�
-	 * @deprecated �ûص��ѷ����������ᱻɾ����������ʹ�ã������ļ���ͳһʹ��AddTranscodeFile�ӿ�
-	 * @param fileId			���ӵ��ļ�ID
-	 * @info �ļ�������ɺ�Żᴥ���ûص�
+	 * 增加H5动画PPT文件回调
+	 * @deprecated 该回调已废弃，后续会被删除，不建议使用，添加文件请统一使用AddTranscodeFile接口
+	 * @param fileId			增加的文件ID
+	 * @info 文件加载完成后才会触发该回调
 	 */
 	virtual void onTEBAddH5PPTFile(const char *fileId) {};
 
 	/**
-	 * ����ת���ļ��ص�
-	 * @param fileId			���ӵ��ļ�ID
-	 * @info �ļ�������ɺ�Żᴥ���ûص�
+	 * 增加转码文件回调
+	 * @param fileId			增加的文件ID
+	 * @info 文件加载完成后才会触发该回调
 	 */
 	virtual void onTEBAddTranscodeFile(const char *fileId) {};
 
 	/**
-	 * ɾ���ļ��ص�
-	 * @param fileId			ɾ�����ļ�ID
+	 * 删除文件回调
+	 * @param fileId			删除的文件ID
 	 */
 	virtual void onTEBDeleteFile(const char *fileId) {};
 
 	/**
-	 * �л��ļ��ص�
-	 * @param fileId			�л������ļ�ID
+	 * 切换文件回调
+	 * @param fileId			切换到的文件ID
 	 */
 	virtual void onTEBSwitchFile(const char *fileId) {};
 
 	/**
-	 * �ļ��ϴ����Ȼص�
-	 * @param fileId            �����ϴ����ļ�ID
-	 * @param currentBytes      ��ǰ���ϴ���С����λbytes
-	 * @param totalBytes        �ļ��ܴ�С����λbytes
-	 * @param uploadSpeed       �ļ��ϴ��ٶȣ���λbytes
-	 * @param percent			�ļ��ϴ����ȣ�ȡֵ��Χ [0, 1]
+	 * 文件上传进度回调
+	 * @param fileId            正在上传的文件ID
+	 * @param currentBytes      当前已上传大小，单位bytes
+	 * @param totalBytes        文件总大小，单位bytes
+	 * @param uploadSpeed       文件上传速度，单位bytes
+	 * @param percent			文件上传进度，取值范围 [0, 1]
 	 */
 	virtual void onTEBFileUploadProgress(const char *fileId, int currentBytes, int totalBytes, int uploadSpeed, double percent) {};
 
 	/**
-	 * �ļ��ϴ�״̬�ص�
-	 * @param fileId            �����ϴ����ļ�ID
-	 * @param status            �ļ��ϴ�״̬
-	 * @param errorCode			�ļ��ϴ�������
-	 * @param errorMsg			�ļ��ϴ�������Ϣ
+	 * 文件上传状态回调
+	 * @param fileId            正在上传的文件ID
+	 * @param status            文件上传状态
+	 * @param errorCode			文件上传错误码
+	 * @param errorMsg			文件上传错误信息
 	 */
 	virtual void onTEBFileUploadStatus(const char *fileId, TEduBoardUploadStatus status, int errorCode, const char *errorMsg) {};
 
@@ -681,484 +681,484 @@ struct TEduBoardCallback {
 
 /*************************************************************************************************
  *
- * d. �װ������
+ * d. 白板控制器
  *
  *************************************************************************************************/
 class TEduBoardController {
 protected:
 	/**
-	 * ��������
+	 * 析构函数
 	 */
 	virtual ~TEduBoardController() {};
 
 public:
     /*********************************************************************************************
      *
-     *										һ���������̽ӿ�
+     *										一、基本流程接口
      *
      *********************************************************************************************/
 
 	/**
-	 * �����¼��ص�����
-	 * @param callback 			�¼��ص�����
-	 * @warning ������Init֮ǰ���ø÷�����֧�ִ�����
+	 * 设置事件回调监听
+	 * @param callback 			事件回调监听
+	 * @warning 建议在Init之前调用该方法以支持错误处理
 	 */
 	virtual void AddCallback(TEduBoardCallback * callback) = 0;
 
 	/**
-	 * ɾ���¼��ص�����
-	 * @param callback 			�¼��ص�����
+	 * 删除事件回调监听
+	 * @param callback 			事件回调监听
 	 */
 	virtual void RemoveCallback(TEduBoardCallback *callback) = 0;
 
     /**
-     * ��ʼ���װ�
-     * @param authParam 		��Ȩ����
-     * @param roomId 			����ID
-     * @param initParam	 	 	��ѡ������ָ�����ڳ�ʼ���װ��һϵ������ֵ
-     * @info ���� initParam.timSync ָ���Ƿ�ʹ����Ѷ��IMSDK����ʵʱ����ͬ��
-     * @info initParam.timSync == true ʱ���᳢�Է��������Ѷ��IMSDK��Ϊ����ͨ������ʵʱ�����շ���ֻʵ����Ϣ�շ�����ʼ���������Ȳ�����Ҫ�û�����ʵ�֣���Ŀǰ��֧��IMSDK 4.3.118�����ϰ汾
-     * @warning ʹ����Ѷ��IMSDK����ʵʱ����ͬ��ʱ��ֻ֧��һ���װ�ʵ������������װ�ʵ�����ܵ���Ϳѻ״̬�쳣
+     * 初始化白板
+     * @param authParam 		授权参数
+     * @param roomId 			课堂ID
+     * @param initParam	 	 	可选参数，指定用于初始化白板的一系列属性值
+     * @info 可用 initParam.timSync 指定是否使用腾讯云IMSDK进行实时数据同步
+     * @info initParam.timSync == true 时，会尝试反射调用腾讯云IMSDK作为信令通道进行实时数据收发（只实现消息收发，初始化、进房等操作需要用户自行实现），目前仅支持IMSDK 4.3.118及以上版本
+     * @warning 使用腾讯云IMSDK进行实时数据同步时，只支持一个白板实例，创建多个白板实例可能导致涂鸦状态异常
      */
 	virtual void Init(const TEduBoardAuthParam & authParam, uint32_t roomId, const TEduBoardInitParam &initParam = TEduBoardInitParam()) = 0;
 
 	/**
-	 * ��ȡ�װ���ȾView
-	 * @param callback 			�¼��ص�����
-	 * @warning ������Init֮ǰ���ø÷�����֧�ִ�����
+	 * 获取白板渲染View
+	 * @param callback 			事件回调监听
+	 * @warning 建议在Init之前调用该方法以支持错误处理
 	 */
 	virtual WINDOW_HANDLE GetBoardRenderView() = 0;
 
 	/**
-	 * ���Ӱװ�ͬ������
-	 * @param data 				���յ��ķ����������˷��͵�ͬ������
-	 * @info �ýӿ����ڶ���װ�������ͬ����ʹ������IM��Ϊ����ͨ��ʱ������Ҫ���øýӿ�
+	 * 添加白板同步数据
+	 * @param data 				接收到的房间内其他人发送的同步数据
+	 * @info 该接口用于多个白板间的数据同步，使用内置IM作为信令通道时，不需要调用该接口
 	 */
 	virtual void AddSyncData(const char * data) = 0;
 
 	/**
-	 * ���ðװ��Ƿ�������ͬ��
-	 * @param enable    �Ƿ���
-	 * @brief �װ崴����Ĭ�Ͽ�������ͬ�����ر�����ͬ�������ص����аװ��������ͬ����Զ�˺ͷ�����
+	 * 设置白板是否开启数据同步
+	 * @param enable    是否开启
+	 * @brief 白板创建后默认开启数据同步，关闭数据同步，本地的所有白板操作不会同步到远端和服务器
 	 */
 	virtual void SetDataSyncEnable(bool enable) = 0;
 
 	/**
-	 * ��ȡ�װ��Ƿ�������ͬ��
-	 * @return �Ƿ�������ͬ����true ��ʾ������false ��ʾ�ر�
+	 * 获取白板是否开启数据同步
+	 * @return 是否开启数据同步，true 表示开启，false 表示关闭
 	 */
 	virtual bool IsDataSyncEnable() = 0;
 
     /**
-     * ���ðװ�
-     * @info ���øýӿں󽫻�ɾ�����еİװ�ҳ���ļ�
+     * 重置白板
+     * @info 调用该接口后将会删除所有的白板页和文件
      */
     virtual void Reset() = 0;
 
     /**
-     * ���ðװ���ȾView��λ�úʹ�С
-     * @param x                 Ҫ���õİװ���ȾView��λ��X����
-     * @param y                 Ҫ���õİװ���ȾView��λ��Y����
-     * @param width             Ҫ���õİװ���ȾView�Ŀ���
-     * @param height            Ҫ���õİװ���ȾView�ĸ߶�
-     * @info �װ���ȾView�и�����ʱ��(x, y) ָ������丸���ڵ�λ��
+     * 设置白板渲染View的位置和大小
+     * @param x                 要设置的白板渲染View的位置X分量
+     * @param y                 要设置的白板渲染View的位置Y分量
+     * @param width             要设置的白板渲染View的宽度
+     * @param height            要设置的白板渲染View的高度
+     * @info 白板渲染View有父窗口时，(x, y) 指定相对其父窗口的位置
      */
     virtual void SetBoardRenderViewPos(int32_t x, int32_t y, uint32_t width, uint32_t height) = 0;
 
 	/**
-	 * ��ȡͬ��ʱ���
-	 * @return ���뼶ͬ��ʱ���
+	 * 获取同步时间戳
+	 * @return 毫秒级同步时间戳
 	 */
 	virtual uint64_t GetSyncTime() = 0;
 
 	/**
-	 * ͬ��Զ��ʱ���
-	 * @userId					Զ���û�ID
-	 * @timestamp				Զ���û����뼶ͬ��ʱ���
+	 * 同步远端时间戳
+	 * @userId					远端用户ID
+	 * @timestamp				远端用户毫秒级同步时间戳
 	 */
 	virtual void SyncRemoteTime(const char *userId, uint64_t timestamp) = 0;
 
 	/**
-	 * ���ðװ�ʵ���Խӿ�
-	 * @param apiExp			Ҫִ�еİװ����JS����
-	 * @return JSִ�к�ķ���ֵת���������ַ���
+	 * 调用白板实验性接口
+	 * @param apiExp			要执行的白板相关JS代码
+	 * @return JS执行后的返回值转换而来的字符串
 	 */
 	virtual const char * CallExperimentalAPI(const char * apiExp) = 0;
 
 
     /*********************************************************************************************
      *
-     *										����Ϳѻ��ؽӿ�
+     *										二、涂鸦相关接口
      *
      *********************************************************************************************/
 
 	 /**
-	  * ���ðװ��Ƿ�����Ϳѻ
-	  * @param enable 			�Ƿ�����Ϳѻ��true ��ʾ�װ����Ϳѻ��false ��ʾ�װ岻��Ϳѻ
-	  * @info �װ崴����Ĭ��Ϊ����Ϳѻ״̬
+	  * 设置白板是否允许涂鸦
+	  * @param enable 			是否允许涂鸦，true 表示白板可以涂鸦，false 表示白板不能涂鸦
+	  * @info 白板创建后默认为允许涂鸦状态
 	  */
 	virtual void SetDrawEnable(bool enable) = 0;
 
     /**
-     * ��ȡ�װ��Ƿ�����Ϳѻ
-     * @return �Ƿ�����Ϳѻ��true ��ʾ�װ����Ϳѻ��false ��ʾ�װ岻��Ϳѻ
+     * 获取白板是否允许涂鸦
+     * @return 是否允许涂鸦，true 表示白板可以涂鸦，false 表示白板不能涂鸦
      */
     virtual bool IsDrawEnable() = 0;
 
     /**
-     * �������аװ�ı���ɫ
-     * @param color 			Ҫ���õ�ȫ�ֱ���ɫ
-     * @info ���øýӿڽ��������аװ�ı���ɫ�����ı�
-     * @info �´����װ��Ĭ�ϱ���ɫȡȫ�ֱ���ɫ
+     * 设置所有白板的背景色
+     * @param color 			要设置的全局背景色
+     * @info 调用该接口将导致所有白板的背景色发生改变
+     * @info 新创建白板的默认背景色取全局背景色
      */
 	virtual void SetGlobalBackgroundColor(const TEduBoardColor &color) = 0;
 
     /**
-	 * ��ȡ�װ�ȫ�ֱ���ɫ
-	 * @return ȫ�ֱ���ɫ
+	 * 获取白板全局背景色
+	 * @return 全局背景色
 	 */
     virtual TEduBoardColor GetGlobalBackgroundColor() = 0;
 
 	/**
-	 * ���õ�ǰ�װ�ҳ�ı���ɫ
-	 * @param color 			Ҫ���õı���ɫ
-	 * @info �װ�ҳ�����Ժ��Ĭ�ϱ���ɫ��SetDefaultBackgroundColor�ӿ��趨
+	 * 设置当前白板页的背景色
+	 * @param color 			要设置的背景色
+	 * @info 白板页创建以后的默认背景色由SetDefaultBackgroundColor接口设定
 	 */
 	virtual void SetBackgroundColor(const TEduBoardColor & color) = 0;
 
     /**
-     * ��ȡ��ǰ�װ�ҳ�ı���ɫ
-     * @return ��ǰ�װ�ҳ�ı���ɫ
+     * 获取当前白板页的背景色
+     * @return 当前白板页的背景色
      */
     virtual TEduBoardColor GetBackgroundColor() = 0;
 
 	/**
-	 * ����Ҫʹ�õİװ幤��
-	 * @param type 				Ҫ���õİװ幤��
+	 * 设置要使用的白板工具
+	 * @param type 				要设置的白板工具
 	 */
 	virtual void SetToolType(TEduBoardToolType type) = 0;
 
     /**
-     * ��ȡ����ʹ�õİװ幤��
-     * @return ����ʹ�õİװ幤��
+     * 获取正在使用的白板工具
+     * @return 正在使用的白板工具
      */
     virtual TEduBoardToolType GetToolType() = 0;
 
 	/**
-	 * ���û�����ɫ
-	 * @param color 			Ҫ���õĻ�����ɫ
-	 * @info ������ɫ��������Ϳѻ����
+	 * 设置画笔颜色
+	 * @param color 			要设置的画笔颜色
+	 * @info 画笔颜色用于所有涂鸦绘制
 	 */
 	virtual void SetBrushColor(const TEduBoardColor & color) = 0;
 
     /**
-     * ��ȡ������ɫ
-     * @return ������ɫ
+     * 获取画笔颜色
+     * @return 画笔颜色
      */
     virtual TEduBoardColor GetBrushColor() = 0;
 
 	/**
-	 * ���û��ʴ�ϸ
-	 * @param thin 				Ҫ���õĻ��ʴ�ϸ
-	 * @info ���ʴ�ϸ��������Ϳѻ���ƣ�ʵ������ֵȡֵ(thin * �װ�ĸ߶� / 10000)px��������С��1px����Ϳѻ��������Ƚ���
+	 * 设置画笔粗细
+	 * @param thin 				要设置的画笔粗细
+	 * @info 画笔粗细用于所有涂鸦绘制，实际像素值取值(thin * 白板的高度 / 10000)px，如果结果小于1px，则涂鸦的线条会比较虚
 	 */
 	virtual void SetBrushThin(uint32_t thin) = 0;
 
     /**
-     * ��ȡ���ʴ�ϸ
-     * @return ���ʴ�ϸ
+     * 获取画笔粗细
+     * @return 画笔粗细
      */
     virtual uint32_t GetBrushThin() = 0;
 
 	/**
-	 * �����ı���ɫ
-	 * @param color 			Ҫ���õ��ı���ɫ
+	 * 设置文本颜色
+	 * @param color 			要设置的文本颜色
 	 */
 	virtual void SetTextColor(const TEduBoardColor & color) = 0;
 
     /**
-     * ��ȡ�ı���ɫ
-     * @return �ı���ɫ
+     * 获取文本颜色
+     * @return 文本颜色
      */
     virtual TEduBoardColor GetTextColor() = 0;
 
 	/**
-	 * �����ı���С
-	 * @param thin 				Ҫ���õ��ı���С
-	 * @info ʵ������ֵȡֵ(size * �װ�ĸ߶� / 10000)px
+	 * 设置文本大小
+	 * @param thin 				要设置的文本大小
+	 * @info 实际像素值取值(size * 白板的高度 / 10000)px
 	 */
 	virtual void SetTextSize(uint32_t size) = 0;
 
     /**
-     * ��ȡ�ı���С
-     * @return �ı���С
+     * 获取文本大小
+     * @return 文本大小
      */
     virtual uint32_t GetTextSize() = 0;
 
     /**
-     * �����ı���ʽ
-     * @param style 				Ҫ���õ��ı���ʽ
+     * 设置文本样式
+     * @param style 				要设置的文本样式
      */
     virtual void SetTextStyle(TEduBoardTextStyle style) = 0;
 
     /**
-     * ��ȡ�ı���ʽ
-     * @return �ı���ʽ
+     * 获取文本样式
+     * @return 文本样式
      */
     virtual TEduBoardTextStyle GetTextStyle() = 0;
 
     /**
-     * ����ֱ����ʽ
-     * @param style 				Ҫ���õ�ֱ����ʽ
+     * 设置直线样式
+     * @param style 				要设置的直线样式
      */
     virtual void SetLineStyle(const TEduBoardLineStyle & style) = 0;
 
     /**
-     * ��ȡֱ����ʽ
-     * @return ֱ����ʽ
+     * 获取直线样式
+     * @return 直线样式
      */
     virtual TEduBoardLineStyle GetLineStyle() = 0;
 
     /**
-     * ������Բ����ģʽ
-     * @param drawMode 				Ҫ���õ���Բ����ģʽ
+     * 设置椭圆绘制模式
+     * @param drawMode 				要设置的椭圆绘制模式
      */	
     virtual void SetOvalDrawMode(TEduBoardOvalDrawMode drawMode) = 0;
 
     /**
-     * ��ȡ��Բ����ģʽ
-     * @return ��Բ����ģʽ
+     * 获取椭圆绘制模式
+     * @return 椭圆绘制模式
      */
     virtual TEduBoardOvalDrawMode GetOvalDrawMode() = 0;
 
 	/**
-	 * ��յ�ǰ�װ�ҳͿѻ
-	 * @param clearBackground 	�Ƿ�ͬʱ��ձ���ɫ�Լ�����ͼƬ
+	 * 清空当前白板页涂鸦
+	 * @param clearBackground 	是否同时清空背景色以及背景图片
 	 */
 	virtual void Clear(bool clearBackground = false) = 0;
 
     /**
-     * ���õ�ǰ�װ�ҳ�ı���ͼƬ
-     * @param url 				Ҫ���õı���ͼƬURL�������ʽΪUTF8
-     * @param mode				Ҫʹ�õ�ͼƬ������ģʽ
-     * @info ��URL��һ����Ч�ı����ļ���ַʱ�����ļ��ᱻ�Զ��ϴ���COS
+     * 设置当前白板页的背景图片
+     * @param url 				要设置的背景图片URL，编码格式为UTF8
+     * @param mode				要使用的图片填充对齐模式
+     * @info 当URL是一个有效的本地文件地址时，该文件会被自动上传到COS
      */
     virtual void SetBackgroundImage(const char * url, TEduBoardImageFitMode mode) = 0;
 
     /**
-	 * ���õ�ǰ�װ�ҳ�ı���H5ҳ��
-	 * @param url				Ҫ���õı���H5ҳ��URL
-	 * @info �ýӿ���SetBackgroundImage�ӿڻ���
-     * @warning Ŀǰ�汾�ù�����δʵ��
+	 * 设置当前白板页的背景H5页面
+	 * @param url				要设置的背景H5页面URL
+	 * @info 该接口与SetBackgroundImage接口互斥
+     * @warning 目前版本该功能暂未实现
 	 */
     virtual void SetBackgroundH5(const char * url) = 0;
 
 	/**
-	 * ������ǰ�װ�ҳ��һ�ζ���
+	 * 撤销当前白板页上一次动作
 	 */
 	virtual void Undo() = 0;
 
 	/**
-	 * ������ǰ�װ�ҳ��һ�γ���
+	 * 重做当前白板页上一次撤销
 	 */
 	virtual void Redo() = 0;
 
 
     /*********************************************************************************************
      *
-     *										�����װ�ҳ�����ӿ�
+     *										三、白板页操作接口
      *
      *********************************************************************************************/
 	 /**
-	  * ����һҳ�װ�
-	  * @param url				Ҫʹ�õı���ͼƬURL�������ʽΪUTF8��Ϊnullptr��ʾ��ָ������ͼƬ
-	  * @return �װ�ID
-	  * @info ����ֵ�ڴ���SDK�ڲ��������û�����Ҫ�Լ��ͷ�
-	  * @warning �װ�ҳ�ᱻ���ӵ�Ĭ���ļ����ļ�IDΪ#DEFAULT)�������ϴ����ļ��޷����Ӱװ�ҳ
+	  * 增加一页白板
+	  * @param url				要使用的背景图片URL，编码格式为UTF8，为nullptr表示不指定背景图片
+	  * @return 白板ID
+	  * @info 返回值内存由SDK内部管理，用户不需要自己释放
+	  * @warning 白板页会被添加到默认文件（文件ID为#DEFAULT)，自行上传的文件无法添加白板页
 	  */
 	virtual const char * AddBoard(const char * url = nullptr) = 0;
 
 	/**
-	 * ɾ��һҳ�װ�
-	 * @param boardId			Ҫɾ���İװ�ID��Ϊnullptr��ʾɾ����ǰҳ
-	 * @warning ֻ����ɾ��Ĭ���ļ����ļ�IDΪ#DEFAULT���ڵİװ�ҳ����Ĭ�ϰװ�ҳ���װ�IDΪ#DEFAULT���޷�ɾ��
+	 * 删除一页白板
+	 * @param boardId			要删除的白板ID，为nullptr表示删除当前页
+	 * @warning 只允许删除默认文件（文件ID为#DEFAULT）内的白板页，且默认白板页（白板ID为#DEFAULT）无法删除
 	 */
 	virtual void DeleteBoard(const char * boardId = nullptr) = 0;
 
     /**
-     * ��һ��
-     * @info ÿ��Step��ӦPPT��һ������Ч��������ǰû����չʾ�Ķ���Ч������ýӿڵ��ûᵼ����ǰ��ҳ
+     * 上一步
+     * @info 每个Step对应PPT的一个动画效果，若当前没有已展示的动画效果，则该接口调用会导致向前翻页
      */
     virtual void PrevStep() = 0;
 
     /**
-     * ��һ��
-     * @info ÿ��Step��ӦPPT��һ������Ч��������ǰû��δչʾ�Ķ���Ч������ýӿڵ��ûᵼ�����ҳ
+     * 下一步
+     * @info 每个Step对应PPT的一个动画效果，若当前没有未展示的动画效果，则该接口调用会导致向后翻页
      */
     virtual void NextStep() = 0;
 
 	/**
-	 * ��ǰ��ҳ
-	 * @param resetStep			ָ������ָ��ҳ�Ժ��Ƿ�����PPT��������
-	 * @info ����ǰ�װ�ҳΪ��ǰ�ļ��ĵ�һҳ����ýӿڵ�����Ч
+	 * 向前翻页
+	 * @param resetStep			指定翻到指定页以后是否重置PPT动画步数
+	 * @info 若当前白板页为当前文件的第一页，则该接口调用无效
 	 */
 	virtual void PrevBoard(bool resetStep = false) = 0;
 
 	/**
-	 * ���ҳ
-	 * @param resetStep			ָ������ָ��ҳ�Ժ��Ƿ�����PPT��������
-	 * @info ����ǰ�װ�ҳΪ��ǰ�ļ������һҳ����ýӿڵ�����Ч
+	 * 向后翻页
+	 * @param resetStep			指定翻到指定页以后是否重置PPT动画步数
+	 * @info 若当前白板页为当前文件的最后一页，则该接口调用无效
 	 */
 	virtual void NextBoard(bool resetStep = false) = 0;
 
 	/**
-	 * ��ת��ָ���װ�ҳ
-	 * @param boardId			Ҫ��ת���İװ�ҳID
-	 * @param resetStep			ָ������ָ��ҳ�Ժ��Ƿ�����PPT��������
-	 * @info ������ת�������ļ��İװ�ҳ
+	 * 跳转到指定白板页
+	 * @param boardId			要跳转到的白板页ID
+	 * @param resetStep			指定翻到指定页以后是否重置PPT动画步数
+	 * @info 允许跳转到任意文件的白板页
 	 */
 	virtual void GotoBoard(const char * boardId, bool resetStep = false) = 0;
 
 	/**
-	 * ��ȡ��ǰ�װ�ҳID
-	 * @return ��ǰ�װ�ҳID
-	 * @info ����ֵ�ڴ���SDK�ڲ��������û�����Ҫ�Լ��ͷ�
+	 * 获取当前白板页ID
+	 * @return 当前白板页ID
+	 * @info 返回值内存由SDK内部管理，用户不需要自己释放
 	 */
 	virtual const char * GetCurrentBoard() = 0;
 
 	/**
-	 * ��ȡ�����ļ��İװ��б�
-	 * @return �����ļ��İװ��б�
-	 * @warning ����ֵ����ʹ��ʱ����Ҫ����delete��������ص�����release�������ͷ��ڴ�ռ��
+	 * 获取所有文件的白板列表
+	 * @return 所有文件的白板列表
+	 * @warning 返回值不再使用时不需要自行delete，但是务必调用其release方法以释放内存占用
 	 */
 	virtual TEduBoardList *GetBoardList() = 0;
 
 	/**
-	 * ���õ�ǰ�װ�ҳ���߱�
-	 * @param ratio				Ҫ���õİװ���߱�
-	 * @info ��ʽ��: "4:3"��"16:9"
+	 * 设置当前白板页宽高比
+	 * @param ratio				要设置的白板宽高比
+	 * @info 格式如: "4:3"、"16:9"
 	 */
     virtual void SetBoardRatio(const char *ratio) = 0;
 
 	/**
-	 * ��ȡ��ǰ�װ�ҳ���߱�
-	 * @return �װ���߱ȣ���ʽ��SetBoardRatio�ӿڲ�����ʽһ��
+	 * 获取当前白板页宽高比
+	 * @return 白板宽高比，格式与SetBoardRatio接口参数格式一致
 	 */
 	virtual const char * GetBoardRatio() = 0;
 
 	/**
-	 * ���õ�ǰ�װ�ҳ���ű���
-	 * @param scale				Ҫ���õİװ����ű���
-	 * @info ֧�ַ�Χ: [100��300]��ʵ�����ű�Ϊ: scale/100
+	 * 设置当前白板页缩放比例
+	 * @param scale				要设置的白板缩放比例
+	 * @info 支持范围: [100，300]，实际缩放比为: scale/100
 	 */
 	virtual void SetBoardScale(uint32_t scale) = 0;
 
 	/**
-	 * ��ȡ��ǰ�װ�ҳ���ű���
-	 * @return �װ����ű�������ʽ��SetBoardScale�ӿڲ�����ʽһ��
+	 * 获取当前白板页缩放比例
+	 * @return 白板缩放比例，格式与SetBoardScale接口参数格式一致
 	 */
 	virtual uint32_t GetBoardScale() = 0;
 
 	/**
-	 * ���ðװ���������Ӧģʽ
-	 * @param mode				Ҫ���õİװ���������Ӧģʽ
-	 * @info ��������Ӧģʽ���Ӱ�����к����װ����ݲ���,��Ӱ��ӿڰ�����AddFile��AddH5PPTFile
+	 * 设置白板内容自适应模式
+	 * @param mode				要设置的白板内容自适应模式
+	 * @info 设置自适应模式后会影响所有后续白板内容操作,受影响接口包括：AddFile、AddH5PPTFile
 	 */
 	virtual void SetBoardContentFitMode(TEduBoardContentFitMode mode) = 0;
 
 	/**
-	 * ��ȡ�װ���������Ӧģʽ
-	 * @return �װ���������Ӧģʽ
+	 * 获取白板内容自适应模式
+	 * @return 白板内容自适应模式
 	 */
 	virtual TEduBoardContentFitMode GetBoardContentFitMode() = 0;
 
 
     /*********************************************************************************************
      *
-     *										�ġ��ļ������ӿ�
+     *										四、文件操作接口
      *
      *********************************************************************************************/
 	 /**
-	  * �����ļ�
-	  * @deprecated �ýӿ��ѷ�����������ɾ����������ʹ�ã������ļ���ͳһʹ��AddTranscodeFile�ӿ�
-	  * @param path				Ҫ���ӵ��ļ�·���������ʽΪUTF8
-	  * @return �ļ�ID
-	  * @info ֧�� PPT��PDF��Word��Excel
-	  * @info ��pathָ��һ����Ч�ı����ļ�ʱ��SDK���Ƚ��ļ��ϴ���COS����ִ�к�����������ʱ�ᴥ���ļ��ϴ���ػص�
-	  * @info ��path����һ����Ч�ı����ļ�·������ᱻ����URL������URL����ָ����Ѷ��COS�ļ�·��������ӿڵ�����Ч
-	  * @info �ļ�������ɺ󣬽��Զ��л������ļ�
-	  * @warning ���յ���Ӧ��onTEBAddFile�ص�ǰ���޷��÷��ص��ļ�ID��ѯ���ļ���Ϣ
+	  * 增加文件
+	  * @deprecated 该接口已废弃，后续会删除，不建议使用，添加文件请统一使用AddTranscodeFile接口
+	  * @param path				要增加的文件路径，编码格式为UTF8
+	  * @return 文件ID
+	  * @info 支持 PPT、PDF、Word、Excel
+	  * @info 当path指向一个有效的本地文件时，SDK会先将文件上传到COS后再执行后续操作，此时会触发文件上传相关回调
+	  * @info 若path不是一个有效的本地文件路径，则会被当做URL处理，URL必须指向腾讯云COS文件路径，否则接口调用无效
+	  * @info 文件添加完成后，将自动切换到该文件
+	  * @warning 在收到对应的onTEBAddFile回调前，无法用返回的文件ID查询到文件信息
 	  */
 	virtual const char * AddFile(const char * path) = 0;
 
     /**
-     * ����H5����PPT�ļ�
-     * @deprecated �ýӿ��ѷ�����������ɾ����������ʹ�ã������ļ���ͳһʹ��AddTranscodeFile�ӿ�
-     * @param url				Ҫ���ӵ�H5����PPT��URL
-	 * @return �ļ�ID
-     * @info ���øýӿں�SDK���ں�̨����H5���أ��ڼ��û������������������������سɹ���ʧ�ܺ�ᴥ����Ӧ�ص�
-     * @info H5���سɹ��󣬽��Զ��л������ļ�
-     * @warning �������URL�ظ�ʱ���ļ�ID����Ϊ���ַ���
-	 * @warning ���յ���Ӧ��onTEBAddH5PPTFile�ص�ǰ���޷��÷��ص��ļ�ID��ѯ���ļ���Ϣ
+     * 增加H5动画PPT文件
+     * @deprecated 该接口已废弃，后续会删除，不建议使用，添加文件请统一使用AddTranscodeFile接口
+     * @param url				要增加的H5动画PPT的URL
+	 * @return 文件ID
+     * @info 调用该接口后，SDK会在后台进行H5加载，期间用户可正常进行其它操作，加载成功或失败后会触发相应回调
+     * @info H5加载成功后，将自动切换到该文件
+     * @warning 当传入的URL重复时，文件ID返回为空字符串
+	 * @warning 在收到对应的onTEBAddH5PPTFile回调前，无法用返回的文件ID查询到文件信息
      */
     virtual const char * AddH5PPTFile(const char * url) = 0;
 
     /**
-     * ����ת���ļ�
-     * @param  result 			�ļ�ת����
-     * @return �ļ�ID
-     * @info ���øýӿں�SDK���ں�̨�����ļ����أ��ڼ��û������������������������سɹ���ʧ�ܺ�ᴥ����Ӧ�ص�
-     * @info �ļ����سɹ��󣬽��Զ��л������ļ�
-     * @warning �������ļ���URL�ظ�ʱ���ļ�ID����Ϊ���ַ���
-     * @warning ���յ���Ӧ��onTEBAddTranscodeFile�ص�ǰ���޷��÷��ص��ļ�ID��ѯ���ļ���Ϣ
+     * 添加转码文件
+     * @param  result 			文件转码结果
+     * @return 文件ID
+     * @info 调用该接口后，SDK会在后台进行文件加载，期间用户可正常进行其它操作，加载成功或失败后会触发相应回调
+     * @info 文件加载成功后，将自动切换到该文件
+     * @warning 当传入文件的URL重复时，文件ID返回为空字符串
+     * @warning 在收到对应的onTEBAddTranscodeFile回调前，无法用返回的文件ID查询到文件信息
      */
     virtual const char * AddTranscodeFile(const TEduBoardTranscodeFileResult & result) = 0;
 
 	/**
-	 * ɾ���ļ�
-	 * @param fileId			Ҫɾ�����ļ�ID
-	 * @info �ļ�IDΪnullptrʱ��ʾ��ǰ�ļ���Ĭ���ļ��޷�ɾ��
+	 * 删除文件
+	 * @param fileId			要删除的文件ID
+	 * @info 文件ID为nullptr时表示当前文件，默认文件无法删除
 	 */
 	virtual void DeleteFile(const char * fileId) = 0;
 
 	/**
-	 * �л��ļ�
-	 * @param fileId			Ҫ�л������ļ�ID
-	 * @info �ļ�IDΪ�����Ϊnullptr����ַ����������ļ��л�ʧ��
+	 * 切换文件
+	 * @param fileId			要切换到的文件ID
+	 * @info 文件ID为必填项，为nullptr或空字符串将导致文件切换失败
 	 */
 	virtual void SwitchFile(const char * fileId) = 0;
 
     /**
-     * ��ȡ��ǰ�ļ�ID
-     * @return ��ǰ�ļ�ID
+     * 获取当前文件ID
+     * @return 当前文件ID
      */
     virtual const char * GetCurrentFile() = 0;
 
 	/**
-	 * ��ȡ�װ���ָ���ļ����ļ���Ϣ
-	 * @return �ļ���Ϣ
-	 * @warning ÿ�ε��øýӿڵķ���ֵ���ݶ�ָ��ͬһ���ڴ棬����Ҫ���淵����Ϣ�������õ�����ֵ��ʱ������
+	 * 获取白板中指定文件的文件信息
+	 * @return 文件信息
+	 * @warning 每次调用该接口的返回值内容都指向同一块内存，若需要保存返回信息，请在拿到返回值后及时拷贝走
 	 */
 	virtual TEduBoardFileInfo GetFileInfo(const char *fileId) = 0;
 
 	/**
-	 * ��ȡ�װ����ϴ��������ļ����ļ���Ϣ�б�
-	 * @return �ļ���Ϣ�б�
-	 * @warning ����ֵ����ʹ��ʱ����Ҫ����delete��������ص�����release�������ͷ��ڴ�ռ��
+	 * 获取白板中上传的所有文件的文件信息列表
+	 * @return 文件信息列表
+	 * @warning 返回值不再使用时不需要自行delete，但是务必调用其release方法以释放内存占用
 	 */
 	virtual TEduBoardFileInfoList * GetFileInfoList() = 0;
 
 	/**
-	 * ��ȡָ���ļ��İװ�ID�б�
-	 * @param fileId			�ļ�ID
-	 * @return �װ�ID�б�
-	 * @warning ����ֵ����ʹ��ʱ����Ҫ����delete��������ص�����release�������ͷ��ڴ�ռ��
+	 * 获取指定文件的白板ID列表
+	 * @param fileId			文件ID
+	 * @return 白板ID列表
+	 * @warning 返回值不再使用时不需要自行delete，但是务必调用其release方法以释放内存占用
 	 */
 	virtual TEduBoardList * GetFileBoardList(const char * fileId) = 0;
 
 	/**
-	 * ���ָ���ļ������аװ�Ϳѻ
-	 * @param fileId			�ļ�ID
+	 * 清空指定文件的所有白板涂鸦
+	 * @param fileId			文件ID
 	 */
 	virtual void ClearFileDraws(const char * fileId) = 0;
 };
