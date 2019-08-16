@@ -768,7 +768,6 @@ id makeWeakRef (id object) {
     NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
     [dataDic setObject:[NSNumber numberWithLongLong:syncTime] forKey:@"syncTime"];
     NSData *data = [NSJSONSerialization dataWithJSONObject:dataDic options:0 error:nil];
-    NSString *dataStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     [[[TICManager sharedInstance] getTRTCCloud] sendSEIMsg:data repeatCount:1];
 }
 
