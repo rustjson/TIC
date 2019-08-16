@@ -26,45 +26,45 @@ user_sig|string|腾讯云签名 登录必要的腾讯云模块用|1如果用户�
 
 # 3.各个端接入流程
 
-## 3.1 桌面端（应用方案）
+## 3.1 桌面端
 <div id="electron_location"></div>
 
-目前桌面客户端暂时只提供纯应用方式拉起，后期会提供库方式整合 目前桌面端支持MAC和PC
-业务方通过云API 对课堂，用户，课件进行管理。应用只负责上课授课和课中互动。
-目前应用页面只支持定制应用名称和icon，页面布局后期会通过云API方式逐步开放。
 
-
-###  下载按照互动课堂应用
+###  安装
 mac: http://dldir1.qq.com/hudongzhibo/Saas/TClass_Saas.dmg
 win: http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe
 
-在用户机器上安装互动课堂组件。在Win10上必需使用管理员权限安装。
+ 在用户机器上安装互动课堂组件。在Win10上必需使用管理员权限安装。
+
+###  使用
+####  1.通过浏览器启动应用直接进入课堂 
 
 
-###  进入课堂
+ 如果已经安装过应用，可以通过浏览器方式直接拉起来。
+ 
+> MAC需点击启动一次才能拉起，受限electron注册网络协议。
 
-   进入课堂之前，必须得通过控制台或者云API方式创建课堂，指定老师（学生可选)。
+如果没有安装，会提示下载地址。 
+目前支持的浏览器有Chrome、Safari。
 
-####  通过浏览器启动应用直接进入课堂 
+URL拼写规则如下 
 
+ **https://tedu.qcloudtrtc.com/#/class/company_id/:class_id/:user_id?/:user_sig?/:user_token?**
+ 
+```
+https://tedu.qcloudtrtc.com/#/class/机构ID/房间ID/用户ID（可选）/用户Sig（可选）/用户token（可选） 
 
-   如果已经安装过应用，可以通过浏览器方式直接拉起来。（MAC需点击启动一次才能拉起，受限electron注册网络协议）
-没有安装，会提示下载地址。 目前支持的浏览器有Chrome Safari。
+例如：
+https://tedu.qcloudtrtc.com/#/class/100001/1000776477
+或者：
+https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx
 
 ```
-https://tedu.qcloudtrtc.com/#/class/company_id/:class_id/:user_id?/:user_sig?/:user_token?
-```
 
 
-  参数如何获取 参数上面的表格
+#### 2.点击启动进入课堂
 
-
-#### 点击启动进入课堂
-
-  桌面点击应用启动 输入机构码，课堂ID，用户ID 用户密码的加入课堂
-
-成功进入课堂一次之后 会记住机构码 课堂ID 用户ID
-
+  桌面点击应用启动，输入机构码、课堂ID、用户ID和用户密码加入课堂。
 
 
 ## 3.2 WEB端
