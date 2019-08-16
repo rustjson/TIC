@@ -74,8 +74,9 @@ public class TICClassManagerActivity extends BaseActvity {
             return;
         }
 
+        final int scence = TICManager.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL; //如果使用大房间，请使用 TIC_CLASS_SCENE_LIVE
         mRoomId = Integer.valueOf(inputString);
-        mTicManager.createClassroom(mRoomId, new TICManager.TICCallback() {
+        mTicManager.createClassroom(mRoomId, scence, new TICManager.TICCallback() {
             @Override
             public void onSuccess(Object data) {
                 postToast("创建课堂 成功, 房间号："  + mRoomId, true);

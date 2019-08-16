@@ -370,13 +370,13 @@ public class TICManagerImpl  extends TICManager{
     }
 
     @Override
-    public void createClassroom(final int classId, final TICCallback callback) {
+    public void createClassroom(final int classId, final int scene, final TICCallback callback) {
         TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " callback:" + callback);
         TICReporter.report(TICReporter.EventId.createGroup_start);
         // 为了减少用户操作成本（收到群进出等通知需要配置工单才生效）群组类型由ChatRoom改为Public
         final String groupId = String.valueOf(classId);
         final String groupName = "interact group";
-        final String groupType = "Public";
+        final String groupType = ((scene == TICManager.TICClassScene.TIC_CLASS_SCENE_LIVE) ? "AVChatRoom": "Public");
 
         TIMGroupManager.CreateGroupParam param = new TIMGroupManager.CreateGroupParam(groupType, groupName);
         param.setGroupId(groupId);

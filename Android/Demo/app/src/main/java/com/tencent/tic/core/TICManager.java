@@ -185,7 +185,7 @@ public abstract class TICManager  {
      * @param classId   房间ID，由业务生成和维护。
      * @param callback 回调，见@TICCallback， onSuccess，创建成功；若出错，则通过onError返回。
      */
-    public abstract void createClassroom(final int classId, final TICCallback callback);
+    public abstract void createClassroom(final int classId, final int scene,  final TICCallback callback);
 
     /**
      * 2.4 销毁课堂，由课堂创建者（调用CreateClassroom者）调用
