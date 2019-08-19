@@ -425,5 +425,17 @@ __attribute__((deprecated("接口已废弃，后续会删除，不建议使用�
  */
 - (void)clearFileDraws:(NSString *)fileId;
 
+/**
+ * 获取同步时间
+ * @return 毫秒级时间戳
+ */
+- (uint64_t)getSyncTime;
+
+/**
+ * 同步远程时间
+ * @param userId    用户Id
+ * @param timestamp 毫秒级时间戳
+ */
+- (void)syncRemoteTime:(NSString *)userId timestamp:(uint64_t)timestamp;
 @end
 

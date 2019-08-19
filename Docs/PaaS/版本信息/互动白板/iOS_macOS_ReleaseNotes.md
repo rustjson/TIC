@@ -1,5 +1,14 @@
 # Release Notes - iOS & macOS
 
+## 2.3.3 @ 2019.08.19
+
+- 增加接口
+    - (uint64_t)getSyncTime支持大房间方案获取对时时间戳
+    - (void)syncRemoteTime:(NSString *)userId timestamp:(uint64_t)timestamp设置远程时间戳
+    
+- bug修复
+    - 修复getFileInfo返回错误的问题
+
 ## 2.3.2 @ 2019.08.07
 
 - 废弃接口

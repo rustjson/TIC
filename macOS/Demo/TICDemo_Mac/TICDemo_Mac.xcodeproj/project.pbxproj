@@ -15,6 +15,7 @@
 		6A9FC2BD217EBCC7009ACB83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9FC2BC217EBCC7009ACB83 /* main.m */; };
 		CF0AF30022785CFA00B9CD87 /* ColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0AF2FF22785CFA00B9CD87 /* ColorPickViewController.m */; };
 		CF16F8B422CEE62F002D3CBB /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF16F8B322CEE62F002D3CBB /* TICReport.m */; };
+		CF377824230A5D3F00101054 /* TICWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF377822230A5D3F00101054 /* TICWeakProxy.m */; };
 		CF3FB3412276A2C7001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3372276A2C7001C148E /* TICDef.m */; };
 		CF3FB3422276A2C7001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB3392276A2C7001C148E /* TICManager.m */; };
 		CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB33B2276A2C7001C148E /* TICRenderView.m */; };
@@ -71,6 +72,8 @@
 		CF0AF2FF22785CFA00B9CD87 /* ColorPickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorPickViewController.m; sourceTree = "<group>"; };
 		CF16F8B222CEE62F002D3CBB /* TICReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TICReport.h; sourceTree = "<group>"; };
 		CF16F8B322CEE62F002D3CBB /* TICReport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TICReport.m; sourceTree = "<group>"; };
+		CF377822230A5D3F00101054 /* TICWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICWeakProxy.m; sourceTree = "<group>"; };
+		CF377823230A5D3F00101054 /* TICWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICWeakProxy.h; sourceTree = "<group>"; };
 		CF3FB3362276A2C7001C148E /* TICDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDef.h; sourceTree = "<group>"; };
 		CF3FB3372276A2C7001C148E /* TICDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDef.m; sourceTree = "<group>"; };
 		CF3FB3382276A2C7001C148E /* TICManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICManager.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				CFA891D822D2ECFC003149C9 /* TICDevice.m */,
 				CFA891DB22D2F000003149C9 /* TICReachability.h */,
 				CFA891DC22D2F000003149C9 /* TICReachability.m */,
+				CF377823230A5D3F00101054 /* TICWeakProxy.h */,
+				CF377822230A5D3F00101054 /* TICWeakProxy.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */,
 				CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */,
 				CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */,
+				CF377824230A5D3F00101054 /* TICWeakProxy.m in Sources */,
 				CF16F8B422CEE62F002D3CBB /* TICReport.m in Sources */,
 				CF3FB351227707CC001C148E /* TICConfig.m in Sources */,
 			);

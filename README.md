@@ -41,31 +41,62 @@ git clone https://github.com/tencentyun/TIC.git
 
 ## 快速体验
 
-#### 体验Demo
+#### SaaS体验
 
-下载客户端，输入相同的课堂ID即可快速体验。
+![](https://main.qcloudimg.com/raw/ea3692fd322dbcc7d86c3fc3cc6d3c59.jpg)
 
-| 平台 | 快速体验 |
-|---------|---------|
-| Web | [立即体验](https://tedu.qcloudtrtc.com/) |
-| 小程序 | 即将推出 |
-| Windows | [立即体验](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Demo.exe)|
-| Android | [立即体验](https://sj.qq.com/myapp/detail.htm?apkName=com.tencent.ticsaas.demo) |
-| iOS | [立即体验](https://www.pgyer.com/QEpl) |
-| macOS | [立即体验](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Demo.dmg)  |
+<table>
+<tr>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+<th style="text-align:center">Windows</th>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://tedu.qcloudtrtc.com/">立即体验</a></td>
+<td style="text-align:center">即将推出</td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/c9619497d26c6d4ed75921ce2a298596.png" width="150"/></td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/35664baf9512c57ac3c2b5436ab5d567.png" width="150"/></td>
+<td style="text-align:center"><a href="http://dldir1.qq.com/hudongzhibo/Saas/TClass_Demo.dmg">立即体验</a></td>
+<td style="text-align:center"><a href="http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Demo.exe">立即体验</a></td>
+</tr>
+</table>
 
-#### 开发Demo
+#### PaaS体验
 
 为了便于开发人员以最简明的方式调试接口，我们准备了各个平台的开发demo。
 
-| 平台 | 源码地址 | 快速体验 |
-|--|---------|---------|
-| Web | [Github](./Web) | [立即体验](https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html) |
-|小程序  | [Github](./小程序)   | <img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/> |
-| Windows |[Github](./Windows)  | [立即体验](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip) |
-|Android  | [Github](./Android)  |  <img src="https://main.qcloudimg.com/raw/cd2145e71c50374ddafae1714ee9f6e8.png" width="150"/> |
-| iOS | [Github](./iOS) | <img src="https://main.qcloudimg.com/raw/1e40ee772f79317b14a0a55587343ae7.png" width="150"/> |
-| macOS |[Github](./macOS)   | [立即体验](https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip) |
+![](https://main.qcloudimg.com/raw/4fd896e4a8f70e417d004645f6276927.png)
+
+<table>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+<th style="text-align:center">Windows</th>
+</tr>
+<tr>
+<td>体验链接</td><td style="text-align:center"><a href="https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html">立即体验</a></td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/></td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/cd2145e71c50374ddafae1714ee9f6e8.png" width="150"/></td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/1e40ee772f79317b14a0a55587343ae7.png" width="150"/></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip">立即体验</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip">立即体验</a></td>
+</tr>
+<td>源码链接</td><td style="text-align:center"><a href="../../../Web">Github</a></td>
+<td style="text-align:center"><a href="../../../小程序">Github</a></td>
+<td style="text-align:center"><a href="../../../Android">Github</a></td>
+<td style="text-align:center"><a href="../../../iOS">Github</a></td>
+<td style="text-align:center"><a href="../../../macOS">Github</a></td>
+<td style="text-align:center"><a href="../../../Windows">Github</a></td>
+</tr>
+</table>
+
 
 下载源码后，为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，**点击下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
 
@@ -84,27 +115,64 @@ git clone https://github.com/tencentyun/TIC.git
 
 ## 接入文档
 
-| 平台 | 互动课堂（TIC） | 互动白板（TEduBoard） |
-|---------|---------|---------|
-| Web | [Doc](./Docs/PaaS/SDK文档/Web/互动课堂接入文档.md) | [Doc](./Docs/PaaS/SDK文档/Web/互动白板接入文档.md) |
-|小程序  | [Doc](./Docs/PaaS/SDK文档/小程序/互动课堂接入文档.md)   | [Doc](./Docs/PaaS/SDK文档/小程序/互动白板接入文档.md) |
-| Windows |[Doc](./Docs/PaaS/SDK文档/Windows/互动课堂接入文档.md) | [Doc](./Docs/PaaS/SDK文档/Windows/互动白板接入文档.md) |
-|Android  | [Doc](./Docs/PaaS/SDK文档/Android/互动课堂接入文档.md) | [Doc](./Docs/PaaS/SDK文档/Android/互动白板接入文档.md) |
-| iOS | [Doc](./Docs/PaaS/SDK文档/iOS/互动课堂接入文档.md) | [Doc](./Docs/PaaS/SDK文档/iOS/互动白板接入文档.md) |
-| macOS | [Doc](./Docs/PaaS/SDK文档/macOS/互动课堂接入文档.md) | [Doc](./Docs/PaaS/SDK文档/macOS/互动白板接入文档.md) |
+
+<table>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+<th style="text-align:center">Windows</th>
+</tr>
+<tr>
+<td>互动课堂（TIC）</td><td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Web/互动课堂接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/小程序/互动课堂接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Android/互动课堂接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/iOS/互动课堂接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/macOS/互动课堂接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Windows/互动课堂接入文档.md">Doc</a></td>
+</tr>
+<td>互动白板（TEduBoard）</td><td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Web/互动白板接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/小程序/互动白板接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Android/互动白板接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/iOS/互动白板接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/macOS/互动白板接入文档.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Windows/互动白板接入文档.md">Doc</a></td>
+</tr>
+</table>
+
 
 
 ## 版本信息
 
-| 平台 | 互动课堂（TIC） | 互动白板（TEduBoard） |
-|---------|---------|---------|
-| Web | [Doc](./Docs/PaaS/版本信息/互动课堂/Web_TIC_ReleaseNotes.md) | [Doc](./Docs/PaaS/版本信息/互动白板/Web_ReleaseNotes.md) |
-|小程序  | [Doc](./Docs/PaaS/版本信息/互动课堂/小程序_TIC_ReleaseNotes.md)   | [Doc](./Docs/PaaS/版本信息/互动白板/小程序_ReleaseNotes.md) |
-| Windows |[Doc](./Docs/PaaS/版本信息/互动课堂/Windows_TIC_ReleaseNotes.md) | [Doc](./Docs/PaaS/版本信息/互动白板/Windows_ReleaseNotes.md) |
-|Android  | [Doc](./Docs/PaaS/版本信息/互动课堂/Android_TIC_ReleaseNotes.md) | [Doc](./Docs/PaaS/版本信息/互动白板/Android_ReleaseNotes.md) |
-| iOS | [Doc](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md) | [Doc](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md) |
-| macOS | [Doc](./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md) | [Doc](./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md) |
-
+<table>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+<th style="text-align:center">Windows</th>
+</tr>
+<tr>
+<td>互动课堂（TIC）</td><td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Web_TIC_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/小程序_TIC_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Android_TIC_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Windows_TIC_ReleaseNotes.md">Doc</a></td>
+</tr>
+<td>互动白板（TEduBoard）</td><td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Web_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/小程序_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Android_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md">Doc</a></td>
+<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Windows_ReleaseNotes.md">Doc</a></td>
+</tr>
+</table>
 
 
 ## 更多功能
