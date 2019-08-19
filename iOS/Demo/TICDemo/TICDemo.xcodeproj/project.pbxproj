@@ -26,6 +26,7 @@
 		CF3279C72271F15C00FF817F /* PickSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3279C62271F15C00FF817F /* PickSheetView.xib */; };
 		CF3279C92271F18C00FF817F /* TableSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3279C82271F18C00FF817F /* TableSheetView.xib */; };
 		CF3405AE229FFEB500965D0A /* 小程序插件统计报表.pdf in Resources */ = {isa = PBXBuildFile; fileRef = CF3405AD229FFEB500965D0A /* 小程序插件统计报表.pdf */; };
+		CF377827230A5D6400101054 /* TICWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF377825230A5D6400101054 /* TICWeakProxy.m */; };
 		CF3FB2FD2273191D001C148E /* TICDef.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F32273191D001C148E /* TICDef.m */; };
 		CF3FB2FE2273191D001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F52273191D001C148E /* TICManager.m */; };
 		CF3FB2FF2273191D001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F72273191D001C148E /* TICRenderView.m */; };
@@ -97,6 +98,8 @@
 		CF3279C62271F15C00FF817F /* PickSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickSheetView.xib; sourceTree = "<group>"; };
 		CF3279C82271F18C00FF817F /* TableSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSheetView.xib; sourceTree = "<group>"; };
 		CF3405AD229FFEB500965D0A /* 小程序插件统计报表.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "小程序插件统计报表.pdf"; sourceTree = "<group>"; };
+		CF377825230A5D6400101054 /* TICWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICWeakProxy.m; sourceTree = "<group>"; };
+		CF377826230A5D6400101054 /* TICWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICWeakProxy.h; sourceTree = "<group>"; };
 		CF3FB2F22273191D001C148E /* TICDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDef.h; sourceTree = "<group>"; };
 		CF3FB2F32273191D001C148E /* TICDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDef.m; sourceTree = "<group>"; };
 		CF3FB2F42273191D001C148E /* TICManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICManager.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				CF9F963C22D4992B00E4ADF8 /* TICDevice.m */,
 				CF9F963B22D4992B00E4ADF8 /* TICReachability.h */,
 				CF9F963E22D4992B00E4ADF8 /* TICReachability.m */,
+				CF377826230A5D6400101054 /* TICWeakProxy.h */,
+				CF377825230A5D6400101054 /* TICWeakProxy.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */,
 				6A90D68720B2A737004AA011 /* UIViewController+Utils.m in Sources */,
 				CFDF445022953496004FFD01 /* NSDate+NetworkClock.m in Sources */,
+				CF377827230A5D6400101054 /* TICWeakProxy.m in Sources */,
 				CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */,
 				6A1BF1B020BBEB1600FEA44D /* JMToast.m in Sources */,
 				CF3279C52271F11300FF817F /* PickSheetView.m in Sources */,
