@@ -1,5 +1,16 @@
 # Release Notes - iOS & macOS
 
+## 2019.08.19
+
+新增大房间方案支持
+- TICClassroomOption增加classScene和roleType
+- createClassroom接口增加参数classScene
+
+| | TRTC版本 | TIM版本 | TEduBoard版本 |
+| :-: | :-: | :-: | :-: |
+| **iOS** | 6.6.7460 | 4.4.900 | 2.3.3 |
+| **macOS** | 6.6.7460 | 4.4.900 | 2.3.3 |
+
 ## 2019.08.07
 
 
