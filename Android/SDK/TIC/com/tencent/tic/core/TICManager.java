@@ -21,6 +21,23 @@ public abstract class TICManager  {
     public final static String MODULE_TIC_SDK = "ticsdk";
     public final static String MODULE_IMSDK = "imsdk";
 
+    /**
+     * 课堂场景
+     **/
+    public interface TICClassScene {
+        int TIC_CLASS_SCENE_VIDEO_CALL     = 0;     //实时通话模式，支持1000人以下场景，低延时
+        int TIC_CLASS_SCENE_LIVE           = 1;     //直播模式，支持1000人以上场景，会增加600ms左右延时
+    };
+
+    /**
+     * 房间角色
+     * @brief 仅适用于直播模式（TIC_CLASS_SCENE_LIVE），角色TIC_ROLE_TYPE_ANCHOR具有上行权限
+     **/
+    public interface TICRoleType {
+        int TIC_ROLE_TYPE_ANCHOR     = 20;     //主播
+        int TIC_ROLE_TYPE_AUDIENCE   = 21;     //观众
+    };
+
     //IM消息回调
     public interface TICMessageListener {
         //点到点消息
@@ -131,6 +148,16 @@ public abstract class TICManager  {
      * 1.5 获取board的接口
      */
     public abstract TEduBoardController getBoardController();
+
+
+    /**
+     * 1.6 切换角色
+     * @param role 角色
+     * @brief 只在classScene为TIC_CLASS_SCENE_LIVE时有效
+     **/
+    public abstract void switchRole(int role);
+
+
 /////////////////////////////////////////////////////////////////////////////////
 //
 //                      （二）TIC登录/登出/创建销毁课堂/进入退出课堂接口函数
@@ -158,7 +185,7 @@ public abstract class TICManager  {
      * @param classId   房间ID，由业务生成和维护。
      * @param callback 回调，见@TICCallback， onSuccess，创建成功；若出错，则通过onError返回。
      */
-    public abstract void createClassroom(final int classId, final TICCallback callback);
+    public abstract void createClassroom(final int classId, final int scene,  final TICCallback callback);
 
     /**
      * 2.4 销毁课堂，由课堂创建者（调用CreateClassroom者）调用

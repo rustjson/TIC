@@ -1,11 +1,14 @@
 package com.tencent.tic.core.impl;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 
 
@@ -16,6 +19,7 @@ import com.tencent.imsdk.TIMCustomElem;
 import com.tencent.imsdk.TIMElem;
 import com.tencent.imsdk.TIMElemType;
 import com.tencent.imsdk.TIMGroupAddOpt;
+import com.tencent.imsdk.TIMGroupEventListener;
 import com.tencent.imsdk.TIMGroupManager;
 import com.tencent.imsdk.TIMGroupSystemElem;
 import com.tencent.imsdk.TIMGroupSystemElemType;
@@ -41,10 +45,15 @@ import com.tencent.trtc.TRTCStatistics;
 import com.tencent.trtc.TRTCCloudListener;
 import com.tencent.liteav.basic.log.TXCLog;
 
+import org.json.JSONObject;
+
 public class TICManagerImpl  extends TICManager{
 
     private final static String TAG = "TICManager";
+    private final static String SYNCTIME = "syncTime";
     TICCallback mEnterRoomCallback; // 进房callback
+    private Handler mMainHandler;
+    boolean mIsSendSyncTime = false;  //
 
     //TRTC
     private TRTCCloud mTrtcCloud;              /// TRTC SDK 实例对象
@@ -52,7 +61,7 @@ public class TICManagerImpl  extends TICManager{
 
     //IM
     private TIMMessageListener mTIMListener;
-
+    private TIMGroupEventListener mGroupEventListener;
     //Board
     private TEduBoardController mBoard;
     private BoardCallback mBoardCallback;
@@ -89,6 +98,8 @@ public class TICManagerImpl  extends TICManager{
     }
 
     private TICManagerImpl() {
+        mMainHandler = new Handler(Looper.getMainLooper());
+
         userInfo = new UserInfo();
 
         mEventListner = new TICEventObservable();
@@ -114,6 +125,14 @@ public class TICManagerImpl  extends TICManager{
                 .enableLogPrint(true)
                 .setLogLevel(TIMLogLevel.DEBUG); //TODO::在正式发布时，设置TIMLogLevel.OFF
         TIMManager.getInstance().init(context, timSdkConfig);
+
+
+        mGroupEventListener = new TIMGroupEventListener() {
+            @Override
+            public void onGroupTipsEvent(TIMGroupTipsElem timGroupTipsElem) {
+                handleGroupTipsMessage(timGroupTipsElem);
+            }
+        };
 
         mTIMListener = new TIMMessageListener() {
             @Override
@@ -172,6 +191,77 @@ public class TICManagerImpl  extends TICManager{
         }
         return mBoard;
     }
+
+    public void switchRole(int role) {
+
+        if (mTrtcCloud != null) {
+            mTrtcCloud.switchRole(role);
+        }
+
+        if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE
+                && role == TICRoleType.TIC_ROLE_TYPE_ANCHOR) {
+            startSyncTimer();
+        }
+        else {
+            stopSyncTimer();
+        }
+    }
+
+    void startSyncTimer() {
+        TXCLog.i(TAG, "TICManager: startSyncTimer synctime: " + mIsSendSyncTime);
+        if (!mIsSendSyncTime) {
+            mMainHandler.postDelayed(new mySyncTimeRunnable(this), 5000);
+            mIsSendSyncTime = true;
+        }
+    }
+
+    void stopSyncTimer() {
+        mIsSendSyncTime = false;
+        TXCLog.i(TAG, "TICManager: stopSyncTimer synctime: " + mIsSendSyncTime);
+    }
+
+    void sendSyncTimeBySEI() {
+        if (mTrtcCloud != null && mBoard != null) {
+
+            if (mIsSendSyncTime) {
+
+                long time = mBoard.getSyncTime();
+                TXCLog.i(TAG, "TICManager: sendSyncTimeBySEI synctime: " + time);
+                if (time != 0) {
+                    String result = "";
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put(SYNCTIME, time);
+                        result = json.toString();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (!TextUtils.isEmpty(result)) {
+                        mTrtcCloud.sendSEIMsg(result.getBytes(), 1);
+                    }
+                }
+
+                mMainHandler.postDelayed(new mySyncTimeRunnable(this), 5000);
+            }
+        }
+    }
+
+    static class mySyncTimeRunnable implements Runnable {
+        WeakReference<TICManagerImpl> mTICManagerRef;
+
+        mySyncTimeRunnable (TICManagerImpl ticManager) {
+            mTICManagerRef = new WeakReference<TICManagerImpl>(ticManager);
+        }
+
+        @Override
+        public void run() {
+            TICManagerImpl ticManager = mTICManagerRef.get();
+            if (ticManager != null) {
+                ticManager.sendSyncTimeBySEI();
+            }
+        }
+    }
+
 
     @Override
     public void addEventListener(TICEventListener callback) {
@@ -232,6 +322,7 @@ public class TICManagerImpl  extends TICManager{
                 //成功登录后，加入消息和状态监听
                 TIMManager.getInstance().getUserConfig().setUserStatusListener(mStatusListner);
                 TIMManager.getInstance().addMessageListener(mTIMListener);
+                TIMManager.getInstance().getUserConfig().setGroupEventListener(mGroupEventListener);
 
                 if (null != callBack) {
                     callBack.onSuccess("");
@@ -275,16 +366,17 @@ public class TICManagerImpl  extends TICManager{
         //退出登录后，去掉消息的监听
         TIMManager.getInstance().removeMessageListener(mTIMListener);
         TIMManager.getInstance().getUserConfig().setUserStatusListener(null);
+        TIMManager.getInstance().getUserConfig().setGroupEventListener(null);
     }
 
     @Override
-    public void createClassroom(final int classId, final TICCallback callback) {
+    public void createClassroom(final int classId, final int scene, final TICCallback callback) {
         TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " callback:" + callback);
         TICReporter.report(TICReporter.EventId.createGroup_start);
         // 为了减少用户操作成本（收到群进出等通知需要配置工单才生效）群组类型由ChatRoom改为Public
         final String groupId = String.valueOf(classId);
         final String groupName = "interact group";
-        final String groupType = "Public";
+        final String groupType = ((scene == TICManager.TICClassScene.TIC_CLASS_SCENE_LIVE) ? "AVChatRoom": "Public");
 
         TIMGroupManager.CreateGroupParam param = new TIMGroupManager.CreateGroupParam(groupType, groupName);
         param.setGroupId(groupId);
@@ -431,6 +523,10 @@ public class TICManagerImpl  extends TICManager{
             }
         });
 
+        //停止同步时间
+        stopSyncTimer();
+
+        //
         releaseClass();
     }
 
@@ -638,6 +734,10 @@ public class TICManagerImpl  extends TICManager{
         return false;
     }
 
+    private void handleGroupTipsMessage(TIMGroupTipsElem timGroupTipsElem) {
+        onGroupTipMessageReceived(timGroupTipsElem);
+    }
+
     private void handleGroupSystemMessage(TIMMessage message) {
         if (classroomOption == null) {
             TXCLog.e(TAG, "TICManager: handleGroupSystemMessage: not in class now.");
@@ -688,7 +788,6 @@ public class TICManagerImpl  extends TICManager{
                     onChatMessageReceived(message, elem);
                     break;
                 case GroupTips:
-                    onGroupTipMessageReceived((TIMGroupTipsElem) elem);
                     continue;
                 default:
                     break;
@@ -779,6 +878,11 @@ public class TICManagerImpl  extends TICManager{
                 mEnterRoomCallback.onSuccess("succ");
             }
             sendOfflineRecordInfo();
+
+            if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE
+                    && classroomOption.roleType == TICRoleType.TIC_ROLE_TYPE_ANCHOR) {
+                startSyncTimer();
+            }
         }
 
         @Override
@@ -886,6 +990,27 @@ public class TICManagerImpl  extends TICManager{
         public void onAudioRouteChanged(int var1, int var2) {
         }
 
+        @Override
+        public void onRecvSEIMsg(String userid, byte[] bytes) {
+            super.onRecvSEIMsg(userid, bytes);
+            try {
+                String str = new String(bytes);
+                JSONObject jsonObject = new JSONObject(str);
+                boolean isSyncTime = jsonObject.has(SYNCTIME);
+                TXCLog.i(TAG, "TICManager: onRecvSEIMsg  synctime 1: " + isSyncTime);
+                if (isSyncTime) {
+                    long time =  jsonObject.getLong(SYNCTIME);
+                    TXCLog.i(TAG, "TICManager: onRecvSEIMsg  synctime 2: " + userid +  "|" + time);
+                    if (mBoard != null) {
+                        mBoard.syncRemoteTime(userid, time);
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     /////////////////
