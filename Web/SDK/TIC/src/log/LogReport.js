@@ -71,7 +71,11 @@ class LogReport {
   post() {
     var arr = [];
     for (var p in this.businessData) {
-      arr.push(`${p}=${this.businessData[p]}`);
+      if (p === 'errorDesc') {
+        arr.push(`${p}=${encodeURIComponent(this.businessData[p])}`);
+      } else {
+        arr.push(`${p}=${this.businessData[p]}`);
+      }
     }
     this.reportData.kv_str = arr.join('&');
 

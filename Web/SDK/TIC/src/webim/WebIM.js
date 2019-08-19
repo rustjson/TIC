@@ -1,5 +1,6 @@
 import IMHandler from './ImHandler';
 import LogReport from '../log/LogReport'
+import Constant from '../constant/Constant';
 
 function TICWebIM() {
   this.accountModel = null;
@@ -46,43 +47,13 @@ TICWebIM.prototype.initEvent = function () {
     onConnNotify(resp) {},
 
     // 监听新消息(直播聊天室)事件，直播场景下必填
-    onBigGroupMsgNotify(msgs) {},
+    onBigGroupMsgNotify(msgs) {
+      self.messageHandler(msgs);
+    },
 
     // 监听新消息函数，必填
     onMsgNotify(msgs) {
-      if (msgs.length) { // 如果有消息才处理
-        msgs.forEach(msg => {
-          var sess = msg.getSession();
-          var msgType = sess.type();
-          // 如果是群组消息
-          if (msgType === webim.SESSION_TYPE.GROUP) {
-            var groupid = sess.id();
-            // 如果是聊天群
-            if (groupid == self.accountModel.classId) {
-              var elems = msg.elems;
-              if (elems.length) {
-                // 白板消息
-                if (elems[0].type === 'TIMCustomElem' && elems[0].content.ext === 'TXWhiteBoardExt') {
-                  if (msg.getFromAccount() != self.accountModel.userId) {
-                    self.boardNotifyCallback && self.boardNotifyCallback(msg)
-                  }
-                } else if (elems[0].type === 'TIMFileElem' && elems[0].content.ext === 'TXWhiteBoardExt') { // 白板消息
-                  if (msg.getFromAccount() != self.accountModel.userId) {
-                    self.boardNotifyCallback && self.boardNotifyCallback(msg)
-                  }
-                } else if (elems[0].type === 'TIMCustomElem' && elems[0].content.ext === 'TXConferenceExt') { // 对时消息过滤掉
-                } else {
-                  self.resolveMessage(msg);
-                }
-              }
-            } else {
-              // 非本群通知，忽略
-            }
-          } else { // 如果是C2C消息
-            self.resolveMessage(msg);
-          }
-        });
-      }
+      self.messageHandler(msgs);
     },
 
 
@@ -176,6 +147,43 @@ TICWebIM.prototype.initEvent = function () {
   }
 }
 
+TICWebIM.prototype.messageHandler = function (msgs) {
+  let self = this;
+  if (msgs.length) { // 如果有消息才处理
+    msgs.forEach(msg => {
+      var sess = msg.getSession();
+      var msgType = sess.type();
+      // 如果是群组消息
+      if (msgType === webim.SESSION_TYPE.GROUP) {
+        var groupid = sess.id();
+        // 如果是聊天群
+        if (groupid == self.accountModel.classId) {
+          var elems = msg.elems;
+          if (elems.length) {
+            // 白板消息
+            if (elems[0].type === 'TIMCustomElem' && elems[0].content.ext === 'TXWhiteBoardExt') {
+              if (msg.getFromAccount() != self.accountModel.userId) {
+                self.boardNotifyCallback && self.boardNotifyCallback(msg)
+              }
+            } else if (elems[0].type === 'TIMFileElem' && elems[0].content.ext === 'TXWhiteBoardExt') { // 白板消息
+              if (msg.getFromAccount() != self.accountModel.userId) {
+                self.boardNotifyCallback && self.boardNotifyCallback(msg)
+              }
+            } else if (elems[0].type === 'TIMCustomElem' && elems[0].content.ext === 'TXConferenceExt') { // 对时消息过滤掉
+            } else {
+              self.resolveMessage(msg);
+            }
+          }
+        } else {
+          // 非本群通知，忽略
+        }
+      } else { // 如果是C2C消息
+        self.resolveMessage(msg);
+      }
+    });
+  }
+}
+
 
 TICWebIM.prototype.resolveMessage = function (msg) {
   var elems = msg.elems;
@@ -214,13 +222,18 @@ TICWebIM.prototype.resolveMessage = function (msg) {
   });
 }
 
-
-TICWebIM.prototype.createRoom = function (classId) {
+/**
+ * @classId 群组id
+ * @scene 场景
+ */
+TICWebIM.prototype.createRoom = function (classId, scene) {
   classId = classId + '';
+  scene = scene * 1;
+  let groupType = scene === Constant.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL ? 'Public' : 'AVChatRoom';
   var options = {
     'GroupId': classId,
     'Owner_Account': String(this.accountModel.userId),
-    'Type': 'Public',
+    'Type': groupType,
     'ApplyJoinOption': 'FreeAccess',
     'Name': classId,
     'Notification': "",
@@ -254,7 +267,7 @@ TICWebIM.prototype.joinRoom = function () {
   // 先创建群，成功后加入群
   return new Promise((resolve, reject) => {
     var groupID = String(this.accountModel.classId);
-    webim.applyJoinGroup({
+    webim.applyJoinBigGroup({
         GroupId: groupID
       },
       (resp) => {
@@ -269,6 +282,9 @@ TICWebIM.prototype.joinRoom = function () {
 
       (err) => {
         if (err.ErrorCode == 10013) { // 被邀请加入的用户已经是群成员,也表示成功
+          this.imHandler.setIMSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          resolve(err);
+        } else if (err.ErrorCode == -12) { // Join Group succeed; But the type of group is not AVChatRoom
           this.imHandler.setIMSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
           resolve(err);
         } else {
@@ -303,7 +319,7 @@ TICWebIM.prototype.destroyGroup = function (groupID) {
 TICWebIM.prototype.quitGroup = function () {
   var groupID = this.accountModel.classId + '';
   return new Promise((resolve, reject) => {
-    webim.quitGroup({
+    webim.quitBigGroup({
         GroupId: groupID
       },
       function (resp) {
@@ -369,6 +385,5 @@ TICWebIM.prototype.setEventListener = function (eventListener) {
 TICWebIM.prototype.setStatusListener = function (statusListener) {
   this.statusListener = statusListener;
 }
-
 
 export default TICWebIM;

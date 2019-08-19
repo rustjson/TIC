@@ -100,7 +100,7 @@ TIC.prototype = {
     this.accountModel.userSig = loginConfig.userSig;
     this.ticWebIm = new WebIM();
     this.ticWebIm.setLog(this.log);
-    
+
     this.log.setUserId(loginConfig.userId);
 
     // 登录-start
@@ -212,10 +212,20 @@ TIC.prototype = {
 
   /**
    * 创建课堂
-   * @param classId			课堂ID，由业务生成和维护
+   * @param classObj			课堂ID，由业务生成和维护
    * @param callback			回调
    */
-  createClassroom(classId, callback) {
+  createClassroom(classObj, callback) {
+    // 默认是实时通话场景
+    let scene = Constant.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL; // 0 实时通话场景  1 直播场景
+    let classId = classObj;
+
+    // 如果是对象，则要拆一下classId
+    if (Object.prototype.toString.call(classObj) === '[object Object]') {
+      classId = classObj.classId;
+      scene = classObj.classScene || Constant.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL; // 场景
+    }
+
     let startTime = Date.now();
 
     // 创建课堂-start
@@ -224,11 +234,11 @@ TIC.prototype = {
       errorDesc: '',
       timeCost: Date.now() - startTime,
       data: classId + '',
-      ext: '',
+      ext: '' + scene, // 将场景上报
     });
 
     // WebIM加入聊天房间
-    this.ticWebIm.createRoom(classId).then(res => {
+    this.ticWebIm.createRoom(classId, scene).then(res => {
       // 创建课堂-end
       this.log.report(LogReport.EVENT_NAME.CREATEGROUP_END, {
         errorCode: 0,
@@ -282,7 +292,7 @@ TIC.prototype = {
     });
 
     this.accountModel.classId = classId;
-    this.webRTCOptionModel.setData(webRTCOption);
+
 
     this.ticWebIm.joinRoom().then(res => {
 
@@ -307,29 +317,7 @@ TIC.prototype = {
       });
 
       // 加入AV房间-start
-      this.log.report(LogReport.EVENT_NAME.ENTERROOM_START, {
-        errorCode: 0,
-        errorDesc: '',
-        timeCost: Date.now() - startTime,
-        data: '',
-        ext: '',
-      });
-
-      this.ticWebRTC = new WebRTC(this.accountModel, this.webRTCOptionModel);
-      this.ticWebRTC.setLog(this.log);
-
-      this.ticWebRTC.joinAvRoom(() => {
-        // 加入AV房间-end
-        this.log.report(LogReport.EVENT_NAME.ENTERROOM_END, {
-          errorCode: 0,
-          errorDesc: '',
-          timeCost: Date.now() - startTime,
-          data: '',
-          ext: '',
-        });
-
-        this.ticWebRTC.setStatusListener(this.statusListener);
-
+      if (!webRTCOption) {
         // 白板初始化
         this.log.report(LogReport.EVENT_NAME.INITBOARD_START, {
           errorCode: 0,
@@ -362,22 +350,81 @@ TIC.prototype = {
           module: Constant.TICModule.TICMODULE_IMSDK,
           code: 0
         });
-      }, (error) => {
-        // 加入AV房间-end
-        this.log.report(LogReport.EVENT_NAME.ENTERROOM_END, {
-          errorCode: error.errorCode,
-          errorDesc: JSON.stringify(error),
+      } else {
+        this.log.report(LogReport.EVENT_NAME.ENTERROOM_START, {
+          errorCode: 0,
+          errorDesc: '',
           timeCost: Date.now() - startTime,
           data: '',
           ext: '',
         });
 
-        callback && callback({
-          module: Constant.TICModule.TICMODULE_TRTC,
-          code: error.errorCode,
-          desc: JSON.stringify(error)
+        this.webRTCOptionModel.setData(webRTCOption);
+        this.ticWebRTC = new WebRTC(this.accountModel, this.webRTCOptionModel);
+        this.ticWebRTC.setLog(this.log);
+
+        this.ticWebRTC.joinAvRoom(() => {
+          // 加入AV房间-end
+          this.log.report(LogReport.EVENT_NAME.ENTERROOM_END, {
+            errorCode: 0,
+            errorDesc: '',
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+
+          this.ticWebRTC.setStatusListener(this.statusListener);
+
+          // 白板初始化
+          this.log.report(LogReport.EVENT_NAME.INITBOARD_START, {
+            errorCode: 0,
+            errorDesc: '',
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+
+          this.boardOptionModel.setData(boardOption);
+          this.ticBoard = new WebBoard(this.accountModel, this.boardOptionModel);
+          this.ticBoard.setLog(this.log);
+          this.ticBoard.render();
+
+          // 白板初始化
+          this.log.report(LogReport.EVENT_NAME.INITBOARD_END, {
+            errorCode: 0,
+            errorDesc: '',
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+
+          // 设置白板的监听回调
+          this.ticBoard.addSyncDataEventCallback((data) => {
+            this.ticWebIm.sendBoardGroupCustomMessage(data);
+          });
+
+          callback && callback({
+            module: Constant.TICModule.TICMODULE_IMSDK,
+            code: 0
+          });
+        }, (error) => {
+          // 加入AV房间-end
+          this.log.report(LogReport.EVENT_NAME.ENTERROOM_END, {
+            errorCode: error.errorCode,
+            errorDesc: JSON.stringify(error),
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+
+          callback && callback({
+            module: Constant.TICModule.TICMODULE_TRTC,
+            code: error.errorCode,
+            desc: JSON.stringify(error)
+          });
         });
-      });
+      }
+
     }, error => {
 
       // 加入课堂-end
@@ -414,8 +461,8 @@ TIC.prototype = {
     });
 
     this.ticWebIm.quitGroup().then(() => {
-      this.ticWebRTC.quit();
-      this.ticBoard.quit();
+      this.ticWebRTC && this.ticWebRTC.quit();
+      this.ticBoard && this.ticBoard.quit();
 
       this.removeTICEventListener();
       this.removeTICMessageListener();
@@ -439,8 +486,8 @@ TIC.prototype = {
     }).catch((error) => {
       // 群不存在 或者 不在群里了 或者 群id不合法（一般这种情况是课堂销毁了groupId被重置后发生）(都认为成功)
       if (error.ErrorCode === 10010 || error.ErrorCode === 10007 || error.ErrorCode === 10015) {
-        this.ticWebRTC.quit();
-        this.ticBoard.quit();
+        this.ticWebRTC && this.ticWebRTC.quit();
+        this.ticBoard && this.ticBoard.quit();
 
         this.removeTICEventListener();
         this.removeTICMessageListener();
@@ -499,9 +546,9 @@ TIC.prototype = {
     });
 
     this.ticWebIm.destroyGroup(classId).then(data => {
-      this.ticWebRTC.quit();
-      this.ticBoard.clearAll();
-      this.ticBoard.quit();
+      this.ticWebRTC && this.ticWebRTC.quit();
+      this.ticBoard && this.ticBoard.clearAll();
+      this.ticBoard && this.ticBoard.quit();
 
       this.removeTICEventListener();
       this.removeTICMessageListener();
