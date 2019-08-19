@@ -1,5 +1,11 @@
 # TIC Release Notes - Windows
 
+## 2019.08.19
+
+新增大房间方案支持
+- TICClassroomOption增加classScene和roleType
+- createClassroom接口增加参数classScene
+
 ## 2019.08.15
 - 更新白板SDK 2.3.3.48
 
