@@ -248,7 +248,10 @@ window.app = new Vue({
         return;
       }
 
-      this.tic.createClassroom(this.roomID, (res) => {
+      this.tic.createClassroom({
+        classId: this.roomID,
+        classScene: TIC.CONSTANT.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL // 1：直播模式 0: 实时模式
+      }, (res) => {
 
         if (res.code) {
           if (res.code == 10021) {
@@ -307,7 +310,7 @@ window.app = new Vue({
       this.tic.joinClassroom(this.roomID, {}, {
         id: 'paint_box',
         ratio: '16:9',
-        smoothLevel: 0.1,
+        smoothLevel: 0,
         boardContentFitMode: 1
       }, res => {
         if (res.code) {
@@ -771,17 +774,6 @@ window.app = new Vue({
     },
 
     /**
-     * 切换摄像头
-     */
-    switchCamera() {
-      if (this.cameraIndex < 0) {
-        return;
-      }
-      var WebRTC = this.tic.getWebRTCInstance();
-      WebRTC.chooseVideoDevice(this.devices.camera[this.cameraIndex]);
-    },
-
-    /**
      * 枚举麦克风
      */
     getMicDevices() {
@@ -789,17 +781,6 @@ window.app = new Vue({
       WebRTC.getAudioDevices(devices => {
         this.devices.mic = devices;
       });
-    },
-
-    /**
-     * 切换麦克风
-     */
-    switchMic() {
-      if (this.micIndex < 0) {
-        return;
-      }
-      var WebRTC = this.tic.getWebRTCInstance();
-      WebRTC.chooseAudioDevice(this.devices.mic[this.micIndex]);
     },
 
     /**
