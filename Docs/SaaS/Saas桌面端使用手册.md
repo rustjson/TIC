@@ -1,4 +1,4 @@
-# 互动课堂 SaaS 客户端使用手册
+# Saas桌面端使用手册
 
 本文描述互动课堂SaaS组件使用方式，可以依照[官方文档](https://cloud.tencent.com/document/product/680/34356)的开通互动课堂
 
