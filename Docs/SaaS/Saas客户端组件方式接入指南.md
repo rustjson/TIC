@@ -1,8 +1,8 @@
-# 1. 组件接入指引手册
+# Saas客户端组件方式接入指南
 本文主要介绍如何快速地将互动课堂组件集成到您的项目中，只要按照如下步骤进行配置，就可以完成组件的集成工作。
 ![](https://main.qcloudimg.com/raw/46f2d975a00d080762705d163a39b1ee.jpg)
 
-# 2. 调用组件参数解释及获取方式
+## 调用组件参数解释及获取方式
 
 参数ID|参数类型|解释|获取方式
 :--:|:--:|:--:|:--
@@ -12,7 +12,7 @@ user_id|string|用户帐号|通过云API创建账号获取。[参考云API](./%E
 user_token|string|用户签名|通过云API创建账号获取。[参考云API](./%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E4%BA%91API.md)
 user_sig|string|腾讯云签名 登录必要的腾讯云模块用|1如果用户把私钥托管给我们控制台，则不用填。 2如果没有托管，请拿IMSDK私钥自行计算[具体见IM获取sig]()
 
-# 3.各个端接入流程
+## 各个端接入流程
 
 [桌面端组件接入流程跳转](#electron_location)  
 
@@ -24,7 +24,7 @@ user_sig|string|腾讯云签名 登录必要的腾讯云模块用|1如果用户�
 
 
 
-## 3.1 桌面端组件
+## 桌面端组件
 <div id="electron_location"></div>
 
 业务方通过云API 对课堂，用户，课件进行管理。互动课堂组件只负责上课环节,是一个纯课中页面。
@@ -59,7 +59,7 @@ open TClass.app --args company_id class_id user_id user_token user_sig
 
 
 
-## 3.2 WEB组件
+##  WEB组件
 <span id="web_location"></span>
 
 #### 什么是Web组件
@@ -111,7 +111,7 @@ loginUrl | 登出URL | 是 | 上课完毕/上课期间多端登录被踢下线/�
 参数获取请参考上面的表格
 
 
-## 3.3 Android组件
+## Android组件
 <span id="Android_location"></span>
 
 本文主要介绍如何快速地将 TICSaaS 组件集成到您的项目中，只要按照如下步骤进行配置，就可以完成组件的集成工作。
@@ -216,7 +216,7 @@ Manifest.permission.WRITE_EXTERNAL_STORAGE
 
 
 
-## 3.4 iOS端组件
+## iOS端组件
 <span id="iOS_location"></span>
 
 ### 快速接入
