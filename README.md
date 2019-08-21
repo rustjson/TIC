@@ -57,12 +57,12 @@ demo功能可参考下面的桌面端/移动端使用手册。
 
 **SAAS方案接入**
 
-1. 客户端基本功能介绍。[客户端基本功能介绍](./Docs/SaaS/%e5%ae%a2%e6%88%b7%e7%ab%af%e5%9f%ba%e6%9c%ac%e5%8a%9f%e8%83%bd%e4%bb%8b%e7%bb%8d.md)
-2. 在控制台进行课堂管理和老师/学生管理。[控制台使用手册](./Docs/SaaS/%e6%8e%a7%e5%88%b6%e5%8f%b0%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
-3. 下载桌面端app，体验完整功能。[桌面端使用手册](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82SaaS%e6%a1%8c%e9%9d%a2%e7%ab%af%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
-4. 下载移动端app，体验完整功能。[移动端使用手册](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82SaaS%e7%a7%bb%e5%8a%a8%e7%ab%afApp%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
-5. 直接使用腾讯云互动课堂app的客户，请参考[客户端app方式接入指南](./Docs/SaaS/SaaS%e5%ae%a2%e6%88%b7%e7%ab%af%e6%8e%a5%e5%85%a5%e6%8c%87%e5%bc%95%e6%89%8b%e5%86%8c.md)
-6. 需要自行开发app的客户，请参考[客户端组件方式接入指南](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82%e7%bb%84%e4%bb%b6%e6%8e%a5%e5%85%a5%e6%8c%87%e5%bc%95%e6%89%8b%e5%86%8c.md)
+1. 客户端基本功能介绍。[Saas基本功能介绍](./Docs/SaaS/Saas%e5%9f%ba%e6%9c%ac%e5%8a%9f%e8%83%bd%e4%bb%8b%e7%bb%8d.md)
+2. 在控制台进行课堂管理和老师/学生管理。[Saas控制台使用手册](./Docs/SaaS/Saas%e6%8e%a7%e5%88%b6%e5%8f%b0%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+3. 下载桌面端app，体验完整功能。[Saas桌面端使用手册.md](./Docs/SaaS/Saas%e6%a1%8c%e9%9d%a2%e7%ab%af%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+4. 下载移动端app，体验完整功能。[Saas移动端使用手册.md](./Docs/SaaS/Saas%e7%a7%bb%e5%8a%a8%e7%ab%af%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+5. 直接使用腾讯云互动课堂app的客户，请参考[Saas客户端纯应用方式接入指南](./Docs/SaaS/Saas%e5%ae%a2%e6%88%b7%e7%ab%af%e7%ba%af%e5%ba%94%e7%94%a8%e6%96%b9%e5%bc%8f%e6%8e%a5%e5%85%a5%e6%8c%87%e5%8d%97.md)
+6. 需要自行开发app的客户，请参考[Saas客户端组件方式接入指南](./Docs/SaaS/Saas%e5%ae%a2%e6%88%b7%e7%ab%af%e7%bb%84%e4%bb%b6%e6%96%b9%e5%bc%8f%e6%8e%a5%e5%85%a5%e6%8c%87%e5%8d%97.md)
 7. 可以使用云API完成控制台所有功能，请参考[云API接入指南](./Docs/SaaS/%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E4%BA%91API.md)
 
 正式接入前，请阅读[购买指南](./Docs/%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97.md)后，发送邮件申请开通服务。
