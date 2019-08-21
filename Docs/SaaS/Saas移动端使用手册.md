@@ -1,4 +1,4 @@
-# 互动课堂 SaaS 移动端 App 使用文档
+# Saas移动端使用手册
 ## 一. App 下载
 * Android：应用宝搜索《腾讯云互动课堂》
 * iOS：App Store 搜索《腾讯云互动课堂》
