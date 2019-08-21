@@ -1,49 +1,37 @@
-# 互动课堂
+## 方案简介
 
-互动课堂解决方案是对以下多个独立的腾讯云服务的整合，旨在为您提供一套快速上手使用的在线教育解决方案。
+腾讯云在线教育互动课堂（Tencent Interact Class，TIC）是集实时音视频、交互式白板涂鸦、IM 聊天室、PPT 课件共享、屏幕分享和录制回放等功能于一体的一站式在线教育解决方案。
 
-- [实时音视频 `TRTC`](https://github.com/tencentyun/TRTCSDK)（提供音视频通信能力）
-- [云通信 `TIM`](https://github.com/tencentyun/TIMSDK)（提供云通信能力）
-- [互动白板 `TEduBoard`](./Docs/PaaS/SDK文档/互动白板功能说明.md)（提供文件展示及涂鸦展示能力）
+为了适应不同客户的需求，我们把互动课堂的接入方案分成了SAAS和PAAS两种。下面的表中列举了这两种方案的主要区别。
+客户可以根据自身情况灵活选择。我们也支持这两种方案的无缝切换。
 
-互动课堂设计初衷在于抽象出这些云服务在 `在线教育场景` 下通用的使用流程，为您屏蔽各个云服务琐碎的初始化、鉴权流程等技术细节，让您能专注于业务逻辑开发。
+|能力|SAAS |  PAAS |
+| :-- | :-- |  :-- |
+| 课程管理 | 控制台/云API | 不支持 |
+| 客户端 | 互动课堂app/集成课堂UI组件 | 集成SDK |
+| 视频和白板录制 | 本地/云端 | 云端 |
+| 数据统计和回调 | 支持 | 不支持 |
 
-虽然抽象出来的这套使用流程已经比较具有通用性，但是考虑到您可能还是会有一些细节上的特殊定制化需求，互动课堂这一层的代码我们以开源的形式放出，您可以根据您的实际需求进行修改定制。
+功能模块列表：
 
-## 下载说明
-
-<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，<font color="#FF0000">勿</font>直接`Download ZIP`。
-```
-git clone https://github.com/tencentyun/TIC.git
-```
-
-如果您访问 Github 或安装 Git-LFS 遇到问题，请使用腾讯云分流地址下载：
-
-<table>
-    <tr>
-        <th style="text-align:center">Web</th>
-        <th style="text-align:center">小程序</th>
-        <th style="text-align:center">Windows</th>
-        <th style="text-align:center">Android</th>
-        <th style="text-align:center">iOS</th>
-        <th style="text-align:center">macOS</th>
-    </tr>
-    <tr>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Web.zip">Download Zip</a></td>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/小程序.zip">Download Zip</a></td>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Windows.zip">Download Zip</a></td>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Android.zip">Download Zip</a></td>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/iOS.zip">Download Zip</a></td>
-        <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/macOS.zip">Download Zip</a></td>
-    </tr>
-</table>
+| 功能 | pc/mac | 桌面chrome | Android/ios | 小程序 |
+| --- | --- | --- | --- | --- |
+| 实时音视频 | 支持 | 支持 | 支持 | 支持 |
+| 直播 | 支持 | 支持 | 支持 | 支持 |
+| 点播 | 支持 | 支持 | 支持 | 支持 |
+| 本地录制 | 支持 | - | - | - |
+| 云端录制 | 支持 | 支持 | 支持 | 支持 |
+| 屏幕分享 | 支持 | 仅观看 | 仅观看 | 仅观看 |
+| 播片 | 支持 | 仅观看  | 仅观看 | 仅观看 |
+| 互动白板 | 支持 | 支持 | 支持 | 支持 |
+| IM聊天 | 支持 | 支持 | 支持 | 支持 |
 
 
-## 快速体验
-
-#### SaaS体验
+### SAAS方案
 
 ![](https://main.qcloudimg.com/raw/ea3692fd322dbcc7d86c3fc3cc6d3c59.jpg)
+
+**demo体验**
 
 <table>
 <tr>
@@ -64,15 +52,29 @@ git clone https://github.com/tencentyun/TIC.git
 </tr>
 </table>
 
-#### PaaS体验
 
-为了便于开发人员以最简明的方式调试接口，我们准备了各个平台的开发demo。
+demo功能可参考下面的桌面端/移动端使用手册。
+
+**SAAS方案接入**
+
+1. 客户端基本功能介绍。[客户端基本功能介绍](./Docs/SaaS/%e5%ae%a2%e6%88%b7%e7%ab%af%e5%9f%ba%e6%9c%ac%e5%8a%9f%e8%83%bd%e4%bb%8b%e7%bb%8d.md)
+2. 在控制台进行课堂管理和老师/学生管理。[控制台使用手册](./Docs/SaaS/%e6%8e%a7%e5%88%b6%e5%8f%b0%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+3. 下载桌面端app，体验完整功能。[桌面端使用手册](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82SaaS%e6%a1%8c%e9%9d%a2%e7%ab%af%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+4. 下载移动端app，体验完整功能。[移动端使用手册](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82SaaS%e7%a7%bb%e5%8a%a8%e7%ab%afApp%e4%bd%bf%e7%94%a8%e6%89%8b%e5%86%8c.md)
+5. 直接使用腾讯云互动课堂app的客户，请参考[客户端app方式接入指南](./Docs/SaaS/SaaS%e5%ae%a2%e6%88%b7%e7%ab%af%e6%8e%a5%e5%85%a5%e6%8c%87%e5%bc%95%e6%89%8b%e5%86%8c.md)
+6. 需要自行开发app的客户，请参考[客户端组件方式接入指南](./Docs/SaaS/%e4%ba%92%e5%8a%a8%e8%af%be%e5%a0%82%e7%bb%84%e4%bb%b6%e6%8e%a5%e5%85%a5%e6%8c%87%e5%bc%95%e6%89%8b%e5%86%8c.md)
+7. 可以使用云API完成控制台所有功能，请参考[云API接入指南](./Docs/SaaS/%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/%E4%BA%91API.md)
+
+正式接入前，请阅读[购买指南](./Docs/%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97.md)后，发送邮件申请开通服务。
+
+### PAAS方案
 
 ![](https://main.qcloudimg.com/raw/4fd896e4a8f70e417d004645f6276927.png)
 
+**demo体验**
+
 <table>
 <tr>
-<th style="text-align:center"></th>
 <th style="text-align:center">Web</th>
 <th style="text-align:center">小程序</th>
 <th style="text-align:center">Android</th>
@@ -81,105 +83,26 @@ git clone https://github.com/tencentyun/TIC.git
 <th style="text-align:center">Windows</th>
 </tr>
 <tr>
-<td>体验链接</td><td style="text-align:center"><a href="https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html">立即体验</a></td>
+<td style="text-align:center"><a href="https://tic-demo-1259648581.cos.ap-shanghai.myqcloud.com/index.html">立即体验</a></td>
 <td style="text-align:center"><img src="https://main.qcloudimg.com/raw/b660a6c57aecebf6a0c749a1daf8532a.jpg" width="150"/></td>
 <td style="text-align:center"><img src="https://main.qcloudimg.com/raw/cd2145e71c50374ddafae1714ee9f6e8.png" width="150"/></td>
 <td style="text-align:center"><img src="https://main.qcloudimg.com/raw/1e40ee772f79317b14a0a55587343ae7.png" width="150"/></td>
 <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Mac.zip">立即体验</a></td>
 <td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/tic/TICDemo_Windows.zip">立即体验</a></td>
 </tr>
-<td>源码链接</td><td style="text-align:center"><a href="../../../Web">Github</a></td>
-<td style="text-align:center"><a href="../../../小程序">Github</a></td>
-<td style="text-align:center"><a href="../../../Android">Github</a></td>
-<td style="text-align:center"><a href="../../../iOS">Github</a></td>
-<td style="text-align:center"><a href="../../../macOS">Github</a></td>
-<td style="text-align:center"><a href="../../../Windows">Github</a></td>
-</tr>
 </table>
 
+**PAAS方案接入**
 
-下载源码后，为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，**点击下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
+1. 通过集成云端API，实现课件转码和录制等功能。
+2. 客户按自身的业务逻辑，集成互动白板、实时音视频和云通信，完成上课流程的闭环。
+3. 客户也可以集成TIC源码，该源码集成了互动白板、实时音视频和云通信，可快速完成上课流程的闭环。
 
-|所属平台|配置文件路径|
-|-|-|
-|Android|Android/Demo/app/src/main/res/raw/config.json|
-|iOS|iOS/Demo/TICDemo/TICDemo/Config/config.json|
-|Windows|Windows/Demo/config.json|
-|macOS|macOS/Demo/TICDemo_Mac/TICDemo_Mac/Config/config.json|
-|Web|Web/Demo/js/account_dev.js|
-|小程序|小程序/Demo/miniprogram/pages/tic/account.js|
+- [文档转码服务](./Docs/PaaS/%E6%96%87%E6%A1%A3%E8%BD%AC%E7%A0%81.md)
+- [后台实时录制服务](./Docs/PaaS/%E5%AE%9E%E6%97%B6%E5%BD%95%E5%88%B6.md)
+- [互动白板](./Docs/PaaS/SDK文档/互动白板功能说明.md)
+- [实时音视频](https://github.com/tencentyun/TRTCSDK)
+- [云通信](https://github.com/tencentyun/TIMSDK)
+- [TIC快速接入](./Docs/PaaS/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)
 
-## 购买指南
-
-[购买指南](./Docs/购买指南.md)
-
-## 接入文档
-
-
-<table>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Web</th>
-<th style="text-align:center">小程序</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th style="text-align:center">macOS</th>
-<th style="text-align:center">Windows</th>
-</tr>
-<tr>
-<td>互动课堂（TIC）</td><td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Web/互动课堂接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/小程序/互动课堂接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Android/互动课堂接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/iOS/互动课堂接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/macOS/互动课堂接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Windows/互动课堂接入文档.md">Doc</a></td>
-</tr>
-<td>互动白板（TEduBoard）</td><td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Web/互动白板接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/小程序/互动白板接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Android/互动白板接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/iOS/互动白板接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/macOS/互动白板接入文档.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/SDK文档/Windows/互动白板接入文档.md">Doc</a></td>
-</tr>
-</table>
-
-
-
-## 版本信息
-
-<table>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Web</th>
-<th style="text-align:center">小程序</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th style="text-align:center">macOS</th>
-<th style="text-align:center">Windows</th>
-</tr>
-<tr>
-<td>互动课堂（TIC）</td><td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Web_TIC_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/小程序_TIC_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Android_TIC_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/iOS_macOS_TIC_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动课堂/Windows_TIC_ReleaseNotes.md">Doc</a></td>
-</tr>
-<td>互动白板（TEduBoard）</td><td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Web_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/小程序_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Android_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/iOS_macOS_ReleaseNotes.md">Doc</a></td>
-<td style="text-align:center"><a href="./Docs/PaaS/版本信息/互动白板/Windows_ReleaseNotes.md">Doc</a></td>
-</tr>
-</table>
-
-
-## 更多功能
-
-- [实时录制](./Docs/PaaS/实时录制.md)
-- [课后录制](./Docs/PaaS/课后录制.md)
-- [文档转码](./Docs/PaaS/文档转码.md)
-
-## 常见问题
-- [常见问题](./Docs/PaaS/常见问题.md)
+正式接入前，请阅读[购买指南](./Docs/%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97.md)后，发送邮件申请开通服务。
