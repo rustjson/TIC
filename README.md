@@ -98,39 +98,11 @@ demo功能可参考下面的桌面端/移动端使用手册。
 2. 客户按自身的业务逻辑，集成互动白板、实时音视频和云通信，完成上课流程的闭环。
 3. 客户也可以集成TIC源码，该源码集成了互动白板、实时音视频和云通信，可快速完成上课流程的闭环。
 
-- [文档转码服务](./Docs/PaaS/%E6%96%87%E6%A1%A3%E8%BD%AC%E7%A0%81.md)
-- [后台实时录制服务](./Docs/PaaS/%E5%AE%9E%E6%97%B6%E5%BD%95%E5%88%B6.md)
+- [TIC快速接入](./Docs/PaaS/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)
 - [互动白板](./Docs/PaaS/SDK文档/互动白板功能说明.md)
 - [实时音视频](https://github.com/tencentyun/TRTCSDK)
 - [云通信](https://github.com/tencentyun/TIMSDK)
-- [TIC快速接入](./Docs/PaaS/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)
+- [文档转码服务](./Docs/PaaS/%E6%96%87%E6%A1%A3%E8%BD%AC%E7%A0%81.md)
+- [后台实时录制服务](./Docs/PaaS/%E5%AE%9E%E6%97%B6%E5%BD%95%E5%88%B6.md)
 
 正式接入前，请阅读[购买指南](./Docs/%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97.md)后，发送邮件申请开通服务。
-
-**下载说明**
-
-<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，<font color="#FF0000">勿</font>直接`Download ZIP`。
-```
-git clone https://github.com/tencentyun/TIC.git
-```
-
-如果您访问 Github 或安装 Git-LFS 遇到问题，请使用腾讯云分流地址下载：
-
-<table>
-<tr>
-<th style="text-align:center">Web</th>
-<th style="text-align:center">小程序</th>
-<th style="text-align:center">Windows</th>
-<th style="text-align:center">Android</th>
-<th style="text-align:center">iOS</th>
-<th style="text-align:center">macOS</th>
-</tr>
-<tr>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Web.zip">Download Zip</a></td>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/小程序.zip">Download Zip</a></td>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Windows.zip">Download Zip</a></td>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Android.zip">Download Zip</a></td>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/iOS.zip">Download Zip</a></td>
-<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/macOS.zip">Download Zip</a></td>
-</tr>
-</table>
