@@ -5,6 +5,5 @@
   height: 100%;
 }
 
-@import "./template/1v1horizontal/1v1horizontal.wxss";
-@import "./template/1v1pushmain/layout.wxss";
+@import "./template/1v1/layout.wxss";
 @import "./template/1v1playmain/layout.wxss";
