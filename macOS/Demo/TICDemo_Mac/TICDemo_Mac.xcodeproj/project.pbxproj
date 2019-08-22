@@ -539,7 +539,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tencent.tic.demo.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -565,7 +565,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Tencent.TIC-Demo-Mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tencent.tic.demo.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
