@@ -325,8 +325,8 @@ Component({
      * 设置白板显示方向
      * @param {*} orientation 
      */
-    setOrientation(orientation) {
-      this.data.txBoard.setOrientation(orientation);
+    setOrientation(orientation, callback) {
+      this.data.txBoard.setOrientation(orientation, callback);
     },
 
     /**

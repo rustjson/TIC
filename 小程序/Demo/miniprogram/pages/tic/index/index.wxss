@@ -59,7 +59,13 @@ button {
   transform: rotate(225deg);
 }
 
+.mode-group label {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
 .tips {
   text-align: center;
   font-size: 24rpx;
+  margin-bottom: 10rpx;
 }

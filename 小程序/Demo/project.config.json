@@ -10,7 +10,7 @@
 	},
 	"appid": "",
 	"projectname": "TIC2.0",
-	"libVersion": "2.6.1",
+	"libVersion": "2.8.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
