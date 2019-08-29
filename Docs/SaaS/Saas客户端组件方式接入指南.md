@@ -188,17 +188,18 @@ Manifest.permission.WRITE_EXTERNAL_STORAGE
 ```
 可参考[请求应用权限](https://developer.android.com/training/permissions/requesting?hl=zh-cn)
 ### 调起SaaS组件
-只需要传递5个参数，即可调起SaaS组件主页面，分别是结构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
+只需要传递5个参数，即可调起SaaS组件主页面，分别是机构ID、课堂ID、用户ID、用户Token和用户Sig，如下：
 ```java
-    private void launchInActivity(int agencyId, int classID, String userID, String userToken, String userSig) {
+    private void launchInActivity(int companyID, int classID, String userID, String userToken, String userSig) {
         Intent intent = new Intent(this, InClassActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         Bundle bundle = new Bundle();
-        bundle.putInt("agency_id", agencyId);
-        bundle.putInt("class_id", classID);
-        bundle.putString("user_id", userID);
-        bundle.putString("user_token", userToken);
-        bundle.putString("user_sig", userSig);
+        bundle.putInt(Constants.KEY_CLASS_COMPANY_ID, companyID);
+        bundle.putInt(Constants.KEY_CLASS_CLASS_ID, classID);
+        bundle.putString(Constants.KEY_CLASS_USER_ID, userID);
+        bundle.putString(Constants.KEY_CLASS_USER_TOKEN, userToken);
+        bundle.putString(Constants.KEY_CLASS_USER_SIG, userSig);
+
         intent.putExtras(bundle);
         startActivity(intent);
     }
