@@ -121,7 +121,7 @@ loginUrl | 登出URL | 是 | 上课完毕/上课期间多端登录被踢下线/�
 * Android 4.4 （API 19）及以上系统
 
 ### 快速集成SDK
-TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更新。只需要用 Android Studio 打开需要集成 SDK 的工程（本文以 TICSaaSDemo 为例），然后通过简单的三个步骤修改 app/build.gradle 文件，就可以完成 SDK 集成：
+TICSaaS组件已经发布到jcenter，您可以通过配置gradle自动下载更新。只需要用 Android Studio 打开需要集成 SDK 的工程，然后通过简单的三个步骤修改 app/build.gradle 文件，就可以完成 SDK 集成：
 
 * 第一步：添加 SDK 依赖
 在 dependencies 中添加  TICSaaS 以其它模块 的依赖。
