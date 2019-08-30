@@ -1,0 +1,9 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/TEduBoard_Mac/macOS/SDK" "${PODS_ROOT}/TXIMSDK_Mac/Mac" "${PODS_ROOT}/TXLiteAVSDK_TRTC_Mac"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/TEduBoard_Mac/macOS/SDK/TEduBoard_Mac.framework/Versions/A/Headers/ ${PODS_ROOT}/TXIMSDK_Mac/Mac/ImSDKForMac.framework/Versions/A/Headers/ ${PODS_ROOT}/TXLiteAVSDK_TRTC_Mac/TXLiteAVSDK_TRTC_Mac.framework/Headers/
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks'
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"resolv" -framework "AudioUnit" -framework "ImSDKForMac" -framework "TEduBoard_Mac" -framework "TXLiteAVSDK_TRTC_Mac"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods

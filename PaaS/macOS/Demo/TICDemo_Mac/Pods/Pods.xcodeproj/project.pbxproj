@@ -1,0 +1,700 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		6CF579A1F8C20F5516433C75A028959A /* TXIMSDK_Mac */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BFFEF071F8930F25310A75D639A1096B /* Build configuration list for PBXAggregateTarget "TXIMSDK_Mac" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = TXIMSDK_Mac;
+		};
+		6D3506FC78B03AFE307F05B1BC30B6A8 /* TXLiteAVSDK_TRTC_Mac */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 81E81C6C0F40AEF8CDEC9FA04AFBF4D2 /* Build configuration list for PBXAggregateTarget "TXLiteAVSDK_TRTC_Mac" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = TXLiteAVSDK_TRTC_Mac;
+		};
+		7C334C666B840FFA5AE062B27044D6CF /* TEduBoard_Mac */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 040E3D631E05B1B41038685B9552232C /* Build configuration list for PBXAggregateTarget "TEduBoard_Mac" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = TEduBoard_Mac;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		69AC52D44243465ABA05BC5279AA8D3F /* Pods-TICDemo_Mac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7547A443D2627449A5CA538625F5A2D4 /* Pods-TICDemo_Mac-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		250150C26A2EFFE207D087C34866430C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D3506FC78B03AFE307F05B1BC30B6A8;
+			remoteInfo = TXLiteAVSDK_TRTC_Mac;
+		};
+		4A1ABF0C44902FBE222DA5A07033D5A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C334C666B840FFA5AE062B27044D6CF;
+			remoteInfo = TEduBoard_Mac;
+		};
+		D68AB51BA7A6E27FC5B816A433C5B85D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CF579A1F8C20F5516433C75A028959A;
+			remoteInfo = TXIMSDK_Mac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		091C10B36A62A2141DEF1BC40C2EFA52 /* TIMComm+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMComm+MsgExt.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMComm+MsgExt.h"; sourceTree = "<group>"; };
+		1476879BABD4A6F2C1BCFBC21CF6A06B /* Pods-TICDemo_Mac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TICDemo_Mac-acknowledgements.plist"; sourceTree = "<group>"; };
+		171E30673AC1AEC4AA7F296B6FFBFF53 /* Pods-TICDemo_Mac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TICDemo_Mac-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2C26ADB64CD7FFC25CCA9AE1EA4C854A /* TXLiteAVSDK_TRTC_Mac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TXLiteAVSDK_TRTC_Mac.xcconfig; sourceTree = "<group>"; };
+		35A89794C1D2FF4C8510E6695B086D38 /* TEduBoard_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TEduBoard_Mac.framework; path = macOS/SDK/TEduBoard_Mac.framework; sourceTree = "<group>"; };
+		3F4C22C4821F2DD68B2EA237321F5C22 /* TIMMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMMessage.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMMessage.h; sourceTree = "<group>"; };
+		3F9678D718B208B08D5E50381EF82283 /* TIMConversation+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMConversation+MsgExt.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMConversation+MsgExt.h"; sourceTree = "<group>"; };
+		4E9E8BEB29F4E9A185DD4167E63AD8DF /* TIMErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMErrorCode.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMErrorCode.h; sourceTree = "<group>"; };
+		4F5EA41D0C343BDF5B242055F577881C /* TEduBoardController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TEduBoardController.h; path = macOS/SDK/TEduBoard_Mac.framework/Versions/A/Headers/TEduBoardController.h; sourceTree = "<group>"; };
+		5CC588AB24CCF6022B1259B4216376F8 /* IMMessageExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IMMessageExt.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/IMMessageExt.h; sourceTree = "<group>"; };
+		67E1F86563B53253774D0254B50DD1AC /* ImSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ImSDK.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/ImSDK.h; sourceTree = "<group>"; };
+		70C978EE80CE832F635B9E82EDD07E3A /* Pods-TICDemo_Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TICDemo_Mac.release.xcconfig"; sourceTree = "<group>"; };
+		7547A443D2627449A5CA538625F5A2D4 /* Pods-TICDemo_Mac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TICDemo_Mac-dummy.m"; sourceTree = "<group>"; };
+		7A8BF38B52DF109D51BFB7ED1938B7BB /* ImSDKForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImSDKForMac.framework; path = Mac/ImSDKForMac.framework; sourceTree = "<group>"; };
+		7B6434B0338C9A5B3DADB858C647B2B6 /* TEduBoard_Mac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TEduBoard_Mac.xcconfig; sourceTree = "<group>"; };
+		8473498117603F647FB4DE361018EE46 /* TIMFriendshipManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMFriendshipManager.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMFriendshipManager.h; sourceTree = "<group>"; };
+		8B4F962F54DD620733AB8E4B7CFAE53E /* TIMManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMManager.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMManager.h; sourceTree = "<group>"; };
+		9012224B5ACD5FA1B91F3C7C3CF51271 /* TIMMessage+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMMessage+MsgExt.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMMessage+MsgExt.h"; sourceTree = "<group>"; };
+		917132C2BC6D3496D70A043111456576 /* TIMGroupManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMGroupManager.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMGroupManager.h; sourceTree = "<group>"; };
+		9882171C1D827441FB5691A24D627D02 /* TXLiteAVSDK_TRTC_Mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TXLiteAVSDK_TRTC_Mac.framework; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A10A8551C46745489A43F8D8763618CA /* Pods-TICDemo_Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TICDemo_Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		B7D07E215DD3A99F6A8D49E07CC2C2CA /* TIMFriendshipDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMFriendshipDefine.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMFriendshipDefine.h; sourceTree = "<group>"; };
+		BB240601647F06D57C96383CFB2C9DF5 /* TEduBoard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TEduBoard.h; path = macOS/SDK/TEduBoard_Mac.framework/Versions/A/Headers/TEduBoard.h; sourceTree = "<group>"; };
+		C012450CC3CCF6FAF5EAE86D72AB8F8C /* TIMConversation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMConversation.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMConversation.h; sourceTree = "<group>"; };
+		CB8BB391E22C5BF6A5DB9B754E183EFB /* TXIMSDK_Mac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TXIMSDK_Mac.xcconfig; sourceTree = "<group>"; };
+		D0C7700BD2A559AFBD7C1E963D636535 /* TIMComm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMComm.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMComm.h; sourceTree = "<group>"; };
+		D5448F0BF4D64C49FA02EC49DF25841B /* TEduBoardDef.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TEduBoardDef.h; path = macOS/SDK/TEduBoard_Mac.framework/Versions/A/Headers/TEduBoardDef.h; sourceTree = "<group>"; };
+		DDFA91DD19CFDB27471E2B2930742707 /* TIMManager+MsgExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMManager+MsgExt.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMManager+MsgExt.h"; sourceTree = "<group>"; };
+		E876B038F7058EC6B52CF16185934270 /* TIMCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TIMCallback.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/TIMCallback.h; sourceTree = "<group>"; };
+		EA965272B04F77B54B30D6C0F49C153B /* TIMGroupManager+Ext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMGroupManager+Ext.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMGroupManager+Ext.h"; sourceTree = "<group>"; };
+		F3FC764903C84CA16D1233C20CA0A354 /* TIMComm+Group.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TIMComm+Group.h"; path = "Mac/ImSDKForMac.framework/Versions/A/Headers/TIMComm+Group.h"; sourceTree = "<group>"; };
+		F4472AF157DA35EB80F698152B92F99E /* Pods-TICDemo_Mac-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TICDemo_Mac-frameworks.sh"; sourceTree = "<group>"; };
+		FD6C1AF62B9C0241F6D0B26000BC0335 /* IMGroupExt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IMGroupExt.h; path = Mac/ImSDKForMac.framework/Versions/A/Headers/IMGroupExt.h; sourceTree = "<group>"; };
+		FF65344A1E0552A0A7C1C8FB30CB9947 /* libPods-TICDemo_Mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TICDemo_Mac.a"; path = "libPods-TICDemo_Mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		170B54F710F5A09207C5D4EE13A30D69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A13431EDD12C8EA8F89D4C2047FF26C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF65344A1E0552A0A7C1C8FB30CB9947 /* libPods-TICDemo_Mac.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		19D10956123306D0538E71786202D5DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9882171C1D827441FB5691A24D627D02 /* TXLiteAVSDK_TRTC_Mac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5A1DC089BC20AC1C2DE66721C982CFA9 /* TXIMSDK_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				FD6C1AF62B9C0241F6D0B26000BC0335 /* IMGroupExt.h */,
+				5CC588AB24CCF6022B1259B4216376F8 /* IMMessageExt.h */,
+				67E1F86563B53253774D0254B50DD1AC /* ImSDK.h */,
+				E876B038F7058EC6B52CF16185934270 /* TIMCallback.h */,
+				D0C7700BD2A559AFBD7C1E963D636535 /* TIMComm.h */,
+				F3FC764903C84CA16D1233C20CA0A354 /* TIMComm+Group.h */,
+				091C10B36A62A2141DEF1BC40C2EFA52 /* TIMComm+MsgExt.h */,
+				C012450CC3CCF6FAF5EAE86D72AB8F8C /* TIMConversation.h */,
+				3F9678D718B208B08D5E50381EF82283 /* TIMConversation+MsgExt.h */,
+				4E9E8BEB29F4E9A185DD4167E63AD8DF /* TIMErrorCode.h */,
+				B7D07E215DD3A99F6A8D49E07CC2C2CA /* TIMFriendshipDefine.h */,
+				8473498117603F647FB4DE361018EE46 /* TIMFriendshipManager.h */,
+				917132C2BC6D3496D70A043111456576 /* TIMGroupManager.h */,
+				EA965272B04F77B54B30D6C0F49C153B /* TIMGroupManager+Ext.h */,
+				8B4F962F54DD620733AB8E4B7CFAE53E /* TIMManager.h */,
+				DDFA91DD19CFDB27471E2B2930742707 /* TIMManager+MsgExt.h */,
+				3F4C22C4821F2DD68B2EA237321F5C22 /* TIMMessage.h */,
+				9012224B5ACD5FA1B91F3C7C3CF51271 /* TIMMessage+MsgExt.h */,
+				C92F92E957373D0B23E78E8540543D4E /* Frameworks */,
+				5FBE8FFD5FD181544620A290E490BB31 /* Support Files */,
+			);
+			name = TXIMSDK_Mac;
+			path = TXIMSDK_Mac;
+			sourceTree = "<group>";
+		};
+		5FBE8FFD5FD181544620A290E490BB31 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB8BB391E22C5BF6A5DB9B754E183EFB /* TXIMSDK_Mac.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TXIMSDK_Mac";
+			sourceTree = "<group>";
+		};
+		92E670D64AC5A2793C3C91317E6158BB /* TXLiteAVSDK_TRTC_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				19D10956123306D0538E71786202D5DA /* Frameworks */,
+				A50000F856F162224E27B11CDC6E5B44 /* Support Files */,
+			);
+			name = TXLiteAVSDK_TRTC_Mac;
+			path = TXLiteAVSDK_TRTC_Mac;
+			sourceTree = "<group>";
+		};
+		9988D4FEBAF79013276F29FF3730D47F /* Pods-TICDemo_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				171E30673AC1AEC4AA7F296B6FFBFF53 /* Pods-TICDemo_Mac-acknowledgements.markdown */,
+				1476879BABD4A6F2C1BCFBC21CF6A06B /* Pods-TICDemo_Mac-acknowledgements.plist */,
+				7547A443D2627449A5CA538625F5A2D4 /* Pods-TICDemo_Mac-dummy.m */,
+				F4472AF157DA35EB80F698152B92F99E /* Pods-TICDemo_Mac-frameworks.sh */,
+				A10A8551C46745489A43F8D8763618CA /* Pods-TICDemo_Mac.debug.xcconfig */,
+				70C978EE80CE832F635B9E82EDD07E3A /* Pods-TICDemo_Mac.release.xcconfig */,
+			);
+			name = "Pods-TICDemo_Mac";
+			path = "Target Support Files/Pods-TICDemo_Mac";
+			sourceTree = "<group>";
+		};
+		A1D9E1C3823A4E79D22F3152B8A7B188 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9988D4FEBAF79013276F29FF3730D47F /* Pods-TICDemo_Mac */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A41EADDB123E0E8B8BCB41E82B2F4E93 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B6434B0338C9A5B3DADB858C647B2B6 /* TEduBoard_Mac.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TEduBoard_Mac";
+			sourceTree = "<group>";
+		};
+		A50000F856F162224E27B11CDC6E5B44 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C26ADB64CD7FFC25CCA9AE1EA4C854A /* TXLiteAVSDK_TRTC_Mac.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TXLiteAVSDK_TRTC_Mac";
+			sourceTree = "<group>";
+		};
+		BD026094E47DC2EB3E6D8A0529B4B489 /* TEduBoard_Mac */ = {
+			isa = PBXGroup;
+			children = (
+				BB240601647F06D57C96383CFB2C9DF5 /* TEduBoard.h */,
+				4F5EA41D0C343BDF5B242055F577881C /* TEduBoardController.h */,
+				D5448F0BF4D64C49FA02EC49DF25841B /* TEduBoardDef.h */,
+				FEEB041FA2B6B090C024708AC7380F32 /* Frameworks */,
+				A41EADDB123E0E8B8BCB41E82B2F4E93 /* Support Files */,
+			);
+			name = TEduBoard_Mac;
+			path = TEduBoard_Mac;
+			sourceTree = "<group>";
+		};
+		C92F92E957373D0B23E78E8540543D4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A8BF38B52DF109D51BFB7ED1938B7BB /* ImSDKForMac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				D1AAC44278A171532C4DE4EF9D939A0B /* Pods */,
+				0A13431EDD12C8EA8F89D4C2047FF26C /* Products */,
+				A1D9E1C3823A4E79D22F3152B8A7B188 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D1AAC44278A171532C4DE4EF9D939A0B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD026094E47DC2EB3E6D8A0529B4B489 /* TEduBoard_Mac */,
+				5A1DC089BC20AC1C2DE66721C982CFA9 /* TXIMSDK_Mac */,
+				92E670D64AC5A2793C3C91317E6158BB /* TXLiteAVSDK_TRTC_Mac */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FEEB041FA2B6B090C024708AC7380F32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35A89794C1D2FF4C8510E6695B086D38 /* TEduBoard_Mac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5C86992037775542BD78D1EB3CAE39C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		335E87B0CE6A92C6AC1C1D2EE9246F96 /* Pods-TICDemo_Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C11D001527B670E65168A8AF2ACB4C67 /* Build configuration list for PBXNativeTarget "Pods-TICDemo_Mac" */;
+			buildPhases = (
+				5C86992037775542BD78D1EB3CAE39C1 /* Headers */,
+				F81363928DDD3603D7E8E6CBD826A5B3 /* Sources */,
+				170B54F710F5A09207C5D4EE13A30D69 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE1C0AB4E470C72D42075574A4E069B3 /* PBXTargetDependency */,
+				06F901FA30B4B63645379A58A6C2B35A /* PBXTargetDependency */,
+				BDA413789BFC315444413CAF0E445A84 /* PBXTargetDependency */,
+			);
+			name = "Pods-TICDemo_Mac";
+			productName = "Pods-TICDemo_Mac";
+			productReference = FF65344A1E0552A0A7C1C8FB30CB9947 /* libPods-TICDemo_Mac.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 0A13431EDD12C8EA8F89D4C2047FF26C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				335E87B0CE6A92C6AC1C1D2EE9246F96 /* Pods-TICDemo_Mac */,
+				7C334C666B840FFA5AE062B27044D6CF /* TEduBoard_Mac */,
+				6CF579A1F8C20F5516433C75A028959A /* TXIMSDK_Mac */,
+				6D3506FC78B03AFE307F05B1BC30B6A8 /* TXLiteAVSDK_TRTC_Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F81363928DDD3603D7E8E6CBD826A5B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69AC52D44243465ABA05BC5279AA8D3F /* Pods-TICDemo_Mac-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06F901FA30B4B63645379A58A6C2B35A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TXIMSDK_Mac;
+			target = 6CF579A1F8C20F5516433C75A028959A /* TXIMSDK_Mac */;
+			targetProxy = D68AB51BA7A6E27FC5B816A433C5B85D /* PBXContainerItemProxy */;
+		};
+		BDA413789BFC315444413CAF0E445A84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TXLiteAVSDK_TRTC_Mac;
+			target = 6D3506FC78B03AFE307F05B1BC30B6A8 /* TXLiteAVSDK_TRTC_Mac */;
+			targetProxy = 250150C26A2EFFE207D087C34866430C /* PBXContainerItemProxy */;
+		};
+		FE1C0AB4E470C72D42075574A4E069B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TEduBoard_Mac;
+			target = 7C334C666B840FFA5AE062B27044D6CF /* TEduBoard_Mac */;
+			targetProxy = 4A1ABF0C44902FBE222DA5A07033D5A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0A4E8437AC7C5E8A6E80920A6EEE3954 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		4FE9E7821D0D69A7809B7AF5BAEA23FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C26ADB64CD7FFC25CCA9AE1EA4C854A /* TXLiteAVSDK_TRTC_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5F14B856CAD788D737965259A3024EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		649E43247E2D80B1424F74EEBF44C926 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8BB391E22C5BF6A5DB9B754E183EFB /* TXIMSDK_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		671D4561B8600751B75119290B057A8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10A8551C46745489A43F8D8763618CA /* Pods-TICDemo_Mac.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		855B24730D1076EB7FECDC1EE10F1362 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B6434B0338C9A5B3DADB858C647B2B6 /* TEduBoard_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		90A16C0D605369C2962C0902FE04FF28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C26ADB64CD7FFC25CCA9AE1EA4C854A /* TXLiteAVSDK_TRTC_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		93F0F835DF5B8AD674183A510D7B70D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB8BB391E22C5BF6A5DB9B754E183EFB /* TXIMSDK_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C2B08AD9A2AE0B531BA60131EE2F3182 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70C978EE80CE832F635B9E82EDD07E3A /* Pods-TICDemo_Mac.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C6384926345054EF071E1117F1CAF2D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B6434B0338C9A5B3DADB858C647B2B6 /* TEduBoard_Mac.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		040E3D631E05B1B41038685B9552232C /* Build configuration list for PBXAggregateTarget "TEduBoard_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6384926345054EF071E1117F1CAF2D8 /* Debug */,
+				855B24730D1076EB7FECDC1EE10F1362 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F14B856CAD788D737965259A3024EA6 /* Debug */,
+				0A4E8437AC7C5E8A6E80920A6EEE3954 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81E81C6C0F40AEF8CDEC9FA04AFBF4D2 /* Build configuration list for PBXAggregateTarget "TXLiteAVSDK_TRTC_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90A16C0D605369C2962C0902FE04FF28 /* Debug */,
+				4FE9E7821D0D69A7809B7AF5BAEA23FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFFEF071F8930F25310A75D639A1096B /* Build configuration list for PBXAggregateTarget "TXIMSDK_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93F0F835DF5B8AD674183A510D7B70D8 /* Debug */,
+				649E43247E2D80B1424F74EEBF44C926 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C11D001527B670E65168A8AF2ACB4C67 /* Build configuration list for PBXNativeTarget "Pods-TICDemo_Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				671D4561B8600751B75119290B057A8E /* Debug */,
+				C2B08AD9A2AE0B531BA60131EE2F3182 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

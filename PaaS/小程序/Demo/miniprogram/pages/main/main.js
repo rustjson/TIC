@@ -1,0 +1,118 @@
+// miniprogram/pages/main/main.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    canUse: 0, // 是否可以使用音视频组件
+    entryInfos: [
+      // {
+      //   icon: "../../resources/images/service.png",
+      //   title: "视频客服",
+      //   // desc: "<live-room>",
+      //   navigateTo: "/pages/customer-service/index/index"
+      // },
+      {
+        icon: "../../resources/images/tic.png",
+        title: "互动课堂",
+        // desc: "<tic-sdk>",
+        navigateTo: "/pages/tic/index/index"
+      },
+      // {
+      //   icon: "../../resources/images/hospital.png",
+      //   title: "云急救",
+      //   navigateTo: "/pages/sos/home/home"
+      // }
+
+      {
+        icon: "../../resources/images/video-chat.png",
+        title: '视频通话组件',
+          navigateTo: "/pages/tavkit/index/index"
+      }
+    ]
+  },
+
+  // 点击事件
+  onEntryTap(e) {
+    if (this.data.canUse) {
+      var toUrl = this.data.entryInfos[e.currentTarget.id].navigateTo;
+      wx.navigateTo({
+        url: toUrl,
+      });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后再试。',
+        showCancel: false
+      });
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    if (!wx.createLivePlayerContext) {
+      setTimeout(function () {
+        wx.showModal({
+          title: '提示',
+          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后再试。',
+          showCancel: false
+        });
+      }, 0);
+    } else {
+      // 版本正确，允许进入
+      this.data.canUse = 1;
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})
