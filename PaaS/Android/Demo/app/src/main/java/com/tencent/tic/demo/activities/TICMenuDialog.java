@@ -87,14 +87,14 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
     };
 
     final ToolType [] ColorMap = {
-            new ToolType("白", 0xFFFFFF),
-            new ToolType("红", 0xFF0000),
-            new ToolType("橙", 0xFFA500),
-            new ToolType("黄", 0xFFFF00),
-            new ToolType("绿", 0x00FF00),
-            new ToolType("青", 0x00FFFF),
-            new ToolType("蓝", 0x0000ff),
-            new ToolType("紫", 0x800080),
+            new ToolType("白", 0xFFFFFFFF),
+            new ToolType("红", 0xFFFF0000),
+            new ToolType("橙", 0xFFFFA500),
+            new ToolType("黄", 0xFFFFFF00),
+            new ToolType("绿", 0xFF00FF00),
+            new ToolType("青", 0xFF00FFFF),
+            new ToolType("蓝", 0xFF0000ff),
+            new ToolType("紫", 0xFF800080),
     };
 
     final ToolType [] TextStyle = {
