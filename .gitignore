@@ -7,7 +7,7 @@ PaaS/Windows/Demo/Debug
 PaaS/Windows/Demo/Release
 *.user
 *.aps
-Web/Demo/.idea
+PaaS/Web/Demo/.idea
 /.idea
 PaaS/macOS/Demo/TICDemo_Mac/TICDemo_Mac.xcworkspace
 PaaS/macOS/Demo/TICDemo_Mac/Pods
