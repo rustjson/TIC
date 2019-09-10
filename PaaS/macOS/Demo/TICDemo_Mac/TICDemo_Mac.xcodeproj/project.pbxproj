@@ -21,6 +21,7 @@
 		CF3FB3432276A2C7001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB33B2276A2C7001C148E /* TICRenderView.m */; };
 		CF3FB350227707CC001C148E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = CF3FB34D227707CC001C148E /* config.json */; };
 		CF3FB351227707CC001C148E /* TICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB34F227707CC001C148E /* TICConfig.m */; };
+		CF7C40E123277B3200136800 /* TICKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C40DD23277B3100136800 /* TICKeychainWrapper.m */; };
 		CFA891DA22D2ECFC003149C9 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891D822D2ECFC003149C9 /* TICDevice.m */; };
 		CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA891DC22D2F000003149C9 /* TICReachability.m */; };
 		CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFDF44332294FCD1004FFD01 /* TICRecorder.mm */; };
@@ -83,6 +84,8 @@
 		CF3FB34D227707CC001C148E /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		CF3FB34E227707CC001C148E /* TICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICConfig.h; sourceTree = "<group>"; };
 		CF3FB34F227707CC001C148E /* TICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICConfig.m; sourceTree = "<group>"; };
+		CF7C40DD23277B3100136800 /* TICKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICKeychainWrapper.m; sourceTree = "<group>"; };
+		CF7C40E023277B3200136800 /* TICKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICKeychainWrapper.h; sourceTree = "<group>"; };
 		CFA891D722D2ECFC003149C9 /* TICDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICDevice.h; sourceTree = "<group>"; };
 		CFA891D822D2ECFC003149C9 /* TICDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICDevice.m; sourceTree = "<group>"; };
 		CFA891DB22D2F000003149C9 /* TICReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICReachability.h; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				CFA891DC22D2F000003149C9 /* TICReachability.m */,
 				CF377823230A5D3F00101054 /* TICWeakProxy.h */,
 				CF377822230A5D3F00101054 /* TICWeakProxy.m */,
+				CF7C40E023277B3200136800 /* TICKeychainWrapper.h */,
+				CF7C40DD23277B3100136800 /* TICKeychainWrapper.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				CF0AF30022785CFA00B9CD87 /* ColorPickViewController.m in Sources */,
 				CFDF446722953EB2004FFD01 /* NSDate+NetworkClock.m in Sources */,
 				CFA891DF22D2F000003149C9 /* TICReachability.m in Sources */,
+				CF7C40E123277B3200136800 /* TICKeychainWrapper.m in Sources */,
 				CFDF446422953EB2004FFD01 /* NetAssociation.m in Sources */,
 				CFDF44342294FCD1004FFD01 /* TICRecorder.mm in Sources */,
 				CFDF446822953EB2004FFD01 /* GCDAsyncUdpSocket.m in Sources */,

@@ -20,5 +20,6 @@ typedef NS_ENUM(NSInteger, TICNetType)
 @interface TICDevice : NSObject
 + (NSString *)getSystemVersion;
 + (NSString *)getDevType;
++ (NSString *)getUUID;
 + (TICNetType)getNetype;
 @end
