@@ -79,8 +79,13 @@ __请求参数__
 | class_type | string | 课堂类型,详情参考附录 | 否 | `public` |
 | start_time | int64 | 课堂预计开始时间戳 | 否 | 约课时的时间 | 
 | stop_time | int64 | 课堂预计结束时间戳 | 否 | start_time+2小时 |
-| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组 | 是 | - |
-| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组 | 是 | - |
+| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组 | 否 | - |
+| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组 | 否 | - |
+| settings | settings | 课堂配置信息 | 否 | |
+| resolution | string | 设置课堂的分辨率（320x240 / 800x600 / 1024x768)  | 否 | 1024x768 |
+| fps | int | 设置课堂的帧率| 否 | 15 |
+| layout | int | 课堂的布局风格（布局候选待定）| 否 | 0 |
+| auto_create_im | int | 是否由后台创建并管理IM群组，并记录IM历史消息（0- 不创建/1- 创建） | 否 | 1 |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, <br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
