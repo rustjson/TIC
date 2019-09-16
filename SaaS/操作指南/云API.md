@@ -79,8 +79,8 @@ __请求参数__
 | class_type | string | 课堂类型,详情参考附录 | 否 | `public` |
 | start_time | int64 | 课堂预计开始时间戳 | 否 | 约课时的时间 | 
 | stop_time | int64 | 课堂预计结束时间戳 | 否 | start_time+2小时 |
-| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组 | 是 | - |
-| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组 | 是 | - |
+| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组(如果机构信息中已经设置了管理员账号和私钥,此处可不填) | 否 | - |
+| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组(如果机构信息中已经设置了管理员账号和私钥,此处可不填) | 否 | - |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, <br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
