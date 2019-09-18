@@ -79,8 +79,8 @@ __请求参数__
 | class_type | string | 课堂类型,详情参考附录 | 否 | `public` |
 | start_time | int64 | 课堂预计开始时间戳 | 否 | 约课时的时间 | 
 | stop_time | int64 | 课堂预计结束时间戳 | 否 | start_time+2小时 |
-| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组 | 是 | - |
-| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组 | 是 | - |
+| admin_id | string | 云通信管理员ID，互动课堂用它来创建IM群组(如果机构信息中已经设置了管理员账号和私钥,此处可不填) | 否 | - |
+| admin_sig | string | 云通信管理员Sig，互动课堂用它来创建IM群组(如果机构信息中已经设置了管理员账号和私钥,此处可不填) | 否 | - |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, <br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
@@ -404,14 +404,28 @@ response
 }
 ```
 ### 1.6 上课
-客户端老师调用，标志着开始上课
+__接口__ 
 
-|请求基本信息|描述|
-|--|--|
-|方法|POST|
-|请求URL|https://domain/saas/v1/class/start?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
-|header|Content-Type:application/json|
-|鉴权方式|token鉴权|
+| 接口名称 | `/class/start` |
+| :---------| :---------------|
+| 接口方法 | `POST` |
+| Content-Type | `application/json` |
+| 接口URL | `https://iclass.api.qcloud.com/paas/v1/class/start?公共参数` |
+
+__请求参数__ 
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| class_id | int | 课堂ID | 是 | - |
+
+__响应参数__
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
+| error_msg | string | 错误信息 | 是 | - |
+
+__举例__ 
 
 request
 
@@ -430,16 +444,28 @@ response
 }
 ```
 ### 1.7 下课
-客户端老师调用，标志着下课
-一期：可以不调用下课接口，只通过“预约的结束时间”作为下课的唯一判断标示
+__接口__ 
 
-|请求基本信息|描述|
-|--|--|
-|方法|POST|
-|请求URL|https://domain/saas/v1/class/stop?sdkappid=1400127140&user_id=user&token=f30c31384bc967f359bbf7247e8ecb98&random=1234|
-|header|Content-Type:application/json|
-|鉴权方式|token鉴权|
+| 接口名称 | `/class/stop` |
+| :---------| :---------------|
+| 接口方法 | `POST` |
+| Content-Type | `application/json` |
+| 接口URL | `https://iclass.api.qcloud.com/paas/v1/class/stop?公共参数` |
 
+__请求参数__ 
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| class_id | int | 课堂ID | 是 | - |
+
+__响应参数__
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
+| error_msg | string | 错误信息 | 是 | - |
+
+__举例__ 
 request
 ```json
 {

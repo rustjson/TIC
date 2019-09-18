@@ -19,7 +19,7 @@
 + (void)report:(TICReportParam *)param
 {
     NSString *sysVersion =  [TICDevice getSystemVersion];
-    NSString *uuid = @"";
+    NSString *uuid = [TICDevice getUUID];
     NSString *devType = [TICDevice getDevType];
     TICNetType netType = [TICDevice getNetype];
     NSString *netTypeString = [TICReport getNetTypeString:netType];

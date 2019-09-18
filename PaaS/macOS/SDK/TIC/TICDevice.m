@@ -15,6 +15,7 @@
 #endif
 
 #import <sys/utsname.h>
+#import "TICKeychainWrapper.h"
 #import "TICReachability.h"
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <CoreTelephony/CTCarrier.h>
@@ -36,6 +37,17 @@
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     return deviceString;
+}
+
++ (NSString *)getUUID
+{
+    NSString *key = @"com.tencent.tic.keychain.uuid";
+    NSString *uuid = [TICKeychainWrapper searchDateWithService:key];
+    if (uuid.length <= 0) {
+        uuid = [[NSUUID UUID] UUIDString];
+        [TICKeychainWrapper saveDate:uuid withService:key];
+    }
+    return uuid;
 }
 
 + (TICNetType)getNetype{

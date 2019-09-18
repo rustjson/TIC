@@ -31,6 +31,7 @@
 		CF3FB2FE2273191D001C148E /* TICManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F52273191D001C148E /* TICManager.m */; };
 		CF3FB2FF2273191D001C148E /* TICRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3FB2F72273191D001C148E /* TICRenderView.m */; };
 		CF3FB30722758FFE001C148E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAD6A7920A5A44900348C94 /* libc++.tbd */; };
+		CF7C40E523278D4400136800 /* TICKeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7C40E423278D4400136800 /* TICKeychainWrapper.m */; };
 		CF9F964722D4992C00E4ADF8 /* TICDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963C22D4992B00E4ADF8 /* TICDevice.m */; };
 		CF9F964822D4992C00E4ADF8 /* TICReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F963E22D4992B00E4ADF8 /* TICReachability.m */; };
 		CF9F964C22D4992C00E4ADF8 /* TICReport.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9F964622D4992C00E4ADF8 /* TICReport.m */; };
@@ -106,6 +107,8 @@
 		CF3FB2F52273191D001C148E /* TICManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICManager.m; sourceTree = "<group>"; };
 		CF3FB2F62273191D001C148E /* TICRenderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICRenderView.h; sourceTree = "<group>"; };
 		CF3FB2F72273191D001C148E /* TICRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICRenderView.m; sourceTree = "<group>"; };
+		CF7C40E323278D4400136800 /* TICKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TICKeychainWrapper.h; sourceTree = "<group>"; };
+		CF7C40E423278D4400136800 /* TICKeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TICKeychainWrapper.m; sourceTree = "<group>"; };
 		CF7D09E222BA84540088CDD1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		CF7D09E422BA847E0088CDD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		CF7D0A5B22BA890A0088CDD1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -277,6 +280,8 @@
 				CF9F963E22D4992B00E4ADF8 /* TICReachability.m */,
 				CF377826230A5D6400101054 /* TICWeakProxy.h */,
 				CF377825230A5D6400101054 /* TICWeakProxy.m */,
+				CF7C40E323278D4400136800 /* TICKeychainWrapper.h */,
+				CF7C40E423278D4400136800 /* TICKeychainWrapper.m */,
 			);
 			path = TIC;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7C40E523278D4400136800 /* TICKeychainWrapper.m in Sources */,
 				CF3279C22271F10200FF817F /* TableSheetView.m in Sources */,
 				CFDF444E22953496004FFD01 /* NetworkClock.m in Sources */,
 				6AAD6A1020A58E3200348C94 /* ViewController.m in Sources */,
