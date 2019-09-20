@@ -511,7 +511,7 @@ __响应参数__
 | error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
 | error_msg | string | 错误信息 | 是 | - |
 | user_list | Array |创建成功后，每个用户对应生成一个user_token, 用于唤起组件 | 是 | 空数组 |
-| user_token | string | 用户票据, 每个用户ID对应一个user_token | 是 | - |
+| user_token | string | 用户票据, 每个用户ID对应一个user_token，等同于控制台的密码 | 是 | - |
 | repeats | Array | 出现重复id时，会报错，且返回重复user_id列表 | 是 | 空数组 |
 
 __举例__ 
