@@ -9,7 +9,6 @@
 #import "TICRecorder.h"
 #import "TICManager.h"
 #include <chrono>
-#import "TICDevice.h"
 #import "ios-ntp.h"
 
 @interface TICRecorder () <NetAssociationDelegate>
@@ -75,13 +74,11 @@
     uint64_t ntp = [[[NSDate date] dateByAddingTimeInterval:-self.netAssociation.offset] timeIntervalSince1970] * 1000;
     uint64_t timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
     uint64_t tick = [self getTickCount];
-    NSString *deviceId = [TICDevice getUUID];
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:@(1008) forKey:@"type"];
     [param setObject:@(tick) forKey:@"avsdk_time"];
     [param setObject:@(timestamp) forKey:@"board_time"];
     [param setObject:@(ntp) forKey:@"time_line"];
-    [param setObject:deviceId forKey:@"device_id"];
     NSData *paramData = [NSJSONSerialization dataWithJSONObject:param options:NSJSONWritingSortedKeys error:nil];
     
     TIMCustomElem *elem = [[TIMCustomElem alloc] init];
