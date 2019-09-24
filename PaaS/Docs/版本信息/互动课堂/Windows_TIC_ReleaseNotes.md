@@ -1,5 +1,8 @@
 # TIC Release Notes - Windows
 
+## 2019.09.24
+- 更新IMSDK 4.5.45
+
 ## 2019.08.19
 
 新增大房间方案支持

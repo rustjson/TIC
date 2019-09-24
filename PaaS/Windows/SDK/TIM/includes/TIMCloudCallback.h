@@ -367,6 +367,67 @@ typedef void (*TIMKickedOfflineCallback)(const void* user_data);
 typedef void (*TIMUserSigExpiredCallback)(const void* user_data);
 
 /**
+* @brief 添加好友的回调
+*
+* @param json_identifier_array 添加好友列表
+* @param user_data ImSDK负责透传的用户自定义数据，未做任何处理
+*
+* @example json_identifier_array示例
+* [ "user15" ]
+*/
+typedef void(*TIMOnAddFriendCallback)(const char* json_identifier_array, const void* user_data);
+
+/**
+* @brief 删除好友的回调
+*
+* @param json_identifier_array 删除好友列表
+* @param user_data ImSDK负责透传的用户自定义数据，未做任何处理
+*
+* @example json_identifier_array示例
+* [ "user15" ]
+*/
+typedef void(*TIMOnDeleteFriendCallback)(const char* json_identifier_array, const void* user_data);
+
+/**
+* @brief 更新好友资料的回调
+*
+* @param json_friend_profile_update_array 好友资料更新列表
+* @param user_data ImSDK负责透传的用户自定义数据，未做任何处理
+*
+* @example json_friend_profile_update_array示例
+* [
+*    {
+*       "friend_profile_update_identifier" : "user4",
+*       "friend_profile_update_item" : {
+*          "friend_profile_item_group_name_array" : [ "group1", "group2" ],
+*          "friend_profile_item_remark" : "New Remark"
+*       }
+*    }
+* ]
+
+*/
+typedef void(*TIMUpdateFriendProfileCallback)(const char* json_friend_profile_update_array, const void* user_data);
+
+/**
+* @brief 好友添加请求的回调
+*
+* @param json_friend_add_request_pendency_array 好友添加请求未决信息列表
+* @param user_data ImSDK负责透传的用户自定义数据，未做任何处理
+* 
+* @example json_friend_add_request_pendency_array示例
+* [
+*    {
+*       "friend_add_pendency_add_source" : "AddSource_Type_android",
+*       "friend_add_pendency_add_wording" : "aaaa",
+*       "friend_add_pendency_identifier" : "v222",
+*       "friend_add_pendency_nick_name" : ""
+*    }
+* ]
+*/
+typedef void(*TIMFriendAddRequestCallback)(const char* json_friend_add_request_pendency_array, const void* user_data);
+
+
+/**
 * @brief 日志回调
 *
 * @param level 日志级别,请参考[TIMLogLevel](TIMCloudDef.h)
@@ -751,6 +812,267 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 *    "group_pendency_result_unread_num" : 1
 * }
 *
+* @example 接口[TIMProfileGetUserProfileList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[UserProfile](TIMCloudDef.h) 
+* [
+*    {
+*       "user_profile_add_permission" : 1,
+*       "user_profile_birthday" : 0,
+*       "user_profile_face_url" : "",
+*       "user_profile_gender" : 0,
+*       "user_profile_identifier" : "user1",
+*       "user_profile_language" : 0,
+*       "user_profile_level" : 0,
+*       "user_profile_location" : "",
+*       "user_profile_nick_name" : "User1NickName",
+*       "user_profile_role" : 0,
+*       "user_profile_self_signature" : ""
+*    },
+*    {
+*       "user_profile_add_permission" : 0,
+*       "user_profile_birthday" : 0,
+*       "user_profile_face_url" : "",
+*       "user_profile_gender" : 0,
+*       "user_profile_identifier" : "user2",
+*       "user_profile_language" : 0,
+*       "user_profile_level" : 0,
+*       "user_profile_location" : "",
+*       "user_profile_nick_name" : "",
+*       "user_profile_role" : 0,
+*       "user_profile_self_signature" : ""
+*    }
+* ]
+* @example 接口[TIMFriendshipGetFriendProfileList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendProfile](TIMCloudDef.h)
+* [
+*    {
+*       "friend_profile_add_source" : "AddSource_Type_android",
+*       "friend_profile_add_time" : 1562229520,
+*       "friend_profile_add_wording" : "",
+*       "friend_profile_group_name_array" : [],
+*       "friend_profile_identifier" : "asd12341",
+*       "friend_profile_item_custom_string_array" : [
+*          {
+*             "friend_profile_custom_string_info_key" : "Tag_Profile_Custom_Str",
+*             "friend_profile_custom_string_info_value" : "qcloud"
+*          }
+*       ],
+*       "friend_profile_remark" : "",
+*       "friend_profile_user_profile" : {
+*          "user_profile_add_permission" : 0,
+*          "user_profile_birthday" : 20190419,
+*          "user_profile_face_url" : "faceUrl",
+*          "user_profile_gender" : 0,
+*          "user_profile_identifier" : "asd12341",
+*          "user_profile_item_custom_string_array" : [
+*             {
+*                "user_profile_custom_string_info_key" : "Tag_Profile_Custom_Str",
+*                "user_profile_custom_string_info_value" : "qcloud"
+*             }
+*          ],
+*          "user_profile_language" : 1,
+*          "user_profile_level" : 3,
+*          "user_profile_location" : "sz\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+*          "user_profile_nick_name" : "nick_test23",
+*          "user_profile_role" : 4,
+*          "user_profile_self_signature" : "sig_test"
+*       }
+*    },
+*    {
+*       "friend_profile_add_source" : "AddSource_Type_Android",
+*       "friend_profile_add_time" : 1555659941,
+*       "friend_profile_add_wording" : "",
+*       "friend_profile_group_name_array" : [],
+*       "friend_profile_identifier" : "lttest1",
+*       "friend_profile_remark" : "",
+*       "friend_profile_user_profile" : {
+*          "user_profile_add_permission" : 0,
+*          "user_profile_birthday" : 0,
+*          "user_profile_face_url" : "",
+*          "user_profile_gender" : 0,
+*          "user_profile_identifier" : "lttest1",
+*          "user_profile_language" : 0,
+*          "user_profile_level" : 0,
+*          "user_profile_location" : "",
+*          "user_profile_nick_name" : "",
+*          "user_profile_role" : 0,
+*          "user_profile_self_signature" : ""
+*       }
+*    }
+* ]
+*
+* @example 接口[TIMFriendshipAddFriend](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* {
+*    "friend_result_code" : 0,
+*    "friend_result_desc" : "",
+*    "friend_result_identifier" : "user4"
+* }
+*
+* @example 接口[TIMFriendshipDeleteFriend](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user4"
+*    }
+* ]
+* @example 接口[TIMFriendshipHandleFriendAddRequest](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* {
+*    "friend_result_code" : 0,
+*    "friend_result_desc" : "",
+*    "friend_result_identifier" : "user1"
+* }
+*
+* @example 接口[TIMFriendshipGetPendencyList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[PendencyPage](TIMCloudDef.h)
+* {
+*    "pendency_page_current_seq" : 2,
+*    "pendency_page_pendency_info_array" : [
+*       {
+*          "friend_add_pendency_info_add_source" : "AddSource_Type_Windows",
+*          "friend_add_pendency_info_add_time" : 1563026447,
+*          "friend_add_pendency_info_add_wording" : "I am Iron Man",
+*          "friend_add_pendency_info_idenitifer" : "user4",
+*          "friend_add_pendency_info_nick_name" : "change my nick name",
+*          "friend_add_pendency_info_type" : 1
+*       }
+*    ],
+*    "pendency_page_start_time" : 0,
+*    "pendency_page_unread_num" : 0
+* }
+*
+* @example 接口[TIMFriendshipDeletePendency](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user4"
+*    }
+* ]
+*
+* @example 接口[TIMFriendshipCheckFriendType](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendshipCheckFriendTypeResult](TIMCloudDef.h)
+* [
+*    {
+*       "friendship_check_friendtype_result_code" : 0,
+*       "friendship_check_friendtype_result_desc" : "",
+*       "friendship_check_friendtype_result_identifier" : "user4",
+*       "friendship_check_friendtype_result_relation" : 3
+*    }
+* ]
+*
+* @example 接口[TIMFriendshipCreateFriendGroup](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "",
+*       "friend_result_identifier" : "user4"
+*    },
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "",
+*       "friend_result_identifier" : "user10"
+*    }
+* ]
+* 
+* @example 接口[TIMFriendshipGetFriendGroupList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendGroupInfo](TIMCloudDef.h)
+* [
+*    {
+*       "friend_group_info_count" : 2,
+*       "friend_group_info_identifier_array" : [ "user4", "user10" ],
+*       "friend_group_info_name" : "Group123"
+*    }
+* ]
+* 
+* @example 接口[TIMFriendshipModifyFriendGroup](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 30001,
+*       "friend_result_desc" : "Err_SNS_GroupUpdate_Friend_Not_Exist",
+*       "friend_result_identifier" : "user5"
+*    },
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "",
+*       "friend_result_identifier" : "user4"
+*    },
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "",
+*       "friend_result_identifier" : "user9"
+*    }
+* ]
+*
+* @example 接口[TIMFriendshipAddToBlackList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user5"
+*    },
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user10"
+*    }
+* ]
+*
+* @example 接口[TIMFriendshipGetBlackList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendProfile](TIMCloudDef.h)
+* [
+*    {
+*       "friend_profile_add_source" : "AddSource_Type_Android",
+*       "friend_profile_add_time" : 1555656865,
+*       "friend_profile_add_wording" : "",
+*       "friend_profile_group_name_array" : [ "Group123" ],
+*       "friend_profile_identifier" : "user10",
+*       "friend_profile_remark" : "",
+*       "friend_profile_user_profile" : {
+*          "user_profile_add_permission" : 0,
+*          "user_profile_birthday" : 0,
+*          "user_profile_face_url" : "",
+*          "user_profile_gender" : 0,
+*          "user_profile_identifier" : "user10",
+*          "user_profile_language" : 0,
+*          "user_profile_level" : 0,
+*          "user_profile_location" : "",
+*          "user_profile_nick_name" : "",
+*          "user_profile_role" : 0,
+*          "user_profile_self_signature" : ""
+*       }
+*    },
+*    {
+*       "friend_profile_add_source" : "",
+*       "friend_profile_add_time" : 0,
+*       "friend_profile_add_wording" : "",
+*       "friend_profile_group_name_array" : [],
+*       "friend_profile_identifier" : "user5",
+*       "friend_profile_remark" : "",
+*       "friend_profile_user_profile" : {
+*          "user_profile_add_permission" : 0,
+*          "user_profile_birthday" : 0,
+*          "user_profile_face_url" : "",
+*          "user_profile_gender" : 0,
+*          "user_profile_identifier" : "user5",
+*          "user_profile_language" : 0,
+*          "user_profile_level" : 0,
+*          "user_profile_location" : "",
+*          "user_profile_nick_name" : "",
+*          "user_profile_role" : 0,
+*          "user_profile_self_signature" : ""
+*       }
+*    }
+* ]
+* 
+* @example 接口[TIMFriendshipDeleteFromBlackList](TIMCloud.h)的回调TIMCommCallback参数json_params的Json。Json Key请参考[FriendResult](TIMCloudDef.h)
+* [
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user5"
+*    },
+*    {
+*       "friend_result_code" : 0,
+*       "friend_result_desc" : "OK",
+*       "friend_result_identifier" : "user10"
+*    }
+* ]
+*
 * @note 以下接口的回调TIMCommCallback参数json_params均为空字符串""
 * > [TIMLogin](TIMCloud.h) 
 * > [TIMLogout](TIMCloud.h)
@@ -767,6 +1089,10 @@ typedef void (*TIMCommCallback)(int32_t code, const char* desc, const char* json
 * > [TIMGroupModifyMemberInfo](TIMCloud.h)
 * > [TIMGroupReportPendencyReaded](TIMCloud.h)
 * > [TIMGroupHandlePendency](TIMCloud.h)
+* > [TIMProfileModifySelfUserProfile](TIMCloud.h)
+* > [TIMFriendshipModifyFriendProfile](TIMCloud.h)
+* > [TIMFriendshipDeleteFriendGroup](TIMCloud.h)
+* > [TIMFriendshipReportPendencyReaded](TIMCloud.h)
 *
 **/
 /// @}
