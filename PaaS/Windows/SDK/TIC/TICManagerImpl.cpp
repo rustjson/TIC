@@ -485,7 +485,7 @@ void TICManagerImpl::onWarning(TXLiteAVWarning warningCode, const char *warningM
 	//TODO TRTC ¾¯¸æ´¦Àí
 }
 
-void TICManagerImpl::onEnterRoom(uint64_t elapsed)
+void TICManagerImpl::onEnterRoom(int result)
 {
 	bInTRTCRoom_ = true;
 

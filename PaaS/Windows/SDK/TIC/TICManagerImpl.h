@@ -141,7 +141,7 @@ private:
 	// Í¨¹ý ITRTCCloudCallback ¼Ì³Ð
 	virtual void onError(TXLiteAVError errCode, const char* errMsg, void* arg) override;
 	virtual void onWarning(TXLiteAVWarning warningCode, const char* warningMsg, void* arg) override;
-	virtual void onEnterRoom(uint64_t elapsed) override;
+	virtual void onEnterRoom(int result) override;
 	virtual void onExitRoom(int reason) override;
 	virtual void onConnectOtherRoom(const char* userId, TXLiteAVError errCode, const char* errMsg) override;
 	virtual void onDisconnectOtherRoom(TXLiteAVError errCode, const char* errMsg) override;
