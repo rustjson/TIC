@@ -117,6 +117,7 @@ double ntpDiffSeconds(union ntpTime * start, union ntpTime * stop) {
                                                delegateQueue:dispatch_queue_create(
                    [serverName cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL)];
 
+
 		[self registerObservations];
     }
 
@@ -560,7 +561,8 @@ double ntpDiffSeconds(union ntpTime * start, union ntpTime * stop) {
 #pragma mark                      N o t i f i c a t i o n • T r a p s
 
 - (void)registerObservations {
-
+#if TARGET_OS_IPHONE
+    
 /*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
   ┃ if associations are going to have a life, they have to react to their app being backgrounded.    ┃
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
@@ -613,6 +615,7 @@ double ntpDiffSeconds(union ntpTime * start, union ntpTime * stop) {
 		 for (short i = 0; i < 8; i++) self->fifoQueue[i] = NAN;      // set fifo to all empty
 		 self->fifoIndex = 0;
 	 }];
+#endif
 }
 
 @end

@@ -16,7 +16,11 @@
   ║ data to determine the most accurate and reliable candidates to provide an overall best time.     ║
   ╚══════════════════════════════════════════════════════════════════════════════════════════════════╝*/
 
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#else
+#import <AppKit/AppKit.h>
+#endif
 #import <CocoaAsyncSocket/GCDAsyncUdpSocket.h>
 
 /*┌──────────────────────────────────────────────────────────────────────────────────────────────────┐

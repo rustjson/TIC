@@ -91,7 +91,7 @@
     [msg setOfflinePushInfo:pushinfo];
     
     __weak typeof(self) ws = self;
-    [[TICManager sharedInstance] sendGroupMessage:msg groupId:self.groupId callback:^(TICModule module, int code, NSString *desc) {
+    [[TICManager sharedInstance] sendGroupMessage:msg callback:^(TICModule module, int code, NSString *desc) {
         TICBLOCK_SAFE_RUN(ws.callback, module, code, desc);
     }];
     
