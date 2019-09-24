@@ -518,8 +518,7 @@
     if(message.length == 0){
         return;
     }
-    NSString *classId = self.classIdTextField.stringValue;
-    [[TICManager sharedInstance] sendGroupTextMessage:message groupId:classId callback:^(TICModule module, int code, NSString *desc) {
+    [[TICManager sharedInstance] sendGroupTextMessage:message callback:^(TICModule module, int code, NSString *desc) {
         if(code == 0){
             // 将自己发送的消息展示在界面上
             NSString *msgInfo = [NSString stringWithFormat:@"[我] %@", message];

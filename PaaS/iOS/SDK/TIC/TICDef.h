@@ -132,6 +132,11 @@ typedef void (^TICCallback)(TICModule module, int code, NSString *desc);
  * @brief 只有在classScene为TIC_CLASS_SCENE_LIVE时有效，默认TIC_ROLE_TYPE_ANCHOR
  **/
 @property (nonatomic, assign) TICRoleType roleType;
+/**
+ * 是否兼容SaaS，
+ * @brief 开启SaaS兼容模式，内部会多创建一个聊天群组
+ **/
+@property (nonatomic, assign) BOOL compatSaas;
 @end
 
 /*********************************************************************************************************
