@@ -193,6 +193,8 @@ struct TICClassroomOption
 	
 	TICClassScene classScene = TIC_CLASS_SCENE_VIDEO_CALL; //课堂场景;默认TIC_CLASS_SCENE_VIDEO_CALL
 	TICRoleType roleType = TIC_ROLE_TYPE_ANCHOR; //课堂角色;只有在classScene为TIC_CLASS_SCENE_LIVE时有效，默认TIC_ROLE_TYPE_ANCHOR
+	
+	bool compatSaas = false; //是否兼容SaaS; 开启SaaS兼容模式，内部会多加入一个聊天群组;
 };
 
 /**

@@ -175,6 +175,7 @@ void TICManagerImpl::JoinClassroom(const TICClassroomOption &option, TICCallback
 {
 	classId_ = option.classId;
 	groupId_ = std::to_string(classId_);
+	groupIdChat_ = groupId_ + "_chat";
 	openCamera_ = option.openCamera;
 	cameraId_ = option.cameraId;
 	openMic_ = option.openMic;
@@ -185,31 +186,34 @@ void TICManagerImpl::JoinClassroom(const TICClassroomOption &option, TICCallback
 	boardCallback_ = option.boardCallback;
 	classScene_ = option.classScene;
 	roleType_ = option.roleType;
+	compatSaas_ = option.compatSaas;
 
-	int ret = TIMGroupJoin(groupId_.c_str(), NULL, [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
-		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
-
-		if (code == 10013) { // 已在房间，忽略
-			code = TIM_SUCC;
+	JoinIMGroup(groupId_.c_str(), [this, callback](TICModule module, int code, const char * desc) {
+		if (code != TIM_SUCC)
+		{
+			TICCallbackUtil util(this, callback);
+			util.IMCallback(code, desc);
+			return;
 		}
 
-		if (code == TIM_SUCC) { // IM进群成功
-			util->pThis->joinClassroomCallbackUtil = util; //记录下回调信息
-			util->pThis->BoardCreateAndInit(); //创建白板及初始化
+		//不用兼容Saas
+		if (!compatSaas_) {
+			OnJoinIMGroupComplete(callback);
+			return;
+		}
 
-			util->pThis->SendOfflineRecordInfo(); //发送用于课后离线录制的对时信息
-			util->pThis->ReportGroupId(); //向离线录制后台上报群组号
-		}
-		else {
-			util->IMCallback(code, desc);
-			delete util;
-		}
-	}, new TICCallbackUtil(this, callback));
-	if (ret != TIM_SUCC) //返回值不是TIM_SUCC时不会触发回调，因此要自己调用回调
-	{
-		TICCallbackUtil util(this, callback);
-		util.IMCallback(ret, "IMSDK join group failed");
-	}
+		//兼容Saas
+		JoinIMGroup(groupIdChat_.c_str(), [this, callback](TICModule module, int code, const char * desc) {
+			if (code != TIM_SUCC)
+			{
+				TICCallbackUtil util(this, callback);
+				util.IMCallback(code, desc);
+				return;
+			}
+
+			OnJoinIMGroupComplete(callback);
+		});
+	});
 }
 
 void TICManagerImpl::QuitClassroom(bool clearBoard, TICCallback callback)
@@ -218,21 +222,19 @@ void TICManagerImpl::QuitClassroom(bool clearBoard, TICCallback callback)
 	TRTCExitRoom(); //执行TRTC退房
 	BoardDestroy(clearBoard); //销毁白板控制器
 
-	int ret = TIMGroupQuit(groupId_.c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
-		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
-		if (code == 10009 || code == 10010) //10009表示群主不允许退出群(只能解散群),10010表示群组已解散;
-		{
-			code = 0;
-			desc = "";
+	QuitIMGroup(groupId_.c_str(), [this, callback](TICModule module, int code, const char * desc) {
+		if (!compatSaas_) {
+			TICCallbackUtil util(this, callback);
+			util.IMCallback(code, desc);
+			return;
 		}
-		util->IMCallback(code, desc);
-		delete util;
-	}, new TICCallbackUtil(this, callback));
-	if (ret != TIM_SUCC) //返回值不是TIM_SUCC时不会触发回调，因此要自己调用回调
-	{
-		TICCallbackUtil util(this, callback);
-		util.IMCallback(ret, "IMSDK quit group failed");
-	}
+
+		QuitIMGroup(groupIdChat_.c_str(), [this, callback](TICModule module, int code, const char * desc) {
+			TICCallbackUtil util(this, callback);
+			util.IMCallback(code, desc);
+			return;
+		});
+	});
 }
 
 void TICManagerImpl::SwitchRole(TICRoleType role)
@@ -322,15 +324,17 @@ void TICManagerImpl::SendGroupTextMessage(const std::string& text, TICCallback c
 	jsonMsgElem[kTIMElemType] = kTIMElem_Text;
 	jsonMsgElem[kTIMTextElemContent] = text;
 
+	std::string groupId = compatSaas_ ? groupIdChat_ : groupId_;
+
 	Json::Value jsonMessage;
 	jsonMessage[kTIMMsgElemArray].append(jsonMsgElem);
 	jsonMessage[kTIMMsgSender] = userId_;
 	jsonMessage[kTIMMsgClientTime] = time(NULL);
 	jsonMessage[kTIMMsgServerTime] = time(NULL);
-	jsonMessage[kTIMMsgConvId] = groupId_;
+	jsonMessage[kTIMMsgConvId] = groupId;
 	jsonMessage[kTIMMsgConvType] = kTIMConv_Group;
 
-	int ret = TIMMsgSendNewMsg(groupId_.c_str(), kTIMConv_Group, jsonMessage.toStyledString().c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
+	int ret = TIMMsgSendNewMsg(groupId.c_str(), kTIMConv_Group, jsonMessage.toStyledString().c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
 		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
 		util->IMCallback(code, desc);
 		delete util;
@@ -348,15 +352,17 @@ void TICManagerImpl::SendGroupCustomMessage(const std::string& data, TICCallback
 	jsonMsgElem[kTIMElemType] = kTIMElem_Custom;
 	jsonMsgElem[kTIMCustomElemData] = data;
 
+	std::string groupId = compatSaas_ ? groupIdChat_ : groupId_;
+
 	Json::Value jsonMessage;
 	jsonMessage[kTIMMsgElemArray].append(jsonMsgElem);
 	jsonMessage[kTIMMsgSender] = userId_;
 	jsonMessage[kTIMMsgClientTime] = time(NULL);
 	jsonMessage[kTIMMsgServerTime] = time(NULL);
-	jsonMessage[kTIMMsgConvId] = groupId_;
+	jsonMessage[kTIMMsgConvId] = groupId;
 	jsonMessage[kTIMMsgConvType] = kTIMConv_Group;
 
-	int ret = TIMMsgSendNewMsg(groupId_.c_str(), kTIMConv_Group, jsonMessage.toStyledString().c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
+	int ret = TIMMsgSendNewMsg(groupId.c_str(), kTIMConv_Group, jsonMessage.toStyledString().c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
 		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
 		util->IMCallback(code, desc);
 		delete util;
@@ -370,7 +376,8 @@ void TICManagerImpl::SendGroupCustomMessage(const std::string& data, TICCallback
 
 void TICManagerImpl::SendGroupMessage(const std::string& jsonMsg, TICCallback callback)
 {
-	int ret = TIMMsgSendNewMsg(groupId_.c_str(), kTIMConv_Group, jsonMsg.c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
+	std::string groupId = compatSaas_ ? groupIdChat_ : groupId_;
+	int ret = TIMMsgSendNewMsg(groupId.c_str(), kTIMConv_Group, jsonMsg.c_str(), [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
 		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
 		util->IMCallback(code, desc);
 		delete util;
@@ -599,6 +606,50 @@ void TICManagerImpl::onTEBInit()
 	TRTCEnterRoom();
 }
 
+void TICManagerImpl::JoinIMGroup(const char* groupId, TICCallback callback)
+{
+	int ret = TIMGroupJoin(groupId, NULL, [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
+		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
+		if (code == 10013) { // 已在房间，忽略
+			code = TIM_SUCC;
+		}
+		util->IMCallback(code, desc);
+		delete util;
+	}, new TICCallbackUtil(this, callback));
+	if (ret != TIM_SUCC) //返回值不是TIM_SUCC时不会触发回调，因此要自己调用回调
+	{
+		TICCallbackUtil util(this, callback);
+		util.IMCallback(ret, "IMSDK join group failed");
+	}
+}
+
+void TICManagerImpl::QuitIMGroup(const char* groupId, TICCallback callback)
+{
+	int ret = TIMGroupQuit(groupId, [](int32_t code, const char *desc, const char *json_params, const void *user_data) {
+		TICCallbackUtil *util = (TICCallbackUtil*)user_data;
+		if (code == ERR_SVR_GROUP_SUPER_NOT_ALLOW_QUIT || code == ERR_SVR_GROUP_NOT_FOUND) //群主不允许退出群(只能解散群)||群组已解散;
+		{
+			code = TIM_SUCC;
+			desc = "";
+		}
+		util->IMCallback(code, desc);
+		delete util;
+	}, new TICCallbackUtil(this, callback));
+	if (ret != TIM_SUCC) //返回值不是TIM_SUCC时不会触发回调，因此要自己调用回调
+	{
+		TICCallbackUtil util(this, callback);
+		util.IMCallback(ret, "IMSDK quit group failed");
+	}
+}
+
+void TICManagerImpl::OnJoinIMGroupComplete(TICCallback callback)
+{
+	joinClassroomCallbackUtil = new TICCallbackUtil(this, callback); //记录下回调信息
+	BoardCreateAndInit(); //创建白板及初始化
+	SendOfflineRecordInfo(); //发送用于课后离线录制的对时信息
+	ReportGroupId(); //向离线录制后台上报群组号
+}
+
 void TICManagerImpl::TRTCEnterRoom()
 {
 	//填充进房参数并进房
@@ -799,7 +850,12 @@ bool TICManagerImpl::OnIMGroupMsg(const Json::Value &jsonMsg)
 	std::string szGroupId = jsonMsg[kTIMMsgConvId].asString();
 	std::string szFromUserId = jsonMsg[kTIMMsgSender].asString();
 
-	if (szGroupId != groupId_) return bFilted; //不处理非当前课堂对应群组的消息
+	if (compatSaas_) { //兼容Saas
+		if (szGroupId == groupId_) return true; //过滤掉白板信令群
+	}
+	else {
+		if (szGroupId != groupId_) return false; //不处理非当前课堂对应群组的消息
+	}
 
 	Json::Value jsonMsgElems = jsonMsg[kTIMMsgElemArray];
 	for (Json::ArrayIndex i = 0; i < jsonMsgElems.size(); ++i)
@@ -860,7 +916,8 @@ void TICManagerImpl::OnIMSystemMsg(const Json::Value  &jsonMsg)
 			{
 				std::string szReportGroupId = jsonMsgElems[i][kTIMGroupReportElemGroupId].asString();
 
-				if (groupId_ == szReportGroupId)
+				std::string groupId = compatSaas_ ? groupIdChat_ : groupId_;
+				if (groupId == szReportGroupId)
 				{
 					std::lock_guard<std::mutex> lk(mutEventListeners_);
 					for (auto iter = eventListeners_.begin(); iter != eventListeners_.end(); ++iter)
@@ -905,6 +962,10 @@ void TICManagerImpl::OnIMGroupTipsEvent(const char *jsonTips)
 {
 	Json::Value root;
 	if (!Json::Reader().parse(jsonTips, root)) return;
+
+	std::string szGroupId = root[kTIMGroupTipsElemGroupId].asString();
+	std::string groupId = compatSaas_ ? groupIdChat_ : groupId_;
+	if (szGroupId != groupId) return; //不处理非当前课堂对应群组的事件通知
 
 	TIMGroupTipType groupTipType = (TIMGroupTipType)root[kTIMGroupTipsElemTipType].asInt();
 	if (groupTipType == kTIMGroupTip_Invite) //进群
