@@ -6,13 +6,16 @@
 * Function: 腾讯云视频通话播片功能的主要接口类
 *
 * 创建/使用/销毁ITXVodPlayer对象的示例代码：
-* ITXVodPlayer *vodPlayer = createTXVodPlayer("D:/video/test.mp4");
-* if(vodPlayer)
-* {
-*     vodPlayer->start();
-* }
-* destroyTXVodPlayer(&vodPlayer);
-* vodPlayer = NULL;
+* <pre>
+*     ITXVodPlayer *vodPlayer = createTXVodPlayer("D:/video/test.mp4");
+*     if(vodPlayer)
+*     {
+*         vodPlayer->start();
+*     }
+*     ----------------------------------
+*     destroyTXVodPlayer(&vodPlayer);
+*     vodPlayer = NULL;
+* </pre>
 */
 
 #include "TXLiteAVBase.h"

@@ -11,12 +11,12 @@
 enum TIMErrCode {
      /////////////////////////////////////////////////////////////////////////////////
     //
-    //                      （一）终端 IM SDK
+    //                      （一）IM SDK 的错误码
     //
     /////////////////////////////////////////////////////////////////////////////////
-    
+
     // 通用错误码
-    
+
     ERR_SUCC                                    = 0,       ///< 无错误。
     ERR_IN_PROGESS                              = 6015,    ///< 执行中，请做好接口调用控制，例如，第一次初始化操作在回调前，后续的初始化操作会返回该错误码。
     ERR_INVALID_PARAMETERS                      = 6017,    ///< 参数无效，请检查参数是否符合要求，具体可查看错误信息进一步定义哪个字段。
@@ -35,9 +35,9 @@ enum TIMErrCode {
     ERR_SDK_COMM_FILE_TOO_LARGE                 = 7005,    ///< 文件大小超出了限制，如果上传文件，最大限制是28MB。
     ERR_SDK_COMM_FILE_SIZE_EMPTY                = 7006,    ///< 空文件，要求文件大小不是0字节，如果上传图片、语音、视频或文件，请检查文件是否正确生成。
     ERR_SDK_COMM_FILE_OPEN_FAILED               = 7007,    ///< 文件打开失败，请检查文件是否存在，或者已被独占打开，引起 SDK 打开失败。
-    
+
     // 帐号错误码
-    
+
     ERR_SDK_NOT_LOGGED_IN                       = 6014,    ///< IM SDK 未登录，请先登录，成功回调之后重试，或者已被踢下线，可使用 TIMManager getLoginUser 检查当前是否在线。
     ERR_NO_PREVIOUS_LOGIN                       = 6026,    ///< 自动登录时，并没有登录过该用户，这时候请调用 login 接口重新登录。
     ERR_USER_SIG_EXPIRED                        = 6206,    ///< UserSig 过期，需要监听 UserStatusListener，onUserSigExpired 后重新获取 UserSig 登录。
@@ -50,9 +50,9 @@ enum TIMErrCode {
     ERR_SDK_ACCOUNT_TLS_DECRYPT_FAILED          = 7506,    ///< TLS SDK 解密失败，内部错误，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_SDK_ACCOUNT_TLS_REQUEST_FAILED          = 7507,    ///< TLS SDK 请求失败，内部错误，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_SDK_ACCOUNT_TLS_REQUEST_TIMEOUT         = 7508,    ///< TLS SDK 请求超时，内部错误，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
-    
+
     // 消息错误码
-    
+
     ERR_INVALID_CONVERSATION                    = 6004,    ///< 会话无效，getConversation 时检查是否已经登录，如未登录获取会话，会有此错误码返回。
     ERR_FILE_TRANS_AUTH_FAILED                  = 6006,    ///< 文件传输鉴权失败，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_FILE_TRANS_NO_SERVER                    = 6007,    ///< 文件传输获取 Server 列表失败，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
@@ -63,9 +63,9 @@ enum TIMErrCode {
     ERR_INVALID_SDK_OBJECT                      = 6021,    ///< 无效的对象，例如用户自己生成 TIMImage 对象，或内部赋值错误导致对象无效。
     ERR_SDK_MSG_BODY_SIZE_LIMIT                 = 8001,    ///< 消息长度超出限制，消息长度不要超过8k，消息长度是各个 elem 长度的总和，elem 长度是所有 elem 字段的长度总和。
     ERR_SDK_MSG_KEY_REQ_DIFFER_RSP              = 8002,    ///< 消息 KEY 错误，内部错误，网络请求包的 KEY 和 回复包的不一致。
-    
+
     // 群组错误码
-    
+
     ERR_SDK_GROUP_INVALID_ID                    = 8501,    ///< 群组 ID 非法，自定义群组 ID 必须为可打印 ASCII 字符（0x20-0x7e），最长48个字节，且前缀不能为 @TGS#（避免与服务端默认分配的群组 ID 混淆）。
     ERR_SDK_GROUP_INVALID_NAME                  = 8502,    ///< 群名称非法，群名称最长30字节，字符编码必须是 UTF-8 ，如果包含中文，可能用多个字节表示一个中文字符，请注意检查字符串的字节长度。
     ERR_SDK_GROUP_INVALID_INTRODUCTION          = 8503,    ///< 群简介非法，群简介最长240字节，字符编码必须是 UTF-8 ，如果包含中文，可能用多个字节表示一个中文字符，请注意检查字符串的字节长度。
@@ -76,17 +76,17 @@ enum TIMErrCode {
     ERR_SDK_GROUP_JOIN_PRIVATE_GROUP_DENY       = 8508,    ///< 不允许申请加入 Private 群组，任意群成员可邀请入群，且无需被邀请人同意。
     ERR_SDK_GROUP_INVITE_SUPER_DENY             = 8509,    ///< 不允许邀请角色为群主的成员，请检查角色字段是否填写正确。
     ERR_SDK_GROUP_INVITE_NO_MEMBER              = 8510,    ///< 不允许邀请0个成员，请检查成员字段是否填写正确。
-    
+
     // 关系链错误码
-    
+
     ERR_SDK_FRIENDSHIP_INVALID_PROFILE_KEY      = 9001,    ///< 资料字段非法，资料支持标配字段及自定义字段，其中自定义字段的关键字，必须是英文字母，且长度不得超过8字节，自定义字段的值最长不能超过500字节。
     ERR_SDK_FRIENDSHIP_INVALID_ADD_REMARK       = 9002,    ///< 备注字段非法，最大96字节，字符编码必须是 UTF-8 ，如果包含中文，可能用多个字节表示一个中文字符，请注意检查字符串的字节长度。
     ERR_SDK_FRIENDSHIP_INVALID_ADD_WORDING      = 9003,    ///< 请求添加好友的请求说明字段非法，最大120字节，字符编码必须是 UTF-8 ，如果包含中文，可能用多个字节表示一个中文字符，请注意检查字符串的字节长度。
     ERR_SDK_FRIENDSHIP_INVALID_ADD_SOURCE       = 9004,    ///< 请求添加好友的添加来源字段非法，来源需要添加“AddSource_Type_”前缀。
     ERR_SDK_FRIENDSHIP_FRIEND_GROUP_EMPTY       = 9005,    ///< 好友分组字段非法，必须不为空，每个分组的名称最长30字节，字符编码必须是 UTF-8 ，如果包含中文，可能用多个字节表示一个中文字符，请注意检查字符串的字节长度。
-    
+
     // 网络错误码
-    
+
     ERR_SDK_NET_ENCODE_FAILED                   = 9501,    ///< SSO 加密失败，内部错误，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_SDK_NET_DECODE_FAILED                   = 9502,    ///< SSO 解密失败，内部错误，可 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 提供使用接口、错误码、错误信息给客服解决。
     ERR_SDK_NET_AUTH_INVALID                    = 9503,    ///< SSO 未完成鉴权，可能登录未完成，请在登录完成后再操作。
@@ -107,15 +107,15 @@ enum TIMErrCode {
     ERR_SDK_NET_WAIT_INQUEUE_TIMEOUT            = 9518,    ///< 请求包等待进入待发送队列超时，发送时网络连接建立比较慢 或 频繁断网重连时，会出现该错误，请检查网络连接是否正常。
     ERR_SDK_NET_WAIT_SEND_TIMEOUT               = 9519,    ///< 请求包已进入待发送队列，等待进入系统的网络 buffer 超时，数据包较多 或 发送线程处理不过来，内部错误。
     ERR_SDK_NET_WAIT_ACK_TIMEOUT                = 9520,    ///< 请求包已进入系统的网络 buffer ，等待服务端回包超时，可能请求包没离开终端设备、中间路由丢弃、服务端意外丢包或回包被系统网络层丢弃，内部错误。
-    
+
     /////////////////////////////////////////////////////////////////////////////////
     //
-    //                      （二）服务端
+    //                      （二）服务端的错误码
     //
     /////////////////////////////////////////////////////////////////////////////////
-    
+
     // SSO 接入层的错误码
-    
+
     ERR_SVR_SSO_CONNECT_LIMIT                   = -302  ,  ///< SSO 的连接数量超出限制，服务端拒绝服务。
     ERR_SVR_SSO_VCODE                           = -10000,  ///< 下发验证码标志错误。
     ERR_SVR_SSO_D2_EXPIRED                      = -10001,  ///< D2 过期。
@@ -140,9 +140,9 @@ enum TIMErrCode {
     ERR_SVR_SSO_APPID_WITHOUT_USING             = -10112,  ///< SDKAppID 停用。
     ERR_SVR_SSO_FREQ_LIMIT                      = -10113,  ///< 频率限制(用户)，频率限制是设置针对某一个协议的每秒请求数的限制。
     ERR_SVR_SSO_OVERLOAD                        = -10114,  ///< 过载丢包(系统)，连接的服务端处理过多请求，处理不过来，拒绝服务。
-    
+
     // 资源文件错误码
-    
+
     ERR_SVR_RES_NOT_FOUND                       = 114000,  ///< 要发送的资源文件不存在。
     ERR_SVR_RES_ACCESS_DENY                     = 114001,  ///< 要发送的资源文件不允许访问。
     ERR_SVR_RES_SIZE_LIMIT                      = 114002,  ///< 文件大小超过限制。
@@ -152,9 +152,9 @@ enum TIMErrCode {
     ERR_SVR_RES_INVALID_PARAMETERS              = 114011,  ///< 参数非法。
     ERR_SVR_RES_INVALID_FILE_MD5                = 115066,  ///< 文件 MD5 校验失败。
     ERR_SVR_RES_INVALID_PART_MD5                = 115068,  ///< 分片 MD5 校验失败。
-    
+
     // 后台公共错误码
-    
+
     ERR_SVR_COMM_INVALID_HTTP_URL               = 60002,  ///< HTTP 解析错误 ，请检查 HTTP 请求 URL 格式。
     ERR_SVR_COMM_REQ_JSON_PARSE_FAILED          = 60003,  ///< HTTP 请求 JSON 解析错误，请检查 JSON 格式。
     ERR_SVR_COMM_INVALID_ACCOUNT                = 60004,  ///< 请求 URI 或 JSON 包体中 Identifier 或 UserSig 错误。
@@ -176,9 +176,9 @@ enum TIMErrCode {
     ERR_SVR_COMM_INVALID_SERVICE                = 60020,  ///< 未购买套餐包或购买的套餐包正在配置中暂未生效，请五分钟后再次尝试。
     ERR_SVR_COMM_SENSITIVE_TEXT                 = 80001,  ///< 文本安全打击，文本中可能包含敏感词汇。
     ERR_SVR_COMM_BODY_SIZE_LIMIT                = 80002,  ///< 发消息包体过长，目前支持最大8k消息包体长度，请减少包体大小重试。
-    
+
     // 帐号错误码
-    
+
     ERR_SVR_ACCOUNT_USERSIG_EXPIRED             = 70001,  ///< UserSig 已过期，请重新生成 UserSig，建议 UserSig 有效期不小于24小时。
     ERR_SVR_ACCOUNT_USERSIG_EMPTY               = 70002,  ///< UserSig 长度为0，请检查传入的 UserSig 是否正确。
     ERR_SVR_ACCOUNT_USERSIG_CHECK_FAILED        = 70003,  ///< UserSig 校验失败，请确认下 UserSig 内容是否被截断，如缓冲区长度不够导致的内容截断。
@@ -187,7 +187,7 @@ enum TIMErrCode {
     ERR_SVR_ACCOUNT_USERSIG_MISMATCH_ID         = 70013,  ///< 请求的 Identifier 与生成 UserSig 的 Identifier 不匹配。
     ERR_SVR_ACCOUNT_USERSIG_MISMATCH_SDKAPPID   = 70014,  ///< 请求的 SDKAppID 与生成 UserSig 的 SDKAppID 不匹配。
     ERR_SVR_ACCOUNT_USERSIG_PUBLICKEY_NOT_FOUND = 70016,  ///< 验证 UserSig 时公钥不存在。请先登录控制台下载私钥，下载私钥的具体方法可参考 [下载签名用的私钥](https://cloud.tencent.com/document/product/269/32688#.E4.B8.8B.E8.BD.BD.E7.AD.BE.E5.90.8D.E7.94.A8.E7.9A.84.E7.A7.81.E9.92.A5) 。
-    ERR_SVR_ACCOUNT_SDKAPPID_NOT_FOUND          = 70020,  ///< SDKAppID 未找到，请在云通信 IM 控制台确认应用信息。
+    ERR_SVR_ACCOUNT_SDKAPPID_NOT_FOUND          = 70020,  ///< SDKAppID 未找到，请在即时通信 IM 控制台确认应用信息。
     ERR_SVR_ACCOUNT_INVALID_USERSIG             = 70052,  ///< UserSig 已经失效，请重新生成，再次尝试。
     ERR_SVR_ACCOUNT_NOT_FOUND                   = 70107,  ///< 请求的用户帐号不存在。
     ERR_SVR_ACCOUNT_SEC_RSTR                    = 70114,  ///< 安全原因被限制。
@@ -199,9 +199,9 @@ enum TIMErrCode {
     ERR_SVR_ACCOUNT_BLACKLIST                   = 70051,  ///< 帐号被拉入黑名单。
     ERR_SVR_ACCOUNT_COUNT_LIMIT                 = 70398,  ///< 创建帐号数量超过免费体验版数量限制，请升级为专业版。
     ERR_SVR_ACCOUNT_INTERNAL_ERROR              = 70500,  ///< 服务端内部错误，请重试。
-    
+
     // 资料错误码
-    
+
     ERR_SVR_PROFILE_INVALID_PARAMETERS          = 40001,  ///< 请求参数错误，请根据错误描述检查请求是否正确。
     ERR_SVR_PROFILE_ACCOUNT_MISS                = 40002,  ///< 请求参数错误，没有指定需要拉取资料的用户帐号。
     ERR_SVR_PROFILE_ACCOUNT_NOT_FOUND           = 40003,  ///< 请求的用户帐号不存在。
@@ -214,9 +214,9 @@ enum TIMErrCode {
     ERR_SVR_PROFILE_SIZE_LIMIT                  = 40601,  ///< 资料字段的 Value 长度超过500字节。
     ERR_SVR_PROFILE_VALUE_ERROR                 = 40605,  ///< 标配资料字段的 Value 错误，详情可参见 [标配资料字段](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) 。
     ERR_SVR_PROFILE_INVALID_VALUE_FORMAT        = 40610,  ///< 资料字段的 Value 类型不匹配，详情可参见 [标配资料字段](https://cloud.tencent.com/doc/product/269/1500#.E6.A0.87.E9.85.8D.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5) 。
-    
+
     // 关系链错误码
-    
+
     ERR_SVR_FRIENDSHIP_INVALID_PARAMETERS       = 30001,  ///< 请求参数错误，请根据错误描述检查请求是否正确。
     ERR_SVR_FRIENDSHIP_INVALID_SDKAPPID         = 30002,  ///< SDKAppID 不匹配。
     ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND        = 30003,  ///< 请求的用户帐号不存在。
@@ -240,20 +240,20 @@ enum TIMErrCode {
     ERR_SVR_FRIENDSHIP_DEL_NONFRIEND            = 31704,  ///< 与请求删除的帐号之间不存在好友关系。
     ERR_SVR_FRIENDSHIP_DEL_FRIEND_SEC_RSTR      = 31707,  ///< 删除好友请求被安全策略打击，请勿频繁发起删除好友请求。
     ERR_SVR_FRIENDSHIP_ACCOUNT_NOT_FOUND_EX     = 31804,  ///< 请求的用户帐号不存在。
-    
+
     // 最近联系人错误码
-    
+
     ERR_SVR_CONV_ACCOUNT_NOT_FOUND              = 50001,  ///< 请求的用户帐号不存在。
     ERR_SVR_CONV_INVALID_PARAMETERS             = 50002,  ///< 请求参数错误，请根据错误描述检查请求是否正确。
     ERR_SVR_CONV_ADMIN_REQUIRED                 = 50003,  ///< 请求需要 App 管理员权限。
     ERR_SVR_CONV_INTERNAL_ERROR                 = 50004,  ///< 服务端内部错误，请重试。
     ERR_SVR_CONV_NET_TIMEOUT                    = 50005,  ///< 网络超时，请稍后重试。
-    
+
     // 消息错误码
-    
+
     ERR_SVR_MSG_PKG_PARSE_FAILED                = 20001,  ///< 请求包非法，请检查发送方和接收方帐号是否存在。
     ERR_SVR_MSG_INTERNAL_AUTH_FAILED            = 20002,  ///< 内部鉴权失败。
-    ERR_SVR_MSG_INVALID_ID                      = 20003,  ///< Identifier 无效或者 Identifier 未导入云通信 IM。
+    ERR_SVR_MSG_INVALID_ID                      = 20003,  ///< Identifier 无效或者 Identifier 未导入即时通信 IM。
     ERR_SVR_MSG_NET_ERROR                       = 20004,  ///< 网络异常，请重试。
     ERR_SVR_MSG_INTERNAL_ERROR1                 = 20005,  ///< 服务端内部错误，请重试。
     ERR_SVR_MSG_PUSH_DENY                       = 20006,  ///< 触发发送单聊消息之前回调，App 后台返回禁止下发该消息。
@@ -273,7 +273,7 @@ enum TIMErrCode {
     ERR_SVR_MSG_ADMIN_REQUIRED                  = 90009,  ///< 请求需要 App 管理员权限。
     ERR_SVR_MSG_INVALID_JSON_FORMAT             = 90010,  ///< JSON 格式请求包不符合消息格式描述，请参考 [TIMMsgElement 对象](https://cloud.tencent.com/document/product/269/2720#.E6.B6.88.E6.81.AF.E5.85.83.E7.B4.A0timmsgelement) 的定义。
     ERR_SVR_MSG_TO_ACCOUNT_COUNT_LIMIT          = 90011,  ///< 批量发消息目标帐号超过500，请减少 To_Account 中目标帐号数量。
-    ERR_SVR_MSG_TO_ACCOUNT_NOT_FOUND            = 90012,  ///< To_Account 没有注册或不存在，请确认 To_Account 是否导入云通信 IM 或者是否拼写错误。
+    ERR_SVR_MSG_TO_ACCOUNT_NOT_FOUND            = 90012,  ///< To_Account 没有注册或不存在，请确认 To_Account 是否导入即时通信 IM 或者是否拼写错误。
     ERR_SVR_MSG_TIME_LIMIT                      = 90026,  ///< 消息离线存储时间错误（最多不能超过7天）。
     ERR_SVR_MSG_INVALID_SYNCOTHERMACHINE        = 90031,  ///< JSON 格式请求包体中 SyncOtherMachine 字段不是 Integer 类型
     ERR_SVR_MSG_INVALID_MSGLIFETIME             = 90044,  ///< JSON 格式请求包体中 MsgLifeTime 字段不是 Integer 类型
@@ -281,19 +281,19 @@ enum TIMErrCode {
     ERR_SVR_MSG_INTERNAL_ERROR2                 = 90994,  ///< 服务内部错误，请重试。
     ERR_SVR_MSG_INTERNAL_ERROR3                 = 90995,  ///< 服务内部错误，请重试。
     ERR_SVR_MSG_INTERNAL_ERROR4                 = 91000,  ///< 服务内部错误，请重试。
-    ERR_SVR_MSG_INTERNAL_ERROR5                 = 90992,  ///< 服务内部错误，请重试；如果所有请求都返回该错误码，且 App 配置了第三方回调，请检查 App 服务端是否正常向云通信 IM 后台服务端返回回调结果。
+    ERR_SVR_MSG_INTERNAL_ERROR5                 = 90992,  ///< 服务内部错误，请重试；如果所有请求都返回该错误码，且 App 配置了第三方回调，请检查 App 服务端是否正常向即时通信 IM 后台服务端返回回调结果。
     ERR_SVR_MSG_BODY_SIZE_LIMIT                 = 93000,  ///< JSON 数据包超长，消息包体请不要超过8k。
     ERR_SVR_MSG_LONGPOLLING_COUNT_LIMIT         = 91101,  ///< Web 端长轮询被踢（Web 端同时在线实例个数超出限制）。
     // 120001 - 130000,  ///< 单聊第三方回调返回的自定义错误码。
-    
+
     // 群组错误码
-    
+
     ERR_SVR_GROUP_INTERNAL_ERROR                = 10002,  ///< 服务端内部错误，请重试。
     ERR_SVR_GROUP_API_NAME_ERROR                = 10003,  ///< 请求中的接口名称错误，请核对接口名称并重试。
     ERR_SVR_GROUP_INVALID_PARAMETERS            = 10004,  ///< 参数非法，请根据错误描述检查请求是否正确。
     ERR_SVR_GROUP_ACOUNT_COUNT_LIMIT            = 10005,  ///< 请求包体中携带的帐号数量过多。
     ERR_SVR_GROUP_FREQ_LIMIT                    = 10006,  ///< 操作频率限制，请尝试降低调用的频率。
-    ERR_SVR_GROUP_PERMISSION_DENY               = 10007,  ///< 操作权限不足，比如 Public 群组中普通成员尝试执行踢人操作，但只有 App 管理员才有权限。
+    ERR_SVR_GROUP_PERMISSION_DENY               = 10007,  ///< 操作权限不足，例如 Public 群组中普通成员尝试执行踢人操作，但只有 App 管理员才有权限。
     ERR_SVR_GROUP_INVALID_REQ                   = 10008,  ///< 请求非法，可能是请求中携带的签名信息验证不正确，请再次尝试或 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=29&level2_id=40&source=0&data_title=%E4%BA%91%E9%80%9A%E4%BF%A1%20%20IM&step=1) 联系技术客服。
     ERR_SVR_GROUP_SUPER_NOT_ALLOW_QUIT          = 10009,  ///< 该群不允许群主主动退出。
     ERR_SVR_GROUP_NOT_FOUND                     = 10010,  ///< 群组不存在，或者曾经存在过，但是目前已经被解散。
@@ -320,13 +320,13 @@ enum TIMErrCode {
     ERR_SVR_GROUP_AVCHATROOM_COUNT_LIMIT        = 10036,  ///< 音视频聊天室创建数量超过了限制，请参考 [价格说明](https://cloud.tencent.com/document/product/269/11673) 购买预付费套餐“IM音视频聊天室”。
     ERR_SVR_GROUP_COUNT_LIMIT                   = 10037,  ///< 单个用户可创建和加入的群组数量超过了限制，请参考 [价格说明](https://cloud.tencent.com/document/product/269/11673) 购买或升级预付费套餐“单人可创建与加入群组数”。
     ERR_SVR_GROUP_MEMBER_COUNT_LIMIT            = 10038,  ///< 群成员数量超过限制，请参考 [价格说明](https://cloud.tencent.com/document/product/269/11673) 购买或升级预付费套餐“扩展群人数上限”。
-    
+
     /////////////////////////////////////////////////////////////////////////////////
     //
-    //                      （三）V3版本的错误码(待废弃)
+    //                      （三）IM SDK V3版本的错误码
     //
     /////////////////////////////////////////////////////////////////////////////////
-    
+
     ERR_NO_SUCC_RESULT                          = 6003,   ///< 批量操作无成功结果。
     ERR_TO_USER_INVALID                         = 6011,   ///< 无效接收方。
     ERR_REQUEST_TIMEOUT                         = 6012,   ///< 请求超时。
@@ -445,8 +445,8 @@ enum TIMNetworkStatus {
 * @brief 会话事件类型
 */
 enum TIMConvEvent {
-    kTIMConvEvent_Add,    // 会话新增,比如收到一条新消息,产生一个新的会话是事件触发
-    kTIMConvEvent_Del,    // 会话删除,比如自己删除某会话时会触发
+    kTIMConvEvent_Add,    // 会话新增,例如收到一条新消息,产生一个新的会话是事件触发
+    kTIMConvEvent_Del,    // 会话删除,例如自己删除某会话时会触发
     kTIMConvEvent_Update, // 会话更新,会话内消息的未读计数变化和收到新消息时触发
 };
 
@@ -464,8 +464,8 @@ enum TIMConvType {
 * @brief 初始化ImSDK的配置
 */
 // Struct SdKConfig JsonKey
-static const char* kTIMSdkConfigConfigFilePath     = "sdk_config_config_file_path";// string, 只写(必填), 配置文件路径
-static const char* kTIMSdkConfigLogFilePath        = "sdk_config_log_file_path";   // string, 只写(必填), 日志文件路径,默认路径为"/"
+static const char* kTIMSdkConfigConfigFilePath     = "sdk_config_config_file_path";// string, 只写(选填), 配置文件路径,默认路径为"/"
+static const char* kTIMSdkConfigLogFilePath        = "sdk_config_log_file_path";   // string, 只写(选填), 日志文件路径,默认路径为"/"
 // EndStruct
 
 
@@ -570,12 +570,12 @@ static const char* kTIMSocks5ProxyInfoPassword = "socks5_proxy_info_password"; /
 /**
 * @brief 更新配置
 * > 自定义数据
-* + 开发者可以自定义的数据(长度限制为64个字节)，ImSDK只负责透传给云通信IM后台后，可以通过第三方回调[状态变更回调](https://cloud.tencent.com/document/product/269/2570)告知开发者业务后台。
+* + 开发者可以自定义的数据(长度限制为64个字节)，ImSDK只负责透传给即时通信IM后台后，可以通过第三方回调[状态变更回调](https://cloud.tencent.com/document/product/269/2570)告知开发者业务后台。
 * > HTTP代理
 * + HTTP代理主要用在发送图片、语音、文件、微视频等消息时，将相关文件上传到COS，以及接收到图片、语音、文件、微视频等消息，将相关文件下载到本地时用到。
 *   设置时，设置的IP不能为空，端口不能为0.如果需要取消HTTP代理，只需将代理的IP设置为空字符串，端口设置为0
 * > SOCKS5代理
-* + SOCKS5代理需要在初始化之前设置。设置之后ImSDK发送的所有协议会通过SOCKS5代理服务器发送的云通信IM后台。
+* + SOCKS5代理需要在初始化之前设置。设置之后ImSDK发送的所有协议会通过SOCKS5代理服务器发送的即时通信IM后台。
 */
 // Struct SetConfig JsonKey
 static const char* kTIMSetConfigLogLevel           = "set_config_log_level";             // uint [TIMLogLevel](),  只写(选填), 输出到日志文件的日子级别
@@ -629,7 +629,7 @@ enum TIMMsgPriority {
 * >>此消息不计入未读计数
 * >>此消息在本地不会存储
 * > 消息自定义字段
-* + 开发者可以对消息增加自定义字段，如自定义整数(通过 kTIMMsgCustomInt 指定)、自定义二进制数据(通过 kTIMMsgCustomStr 指定，必须转换成String，Json不支持二进制传输)，可以根据这两个字段做出各种不同效果，比如语音消息是否已经播放等等。另外需要注意，此自定义字段仅存储于本地，不会同步到Server，更换终端获取不到。
+* + 开发者可以对消息增加自定义字段，如自定义整数(通过 kTIMMsgCustomInt 指定)、自定义二进制数据(通过 kTIMMsgCustomStr 指定，必须转换成String，Json不支持二进制传输)，可以根据这两个字段做出各种不同效果，例如语音消息是否已经播放等等。另外需要注意，此自定义字段仅存储于本地，不会同步到Server，更换终端获取不到。
 */
 // Struct Message JsonKey
 static const char* kTIMMsgElemArray   = "message_elem_array";    //array [Elem](), 读写(必填), 消息内元素列表
@@ -674,6 +674,8 @@ enum TIMElemType {
     kTIMElem_Location,       // 位置元素
     kTIMElem_GroupReport,    // 群组系统通知元素
     kTIMElem_Video,          // 视频元素
+    kTIMElem_FriendChange,   // 关系链变更消息元素
+    kTIMElem_ProfileChange,  // 资料变更消息元素
 };
 
 /**
@@ -795,7 +797,7 @@ static const char* kTIMCustomElemSound  = "custom_elem_sound";  // string,  读写
 */
 // Struct FileElem JsonKey
 static const char* kTIMFileElemFilePath      = "file_elem_file_path";      // string,   读写(必填), 文件所在路径（包含文件名）
-static const char* kTIMFileElemFileName      = "file_elem_file_name";      // string,   读写(选填), 文件名，显示的名称
+static const char* kTIMFileElemFileName      = "file_elem_file_name";      // string,   读写(选填), 文件名，显示的名称。不设置该参数时，kTIMFileElemFileName默认为kTIMFileElemFilePath指定的文件路径中的文件名
 static const char* kTIMFileElemFileSize      = "file_elem_file_size";      // int,      读写(必填),  文件大小
 static const char* kTIMFileElemFileId        = "file_elem_file_id";        // string,   只读, 下载视频时的uuid
 static const char* kTIMFileElemBusinessId    = "file_elem_business_id";    // int,      只读, 下载时用到的businessID
@@ -854,16 +856,6 @@ static const char* kTIMGroupTipMemberChangeInfoIdentifier  = "group_tips_member_
 static const char* kTIMGroupTipMemberChangeInfoShutupTime  = "group_tips_member_change_info_shutupTime";     // uint,   只读, 禁言时间
 // EndStruct
 
-/**
-* @brief 用户个人资料
-*/
-// Struct UserProfile JsonKey
-static const char* kTIMUserProfileIdentifier    = "user_profile_identifier";      // string, 只读, 用户ID
-static const char* kTIMUserProfileNickName      = "user_profile_nick_name";       // string, 只读, 用户的昵称
-static const char* kTIMUserProfileFaceURL       = "user_profile_face_url";        // string, 只读, 用户头像URL
-static const char* kTIMUserProfileSelfSignature = "user_profile_self_signature";  // string, 只读, 用户个人签名
-static const char* kTIMUserProfileRemark        = "user_profile_remark";          // string, 只读, 用户备注
-// EndStruct
 
 /**
 * @brief 群组系统消息类型
@@ -938,6 +930,67 @@ static const char* kTIMGroupReportElemPlatform          = "group_report_elem_pla
 // EndStruct
 
 /**
+ * @brief 资料变更类型
+ */
+enum TIMProfileChangeType {
+    kTIMProfileChange_None,       // 未知类型
+    kTIMProfileChange_Profile,    // 资料修改
+};
+
+/**
+ * @brief 资料变更通知
+ */
+// Struct ProfileChangeElem JsonKey
+static const char* kTIMProfileChangeElemChangeType      = "profile_change_elem_change_type";        // uint [TIMProfileChangeType](), 只读, 资料变更类型
+static const char* kTIMProfileChangeElemFromIndentifier = "profile_change_elem_from_identifer";     // string,                        只读, 资料变更用户的identifier
+static const char* kTIMProfileChangeElemUserProfileItem = "profile_change_elem_user_profile_item";  // object [UserProfileItem](),    只读, 具体的变更信息，只有当 change_type 为 kTIMProfileChange_Profile 时有效
+// EndStruct
+
+/**
+ * @brief 好友变更类型
+ */
+enum TIMFriendChangeType {
+    kTIMFriendChange_None,                   // 未知类型
+    kTIMFriendChange_FriendAdd,              // 好友表增加
+    kTIMFriendChange_FriendDel,              // 好友表删除
+    kTIMFriendChange_PendencyAdd,            // 未决增加
+    kTIMFriendChange_PendencyDel,            // 未决删除 多终端同步
+    kTIMFriendChange_BlackListAdd,           // 黑名单添加
+    kTIMFriendChange_BlackListDel,           // 黑名单删除
+    kTIMFriendChange_PendencyReadedReport,   // 未决已读上报
+    kTIMFriendChange_FriendProfileUpdate,    // 好友数据更新
+    kTIMFriendChange_FriendGroupAdd,         // 分组增加
+    kTIMFriendChange_FriendGroupDel,         // 分组删除
+    kTIMFriendChange_FriendGroupModify,      // 分组修改
+};
+
+/**
+ * @brief 好友资料更新信息
+ */
+// Struct FriendProfileUpdate JsonKey
+static const char* kTIMFriendProfileUpdateIdentifier = "friend_profile_update_identifier";  // string, 只写, 资料更新的好友的identifier
+static const char* kTIMFriendProfileUpdateItem       = "friend_profile_update_item";        // object [FriendProfileItem](), 只写, 资料更新的Item
+// EndStruct
+
+/**
+ * @brief 好友变更通知
+ */
+// Struct FriendChangeElem JsonKey
+static const char* kTIMFriendChangeElemChangeType                       = "friend_change_elem_change_type";                        // uint [TIMFriendChangeType](),  只读, 资料变更类型
+static const char* kTIMFriendChangeElemFriendAddIdentifierArray         = "friend_change_elem_friend_add_identifier_array";        // array string,                  只读, 新增的好友identifier列表，只有当 change_type 为 kTIMFriendChange_FriendAdd 时有效
+static const char* kTIMFriendChangeElemFriendDelIdentifierArray         = "friend_change_elem_friend_del_identifier_array";        // array string,                  只读, 删除的好友identifier列表，只有当 change_type 为 kTIMFriendChange_FriendDel 时有效
+static const char* kTIMFriendChangeElemFriendAddPendencyItemArray       = "friend_change_elem_friend_add_pendency_array";          // array [FriendAddPendency](),   只读, 好友添加未决信息列表，     只有当 change_type 为 kTIMFriendChange_PendencyAdd 时有效
+static const char* kTIMFriendChangeElemPendencyDelIdentifierArray       = "friend_change_elem_pendency_del_identifier_array";      // array string,                  只读, 好友未决信息删除列表，     只有当 change_type 为 kTIMFriendChange_PendencyDel 时有效
+static const char* kTIMFriendChangeElemPendencyReadedReportTimestamp    = "friend_change_elem_pendency_readed_report_timestamp";   // uint64,                        只读, 未决已读上报时间戳，       只有当 change_type 为 kTIMFriendChange_PendencyReadedReport 时有效
+static const char* kTIMFriendChangeElemBlackListAddIdentifierArray      = "friend_change_elem_blacklist_add_identifier_array";     // array string,                  只读, 新增的黑名单identifier列表，只有当 change_type 为 kTIMFriendChange_BlackListAdd 时有效
+static const char* kTIMFriendChangeElemBlackListDelIdentifierArray      = "friend_change_elem_blacklist_del_identifier_array";     // array string,                  只读, 删除的黑名单identifier列表，只有当 change_type 为 kTIMFriendChange_BlackListDel 时有效
+static const char* kTIMFriendChangeElemFreindProfileUpdateItemArray     = "friend_change_elem_friend_profile_update_item_array";   // array [FriendProfileUpdate](), 只读, 好友资料更新列表，          只有当 change_type 为 kTIMFriendChange_FriendProfileUpdate 时有效
+static const char* kTIMFriendChangeElemFriendGroupAddIdentifierArray    = "friend_change_elem_friend_group_add_array";             // array string,                  只读, 新增的好友分组名称列表，     只有当 change_type 为 kTIMFriendChange_FriendGroupAdd 时有效
+static const char* kTIMFriendChangeElemFriendGroupDelIdentifierArray    = "friend_change_elem_friend_group_del_array";             // array string,                  只读, 删除的好友分组名称列表，     只有当 change_type 为 kTIMFriendChange_FriendGroupDel 时有效
+static const char* kTIMFriendChangeElemFriendGroupModifyIdentifierArray = "friend_change_elem_friend_group_update_array";          // array string,                  只读, 修改的好友分组名称列表，     只有当 change_type 为 kTIMFriendChange_FriendGroupModify 时有效
+// EndStruct
+
+/**
 * @brief 消息群发接口的参数
 */
 // Struct MsgBatchSendParam JsonKey
@@ -959,13 +1012,14 @@ static const char* kTIMMsgBatchSendResultMsg        = "msg_batch_send_result_msg
 * @brief 消息定位符
 */
 // Struct MsgLocator JsonKey
-static const char* kTIMMsgLocatorConvId    = "message_locator_conv_id";    // bool,   读写,       要查找的消息是否是被撤回。true被撤回的，false非撤回的。默认值为false
-static const char* kTIMMsgLocatorConvType  = "message_locator_conv_type";  // bool,   读写,       要查找的消息是否是被撤回。true被撤回的，false非撤回的。默认值为false
+static const char* kTIMMsgLocatorConvId    = "message_locator_conv_id";    // bool,   读写,      要查找的消息是否是被撤回。true被撤回的，false非撤回的。默认值为false
+static const char* kTIMMsgLocatorConvType  = "message_locator_conv_type";  // bool,   读写,      要查找的消息是否是被撤回。true被撤回的，false非撤回的。默认值为false
 static const char* kTIMMsgLocatorIsRevoked = "message_locator_is_revoked"; // bool,   读写(必填), 要查找的消息是否是被撤回。true被撤回的，false非撤回的。默认值为false
 static const char* kTIMMsgLocatorTime      = "message_locator_time";       // uint64, 读写(必填), 要查找的消息的时间戳
 static const char* kTIMMsgLocatorSeq       = "message_locator_seq";        // uint64, 读写(必填), 要查找的消息的序列号
 static const char* kTIMMsgLocatorIsSelf    = "message_locator_is_self";    // bool,   读写(必填), 要查找的消息的发送者是否是自己。true发送者是自己，false发送者不是自己。默认值为false
 static const char* kTIMMsgLocatorRand      = "message_locator_rand";       // uint64, 读写(必填), 要查找的消息随机码
+static const char* kTIMMsgLocatorUniqueId  = "message_locator_unique_id";  // uint64,  读写(必填), 要查找的消息的唯一标识
 // EndStruct
 
 
@@ -1004,7 +1058,7 @@ enum TIMDownloadType {
 */
 // Struct DownloadElemParam JsonKey
 static const char* kTIMMsgDownloadElemParamFlag       = "msg_download_elem_param_flag";         // uint,   只写, 从消息元素里面取出来,元素的下载类型
-static const char* kTIMMsgDownloadElemParamType       = "msg_download_elem_param_type";         // uint [TIMDownladType](), 只写, 从消息元素里面取出来,元素的类型
+static const char* kTIMMsgDownloadElemParamType       = "msg_download_elem_param_type";         // uint [TIMDownloadType](), 只写, 从消息元素里面取出来,元素的类型
 static const char* kTIMMsgDownloadElemParamId         = "msg_download_elem_param_id";           // string, 只写, 从消息元素里面取出来,元素的ID
 static const char* kTIMMsgDownloadElemParamBusinessId = "msg_download_elem_param_business_id";  // uint,   只写, 从消息元素里面取出来,元素的BusinessID
 static const char* kTIMMsgDownloadElemParamUrl        = "msg_download_elem_param_url";          // string, 只写, 从消息元素里面取出来,元素URL
@@ -1273,7 +1327,7 @@ enum TIMGroupModifyInfoFlag {
 */
 // Struct GroupModifyInfoParam JsonKey
 static const char* kTIMGroupModifyInfoParamGroupId           = "group_modify_info_param_group_id";        // string, 只写(必填), 群组ID
-static const char* kTIMGroupModifyInfoParamModifyFlag        = "group_modify_info_param_modify_flag";     // uint [TIMGroupSetInfoFlag](),  只写(必填), 修改标识,可设置多个值按位或
+static const char* kTIMGroupModifyInfoParamModifyFlag        = "group_modify_info_param_modify_flag";     // uint [TIMGroupModifyInfoFlag](),  只写(必填), 修改标识,可设置多个值按位或
 static const char* kTIMGroupModifyInfoParamGroupName         = "group_modify_info_param_group_name";      // string, 只写(选填), 修改群组名称,      当 modify_flag 包含 kTIMGroupModifyInfoFlag_Name 时必填,其他情况不用填
 static const char* kTIMGroupModifyInfoParamNotification      = "group_modify_info_param_notification";    // string, 只写(选填), 修改群公告,        当 modify_flag 包含 kTIMGroupModifyInfoFlag_Notification 时必填,其他情况不用填
 static const char* kTIMGroupModifyInfoParamIntroduction      = "group_modify_info_param_introduction";    // string, 只写(选填), 修改群简介,        当 modify_flag 包含 kTIMGroupModifyInfoFlag_Introduction 时必填,其他情况不用填
@@ -1372,7 +1426,7 @@ enum TIMGroupPendencyHandleResult {
 */
 // Struct GroupPendency JsonKey
 static const char* kTIMGroupPendencyGroupId             = "group_pendency_group_id";                //string,  读写, 群组ID
-static const char* kTIMGroupPendencyFromIdentifier      = "group_pendency_form_identifier";         //string,  读写, 请求者的ID,比如：请求加群:请求者,邀请加群:邀请人。
+static const char* kTIMGroupPendencyFromIdentifier      = "group_pendency_form_identifier";         //string,  读写, 请求者的ID,例如：请求加群:请求者,邀请加群:邀请人。
 static const char* kTIMGroupPendencyToIdentifier        = "group_pendency_to_identifier";           //string,  读写, 判决者的ID,请求加群:"",邀请加群:被邀请人。
 static const char* kTIMGroupPendencyAddTime             = "group_pendency_add_time";                //uint64,  只读, 未决信息添加时间
 static const char* kTIMGroupPendencyPendencyType        = "group_pendency_pendency_type";           //uint [TIMGroupPendencyType](),  只读, 未决请求类型
@@ -1401,6 +1455,300 @@ static const char* kTIMGroupPendencyResultPendencyArray = "group_pendency_result
 static const char* kTIMGroupHandlePendencyParamIsAccept   = "group_handle_pendency_param_is_accept";  // bool,   只写(选填), true表示接受，false表示拒绝。默认为false
 static const char* kTIMGroupHandlePendencyParamHandleMsg  = "group_handle_pendency_param_handle_msg"; // string, 只写(选填), 同意或拒绝信息,默认为空字符串
 static const char* kTIMGroupHandlePendencyParamPendency   = "group_handle_pendency_param_pendency";   // object [GroupPendency](), 只写(必填), 未决信息详情
+// EndStruct
+
+/// @}
+
+
+/// @name 关系链和资料关键类型
+/// @brief 关系链和资料相关宏定义，以及相关结构成员存取Json Key定义
+/// @{
+/**
+* @brief 处理群未决消息接口的参数
+*/
+// Struct FriendShipGetProfileListParam JsonKey
+static const char* kTIMFriendShipGetProfileListParamIdentifierArray = "friendship_getprofilelist_param_identifier_array";  // array string, 只写, 想要获取目标用户资料的identifier列表
+static const char* kTIMFriendShipGetProfileListParamForceUpdate     = "friendship_getprofilelist_param_force_update";      // bool,         只写, 是否强制更新。false表示优先从本地缓存获取，获取不到则去网络上拉取。true表示直接去网络上拉取资料。默认值为false
+// EndStruct
+
+/**
+* @brief 用户性别类型
+*/
+enum TIMGenderType {
+    kTIMGenderType_Unkown, // 未知性别
+    kTIMGenderType_Male,   // 性别男
+    kTIMGenderType_Female, // 性别女
+};
+
+/**
+* @brief 用户加好友的选项
+*/
+enum TIMProfileAddPermission {
+    kTIMProfileAddPermission_Unknown,       // 未知
+    kTIMProfileAddPermission_AllowAny,      // 允许任何人添加好友
+    kTIMProfileAddPermission_NeedConfirm,   // 拒绝任何人添加好友
+    kTIMProfileAddPermission_DenyAny,       // 添加好友需要验证
+};
+
+/**
+* @brief 用户自定义资料字段，字符串
+*
+* @note
+* 字符串长度不得超过500字节
+*/
+// Struct UserProfileCustemStringInfo JsonKey
+static const char* kTIMUserProfileCustemStringInfoKey   = "user_profile_custom_string_info_key";   // string, 只写, 用户自定义资料字段的key值（包含前缀Tag_Profile_Custom_）
+static const char* kTIMUserProfileCustemStringInfoValue = "user_profile_custom_string_info_value"; // string, 只写, 该字段对应的字符串值
+// EndStruct
+
+/**
+ * @brief 用户个人资料
+ */
+// Struct UserProfile JsonKey
+static const char* kTIMUserProfileIdentifier         = "user_profile_identifier";            // string,                           只读, 用户ID
+static const char* kTIMUserProfileNickName           = "user_profile_nick_name";             // string,                           只读, 用户的昵称
+static const char* kTIMUserProfileGender             = "user_profile_gender";                // uint [TIMGenderType](),           只读, 性别
+static const char* kTIMUserProfileFaceUrl            = "user_profile_face_url";              // string,                           只读, 用户头像URL
+static const char* kTIMUserProfileSelfSignature      = "user_profile_self_signature";        // string,                           只读, 用户个人签名
+static const char* kTIMUserProfileAddPermission      = "user_profile_add_permission";        // uint [TIMProfileAddPermission](), 只读, 用户加好友的选项
+static const char* kTIMUserProfileLocation           = "user_profile_location";              // string,                           只读, 用户位置信息
+static const char* kTIMUserProfileLanguage           = "user_profile_language";              // uint,                             只读, 语言
+static const char* kTIMUserProfileBirthDay           = "user_profile_birthday";              // uint,                             只读, 生日
+static const char* kTIMUserProfileLevel              = "user_profile_level";                 // uint,                             只读, 等级
+static const char* kTIMUserProfileRole               = "user_profile_role";                  // uint,                             只读, 角色
+static const char* kTIMUserProfileCustomStringArray  = "user_profile_custom_string_array";   // array [UserProfileCustemStringInfo](), 只读, 请参考[自定义资料字段](https://cloud.tencent.com/document/product/269/1500#.E8.87.AA.E5.AE.9A.E4.B9.89.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5)
+// EndStruct
+
+/**
+ * @brief 自身资料可修改的各个项
+ */
+// Struct UserProfileItem JsonKey
+static const char* kTIMUserProfileItemNickName          = "user_profile_item_nick_name";           // string,                           只写, 修改用户昵称
+static const char* kTIMUserProfileItemGender            = "user_profile_item_gender";              // uint [TIMGenderType](),           只写, 修改用户性别
+static const char* kTIMUserProfileItemFaceUrl           = "user_profile_item_face_url";            // string,                           只写, 修改用户头像
+static const char* kTIMUserProfileItemSelfSignature     = "user_profile_item_self_signature";      // string,                           只写, 修改用户签名
+static const char* kTIMUserProfileItemAddPermission     = "user_profile_item_add_permission";      // uint [TIMProfileAddPermission](), 只写, 修改用户加好友的选项
+static const char* kTIMUserProfileItemLoaction          = "user_profile_item_location";            // uint,                             只写, 修改位置
+static const char* kTIMUserProfileItemLanguage          = "user_profile_item_language";            // uint,                             只写, 修改语言
+static const char* kTIMUserProfileItemBirthDay          = "user_profile_item_birthday";            // uint,                             只写, 修改生日
+static const char* kTIMUserProfileItemLevel             = "user_profile_item_level";               // uint,                             只写, 修改等级
+static const char* kTIMUserProfileItemRole              = "user_profile_item_role";                // uint,                             只写, 修改角色
+static const char* kTIMUserProfileItemCustomStringArray = "user_profile_item_custom_string_array"; // array [UserProfileCustemStringInfo](), 只写, 修改[自定义资料字段](https://cloud.tencent.com/document/product/269/1500#.E8.87.AA.E5.AE.9A.E4.B9.89.E8.B5.84.E6.96.99.E5.AD.97.E6.AE.B5)
+// EndStruct
+
+/**
+ * @brief 好友自定义资料字段
+ */
+// Struct FriendProfileCustemStringInfo JsonKey
+static const char* kTIMFriendProfileCustemStringInfoKey   = "friend_profile_custom_string_info_key";   // string, 只写, 好友自定义资料字段key
+static const char* kTIMFriendProfileCustemStringInfoValue = "friend_profile_custom_string_info_value"; // string, 只写, 好友自定义资料字段value
+// EndStruct
+
+/**
+* @brief 好友资料
+*/
+// Struct FriendProfile JsonKey
+static const char* kTIMFriendProfileIdentifier          = "friend_profile_identifier";          // string,       只读, 好友identifier
+static const char* kTIMFriendProfileGroupNameArray      = "friend_profile_group_name_array";    // array string, 只读, 好友分组名称列表
+static const char* kTIMFriendProfileRemark              = "friend_profile_remark";              // string,       只读, 好友备注，最大96字节，获取自己资料时，该字段为空
+static const char* kTIMFriendProfileAddWording          = "friend_profile_add_wording";         // string,       只读, 好友申请时的添加理由
+static const char* kTIMFriendProfileAddSource           = "friend_profile_add_source";          // string,       只读, 好友申请时的添加来源
+static const char* kTIMFriendProfileAddTime             = "friend_profile_add_time";            // uint64,       只读, 好友添加时间
+static const char* kTIMFriendProfileUserProfile         = "friend_profile_user_profile";        // object [UserProfile], 只读, 好友的个人资料
+static const char* kTIMFriendProfileCustomStringArray   = "friend_profile_custom_string_array"; // array [FriendProfileCustemStringInfo](), 只读, [自定义好友字段](https://cloud.tencent.com/document/product/269/1501#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.A5.BD.E5.8F.8B.E5.AD.97.E6.AE.B5)
+// EndStruct
+
+/**
+ * @brief 好友资料可修改的各个项
+ */
+// Struct FriendProfileItem JsonKey
+static const char* kTIMFriendProfileItemRemark            = "friend_profile_item_remark";               // string,       只写, 修改好友备注
+static const char* kTIMFriendProfileItemGroupNameArray    = "friend_profile_item_group_name_array";     // array string, 只写, 修改好友分组名称列表
+static const char* kTIMFriendProfileItemCustomStringArray = "friend_profile_item_custom_string_array";  // array [FriendProfileCustemStringInfo](), 只写, 修改[自定义好友字段](https://cloud.tencent.com/document/product/269/1501#.E8.87.AA.E5.AE.9A.E4.B9.89.E5.A5.BD.E5.8F.8B.E5.AD.97.E6.AE.B5)
+// EndStruct
+
+/**
+ * @brief 好友类型
+ */
+enum TIMFriendType {
+    FriendTypeSignle,  // 单向好友：用户A的好友表中有用户B，但B的好友表中却没有A
+    FriendTypeBoth,    // 双向好友：用户A的好友表中有用户B，B的好友表中也有A
+};
+
+/**
+* @brief 添加好友接口的参数
+*/
+// Struct FriendshipAddFriendParam JsonKey
+static const char* kTIMFriendshipAddFriendParamIdentifier = "friendship_add_friend_param_identifier";  // string, 只写, 请求加好友对应的identifier
+static const char* kTIMFriendshipAddFriendParamFriendType = "friendship_add_friend_param_friend_type"; // uint [TIMFriendType](), 只写, 请求添加好友的好友类型
+static const char* kTIMFriendshipAddFriendParamRemark     = "friendship_add_friend_param_remark";      // string, 只写, 预备注
+static const char* kTIMFriendshipAddFriendParamGroupName  = "friendship_add_friend_param_group_name";  // string, 只写, 预分组名
+static const char* kTIMFriendshipAddFriendParamAddSource  = "friendship_add_friend_param_add_source";  // string, 只写, 加好友来源描述
+static const char* kTIMFriendshipAddFriendParamAddWording = "friendship_add_friend_param_add_wording"; // string, 只写, 加好友附言
+// EndStruct
+
+
+/**
+ * @brief 关系链操作接口的返回
+ */
+ // Struct FriendResult JsonKey
+static const char* kTIMFriendResultIdentifier = "friend_result_identifier"; // string, 只读, 关系链操作的用户ID
+static const char* kTIMFriendResultCode = "friend_result_code";       // int [错误码](https://cloud.tencent.com/document/product/269/1671), 只读, 关系链操作的结果
+static const char* kTIMFriendResultDesc = "friend_result_desc";       // string, 只读, 关系链操作失败的详细描述
+// EndStruct
+
+/**
+ * @brief 修改好友资料接口的参数
+ */
+// Struct FriendshipModifyFriendProfileParam JsonKey
+static const char* kTIMFriendshipModifyFriendProfileParamIdentifier = "friendship_modify_friend_profile_param_identifier";  // string, 只写, 被修改的好友的Identifier
+static const char* kTIMFriendshipModifyFriendProfileParamItem       = "friendship_modify_friend_profile_param_item";        // object [FriendProfileItem](), 只写, 修改的好友资料各个选项
+// EndStruct
+
+
+/**
+ * @brief 好友添加请求未决信息
+ */
+// Struct FriendAddPendency JsonKey
+static const char* kTIMFriendAddPendencyIdentifier = "friend_add_pendency_identifier";  // string, 只读, 添加好友请求方的identifier
+static const char* kTIMFriendAddPendencyNickName   = "friend_add_pendency_nick_name";   // string, 只读, 添加好友请求方的昵称
+static const char* kTIMFriendAddPendencyAddSource  = "friend_add_pendency_add_source";  // string, 只读, 添加好友请求方的来源
+static const char* kTIMFriendAddPendencyAddWording = "friend_add_pendency_add_wording"; // string, 只读, 添加好友请求方的附言
+// EndStruct
+
+/**
+ * @brief 好友添加请求未决类型
+ */
+enum TIMFriendPendencyType {
+    FriendPendencyTypeComeIn,  // 别人发给我的
+    FriendPendencyTypeSendOut, // 我发给别人的
+    FriendPendencyTypeBoth,    // 双向的
+};
+
+/**
+ * @brief 翻页获取好友添加请求未决信息列表的参数
+ */
+ // Struct FriendshipGetPendencyListParam JsonKey
+ static const char* kTIMFriendshipGetPendencyListParamType        = "friendship_get_pendency_list_param_type";         // uint [TIMFriendPendencyType](), 只写, 获取好友添加请求未决类型
+ static const char* kTIMFriendshipGetPendencyListParamStartSeq    = "friendship_get_pendency_list_param_start_seq";    // uint64, 只写, 获取未决的起始seq 未决列表序列号。建议客户端保存 seq 和未决列表，请求时填入 server 返回的 seq。如果 seq 是 server 最新的，则不返回数据
+ static const char* kTIMFriendshipGetPendencyListParamStartTime   = "friendship_get_pendency_list_param_start_time";   // uint64, 只写, 获取未决信息的开始时间戳
+ static const char* kTIMFriendshipGetPendencyListParamLimitedSize = "friendship_get_pendency_list_param_limited_size"; // int,    只写, 获取未决信息列表，每页的数量
+ // EndStruct
+
+
+/**
+ * @brief 好友添加请求未决信息
+ */
+// Struct PendencyPage JsonKey
+static const char* kTIMPendencyPageStartTime          = "pendency_page_start_time";           // uint64, 只读, 未决请求信息页的起始时间
+static const char* kTIMPendencyPageUnReadNum          = "pendency_page_unread_num";           // uint64, 只读, 未决请求信息页的未读数量
+static const char* kTIMPendencyPageCurrentSeq         = "pendency_page_current_seq";          // uint64, 只读, 未决请求信息页的当前Seq
+static const char* kTIMPendencyPagePendencyInfoArray  = "pendency_page_pendency_info_array";  // array [FriendAddPendencyInfo](), 只读, 未决请求信息页的未决信息列表
+// EndStruct
+
+
+/**
+ * @brief 好友添加请求未决信息
+ */
+// Struct FriendAddPendencyInfo JsonKey
+static const char* kTIMFriendAddPendencyInfoType       = "friend_add_pendency_info_type";          // uint [TIMFriendPendencyType](), 只读, 好友添加请求未决类型
+static const char* kTIMFriendAddPendencyInfoIdentifier = "friend_add_pendency_info_idenitifer";    // string, 只读, 好友添加请求未决的identifier
+static const char* kTIMFriendAddPendencyInfoNickName   = "friend_add_pendency_info_nick_name";     // string, 只读, 好友添加请求未决的昵称
+static const char* kTIMFriendAddPendencyInfoAddTime    = "friend_add_pendency_info_add_time";      // uint64, 只读, 好友添加请求未决的请求添加时间
+static const char* kTIMFriendAddPendencyInfoAddSource  = "friend_add_pendency_info_add_source";    // string, 只读, 好友添加请求未决的添加来源
+static const char* kTIMFriendAddPendencyInfoAddWording = "friend_add_pendency_info_add_wording";   // string, 只读, 好友添加请求未决的添加附言
+// EndStruct
+
+/**
+ * @brief 删除好友添加请求未决信息接口的参数
+ */
+// Struct FriendshipDeletePendencyParam JsonKey
+static const char* kTIMFriendshipDeletePendencyParamType            = "friendship_delete_pendency_param_type";              // uint [TIMFriendPendencyType](), 只读, 删除好友添加请求未决的类型
+static const char* kTIMFriendshipDeletePendencyParamIdentifierArray = "friendship_delete_pendency_param_identifier_array";  // array string, 只读, 删除好友未决请求的Identifier列表
+// EndStruct
+
+/**
+ * @brief 好友添加请求响应的动作类型
+ */
+enum TIMFriendResponseAction {
+    ResponseActionAgree,       // 同意
+    ResponseActionAgreeAndAdd, // 同意并添加
+    ResponseActionReject,      // 拒绝
+};
+
+/**
+ * @brief 好友添加的响应
+ */
+// Struct FriendRespone JsonKey
+static const char* kTIMFriendResponeIdentifier = "friend_respone_identifier"; // string, 只写(必填), 响应好友添加的Identifier
+static const char* kTIMFriendResponeAction     = "friend_respone_action";     // uint [TIMFriendResponseAction](), 只写(必填), 响应好友添加的动作
+static const char* kTIMFriendResponeRemark     = "friend_respone_remark";     // string, 只写(选填), 好友备注
+static const char* kTIMFriendResponeGroupName  = "friend_respone_group_name"; // string, 只写(选填), 好友分组列表
+// EndStruct
+
+
+/**
+ * @brief 删除好友接口的参数
+ */
+// Struct FriendshipDeleteFriendParam JsonKey
+static const char* kTIMFriendshipDeleteFriendParamFriendType      = "friendship_delete_friend_param_friend_type";       // uint [TIMFriendType](), 只写, 删除好友，指定删除的好友类型
+static const char* kTIMFriendshipDeleteFriendParamIdentifierArray = "friendship_delete_friend_param_identifier_array";  // array string, 只写(选填), 删除好友identifier列表
+// EndStruct
+
+/**
+ * @brief 好友分组信息
+ */
+// Struct FriendGroupInfo JsonKey
+static const char* kTIMFriendshipCreateFriendGroupParamNameArray       = "friendship_create_friend_group_param_name_array";        // array string, 只写, 创建分组的名称列表
+static const char* kTIMFriendshipCreateFriendGroupParamIdentifierArray = "friendship_create_friend_group_param_identifier_array";  // array string, 只写, 要放到创建的分组的好友Identifier列表
+// EndStruct
+
+/**
+ * @brief 好友分组信息
+ */
+// Struct FriendGroupInfo JsonKey
+static const char* kTIMFriendGroupInfoName            = "friend_group_info_name";              // string,       只读, 分组名称
+static const char* kTIMFriendGroupInfoCount           = "friend_group_info_count";             // uint64,       只读, 当前分组的好友个数
+static const char* kTIMFriendGroupInfoIdentifierArray = "friend_group_info_identifier_array";  // array string, 只读, 当前分组内好友Identifier列表
+// EndStruct
+
+/**
+ * @brief 修改好友分组信息的接口参数
+ */
+// Struct FriendshipModifyFriendGroupParam JsonKey
+static const char* kTIMFriendshipModifyFriendGroupParamName                  = "friendship_modify_friend_group_param_name";                     // string, 只写, 要修改的分组名称
+static const char* kTIMFriendshipModifyFriendGroupParamNewName               = "friendship_modify_friend_group_param_new_name";                 // string, 只写(选填), 修改后的分组名称
+static const char* kTIMFriendshipModifyFriendGroupParamDeleteIdentifierArray = "friendship_modify_friend_group_param_delete_identifier_array";  // array string, 只写(选填), 要从当前分组删除的好友identifier列表
+static const char* kTIMFriendshipModifyFriendGroupParamAddIdentifierArray    = "friendship_modify_friend_group_param_add_identifier_array";     // array string, 只写(选填), 当前分组要新增的好友identifier列表
+// EndStruct
+
+
+/**
+ * @brief 检测好友的类型接口的参数
+ */
+// Struct FriendshipCheckFriendTypeParam JsonKey
+static const char* kTIMFriendshipCheckFriendTypeParamCheckType       = "friendship_check_friendtype_param_check_type";        // uint [TIMFriendType](), 只写, 要检测的好友类型
+static const char* kTIMFriendshipCheckFriendTypeParamIdentifierArray = "friendship_check_friendtype_param_identifier_array";  // array string, 只写, 要检测的好友Identifier列表
+// EndStruct
+
+/**
+ * @brief 二者之间的关系
+ */
+enum TIMFriendCheckRelation {
+    FriendCheckNoRelation,  // 无关系
+    FriendCheckAWithB,      // 仅A中有B
+    FriendCheckBWithA,      // 仅B中有A
+    FriendCheckBothWay,     // 双向
+};
+
+/**
+ * @brief 检测好友的类型接口返回
+ */
+// Struct FriendshipCheckFriendTypeResult JsonKey
+static const char* kTIMFriendshipCheckFriendTypeResultIdentifier = "friendship_check_friendtype_result_identifier"; // string, 只读, 被检测的好友Identifier
+static const char* kTIMFriendshipCheckFriendTypeResultRelation   = "friendship_check_friendtype_result_relation";   // uint [TIMFriendCheckRelation](), 只读, 检测成功时返回的二者之间的关系
+static const char* kTIMFriendshipCheckFriendTypeResultCode       = "friendship_check_friendtype_result_code";       // int [错误码](https://cloud.tencent.com/document/product/269/1671), 只读, 检测的结果
+static const char* kTIMFriendshipCheckFriendTypeResultDesc       = "friendship_check_friendtype_result_desc";       // string, 只读, 检测好友失败的描述信息
 // EndStruct
 
 /// @}

@@ -9,19 +9,20 @@ extern"C"
 #endif
 
 /// @overview TIMCloud
-/// @overbrief 腾讯云通信IM的跨平台C接口(API)
+/// @overbrief 腾讯即时通信IM的跨平台C接口(API)
 /*
 * @brief 各个平台的下载链接
-* > Windows平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Windows),Windows快速开始[集成ImSDK](https://cloud.tencent.com/document/product/269/33489)和[跑通demo](https://cloud.tencent.com/document/product/269/33488).暂不支持64位编译.
-* > iOS平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/iOS)
-* > Mac平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Mac)
-* > Android平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Android)
+* > Windows平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Windows),Windows快速开始[集成ImSDK](https://cloud.tencent.com/document/product/269/33489)和[一分钟跑通Demo](https://cloud.tencent.com/document/product/269/36838).支持32位/64位系统。
+* > iOS平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/iOS).
+* > Mac平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Mac).
+* > Android平台[ImSDK](https://github.com/tencentyun/TIMSDK/tree/master/cross-platform/Android).
 *
 * @brief 关于回调的说明
 * > 回调分两种，一种是指调用接口的异步返回，另外一种指后台推送的通知。回调在ImSDK内部的逻辑线程触发，跟调用接口的线程可能不是同一线程
 * > 在Windows平台，如果调用[TIMInit]()接口进行初始化ImSDK之前，已创建了UI的消息循环，且调用[TIMInit]()接口的线程为主UI线程，则ImSDK内部会将回调抛到主UI线程调用
 *
-* @brief 如果接口的参数字符串包含中文，请使用UTF-8编码
+* @brief 注意
+* > 如果接口的参数字符串包含中文，请使用UTF-8编码
 */
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -102,8 +103,8 @@ TIM_DECL void TIMSetGroupTipsEventCallback(TIMGroupTipsEventCallback cb, const v
 * >> 会话新增
 * >> 会话删除
 * >> 会话更新。
-* > 任何产生一个新会话的操作都会触发会话新增事件，比如调用接口[TIMConvCreate]()创建会话，接收到未知会话的第一条消息等。
-* 任何已有会话变化的操作都会触发会话更新事件，比如收到会话新消息，消息撤回，已读上报等。
+* > 任何产生一个新会话的操作都会触发会话新增事件，例如调用接口[TIMConvCreate]()创建会话，接收到未知会话的第一条消息等。
+* 任何已有会话变化的操作都会触发会话更新事件，例如收到会话新消息，消息撤回，已读上报等。
 * 调用接口[TIMConvDelete]()删除会话成功时会触发会话删除事件。
 */
 TIM_DECL void TIMSetConvEventCallback(TIMConvEventCallback cb, const void* user_data);
@@ -115,7 +116,7 @@ TIM_DECL void TIMSetConvEventCallback(TIMConvEventCallback cb, const void* user_
 * 
 * @note
 * > 当调用接口 [TIMInit]() 时，ImSDK会去连接云后台。此接口设置的回调用于监听网络连接的状态。
-* > 网络连接状态包含四个：正在连接、连接失败、连接成功、已连接。这里的网络事件不表示用户本地网络状态，仅指明ImSDK是否与云通信IM云Server连接状态。
+* > 网络连接状态包含四个：正在连接、连接失败、连接成功、已连接。这里的网络事件不表示用户本地网络状态，仅指明ImSDK是否与即时通信IM云Server连接状态。
 * > 可选设置，如果要用户感知是否已经连接服务器，需要设置此回调，用于通知调用者跟通讯后台链接的连接和断开事件，另外，如果断开网络，等网络恢复后会自动重连，自动拉取消息通知用户，用户无需关心网络状态，仅作通知之用
 * > 只要用户处于登录状态，ImSDK内部会进行断网重连，用户无需关心。
 */
@@ -151,6 +152,46 @@ TIM_DECL void TIMSetKickedOfflineCallback(TIMKickedOfflineCallback cb, const voi
 TIM_DECL void TIMSetUserSigExpiredCallback(TIMUserSigExpiredCallback cb, const void* user_data);
 
 /**
+* @brief 设置添加好友的回调
+* @param cb 添加好友回调，请参考[TIMOnAddFriendCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+*
+* @note
+* 此回调为了多终端同步。例如A设备、B设备都登录了同一账号的ImSDK，A设备添加了好友，B设备ImSDK会收到添加好友的推送，ImSDK通过此回调告知开发者。
+*/
+TIM_DECL void TIMSetOnAddFriendCallback(TIMOnAddFriendCallback cb, const void* user_data);
+
+/**
+* @brief 设置删除好友的回调
+* @param cb 删除好友回调，请参考[TIMOnDeleteFriendCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+*
+* @note
+* 此回调为了多终端同步。例如A设备、B设备都登录了同一账号的ImSDK，A设备删除了好友，B设备ImSDK会收到删除好友的推送，ImSDK通过此回调告知开发者。
+*/
+TIM_DECL void TIMSetOnDeleteFriendCallback(TIMOnDeleteFriendCallback cb, const void* user_data);
+
+/**
+* @brief 设置更新好友资料的回调
+* @param cb 更新好友资料回调，请参考[TIMUpdateFriendProfileCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+*
+* @note
+* 此回调为了多终端同步。例如A设备、B设备都登录了同一账号的ImSDK，A设备更新了好友资料，B设备ImSDK会收到更更新好友资料的推送，ImSDK通过此回调告知开发者。
+*/
+TIM_DECL void TIMSetUpdateFriendProfileCallback(TIMUpdateFriendProfileCallback cb, const void* user_data);
+
+/**
+* @brief 设置好友添加请求的回调
+* @param cb 好友添加请求回调，请参考[TIMFriendAddRequestCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+*
+* @note
+* 当前登入用户设置添加好友需要确认时，如果有用户请求加当前登入用户为好友，会收到好友添加请求的回调，ImSDK通过此回调告知开发者。如果多终端登入同一账号，每个终端都会收到这个回调。
+*/
+TIM_DECL void TIMSetFriendAddRequestCallback(TIMFriendAddRequestCallback cb, const void* user_data);
+
+/**
 * @brief 设置日志回调
 * @param cb 日志回调，请参考[TIMLogCallback](TIMCloudCallback.h)
 * @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
@@ -168,9 +209,9 @@ TIM_DECL void TIMSetLogCallback(TIMLogCallback cb, const void* user_data);
 * 
 * @note 
 * > 当您发送的消息在服务端被修改后，ImSDK会通过该回调通知给您 
-* > 您可以在您自己的服务器上拦截所有云通信IM消息 [发单聊消息之前回调](https://cloud.tencent.com/document/product/269/1632)
-* > 设置成功之后，云通信IM服务器会将您的用户发送的每条消息都同步地通知给您的业务服务器。
-* > 您的业务服务器可以对该条消息进行修改（比如过滤敏感词），如果您的服务器对消息进行了修改，ImSDK就会通过此回调通知您。
+* > 您可以在您自己的服务器上拦截所有即时通信IM消息 [发单聊消息之前回调](https://cloud.tencent.com/document/product/269/1632)
+* > 设置成功之后，即时通信IM服务器会将您的用户发送的每条消息都同步地通知给您的业务服务器。
+* > 您的业务服务器可以对该条消息进行修改（例如过滤敏感词），如果您的服务器对消息进行了修改，ImSDK就会通过此回调通知您。
 */
 TIM_DECL void TIMSetMsgUpdateCallback(TIMMsgUpdateCallback cb, const void* user_data);
 /// @}
@@ -383,7 +424,7 @@ TIM_DECL int TIMLogout(TIMCommCallback cb, const void* user_data);
 * @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
 * @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
 *
-* @example 获取对方identifier为Windows-02的单聊会话示例：
+* @example 获取对方identifier为Windows-02的单聊会话示例
 * const void* user_data = nullptr; // 回调函数回传
 * const char* userid = "Windows-02";
 * int ret = TIMConvCreate(userid, kTIMConv_C2C, [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
@@ -396,7 +437,7 @@ TIM_DECL int TIMLogout(TIMCommCallback cb, const void* user_data);
 *     // 调用 TIMConvCreate 接口失败
 * }
 * 
-* @example 获取群组ID为Windows-Group-01的群聊会话示例：
+* @example 获取群组ID为Windows-Group-01的群聊会话示例
 * const void* user_data = nullptr; // 回调函数回传
 * const char* userid = "Windows-Group-01";
 * int ret = TIMConvCreate(userid, kTIMConv_Group, [](int32_t code, const char* desc, const char* json_param, const void* user_data) {
@@ -1144,7 +1185,7 @@ TIM_DECL int TIMGroupGetGroupInfoList(const char* json_group_getinfo_param, TIMC
 * > 修改群其他信息的权限说明:
 * >>   对于公开群、聊天室和直播大群，只有群主或者管理员可以修改群简介。
 * >>   对于私有群，任何人可修改群简介。
-* > kTIMGroupModifyInfoParamModifyFlag 可以按位或设置多个值。不同的flag设置不同的键,详情请参考[GroupSetInfoParam](TIMCloudDef.h)
+* > kTIMGroupModifyInfoParamModifyFlag 可以按位或设置多个值。不同的flag设置不同的键,详情请参考[GroupModifyInfoParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupModifyGroupInfo(const char* json_group_modifyinfo_param, TIMCommCallback cb, const void* user_data);
 
@@ -1229,7 +1270,7 @@ TIM_DECL int TIMGroupGetMemberInfoList(const char* json_group_getmeminfos_param,
 * >> 只有群主或者管理员可以进行对群成员的身份进行修改。
 * >> 直播大群不支持修改用户群内身份。
 * >> 只有群主或者管理员可以进行对群成员进行禁言。 
-* > kTIMGroupModifyMemberInfoParamModifyFlag 可以按位或设置多个值，不同的flag设置不同的键。请参考[GroupSetMemberInfoParam](TIMCloudDef.h)
+* > kTIMGroupModifyMemberInfoParamModifyFlag 可以按位或设置多个值，不同的flag设置不同的键。请参考[GroupModifyMemberInfoParam](TIMCloudDef.h)
 */
 TIM_DECL int TIMGroupModifyMemberInfo(const char* json_group_modifymeminfo_param, TIMCommCallback cb, const void* user_data);
 
@@ -1332,6 +1373,399 @@ TIM_DECL int TIMGroupReportPendencyReaded(uint64_t time_stamp, TIMCommCallback c
 TIM_DECL int TIMGroupHandlePendency(const char* json_group_handle_pendency_param, TIMCommCallback cb, const void* user_data);
 /// @}
 
+/////////////////////////////////////////////////////////////////////////////////
+//
+//                      用户资料相关接口
+//
+/////////////////////////////////////////////////////////////////////////////////
+/// @name 用户资料相关接口
+/// @brief 用户资料介绍请参考 [资料系统简介](https://cloud.tencent.com/document/product/269/1500#.E8.B5.84.E6.96.99.E7.B3.BB.E7.BB.9F.E7.AE.80.E4.BB.8B)
+/// @{
+/**
+* @brief 获取指定用户列表的个人资料
+*
+* @param json_get_user_profile_list_param 获取指定用户列表的用户资料接口参数的Json字符串
+* @param cb 获取指定用户列表的用户资料成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_get_user_profile_list_param;
+* json_get_user_profile_list_param[kTIMFriendShipGetProfileListParamForceUpdate] = false;
+* json_get_user_profile_list_param[kTIMFriendShipGetProfileListParamIdentifierArray].append("user1");
+* json_get_user_profile_list_param[kTIMFriendShipGetProfileListParamIdentifierArray].append("user2");
+* 
+* int ret = TIMProfileGetUserProfileList(json_get_user_profile_list_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     if (ERR_SUCC != code) {
+*         // 获取资料列表失败
+*         return;
+*     }
+* }, nullptr);
+* 
+* @note
+* 可以通过这个获取任何人的个人资料，包括自己的个人资料。当获取的个人资料不是自己的资料时，获取的个人资料加好友选项值为 kTIMProfileAddPermission_Unknown ，无法获取不是自己的加好友权限信息，默认返回未知。
+*/
+TIM_DECL int TIMProfileGetUserProfileList(const char* json_get_user_profile_list_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 修改自己的个人资料
+*
+* @param json_modify_self_user_profile_param 修改自己的资料接口参数的Json字符串
+* @param cb 修改自己的资料成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value modify_item;
+* modify_item[kTIMUserProfileItemNickName] = "change my nick name"; // 修改昵称
+* modify_item[kTIMUserProfileItemGender] = kTIMGenderType_Female;  // 修改性别
+* modify_item[kTIMUserProfileItemAddPermission] = kTIMProfileAddPermission_NeedConfirm;  // 修改添加好友权限
+*
+* Json::Value json_user_profile_item_custom;
+* json_user_profile_item_custom[kTIMUserProfileCustemStringInfoKey] = "Str";  // 修改个人资料自定义字段 "Str" 的值
+* json_user_profile_item_custom[kTIMUserProfileCustemStringInfoValue] = "my define data";
+* modify_item[kTIMUserProfileItemCustomStringArray].append(json_user_profile_item_custom);
+* int ret = TIMProfileModifySelfUserProfile(modify_item.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     if (ERR_SUCC != code) {
+*         // 修改自己的个人资料失败
+*         return;
+*     }
+* }, nullptr);
+*
+* @note
+* 修改好友资料，目前支持修改的字段请参考[UserProfileItem](TIMCloudDef.h)，一次可更新多个字段。修改自定义字段时填入的key值可以添加 Tag_Profile_Custom_ 前缀，也可以不添加 Tag_Profile_Custom_ 前缀，当不添加时，SDK内部会自动添加该前缀。
+*/
+TIM_DECL int TIMProfileModifySelfUserProfile(const char* json_modify_self_user_profile_param, TIMCommCallback cb, const void* user_data);
+/// @}
+
+/////////////////////////////////////////////////////////////////////////////////
+//
+//                      关系链相关接口
+//
+/////////////////////////////////////////////////////////////////////////////////
+/// @name 关系链相关接口
+/// @brief 关系链介绍请参考 [关系链系统简介](https://cloud.tencent.com/document/product/269/1501#.E5.85.B3.E7.B3.BB.E9.93.BE.E7.B3.BB.E7.BB.9F.E7.AE.80.E4.BB.8B)
+/// @{
+/**
+* @brief 获取好友列表
+*
+* @param cb 获取好友列表成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @note
+* 此接口通过回调返回所有好友资料[FriendProfile](TIMCloudDef.h).
+*/
+TIM_DECL int TIMFriendshipGetFriendProfileList(TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 添加好友
+*
+* @param json_add_friend_param 添加好友接口参数的Json字符串
+* @param cb 添加好友成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_add_friend_param;
+* json_add_friend_param[kTIMFriendshipAddFriendParamIdentifier] = "user4";
+* json_add_friend_param[kTIMFriendshipAddFriendParamFriendType] = FriendTypeBoth;
+* json_add_friend_param[kTIMFriendshipAddFriendParamAddSource] = "Windows";
+* json_add_friend_param[kTIMFriendshipAddFriendParamAddWording] = "I am Iron Man";
+* int ret = TIMFriendshipAddFriend(json_add_friend_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     if (ERR_SUCC != code) {
+*         // 添加好友失败
+*         return;
+*     }
+* }, nullptr);
+*
+* @note
+* 好友关系有单向和双向好友之分。详情请参考[添加好友](https://cloud.tencent.com/document/product/269/1501#.E6.B7.BB.E5.8A.A0.E5.A5.BD.E5.8F.8B).
+*/
+TIM_DECL int TIMFriendshipAddFriend(const char* json_add_friend_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 处理好友请求
+*
+* @param json_handle_friend_add_param 处理好友请求接口参数的Json字符串
+* @param cb 处理好友请求成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_handle_friend_add_param;
+* json_handle_friend_add_param[kTIMFriendResponeIdentifier] = "user1";
+* json_handle_friend_add_param[kTIMFriendResponeAction] = ResponseActionAgreeAndAdd;
+* json_handle_friend_add_param[kTIMFriendResponeRemark] = "I am Captain China";
+* json_handle_friend_add_param[kTIMFriendResponeGroupName] = "schoolmate";
+* int ret = TIMFriendshipHandleFriendAddRequest(json_handle_friend_add_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*
+* }, nullptr);
+*
+* @note
+* 当自己的个人资料的加好友权限 kTIMUserProfileAddPermission 设置为 kTIMProfileAddPermission_NeedConfirm 时，别人添加自己为好友时会收到一个加好友的请求，可通过此接口处理加好友的请求。
+*/
+TIM_DECL int TIMFriendshipHandleFriendAddRequest(const char* json_handle_friend_add_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 更新好友资料(备注等)
+*
+* @param json_modify_friend_info_param 更新好友资料接口参数的Json字符串
+* @param cb 更新好友资料成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_modify_friend_profile_item;
+* json_modify_friend_profile_item[kTIMFriendProfileItemRemark] = "xxxx yyyy";  // 修改备注
+* json_modify_friend_profile_item[kTIMFriendProfileItemGroupNameArray].append("group1"); // 修改好友所在分组
+* json_modify_friend_profile_item[kTIMFriendProfileItemGroupNameArray].append("group2");
+*
+* Json::Value json_modify_friend_profilie_custom;
+* json_modify_friend_profilie_custom[kTIMFriendProfileCustemStringInfoKey] = "Str";
+* json_modify_friend_profilie_custom[kTIMFriendProfileCustemStringInfoValue] = "this is changed value";
+* json_modify_friend_profile_item[kTIMFriendProfileItemCustomStringArray].append(json_modify_friend_profilie_custom); // 修改好友资料自定义字段 "Str" 的值
+
+* Json::Value json_modify_friend_info_param;
+* json_modify_friend_info_param[kTIMFriendshipModifyFriendProfileParamIdentifier] = "user4";
+* json_modify_friend_info_param[kTIMFriendshipModifyFriendProfileParamItem] = json_modify_friend_profile_item;
+* int ret = TIMFriendshipModifyFriendProfile(json_modify_friend_info_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+* 
+* }, nullptr);
+*
+* @note
+* 修改好友资料，目前支持修改的字段请参考[FriendProfileItem](TIMCloudDef.h)，一次可修改多个字段。修改自定义字段时填入的key值可以添加 Tag_SNS_Custom_ 前缀，也可以不添加 Tag_SNS_Custom_ 前缀，当不添加时，SDK内部会自动添加该前缀。
+*/
+TIM_DECL int TIMFriendshipModifyFriendProfile(const char* json_modify_friend_info_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 删除好友
+*
+* @param json_delete_friend_param 删除好友接口参数的Json字符串
+* @param cb 删除好友成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_delete_friend_param;
+* json_delete_friend_param[kTIMFriendshipDeleteFriendParamIdentifierArray].append("user4");
+* json_delete_friend_param[kTIMFriendshipDeleteFriendParamFriendType] = FriendTypeSignle;
+* int ret = TIMFriendshipDeleteFriend(json_delete_friend_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     if (ERR_SUCC != code) {
+*         // 删除好友失败
+*         return;
+*     }
+* }, nullptr);
+*
+* @note
+* 删除好友也有删除单向好友还是双向好友之分，[删除好友](https://cloud.tencent.com/document/product/269/1501#.E5.88.A0.E9.99.A4.E5.A5.BD.E5.8F.8B).
+*/
+TIM_DECL int TIMFriendshipDeleteFriend(const char* json_delete_friend_param, TIMCommCallback cb, const void* user_data);
+
+
+/**
+* @brief 检测好友类型(单向的还是双向的)
+*
+* @param json_check_friend_list_param 检测好友接口参数的Json字符串
+* @param cb 检测好友成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_check_friend_list_param;
+* json_check_friend_list_param[kTIMFriendshipCheckFriendTypeParamCheckType] = FriendTypeBoth;
+* json_check_friend_list_param[kTIMFriendshipCheckFriendTypeParamIdentifierArray].append("user4");
+* int ret = TIMFriendshipCheckFriendType(json_check_friend_list_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*
+* }, nullptr);
+*
+* @note
+* 开发者可以通过此接口检测给定的 identifier 列表跟当前账户的好友关系，[检测好友](https://cloud.tencent.com/document/product/269/1501#.E6.A0.A1.E9.AA.8C.E5.A5.BD.E5.8F.8B)。
+*/
+TIM_DECL int TIMFriendshipCheckFriendType(const char* json_check_friend_list_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 创建好友分组
+*
+* @param json_create_friend_group_param 创建好友分组接口参数的Json字符串
+* @param cb 创建好友分组成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_create_friend_group_param;
+* json_create_friend_group_param[kTIMFriendshipCreateFriendGroupParamNameArray].append("Group123");
+* json_create_friend_group_param[kTIMFriendshipCreateFriendGroupParamIdentifierArray].append("user4");
+* json_create_friend_group_param[kTIMFriendshipCreateFriendGroupParamIdentifierArray].append("user10");
+* int ret = TIMFriendshipCreateFriendGroup(json_create_friend_group_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+* @note
+* 不能创建已存在的分组。
+*/
+TIM_DECL int TIMFriendshipCreateFriendGroup(const char* json_create_friend_group_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 获取指定好友分组的分组信息
+*
+* @param json_get_friend_group_list_param 获取好友分组信息接口参数的Json字符串
+* @param cb 获取好友分组信息成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_get_friend_group_list_param;
+* json_get_friend_group_list_param.append("Group123");
+* int ret = TIMFriendshipGetFriendGroupList(json_get_friend_group_list_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipGetFriendGroupList(const char* json_get_friend_group_list_param, TIMCommCallback cb, const void* user_data);
+
+
+/**
+* @brief 修改好友分组
+*
+* @param json_modify_friend_group_param 修改好友分组接口参数的Json字符串
+* @param cb 修改好友分组成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_modify_friend_group_param;
+* json_modify_friend_group_param[kTIMFriendshipModifyFriendGroupParamName] = "Group123";
+* json_modify_friend_group_param[kTIMFriendshipModifyFriendGroupParamNewName] = "GroupNewName";
+* json_modify_friend_group_param[kTIMFriendshipModifyFriendGroupParamDeleteIdentifierArray].append("user4");
+* json_modify_friend_group_param[kTIMFriendshipModifyFriendGroupParamAddIdentifierArray].append("user9");
+* json_modify_friend_group_param[kTIMFriendshipModifyFriendGroupParamAddIdentifierArray].append("user5");
+* int ret = TIMFriendshipModifyFriendGroup(json_modify_friend_group_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipModifyFriendGroup(const char* json_modify_friend_group_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 删除好友分组
+*
+* @param json_delete_friend_group_param 删除好友分组接口参数的Json字符串
+* @param cb 删除好友分组成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_delete_friend_group_param;
+* json_delete_friend_group_param.append("GroupNewName");
+* int ret = TIMFriendshipDeleteFriendGroup(json_delete_friend_group_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipDeleteFriendGroup(const char* json_delete_friend_group_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 添加指定用户到黑名单
+*
+* @param json_add_to_blacklist_param 添加指定用户到黑名单接口参数的Json字符串
+* @param cb 添加指定用户到黑名单成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_add_to_blacklist_param;
+* json_add_to_blacklist_param.append("user5");
+* json_add_to_blacklist_param.append("user10");
+* int ret = TIMFriendshipAddToBlackList(json_add_to_blacklist_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipAddToBlackList(const char* json_add_to_blacklist_param, TIMCommCallback cb, const void* user_data);
+
+
+/**
+* @brief 获取黑名单列表
+*
+* @param cb 获取黑名单列表成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+*/
+TIM_DECL int TIMFriendshipGetBlackList(TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 从黑名单中删除指定用户列表
+*
+* @param json_delete_from_blacklist_param 从黑名单中删除指定用户接口参数的Json字符串
+* @param cb 从黑名单中删除指定用户成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_delete_from_blacklist_param;
+* json_delete_from_blacklist_param.append("user5");
+* json_delete_from_blacklist_param.append("user10");
+* int ret = TIMFriendshipDeleteFromBlackList(json_delete_from_blacklist_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipDeleteFromBlackList(const char* json_delete_from_blacklist_param, TIMCommCallback cb, const void* user_data);
+
+
+/**
+* @brief 获取好友添加请求未决信息列表
+*
+* @param json_get_pendency_list_param 获取未决列表接口参数的Json字符串
+* @param cb 获取未决列表成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_get_pendency_list_param;
+* json_get_pendency_list_param[kTIMFriendshipGetPendencyListParamType] = FriendPendencyTypeBoth;
+* json_get_pendency_list_param[kTIMFriendshipGetPendencyListParamStartSeq] = 0;
+* int ret = TIMFriendshipGetPendencyList(json_get_pendency_list_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+* @note
+* 好友添加请求未决信息是指好友添加请求未处理的操作。例如，开发者添加对方为好友，对方还没有处理；或者有人添加开发者为好友，开发者还没有处理，称之为好友添加请求未决信息
+*/
+TIM_DECL int TIMFriendshipGetPendencyList(const char* json_get_pendency_list_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 删除指定好友添加请求未决信息
+*
+* @param json_delete_pendency_param 删除指定未决信息接口参数的Json字符串
+* @param cb 删除指定未决信息成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+* @example
+* Json::Value json_delete_pendency_param;
+* json_delete_pendency_param[kTIMFriendshipDeletePendencyParamType] = FriendPendencyTypeComeIn;
+* json_delete_pendency_param[kTIMFriendshipDeletePendencyParamIdentifierArray].append("user1");
+* int ret = TIMFriendshipDeletePendency(json_delete_pendency_param.toStyledString().c_str(), [](int32_t code, const char* desc, const char* json_params, const void* user_data) {
+*     
+* }, nullptr);
+*
+*/
+TIM_DECL int TIMFriendshipDeletePendency(const char* json_delete_pendency_param, TIMCommCallback cb, const void* user_data);
+
+/**
+* @brief 上报好友添加请求未决信息已读
+*
+* @param time_stamp 上报未决信息已读时间戳
+* @param cb 上报未决信息已读用户成功与否的回调。回调函数定义请参考 [TIMCommCallback](TIMCloudCallback.h)
+* @param user_data 用户自定义数据，ImSDK只负责传回给回调函数cb，不做任何处理
+* @return int 返回TIM_SUCC表示接口调用成功（接口只有返回TIM_SUCC，回调cb才会被调用），其他值表示接口调用失败。每个返回值的定义请参考 [TIMResult](TIMCloudDef.h)
+*
+*/
+TIM_DECL int TIMFriendshipReportPendencyReaded(uint64_t time_stamp, TIMCommCallback cb, const void* user_data);
+/// @}
 
 #ifdef __cplusplus
 };

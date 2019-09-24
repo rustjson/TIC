@@ -11,7 +11,7 @@
 /* define int types*/
 #if defined(__GNUC__)
 
-#ifndef	_STDINT_H
+#ifndef    _STDINT_H
 
 /* FreeBSD has these C99 int types defined in /sys/inttypes.h already */
 #ifndef _SYS_TYPES_H

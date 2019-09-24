@@ -53,17 +53,17 @@ typedef enum TXLiteAVError
     ERR_ROOM_REQUEST_IP_FAIL                        = -3303,    ///< 拉取接口机服务器地址失败
     ERR_ROOM_CONNECT_FAIL                           = -3304,    ///< 连接接口机服务器失败
     ERR_ROOM_REQUEST_AVSEAT_FAIL                    = -3305,    ///< 请求视频位失败
-    ERR_ROOM_REQUEST_TOKEN_HTTPS_TIMEOUT            = -3306,    ///< 请求 token https 超时
-    ERR_ROOM_REQUEST_IP_TIMEOUT                     = -3307,    ///< 请求 IP 和 sig 超时
-    ERR_ROOM_REQUEST_ENTER_ROOM_TIMEOUT             = -3308,    ///< 请求进房超时
+    ERR_ROOM_REQUEST_TOKEN_HTTPS_TIMEOUT            = -3306,    ///< 请求 token https 超时，请检查网络是否正常，或网络防火墙是否放行 https 访问 official.opensso.tencent-cloud.com:443
+    ERR_ROOM_REQUEST_IP_TIMEOUT                     = -3307,    ///< 请求 IP 和 sig 超时，请检查网络是否正常，或网络防火墙是否放行 UDP 访问下列 IP 和域名 query.tencent-cloud.com:8000 162.14.23.140:8000 162.14.7.49:8000
+    ERR_ROOM_REQUEST_ENTER_ROOM_TIMEOUT             = -3308,    ///< 请求进房超时，请检查网络
     ERR_ROOM_REQUEST_VIDEO_FLAG_TIMEOUT             = -3309,    ///< 请求视频位超时
     ERR_ROOM_REQUEST_VIDEO_DATA_ROOM_TIMEOUT        = -3310,    ///< 请求视频数据超时
     ERR_ROOM_REQUEST_CHANGE_ABILITY_TIMEOUT         = -3311,    ///< 请求修改视频能力项超时
     ERR_ROOM_REQUEST_STATUS_REPORT_TIMEOUT          = -3312,    ///< 请求状态上报超时
     ERR_ROOM_REQUEST_CLOSE_VIDEO_TIMEOUT            = -3313,    ///< 请求关闭视频超时
     ERR_ROOM_REQUEST_SET_RECEIVE_TIMEOUT            = -3314,    ///< 请求接收视频项超时
-    ERR_ROOM_REQUEST_TOKEN_INVALID_PARAMETER        = -3315,    ///< 请求 token 无效参数
-    ERR_ENTER_ROOM_PARAM_NULL                       = -3316,    ///< 进房参数为空
+    ERR_ROOM_REQUEST_TOKEN_INVALID_PARAMETER        = -3315,    ///< 请求 token 无效参数，请检查 TRTCParams.userSig 是否填写正确
+    ERR_ENTER_ROOM_PARAM_NULL                       = -3316,    ///< 进房参数为空，请检查 enterRoom:appScene: 接口调用是否传入有效的 param
     ERR_SDK_APPID_INVALID                           = -3317,    ///< 进房参数 sdkAppId 错误
     ERR_ROOM_ID_INVALID                             = -3318,    ///< 进房参数 roomId 错误
     ERR_USER_ID_INVALID                             = -3319,    ///< 进房参数 userID 不正确
@@ -81,13 +81,13 @@ typedef enum TXLiteAVError
     ERR_CONNECT_OTHER_ROOM_AS_AUDIENCE              = -3330,    ///< 当前是观众角色，不能请求或断开跨房连麦
     ERR_ACCIP_LIST_EMPTY                            = -3331,    ///< 请求接口机 IP 返回的列表为空的
 
-    // Info 服务器（查询接口机 IP）, 服务器错误码，数值范围[-100000, -110000]，但命名、含义在确认中
+    // Info 服务器（查询接口机 IP）, 服务器错误码，数值范围[-100000, -110000]
 
-    ERR_SERVER_INFO_UNPACKING_ERROR                 = -100000,  ///< 请求解包错误
+    ERR_SERVER_INFO_UNPACKING_ERROR                 = -100000,  ///< server 解包错误，可能请求数据被篡改
     ERR_SERVER_INFO_TOKEN_ERROR                     = -100001,  ///< TOKEN 错误
     ERR_SERVER_INFO_ALLOCATE_ACCESS_FAILED          = -100002,  ///< 分配接口机错误
     ERR_SERVER_INFO_GENERATE_SIGN_FAILED            = -100003,  ///< 生成签名错误
-    ERR_SERVER_INFO_TOKEN_TIMEOUT                   = -100004,  ///< token 超时
+    ERR_SERVER_INFO_TOKEN_TIMEOUT                   = -100004,  ///< https token 超时
     ERR_SERVER_INFO_INVALID_COMMAND                 = -100005,  ///< 无效的命令字
     ERR_SERVER_INFO_PRIVILEGE_FLAG_ERROR            = -100006,  ///< 权限位校验失败
     ERR_SERVER_INFO_GENERATE_KEN_ERROR              = -100007,  ///< https 请求时，生成加密 key 错误
@@ -96,23 +96,26 @@ typedef enum TXLiteAVError
     ERR_SERVER_INFO_BAD_ROOMID                      = -100010,  ///< 房间号错误
     ERR_SERVER_INFO_BAD_SCENE_OR_ROLE               = -100011,  ///< 场景或角色错误
     ERR_SERVER_INFO_ROOMID_EXCHANGE_FAILED          = -100012,  ///< 房间号转换出错
-    ERR_SERVER_INFO_SERVICE_SUSPENDED               = -100013,  ///< 欠费导致服务暂停
-    
+    ERR_SERVER_INFO_SERVICE_SUSPENDED               = -100013,  ///< 腾讯云账号欠费
     ERR_SERVER_INFO_STRGROUP_HAS_INVALID_CHARS      = -100014,  ///< 房间号非法
-//    ERR_SERVER_INFO_LACK_SDKAPPID                   = -100015,  ///< 暂时没用
-
+    ERR_SERVER_INFO_LACK_SDKAPPID                   = -100015,  ///< 非法SDKAppid
+    ERR_SERVER_INFO_INVALID                         = -100016,  ///< 无效请求, 旧版 0x1 要求带 Token; ECDH 要求带 ECDH Publich Key; 两个都没有就按报错
+    ERR_SERVER_INFO_ECDH_GET_KEY                    = -100017,  ///< 生成公钥失败
+    ERR_SERVER_INFO_ECDH_GET_TINYID                 = -100018,  ///< 获取tinyid失败
+    
     // Access 接口机
 
-    ERR_SERVER_ACC_TOKEN_TIMEOUT                    = -101000,  ///< token 超时
+    ERR_SERVER_ACC_TOKEN_TIMEOUT                    = -101000,  ///< token 过期
     ERR_SERVER_ACC_SIGN_ERROR                       = -101001,  ///< 签名错误
     ERR_SERVER_ACC_SIGN_TIMEOUT                     = -101002,  ///< 签名超时
     ERR_SERVER_ACC_ROOM_NOT_EXIST                   = -101003,  ///< 房间不存在
-    ERR_SERVER_ACC_ROOMID                           = -101004,  ///< 后台房间标识roomid错误
-    ERR_SERVER_ACC_LOCATIONID                       = -101005,  ///< 后台用户位置标识locationid错误
+    ERR_SERVER_ACC_ROOMID                           = -101004,  ///< 后台房间标识 roomId 错误
+    ERR_SERVER_ACC_LOCATIONID                       = -101005,  ///< 后台用户位置标识 locationId 错误
     
     // center 服务器（信令和流控处理等任务）
 
     ERR_SERVER_CENTER_SYSTEM_ERROR                  = -102000,  ///< 后台错误
+    
     ERR_SERVER_CENTER_INVALID_ROOMID                = -102001,  ///< 无效的房间 Id
     ERR_SERVER_CENTER_CREATE_ROOM_FAILED            = -102002,  ///< 创建房间失败
     ERR_SERVER_CENTER_SIGN_ERROR                    = -102003,  ///< 签名错误
@@ -133,7 +136,7 @@ typedef enum TXLiteAVError
     ERR_SERVER_CENTER_USER_WAS_DELETED              = -102018,  ///< 用户被删除状态
     ERR_SERVER_CENTER_NO_PRIVILEDGE_REQUEST_VIDEO   = -102019,  ///< 没有权限请求视频
 
-    ERR_SERVER_CENTER_INVALID_PARAMETER             = -102023,  ///< 参数错误
+    ERR_SERVER_CENTER_INVALID_PARAMETER             = -102023,  ///< 进房参数 bussInfo 错误
     ERR_SERVER_CENTER_I_FRAME_UNKNOW_TYPE           = -102024,  ///< 请求 I 帧未知 opType
     ERR_SERVER_CENTER_I_FRAME_INVALID_PACKET        = -102025,  ///< 请求 I 帧包格式错误
     ERR_SERVER_CENTER_I_FRAME_DEST_USER_NOT_EXIST   = -102026,  ///< 请求 I 帧目标用户不存在
@@ -242,6 +245,8 @@ typedef enum TXLiteAVWarning
     WARNING_ROOM_NET_BUSY                           = 5103,     ///<  网络状况不佳：上行带宽太小，上传数据受阻
     
     WARNING_IGNORE_UPSTREAM_FOR_AUDIENCE            = 6001,     ///<  当前是观众角色，忽略上行音视频数据
+    
+    WARNING_AUDIO_RECORDING_WRITE_FAIL              = 7001,     ///<  音频录制写入文件失败
 } TXLiteAVWarning;
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -296,6 +301,7 @@ typedef enum TXLiteAVEvent
     EVT_AUDIO_JITTER_STATE_FIRST_PLAY               = 2026,     ///<  音频首次播放（SDK 内部事件，不会对外抛出）
     EVT_MIC_START_SUCC                              = 2027,     ///<  麦克风启动成功
     EVT_PLAY_GET_METADATA                           = 2028,     ///<  视频流MetaData事件
+	EVT_MIC_RELEASE_SUCC                            = 2029,     ///<  释放麦克风占用
 
     EVT_ROOM_ENTER                                  = 1018,     ///<  进入房间成功
     EVT_ROOM_EXIT                                   = 1019,     ///<  退出房间
