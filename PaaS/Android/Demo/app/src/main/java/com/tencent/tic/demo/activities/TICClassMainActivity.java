@@ -643,7 +643,7 @@ public class TICClassMainActivity extends BaseActvity
     }
 
     private void sendGroupMessage(final String msg) {
-        mTicManager.sendGroupTextMessage("", msg, new TICManager.TICCallback() {
+        mTicManager.sendGroupTextMessage( msg, new TICManager.TICCallback() {
             @Override
             public void onSuccess(Object data) {
                 postToast("[我]说: " + msg);
@@ -658,7 +658,7 @@ public class TICClassMainActivity extends BaseActvity
     }
 
     private void sendGroupMessage(final byte[] msg) {
-        mTicManager.sendGroupCustomMessage(null, msg, new TICManager.TICCallback() {
+        mTicManager.sendGroupCustomMessage( msg, new TICManager.TICCallback() {
             @Override
             public void onSuccess(Object data) {
                 postToast("[我]说: " + new String(msg));
@@ -680,7 +680,7 @@ public class TICClassMainActivity extends BaseActvity
 
             @Override
             public void onError(String module, int errCode, String errMsg) {
-                postToast("sendGroupMessage##onError##" + errMsg);
+                postToast("sendCustomMessage##onError##" + errMsg);
 
             }
         });

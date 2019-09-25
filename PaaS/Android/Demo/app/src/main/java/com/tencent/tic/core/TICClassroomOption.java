@@ -38,6 +38,11 @@ public class TICClassroomOption{
      **/
     public int roleType = TICManager.TICRoleType.TIC_ROLE_TYPE_ANCHOR;
 
+    /**
+     * 兼容saas消息互通
+     */
+    public boolean compatSaas = false;
+
 
     public int getClassId() {
         return classId;
