@@ -6,6 +6,7 @@
 // 根据特定的Service创建一个用于操作KeyChain的Dictionary
 + (NSMutableDictionary *)getKeychainQuery:(NSString *)service
 {
+    // 添加的字典不懂？
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
             (__bridge id)(kSecClassGenericPassword), kSecClass,
             service, kSecAttrService,

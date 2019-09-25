@@ -83,7 +83,7 @@ static const NSString *staticClassID = @"";
 {
     __weak typeof(self) ws = self;
     NSString *message = self.messageTextField.text;
-    [[TICManager sharedInstance] sendGroupTextMessage:message groupId:self.classId callback:^(TICModule module, int code, NSString *desc) {
+    [[TICManager sharedInstance] sendGroupTextMessage:message callback:^(TICModule module, int code, NSString *desc) {
         if(code == 0){
             // 将自己发送的消息展示在界面上
             NSString *msgInfo = [NSString stringWithFormat:@"[我] %@", message];

@@ -118,24 +118,21 @@
 /**
  * 发送Group文本消息
  * @param text      文本消息【必填】
- * @param groupId   群组Id【必填】
  * @param callback  回调【选填】
  **/
-- (void)sendGroupTextMessage:(NSString *)text groupId:(NSString *)groupId callback:(TICCallback)callback;
+- (void)sendGroupTextMessage:(NSString *)text callback:(TICCallback)callback;
 /**
  * 发送Group自定义消息
  * @param data      自定义消息【必填】
- * @param groupId   群组Id【必填】
  * @param callback  回调【选填】
  **/
-- (void)sendGroupCustomMessage:(NSData *)data groupId:(NSString *)groupId callback:(TICCallback)callback;
+- (void)sendGroupCustomMessage:(NSData *)data callback:(TICCallback)callback;
 /**
  * 发送Group消息
  * @param message   消息【必填】
- * @param groupId   群组Id【必填】
  * @param callback  回调【选填】
  **/
-- (void)sendGroupMessage:(TIMMessage *)message groupId:(NSString *)groupId callback:(TICCallback)callback;
+- (void)sendGroupMessage:(TIMMessage *)message callback:(TICCallback)callback;
 
 /*********************************************************************************************************
  *

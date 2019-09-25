@@ -194,20 +194,46 @@ id makeWeakRef (id object) {
     
     [self report:TIC_REPORT_JOIN_GROUP_START];
     //IM进房
-    [[TIMGroupManager sharedInstance] joinGroup:[@(_option.classId) stringValue] msg:nil succ:^{
+    void (^succ)(void) = ^{
         [ws report:TIC_REPORT_JOIN_GROUP_END];
         createBoard();
-    } fail:^(int code, NSString *msg) {
+    };
+    
+    void (^fail)(int, NSString*) = ^(int code, NSString *msg){
         [ws report:TIC_REPORT_JOIN_GROUP_END code:code msg:msg];
-        if(code == 10013){
-            //已经在群中
-            createBoard();
+        TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
+    };
+    
+    [self joinIMGroup:[@(_option.classId) stringValue] succ:^{
+        if(ws.option.compatSaas){
+            NSString *chatGroup = [self getChatGroup];
+            [self joinIMGroup:chatGroup succ:^{
+                succ();
+            } fail:^(int code, NSString *msg) {
+                fail(code, msg);
+            }];
         }
         else{
-            TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
+            succ();
         }
+    } fail:^(int code, NSString *msg) {
+        fail(code, msg);
     }];
 };
+
+- (void)joinIMGroup:(NSString *)group succ:(void (^)(void))succ fail:(void (^)(int, NSString*))fail{
+    [[TIMGroupManager sharedInstance] joinGroup:group msg:nil succ:^{
+        succ();
+    } fail:^(int code, NSString *msg) {
+        if(code == 10013){
+            //已经在群中
+            succ();
+        }
+        else{
+            fail(code, msg);
+        }
+    }];
+}
 
 - (void)quitClassroom:(BOOL)clearBoard callback:(TICCallback)callback
 {
@@ -215,7 +241,7 @@ id makeWeakRef (id object) {
     if(clearBoard){
         [self.boardController reset];
     }
-    NSString *classId = [@(_option.classId) stringValue];
+    UInt32 classId = _option.classId;
     [_boardController removeDelegate:self];
     if(_option.boardDelegate){
         [_boardController removeDelegate:_option.boardDelegate];
@@ -226,17 +252,44 @@ id makeWeakRef (id object) {
     [[TRTCCloud sharedInstance] exitRoom];
     [self report:TIC_REPORT_QUIT_GROUP_START];
     __weak typeof(self) ws = self;
-    [[TIMGroupManager sharedInstance] quitGroup:classId succ:^{
+    
+    
+    void (^succ)(void) = ^{
         [ws report:TIC_REPORT_QUIT_GROUP_END];
         TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil)
-    } fail:^(int code, NSString *msg) {
+    };
+    void (^fail)(int, NSString *) = ^(int code, NSString *msg){
         [ws report:TIC_REPORT_QUIT_GROUP_END code:code msg:msg];
-        if (code == 10009) {
-            //群主退群失败
-            TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, 0, nil)
+        TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
+    };
+    
+    [self quitIMGroup:[@(classId) stringValue] succ:^{
+        if(ws.option.compatSaas){
+            NSString *chatGroup = [self getChatGroup];
+            [self quitIMGroup:chatGroup succ:^{
+                succ();
+            } fail:^(int code, NSString *msg) {
+                fail(code, msg);
+            }];
         }
         else{
-            TICBLOCK_SAFE_RUN(callback, TICMODULE_IMSDK, code, msg);
+            succ();
+        }
+    } fail:^(int code, NSString *msg) {
+        fail(code, msg);
+    }];
+}
+
+- (void)quitIMGroup:(NSString *)group succ:(void (^)(void))succ fail:(void (^)(int, NSString*))fail{
+    [[TIMGroupManager sharedInstance] quitGroup:group succ:^{
+        succ();
+    } fail:^(int code, NSString *msg) {
+        if (code == 10009) {
+            //群主退群失败
+            succ();
+        }
+        else{
+            fail(code, msg);
         }
     }];
 }
@@ -314,23 +367,26 @@ id makeWeakRef (id object) {
     [self sendMessage:message type:TIM_C2C receiver:toUserId callback:callback];
 }
 
-- (void)sendGroupTextMessage:(NSString *)text groupId:(NSString *)groupId callback:(TICCallback)callback
+- (void)sendGroupTextMessage:(NSString *)text callback:(TICCallback)callback
 {
+    NSString *chatGroup = [self getChatGroup];
     TIMTextElem *elem = [[TIMTextElem alloc] init];
     elem.text = text;
-    [self sendMessageWithElem:elem type:TIM_GROUP receiver:groupId callback:callback];
+    [self sendMessageWithElem:elem type:TIM_GROUP receiver:chatGroup callback:callback];
 }
 
-- (void)sendGroupCustomMessage:(NSData *)data groupId:(NSString *)groupId callback:(TICCallback)callback
+- (void)sendGroupCustomMessage:(NSData *)data callback:(TICCallback)callback
 {
+    NSString *chatGroup = [self getChatGroup];
     TIMCustomElem *elem = [[TIMCustomElem alloc] init];
     elem.data = data;
-    [self sendMessageWithElem:elem type:TIM_GROUP receiver:groupId callback:callback];
+    [self sendMessageWithElem:elem type:TIM_GROUP receiver:chatGroup callback:callback];
 }
 
-- (void)sendGroupMessage:(TIMMessage *)message groupId:(NSString *)groupId callback:(TICCallback)callback
+- (void)sendGroupMessage:(TIMMessage *)message callback:(TICCallback)callback
 {
-    [self sendMessage:message type:TIM_GROUP receiver:groupId callback:callback];
+    NSString *chatGroup = [self getChatGroup];
+    [self sendMessage:message type:TIM_GROUP receiver:chatGroup callback:callback];
 }
 
 - (void)sendMessageWithElem:(TIMElem *)elem type:(TIMConversationType)type receiver:(NSString *)receiver callback:(TICCallback)callback
@@ -473,6 +529,15 @@ id makeWeakRef (id object) {
     return NO;
 }
 
+- (NSString *)getChatGroup
+{
+    NSString *chatGroup = [@(_option.classId) stringValue];
+    if(_option.compatSaas){
+        chatGroup = [NSString stringWithFormat:@"%ld_chat", (long)_option.classId];
+    }
+    return chatGroup;
+}
+
 #pragma mark - board delegate
 - (void)onTEBHistroyDataSyncCompleted
 {
@@ -517,22 +582,24 @@ id makeWeakRef (id object) {
 
 - (void)onTEBError:(TEduBoardErrorCode)code msg:(NSString *)msg
 {
-    [self report:TIC_REPORT_BOARD_ERROR code:code msg:msg];
+    [self report:TIC_REPORT_BOARD_ERROR code:(int)code msg:msg];
     if(code == TEDU_BOARD_ERROR_AUTH || code == TEDU_BOARD_ERROR_LOAD || code == TEDU_BOARD_ERROR_INIT){
-        [self report:TIC_REPORT_INIT_BOARD_END code:code msg:msg];
-        TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, code, msg);
+        [self report:TIC_REPORT_INIT_BOARD_END code:(int)code msg:msg];
+        TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, (int)code, msg);
         _enterCallback = nil;
     }
 }
 
 - (void)onTEBWarning:(TEduBoardWarningCode)code msg:(NSString *)msg
 {
-    [self report:TIC_REPORT_BOARD_WARNING code:code msg:msg];
+    [self report:TIC_REPORT_BOARD_WARNING code:(int)code msg:msg];
 }
 
 #pragma mark - im delegate
 - (void)onNewMessage:(NSArray *)msgs
 {
+    NSString *chatGroup = [self getChatGroup];
+    
     for (TIMMessage *msg in msgs) {
         if ([msg elemCount] <= 0) {
             continue;
@@ -541,7 +608,7 @@ id makeWeakRef (id object) {
         TIMConversation *conv = [msg getConversation];
         NSString *convId = [conv getReceiver];
         TIMConversationType type = [conv getType];
-        if(type == TIM_GROUP && ![convId isEqualToString:[@(_option.classId) stringValue]]){
+        if(type == TIM_GROUP && ![convId isEqualToString:chatGroup]){
             //收到其他群消息
             continue;
         }
@@ -576,8 +643,7 @@ id makeWeakRef (id object) {
                         for (id<TICMessageListener> listener in _messageListeners) {
                             if (listener && [listener respondsToSelector:@selector(onTICRecvGroupTextMessage:groupId:fromUserId:)]){
                                 NSString *convId = [conv getReceiver];
-                                NSString *curGroupId = [@(_option.classId) stringValue];
-                                if ([convId isEqualToString:curGroupId]){
+                                if ([convId isEqualToString:chatGroup]){
                                     [listener onTICRecvGroupTextMessage:textElem.text groupId:convId fromUserId:msg.sender];
                                 }
                             }
@@ -600,9 +666,8 @@ id makeWeakRef (id object) {
                     case TIM_GROUP:
                     {
                         NSString *convId = [conv getReceiver];
-                        NSString *curGroupId = [@(_option.classId) stringValue];
                         for (id<TICMessageListener> listener in _messageListeners) {
-                            if([convId isEqualToString:curGroupId]
+                            if([convId isEqualToString:chatGroup]
                                && listener
                                && [listener respondsToSelector:@selector(onTICRecvGroupCustomMessage:groupId:fromUserId:)]){
                                 [listener onTICRecvGroupCustomMessage:cusElem.data groupId:convId fromUserId:msg.sender];
@@ -622,7 +687,7 @@ id makeWeakRef (id object) {
                     case TIM_GROUP_SYSTEM_DELETE_GROUP_TYPE: // 群被解散
                     case TIM_GROUP_SYSTEM_REVOKE_GROUP_TYPE: // 群被回收
                     {
-                        if ([[@(_option.classId) stringValue] isEqualToString:sysElem.group]) {
+                        if ([chatGroup isEqualToString:sysElem.group]) {
                             for (id<TICEventListener> listener in _eventListeners) {
                                 if (listener && [listener respondsToSelector:@selector(onTICClassroomDestroy)]) {
                                     // 退出房间
@@ -636,7 +701,7 @@ id makeWeakRef (id object) {
                         break;
                     case TIM_GROUP_SYSTEM_KICK_OFF_FROM_GROUP_TYPE: // 用户被踢出群（只有被踢的人能收到）
                     {
-                        if ([[@(_option.classId) stringValue] isEqualToString:sysElem.group]) {
+                        if ([chatGroup isEqualToString:sysElem.group]) {
                             for (id<TICEventListener> listener in _eventListeners) {
                                 if (listener && [listener respondsToSelector:@selector(onTICMemberQuit:)]) {
                                     // 退出房间
@@ -716,10 +781,12 @@ id makeWeakRef (id object) {
 
 - (void)onGroupTipsEvent:(TIMGroupTipsElem *)elem
 {
+    NSString *chatGroup = [self getChatGroup];
+    
     switch (elem.type) {
         case TIM_GROUP_TIPS_TYPE_INVITE: // 用户加入群
         {
-            if([[@(_option.classId) stringValue] isEqualToString:elem.group]) {
+            if([chatGroup isEqualToString:elem.group]) {
                 for (id<TICEventListener> listener in _eventListeners) {
                     if (listener && [listener respondsToSelector:@selector(onTICMemberJoin:)]) {
                         [listener onTICMemberJoin:elem.userList];
@@ -731,7 +798,7 @@ id makeWeakRef (id object) {
         case TIM_GROUP_TIPS_TYPE_QUIT_GRP: // 用户退出群
         case TIM_GROUP_TIPS_TYPE_KICKED: // 用户被踢出群
         {
-            if([[@(_option.classId) stringValue] isEqualToString:elem.group]) {
+            if([chatGroup isEqualToString:elem.group]) {
                 for (id<TICEventListener> listener in _eventListeners) {
                     if (listener && [listener respondsToSelector:@selector(onTICMemberQuit:)]) {
                         NSArray *arr = elem.userList;
