@@ -52,14 +52,14 @@ dependencies {
 
     // 教育白板
     compile(name: 'TEduBoardSdk-release', ext: 'aar')
-//       compile ('com.tencent.teduboard:TEduBoardSdk:2.3.1.118')
+//       compile ('com.tencent.teduboard:TEduBoardSdk:2.3.3.188')
         //如果自已应用同时存在tbs库，请打开下面的注释，免重复
 //       {
 //           exclude group: 'com.tencent.smtt'
 //       }
 
     //Trtc 音视频库，如果使用腾讯的云视频Trtc，则需要加上
-    compile 'com.tencent.liteav:LiteAVSDK_TRTC:6.6.7458'
+    compile 'com.tencent.liteav:LiteAVSDK_TRTC:6.6.7553'
 
     //imsdk 消息通信库，如果使用腾讯的云通信Tim，则需要加上
     compile 'com.tencent.imsdk:imsdk:4.4.900'
