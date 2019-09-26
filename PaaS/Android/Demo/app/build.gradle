@@ -52,7 +52,7 @@ dependencies {
 
     // 教育白板
     compile(name: 'TEduBoardSdk-release', ext: 'aar')
-//       compile ('com.tencent.teduboard:TEduBoardSdk:2.3.3.188')
+//       compile ('com.tencent.teduboard:TEduBoardSdk:2.3.4.192')
         //如果自已应用同时存在tbs库，请打开下面的注释，免重复
 //       {
 //           exclude group: 'com.tencent.smtt'
