@@ -34,8 +34,8 @@ user_sig|string|腾讯云签名 登录必要的腾讯云模块用|1如果用户�
 ###  下载安装互动课堂组件
 
 
-[Windows 平台互动课堂组件下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass-1.0.0-win.zip)         
-[Mac互动课堂组件平台](http://dldir1.qq.com/hudongzhibo/Saas/TClass-1.0.0-mac.zip)      
+[Windows 平台互动课堂组件下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass-win.zip)         
+[Mac互动课堂组件平台](http://dldir1.qq.com/hudongzhibo/Saas/TClass-mac.zip)      
 
 用户下载完组件之后可以把对应zip 解压到业务方自身应用路径中，在对应解压目录中通过系统命令的方式拉起组件来。
 
