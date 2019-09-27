@@ -1,5 +1,14 @@
 # Release Notes - Android
 
+## 2019.09.25
+
+- 进房参数TICClassroomOption增加compatSaas字段，兼容SaaS方案
+- sendGroupTextMessage/sendGroupCustomMessage/sendGroupMessage删除groupId参数
+
+| TRTC版本 | TIM版本 | TEduBoard版本 |
+| :-: | :-: | :-: |
+|6.6.7553|4.5.45|2.3.4.192
+
 ## 2019.08.08
 1. TIC变更
     - 增加事件上报，方便问题定位;

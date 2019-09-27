@@ -51,6 +51,7 @@ public class TICManagerImpl  extends TICManager{
 
     private final static String TAG = "TICManager";
     private final static String SYNCTIME = "syncTime";
+    private final static String COMPAT_SAAS_CHAT = "_chat";
     TICCallback mEnterRoomCallback; // 进房callback
     private Handler mMainHandler;
     boolean mIsSendSyncTime = false;  //
@@ -448,7 +449,7 @@ public class TICManagerImpl  extends TICManager{
         classroomOption = option;
 
         final int classId = classroomOption.getClassId();
-        final String groupId = String.valueOf(classId);
+        String groupId = String.valueOf(classId);
         final String desc = "board group";
 
         TICReporter.updateRoomId(classId);
@@ -478,6 +479,29 @@ public class TICManagerImpl  extends TICManager{
                 }
             }
         });
+
+        if (classroomOption.compatSaas) {
+            groupId += COMPAT_SAAS_CHAT;
+            TIMGroupManager.getInstance().applyJoinGroup(groupId, desc + groupId, new TIMCallBack() {
+                @Override
+                public void onSuccess() {
+                    TXCLog.i(TAG, "TICManager: joinClassroom compatSaas onSuccess ");
+                }
+
+                @Override
+                public void onError(int errCode, String errMsg) {
+                    if (callback != null) {
+                        if (errCode == 10013) { //you are already group member.
+                            TXCLog.i(TAG, "TICManager: joinClassroom compatSaas 10013 onSuccess");
+                        }
+                        else {
+                            TXCLog.i(TAG, "TICManager: joinClassroom compatSaas onError:" + errCode + "|" + errMsg);
+                        }
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
@@ -635,32 +659,35 @@ public class TICManagerImpl  extends TICManager{
     }
 
     @Override
-    public void sendGroupTextMessage(String groupId, final String text, TICCallback callBack) {
-        TXCLog.e(TAG, "TICManager: sendGroupTextMessage user:" + groupId + " text:" + text);
-
-        groupId = String.valueOf(classroomOption.getClassId()); //暂时等于内部群
+    public void sendGroupTextMessage(final String text, TICCallback callBack) {
 
         TIMMessage message = new TIMMessage();
         TIMTextElem elem = new TIMTextElem();
         elem.setText(text);
         message.addElement(elem);
 
-        sendGroupMessage(groupId, message, callBack);
+        sendGroupMessage(message, callBack);
     }
 
     @Override
-    public void sendGroupCustomMessage(String groupId, final byte[] data, TICCallback callBack){
-        sendGroupCustomMessage(groupId, "", data, callBack);
+    public void sendGroupCustomMessage(final byte[] data, TICCallback callBack){
+        sendGroupCustomMessage("", data, callBack);
     }
 
     @Override
-    public void sendGroupMessage(final String groupId, TIMMessage message, final TICCallback callBack) {
-        TXCLog.e(TAG, "TICManager: sendGroupMessage groupId:" + groupId );
+    public void sendGroupMessage(TIMMessage message, final TICCallback callBack) {
+
         if (classroomOption == null || classroomOption.getClassId() == -1) {
             TXCLog.e(TAG, "TICManager: sendGroupMessage: " + Error.ERR_MSG_NOT_IN_CLASS);
             CallbackUtil.notifyError(callBack, MODULE_IMSDK, Error.ERR_NOT_IN_CLASS, Error.ERR_MSG_NOT_IN_CLASS);
             return;
         }
+
+        String groupId = String.valueOf(classroomOption.getClassId());
+        if (classroomOption.compatSaas) {
+            groupId += COMPAT_SAAS_CHAT;
+        }
+        TXCLog.i(TAG, "TICManager: sendGroupMessage groupId:" + groupId);
 
         TIMConversation conversation = TIMManager.getInstance().getConversation(TIMConversationType.Group, groupId);
 
@@ -679,10 +706,7 @@ public class TICManagerImpl  extends TICManager{
         });
     }
 
-    void sendGroupCustomMessage(String groupId, String ext, final byte[] data, TICCallback callBack){
-        TXCLog.e(TAG, "TICManager: sendGroupCustomMessage groupId:" + groupId + " data:" + data);
-
-        groupId = String.valueOf(classroomOption.getClassId()); //暂时等于内部群
+    void sendGroupCustomMessage(String ext, final byte[] data, TICCallback callBack){
 
         TIMMessage message = new TIMMessage();
         TIMCustomElem customElem = new TIMCustomElem();
@@ -691,7 +715,7 @@ public class TICManagerImpl  extends TICManager{
             customElem.setExt(ext.getBytes());
         }
         message.addElement(customElem);
-        sendGroupMessage(groupId, message, callBack);
+        sendGroupMessage(message, callBack);
     }
 
     private boolean handleNewMessages(List<TIMMessage> list) {
@@ -715,9 +739,12 @@ public class TICManagerImpl  extends TICManager{
                     if (type == TIMConversationType.C2C || type == TIMConversationType.Group) {
                         // 私聊消息
                         if (type == TIMConversationType.Group ) { //过滤其他群组的消息
-                            final int classId = classroomOption.getClassId();
+                            String classId = String.valueOf(classroomOption.getClassId());
                             String groupId =  message.getConversation().getPeer();
-                            if (TextUtils.isEmpty(groupId) || !groupId.equals(String.valueOf(classId))) {
+                            if (classroomOption.compatSaas) {
+                                classId += COMPAT_SAAS_CHAT;
+                            }
+                            if (TextUtils.isEmpty(groupId) || !groupId.equals(classId)) {
                                 continue;
                             }
                         }

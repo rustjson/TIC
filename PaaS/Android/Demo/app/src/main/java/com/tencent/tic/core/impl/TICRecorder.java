@@ -64,7 +64,7 @@ public class TICRecorder implements TXHttpRequest.TXHttpListenner {
             }
 
             if (!TextUtils.isEmpty(result)) {
-                tic.sendGroupCustomMessage(String.valueOf(mGroupId), TICSDK_CONFERENCE_CMD, result.getBytes(), null);
+                tic.sendGroupCustomMessage(TICSDK_CONFERENCE_CMD, result.getBytes(), null);
             }
             else {
                 TXCLog.i(TAG, "setTimeBaseLine error, result=null");

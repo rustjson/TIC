@@ -159,7 +159,10 @@ private:
 	virtual void onTEBInit() override;
 
 private:
-	TICCallbackUtil *joinClassroomCallbackUtil = nullptr;
+	void JoinIMGroup(const char* groupId, TICCallback callback);
+	void QuitIMGroup(const char* groupId, TICCallback callback);
+	void OnJoinIMGroupComplete(TICCallback callback);
+
 	void TRTCEnterRoom();
 	void BoardCreateAndInit();
 	void BoardDestroy(bool clearBoard);
@@ -189,7 +192,8 @@ private:
 	bool bInTRTCRoom_ = false;
 
 	int classId_ = 0;
-	std::string groupId_;	
+	std::string groupId_;
+	std::string groupIdChat_;
 	bool openCamera_ = true;
 	std::string cameraId_;
 	bool openMic_ = true;
@@ -207,6 +211,10 @@ private:
 
 	TICClassScene classScene_ = TIC_CLASS_SCENE_VIDEO_CALL;
 	TICRoleType roleType_ = TIC_ROLE_TYPE_ANCHOR;
+
+	bool compatSaas_ = false;
+
+	TICCallbackUtil *joinClassroomCallbackUtil = nullptr;
 
 	std::mutex							mutMsgListeners_;
 	std::vector<TICMessageListener*>	msgListeners_;

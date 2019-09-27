@@ -250,7 +250,7 @@ public abstract class TICManager  {
      * @param text     文本消息内容
      * @param callBack 回调
      */
-    public abstract void sendGroupTextMessage(String groupId, final String text, TICCallback callBack);
+    public abstract void sendGroupTextMessage(final String text, TICCallback callBack);
 
     /**
      * 5.5 发送群组文本消息
@@ -258,7 +258,7 @@ public abstract class TICManager  {
      * @param data     文本消息内容
      * @param callBack 回调
      */
-    public abstract void sendGroupCustomMessage(String groupId, final byte[] data, TICCallback callBack);
+    public abstract void sendGroupCustomMessage(final byte[] data, TICCallback callBack);
 
 
     /**
@@ -267,7 +267,7 @@ public abstract class TICManager  {
      * @param message  消息内容
      * @param callBack 回调
      */
-    public abstract void sendGroupMessage(final String groupId, TIMMessage message, final TICCallback callBack);
+    public abstract void sendGroupMessage(TIMMessage message, final TICCallback callBack);
 
     /////////////////////////////////////////////////////////////////////////////////
     //
