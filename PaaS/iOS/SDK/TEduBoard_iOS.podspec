@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'TEduBoard_iOS'
-  spec.version      = '2.3.3'
+  spec.version      = '2.3.4'
   spec.platform     = :ios 
   spec.ios.deployment_target = '8.0'
   spec.license      = { :type => 'Proprietary',
@@ -16,9 +16,9 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
 
   spec.source = { :git => 'https://github.com/tencentyun/TIC.git', :tag => spec.version}
-  spec.preserve_paths = 'iOS/SDK/TEduBoard.framework'
-  spec.source_files = 'iOS/SDK/TEduBoard.framework/Headers/*.h'
-  spec.public_header_files = 'iOS/SDK/TEduBoard.framework/Headers/*.h'
-  spec.vendored_frameworks = 'iOS/SDK/TEduBoard.framework'
+  spec.preserve_paths = 'PaaS/iOS/SDK/TEduBoard.framework'
+  spec.source_files = 'PaaS/iOS/SDK/TEduBoard.framework/Headers/*.h'
+  spec.public_header_files = 'PaaS/iOS/SDK/TEduBoard.framework/Headers/*.h'
+  spec.vendored_frameworks = 'PaaS/iOS/SDK/TEduBoard.framework'
   spec.xcconfig = { 'HEADER_SEARCH_PATHS' => '${PODS_ROOT}/TEduBoard_iOS/iOS/SDK/TEduBoard.framework/Headers/'}
 end

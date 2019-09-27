@@ -2,7 +2,7 @@
 platform :macos, '10.10'
 
 target 'TICDemo_Mac' do
-  pod 'TEduBoard_Mac', '~> 2.3.3'
+  pod 'TEduBoard_Mac', '~> 2.3.4'
   pod 'TXIMSDK_Mac', '~> 4.5.45'
   pod 'TXLiteAVSDK_TRTC_Mac', '~> 6.6.7460'
 end
