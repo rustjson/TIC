@@ -2016,7 +2016,7 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | media_close | string | 停止播片 |
 | packet_loss_mutation |  string | 丢包突变 |
 | rate_mutation |  string | 码率突变 |
-#### 附录3.10 课堂直播类型- class_live_type
+#### 附录3.10 直播类型- class_live_type
 
 | 常量值 | 类型 | 描述 |
 | -- | -- | -- |
