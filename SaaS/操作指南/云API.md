@@ -50,6 +50,8 @@
       * [附录3\.7 禁言\-silence](#%E9%99%84%E5%BD%9537-%E7%A6%81%E8%A8%80-silence)
       * [附录3\.8 性别\-gender](#%E9%99%84%E5%BD%9538-%E6%80%A7%E5%88%AB-gender)
       * [附录3\.9 事件上报\-event](#%E9%99%84%E5%BD%9539-%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5-event)
+      * [附录3\.10 直播类型\-class_live_type](#%E9%99%84%E5%BD%95310-%E7%9B%B4%E6%92%AD%E7%B1%BB%E5%9E%8B-class_live_type)
+
     * [附录4: 用户头像规则](#%E9%99%84%E5%BD%954-%E7%94%A8%E6%88%B7%E5%A4%B4%E5%83%8F%E8%A7%84%E5%88%99)
 
 # 云API
@@ -2015,7 +2017,7 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | media_close | string | 停止播片 |
 | packet_loss_mutation |  string | 丢包突变 |
 | rate_mutation |  string | 码率突变 |
-#### 附录3.10 课堂直播类型- class_live_type
+#### 附录3.10 直播类型-class_live_type
 
 | 常量值 | 类型 | 描述 |
 | -- | -- | -- |
