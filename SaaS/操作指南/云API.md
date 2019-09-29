@@ -107,8 +107,7 @@ __响应参数__
 | error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
 | error_msg | string | 错误信息 | 是 | - |
 | class_id | int | 课堂ID | 否 | - |
-| teacher_url | string | 老师进房地址，成功时下发 | 否 | - |
-| student_url | string | 学生进房地址，成功时下发 | 否 | - |
+| url | string | 进房地址，成功时下发 | 否 | - |
 
 __举例__ 
 
@@ -155,8 +154,7 @@ response:
   "error_code":0,
   "error_msg":"",
   "class_id":100012345,
-  "teacher_url":"https://tedu.qcloudtrtc.com/1400127140/100012345/0",
-  "student_url":"https://tedu.qcloudtrtc.com/1400127140/100012345/1"
+  "url":"https://tedu.qcloudtrtc.com/#/class/100001/100012345",
 }
 ```
 
