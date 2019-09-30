@@ -73,8 +73,8 @@ void TICManagerImpl::Init(int sdkappid, TICCallback callback)
 
 	//指定IMSDK日志路径
 	Json::Value json_value_init;
-	json_value_init[kTIMSdkConfigLogFilePath] = wstr2str(szIMLogDir).c_str();
-	json_value_init[kTIMSdkConfigConfigFilePath] = wstr2str(szIMLogDir).c_str();
+	json_value_init[kTIMSdkConfigLogFilePath] = wstr2str(szIMLogDir, CP_UTF8).c_str();
+	json_value_init[kTIMSdkConfigConfigFilePath] = wstr2str(szIMLogDir, CP_UTF8).c_str();
 
 	int ret = TIMInit(sdkappid, json_value_init.toStyledString().c_str());
 
@@ -389,12 +389,12 @@ void TICManagerImpl::SendGroupMessage(const std::string& jsonMsg, TICCallback ca
 	}
 }
 
-TEduBoardController  *TICManagerImpl::GetBoardController()
+TEduBoardController *TICManagerImpl::GetBoardController()
 {
 	return boardCtrl_;
 }
 
-ITRTCCloud  *TICManagerImpl::GetTRTCCloud()
+ITRTCCloud *TICManagerImpl::GetTRTCCloud()
 {
 	return getTRTCShareInstance();
 }
