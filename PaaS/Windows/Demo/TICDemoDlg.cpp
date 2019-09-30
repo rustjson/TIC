@@ -122,8 +122,8 @@ BOOL CTICDemoDlg::OnInitDialog()
 	//设置版本信息;
 	CString version;
 	version.Format(_T("IMSDK: %s\n\nTRTC: %s\n\nTEduBoard: %s"),
-		a2w(TICManager::GetInstance().GetTRTCCloud()->getSDKVersion()).c_str(),
 		a2w(TIMGetSDKVersion()).c_str(),
+		a2w(TICManager::GetInstance().GetTRTCCloud()->getSDKVersion()).c_str(),
 		a2w(GetTEduBoardVersion()).c_str());
 
 	GetDlgItem(IDC_VERSION)->SetWindowText(version);
