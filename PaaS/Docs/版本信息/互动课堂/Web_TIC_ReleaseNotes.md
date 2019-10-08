@@ -1,6 +1,13 @@
 # Release Notes
 
 ## 2019.08.19
+1. 进房参数增加compatSaas字段，兼容SaaS方案
+
+| TRTC版本 | TIM版本 | TEduBoard版本 | Cos版本 |
+| :-: | :-: | :-: | :-: |
+| 3.4.2 | 1.7.3 | 2.3.4 | 5.1.0 |
+
+## 2019.08.19
 1. 支持1000+人数大班课；
 
 | TRTC版本 | TIM版本 | TEduBoard版本 | Cos版本 |

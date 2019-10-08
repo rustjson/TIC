@@ -1,5 +1,8 @@
 # Release Notes - 小程序
 
+## 2.3.4 @ 2019.09.25
+1. 增加polyfill
+
 ## 2.3.0 @ 2019.08.22
 1. 修复已知bug
 2. 增加webrtcroom + webview方式的互动课堂

@@ -10,7 +10,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "腾讯云行业解决方案",
     "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8"
+    "backgroundColor": "#f8f8f8",
+    "renderingMode": "seperated"
   },
   "networkTimeout": {
     "request": 10000,
