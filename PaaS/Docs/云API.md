@@ -50,6 +50,8 @@
       * [附录3\.7 禁言\-silence](#%E9%99%84%E5%BD%9537-%E7%A6%81%E8%A8%80-silence)
       * [附录3\.8 性别\-gender](#%E9%99%84%E5%BD%9538-%E6%80%A7%E5%88%AB-gender)
       * [附录3\.9 事件上报\-event](#%E9%99%84%E5%BD%9539-%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5-event)
+      * [附录3\.10 直播类型\-class_live_type](#%E9%99%84%E5%BD%95310-%E7%9B%B4%E6%92%AD%E7%B1%BB%E5%9E%8B-class_live_type)
+
     * [附录4: 用户头像规则](#%E9%99%84%E5%BD%954-%E7%94%A8%E6%88%B7%E5%A4%B4%E5%83%8F%E8%A7%84%E5%88%99)
 
 # 云API
@@ -95,6 +97,8 @@ __请求参数__
 | record_user_id | string | 用于录制的user_id，必须包含前缀"tic_recorduser${room_id}"，其中${room_id}为房间号，<br> 在线录制服务会使用这个user_id进房进行录制房间内的音视频与白板，为了防止进房冲突，请保证此user_id不重复，如果要云端录制，则必填 | 否 | - |
 | record_user_sig | string | 用于录制的record_user_id对应的签名，如果要云端录制，则必填 | 否 | - |
 |max_member_limit|int|最大上麦人数|否|||
+| class_live_type | string | 直播类型,详情参考附录 | 否 | - |
+
 
 __响应参数__ 
 
@@ -103,8 +107,7 @@ __响应参数__
 | error_code | int | 错误码，0-成功/ 非0-失败 | 是 | - |
 | error_msg | string | 错误信息 | 是 | - |
 | class_id | int | 课堂ID | 否 | - |
-| teacher_url | string | 老师进房地址，成功时下发 | 否 | - |
-| student_url | string | 学生进房地址，成功时下发 | 否 | - |
+| url | string | 进房地址，成功时下发 | 否 | - |
 
 __举例__ 
 
@@ -151,8 +154,7 @@ response:
   "error_code":0,
   "error_msg":"",
   "class_id":100012345,
-  "teacher_url":"https://tedu.qcloudtrtc.com/1400127140/100012345/0",
-  "student_url":"https://tedu.qcloudtrtc.com/1400127140/100012345/1"
+  "url":"https://tedu.qcloudtrtc.com/#/class/100001/100012345",
 }
 ```
 
@@ -2013,7 +2015,13 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | media_close | string | 停止播片 |
 | packet_loss_mutation |  string | 丢包突变 |
 | rate_mutation |  string | 码率突变 |
+#### 附录3.10 直播类型-class_live_type
 
+| 常量值 | 类型 | 描述 |
+| -- | -- | -- |
+| close | string | 关闭 |
+| window | string | 窗口分享 |
+| board | string | 白屏分享 |
 ### 附录4: 用户头像规则
 如果没有设置用户头像，互动课堂后台会随机设置一个默认的头像
 
