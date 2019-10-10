@@ -76,6 +76,7 @@ __请求参数__
 | 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
 | :------ | :--- | :---- | :--------: | :-----: |
 | teacher_id | string | 教师ID | 是 | - |
+| assistant_id | string | 助教ID | 否 | - |
 | class_topic | string | 课堂主题/课堂名字 | 否 | 课堂ID的字符串形式 |
 | class_type | string | 课堂类型,详情参考附录 | 否 | `public` |
 | start_time | int64 | 课堂预计开始时间戳 | 否 | 约课时的时间 | 
@@ -115,6 +116,7 @@ request:
 ```
 {
   "teacher_id":"user_00",
+  "assistant_id":"user_01",
   "class_topic": "课堂主题",
   "class_type":"public",
   "start_time": 1558350988,
