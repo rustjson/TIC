@@ -1,3 +1,31 @@
+## 下载说明
+
+<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，**勿直接`Download ZIP`**。
+```
+git clone https://github.com/tencentyun/TIC.git
+```
+
+如果您访问 Github 或安装 Git-LFS 遇到问题，请使用腾讯云分流地址下载：
+
+<table>
+<tr>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Windows</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Web.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/小程序.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Windows.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Android.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/iOS.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/macOS.zip">Download Zip</a></td>
+</tr>
+</table>
+
 ## 方案简介
 
 腾讯云在线教育互动课堂（Tencent Interact Class，TIC）是集实时音视频、交互式白板涂鸦、IM 聊天室、PPT 课件共享、屏幕分享和录制回放等功能于一体的一站式在线教育解决方案。
