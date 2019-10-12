@@ -76,6 +76,7 @@ __请求参数__
 | 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
 | :------ | :--- | :---- | :--------: | :-----: |
 | teacher_id | string | 教师ID | 是 | - |
+| assistant_id | string | 助教ID | 否 | - |
 | class_topic | string | 课堂主题/课堂名字 | 否 | 课堂ID的字符串形式 |
 | class_type | string | 课堂类型,详情参考附录 | 否 | `public` |
 | start_time | int64 | 课堂预计开始时间戳 | 否 | 约课时的时间 | 
@@ -115,6 +116,7 @@ request:
 ```
 {
   "teacher_id":"user_00",
+  "assistant_id":"user_01",
   "class_topic": "课堂主题",
   "class_type":"public",
   "start_time": 1558350988,
@@ -1266,7 +1268,62 @@ __data__
   "title": "PPT名字"
 }
 ```
+### 4.7 进入课堂回调
 
+
+
+__event__
+
+```
+join_class
+```
+
+__data__ 
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| class_id | int | 课堂ID | 是 | - |
+| join_time | int64 | 进入课堂的时间 | 是 | - |
+| user_id | string | 进入课堂的用户 | 是 | - |
+| role | int64 | 进入课堂用户的角色 | 是 | - |
+
+
+```
+{
+"class_id":100012345,
+"join_time":1558350988,
+"user_id":xxx,
+"role":student,
+}
+```
+### 4.8 退出课堂回调
+
+
+
+__event__
+
+```
+quit_class
+```
+
+__data__ 
+
+| 参数名 | 类型 | 描述 | 是否必填 | 默认值 |
+| :------ | :--- | :---- | :--------: | :-----: |
+| class_id | int | 课堂ID | 是 | - |
+| quit_time | int64 | 退出课堂的时间 | 是 | - |
+| user_id | string | 退出课堂的用户 | 是 | - |
+| role | int64 |退出入课堂用户的角色 | 是 | - |
+
+
+```
+{
+"class_id":100012345,
+"quit_time":1558350988,
+"user_id":xxx,
+"role":student,
+}
+```
 ## 5 企业模块
 
 ### 5.1 修改企业信息
