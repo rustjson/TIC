@@ -1,3 +1,31 @@
+## 下载说明
+
+<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，**勿直接`Download ZIP`**。
+```
+git clone https://github.com/tencentyun/TIC.git
+```
+
+如果您访问 Github 或安装 Git-LFS 遇到问题，请使用腾讯云分流地址下载：
+
+<table>
+<tr>
+<th style="text-align:center">Web</th>
+<th style="text-align:center">小程序</th>
+<th style="text-align:center">Windows</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+<th style="text-align:center">macOS</th>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Web.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/小程序.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Windows.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/Android.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/iOS.zip">Download Zip</a></td>
+<td style="text-align:center"><a href="https://tic-res-1259648581.file.myqcloud.com/demo/macOS.zip">Download Zip</a></td>
+</tr>
+</table>
+
 ## 方案简介
 
 腾讯云在线教育互动课堂（Tencent Interact Class，TIC）是集实时音视频、交互式白板涂鸦、IM 聊天室、PPT 课件共享、屏幕分享和录制回放等功能于一体的一站式在线教育解决方案。
@@ -7,7 +35,7 @@
 
 |能力|SAAS |  PAAS |
 | :-- | :-- |  :-- |
-| 课程管理 | 控制台/云API | 不支持 |
+| 课程管理 | 控制台/云API | 云API |
 | 客户端 | 互动课堂app/集成课堂UI组件 | 集成SDK |
 | 视频和白板录制 | 本地/云端 | 云端 |
 | 数据统计和回调 | 支持 | 不支持 |
@@ -94,9 +122,10 @@ demo功能可参考下面的桌面端/移动端使用手册。
 
 **PAAS方案接入**
 
-1. 通过集成云端API，实现课件转码和录制等功能。
+1. 通过调用REST API，实现课件转码和录制等功能。
 2. 客户按自身的业务逻辑，集成互动白板、实时音视频和云通信，完成上课流程的闭环。
 3. 客户也可以集成TIC源码，该源码集成了互动白板、实时音视频和云通信，可快速完成上课流程的闭环。
+4. 通过集成云API，托管课堂数据到腾讯云，实现课堂管理功能。
 
 - [TIC快速接入](./PaaS/README.md)
 - [互动白板](./PaaS/Docs/SDK文档/互动白板功能说明.md)
@@ -104,5 +133,6 @@ demo功能可参考下面的桌面端/移动端使用手册。
 - [云通信](https://github.com/tencentyun/TIMSDK)
 - [文档转码服务](./PaaS/Docs/%E6%96%87%E6%A1%A3%E8%BD%AC%E7%A0%81.md)
 - [后台实时录制服务](./PaaS/Docs/%E5%AE%9E%E6%97%B6%E5%BD%95%E5%88%B6.md)
+- [云API](./PaaS/Docs/云API.md)
 
 正式接入前，请阅读[购买指南](./%E8%B4%AD%E4%B9%B0%E6%8C%87%E5%8D%97.md)后，发送邮件申请开通服务。
