@@ -91,6 +91,7 @@ __请求参数__
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, <br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
+| enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
 | members | Array | 课堂预约成员列表 | 否 |  教师ID默认在成员列表中 |
 | role | string | 角色信息，本接口中全部填“student”。需要设置members时此字段必填 | 否 | - |
@@ -143,7 +144,9 @@ request:
     "auto_create_im": 1,
     "bitrate": 850,
     "auto_open_mic": 0,
-    "auto_open_camera": 0
+    "auto_open_camera": 0,
+    "enable_all_silence":0
+
   }
   "record_user_id":"tic_record_user_1234_01",
   "record_user_sig": "user_sig"
@@ -2057,7 +2060,9 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | hand_down | string | 取消举手 |
 | reward | string | 奖励 |
 | slience | string | 禁言 |
-| be_silenced | string | 被禁言 |
+| del_silenced | string | 解除禁言 |
+| all_silence | string | 全员禁言 | 
+| del_all_silence | string | 解除全员禁言 |
 | disable_camera | string | 禁用别人的摄像头 |
 | be_disable_camera | string | 被别人的禁用了自己的摄像头 |
 | disable_mic | string | 禁用别人的麦克风 |
