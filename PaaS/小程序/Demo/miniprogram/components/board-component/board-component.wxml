@@ -1,6 +1,6 @@
 <view class="tic-board-box">
-  <view class="tic-board-wrap" hidden="{{hideBoard}}" style="width: {{wrapWidth}}px; height: {{wrapHeight}}px;" bindtouchstart="bindContainerTouchstart" bindtouchmove="bindContainerTouchmove" bindtouchend="bindContainerTouchend" bindtouchcancel="bindContainerTouchcancel">
-    <canvas class="tic_board_canvas float_layout" canvas-id="tic_float_board_canvas"></canvas>
+  <view class="tic-board-wrap" hidden="{{hideBoard}}" style="width: {{wrapWidth}}px; height: {{wrapHeight}}px;">
+    <canvas class="tic_board_canvas float_layout" canvas-id="tic_float_board_canvas" bindtouchstart="bindContainerTouchstart" bindtouchmove="bindContainerTouchmove" bindtouchend="bindContainerTouchend" bindtouchcancel="bindContainerTouchcancel"></canvas>
     <canvas class="tic_board_canvas" canvas-id="tic_board_canvas">
       <slot></slot>
     </canvas>

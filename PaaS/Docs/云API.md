@@ -1709,6 +1709,7 @@ __接口__
 | speaker | int | 用户扬声器状态 1-打开/0-关闭 | 是 | - |
 | silence | int | 用户是否被禁言 1-被禁言/0-未被禁言 | 是 | - |
 | hand_up | int | 用户是否正在举手 1-举手/0-未举手 | 是 | - |
+| enable_draw | int  | 0-未授权/1-授权 | 是 |
 
 
  __举例__ 
@@ -1745,6 +1746,7 @@ response
 				"speaker": 1,
 				"silence": 0,
 				"hand_up":1,
+				"enable_draw":0
 			}
 		}
 	]
@@ -1838,6 +1840,8 @@ __接口__
 |history_speaker|int|用户在该课堂上一次扬声器的状态 (0:关闭 1:打开 -1:未知)|是|
 |history_silence|int|用户在该课堂上一次禁言状态 (0:未禁言 1:禁言 -1:未知)|是|
 |history_hand_up|int|用户在该课堂上一次举手状态 (0:未举手 1:举手 -1:未知)|是|
+|history_enable_draw|int|用户在该课堂上一次交互授权状态 (0:未授权 1:授权 -1:未知)|是|
+
  __举例__ 
  
   request
@@ -1872,7 +1876,8 @@ response
 			"history_mic":0,
 			"history_speaker":0,
 			"history_silence":0,
-			"history_hand_up":0
+			"history_hand_up":0,
+			"history_enable_draw":0
 		}
 	]
 }
@@ -2058,6 +2063,8 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | speed_test | string | 测速信息上报 |
 | hand_up | string | 举手 |
 | hand_down | string | 取消举手 |
+| enable_draw | string | 交互授权 |
+| diable_draw | string | 取消交互授权 |
 | reward | string | 奖励 |
 | slience | string | 禁言 |
 | del_silenced | string | 解除禁言 |
