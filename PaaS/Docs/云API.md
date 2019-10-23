@@ -96,8 +96,6 @@ __请求参数__
 | members | Array | 课堂预约成员列表 | 否 |  教师ID默认在成员列表中 |
 | role | string | 角色信息，本接口中全部填“student”。需要设置members时此字段必填 | 否 | - |
 | user_id | string | 学生ID。需要设置members时此字段必填 | 否 | - |
-| record_user_id | string | 用于录制的user_id，必须包含前缀"tic_recorduser${room_id}"，其中${room_id}为房间号，<br> 在线录制服务会使用这个user_id进房进行录制房间内的音视频与白板，为了防止进房冲突，请保证此user_id不重复，如果要云端录制，则必填 | 否 | - |
-| record_user_sig | string | 用于录制的record_user_id对应的签名，如果要云端录制，则必填 | 否 | - |
 |max_member_limit|int|最大上麦人数|否|||
 | class_live_type | string | 直播类型,详情参考附录 | 否 | - |
 
