@@ -372,7 +372,7 @@ public class TICManagerImpl  extends TICManager{
 
     @Override
     public void createClassroom(final int classId, final int scene, final TICCallback callback) {
-        TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " callback:" + callback);
+        TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " scene:" + scene + " callback:" + callback);
         TICReporter.report(TICReporter.EventId.createGroup_start);
         // 为了减少用户操作成本（收到群进出等通知需要配置工单才生效）群组类型由ChatRoom改为Public
         final String groupId = String.valueOf(classId);
@@ -580,7 +580,10 @@ public class TICManagerImpl  extends TICManager{
         TICReporter.report(TICReporter.EventId.enterRoom_start);
         mEnterRoomCallback = callback;
         TRTCCloudDef.TRTCParams trtcParams = new TRTCCloudDef.TRTCParams(sdkAppId, userInfo.getUserId(), userInfo.getUserSig(), classroomOption.getClassId(), "", "");     /// TRTC SDK 视频通话房间进入所必须的参数
-        mTrtcCloud.enterRoom(trtcParams, TRTCCloudDef.TRTC_APP_SCENE_VIDEOCALL);
+        if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE) {
+            trtcParams.role = classroomOption.roleType;
+        }
+        mTrtcCloud.enterRoom(trtcParams, classroomOption.classScene);
 
         //Board进行初始化
         initTEduBoard();
