@@ -72,7 +72,7 @@ git clone https://github.com/tencentyun/TIC.git
 </tr>
 <tr>
 <td style="text-align:center"><a href="https://tedu.qcloudtrtc.com/">立即体验</a></td>
-<td style="text-align:center">即将推出</td>
+<td style="text-align:center"><img src="https://main.qcloudimg.com/raw/4414881785d2ccd82de352b037e98c20.jpg" width="150"/></td>
 <td style="text-align:center"><img src="https://main.qcloudimg.com/raw/c9619497d26c6d4ed75921ce2a298596.png" width="150"/></td>
 <td style="text-align:center"><img src="https://main.qcloudimg.com/raw/35664baf9512c57ac3c2b5436ab5d567.png" width="150"/></td>
 <td style="text-align:center"><a href="http://dldir1.qq.com/hudongzhibo/Saas/TClass_Demo.dmg">立即体验</a></td>
