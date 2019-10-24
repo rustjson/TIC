@@ -39,7 +39,16 @@ git clone https://github.com/tencentyun/TIC.git
 
 ## Demo 编译
 
-为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在 [实时音视频应用列表](https://console.cloud.tencent.com/rav) 中选择对应的应用，单击**下载公私钥**并输入私钥**生成 Demo 配置文件内容**，替换 Demo 中配置文件的账号内容即可开始测试。
+为避免开发测试导致账号被强制下线，您需要替换自己的`SdkAppId`和测试账号信息。在实时音视频 的[应用列表](https://console.cloud.tencent.com/trtc) 中选择对应的应用，生成一组`UserId`和`UserSig`。
+1. 获取签发`UserSig`的密钥
+
+![](https://main.qcloudimg.com/raw/b5b30481967de9440403376f4fa2f00e.png)
+
+2. 生成签名`UserSig`
+
+![](https://main.qcloudimg.com/raw/09dcfe6cc49d44e8c480fb4ed9ccf65b.png)
+
+3. 将`SdkAppId`以及`UserId`对应的`UserSig`替换配置文件中对应的字段即可。
 
 |所属平台|配置文件路径|
 |-|-|
