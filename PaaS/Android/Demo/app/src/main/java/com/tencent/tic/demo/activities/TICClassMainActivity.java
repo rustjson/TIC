@@ -870,7 +870,12 @@ public class TICClassMainActivity extends BaseActvity
 
         }
 
-        @Override
+         @Override
+         public void onTEBGotoStep(int currentStep, int total) {
+
+         }
+
+         @Override
         public void onTEBAddFile(String fileId) {
         }
 

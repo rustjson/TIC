@@ -91,12 +91,11 @@ __请求参数__
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, <br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
+| enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
 | members | Array | 课堂预约成员列表 | 否 |  教师ID默认在成员列表中 |
 | role | string | 角色信息，本接口中全部填“student”。需要设置members时此字段必填 | 否 | - |
 | user_id | string | 学生ID。需要设置members时此字段必填 | 否 | - |
-| record_user_id | string | 用于录制的user_id，必须包含前缀"tic_recorduser${room_id}"，其中${room_id}为房间号，<br> 在线录制服务会使用这个user_id进房进行录制房间内的音视频与白板，为了防止进房冲突，请保证此user_id不重复，如果要云端录制，则必填 | 否 | - |
-| record_user_sig | string | 用于录制的record_user_id对应的签名，如果要云端录制，则必填 | 否 | - |
 |max_member_limit|int|最大上麦人数|否|||
 | class_live_type | string | 直播类型,详情参考附录 | 否 | - |
 
@@ -143,7 +142,9 @@ request:
     "auto_create_im": 1,
     "bitrate": 850,
     "auto_open_mic": 0,
-    "auto_open_camera": 0
+    "auto_open_camera": 0,
+    "enable_all_silence":0
+
   }
   "record_user_id":"tic_record_user_1234_01",
   "record_user_sig": "user_sig"
@@ -1706,6 +1707,7 @@ __接口__
 | speaker | int | 用户扬声器状态 1-打开/0-关闭 | 是 | - |
 | silence | int | 用户是否被禁言 1-被禁言/0-未被禁言 | 是 | - |
 | hand_up | int | 用户是否正在举手 1-举手/0-未举手 | 是 | - |
+| enable_draw | int  | 0-未授权/1-授权 | 是 |
 
 
  __举例__ 
@@ -1742,6 +1744,7 @@ response
 				"speaker": 1,
 				"silence": 0,
 				"hand_up":1,
+				"enable_draw":0
 			}
 		}
 	]
@@ -1835,6 +1838,8 @@ __接口__
 |history_speaker|int|用户在该课堂上一次扬声器的状态 (0:关闭 1:打开 -1:未知)|是|
 |history_silence|int|用户在该课堂上一次禁言状态 (0:未禁言 1:禁言 -1:未知)|是|
 |history_hand_up|int|用户在该课堂上一次举手状态 (0:未举手 1:举手 -1:未知)|是|
+|history_enable_draw|int|用户在该课堂上一次交互授权状态 (0:未授权 1:授权 -1:未知)|是|
+
  __举例__ 
  
   request
@@ -1869,7 +1874,8 @@ response
 			"history_mic":0,
 			"history_speaker":0,
 			"history_silence":0,
-			"history_hand_up":0
+			"history_hand_up":0,
+			"history_enable_draw":0
 		}
 	]
 }
@@ -2055,9 +2061,13 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | speed_test | string | 测速信息上报 |
 | hand_up | string | 举手 |
 | hand_down | string | 取消举手 |
+| enable_draw | string | 交互授权 |
+| diable_draw | string | 取消交互授权 |
 | reward | string | 奖励 |
 | slience | string | 禁言 |
-| be_silenced | string | 被禁言 |
+| del_silenced | string | 解除禁言 |
+| all_silence | string | 全员禁言 | 
+| del_all_silence | string | 解除全员禁言 |
 | disable_camera | string | 禁用别人的摄像头 |
 | be_disable_camera | string | 被别人的禁用了自己的摄像头 |
 | disable_mic | string | 禁用别人的麦克风 |

@@ -523,7 +523,7 @@ public class TICManagerImpl  extends TICManager{
 
         //3、im退房间
         int classId = classroomOption.getClassId();
-        final String groupId = String.valueOf(classId);
+        String groupId = String.valueOf(classId);
         TIMGroupManager.getInstance().quitGroup(groupId, new TIMCallBack() {//NOTE:在被挤下线时，不会回调
             @Override
             public void onError(int errorCode, String errInfo) {
@@ -546,6 +546,22 @@ public class TICManagerImpl  extends TICManager{
                 CallbackUtil.notifySuccess(callback, 0);
             }
         });
+
+        if (classroomOption.compatSaas) {
+            groupId += COMPAT_SAAS_CHAT;
+
+            TIMGroupManager.getInstance().quitGroup(groupId, new TIMCallBack() {//NOTE:在被挤下线时，不会回调
+                @Override
+                public void onError(int errorCode, String errInfo) {
+                    TXCLog.e(TAG, "TICManager: quitClassroom compatSaas, err:" + errorCode + " msg:" + errInfo);
+                }
+
+                @Override
+                public void onSuccess() {
+                    TXCLog.e(TAG, "TICManager: quitClassroom onSuccess compatSaas");
+                }
+            });
+        }
 
         //停止同步时间
         stopSyncTimer();
@@ -1125,6 +1141,11 @@ public class TICManagerImpl  extends TICManager{
 
         @Override
         public void onTEBGotoBoard(String s, String s1) {
+
+        }
+
+        @Override
+        public void onTEBGotoStep(int currentStep, int total) {
 
         }
 
