@@ -287,6 +287,7 @@ __响应参数__
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`, 在开始上课时，会自动开启云端录制 | 是 | - | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
+| enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
 | members | Array | 课堂预约成员列表 | 是 | - |
 | role | string | 成员角色信息 | 是 | - |
