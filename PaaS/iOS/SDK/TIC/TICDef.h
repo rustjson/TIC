@@ -61,6 +61,17 @@ typedef NS_ENUM(NSInteger, TICRoleType) {
 };
 
 /**
+ * 禁用模块
+ * @brief 如果外部使用了TRTC，可以禁用TIC内部的TRTC模块。
+ * @brief 如果禁用TRTC，TRTC相关初始化参数都无效
+ **/
+typedef NS_ENUM(NSInteger, TICDisableModule) {
+    TIC_DISABLE_MODULE_NONE   = 0,        //默认全部启用
+    TIC_DISABLE_MODULE_TRTC   = (1 << 1), //禁用TRTC
+};
+
+
+/**
  * 回调
  * @param module        当前模块
  * @param code          错误码
@@ -133,10 +144,15 @@ typedef void (^TICCallback)(TICModule module, int code, NSString *desc);
  **/
 @property (nonatomic, assign) TICRoleType roleType;
 /**
- * 是否兼容SaaS，
+ * 是否兼容SaaS
  * @brief 开启SaaS兼容模式，内部会多创建一个聊天群组
  **/
 @property (nonatomic, assign) BOOL compatSaas;
+/**
+ * 禁用模块
+ * @brief 禁用内部TIC相关模块
+ **/
+@property (nonatomic, assign) TICDisableModule disableModule;
 @end
 
 /*********************************************************************************************************
