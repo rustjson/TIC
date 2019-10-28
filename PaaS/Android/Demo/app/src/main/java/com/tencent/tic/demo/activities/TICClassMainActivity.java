@@ -126,45 +126,54 @@ public class TICClassMainActivity extends BaseActvity
     private void initTrtc() {
         //1、获取trtc
         mTrtcCloud = mTicManager.getTRTCClound();
-        //2、TRTC View
-        mTrtcRootView = (TICVideoRootView) findViewById(R.id.trtc_root_view);
-        mTrtcRootView.setUserId(mUserID);
-        TXCloudVideoView localVideoView = mTrtcRootView.getCloudVideoViewByIndex(0);
-        localVideoView.setUserId(mUserID);
 
-        //3、开始本地视频图像
-        startLocalVideo(true);
+        if (mTrtcCloud != null) {
+            //2、TRTC View
+            mTrtcRootView = (TICVideoRootView) findViewById(R.id.trtc_root_view);
+            mTrtcRootView.setUserId(mUserID);
+            TXCloudVideoView localVideoView = mTrtcRootView.getCloudVideoViewByIndex(0);
+            localVideoView.setUserId(mUserID);
 
-        //4. 开始音频
-        enableAudioCapture(true);
+            //3、开始本地视频图像
+            startLocalVideo(true);
 
+            //4. 开始音频
+            enableAudioCapture(true);
+        }
     }
 
     private void unInitTrtc() {
-        //3、停止本地视频图像
-        mTrtcCloud.stopLocalPreview();
-        enableAudioCapture(false);
+        if (mTrtcCloud != null) {
+            //3、停止本地视频图像
+            mTrtcCloud.stopLocalPreview();
+            enableAudioCapture(false);
+        }
     }
 
     private void startLocalVideo(boolean enable) {
-        final String usrid = mUserID;
-        TXCloudVideoView localVideoView = mTrtcRootView.getCloudVideoViewByUseId(usrid);;
-        localVideoView.setUserId(usrid);
-        localVideoView.setVisibility(View.VISIBLE);
-        if (enable) {
-            mTrtcCloud.startLocalPreview(mEnableFrontCamera, localVideoView);
-        } else {
-            mTrtcCloud.stopLocalPreview();
+        if (mTrtcCloud != null) {
+            final String usrid = mUserID;
+            TXCloudVideoView localVideoView = mTrtcRootView.getCloudVideoViewByUseId(usrid);;
+            localVideoView.setUserId(usrid);
+            localVideoView.setVisibility(View.VISIBLE);
+            if (enable) {
+                mTrtcCloud.startLocalPreview(mEnableFrontCamera, localVideoView);
+            } else {
+                mTrtcCloud.stopLocalPreview();
+            }
         }
     }
 
     private void enableAudioCapture(boolean bEnable) {
-        if (bEnable) {
-            mTrtcCloud.startLocalAudio();
+        if (mTrtcCloud != null) {
+            if (bEnable) {
+                mTrtcCloud.startLocalAudio();
+            }
+            else {
+                mTrtcCloud.stopLocalAudio();
+            }
         }
-        else {
-            mTrtcCloud.stopLocalAudio();
-        }
+
     }
 
     //------------  From TICEventListener  ------//

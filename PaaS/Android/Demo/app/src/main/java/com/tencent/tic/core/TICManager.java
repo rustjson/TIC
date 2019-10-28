@@ -38,6 +38,17 @@ public abstract class TICManager  {
         int TIC_ROLE_TYPE_AUDIENCE   = 21;     //观众
     };
 
+    /**
+     * 禁用模块
+     * @brief 如果外部使用了TRTC，可以禁用TIC内部的TRTC模块。
+     * @brief 如果禁用TRTC，TRTC相关初始化参数都无效
+     **/
+    public interface TICDisableModule {
+        int TIC_DISABLE_MODULE_NONE     = 0;        //默认全部启用
+        int TIC_DISABLE_MODULE_TRTC   =  (1 << 1); //禁用TRTC
+    };
+
+
     //IM消息回调
     public interface TICMessageListener {
         //点到点消息
@@ -133,6 +144,15 @@ public abstract class TICManager  {
      * @param appId   iLiveSDK appId
      */
     public abstract int init(Context context, int appId);
+
+    /**
+     * 1.2 初始化
+     *
+     * @param context
+     * @param appId   iLiveSDK appId
+     * @param disableModule   禁用内部TIC相关模块
+     */
+    public abstract int init(Context context, int appId, int disableModule);
 
     /**
      * 1.3 释放资源
