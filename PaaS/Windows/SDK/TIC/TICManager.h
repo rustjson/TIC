@@ -46,6 +46,16 @@ enum TICRoleType{
 };
 
 /**
+ * 禁用模块
+ * @brief 如果外部使用了TRTC，可以禁用TIC内部的TRTC模块。
+ * @brief 如果禁用TRTC，TRTC相关初始化参数都无效
+ **/
+enum TICDisableModule {
+	TIC_DISABLE_MODULE_NONE = 0,		//默认全部启用
+	TIC_DISABLE_MODULE_TRTC = (1 << 1), //禁用TRTC
+};
+
+/**
  * TIC通用回调
  * @param module	出错的模块
  * @param code		错误码
@@ -220,7 +230,7 @@ public:
 	 * @param callback			回调
 	 * @return 错误码,0表示成功
 	 */ 
-	virtual void Init(int sdkAppId, TICCallback callback) = 0;
+	virtual void Init(int sdkAppId, TICCallback callback, uint32_t disableModule = TIC_DISABLE_MODULE_NONE) = 0;
 
 	/**
 	 * 释放;
