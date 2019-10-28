@@ -1,5 +1,15 @@
 # Release Notes - iOS & macOS
 
+## 2019.10.30
+
+- 进房参数TICClassroomOption增加compatSaas字段，兼容SaaS方案
+- sendGroupTextMessage/sendGroupCustomMessage/sendGroupMessage删除groupId参数
+
+| | TRTC版本 | TIM版本 | TEduBoard版本 |
+| :-: | :-: | :-: | :-: |
+| **iOS** | 6.7.7734 | 4.5.111 | 2.3.5 |
+| **macOS** | 6.7.7734 | 4.5.111 | 2.3.5 |
+
 ## 2019.09.25
 
 - 进房参数TICClassroomOption增加compatSaas字段，兼容SaaS方案
