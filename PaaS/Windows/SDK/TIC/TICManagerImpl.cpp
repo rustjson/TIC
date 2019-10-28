@@ -31,9 +31,11 @@ TICManagerImpl::~TICManagerImpl()
 	destroyTRTCShareInstance();
 }
 
-void TICManagerImpl::Init(int sdkappid, TICCallback callback)
+void TICManagerImpl::Init(int sdkappid, TICCallback callback, uint32_t disableModule)
 {
 	sdkAppId_ = sdkappid;
+
+	disableTRTC_ = disableModule & TIC_DISABLE_MODULE_TRTC;
 
 	timRecvNewMsgCallback_ = [](const char *json_msg_array, const void *user_data) {
 		TICManagerImpl *pThis = (TICManagerImpl*)user_data;
@@ -78,7 +80,9 @@ void TICManagerImpl::Init(int sdkappid, TICCallback callback)
 
 	int ret = TIMInit(sdkappid, json_value_init.toStyledString().c_str());
 
-	getTRTCShareInstance()->addCallback(this);
+	if (!disableTRTC_) {
+		getTRTCShareInstance()->addCallback(this);
+	}
 
 	TICCallbackUtil util(this, callback);
 	if(ret == TIM_SUCC) {
@@ -97,7 +101,9 @@ void TICManagerImpl::Uninit(TICCallback callback)
 
 	int ret = TIMUninit();
 
-	getTRTCShareInstance()->removeCallback(this);
+	if (!disableTRTC_) {
+		getTRTCShareInstance()->removeCallback(this);
+	}
 
 	TICCallbackUtil util(this, callback);
 	util.IMCallback(ret, (ret == 0) ? "" : "IMSDK unInit failed");
@@ -239,6 +245,8 @@ void TICManagerImpl::QuitClassroom(bool clearBoard, TICCallback callback)
 
 void TICManagerImpl::SwitchRole(TICRoleType role)
 {
+	if (disableTRTC_) return;
+
 	getTRTCShareInstance()->switchRole((TRTCRoleType)role);
 	if (role == TIC_ROLE_TYPE_ANCHOR)
 	{
@@ -503,9 +511,11 @@ void TICManagerImpl::onEnterRoom(int result)
 		joinClassroomCallbackUtil = nullptr;
 	}
 
-	if (classScene_ == TIC_CLASS_SCENE_LIVE && roleType_ == TIC_ROLE_TYPE_ANCHOR)
-	{
-		StartSyncTimer();
+	if (!disableTRTC_) {
+		if (classScene_ == TIC_CLASS_SCENE_LIVE && roleType_ == TIC_ROLE_TYPE_ANCHOR)
+		{
+			StartSyncTimer();
+		}
 	}
 }
 
@@ -652,6 +662,11 @@ void TICManagerImpl::OnJoinIMGroupComplete(TICCallback callback)
 
 void TICManagerImpl::TRTCEnterRoom()
 {
+	if (disableTRTC_) {
+		onEnterRoom(0);
+		return;
+	}
+
 	//填充进房参数并进房
 	TRTCParams params;
 	params.sdkAppId = sdkAppId_;
@@ -708,6 +723,11 @@ void TICManagerImpl::BoardDestroy(bool clearBoard)
 
 void TICManagerImpl::TRTCExitRoom()
 {
+	if (disableTRTC_) {
+		onExitRoom(0);
+		return;
+	}
+
 	if (openCamera_) {
 		getTRTCShareInstance()->stopLocalPreview();
 	}
