@@ -1,5 +1,10 @@
 # TIC Release Notes - Windows
 
+## 2019.10.28
+- 更新IMSDK 4.5.111
+- 更新TRTC 6.7.0.7753
+- 增加接口，允许用户禁用TRTC模块(Init()接口增加disableModule字段)
+
 ## 2019.09.24
 - 更新IMSDK 4.5.45
 - 更新TRTC 6.6.0.7563
