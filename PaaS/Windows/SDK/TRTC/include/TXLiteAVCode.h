@@ -99,9 +99,9 @@ typedef enum TXLiteAVError
     ERR_SERVER_INFO_SERVICE_SUSPENDED               = -100013,  ///< 腾讯云账号欠费
     ERR_SERVER_INFO_STRGROUP_HAS_INVALID_CHARS      = -100014,  ///< 房间号非法
     ERR_SERVER_INFO_LACK_SDKAPPID                   = -100015,  ///< 非法SDKAppid
-    ERR_SERVER_INFO_INVALID                         = -100016,  ///< 无效请求, 旧版 0x1 要求带 Token; ECDH 要求带 ECDH Publich Key; 两个都没有就按报错
+    ERR_SERVER_INFO_INVALID                         = -100016,  ///< 无效请求, 分配接口机失败
     ERR_SERVER_INFO_ECDH_GET_KEY                    = -100017,  ///< 生成公钥失败
-    ERR_SERVER_INFO_ECDH_GET_TINYID                 = -100018,  ///< 获取tinyid失败
+    ERR_SERVER_INFO_ECDH_GET_TINYID                 = -100018,  ///< userSig 校验失败，请检查 TRTCParams.userSig 是否填写正确
     
     // Access 接口机
 
@@ -144,7 +144,7 @@ typedef enum TXLiteAVError
     ERR_SERVER_CENTER_I_FRAME_RPS_INVALID_PARAMETER = -102028,  ///< 请求 I 帧参数错误
     ERR_SERVER_CENTER_INVALID_ROOM_ID               = -102029,  ///< 房间号非法
     ERR_SERVER_CENTER_ROOM_ID_TOO_LONG              = -102030,  ///< 房间号超过限制
-	//跨房间连麦
+    //跨房间连麦
     ERR_SERVER_CENTER_CONN_ROOM_NOT_SUPPORT         = -102031,  ///< 不支持跨房间连麦
     ERR_SERVER_CENTER_CONN_ROOM_REACH_MAX_NUM       = -102032,  ///< 达到跨房间连麦上限
     ERR_SERVER_CENTER_CONN_ROOM_REACH_MAX_RETRY_TIMES   = -102033,  ///< 跨房间连麦重试次数耗尽
@@ -228,6 +228,7 @@ typedef enum TXLiteAVWarning
     WARNING_HW_DECODER_START_FAIL                   = 2106,     ///<  硬解启动失败，采用软解码
     WARNING_VIDEO_DECODER_HW_TO_SW                  = 2108,     ///<  当前流硬解第一个 I 帧失败，SDK 自动切软解
     WARNING_SW_DECODER_START_FAIL                   = 2109,     ///<  软解码器启动失败
+    WARNING_VIDEO_RENDER_FAIL                       = 2110,     ///<  视频渲染失败
 
     WARNING_RTMP_DNS_FAIL                           = 3001,     ///<  直播，DNS 解析失败
     WARNING_RTMP_SEVER_CONN_FAIL                    = 3002,     ///<  直播，服务器连接失败
@@ -301,7 +302,7 @@ typedef enum TXLiteAVEvent
     EVT_AUDIO_JITTER_STATE_FIRST_PLAY               = 2026,     ///<  音频首次播放（SDK 内部事件，不会对外抛出）
     EVT_MIC_START_SUCC                              = 2027,     ///<  麦克风启动成功
     EVT_PLAY_GET_METADATA                           = 2028,     ///<  视频流MetaData事件
-	EVT_MIC_RELEASE_SUCC                            = 2029,     ///<  释放麦克风占用
+    EVT_MIC_RELEASE_SUCC                            = 2029,     ///<  释放麦克风占用
 
     EVT_ROOM_ENTER                                  = 1018,     ///<  进入房间成功
     EVT_ROOM_EXIT                                   = 1019,     ///<  退出房间

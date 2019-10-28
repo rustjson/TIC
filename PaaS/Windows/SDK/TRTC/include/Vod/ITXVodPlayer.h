@@ -1,4 +1,4 @@
-#ifndef __ITXVODPLAYER_H__
+﻿#ifndef __ITXVODPLAYER_H__
 #define __ITXVODPLAYER_H__
 /*
 * Module:  ITXVodPlayer @ TXLiteAVSDK
