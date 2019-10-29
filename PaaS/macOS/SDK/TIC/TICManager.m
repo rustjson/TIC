@@ -46,6 +46,7 @@ id makeWeakRef (id object) {
 
 
 @property (nonatomic, strong) NSTimer *syncTimer;
+@property (nonatomic, assign) TICDisableModule disableModule;
 @end
 
 @implementation TICManager
@@ -62,6 +63,12 @@ id makeWeakRef (id object) {
         instance.statusListeners = [NSMutableArray array];
     });
     return instance;
+}
+
+- (void)init:(int)sdkAppId disableModule:(TICDisableModule)disableModule callback:(TICCallback)callback;
+{
+    _disableModule = disableModule;
+    [self init:sdkAppId callback:callback];
 }
 
 - (void)init:(int)sdkAppId callback:(TICCallback)callback;
@@ -249,7 +256,9 @@ id makeWeakRef (id object) {
     _isEnterRoom = NO;
     _option = nil;
     _boardController = nil;
-    [[TRTCCloud sharedInstance] exitRoom];
+    if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+        [[TRTCCloud sharedInstance] exitRoom];
+    }
     [self report:TIC_REPORT_QUIT_GROUP_START];
     __weak typeof(self) ws = self;
     
@@ -430,16 +439,18 @@ id makeWeakRef (id object) {
 
 - (void)onEnterRoom:(NSInteger)elapsed
 {
-    [self report:TIC_REPORT_ENTER_ROOM_END];
-    _isEnterRoom = YES;
-    //录制对时
-    [self sendOfflineRecordInfo];
-    //进房回调
-    TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, 0, nil);
-    _enterCallback = nil;
-    //启动对时
-    if(_option.classScene == TIC_CLASS_SCENE_LIVE && _option.roleType == TIC_ROLE_TYPE_ANCHOR) {
-        [self startSyncTimer];
+    if (elapsed >= 0) {
+        [self report:TIC_REPORT_ENTER_ROOM_END];
+        _isEnterRoom = YES;
+        //录制对时
+        [self sendOfflineRecordInfo];
+        //进房回调
+        TICBLOCK_SAFE_RUN(self->_enterCallback, TICMODULE_TRTC, 0, nil);
+        _enterCallback = nil;
+        //启动对时
+        if(_option.classScene == TIC_CLASS_SCENE_LIVE && _option.roleType == TIC_ROLE_TYPE_ANCHOR) {
+            [self startSyncTimer];
+        }
     }
 }
 
@@ -546,38 +557,45 @@ id makeWeakRef (id object) {
 - (void)onTEBInit
 {
     [self report:TIC_REPORT_INIT_BOARD_END];
-    TRTCParams *params = [[TRTCParams alloc] init];
-    params.sdkAppId = _sdkAppId;
-    params.userId = _userId;
-    params.userSig = _userSig;
-    params.roomId = _option.classId;
-    if(_option.classScene == TIC_CLASS_SCENE_LIVE){
-        params.role = (TRTCRoleType)_option.roleType;
+    if ((_disableModule & TIC_DISABLE_MODULE_TRTC) == TIC_DISABLE_MODULE_TRTC){
+        //屏蔽了TRTC模块
+        [self onEnterRoom:0];
     }
-    [[TRTCCloud sharedInstance] setDelegate:self];
-    [self report:TIC_REPORT_ENTER_ROOM_START];
-    [[TRTCCloud sharedInstance] enterRoom:params appScene:(TRTCAppScene)_option.classScene];
-#if TARGET_OS_IPHONE
-    if(_option.bOpenCamera && _option.renderView){
-        [[TRTCCloud sharedInstance] startLocalPreview:_option.bFrontCamera view:_option.renderView];
+    else {
+        TRTCParams *params = [[TRTCParams alloc] init];
+            params.sdkAppId = _sdkAppId;
+            params.userId = _userId;
+            params.userSig = _userSig;
+            params.roomId = _option.classId;
+            if(_option.classScene == TIC_CLASS_SCENE_LIVE){
+                params.role = (TRTCRoleType)_option.roleType;
+            }
+        params.role = TIC_ROLE_TYPE_AUDIENCE;
+            [[TRTCCloud sharedInstance] setDelegate:self];
+            [self report:TIC_REPORT_ENTER_ROOM_START];
+            [[TRTCCloud sharedInstance] enterRoom:params appScene:(TRTCAppScene)_option.classScene];
+        #if TARGET_OS_IPHONE
+            if(_option.bOpenCamera && _option.renderView){
+                [[TRTCCloud sharedInstance] startLocalPreview:_option.bFrontCamera view:_option.renderView];
+            }
+            if(_option.bOpenMic){
+                [[TRTCCloud sharedInstance] startLocalAudio];
+            }
+        #else
+            if(_option.cameraId.length != 0){
+                [[TRTCCloud sharedInstance] setCurrentCameraDevice:_option.cameraId];
+            }
+            if(_option.bOpenCamera && _option.renderView){
+                [[TRTCCloud sharedInstance] startLocalPreview:_option.renderView];
+            }
+            if(_option.micId.length != 0){
+                [[TRTCCloud sharedInstance] setCurrentMicDevice:_option.micId];
+            }
+            if(_option.bOpenMic){
+                [[TRTCCloud sharedInstance] startLocalAudio];
+            }
+        #endif
     }
-    if(_option.bOpenMic){
-        [[TRTCCloud sharedInstance] startLocalAudio];
-    }
-#else
-    if(_option.cameraId.length != 0){
-        [[TRTCCloud sharedInstance] setCurrentCameraDevice:_option.cameraId];
-    }
-    if(_option.bOpenCamera && _option.renderView){
-        [[TRTCCloud sharedInstance] startLocalPreview:_option.renderView];
-    }
-    if(_option.micId.length != 0){
-        [[TRTCCloud sharedInstance] setCurrentMicDevice:_option.micId];
-    }
-    if(_option.bOpenMic){
-        [[TRTCCloud sharedInstance] startLocalAudio];
-    }
-#endif
 }
 
 - (void)onTEBError:(TEduBoardErrorCode)code msg:(NSString *)msg

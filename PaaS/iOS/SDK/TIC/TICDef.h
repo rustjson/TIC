@@ -148,11 +148,6 @@ typedef void (^TICCallback)(TICModule module, int code, NSString *desc);
  * @brief 开启SaaS兼容模式，内部会多创建一个聊天群组
  **/
 @property (nonatomic, assign) BOOL compatSaas;
-/**
- * 禁用模块
- * @brief 禁用内部TIC相关模块
- **/
-@property (nonatomic, assign) TICDisableModule disableModule;
 @end
 
 /*********************************************************************************************************
