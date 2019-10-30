@@ -2,8 +2,7 @@
 
 ## 2019.10.30
 
-- 进房参数TICClassroomOption增加compatSaas字段，兼容SaaS方案
-- sendGroupTextMessage/sendGroupCustomMessage/sendGroupMessage删除groupId参数
+- 增加接口init:(int)sdkAppId disableModule:(TICDisableModule)disableModule callback:(TICCallback)callback可屏蔽内部TRTC模块
 
 | | TRTC版本 | TIM版本 | TEduBoard版本 |
 | :-: | :-: | :-: | :-: |
