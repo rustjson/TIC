@@ -341,6 +341,12 @@ typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
  * @param fileId        跳转到的白板页所属的文件ID
  */
 - (void)onTEBGotoBoard:(NSString *)boardId fileId:(NSString *)fileId;
+/**
+ * 白板页动画步数回调
+ * @param currentStep    当前白板页动画步数
+ * @param totalStep        当前白板页动画总步数
+ */
+- (void)onTEBGotoStep:(uint32_t)currentStep totalStep:(uint32_t)totalStep;
 /*************************************************************************************************
  *
  *                                            四、文件操作回调

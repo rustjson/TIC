@@ -426,6 +426,14 @@ __attribute__((deprecated("接口已废弃，后续会删除，不建议使用�
 - (void)clearFileDraws:(NSString *)fileId;
 
 /**
+ * 获取指定文件的缩略图，不支持默认文件（fileId=#DEFAULT）
+ * @param fileId        文件ID
+ * @return 缩略图urls
+ * @brief 用户在调用rest api请求转码时，需要带上 "thumbnail_resolution" 参数，开启缩略图功能，否则返回的缩略图url无效
+ */
+- (NSArray *)getThumbnailImages:(NSString *)fileId;
+
+/**
  * 获取同步时间
  * @return 毫秒级时间戳
  */
