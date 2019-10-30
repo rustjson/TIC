@@ -1,5 +1,16 @@
 # Release Notes - Windows
 
+## 2.3.5.27 @2019.10.30
+- IM兼容4.5.x版本
+- 增加动画步数回调
+- 增加获取课件缩略图接口
+- 接口改动：
+	- class TEduBoardList 改名为 class TEduBoardStringList
+	- TEduBoardList::GetBoard 改名为 TEduBoardStringList::GetString
+
+## 2.3.4.18 @2019.09.29
+- 修复大文件上传Crash问题
+
 ## 2.3.3.48 @2019.08.15
 - 支持时间戳同步机制（用于配合较大延迟的音视频方案使用）
 

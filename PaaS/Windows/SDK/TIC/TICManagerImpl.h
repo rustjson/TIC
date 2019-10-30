@@ -99,7 +99,7 @@ public:
 	~TICManagerImpl();
 
 	//TICManager
-	virtual void Init(int sdkAppId, TICCallback callback) override;
+	virtual void Init(int sdkAppId, TICCallback callback, uint32_t disableModule) override;
 	virtual void Uninit(TICCallback callback) override;
 
 	virtual void Login(const std::string& userId, const std::string& userSig, TICCallback callback) override;
@@ -213,6 +213,8 @@ private:
 	TICRoleType roleType_ = TIC_ROLE_TYPE_ANCHOR;
 
 	bool compatSaas_ = false;
+
+	bool disableTRTC_ = false;
 
 	TICCallbackUtil *joinClassroomCallbackUtil = nullptr;
 

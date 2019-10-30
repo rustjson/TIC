@@ -346,7 +346,7 @@ void CBoardTabDlg::UpdateBoardList()
 		std::string curBoardId = boardCtrl->GetCurrentBoard();
 		for (uint32_t i = 0; i < boardList->GetCount(); ++i)
 		{
-			std::string boardId = boardList->GetBoard(i);
+			std::string boardId = boardList->GetString(i);
 			listBoard_.InsertString(i, a2w(boardId, CP_UTF8).c_str());
 			if (curBoardId == boardId) listBoard_.SetCurSel(i);
 		}
@@ -424,7 +424,7 @@ void CBoardTabDlg::OnBnClickedBtnDelBoard()
 	{
 		auto *boardList = boardCtrl->GetFileBoardList(boardCtrl->GetCurrentFile());
 		if (!boardList) return;
-		boardCtrl->DeleteBoard(boardList->GetBoard(listBoard_.GetCurSel()));
+		boardCtrl->DeleteBoard(boardList->GetString(listBoard_.GetCurSel()));
 		boardList->Release();
 	}
 }
@@ -815,12 +815,12 @@ void CBoardDlg::onTEBRedoStatusChanged(bool canRedo)
 	drawTabDlg_.UpdateRedoState(canRedo);
 }
 
-void CBoardDlg::onTEBAddBoard(const TEduBoardList *boardList, const char * fileId)
+void CBoardDlg::onTEBAddBoard(const TEduBoardStringList *boardList, const char * fileId)
 {
 	if (histroySync_) boardTabDlg_.UpdateBoardList();
 }
 
-void CBoardDlg::onTEBDeleteBoard(const TEduBoardList *boardList, const char * fileId)
+void CBoardDlg::onTEBDeleteBoard(const TEduBoardStringList *boardList, const char * fileId)
 {
 	if (histroySync_) boardTabDlg_.UpdateBoardList();
 }
