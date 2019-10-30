@@ -55,6 +55,7 @@ public class TICManagerImpl  extends TICManager{
     TICCallback mEnterRoomCallback; // 进房callback
     private Handler mMainHandler;
     boolean mIsSendSyncTime = false;  //
+    int mDisableModule = TICDisableModule.TIC_DISABLE_MODULE_NONE;
 
     //TRTC
     private TRTCCloud mTrtcCloud;              /// TRTC SDK 实例对象
@@ -112,6 +113,12 @@ public class TICManagerImpl  extends TICManager{
 
     @Override
     public int init(Context context, int appId) {
+        int result = init(context, appId, mDisableModule);
+        return result;
+    }
+
+
+    public int init(Context context, int appId, int disableModule) {
 
         TXCLog.i(TAG, "TICManager: init, context:" + context + " appid:" + appId);
         TICReporter.updateAppId(appId);
@@ -143,10 +150,12 @@ public class TICManagerImpl  extends TICManager{
         };
 
         //2. TRTC SDK初始化
-        if (mTrtcCloud == null) {
-            mTrtcListener = new TRTCCloudListenerImpl();
-            mTrtcCloud = TRTCCloud.sharedInstance(mAppContext);
-            mTrtcCloud.setListener(mTrtcListener);
+        if ((disableModule & TICDisableModule.TIC_DISABLE_MODULE_TRTC) == 0) {
+            if (mTrtcCloud == null) {
+                mTrtcListener = new TRTCCloudListenerImpl();
+                mTrtcCloud = TRTCCloud.sharedInstance(mAppContext);
+                mTrtcCloud.setListener(mTrtcListener);
+            }
         }
 
         //3. TEdu Board
@@ -170,7 +179,7 @@ public class TICManagerImpl  extends TICManager{
 
         //1、销毁trtc
         if (mTrtcCloud != null) {
-            TRTCCloud.destroySharedInstance();
+            //TRTCCloud.destroySharedInstance();
             mTrtcCloud = null;
         }
 
@@ -372,7 +381,7 @@ public class TICManagerImpl  extends TICManager{
 
     @Override
     public void createClassroom(final int classId, final int scene, final TICCallback callback) {
-        TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " callback:" + callback);
+        TXCLog.i(TAG, "TICManager: createClassroom classId:" + classId + " scene:" + scene + " callback:" + callback);
         TICReporter.report(TICReporter.EventId.createGroup_start);
         // 为了减少用户操作成本（收到群进出等通知需要配置工单才生效）群组类型由ChatRoom改为Public
         final String groupId = String.valueOf(classId);
@@ -516,14 +525,15 @@ public class TICManagerImpl  extends TICManager{
 
         TICReporter.report(TICReporter.EventId.quitGroup_start);
         //1.trtc退房间
-        mTrtcCloud.exitRoom();
+        if (mTrtcCloud != null)
+            mTrtcCloud.exitRoom();
 
         //2、如果clearBoard= true, 清除board中所有的历史数据，下次进来时看到的都是全新白板
         unitTEduBoard(clearBoard);
 
         //3、im退房间
         int classId = classroomOption.getClassId();
-        final String groupId = String.valueOf(classId);
+        String groupId = String.valueOf(classId);
         TIMGroupManager.getInstance().quitGroup(groupId, new TIMCallBack() {//NOTE:在被挤下线时，不会回调
             @Override
             public void onError(int errorCode, String errInfo) {
@@ -547,6 +557,22 @@ public class TICManagerImpl  extends TICManager{
             }
         });
 
+        if (classroomOption.compatSaas) {
+            groupId += COMPAT_SAAS_CHAT;
+
+            TIMGroupManager.getInstance().quitGroup(groupId, new TIMCallBack() {//NOTE:在被挤下线时，不会回调
+                @Override
+                public void onError(int errorCode, String errInfo) {
+                    TXCLog.e(TAG, "TICManager: quitClassroom compatSaas, err:" + errorCode + " msg:" + errInfo);
+                }
+
+                @Override
+                public void onSuccess() {
+                    TXCLog.e(TAG, "TICManager: quitClassroom onSuccess compatSaas");
+                }
+            });
+        }
+
         //停止同步时间
         stopSyncTimer();
 
@@ -561,10 +587,21 @@ public class TICManagerImpl  extends TICManager{
         }
 
         //TRTC进房
-        TICReporter.report(TICReporter.EventId.enterRoom_start);
         mEnterRoomCallback = callback;
-        TRTCCloudDef.TRTCParams trtcParams = new TRTCCloudDef.TRTCParams(sdkAppId, userInfo.getUserId(), userInfo.getUserSig(), classroomOption.getClassId(), "", "");     /// TRTC SDK 视频通话房间进入所必须的参数
-        mTrtcCloud.enterRoom(trtcParams, TRTCCloudDef.TRTC_APP_SCENE_VIDEOCALL);
+
+        if (mTrtcCloud != null) {
+            TICReporter.report(TICReporter.EventId.enterRoom_start);
+            TRTCCloudDef.TRTCParams trtcParams = new TRTCCloudDef.TRTCParams(sdkAppId, userInfo.getUserId(), userInfo.getUserSig(), classroomOption.getClassId(), "", "");     /// TRTC SDK 视频通话房间进入所必须的参数
+            if (classroomOption.classScene == TICClassScene.TIC_CLASS_SCENE_LIVE) {
+                trtcParams.role = classroomOption.roleType;
+            }
+            mTrtcCloud.enterRoom(trtcParams, classroomOption.classScene);
+        }
+        else if ((mDisableModule & TICDisableModule.TIC_DISABLE_MODULE_TRTC) == 0) { //TRTC不需要进入房间.
+            if (mEnterRoomCallback != null) {
+                mEnterRoomCallback.onSuccess("succ");
+            }
+        }
 
         //Board进行初始化
         initTEduBoard();
@@ -1125,6 +1162,11 @@ public class TICManagerImpl  extends TICManager{
 
         @Override
         public void onTEBGotoBoard(String s, String s1) {
+
+        }
+
+        @Override
+        public void onTEBGotoStep(int currentStep, int total) {
 
         }
 
