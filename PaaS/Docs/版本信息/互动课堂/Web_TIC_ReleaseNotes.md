@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2019.10.30
+
+- 重要更新：接入TRTC WEB SDK 4.x版本
+- 接口init增加禁用内部模块参数，tic.init(sdkAppId, disableModule, callback);
+- 废弃getWebRTCInstance接口
+- 新增getTrtcClient接口
+
+| TRTC版本 | TIM版本 | TEduBoard版本 | Cos版本 |
+| :-: | :-: | :-: | :-: |
+| 4.x | 1.7.3 | 2.3.5 | 5.1.0 |
+
 ## 2019.08.19
 1. 进房参数增加compatSaas字段，兼容SaaS方案
 
