@@ -180,8 +180,8 @@ private:
 	virtual void onTEBRedoStatusChanged(bool canRedo) override;
 	virtual void onTEBImageStatusChanged(const char * boardId, const char * url, TEduBoardImageStatus status) override {}
 	virtual void onTEBSetBackgroundImage(const char * url) override {}
-	virtual void onTEBAddBoard(const TEduBoardList *boardList, const char * fileId) override;
-	virtual void onTEBDeleteBoard(const TEduBoardList *boardList, const char * fileId) override;
+	virtual void onTEBAddBoard(const TEduBoardStringList *boardList, const char * fileId) override;
+	virtual void onTEBDeleteBoard(const TEduBoardStringList *boardList, const char * fileId) override;
 	virtual void onTEBGotoBoard(const char * boardId, const char * fileId) override;
 	virtual void onTEBAddFile(const char * fileId) override;
 	virtual void onTEBAddH5PPTFile(const char * fileId) override;
