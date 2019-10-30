@@ -75,8 +75,6 @@ window.app = new Vue({
       //
       isShow: false,
 
-      //未定
-      pushModel: purl().param('auto') * 1 || 0, // 1  自动推流 0 手动推流
       isPushing: 0, // 是否正在推流
       isPushCamera: 0, // 是否推摄像头流
       remoteVideos: {},
@@ -307,7 +305,15 @@ window.app = new Vue({
         return;
       }
 
-      this.tic.joinClassroom(this.roomID, {}, {
+      this.tic.joinClassroom({
+        // compatSaas: true,
+        classId: this.roomID
+      }, {
+        // mode: TIC.CONSTANT.TICClassScene.TIC_CLASS_SCENE_LIVE //直播模式，支持1000人以上场景
+        mode: TIC.CONSTANT.TICClassScene.TIC_CLASS_SCENE_VIDEO_CALL, // //实时通话模式，支持1000人以下场景，低延时
+        // role: TIC.CONSTANT.TICRoleType.TIC_ROLE_TYPE_ANCHOR // 主播，只在TIC.CONSTANT.TICClassScene.TIC_CLASS_SCENE_LIVE模式下有效
+        // role: TIC.CONSTANT.TICRoleType.TIC_ROLE_TYPE_AUDIENCE // 观众（观众角色没有发布本地流的权限，只有收看远端流的权限。如果观众想要连麦跟主播互动， 请先通过 switchRole() 切换角色到主播 anchor 后再发布本地流），只在TIC.CONSTANT.TICClassScene.TIC_CLASS_SCENE_LIVE模式下有效
+      }, {
         id: 'paint_box',
         ratio: '16:9',
         smoothLevel: 0,
@@ -328,13 +334,8 @@ window.app = new Vue({
 
           this.initBoardEvent();
 
-          window.TRTC = this.TRTC = this.tic.getWebRTCInstance();
+          window.trtcClient = this.trtcClient = this.tic.getTrtcClient();
           this.initTRTCEvent();
-
-          // 如果是主动推流
-          if (this.pushModel === 1) {
-            this.startRTC();
-          }
         }
       });
     },
@@ -436,6 +437,11 @@ window.app = new Vue({
         this.proBoardData();
       });
 
+      // ppt动画步数改变回调
+      teduBoard.on(TEduBoard.EVENT.TEB_GOTOSTEP, (step, count) => {
+        console.log('======================:  ', 'TEB_GOTOSTEP', ' step:', step, ' count:', count);
+      });
+
       // 增加H5动画PPT文件回调
       teduBoard.on(TEduBoard.EVENT.TEB_ADDH5PPTFILE, (fid) => {
         console.log('======================:  ', 'TEB_ADDH5PPTFILE', ' fid:', fid);
@@ -496,80 +502,84 @@ window.app = new Vue({
 
     // TRTC事件
     initTRTCEvent() {
-      this.TRTC.on('onLocalStreamAdd', (data) => {
-        if (data && data.stream) {
-          var localVideoEl = document.getElementById('local_video');
-          if (!localVideoEl) {
-            localVideoEl = document.createElement('video');
-            localVideoEl.id = 'local_video';
-            localVideoEl.class = "col-md-1";
-            document.querySelector("#video_wrap").insertBefore(localVideoEl, null);
-          }
-          localVideoEl.muted = true;
-          localVideoEl.autoplay = true;
-          localVideoEl.setAttribute('autoplay', true);
-          localVideoEl.setAttribute('playsinline', true);
-          localVideoEl.srcObject = data.stream;
+      this.trtcClient.on('stream-added', event => {
+        const remoteStream = event.stream;
+        const remoteUserId = remoteStream.getUserId();
+        console.log('received a remoteStream ID: ' + remoteStream.getId() + ' from user: ' + remoteUserId);
+        // 若需要观看该远端流，则需要订阅它，默认会自动订阅
+        this.trtcClient.subscribe(remoteStream);
+      });
 
-          this.isPushing = 1; // 正在推流
-          this.showTip('WebRTC接收到本地流');
-        }
-      })
+      // 监听‘stream-removed’事件
+      this.trtcClient.on('stream-removed', event => {
+        const remoteStream = event.stream;
+        console.log('remoteStream ID: ' + remoteStream.getId() + ' has been removed');
+        // 停止播放并删除相应<video>标签
+        remoteStream.stop();
+        document.getElementById(remoteStream.getId()).remove();
+      });
 
-      this.TRTC.on('onRemoteStreamUpdate', (data) => {
-        var userVideoEl = document.getElementById(data.videoId);
-        if (!userVideoEl) {
-          userVideoEl = document.createElement('video');
-          userVideoEl.id = data.videoId;
-          userVideoEl.class = "col-md-1";
-          document.querySelector("#video_wrap").appendChild(userVideoEl);
-        }
-        userVideoEl.setAttribute('autoplay', true);
-        userVideoEl.setAttribute('playsinline', true);
-        userVideoEl.srcObject = data.stream;
+      // 监听‘stream-updated’事件
+      this.trtcClient.on('stream-updated', event => {
+        const remoteStream = event.stream;
+        console.log('remoteStream ID: ' + remoteStream.getId() + ' was updated hasAudio: ' +
+          remoteStream.hasAudio() + ' hasVideo: ' + remoteStream.hasVideo());
+      });
 
-        this.showTip('WebRTC接收到远端流');
-      })
+      // 监听‘stream-subscribed’事件
+      this.trtcClient.on('stream-subscribed', event => {
+        const remoteStream = event.stream;
+        // 远端流订阅成功，在HTML页面中创建一个<video>标签，假设该标签ID为‘remote-video-view’
+        // 播放该远端流
+        let remoteVideoWrapEl = document.createElement('div');
+        remoteVideoWrapEl.id = remoteStream.getId();
+        document.querySelector("#video_wrap").insertBefore(remoteVideoWrapEl, null);
+        remoteStream.play(remoteVideoWrapEl);
+      });
 
-      this.TRTC.on('onRemoteStreamRemove', (data) => {
-        var userVideoEl = document.getElementById(data.videoId);
-        if (userVideoEl) {
-          userVideoEl.remove();
-        }
-        this.showTip('WebRTC 远端流断开');
-      })
+      this.trtcClient.on('connection-state-changed', event => {
+        console.log('connection-state-changed:', event.state);
+      });
 
-      this.TRTC.on('onWebSocketClose', (data) => {
-        this.showTip('WebRTC WebSocket 断开');
-      })
+      this.trtcClient.on('peer-join', event => {
+        console.log('peer-join', event)
+        const userId = event.userId;
+      });
 
-      this.TRTC.on('onRelayTimeout', (data) => {
-        this.showTip('WebRTC 超时');
-      })
+      this.trtcClient.on('peer-leave', event => {
+        console.log('peer-leave', event)
+        const userId = event.userId;
+      });
 
-      this.TRTC.on('onStreamNotify', (data) => {
-        console.log('==================== onStreamNotify==', data);
-      })
+      this.trtcClient.on('mute-audio', event => {
+        console.log('mute-audio', event)
+        const userId = event.userId;
+        this.showTip(`${userId}关闭了麦克风`);
+      });
 
-      this.TRTC.on('onMuteVideo', (data) => {
-        this.showTip(`${data.userId}关闭了摄像头`);
-        console.log('==================== onMuteVideo==', data);
-      })
+      this.trtcClient.on('mute-video', event => {
+        console.log('mute-video', event)
+        const userId = event.userId;
+        this.showTip(`${userId}关闭了摄像头`);
+      });
 
-      this.TRTC.on('onUnmuteVideo', (data) => {
-        this.showTip(`${data.userId}打开了摄像头`);
-        console.log('==================== onUnmuteVideo==', data);
-      })
+      this.trtcClient.on('unmute-audio', event => {
+        console.log('unmute-audio', event)
+        const userId = event.userId;
+        this.showTip(`${userId}打开了麦克风`);
+      });
 
-      this.TRTC.on('onMuteAudio', (data) => {
-        this.showTip(`${data.userId}关闭了麦克风`);
-        console.log('==================== onMuteAudio==', data);
-      })
+      this.trtcClient.on('unmute-video', event => {
+        console.log('unmute-video', event)
+        const userId = event.userId;
+        this.showTip(`${userId}打开了摄像头`);
+      });
 
-      this.TRTC.on('onUnmuteAudio', (data) => {
-        this.showTip(`${data.userId}打开了麦克风`);
-        console.log('==================== onUnmuteAudio==', data);
-      })
+      this.trtcClient.on('error', error => {
+        console.error('client error observed: ' + error);
+        const errorCode = error.getCode();
+        // 根据ErrorCode列表查看详细错误原因。
+      });
     },
 
 
@@ -652,6 +662,7 @@ window.app = new Vue({
     addTICStatusListener() {
       this.tic.addTICStatusListener({
         onTICForceOffline: () => {
+          // eslint-disable-next-line no-alert
           alert(`其他地方登录，被T了`);
           this.status = this.STATUS_UNLOGIN;
           this.clearClassInfo();
@@ -660,88 +671,96 @@ window.app = new Vue({
       });
     },
 
-    // 启动推流(推摄像头)
-    startRTC() {
-      // 获取webrtc实例
-      var WebRTC = this.TRTC;
-      WebRTC.getLocalStream({
-        audio: true,
-        video: true,
-        attributes: {
-          width: 640,
-          height: 480
-        }
-      }, (data) => {
-        this.isPushCamera = true;
-        if (WebRTC.global.localStream && WebRTC.global.localStream.active) {
-          WebRTC.updateStream({
-            role: 'screen',
-            stream: data.stream
-          }, () => {
-            // 成功
-          }, (error) => {
-            this.showErrorTip(`更新流失败，${error}`);
-          });
-        } else {
-          WebRTC.startRTC({
-            stream: data.stream,
-            role: 'user'
-          }, (data) => {
-            // 成功
-          }, (error) => {
-            this.showErrorTip(`推流失败, ${error}`);
-          });
-        }
-      }, (error) => {
-        this.showErrorTip(`获取本地流失败, ${JSON.stringify(error)}`);
-      });
+    /**
+     * 结束推流
+     */
+    stopPush(callback) {
+      if (this.localStream && this.isPushing) {
+        this.trtcClient.unpublish(this.localStream).then(() => {
+          this.isPushing = 0;
+          document.getElementById('local_video').remove();
+          this.localStream.stop();
+          this.localStream = null;
+          if (Object.prototype.toString.call(callback) === '[object Function]') {
+            callback();
+          }
+        });
+      }
     },
 
-    stopPush() {
-      var WebRTC = this.tic.getWebRTCInstance();
-      WebRTC.stopRTC({}, () => {
-        this.isPushing = 0;
-        document.querySelector('#local_video').srcObject = null;
+
+    // 启动推流(推摄像头)
+    startRTC() {
+      // 从麦克风和摄像头采集本地音视频流
+      let cameraStream = TRTC.createStream({
+        audio: true,
+        video: true
       });
+      // 设置视频分辨率等参数
+      cameraStream.setVideoProfile('720p');
+      if (this.localStream && this.isPushing) { // 如果正在推流, 先停止发布流
+        this.stopPush(() => {
+          this.publishLocalStream(cameraStream);
+        });
+      } else {
+        this.publishLocalStream(cameraStream);
+      }
     },
 
     /**
      * 推屏幕分享
      */
     pushScreen() {
-      var WebRTC = this.tic.getWebRTCInstance();
-      WebRTC.getLocalStream({
+      // 从麦克风和摄像头采集本地音视频流
+      let screenStream = TRTC.createStream({
         audio: true,
-        screen: true,
-        screenSources: 'tab',
-        attributes: {
-          width: 1920,
-          height: 1080,
-          frameRate: 10
+        screen: true
+      });
+
+      // 设置视频分辨率等参数
+      screenStream.setScreenProfile({
+        width: 1920,
+        height: 1080,
+        frameRate: 15,
+        bitrate: 1600 /* kbps */
+      });
+      if (this.localStream && this.isPushing) { // 如果正在推流, 先停止发布流
+        this.stopPush(() => {
+          this.publishLocalStream(screenStream);
+        });
+      } else {
+        this.publishLocalStream(screenStream);
+      }
+    },
+
+    publishLocalStream(localStream) {
+      window.localStream = localStream;
+      localStream.initialize().catch(error => {
+        console.error('failed initialize localStream ' + error);
+      }).then(() => {
+        var localVideoWrapEl = document.getElementById('local_video');
+        if (!localVideoWrapEl) {
+          localVideoWrapEl = document.createElement('div');
+          localVideoWrapEl.id = 'local_video';
+          document.querySelector("#video_wrap").insertBefore(localVideoWrapEl, null);
         }
-      }, (data) => {
-        this.isPushCamera = false;
-        if (WebRTC.global.localStream && WebRTC.global.localStream.active) {
-          WebRTC.updateStream({
-            role: 'screen',
-            stream: data.stream
-          }, () => {
-            // 成功
-          }, (error) => {
-            this.showErrorTip(`更新流失败，${error}`);
-          });
-        } else {
-          WebRTC.startRTC({
-            stream: data.stream,
-            role: 'user'
-          }, (data) => {
-            // 成功
-          }, (error) => {
-            this.showErrorTip(`推流失败, ${error}`);
-          });
-        }
-      }, (error) => {
-        this.showErrorTip(`获取本地流失败, ${error}`);
+        // 本地流播放
+        localStream.play(localVideoWrapEl, {
+          muted: true
+        });
+
+        // 发布本地流（远端可收到）
+        this.trtcClient && this.trtcClient.publish(localStream).then(() => {
+          // 本地流发布成功
+          this.isPushing = 1; // 正在推流
+          this.isPushCamera = true; // 正在推摄像头
+          this.localStream = localStream;
+          this.showTip('推流成功');
+        }).catch(error => {
+          console.log(error);
+        });
+      }).catch(error => {
+        this.showErrorTip(`获取本地流失败, ${JSON.stringify(error)}`);
       });
     },
 
@@ -750,8 +769,9 @@ window.app = new Vue({
      */
     toggleCamera() {
       this.enableCamera = !this.enableCamera;
-      var WebRTC = this.tic.getWebRTCInstance();
-      this.enableCamera ? WebRTC.openVideo() : WebRTC.closeVideo();
+      if (this.localStream) {
+        this.enableCamera ? this.localStream.unmuteVideo() : this.localStream.muteVideo();
+      }
     },
 
     /**
@@ -759,8 +779,9 @@ window.app = new Vue({
      */
     toggleMic() {
       this.enableMic = !this.enableMic
-      var WebRTC = this.tic.getWebRTCInstance();
-      this.enableMic ? WebRTC.openAudio() : WebRTC.closeAudio();
+      if (this.localStream) {
+        this.enableMic ? this.localStream.unmuteAudio() : this.localStream.muteAudio();
+      }
     },
 
     /**
@@ -1059,7 +1080,10 @@ window.app = new Vue({
     },
 
     showMessageInBox(fromUserId, text) {
+      var d = new Date();
+      var time = `${('0' + d.getHours()).substr(-2)}:${('0' + d.getMinutes()).substr(-2)}:${('0' + d.getSeconds()).substr(-2)}.${('00' + d.getMilliseconds()).substr(-3)}`
       this.msgs.push({
+        time: time,
         send: fromUserId + '：',
         content: text
       });

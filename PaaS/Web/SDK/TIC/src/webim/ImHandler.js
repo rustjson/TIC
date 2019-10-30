@@ -1,12 +1,20 @@
-function ImHandler(accountModel) {
-  this.imSession = null;
+function ImHandler(accountModel, classModel) {
+  this.imBoardSession = null;
+  this.imChatSession = null;
   this.accountModel = accountModel;
+  this.classModel = classModel;
   this.sendMsgFailMap = {};
 }
 
+/**
+ * 白板信令
+ */
+ImHandler.prototype.setIMBoardSession = function (imSession) {
+  this.imBoardSession = imSession;
+}
 
-ImHandler.prototype.setIMSession = function (imSession) {
-  this.imSession = imSession;
+ImHandler.prototype.setIMChatSession = function (imChatSession) {
+  this.imChatSession = imChatSession;
 }
 
 /**
@@ -14,7 +22,7 @@ ImHandler.prototype.setIMSession = function (imSession) {
  * @param {*} content 
  */
 ImHandler.prototype.sendBoardGroupCustomMessage = function (content) {
-  var msg = new webim.Msg(this.imSession, true, -1, Math.round(Math.random() * 4294967296),
+  var msg = new webim.Msg(this.imBoardSession, true, -1, Math.round(Math.random() * 4294967296),
     new Date().getTime(), this.accountModel.userId, webim.GROUP_MSG_SUB_TYPE.REDPACKET, this.accountModel.userNick);
   var custom = new webim.Msg.Elem.Custom(content, '', 'TXWhiteBoardExt');
   msg.addCustom(custom);
@@ -59,7 +67,7 @@ ImHandler.prototype.sendTextMessage = function (selType, msgText, toUser, succ, 
 
   // 如果是发给群组
   if (selType == webim.SESSION_TYPE.GROUP) {
-    selSess = this.imSession;
+    selSess = this.imChatSession;
     subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
   } else {
     subType = webim.C2C_MSG_SUB_TYPE.COMMON;
@@ -71,38 +79,10 @@ ImHandler.prototype.sendTextMessage = function (selType, msgText, toUser, succ, 
   var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
   var msgTime = this.getUnixTimestamp(); //消息时间戳
   var msg = new webim.Msg(selSess, isSend, seq, random, msgTime, this.accountModel.userId, subType, this.accountModel.userNick);
-  var text_obj, face_obj, tmsg, emotionIndex, emotion, restMsgIndex;
+  var text_obj;
 
-  //解析文本和表情
-  var expr = /\[[^[\]]{1,3}\]/mg;
-  var emotions = msgText.match(expr);
-  if (!emotions || emotions.length < 1) {
-    text_obj = new webim.Msg.Elem.Text(msgText);
-    msg.addText(text_obj);
-  } else {
-    for (var i = 0; i < emotions.length; i++) {
-      tmsg = msgText.substring(0, msgText.indexOf(emotions[i]));
-      if (tmsg) {
-        text_obj = new webim.Msg.Elem.Text(tmsg);
-        msg.addText(text_obj);
-      }
-      emotionIndex = webim.EmotionDataIndexs[emotions[i]];
-      emotion = webim.Emotions[emotionIndex];
-      if (emotion) {
-        face_obj = new webim.Msg.Elem.Face(emotionIndex, emotions[i]);
-        msg.addFace(face_obj);
-      } else {
-        text_obj = new webim.Msg.Elem.Text(emotions[i]);
-        msg.addText(text_obj);
-      }
-      restMsgIndex = msgText.indexOf(emotions[i]) + emotions[i].length;
-      msgText = msgText.substring(restMsgIndex);
-    }
-    if (msgText) {
-      text_obj = new webim.Msg.Elem.Text(msgText);
-      msg.addText(text_obj);
-    }
-  }
+  text_obj = new webim.Msg.Elem.Text(msgText);
+  msg.addText(text_obj);
 
   webim.sendMsg(msg, function (resp) {
     succ && succ();
@@ -123,7 +103,7 @@ ImHandler.prototype.sendCustomMsg = function (selType, msgText, toUser, succ, fa
 
   // 如果是发给群组
   if (selType == webim.SESSION_TYPE.GROUP) {
-    selSess = this.imSession;
+    selSess = this.imChatSession;
     subType = webim.GROUP_MSG_SUB_TYPE.COMMON;
   } else {
     selSess = new webim.Session(selType, toUser, toUser, '', this.getUnixTimestamp());

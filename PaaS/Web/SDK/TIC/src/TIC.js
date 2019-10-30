@@ -10,20 +10,24 @@ import BoardOptionModel from './model/BoardOptionModel';
 import WebRTCOptionModel from './model/WebRTCOptionModel';
 import Config from './config/Config'
 import LogReport from './log/LogReport'
+import ClassModel from './model/ClassModel';
 
 function TIC() {
   this.accountModel = new AccountModel();
   this.boardOptionModel = new BoardOptionModel();
   this.webRTCOptionModel = new WebRTCOptionModel();
+  this.classModel = new ClassModel();
 
   this.messageListener = new MessageListener();
   this.eventListener = new EventListener();
   this.statusListener = new StatusListener();
 
   this.ticVersion = Config.version;
-  console.log('tic version:', this.ticVersion);
   this.log = new LogReport();
   this.log.setSdkVersion(Config.version);
+
+  this._disableAllModule = false; // 禁用所有模块
+  this._disableTRTCModule = false; // 禁用TRTC模块
 }
 
 /** @constant {string} */
@@ -37,7 +41,21 @@ TIC.prototype = {
    * @param callback			回调
    * @return 错误码, 0表示成功
    */
-  init(sdkAppId, callback) {
+  init(sdkAppId, disableModule, callback) {
+    let cb = null;
+    if (arguments.length == 2) {
+      cb = disableModule;
+    } else if (arguments.length == 3) {
+      cb = callback;
+      // 不禁用所有模块
+      if (disableModule === Constant.TICDisableModule.TIC_DISABLE_MODULE_NONE) {
+        this._disableAllModule = false;
+      } else if (disableModule >> 1 & 1 === 1) { // 禁用TRTC模块
+        this._disableAllModule = false;
+        this._disableTRTCModule = true; // 禁用TRTC模块
+      }
+    }
+
     this.log.setSdkAppId(sdkAppId);
     let startTime = Date.now();
 
@@ -52,7 +70,7 @@ TIC.prototype = {
 
     if (sdkAppId) {
       this.accountModel.sdkAppId = sdkAppId;
-      callback && callback({
+      cb && cb({
         module: Constant.TICModule.TICMODULE_IMSDK,
         code: 0
       });
@@ -67,7 +85,7 @@ TIC.prototype = {
       });
 
     } else {
-      callback && callback({
+      cb && cb({
         module: Constant.TICModule.TICMODULE_IMSDK,
         code: -7,
         desc: 'sdkAppId is illegal'
@@ -112,7 +130,7 @@ TIC.prototype = {
       ext: '',
     });
 
-    this.ticWebIm.login(this.accountModel).then((res) => {
+    this.ticWebIm.login(this.accountModel, this.classModel).then((res) => {
 
       this.ticWebIm.setMessageListener(this.messageListener);
       this.ticWebIm.setEventListener(this.eventListener);
@@ -277,7 +295,15 @@ TIC.prototype = {
    * @param boardOption	白板相关参数
    * @param callback			回调
    */
-  joinClassroom(classId, webRTCOption, boardOption, callback) {
+  joinClassroom(classOption, webRTCOption, boardOption, callback) {
+    let classId = null;
+    if (Object.prototype.toString.call(classOption) === '[object Object]') {
+      this.classModel.compatSaas = !!classOption.compatSaas;
+      classId = classOption.classId;
+    } else {
+      classId = classOption;
+    }
+
     this.log.setRoomId(classId);
 
     let startTime = Date.now();
@@ -287,15 +313,22 @@ TIC.prototype = {
       errorCode: 0,
       errorDesc: '',
       timeCost: Date.now() - startTime,
-      data: JSON.stringify(webRTCOption || {}),
-      ext: JSON.stringify(boardOption || {}),
+      data: '',
+      ext: JSON.stringify({
+        webRTCOption: webRTCOption,
+        boardOption: boardOption
+      }),
     });
 
     this.accountModel.classId = classId;
-
+    // 是否需要与saas同步
+    if (this.classModel.compatSaas) {
+      this.accountModel.classChatId = classId + '_chat'
+    } else {
+      this.classModel.classChatId = classId;
+    }
 
     this.ticWebIm.joinRoom().then(res => {
-
       // 加入课堂-end
       this.log.report(LogReport.EVENT_NAME.JOINGROUP_END, {
         errorCode: 0,
@@ -316,8 +349,8 @@ TIC.prototype = {
         }
       });
 
-      // 加入AV房间-start
-      if (!webRTCOption) {
+      // 如果禁用了所有模块 || 禁用了TRTC模块 || 进房参数传了false
+      if (this._disableAllModule || this._disableTRTCModule || !webRTCOption) {
         // 白板初始化
         this.log.report(LogReport.EVENT_NAME.INITBOARD_START, {
           errorCode: 0,
@@ -442,6 +475,50 @@ TIC.prototype = {
         desc: error.ErrorInfo
       });
     });
+
+
+    // 如果需要与saas同步
+    if (this.classModel.compatSaas) {
+      // 加入聊天群-start
+      this.log.report(LogReport.EVENT_NAME.JOINCHATGROUP_START, {
+        errorCode: 0,
+        errorDesc: '',
+        timeCost: Date.now() - startTime,
+        data: '',
+        ext: ''
+      });
+      this.ticWebIm.joinSaasChatRoom().then((res) => {
+        // 加入聊天群-end
+        this.log.report(LogReport.EVENT_NAME.JOINCHATGROUP_END, {
+          errorCode: 0,
+          errorDesc: '',
+          timeCost: Date.now() - startTime,
+          data: '',
+          ext: '',
+        });
+      }, () => {
+        // 重试一次
+        this.ticWebIm.joinSaasChatRoom().then(() => {
+          // 加入聊天群-end
+          this.log.report(LogReport.EVENT_NAME.JOINCHATGROUP_END, {
+            errorCode: 0,
+            errorDesc: '',
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+        }, error => {
+          // 加入聊天群-end
+          this.log.report(LogReport.EVENT_NAME.JOINCHATGROUP_END, {
+            errorCode: error.ErrorCode,
+            errorDesc: error.ErrorInfo,
+            timeCost: Date.now() - startTime,
+            data: '',
+            ext: '',
+          });
+        });
+      });
+    }
   },
 
   /**
@@ -526,6 +603,11 @@ TIC.prototype = {
         });
       }
     });
+
+    // 如果与互动课堂互通
+    if (this.classModel.compatSaas) {
+      this.ticWebIm.quitChatGroup();
+    }
   },
 
   /**
@@ -686,13 +768,12 @@ TIC.prototype = {
     return webim;
   },
 
-
   /**
-   * @desc 获取WebRTC实例
+   * @desc  获取trtc client 实例
    * @return {WebRTC} cos 返回WebRTC实例
    */
-  getWebRTCInstance() {
-    return this.ticWebRTC.getInstance();
+  getTrtcClient() {
+    return this.ticWebRTC && this.ticWebRTC.getInstance();
   },
 
   /**
