@@ -1,5 +1,8 @@
 # TIC Release Notes - Windows
 
+## 2019.10.30
+- 更新白板SDK 2.3.5.27
+
 ## 2019.10.28
 - 更新IMSDK 4.5.111
 - 更新TRTC 6.7.0.7753

@@ -46,6 +46,7 @@ id makeWeakRef (id object) {
 
 
 @property (nonatomic, strong) NSTimer *syncTimer;
+@property (nonatomic, assign) TICDisableModule disableModule;
 @end
 
 @implementation TICManager
@@ -62,6 +63,12 @@ id makeWeakRef (id object) {
         instance.statusListeners = [NSMutableArray array];
     });
     return instance;
+}
+
+- (void)init:(int)sdkAppId disableModule:(TICDisableModule)disableModule callback:(TICCallback)callback;
+{
+    _disableModule = disableModule;
+    [self init:sdkAppId callback:callback];
 }
 
 - (void)init:(int)sdkAppId callback:(TICCallback)callback;
@@ -249,7 +256,9 @@ id makeWeakRef (id object) {
     _isEnterRoom = NO;
     _option = nil;
     _boardController = nil;
-    [[TRTCCloud sharedInstance] exitRoom];
+    if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+        [[TRTCCloud sharedInstance] exitRoom];
+    }
     [self report:TIC_REPORT_QUIT_GROUP_START];
     __weak typeof(self) ws = self;
     
@@ -548,7 +557,7 @@ id makeWeakRef (id object) {
 - (void)onTEBInit
 {
     [self report:TIC_REPORT_INIT_BOARD_END];
-    if ((_option.disableModule & TIC_DISABLE_MODULE_TRTC) == TIC_DISABLE_MODULE_TRTC){
+    if ((_disableModule & TIC_DISABLE_MODULE_TRTC) == TIC_DISABLE_MODULE_TRTC){
         //屏蔽了TRTC模块
         [self onEnterRoom:0];
     }
@@ -735,7 +744,9 @@ id makeWeakRef (id object) {
 {
     [self report:TIC_REPORT_FORCE_OFFLINE];
     if(_isEnterRoom){
-        [[TRTCCloud sharedInstance] exitRoom];
+        if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+            [[TRTCCloud sharedInstance] exitRoom];
+        }
         [_boardController removeDelegate:self];
         if(_option.boardDelegate){
             [_boardController removeDelegate:_option.boardDelegate];
@@ -753,7 +764,9 @@ id makeWeakRef (id object) {
 {
     [self report:TIC_REPORT_SIG_EXPIRED];
     if(_isEnterRoom){
-        [[TRTCCloud sharedInstance] exitRoom];
+        if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+            [[TRTCCloud sharedInstance] exitRoom];
+        }
         [_boardController removeDelegate:self];
         if(_option.boardDelegate){
             [_boardController removeDelegate:_option.boardDelegate];

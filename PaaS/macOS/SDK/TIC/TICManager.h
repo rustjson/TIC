@@ -40,6 +40,13 @@
  **/
 - (void)init:(int)sdkAppId callback:(TICCallback)callback;
 /**
+* 初始化
+* @param sdkAppId 应用标识【必填】
+* @param disableModule 禁用内部TIC相关模块
+* @param callback 回调【选填】
+**/
+- (void)init:(int)sdkAppId disableModule:(TICDisableModule)disableModule callback:(TICCallback)callback;
+/**
  * 反初始化
  **/
 - (void)unInit;
