@@ -4,6 +4,7 @@ import Constant from '../constant/Constant';
 
 function TICWebIM() {
   this.accountModel = null;
+  this.classModel = null;
   this.imListener = null;
   this.boardNotifyCallback = null;
   this.imHandler = null;
@@ -13,8 +14,9 @@ TICWebIM.prototype.setLog = function (log) {
   this.log = log;
 }
 
-TICWebIM.prototype.login = function (accountModel) {
+TICWebIM.prototype.login = function (accountModel, classModel) {
   this.accountModel = accountModel;
+  this.classModel = classModel;
   this.listeners = this.initEvent();
   return new Promise((resolve, reject) => {
     webim.login({
@@ -28,7 +30,7 @@ TICWebIM.prototype.login = function (accountModel) {
       isAccessFormalEnv: true,
       isLogOn: false
     }, (res) => {
-      this.imHandler = new IMHandler(accountModel);
+      this.imHandler = new IMHandler(accountModel, classModel);
       resolve(res);
     }, reject);
   });
@@ -156,7 +158,7 @@ TICWebIM.prototype.messageHandler = function (msgs) {
       // 如果是群组消息
       if (msgType === webim.SESSION_TYPE.GROUP) {
         var groupid = sess.id();
-        // 如果是聊天群
+        // 如果是信令群（如果不与saas同步，则同时也是聊天群）
         if (groupid == self.accountModel.classId) {
           var elems = msg.elems;
           if (elems.length) {
@@ -174,6 +176,8 @@ TICWebIM.prototype.messageHandler = function (msgs) {
               self.resolveMessage(msg);
             }
           }
+        } else if (groupid == self.accountModel.classChatId) { // 如果是聊天群
+          self.resolveMessage(msg);
         } else {
           // 非本群通知，忽略
         }
@@ -261,7 +265,7 @@ TICWebIM.prototype.createRoom = function (classId, scene) {
 }
 
 /**
- * 加入IM聊天群
+ * 加入白板信令群
  */
 TICWebIM.prototype.joinRoom = function () {
   // 先创建群，成功后加入群
@@ -273,7 +277,11 @@ TICWebIM.prototype.joinRoom = function () {
       (resp) => {
         //JoinedSuccess:加入成功; WaitAdminApproval:等待管理员审批
         if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
-          this.imHandler.setIMSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          this.imHandler.setIMBoardSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          // 如果不与saas互通
+          if (!this.classModel.compatSaas) {
+            this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          }
           resolve(resp);
         } else {
           reject(resp);
@@ -282,10 +290,53 @@ TICWebIM.prototype.joinRoom = function () {
 
       (err) => {
         if (err.ErrorCode == 10013) { // 被邀请加入的用户已经是群成员,也表示成功
-          this.imHandler.setIMSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          this.imHandler.setIMBoardSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          // 如果不与saas互通
+          if (!this.classModel.compatSaas) {
+            this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          }
           resolve(err);
         } else if (err.ErrorCode == -12) { // Join Group succeed; But the type of group is not AVChatRoom
-          this.imHandler.setIMSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          this.imHandler.setIMBoardSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          // 如果不与saas互通
+          if (!this.classModel.compatSaas) {
+            this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          }
+          resolve(err);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  });
+}
+
+/**
+ * 加入Saas聊天群
+ */
+TICWebIM.prototype.joinSaasChatRoom = function () {
+  // 先创建群，成功后加入群
+  return new Promise((resolve, reject) => {
+    var groupID = String(this.accountModel.classChatId);
+    webim.applyJoinBigGroup({
+        GroupId: groupID
+      },
+      (resp) => {
+        //JoinedSuccess:加入成功; WaitAdminApproval:等待管理员审批
+        if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
+          this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          resolve(resp);
+        } else {
+          reject(resp);
+        }
+      },
+
+      (err) => {
+        if (err.ErrorCode == 10013) { // 被邀请加入的用户已经是群成员,也表示成功
+          this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
+          resolve(err);
+        } else if (err.ErrorCode == -12) { // Join Group succeed; But the type of group is not AVChatRoom
+          this.imHandler.setIMChatSession(new webim.Session(webim.SESSION_TYPE.GROUP, groupID, groupID));
           resolve(err);
         } else {
           reject(err);
@@ -317,7 +368,31 @@ TICWebIM.prototype.destroyGroup = function (groupID) {
  * 退出群组
  */
 TICWebIM.prototype.quitGroup = function () {
-  var groupID = this.accountModel.classId + '';
+  var groupID = String(this.accountModel.classId);
+  return new Promise((resolve, reject) => {
+    webim.quitBigGroup({
+        GroupId: groupID
+      },
+      function (resp) {
+        resolve(resp);
+      },
+      (err) => {
+        // 群主想退群,则也认为成功
+        if (err.ErrorCode == 10009) {
+          resolve();
+          return;
+        }
+        reject(err);
+      }
+    );
+  });
+}
+
+/**
+ * 退出chat群组
+ */
+TICWebIM.prototype.quitChatGroup = function () {
+  var groupID = String(this.accountModel.classChatId);
   return new Promise((resolve, reject) => {
     webim.quitBigGroup({
         GroupId: groupID

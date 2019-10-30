@@ -107,6 +107,8 @@ LogReport.EVENT_NAME = {
   DELETEGROUP_END: 'deleteGroup_end', //	销毁群组	
   JOINGROUP_START: 'joinGroup_start', //	加入群组	
   JOINGROUP_END: 'joinGroup_end', //	加入群组	
+  JOINCHATGROUP_START: 'joinChatGroup_start', //	加入群组	
+  JOINCHATGROUP_END: 'joinChatGroup_end', //	加入群组	
   INITBOARD_START: 'initBoard_start', //	初始化白板	
   INITBOARD_END: 'initBoard_end', //	初始化白板	
   SYNCBOARDHISTORY_END: 'syncBoardHistory_end', //	白板历史数据同步	

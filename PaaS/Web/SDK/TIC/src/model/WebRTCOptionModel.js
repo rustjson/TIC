@@ -4,6 +4,7 @@ function WebRTCOptionModel() {
   this.pureAudioPushMod = null;
   this.recordId = null;
   this.peerAddNotify = null;
+  this.classScene = null;
 }
 
 WebRTCOptionModel.prototype.setData = function (data) {

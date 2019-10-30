@@ -21,6 +21,11 @@ const Constant = {
   TICRoleType: {
     TIC_ROLE_TYPE_ANCHOR: 20, //主播
     TIC_ROLE_TYPE_AUDIENCE: 21, //观众
+  },
+
+  TICDisableModule: {
+    TIC_DISABLE_MODULE_NONE: 0, //默认全部启用
+    TIC_DISABLE_MODULE_TRTC: (1 << 1), //禁用TRTC
   }
 };
 
