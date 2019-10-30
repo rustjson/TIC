@@ -570,7 +570,6 @@ id makeWeakRef (id object) {
             if(_option.classScene == TIC_CLASS_SCENE_LIVE){
                 params.role = (TRTCRoleType)_option.roleType;
             }
-        params.role = TIC_ROLE_TYPE_AUDIENCE;
             [[TRTCCloud sharedInstance] setDelegate:self];
             [self report:TIC_REPORT_ENTER_ROOM_START];
             [[TRTCCloud sharedInstance] enterRoom:params appScene:(TRTCAppScene)_option.classScene];
@@ -745,7 +744,9 @@ id makeWeakRef (id object) {
 {
     [self report:TIC_REPORT_FORCE_OFFLINE];
     if(_isEnterRoom){
-        [[TRTCCloud sharedInstance] exitRoom];
+        if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+            [[TRTCCloud sharedInstance] exitRoom];
+        }
         [_boardController removeDelegate:self];
         if(_option.boardDelegate){
             [_boardController removeDelegate:_option.boardDelegate];
@@ -763,7 +764,9 @@ id makeWeakRef (id object) {
 {
     [self report:TIC_REPORT_SIG_EXPIRED];
     if(_isEnterRoom){
-        [[TRTCCloud sharedInstance] exitRoom];
+        if((_disableModule & TIC_DISABLE_MODULE_TRTC) != TIC_DISABLE_MODULE_TRTC){
+            [[TRTCCloud sharedInstance] exitRoom];
+        }
         [_boardController removeDelegate:self];
         if(_option.boardDelegate){
             [_boardController removeDelegate:_option.boardDelegate];
