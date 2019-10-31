@@ -9,6 +9,7 @@
 #define IDD_BOARD_TAB_DRAW              133
 #define IDD_BOARD_TAB_BOARD             134
 #define IDD_BOARD_TAB_FILE              135
+#define IDD_PUSH_DIALOG                 136
 #define IDC_COMBOX_USER                 1000
 #define IDC_BTN_LOGIN                   1001
 #define IDC_BTN_LOGOUT                  1002
@@ -88,7 +89,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_RESOURCE_VALUE        137
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1078
 #define _APS_NEXT_SYMED_VALUE           101
