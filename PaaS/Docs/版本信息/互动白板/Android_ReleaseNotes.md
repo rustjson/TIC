@@ -1,5 +1,5 @@
 # Release Notes - Android
-## 2.3.5.224 @ 2019.10.30
+## 2.3.5.227 @ 2019.10.30
 - 增加跳转白板页步数的回调接口(onTEBGotoStep)
 - 增加获取指定文件的缩略图接口(getThumbnailImages)
 - 修改白板缩放过程中会产生Crash的问题; 
