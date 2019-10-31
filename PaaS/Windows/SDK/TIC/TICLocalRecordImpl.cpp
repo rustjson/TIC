@@ -12,7 +12,7 @@ TICLocalRecorderImpl::~TICLocalRecorderImpl() {
 }
 
 
-int TICLocalRecorderImpl::init(TEduRecordAuthParam authParam) {
+int TICLocalRecorderImpl::init(TEduRecordAuthParam authParam, TICCallback callback) {
 
 	Json::Value value;
 	value["AppProc"] = authParam.appId;
@@ -23,12 +23,12 @@ int TICLocalRecorderImpl::init(TEduRecordAuthParam authParam) {
 	Json::FastWriter writer;
 	std::string msg = writer.write(value);
 
-	send("Init", msg);
+	send("Init", msg, callback);
 	return 0;
 }
 
 
-int TICLocalRecorderImpl::startLocalRecord(const TEduRecordParam& para, const char * szRecordPath) {
+int TICLocalRecorderImpl::startLocalRecord(const TEduRecordParam& para, const char * szRecordPath, TICCallback callback) {
 
 	if (szRecordPath != NULL && strlen(szRecordPath) > 0) {
 		Json::Value value;
@@ -47,7 +47,7 @@ int TICLocalRecorderImpl::startLocalRecord(const TEduRecordParam& para, const ch
 		Json::FastWriter writer;
 		std::string msg = writer.write(value);
 
-		send("StartRecord", msg);
+		send("StartRecord", msg, callback);
 		return 0;
 	}
 
@@ -55,12 +55,12 @@ int TICLocalRecorderImpl::startLocalRecord(const TEduRecordParam& para, const ch
 
 }
 
-int TICLocalRecorderImpl::stopLocalRecord() {
-	send("StopRecord", std::string());
+int TICLocalRecorderImpl::stopLocalRecord(TICCallback callback) {
+	send("StopRecord", std::string(), callback);
 	return 0;
 }
 
-int TICLocalRecorderImpl::startPush(const TEduRecordParam& para, const char * url) {
+int TICLocalRecorderImpl::startPush(const TEduRecordParam& para, const char * url, TICCallback callback) {
 	if (url != NULL && strlen(url) > 0) {
 		Json::Value value;
 		value["AppProc"] = para.AppProc;
@@ -79,27 +79,35 @@ int TICLocalRecorderImpl::startPush(const TEduRecordParam& para, const char * ur
 		Json::FastWriter writer;
 		std::string msg = writer.write(value);
 
-		send("StartPush", msg);
+		send("StartPush", msg, callback);
 		return 0;
 	}
 	return -1;
 }
 
-int TICLocalRecorderImpl::stopPush() {
-	send("StopPush", std::string());
+int TICLocalRecorderImpl::stopPush(TICCallback callback) {
+	send("StopPush", std::string(), callback);
 	return 0;
 }
 
-int TICLocalRecorderImpl::exit() {
-	send("Exit", std::string());
+int TICLocalRecorderImpl::exit(TICCallback callback) {
+	send("Exit", std::string(), callback);
 	return 0;
 }
 
 
-void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBody) {
+void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBody, const TICCallback callback) {
 	if (!cmd.empty()) {
-		http.asynPost(HttpClient::a2w(URL + cmd), reqBody, [](int code, const HttpHeaders& rspHeaders, const std::string& rspBody) {
-			
+		std::weak_ptr<TICLocalRecorderImpl> weakThis = this->shared_from_this();
+		http.asynPost(HttpClient::a2w(URL + cmd), reqBody, [=](int code, const HttpHeaders& rspHeaders, const std::string& rspBody) {
+			auto _this = weakThis.lock();
+			if (!_this) return;
+
+			int result = 0;
+			std::string desc = rspBody;
+			if (callback) {
+				callback(TICMODULE_RECORD, result, desc.c_str());
+			}
 		});
 	}
 	
