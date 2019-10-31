@@ -34,24 +34,24 @@ BOOL CPushDlg::OnInitDialog()
 			return;
 		}
 
-		
+		if (code != 0) {
+			AfxMessageBox(_T("认证失败!"), MB_OK);
+		}
 	});
-
-
-
 	return TRUE;
 }
 
 void CPushDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+
+	DDX_Control(pDX, IDC_CHECK_ENABLE_PUSH, chkPushEnable_);
 }
 
 
 void CPushDlg::OnBnClickedChkEnableDraw()
 {
 	
-
 }
 
 
@@ -59,12 +59,37 @@ void CPushDlg::OnBnClickedCheckEnablePush()
 {
 	if (mLocalRecorder)
 	{
-		bool selected = true; //chkDrawEnable_.GetCheck() == BST_CHECKED;
+		bool selected = chkPushEnable_.GetCheck() == BST_CHECKED;
+		std::weak_ptr< CPushDlg> weakSelf = this->shared_from_this();
+
 		if (selected) {
-			//mLocalRecorder->startPush();
+			TEduRecordParam para;
+			para.AppProc = "TICDemo.exe";
+			const std::string url = "rtmp://29734.livepush.myqcloud.com/live/seventest?txSecret=b356ff74acb71c6d1a758719d557fc9c&txTime=5DE291FF";
+			mLocalRecorder->startPush(para, url.c_str(), [this, weakSelf](TICModule module, int code, const char *desc) {
+				std::shared_ptr<CPushDlg> self = weakSelf.lock();
+				if (!self)
+				{
+					return;
+				}
+
+				if (code != 0) {
+					AfxMessageBox(_T("推流失败"), MB_OK);
+				}
+			});
 		}
 		else {
-			//mLocalRecorder->stopPush();
+			mLocalRecorder->stopPush([this, weakSelf](TICModule module, int code, const char *desc) {
+				std::shared_ptr<CPushDlg> self = weakSelf.lock();
+				if (!self)
+				{
+					return;
+				}
+
+				if (code != 0) {
+					AfxMessageBox(_T("停止推流失败"), MB_OK);
+				}
+			});
 		}
 			
 

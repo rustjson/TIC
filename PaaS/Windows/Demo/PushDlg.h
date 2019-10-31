@@ -22,6 +22,7 @@ private:
 
 private:
 	TICLocalRecorder* mLocalRecorder;
+	CButton chkPushEnable_;
 
 public:
 	afx_msg void OnBnClickedChkEnableDraw();

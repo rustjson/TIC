@@ -74,7 +74,7 @@ struct TEduRecordParam {
 	std::string AppProc;  //如QQMusic.exe
 
 	//被录制窗口wndId
-	int Wnd;
+	int Wnd = 0;
 
 	//是否录制音频
 	bool enableAudio = true;
