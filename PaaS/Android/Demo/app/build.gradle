@@ -62,6 +62,7 @@ dependencies {
     compile 'com.tencent.liteav:LiteAVSDK_TRTC:6.7.7754'
 
     //imsdk 消息通信库，如果使用腾讯的云通信Tim，则需要加上
+    //如果imsdk使用4.5以上版本，请搭配TEduBoardSdk:2.3.5.227及以上版本
     compile 'com.tencent.imsdk:imsdk:4.4.900'
 
     //http，board sdk 不依赖，根据项目自身需要使用
