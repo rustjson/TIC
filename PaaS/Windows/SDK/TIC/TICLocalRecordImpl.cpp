@@ -97,7 +97,7 @@ int TICLocalRecorderImpl::exit() {
 
 
 void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBody) {
-	if (!cmd.empty) {
+	if (!cmd.empty()) {
 		http.asynPost(HttpClient::a2w(URL + cmd), reqBody, [](int code, const HttpHeaders& rspHeaders, const std::string& rspBody) {
 			
 		});
