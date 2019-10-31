@@ -41,6 +41,7 @@ int TICLocalRecorderImpl::startLocalRecord(const TEduRecordParam& para, const ch
 		value["VideoResolution"] = para.videoResolution;
 		value["VideoFps"] = para.videoFps;
 		value["VideoBps"] = para.videoBps;
+		value["EnableAudio"] = para.enableAudio;
 		value["DstPath"] = szRecordPath;
 
 		Json::FastWriter writer;
@@ -71,8 +72,10 @@ int TICLocalRecorderImpl::startPush(const TEduRecordParam& para, const char * ur
 		value["VideoResolution"] = para.videoResolution;
 		value["VideoFps"] = para.videoFps;
 		value["VideoBps"] = para.videoBps;
+		value["EnableAudio"] = para.enableAudio;
 		value["DstURL"] = url;
 
+		
 		Json::FastWriter writer;
 		std::string msg = writer.write(value);
 
