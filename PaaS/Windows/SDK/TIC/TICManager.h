@@ -26,6 +26,7 @@ enum TICModule{
 	TICMODULE_TRTC  = 1,		//TRTC模块
 	TICMODULE_BOARD = 2,		//BOARD模块
 	TICMODULE_TIC   = 3,		//TIC模块
+	TICMODULE_RECORD = 4,		//本地录制和推流
 };
 
 /**

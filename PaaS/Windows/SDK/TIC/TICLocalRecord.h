@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 #include <functional>
+#include "TICManager.h"
 
 class TICLocalRecorder {
 public:
@@ -90,7 +91,7 @@ public:
 	* 初始化
 	 * @param authParam 		授权参数
 	*/
-	virtual int init(TEduRecordAuthParam authParam) = 0;
+	virtual int init(TEduRecordAuthParam authParam, TICCallback callback) = 0;
 
 	/**
 	* 视频本地录制, 支持不推流录制。
@@ -100,7 +101,7 @@ public:
 	*          -1 路径非法
 	*          -2 上次录制未结束，请先stopRecord
 	*/
-	virtual int startLocalRecord(const TEduRecordParam& para, const char * szRecordPath) = 0;
+	virtual int startLocalRecord(const TEduRecordParam& para, const char * szRecordPath, TICCallback callback) = 0;
 
 	/**
 	* 结束录制短视频，停止推流后，如果视频还在录制中，SDK内部会自动结束录制
@@ -108,25 +109,25 @@ public:
 	*       0 成功；
 	*      -1 不存在录制任务；
 	*/
-	virtual int stopLocalRecord() = 0;
+	virtual int stopLocalRecord(TICCallback callback) = 0;
 
 	/**
 	* 启动推流 (在否则推送出去的数据流里只有音频)
 	* @param url - 一个合法的推流地址，腾讯云的推流 URL 都要求带有 txSecret 和 txTime 防盗链签名，如果您发现推流推不上去，请检查这两个签名是否合法。
 	* @return：成功 or 失败，内存分配、资源申请失败等原因可能会导致返回失败
 	*/
-	virtual int startPush(const TEduRecordParam& para, const char * url) = 0;
+	virtual int startPush(const TEduRecordParam& para, const char * url, TICCallback callback) = 0;
 
 	/**
 	* 停止推流，注意推流 url 有排他性，也就是一个推流 Url 同时只能有一个推流端向上推流
 	*/
-	virtual int stopPush() = 0;
+	virtual int stopPush(TICCallback callback) = 0;
 
 
 	/**
 	* 停止所有录制和推流并退出进程
 	*/
-	virtual int exit() = 0;
+	virtual int exit(TICCallback callback) = 0;
 
 };
 

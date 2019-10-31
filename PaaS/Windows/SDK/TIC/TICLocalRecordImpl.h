@@ -8,19 +8,19 @@
 #include "TICLocalRecord.h"
 #include "HttpClient.h"
 
-class TICLocalRecorderImpl : public TICLocalRecorder {
+class TICLocalRecorderImpl : public TICLocalRecorder, public std::enable_shared_from_this<TICLocalRecorderImpl> {
 public:
 	TICLocalRecorderImpl(std::weak_ptr<TEduRecordCallback>  callback);
 	virtual ~TICLocalRecorderImpl();
-	virtual int init(TEduRecordAuthParam authParam) override;
-	virtual int startLocalRecord(const TEduRecordParam& para, const char * szRecordPath) override;
-	virtual int stopLocalRecord() override;
-	virtual int startPush(const TEduRecordParam& para, const char * url) override;
-	virtual int stopPush() override;
-	virtual int exit() override;
+	virtual int init(TEduRecordAuthParam authParam, TICCallback callback) override;
+	virtual int startLocalRecord(const TEduRecordParam& para, const char * szRecordPath, TICCallback callback) override;
+	virtual int stopLocalRecord(TICCallback callback) override;
+	virtual int startPush(const TEduRecordParam& para, const char * url, TICCallback callback) override;
+	virtual int stopPush(TICCallback callback) override;
+	virtual int exit(TICCallback callback) override;
 
 protected:
-	void send(const std::string& cmd, const std::string& content);
+	void send(const std::string& cmd, const std::string& content, const TICCallback callback);
 
 protected:
 	HttpClient http;
