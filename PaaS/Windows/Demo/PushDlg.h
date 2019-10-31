@@ -21,4 +21,7 @@ private:
 
 private:
 	
+public:
+	afx_msg void OnBnClickedChkEnableDraw();
+	afx_msg void OnBnClickedCheckEnablePush();
 };

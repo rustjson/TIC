@@ -3,6 +3,10 @@
 
 const std::string URL = "http://127.0.0.1:37604/localrecord/v1/";
 
+TICLocalRecorderImpl::TICLocalRecorderImpl() {
+
+}
+
 TICLocalRecorderImpl::TICLocalRecorderImpl(std::weak_ptr<TEduRecordCallback>  callback) : mCallback(callback){
 
 }

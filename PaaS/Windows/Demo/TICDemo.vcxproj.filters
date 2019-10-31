@@ -119,6 +119,9 @@
     <ClCompile Include="PushDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\SDK\TIC\TICLocalRecord.cpp">
+      <Filter>TIC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TICDemo.rc">

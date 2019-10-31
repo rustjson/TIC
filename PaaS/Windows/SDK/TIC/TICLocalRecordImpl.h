@@ -10,6 +10,7 @@
 
 class TICLocalRecorderImpl : public TICLocalRecorder, public std::enable_shared_from_this<TICLocalRecorderImpl> {
 public:
+	TICLocalRecorderImpl();
 	TICLocalRecorderImpl(std::weak_ptr<TEduRecordCallback>  callback);
 	virtual ~TICLocalRecorderImpl();
 	virtual int init(TEduRecordAuthParam authParam, TICCallback callback) override;

@@ -88,6 +88,11 @@ public:
 	};
 
 	/**
+	 * 获取TICLocalRecord单例对象
+	 */
+	static TICLocalRecorder* GetInstance();
+
+	/**
 	* 初始化
 	 * @param authParam 		授权参数
 	*/
