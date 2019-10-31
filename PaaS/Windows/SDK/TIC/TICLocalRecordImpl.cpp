@@ -19,7 +19,7 @@ TICLocalRecorderImpl::~TICLocalRecorderImpl() {
 int TICLocalRecorderImpl::init(TEduRecordAuthParam authParam, TICCallback callback) {
 
 	Json::Value value;
-	value["AppProc"] = authParam.appId;
+	value["SdkAppId"] = authParam.appId;
 	value["UserId"] = authParam.userId;
 	value["UserSig"] = authParam.userSig;
 
@@ -102,10 +102,10 @@ int TICLocalRecorderImpl::exit(TICCallback callback) {
 
 void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBody, const TICCallback callback) {
 	if (!cmd.empty()) {
-		std::weak_ptr<TICLocalRecorderImpl> weakThis = this->shared_from_this();
+		//std::weak_ptr<TICLocalRecorderImpl> weakThis = this->shared_from_this();
 		http.asynPost(HttpClient::a2w(URL + cmd), reqBody, [=](int code, const HttpHeaders& rspHeaders, const std::string& rspBody) {
-			auto _this = weakThis.lock();
-			if (!_this) return;
+			//auto _this = weakThis.lock();
+			//if (!_this) return;
 
 			int result = 0;
 			std::string desc = rspBody;

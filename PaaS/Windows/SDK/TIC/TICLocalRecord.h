@@ -6,86 +6,94 @@
 #include <functional>
 #include "TICManager.h"
 
+
+enum TEduRecordReslution {
+	// 普屏 4:3
+	TXE_VIDEO_RESOLUTION_320x240 = 1,
+	TXE_VIDEO_RESOLUTION_480x360 = 2,
+	TXE_VIDEO_RESOLUTION_640x480 = 3,
+	TXE_VIDEO_RESOLUTION_960x720 = 4,
+	TXE_VIDEO_RESOLUTION_1280x960 = 5,
+
+	// 宽屏16:9
+	TXE_VIDEO_RESOLUTION_320x180 = 101,
+	TXE_VIDEO_RESOLUTION_480x272 = 102,
+	TXE_VIDEO_RESOLUTION_640x360 = 103,
+	TXE_VIDEO_RESOLUTION_960x540 = 104,
+	TXE_VIDEO_RESOLUTION_1280x720 = 105,
+	TXE_VIDEO_RESOLUTION_1920x1080 = 106,
+};
+
+/**
+ *  授权参数
+ */
+struct TEduRecordAuthParam {
+	TEduRecordAuthParam(int appId, std::string userId, std::string userSig) {
+		this->appId = appId;
+		this->userId = userId;
+		this->userSig = userSig;
+	}
+
+	int appId;
+	std::string userId;
+	std::string userSig;
+};
+
+/**
+ *  视频参数
+ */
+struct TEduRecordParam {
+	//【字段含义】 视频分辨率
+	//【推荐取值】 - 视频通话建议选择360 × 640及以下分辨率，resMode 选择 Portrait。
+	//           - 手机直播建议选择 540 × 960，resMode 选择 Portrait。
+	//           - Window 和 iMac 建议选择 640 × 360 及以上分辨率，resMode 选择 Landscape。
+	//【特别说明】 您在 TRTCVideoResolution 只能找到横屏模式的分辨率，例如：640 × 360 这样的分辨率。
+	//             如果想要使用竖屏分辨率，请指定 resMode 为 Portrait，例如：640 × 360 + Portrait = 360 × 640。
+	int videoResolution = TXE_VIDEO_RESOLUTION_1280x720; //1280x720
+
+	//【字段含义】视频采集帧率
+	//【推荐取值】15fps 或 20fps，10fps 以下会有轻微卡顿感，5fps 以下卡顿感明显，20fps 以上的帧率则过于浪费（电影的帧率也只有 24fps）。
+	int videoFps = 10;
+
+	//【字段含义】视频发送码率
+	int videoBps = 1000; //1000kpbs
+
+	//【字段含义】视频录制窗口x位置
+	int x = 0;
+
+	//【字段含义】视频录制窗口Y
+	int y = 0;
+
+	//【字段含义】视频录制窗口宽度，0表示整个窗口宽度
+	int width = 0;
+
+	//【字段含义】视频录制窗口高度, 0表示整个窗口高度
+	int Height = 0;
+
+	//被录制进程名称
+	std::string AppProc;  //如QQMusic.exe
+
+	//被录制窗口wndId
+	int Wnd;
+
+	//是否录制音频
+	bool enableAudio = true;
+};
+
+/**
+ * 录制事件回调接口
+ */
+class TEduRecordCallback {
+public:
+	virtual void onGotStatus(int state, const char* msg) = 0;
+};
+
 class TICLocalRecorder {
 public:
 	virtual ~TICLocalRecorder() {};
 
 public:
 
-	enum TEduRecordReslution {
-		// 普屏 4:3
-		TXE_VIDEO_RESOLUTION_320x240 = 1,
-		TXE_VIDEO_RESOLUTION_480x360 = 2,
-		TXE_VIDEO_RESOLUTION_640x480 = 3,
-		TXE_VIDEO_RESOLUTION_960x720 = 4,
-		TXE_VIDEO_RESOLUTION_1280x960 = 5,
-
-		// 宽屏16:9
-		TXE_VIDEO_RESOLUTION_320x180 = 101,
-		TXE_VIDEO_RESOLUTION_480x272 = 102,
-		TXE_VIDEO_RESOLUTION_640x360 = 103,
-		TXE_VIDEO_RESOLUTION_960x540 = 104,
-		TXE_VIDEO_RESOLUTION_1280x720 = 105,
-		TXE_VIDEO_RESOLUTION_1920x1080 = 106,
-	};
-
-	/**
-	 *  授权参数
-	 */
-	struct TEduRecordAuthParam {
-		int appId;
-		std::string userId;
-		std::string userSig;
-	};
-
-	/**
-	 *  视频参数
-	 */
-	struct TEduRecordParam {
-		//【字段含义】 视频分辨率
-		//【推荐取值】 - 视频通话建议选择360 × 640及以下分辨率，resMode 选择 Portrait。
-		//           - 手机直播建议选择 540 × 960，resMode 选择 Portrait。
-		//           - Window 和 iMac 建议选择 640 × 360 及以上分辨率，resMode 选择 Landscape。
-		//【特别说明】 您在 TRTCVideoResolution 只能找到横屏模式的分辨率，例如：640 × 360 这样的分辨率。
-		//             如果想要使用竖屏分辨率，请指定 resMode 为 Portrait，例如：640 × 360 + Portrait = 360 × 640。
-		int videoResolution = TXE_VIDEO_RESOLUTION_1280x720; //1280x720
-
-		//【字段含义】视频采集帧率
-		//【推荐取值】15fps 或 20fps，10fps 以下会有轻微卡顿感，5fps 以下卡顿感明显，20fps 以上的帧率则过于浪费（电影的帧率也只有 24fps）。
-		int videoFps = 10;
-
-		//【字段含义】视频发送码率
-		int videoBps = 1000; //1000kpbs
-
-		//【字段含义】视频录制窗口x位置
-		int x = 0;
-
-		//【字段含义】视频录制窗口Y
-		int y = 0;
-
-		//【字段含义】视频录制窗口宽度，0表示整个窗口宽度
-		int width = 0;
-
-		//【字段含义】视频录制窗口高度, 0表示整个窗口高度
-		int Height = 0;
-
-		//被录制进程名称
-		std::string AppProc;  //如QQMusic.exe
-
-		//被录制窗口wndId
-		int Wnd;
-
-		//是否录制音频
-		bool enableAudio = true;
-	};
-
-	/**
-	 * 录制事件回调接口
-	 */
-	class TEduRecordCallback {
-	public:
-		virtual void onGotStatus(int state, const char* msg) = 0;
-	};
 
 	/**
 	 * 获取TICLocalRecord单例对象

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include "..\SDK\TIC\TICLocalRecord.h"
 
 class CPushDlg
 	: public CDialogEx
@@ -20,7 +21,8 @@ private:
 	virtual void DoDataExchange(CDataExchange* pDX) override;
 
 private:
-	
+	TICLocalRecorder* mLocalRecorder;
+
 public:
 	afx_msg void OnBnClickedChkEnableDraw();
 	afx_msg void OnBnClickedCheckEnablePush();
