@@ -59,6 +59,7 @@ int TICLocalRecorderImpl::startService() {
 		//LERROR(L"ShellExecuteExW failed: %lu", ::GetLastError());
 		return false;
 	}
+	return true;
 }
 
 

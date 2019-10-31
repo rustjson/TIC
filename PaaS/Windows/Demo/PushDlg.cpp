@@ -15,6 +15,7 @@ CPushDlg::CPushDlg(CWnd* pParent)
 	: CDialogEx(IDD_PUSH_DIALOG, pParent)
 {
 	mLocalRecorder = TICLocalRecorder::GetInstance();
+	mLivePlayer = createTXLivePlayer();
 }
 
 BOOL CPushDlg::OnInitDialog()
@@ -38,6 +39,8 @@ BOOL CPushDlg::OnInitDialog()
 			AfxMessageBox(_T("认证失败!"), MB_OK);
 		}
 	});
+
+
 	return TRUE;
 }
 
@@ -74,7 +77,11 @@ void CPushDlg::OnBnClickedCheckEnablePush()
 				}
 
 				if (code != 0) {
-					AfxMessageBox(_T("推流失败"), MB_OK);
+					AfxMessageBox(_T("开始推流失败"), MB_OK);
+				}
+				else {
+					AfxMessageBox(_T("开始推流"), MB_OK);
+					self->StartPlay();
 				}
 			});
 		}
@@ -86,13 +93,30 @@ void CPushDlg::OnBnClickedCheckEnablePush()
 					return;
 				}
 
+				self->StopPlay();
 				if (code != 0) {
 					AfxMessageBox(_T("停止推流失败"), MB_OK);
+				}
+				else {
+					AfxMessageBox(_T("停止推流"), MB_OK);
 				}
 			});
 		}
 			
 
 	}
+
+
 	
+}
+
+void CPushDlg::StartPlay() {
+	HWND playView = GetDlgItem(IDC_PLAYER_RENDER)->m_hWnd;
+	mLivePlayer->setRenderFrame(playView);
+	mLivePlayer->startPlay("http://29734.liveplay.myqcloud.com/live/seventest.flv", PLAY_TYPE_LIVE_FLV);
+}
+
+void CPushDlg::StopPlay() {
+	mLivePlayer->setRenderFrame(NULL);
+	mLivePlayer->stopPlay();
 }
