@@ -22,6 +22,7 @@ public:
 
 protected:
 	void send(const std::string& cmd, const std::string& content, const TICCallback callback);
+	int startService();
 
 protected:
 	HttpClient http;
