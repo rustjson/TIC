@@ -54,12 +54,8 @@ int TICLocalRecorderImpl::startService() {
 	sei.hProcess = NULL;
 
 	ret = ::ShellExecuteExA(&sei);
-	if (FALSE == ret)
-	{
-		//LERROR(L"ShellExecuteExW failed: %lu", ::GetLastError());
-		return false;
-	}
-	return true;
+
+	return ret;
 }
 
 
@@ -157,7 +153,7 @@ void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBo
 			//auto _this = weakThis.lock();
 			//if (!_this) return;
 
-			int result = 0;
+			int result = code;
 			std::string desc = rspBody;
 			if (callback) {
 				callback(TICMODULE_RECORD, result, desc.c_str());
