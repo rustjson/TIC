@@ -19,7 +19,7 @@ user_sig|string|腾讯云签名，登录必要的腾讯云模块用。|1. 如果
 
 ## 各端接入流程
 
-### 桌面端
+### 桌面端PC/MAC
 <div id="electron_location"></div>
 
 ####  安装
@@ -27,25 +27,31 @@ mac：[下载地址](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Saas.dmg)。
 win：[下载地址](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。
 >!在用户机器上安装互动课堂组件。在 Win10 上必须使用管理员权限安装。
 
-####  使用
-1. 通过浏览器启动应用进入课堂
+####  1. 单击启动进入课堂
+  桌面单击应用启动，输入机构 ID、课堂 ID、用户 ID 和密码加入课堂。
+  
+  
+####  2. 通过浏览器启动应用进入课堂
 如果应用已安装，可通过浏览器直接拉起。如果未安装，会提示下载地址。目前支持的浏览器有 Chrome、Safari。
->?因受到 electron 注册网络协议的限制，MAC 需点击启动后才可拉起。
+因受到 electron 注册网络协议的限制，MAC 需点击启动后才可拉起。
 
  URL 拼写规则如下：
 ```
 https://tedu.qcloudtrtc.com/#/class/company_id/:class_id/:user_id?/:user_sig?/:user_token?
+
+
 ```
 示例如下：
 ```
-https://tedu.qcloudtrtc.com/#/class/机构 ID/房间 ID/用户 ID（可选）/用户 Sig（可选）/用户 token（可选） 
-例如：
+https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx 
+
+sig建议托管私钥给我们user_sig就可以不用填
+
 https://tedu.qcloudtrtc.com/#/class/100001/1000776477
-或者：
-https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx
+
+
+
 ```
-2. 单击启动进入课堂
-  桌面单击应用启动，输入机构 ID、课堂 ID、用户 ID 和密码加入课堂。
 
 ### Web 端
 <span id="web_location"></span>
@@ -53,7 +59,6 @@ https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx
 目前 Web 客户端暂时只提供纯网页方式拉起，后期会提供库方式整合。
 
 ####  URL 启动
-
 ```
 https://tedu.qcloudtrtc.com/#/class/company_id/:class_id/:user_id?/:user_sig?/:user_token?
 ```

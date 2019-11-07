@@ -1,6 +1,10 @@
+
+#include<windows.h>
+#include<stdio.h>
 #include "TICLocalRecordImpl.h"
 #include "jsoncpp/json.h"
 
+const std::string RecordExe = "TXCloudRecord.exe";
 const std::string URL = "http://127.0.0.1:37604/localrecord/v1/";
 
 TICLocalRecorderImpl::TICLocalRecorderImpl() {
@@ -16,7 +20,49 @@ TICLocalRecorderImpl::~TICLocalRecorderImpl() {
 }
 
 
+int TICLocalRecorderImpl::startService() {
+	BOOL ret = FALSE;
+
+	//ShellExecute(NULL, TEXT("open"), TEXT("C:\\Program Files\\Internet Explorer\\iexplore.exe"), NULL, NULL, SW_SHOWNORMAL);
+
+	std::string cmd = "";
+
+
+	char szFilePath[MAX_PATH + 1] = { 0 };
+	GetModuleFileNameA(NULL, szFilePath, MAX_PATH);
+	(strrchr(szFilePath, '\\'))[0] = 0;
+	std::string path = szFilePath;
+	path.append("\\..\\..\\SDK\\LocalRecord\\");
+	path.append(RecordExe);
+	//path.append("../");
+
+	SHELLEXECUTEINFOA sei = { 0 };
+	sei.cbSize = sizeof(SHELLEXECUTEINFOA);
+	sei.fMask = SEE_MASK_NOCLOSEPROCESS;
+	sei.hwnd = NULL;
+	sei.lpVerb = "open";
+	sei.lpFile = path.c_str();
+	sei.lpParameters = cmd.c_str();
+	sei.lpDirectory = NULL;
+	sei.nShow = SW_HIDE;
+	sei.hInstApp = NULL;
+	sei.lpIDList = NULL;
+	sei.lpClass = NULL;
+	sei.hkeyClass = NULL;
+	sei.dwHotKey = NULL;
+	sei.hIcon = NULL;
+	sei.hProcess = NULL;
+
+	ret = ::ShellExecuteExA(&sei);
+
+	return ret;
+}
+
+
 int TICLocalRecorderImpl::init(TEduRecordAuthParam authParam, TICCallback callback) {
+
+	startService();
+
 
 	Json::Value value;
 	value["SdkAppId"] = authParam.appId;
@@ -107,7 +153,7 @@ void TICLocalRecorderImpl::send(const std::string& cmd, const std::string& reqBo
 			//auto _this = weakThis.lock();
 			//if (!_this) return;
 
-			int result = 0;
+			int result = code;
 			std::string desc = rspBody;
 			if (callback) {
 				callback(TICMODULE_RECORD, result, desc.c_str());

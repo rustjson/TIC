@@ -43,6 +43,7 @@
 #define IDC_BTN_TEXT_COLOR              1029
 #define IDC_RADIO_PEN                   1030
 #define IDC_RADIO_ERASER                1031
+#define IDC_PLAYER_RENDER               1031
 #define IDC_RADIO_LASER                 1032
 #define IDC_RADIO_LINE                  1033
 #define IDC_RADIO_OVAL                  1034
@@ -85,6 +86,7 @@
 #define IDC_SLIDER_TEXT_SIZE            1077
 #define IDC_CHK_REST_STEP               1077
 #define IDC_CHECK_ENABLE_PUSH           1079
+#define IDC_PUSH_RENDER                 1080
 
 // Next default values for new objects
 // 
@@ -92,7 +94,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        137
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1080
+#define _APS_NEXT_CONTROL_VALUE         1081
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
