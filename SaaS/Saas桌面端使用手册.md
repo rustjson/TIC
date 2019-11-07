@@ -5,6 +5,16 @@
 - Mac平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Saas.dmg)。
 - Win平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。
 
+#### 版本更新说明
+
+#### 1.2
+- 添加个人中心页
+- 添加助教角色
+- 更多权限管理(上下台/授权[操作白屏权限])
+- 开发屏幕分享功能
+- 添加课堂工具(签到/答题卡)
+- 支持课件删除
+
 ### 加入课堂
 #### 加入课堂的方式
 1. **通过管理员分享的链接加入课堂**
