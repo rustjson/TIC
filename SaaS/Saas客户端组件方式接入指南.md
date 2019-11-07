@@ -55,22 +55,6 @@ open TClass.app --args company_id class_id user_id user_token user_sig
 #### 下载组件
 Web 平台组件下载：[单击下载](https://tic-res-1259648581.cos.ap-shanghai.myqcloud.com/saas/component/component.zip)。
 
-#### 配置
-解压后您可以看到根目录下的`config.js`文件。需要您根据自己的业务进行配置。
-```javascript
-var Config = {
-  companyId: 100001,
-  logo: 'https://tedu.qcloudtrtc.com/img/tic.643fc1ab.png',
-  loginUrl: 'https://www.qq.com'
-}
-```
-**配置说明**
-
-key | 含义 | 必填  | 说明
---------- | ---------| -----  | ---
-companyId |机构码| 是 | 腾讯云互动课堂后台为每个注册的企业的分配唯一标识码。
-logo |课堂 logo| 否 | logo 显示在左上角。
-loginUrl | 登出 URL | 是 | 上课完毕/上课期间多端登录被踢下线/登录态过期等异常情况，会跳转至该 URL。
 
 #### 部署
 - 组件代码需要部署到自己的服务器上。
