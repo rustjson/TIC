@@ -41,7 +41,8 @@ https://tedu.qcloudtrtc.com/#/class/company_id/:class_id/:user_id?/:user_sig?/:u
 ```
 示例如下：
 ```
-https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx
+https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx 
+sig建议托管私钥给我们 user_sig就可以不用填
 ```
 
 ### Web 端
