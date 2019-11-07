@@ -696,10 +696,10 @@
 | doc_url | string  | 原课件文档上传到腾讯云 COS 后，生成下载 URL | 是 | - |
 | doc_name | string | 文档名（不包含扩展） | 否 | 空字符串 |
 | doc_ext | string  | 文档的扩展名，如 ppt | 否 | 空字符串 |
-| doc_size | int | 文档大小，单位：Byte | 否 | 0 |
+| doc_size | int | 文档大小，单位：Byte ，需填文件的真实大小，不填则认为是0| 否 | 0 |
 | doc_md5 | int | 文档的 md5 | 否 | 空字符串 |
 | permission | string | 文档权限 public-公开（所有人可以查看）/private-私有（只有自己可以查看）| 否 | private |
-| is_transcode | bool | 是否需要 H5 转码（true-转码/false-不转码），如果需要此功能，需联系我们开通白名单 | 否 | false|
+| is_transcode | bool | 是否需要 H5 转码（true-转码/false-不转码），如果需要此功能，需联系我们开通白名单，凡是需要在白板区域展示的文件都需要转码 | 否 | false|
 | owner | string | 指定文档归属者（如果不填此字段，permission 会被设置为 public） | 否 | 空字符串 |
 
 #### 响应参数
