@@ -33,7 +33,7 @@ win：[下载地址](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe
   
 ####  2. 通过浏览器启动应用进入课堂
 如果应用已安装，可通过浏览器直接拉起。如果未安装，会提示下载地址。目前支持的浏览器有 Chrome、Safari。
->?因受到 electron 注册网络协议的限制，MAC 需点击启动后才可拉起。
+因受到 electron 注册网络协议的限制，MAC 需点击启动后才可拉起。
 
  URL 拼写规则如下：
 ```
