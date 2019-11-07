@@ -47,7 +47,7 @@ https://tedu.qcloudtrtc.com/#/class/100001/1000776477/xxx/xxx/xxx
 
 sig建议托管私钥给我们user_sig就可以不用填
 
-https://tedu.qcloudtrtc.com/#/class/100001/1000776477/will
+https://tedu.qcloudtrtc.com/#/class/100001/1000776477
 
 
 
