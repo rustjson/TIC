@@ -80,6 +80,7 @@
  * 加入课堂
  * @param option 课堂配置【必填】
  * @param callback 回调【选填】
+ * @brief 房间人数超过200人，建议启用大房间模式，详细配置请参考 https://cloud.tencent.com/document/product/680/35955#.E4.B8.87.E4.BA.BA.E5.A4.A7.E6.88.BF.E9.97.B4
  **/
 - (void)joinClassroom:(TICClassroomOption *)option callback:(TICCallback)callback;
 /**
