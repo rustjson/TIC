@@ -272,6 +272,7 @@ public:
 	 * 加入课堂
 	 * @param option			加入课堂参数选项，参见TICClassroomOption
 	 * @param callback			回调
+	 * @note 房间人数超过200人，建议启用大房间模式，详细配置请参考 https://cloud.tencent.com/document/product/680/35954#.E4.B8.87.E4.BA.BA.E5.A4.A7.E6.88.BF.E9.97.B4
 	 */ 
 	virtual void JoinClassroom(const TICClassroomOption& option, TICCallback callback) = 0;
 
