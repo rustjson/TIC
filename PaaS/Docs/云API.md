@@ -23,7 +23,6 @@
 | settings | settings | 课堂配置信息 | 否 |- |
 | resolution | string | 设置课堂的分辨率（320x240/800x600/1024x768)  | 否 | 1024x768 |
 | fps | int | 设置课堂的帧率| 否 | 15 |
-| layout | int | 课堂的布局风格（布局候选待定）| 否 | 0 |
 | auto_create_im | int | 是否由后台创建并管理 IM 群组，并记录 IM 历史消息（0- 不创建/1- 创建） 若要开启服务端录制则改字段必填为1| 否 | 1 |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`，<br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
@@ -75,7 +74,6 @@
     "record_types": ["local","remote"],
     "resolution": "1024x768",
     "fps": 20,
-    "layout": 1,
     "record_types": ["local","remote"],
     "auto_create_im": 1,
     "bitrate": 850,
@@ -206,7 +204,6 @@
 | settings | Object | 课堂中的一些设置信息 | 是 | - |
 | resolution | string | 视频分辨率 | 是 | - |
 | fps | int | 视频帧率 | 是 | - |
-| layout | int | 客户端互动课堂组件布局模式（使用客户端组件的用户需要关注） | 是 | - |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`，在开始上课时，会自动开启云端录制 | 是 | - | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
@@ -246,7 +243,6 @@
   "settings" : {
     "resolution": "1024x768",
     "fps": 20,
-    "layout": 1,
     "record_types": ["remote"],
     "bitrate": 850,
     "auto_open_mic": 0,
