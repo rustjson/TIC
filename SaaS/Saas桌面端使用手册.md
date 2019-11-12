@@ -3,7 +3,15 @@
 ## 如何加入课堂
 ### 下载 SaaS 客户端
 - Mac平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Saas.dmg)。
-- Win平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。
+- Win平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。  
+
+### 桌面版配置
+Intel i7-6700级别 鲁大师cpu跑分70000以上 6路视频时分辨率推荐1280*720
+Intel i5-7500级别 鲁大师cpu跑分52000以上 6路视频时分辨率推荐960*540
+Intel i5-3330级别 鲁大师cpu跑分42000以上 6路视频时分辨率推荐320*240
+
+备注：
+影响性能的原因较多，以上提供的配置仅供参考。如果遇到绘制白板卡顿的情况，可以在约课的时候设置低一些的分辨率。
 
 #### 版本更新说明
 
@@ -14,6 +22,7 @@
 - 开发屏幕分享功能
 - 添加课堂工具(签到/答题卡)
 - 支持课件删除
+-
 
 ### 加入课堂
 #### 加入课堂的方式

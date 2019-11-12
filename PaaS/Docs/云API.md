@@ -23,13 +23,13 @@
 | settings | settings | 课堂配置信息 | 否 |- |
 | resolution | string | 设置课堂的分辨率（320x240/800x600/1024x768)  | 否 | 1024x768 |
 | fps | int | 设置课堂的帧率| 否 | 15 |
-| layout | int | 课堂的布局风格（布局候选待定）| 否 | 0 |
-| auto_create_im | int | 是否由后台创建并管理 IM 群组，并记录 IM 历史消息（0- 不创建/1- 创建） | 否 | 1 |
+| auto_create_im | int | 是否由后台创建并管理 IM 群组，并记录 IM 历史消息（0- 不创建/1- 创建） 若要开启服务端录制则改字段必填为1| 否 | 1 |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`，<br> 在开始上课时，会自动开启服务端录制 | 否 | local | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
 | enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
+| layout | int | 课堂的布局风格（具体参见Layout附录）| 否 | 0 |
 | members | Array | 课堂预约成员列表 | 否 |  教师 ID 默认在成员列表中 |
 | role | string | 角色信息，本接口中全部填“student”。需要设置 members 时此字段必填 | 否 | - |
 | user_id | string | 学生 ID。需要设置 members 时此字段必填 | 否 | - |
@@ -75,10 +75,10 @@
     "record_types": ["local","remote"],
     "resolution": "1024x768",
     "fps": 20,
-    "layout": 1,
     "record_types": ["local","remote"],
     "auto_create_im": 1,
     "bitrate": 850,
+    "layout": 1,
     "auto_open_mic": 0,
     "auto_open_camera": 0,
     "enable_all_silence":0
@@ -206,12 +206,12 @@
 | settings | Object | 课堂中的一些设置信息 | 是 | - |
 | resolution | string | 视频分辨率 | 是 | - |
 | fps | int | 视频帧率 | 是 | - |
-| layout | int | 客户端互动课堂组件布局模式（使用客户端组件的用户需要关注） | 是 | - |
 | record_types | Array | 字符串数组，选定录制类型，如果填写了`remote`，在开始上课时，会自动开启云端录制 | 是 | - | 
 | auto_open_mic  | int | 是否自动打开麦克风（0-不打开/1-打开）| 否 | 0 |
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
 | enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
+| layout | int | 课堂的布局风格（具体参见附录）| 否 | 0 |
 | members | Array | 课堂预约成员列表 | 是 | - |
 | role | string | 成员角色信息 | 是 | - |
 | user_id | string | 成员 ID | 是 | - |
@@ -246,9 +246,9 @@
   "settings" : {
     "resolution": "1024x768",
     "fps": 20,
-    "layout": 1,
     "record_types": ["remote"],
     "bitrate": 850,
+    "layout": 1,
     "auto_open_mic": 0,
     "auto_open_camera": 0
   },
@@ -696,10 +696,10 @@
 | doc_url | string  | 原课件文档上传到腾讯云 COS 后，生成下载 URL | 是 | - |
 | doc_name | string | 文档名（不包含扩展） | 否 | 空字符串 |
 | doc_ext | string  | 文档的扩展名，如 ppt | 否 | 空字符串 |
-| doc_size | int | 文档大小，单位：Byte | 否 | 0 |
+| doc_size | int | 文档大小，单位：Byte ，需填文件的真实大小，不填则认为是0| 否 | 0 |
 | doc_md5 | int | 文档的 md5 | 否 | 空字符串 |
 | permission | string | 文档权限 public-公开（所有人可以查看）/private-私有（只有自己可以查看）| 否 | private |
-| is_transcode | bool | 是否需要 H5 转码（true-转码/false-不转码），如果需要此功能，需联系我们开通白名单 | 否 | false|
+| is_transcode | bool | 是否需要 H5 转码（true-转码/false-不转码），如果需要此功能，需联系我们开通白名单，凡是需要在白板区域展示的文件都需要转码 | 否 | false|
 | owner | string | 指定文档归属者（如果不填此字段，permission 会被设置为 public） | 否 | 空字符串 |
 
 #### 响应参数
@@ -1935,3 +1935,11 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | 错误码 | 含义说明 |
 | :--- | :--- |
 | 10280| 创建IM群组失败 |
+
+#### 附录6 布局类型-Layout
+
+| 常量值 | 类型 | 描述 |
+| -- | -- | -- |
+| 0 | int | 未设置布局|
+| 1 | int | 1-2路视频布局|
+| 2 | int | 6路视频布局 |
