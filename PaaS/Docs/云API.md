@@ -29,7 +29,7 @@
 | auto_open_camera  | int | 是否自动打开摄像头（0-不打开/1-打开）| 否 | 0 |
 | enable_all_silence  | int | 是否开启了全员禁言(0-否/1-是)| 否 | 0 |
 | bitrate | int | 设置课堂的码率| 否 | 850 |
-| layout | int | 课堂的布局风格（具体参见附录）| 否 | 0 |
+| layout | int | 课堂的布局风格（具体参见Layout附录）| 否 | 0 |
 | members | Array | 课堂预约成员列表 | 否 |  教师 ID 默认在成员列表中 |
 | role | string | 角色信息，本接口中全部填“student”。需要设置 members 时此字段必填 | 否 | - |
 | user_id | string | 学生 ID。需要设置 members 时此字段必填 | 否 | - |
@@ -1935,3 +1935,11 @@ https://iclass.api.qcloud.com/paas/v1/class/create?sdkappid=1400127140&random=37
 | 错误码 | 含义说明 |
 | :--- | :--- |
 | 10280| 创建IM群组失败 |
+
+#### 附录6 布局类型-Layout
+
+| 常量值 | 类型 | 描述 |
+| -- | -- | -- |
+| 0 | int | 未设置布局|
+| 1 | int | 1-2路视频布局|
+| 2 | int | 6路视频布局 |
