@@ -4,7 +4,7 @@
 
 - 转码资源全部接入CDN，请务必升级。
 - 废弃addFile，addH5PPTFile接口，废弃TEB_ADDFILE，TEB_ADDH5PPTFILE事件。
-- 新增applyFileTranscode，getFileTranscodeProgress，addTranscodeFile接口，新增TEB_TRANSCODEPROGRESS，TEB_ADDTRANSCODEFILE事件。
+- 新增applyFileTranscode，getFileTranscodeProgress，新增TEB_TRANSCODEPROGRESS事件。
 - 切换文件支持切换到指定页和指定步
 
 
