@@ -1,5 +1,13 @@
 # Release Notes - Web
 
+## 2.3.6 @ 2019.11.12
+
+- 转码资源全部接入CDN，请务必升级。
+- 废弃addFile，addH5PPTFile接口，废弃TEB_ADDFILE，TEB_ADDH5PPTFILE事件。
+- 新增applyFileTranscode，getFileTranscodeProgress，addTranscodeFile接口，新增TEB_TRANSCODEPROGRESS，TEB_ADDTRANSCODEFILE事件。
+- 切换文件支持切换到指定页和指定步
+
+
 ## 2.3.5 @ 2019.10.30
 
 - 新增接口getThumbnailImages获取文件缩略图
