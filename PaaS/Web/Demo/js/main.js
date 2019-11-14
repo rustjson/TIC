@@ -480,6 +480,11 @@ window.app = new Vue({
       // 切换文件回调
       teduBoard.on(TEduBoard.EVENT.TEB_SWITCHFILE, (fid) => {
         console.log('======================:  ', 'TEB_SWITCHFILE', ' fid:', fid);
+        if (fid === '#1573462129974') {
+          teduBoard.gotoBoard('web_tic_10_1573462130_8_#1573462129974')
+        } else if(fid === '#1573218991727') {
+          teduBoard.gotoBoard('miniprogram_miniprogram_tic_201_1573218991_3_#1573218991727')
+        }
         this.proBoardData();
       });
 
@@ -497,6 +502,33 @@ window.app = new Vue({
       // H5背景加载状态
       teduBoard.on(TEduBoard.EVENT.TEB_H5BACKGROUND_STATUS_CHANGED, (status, data) => {
         console.log('======================:  ', 'TEB_H5BACKGROUND_STATUS_CHANGED:: status:', status, '  data:', data);
+      });
+
+      // 转码进度
+      teduBoard.on(TEduBoard.EVENT.TEB_TRANSCODEPROGRESS, res => {
+        console.log('=======  TEB_TRANSCODEPROGRESS 转码进度：', res);
+        if (res.code) {
+          this.showErrorTip('转码失败code:' + res.code + ' message:' + res.message);
+        } else {
+          let status = res.status;
+          if (status === 'ERROR') {
+            this.showErrorTip('转码失败');
+          } else if (status === 'CREATED') {
+            this.showTip('创建转码任务');
+          } else if (status === 'QUEUED') {
+            this.showTip('正在排队等待转码');
+          } else if (status === 'PROCESSING') {
+            this.showTip('转码中，当前进度:' + res.progress + '%');
+          } else if (status === 'FINISHED') {
+            this.showTip('转码完成');
+            this.teduBoard.addTranscodeFile({
+              url: res.resultUrl,
+              title: res.title,
+              pages: res.pages,
+              resolution: res.resolution
+            });
+          }
+        }
       });
     },
 
@@ -926,10 +958,21 @@ window.app = new Vue({
      */
     uploadFile() {
       var file = document.getElementById('file_input').files[0];
-      this.teduBoard.addFile({
-        data: file,
-        userData: 'hello'
-      });
+      if (/\.(bmp|jpg|jpeg|png|gif|webp|svg|psd|ai)/i.test(file.name)) {
+        this.teduBoard.setBackgroundImage({
+          data: file,
+          userData: 'image'
+        });
+      } else {
+        this.teduBoard.applyFileTranscode({
+          data: file,
+          userData: 'hello'
+        }, {
+          minResolution: '960x540',
+          isStaticPPT: false,
+          thumbnailResolution: '200x200'
+        });
+      }
     },
 
     onAddH5File(url) {
