@@ -220,7 +220,6 @@ public abstract class TICManager  {
      *
      * @param option   加入课堂参数选项。见@{TICClassroomOption}
      * @param callback 回调
-     * @brief 房间人数超过200人，建议启用大房间模式，详细配置请参考 https://cloud.tencent.com/document/product/680/35952#.E4.B8.87.E4.BA.BA.E5.A4.A7.E6.88.BF.E9.97.B4
      */
     public abstract void joinClassroom(final TICClassroomOption option, final TICCallback callback);
 
