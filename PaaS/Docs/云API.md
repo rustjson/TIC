@@ -84,8 +84,6 @@
     "enable_all_silence":0
 
   }
-  "record_user_id":"tic_record_user_1234_01",
-  "record_user_sig":"user_sig"
 }
 ```
 
