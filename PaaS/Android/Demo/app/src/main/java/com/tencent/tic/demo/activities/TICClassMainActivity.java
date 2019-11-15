@@ -417,13 +417,8 @@ public class TICClassMainActivity extends BaseActvity
         }
 
         @Override
-        public void onAddFile(String url) {
-            mBoard.addFile(url);
-        }
-
-        @Override
-        public void onAddH5File(String url) {
-            mBoard.addH5PPTFile(url);
+        public void onTransCodeFile(String url) {
+            mBoard.applyFileTranscode(url, null);
         }
 
         @Override
@@ -884,10 +879,6 @@ public class TICClassMainActivity extends BaseActvity
 
          }
 
-         @Override
-        public void onTEBAddFile(String fileId) {
-        }
-
         @Override
         public void onTEBDeleteFile(String fileId) {
         }
@@ -895,14 +886,10 @@ public class TICClassMainActivity extends BaseActvity
         @Override
         public void onTEBSwitchFile(String fileId) {
         }
-        @Override
-        public void onTEBAddH5PPTFile(String fileId) {
-        }
 
          @Override
          public void onTEBAddTranscodeFile(String s) {
          }
-
 
          @Override
         public void onTEBUndoStatusChanged(boolean canUndo) {
@@ -928,6 +915,11 @@ public class TICClassMainActivity extends BaseActvity
          @Override
          public void onTEBFileUploadStatus(final String fid, int status, int code, String statusMsg) {
              TXLog.i(TAG, "onTEBFileUploadStatus:" + fid + " status:" + status);
+         }
+
+         @Override
+         public void onTEBFileTranscodeProgress(String s, String s1, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
+
          }
 
          @Override

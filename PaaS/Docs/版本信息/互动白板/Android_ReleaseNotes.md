@@ -1,4 +1,10 @@
 # Release Notes - Android
+
+## 2.3.6.242 @ 2019.11.14
+- 增加客户端转码接口(PPT、PDF、Word文件转码 applyFileTranscode)
+- 增加客户端转码回调(onTEBFileTranscodeProgress)
+- 删除添加普通和H5文件接口(AddFile、AddH5PPTFile); 
+
 ## 2.3.5.227 @ 2019.10.30
 - 增加跳转白板页步数的回调接口(onTEBGotoStep)
 - 增加获取指定文件的缩略图接口(getThumbnailImages)

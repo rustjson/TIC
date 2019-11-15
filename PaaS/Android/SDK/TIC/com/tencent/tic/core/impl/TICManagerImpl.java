@@ -1171,16 +1171,6 @@ public class TICManagerImpl  extends TICManager{
         }
 
         @Override
-        public void onTEBAddFile(String s) {
-
-        }
-
-        @Override
-        public void onTEBAddH5PPTFile(String s) {
-
-        }
-
-        @Override
         public void onTEBAddTranscodeFile(String s) {
         }
 
@@ -1201,6 +1191,11 @@ public class TICManagerImpl  extends TICManager{
 
         @Override
         public void onTEBFileUploadStatus(String s, int i, int i1, String s1) {
+
+        }
+
+        @Override
+        public void onTEBFileTranscodeProgress(String s, String s1, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
 
         }
     }

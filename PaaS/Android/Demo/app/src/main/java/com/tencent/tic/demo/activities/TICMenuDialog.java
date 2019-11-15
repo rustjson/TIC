@@ -27,7 +27,6 @@ import java.util.List;
 public class TICMenuDialog extends Dialog implements View.OnClickListener {
 
     private final static String TAG                                     = "TICMenuDialog";
-    final static String CLOUD_FILE = "cloud:";
     final static String LOCAL_FILE = "local:";
 
     //涂鸭工具集映射
@@ -49,11 +48,6 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
         String key;
         String value;
     }
-
-    //普通ppt文件，放在云端
-    private final static String [] FILE_URL = {
-            "http://e4fb-edu-1400127140-1257240443.cos.ap-shanghai.myqcloud.com/TIC/WEB/1557368577909_3.%E6%88%AA%E4%B8%80%E4%B8%AA%E5%87%A0%E4%BD%95%E4%BD%93.ppt"
-    };
 
     //PPT转码后的H5文件，
     private final static String [] H5FILE_URL = {
@@ -151,8 +145,7 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
 
 
         //Board(文件操作)
-        void onAddFile(String id);
-        void onAddH5File(String url);
+        void onTransCodeFile(String id);
         void onDeleteFile(String boardId);
         void onGotoFile(String boardId);
 
@@ -473,18 +466,10 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
 
         //---------Board(文件)---------
         findViewById(R.id.btn_addFile).setOnClickListener(this);
-        findViewById(R.id.btn_addH5File).setOnClickListener(this);
         findViewById(R.id.btn_deleteFile).setOnClickListener(this);
         findViewById(R.id.btn_switchFile).setOnClickListener(this);
 
         ArrayAdapter<String> pptArray =new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item, android.R.id.text1);
-
-        int ppt_index = 0;
-        for (String url : FILE_URL) { //URL 网络文件
-            String fileName = CLOUD_FILE + "PPT_URL_" + ppt_index;
-            pptArray.add(fileName);
-            ppt_index++;
-        }
 
         String[] ppts = null;
         try {
@@ -503,18 +488,6 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
 
         Spinner sp_addFile = (Spinner)findViewById(R.id.sp_addFile);
         sp_addFile.setAdapter(pptArray);
-
-        //H5文件
-        ArrayAdapter<String> pptH5Array =new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item, android.R.id.text1);
-        int h5_index = 0;
-        for (String h5url : H5FILE_URL) {
-            String fileName = CLOUD_FILE + "H5_URL_" + h5_index;
-            pptH5Array.add(fileName);
-            h5_index++;
-        }
-        Spinner sp_addH5File = (Spinner)findViewById(R.id.sp_addH5File);
-        sp_addH5File.setAdapter(pptH5Array);
-
 
         int pos_file = 0;
         ArrayAdapter<String> filesArray = new ArrayAdapter<String>(this.getContext(),android.R.layout.simple_spinner_item, android.R.id.text1);
@@ -750,32 +723,13 @@ public class TICMenuDialog extends Dialog implements View.OnClickListener {
                 if (pos5 != null && pos5 instanceof String) {
                     String path = "";
                     final String item = (String) pos5;
-                    if (item.startsWith(CLOUD_FILE)) {
-                        try {
-                            int start = (CLOUD_FILE + "PPT_URL_").length();
-                            int url_ppt_pos = Integer.valueOf(item.substring(start));
-                            if (url_ppt_pos >=0 && url_ppt_pos < FILE_URL.length) {
-                                path = FILE_URL[url_ppt_pos];
-                            }
-                        }catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    else if (item.startsWith(LOCAL_FILE)){
+                    if (item.startsWith(LOCAL_FILE)){
                         path = "file:///android_asset/ppt/" + item.substring(LOCAL_FILE.length());
                     }
 
                     if (!TextUtils.isEmpty(path)) {
-                        listener.onAddFile(path);
+                        listener.onTransCodeFile(path);
                     }
-                }
-                break;
-
-            case R.id.btn_addH5File:
-                int pos_H5 = ((Spinner)findViewById(R.id.sp_addH5File)).getSelectedItemPosition();
-                if (pos_H5 >=0 && pos_H5 < H5FILE_URL.length) {
-                    final String path = H5FILE_URL[pos_H5];
-                    listener.onAddH5File(path);
                 }
                 break;
 
