@@ -3,7 +3,7 @@
 ## 如何加入课堂
 ### 下载 SaaS 客户端
 - Mac平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Saas.dmg)。
-- Win平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。  
+- Win平台下载地址：[单击下载](http://dldir1.qq.com/hudongzhibo/Saas/TClass_Setup_Saas.exe)。
 
 ### 桌面版配置
 Intel i7-6700级别 鲁大师cpu跑分70000以上 6路视频时分辨率推荐1280*720
@@ -45,7 +45,7 @@ Intel i5-3330级别 鲁大师cpu跑分42000以上 6路视频时分辨率推荐32
 </tr>
 </table>
 
- > 仅支持 Chrome 浏览器，暂时不支持 IE 或 Safari（近期将支持 IE 和 Safari）。
+ >? 仅支持 Chrome 浏览器，暂时不支持 IE 或 Safari（近期将支持 IE 和 Safari）。
 
 2. **通过在线课堂 App 加入课堂**
 界面展示如下：
@@ -60,7 +60,7 @@ Intel i5-3330级别 鲁大师cpu跑分42000以上 6路视频时分辨率推荐32
 
 
  其中，【机构ID】 只需要第一次使用时输入，表示绑定哪个教育机构，之后再次打开 App，会默认使用第一次输入的值（支持手动修改）。**卸载 App 后不保留默认值。**
-然后点击加入课堂即可进入该帐号的课堂列表中，如果某一个要素输入错误，则会弹出提示框，请根据提示信息进行操作。
+然后点击加入课堂即可进入【课堂ID】对应的课堂中，如果某一个要素输入错误，则会弹出提示框，请根据提示信息进行操作。
 
 ## 老师如何进行备课
 
