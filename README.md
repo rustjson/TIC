@@ -1,6 +1,6 @@
 ## 下载说明
 
-<font color="#FF0000">注意：</font> 由于`Github`默认不支持大文件上传，请您在clone代码前先安装[Git-LFS](./Git-LFS.md)，用于实现Github对大文件的支持。请使用以下命令clone代码，**勿直接`Download ZIP`**。
+>!由于`Github`默认不支持大文件上传，请您在克隆代码前先安装 [Git-LFS](./Git-LFS.md)，用于实现 Github 对大文件的支持。请使用以下命令克隆代码，勿直接`Download ZIP`。
 ```
 git clone https://github.com/tencentyun/TIC.git
 ```
