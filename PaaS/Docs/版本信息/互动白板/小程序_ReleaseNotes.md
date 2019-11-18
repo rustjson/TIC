@@ -1,5 +1,11 @@
 # Release Notes - 小程序
 
+## 2.3.6 @ 2019.11.08
+1. 转码资源全部接入CDN，请务必升级。
+2. 废弃addFile，addH5PPTFile接口，废弃TEB_ADDFILE，TEB_ADDH5PPTFILE事件。
+3. 新增applyFileTranscode，getFileTranscodeProgress，addTranscodeFile接口，新增TEB_TRANSCODEPROGRESS，TEB_ADDTRANSCODEFILE事件。
+
+
 ## 2.3.5 @ 2019.10.22
 1. bug修复
     - 小程序底层调整canvas touch事件不冒泡导致不能涂鸦的问题

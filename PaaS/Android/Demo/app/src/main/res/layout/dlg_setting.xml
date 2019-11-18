@@ -1179,7 +1179,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp">
             <TextView
-                android:text="新增文件"
+                android:text="文件转码"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:textColor="@color/line_btn"
@@ -1204,48 +1204,7 @@
                     android:id="@+id/btn_addFile"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="新增"
-                    android:textSize="14sp"
-                    android:layout_alignParentRight="true"
-                    android:clickable="true"/>
-
-            </RelativeLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp">
-            <TextView
-                android:text="新增H5文件"
-                android:textSize="16sp"
-                android:layout_gravity="center"
-                android:textColor="@color/line_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3"
-                />
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7">
-                <Spinner
-                    android:id="@+id/sp_addH5File"
-                    android:entries="@array/ToolType"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_height="wrap_content"
-                    android:layout_width="160dp"
-                    android:layout_marginBottom="2dp"/>
-
-                <Button
-                    android:id="@+id/btn_addH5File"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:text="新增"
+                    android:text="转码"
                     android:textSize="14sp"
                     android:layout_alignParentRight="true"
                     android:clickable="true"/>

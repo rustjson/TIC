@@ -151,7 +151,6 @@ Page({
         this.initBoardEvent();
         this.startRTC();
 
-        var TwebView = this.selectComponent('#test-webView');
       }
     });
   },
@@ -314,16 +313,6 @@ Page({
       console.log('======================:  ', 'TEB_GOTOBOARD', ' boardId:', boardId, ' fid:', fid);
     });
 
-    // 增加H5动画PPT文件回调
-    this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_ADDH5PPTFILE, (fid) => {
-      console.log('======================:  ', 'TEB_ADDH5PPTFILE', ' fid:', fid);
-    });
-
-    // 增加文件回调
-    this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_ADDFILE, (fid) => {
-      console.log('======================:  ', 'TEB_ADDFILE', ' fid:', fid);
-    });
-
     // 删除文件回调
     this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_DELETEFILE, (fid) => {
       console.log('======================:  ', 'TEB_DELETEFILE', ' fid:', fid);
@@ -353,6 +342,44 @@ Page({
     this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_H5BACKGROUND_STATUS_CHANGED, (status, data) => {
       console.log('======================:  ', 'TEB_H5BACKGROUND_STATUS_CHANGED:: status:', status, '  data:', data);
     });
+
+    // H5背景加载状态
+    this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_H5BACKGROUND_STATUS_CHANGED, (status, data) => {
+      console.log('======================:  ', 'TEB_H5BACKGROUND_STATUS_CHANGED:: status:', status, '  data:', data);
+    });
+
+    // 新增转码文件
+    this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_ADDTRANSCODEFILE, (fid) => {
+      console.log('======================:  ', 'TEB_ADDTRANSCODEFILE', ' fid:', fid);
+    });
+
+    this.data.teduBoard.on(CONSTANT.EVENT.BOARD.TEB_TRANSCODEPROGRESS, (res) => {
+      console.log('=======  TEB_TRANSCODEPROGRESS 转码进度：', res);
+      if (res.code) {
+        this.showErrorToast('转码失败code:' + res.code + ' message:' + res.message);
+      } else {
+        let status = res.Status;
+        if (status === 'ERROR') {
+          this.showErrorToast('转码失败');
+        } else if (status === 'CREATE') {
+          this.showToast('创建转码任务');
+        } else if (status === 'QUEUED') {
+          this.showToast('正在排队等待转码');
+        } else if (status === 'PROCESSING') {
+          this.showToast('转码中，当前进度:' + res.Progress + '%');
+        } else if (status === 'FINISHED') {
+          this.showToast('转码完成');
+          this.data.teduBoard.addTranscodeFile({
+            url: res.ResultUrl,
+            title: res.Title,
+            pages: res.Pages,
+            resolution: res.Resolution
+          });
+        }
+      }
+    });
+
+
   },
 
   // 开始RTC
@@ -435,7 +462,8 @@ Page({
 
   // 发送IM消息
   sendComment() {
-    var msg = this.data.chatMsg || '';
+    // var msg = this.data.chatMsg || '';
+    var msg = 'Hello，这是测试im消息';
     if (!msg || !msg.trim()) {
       this.showErrorToast('不能发送空消息');
       return;
@@ -499,13 +527,23 @@ Page({
           var type = file.type;
           var name = file.name;
 
-          // 一定要参考文档先配置合法域名
-          _this.data.teduBoard.addFile({
-            path,
-            type,
-            name,
-            userData: 'hello'
-          });
+          console.log('type:', type);
+          if (type === 'image') {
+            _this.data.teduBoard.setBackgroundImage({
+              path,
+              type,
+              name,
+              userData: 'hello'
+            });
+          } else {
+            // 一定要参考文档先配置合法域名
+            _this.data.teduBoard.applyFileTranscode({
+              path,
+              type,
+              name,
+              userData: 'hello'
+            });
+          }
         }
       }
     })
