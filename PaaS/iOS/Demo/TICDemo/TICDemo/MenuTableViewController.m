@@ -386,24 +386,24 @@
 }
 
 - (IBAction)onUploadFile:(id)sender {
-    NSMutableArray *array = [NSMutableArray array];
-    NSString *test1Path = [[NSBundle mainBundle] pathForResource:@"local_test1" ofType:@"pptx"];
-    NSString *test2Path = [[NSBundle mainBundle] pathForResource:@"local_test2" ofType:@"pptx"];
-    NSString *test3Path = [[NSBundle mainBundle] pathForResource:@"小程序插件统计报表" ofType:@"pdf"];
-    
-    [array addObject:test1Path];
-    [array addObject:test2Path];
-    [array addObject:test3Path];
-    [array addObject:@"http://e4fb-edu-1400127140-1257240443.cos.ap-shanghai.myqcloud.com/TIC/WEB/1557368577909_3.%E6%88%AA%E4%B8%80%E4%B8%AA%E5%87%A0%E4%BD%95%E4%BD%93.ppt"];
-    
-    [self.tableSheet setData:array];
-    __weak typeof(self) ws = self;
-    self.tableSheet.block = ^(NSInteger index){
-        if(ws.delegate && [ws.delegate respondsToSelector:@selector(onUploadFile:)]){
-            [ws.delegate onUploadFile:array[index]];
-        }
-    };
-    [self.view.superview addSubview:self.tableSheet];
+//    NSMutableArray *array = [NSMutableArray array];
+//    NSString *test1Path = [[NSBundle mainBundle] pathForResource:@"local_test1" ofType:@"pptx"];
+//    NSString *test2Path = [[NSBundle mainBundle] pathForResource:@"local_test2" ofType:@"pptx"];
+//    NSString *test3Path = [[NSBundle mainBundle] pathForResource:@"小程序插件统计报表" ofType:@"pdf"];
+//    
+//    [array addObject:test1Path];
+//    [array addObject:test2Path];
+//    [array addObject:test3Path];
+//    [array addObject:@"http://e4fb-edu-1400127140-1257240443.cos.ap-shanghai.myqcloud.com/TIC/WEB/1557368577909_3.%E6%88%AA%E4%B8%80%E4%B8%AA%E5%87%A0%E4%BD%95%E4%BD%93.ppt"];
+//    
+//    [self.tableSheet setData:array];
+//    __weak typeof(self) ws = self;
+//    self.tableSheet.block = ^(NSInteger index){
+//        if(ws.delegate && [ws.delegate respondsToSelector:@selector(onUploadFile:)]){
+//            [ws.delegate onUploadFile:array[index]];
+//        }
+//    };
+//    [self.view.superview addSubview:self.tableSheet];
 }
 
 - (IBAction)onSwitchFile:(id)sender {
@@ -441,21 +441,6 @@
         };
         [self.view.superview addSubview:self.tableSheet];
     }
-}
-- (IBAction)onAddH5PPTFile:(id)sender {
-    NSMutableArray *array = [NSMutableArray array];
-    [array addObject:@"https://test04-1257240443.cos.ap-shanghai.myqcloud.com/2019-05-08-15-38-54/index.html"];
-    [array addObject:@"https://test04-1257240443.cos.ap-shanghai.myqcloud.com/2019-05-08-15-18-25-0/index.html"];
-   
-    
-    [self.tableSheet setData:array];
-    __weak typeof(self) ws = self;
-    self.tableSheet.block = ^(NSInteger index){
-        if(ws.delegate && [ws.delegate respondsToSelector:@selector(onAddH5PPTFile:)]){
-            [ws.delegate onAddH5PPTFile:array[index]];
-        }
-    };
-    [self.view.superview addSubview:self.tableSheet];
 }
 
 

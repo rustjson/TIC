@@ -49,10 +49,8 @@
 - (void)onBoardRatioChanged:(NSString *)ratio;
 - (NSString *)getBoardRatio;
 //board（文件）
-- (void)onUploadFile:(NSString *)path;
 - (void)onSwitchFile:(NSString *)fileId;
 - (void)onDeleteFile:(NSString *)fileId;
-- (void)onAddH5PPTFile:(NSString *)url;
 - (NSArray<NSString *> *)getFileList;
 - (NSString *)getCurrentFile;
 @end

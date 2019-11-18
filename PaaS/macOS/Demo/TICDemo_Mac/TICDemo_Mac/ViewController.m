@@ -441,21 +441,20 @@
 
 - (IBAction)onAddFile:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    [panel setMessage:@"选择文档"];
+    [panel setMessage:@"选择ppt/pdf"];
     [panel beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse result) {
         if(result == NSModalResponseOK){
             NSURL *url = [[panel URLs] firstObject];
             NSString *path = [url path];
-            [[[TICManager sharedInstance] getBoardController] addFile:path];
+            NSString *ext = [[path pathExtension] lowercaseString];
+            if([ext isEqualToString:@"ppt"] || [ext isEqualToString:@"pptx"] || [ext isEqualToString:@"pdf"]) {
+                [[[TICManager sharedInstance] getBoardController] applyFileTranscode:path config:nil];
+            }
+            else{
+                [self showAlert:TICMODULE_TIC code:-1 desc:@"请选择ppt/pptx/pdf格式文件"];
+            }
         }
     }];
-}
-- (IBAction)onAddH5PPTFile:(id)sender {
-    NSString *url = self.h5TextField.stringValue;
-    if(url.length == 0){
-        return;
-    }
-    [[[TICManager sharedInstance] getBoardController] addH5PPTFile:url];
 }
 
 - (IBAction)onSwitchFile:(id)sender {
@@ -752,11 +751,42 @@
     [self.fileTableView reloadData];
     [self.boardTableView reloadData];
 }
-- (void)onTEBAddFile:(NSString *)fileId
+
+- (void)onTEBFileTranscodeProgress:(TEduBoardTranscodeFileResult *)result path:(NSString *)path errorCode:(NSString *)errorCode errorMsg:(NSString *)errorMsg
 {
-    [[[TICManager sharedInstance] getBoardController] getFileBoardList:fileId];
+    NSString *fileName = [path lastPathComponent];
+    NSString *statusStr = nil;
+    if(result.status == TEDU_BOARD_FILE_TRANSCODE_UPLOADING){
+        statusStr = [NSString stringWithFormat:@"上传中 %ld", result.progress];
+    }
+    else if(result.status == TEDU_BOARD_FILE_TRANSCODE_CREATED){
+        statusStr = @"创建转码任务";
+    }
+    else if(result.status == TEDU_BOARD_FILE_TRANSCODE_QUEUED){
+        statusStr = @"排队中";
+    }
+    else if(result.status == TEDU_BOARD_FILE_TRANSCODE_PROCESSING){
+        statusStr = [NSString stringWithFormat:@"转码中 %ld", result.progress];
+    }
+    else if(result.status == TEDU_BOARD_FILE_TRANSCODE_FINISHED){
+        statusStr = @"转码完成";
+        [[[TICManager sharedInstance] getBoardController] addTranscodeFile:result];
+        
+    }
+    else if(result.status == TEDU_BOARD_FILE_TRANSCODE_ERROR){
+        statusStr = [NSString stringWithFormat:@"转码错误 %@/%@", errorCode, errorMsg];
+    }
+
+    NSString *msg = [NSString stringWithFormat:@"%@ %@", fileName, statusStr];
+    self.chatTextView.string = [NSString stringWithFormat:@"%@\n%@", self.chatTextView.string, msg];
+    [self.chatTextView scrollRangeToVisible:NSMakeRange(self.chatTextView.string.length, 1)];
+}
+    
+- (void)onTEBAddTranscodeFile:(NSString *)fileId
+{
     [self.fileTableView reloadData];
 }
+
 - (void)onTEBAddBoard:(NSArray *)boardIds fileId:(NSString *)fileId
 {
     [self.boardTableView reloadData];

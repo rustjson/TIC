@@ -303,11 +303,6 @@ static const NSString *staticClassID = @"";
     [[[TICManager sharedInstance] getBoardController] nextBoard:resetStep];
 }
 
-- (void)onUploadFile:(NSString *)path
-{
-    [[[TICManager sharedInstance] getBoardController] addFile:path];
-}
-
 - (void)onSwitchFile:(NSString *)fileId
 {
     [[[TICManager sharedInstance] getBoardController] switchFile:fileId];
@@ -316,11 +311,6 @@ static const NSString *staticClassID = @"";
 - (void)onDeleteFile:(NSString *)fileId
 {
     [[[TICManager sharedInstance] getBoardController] deleteFile:fileId];
-}
-
-- (void)onAddH5PPTFile:(NSString *)url
-{
-    [[[TICManager sharedInstance] getBoardController] addH5PPTFile:url];
 }
 
 - (NSArray<NSString *> *)getFileList

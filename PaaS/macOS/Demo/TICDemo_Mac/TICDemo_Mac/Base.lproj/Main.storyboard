@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -825,11 +825,11 @@
                                                     <rect key="frame" x="259" y="25" width="179" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="BG3-Dt-4ML">
-                                                        <rect key="frame" x="3" y="3" width="173" height="82"/>
+                                                        <rect key="frame" x="3" y="3" width="173" height="83"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsB-gl-lIs">
-                                                                <rect key="frame" x="18" y="38" width="140" height="26"/>
+                                                                <rect key="frame" x="18" y="39" width="140" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="pnB-ef-IQh" id="rdD-kU-nbI">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -844,7 +844,7 @@
                                                                 </popUpButtonCell>
                                                             </popUpButton>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2B7-oj-cFb">
-                                                                <rect key="frame" x="18" y="17" width="129" height="18"/>
+                                                                <rect key="frame" x="18" y="18" width="129" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="打开或关闭摄像头" bezelStyle="regularSquare" imagePosition="left" inset="2" id="U7E-ZH-t7T">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -862,11 +862,11 @@
                                                     <rect key="frame" x="629" y="25" width="176" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="Oqg-yV-XhY">
-                                                        <rect key="frame" x="3" y="3" width="170" height="82"/>
+                                                        <rect key="frame" x="3" y="3" width="170" height="83"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h2i-OY-LhE">
-                                                                <rect key="frame" x="18" y="38" width="137" height="26"/>
+                                                                <rect key="frame" x="18" y="39" width="137" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="NCK-AS-ddn" id="nPb-qr-CZ9">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -881,7 +881,7 @@
                                                                 </popUpButtonCell>
                                                             </popUpButton>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wcI-S3-lEL">
-                                                                <rect key="frame" x="18" y="17" width="142" height="18"/>
+                                                                <rect key="frame" x="18" y="18" width="142" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="打开或关闭屏幕分享" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C6I-vT-GZg">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -899,11 +899,11 @@
                                                     <rect key="frame" x="449" y="25" width="167" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <view key="contentView" id="MIW-Tj-Ido">
-                                                        <rect key="frame" x="3" y="3" width="161" height="82"/>
+                                                        <rect key="frame" x="3" y="3" width="161" height="83"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iH8-Y5-njF">
-                                                                <rect key="frame" x="18" y="38" width="130" height="26"/>
+                                                                <rect key="frame" x="18" y="39" width="130" height="26"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="sMT-Te-kNo" id="fgf-6Q-N7i">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -918,7 +918,7 @@
                                                                 </popUpButtonCell>
                                                             </popUpButton>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hSh-zq-7hO">
-                                                                <rect key="frame" x="18" y="17" width="129" height="18"/>
+                                                                <rect key="frame" x="18" y="18" width="129" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                 <buttonCell key="cell" type="check" title="打开或关闭麦克风" bezelStyle="regularSquare" imagePosition="left" inset="2" id="stf-ds-3Rl">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1163,28 +1163,8 @@
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
                                                                                         </textField>
-                                                                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="faR-O5-faO">
-                                                                                            <rect key="frame" x="20" y="119" width="146" height="30"/>
-                                                                                            <autoresizingMask key="autoresizingMask"/>
-                                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="h5ppt url" drawsBackground="YES" id="y0e-d5-m1U">
-                                                                                                <font key="font" metaFont="system"/>
-                                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                                            </textFieldCell>
-                                                                                        </textField>
-                                                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RTx-zZ-MXc">
-                                                                                            <rect key="frame" x="174" y="119" width="64" height="30"/>
-                                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                                            <buttonCell key="cell" type="square" title="H5PPT" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FQ8-Ar-3mP">
-                                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                <font key="font" usesAppearanceFont="YES"/>
-                                                                                            </buttonCell>
-                                                                                            <connections>
-                                                                                                <action selector="onAddH5PPTFile:" target="oOV-ii-3UA" id="oXc-Zd-aby"/>
-                                                                                            </connections>
-                                                                                        </button>
                                                                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVX-Dz-eyL">
-                                                                                            <rect key="frame" x="20" y="79" width="146" height="30"/>
+                                                                                            <rect key="frame" x="20" y="112" width="146" height="30"/>
                                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="h5背景 url" drawsBackground="YES" id="XQJ-LL-KF3">
                                                                                                 <font key="font" metaFont="system"/>
@@ -1193,7 +1173,7 @@
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UrB-Cd-Lvq">
-                                                                                            <rect key="frame" x="174" y="79" width="64" height="30"/>
+                                                                                            <rect key="frame" x="174" y="112" width="64" height="30"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                             <buttonCell key="cell" type="square" title="H5背景" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RDE-GZ-nhw">
                                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1229,7 +1209,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="IMu-zY-hUu">
                                                                             <rect key="frame" x="0.0" y="0.0" width="253" height="492"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                            <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qi5-za-Ju3">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="238" height="477"/>
@@ -1325,7 +1305,7 @@
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                                             <clipView key="contentView" ambiguous="YES" id="Zon-Pr-caq">
                                                                                                 <rect key="frame" x="1" y="0.0" width="213" height="110"/>
-                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <autoresizingMask key="autoresizingMask"/>
                                                                                                 <subviews>
                                                                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" headerView="6NA-so-wJ5" viewBased="YES" id="MpF-Di-t0W">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="213" height="87"/>
@@ -1582,14 +1562,14 @@
                                                     <rect key="frame" x="17" y="47" width="554" height="160"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="dzO-Ub-M1j">
-                                                        <rect key="frame" x="1" y="1" width="537" height="158"/>
+                                                        <rect key="frame" x="1" y="1" width="552" height="158"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <textView ambiguous="YES" editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="vI5-pO-Jr0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="537" height="158"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="552" height="158"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                                                <size key="minSize" width="537" height="158"/>
+                                                                <size key="minSize" width="552" height="158"/>
                                                                 <size key="maxSize" width="836" height="10000000"/>
                                                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             </textView>
@@ -1600,7 +1580,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="LTt-jS-XP1">
-                                                        <rect key="frame" x="538" y="1" width="15" height="158"/>
+                                                        <rect key="frame" x="537" y="1" width="16" height="158"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
@@ -1642,7 +1622,7 @@
                                 <rect key="frame" x="17" y="32" width="159" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="RsJ-lw-f4h">
-                                    <rect key="frame" x="3" y="3" width="153" height="130"/>
+                                    <rect key="frame" x="3" y="3" width="153" height="131"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6f-xM-DcP">
@@ -1790,7 +1770,6 @@
                         <outlet property="classIdTextField" destination="zJU-BZ-yh0" id="SdJ-Zn-hUK"/>
                         <outlet property="fileTableView" destination="nad-aL-ywR" id="skA-ph-P0Z"/>
                         <outlet property="h5BackTextField" destination="YVX-Dz-eyL" id="idg-Fn-VaF"/>
-                        <outlet property="h5TextField" destination="faR-O5-faO" id="nkS-0P-uOQ"/>
                         <outlet property="imsdkVerLabel" destination="dJf-tb-I1K" id="DNn-tI-23l"/>
                         <outlet property="joinRoomButton" destination="dQ3-mH-Dwr" id="CWu-47-ycK"/>
                         <outlet property="localView" destination="ZWn-zw-vNm" id="yFP-4P-jnb"/>
