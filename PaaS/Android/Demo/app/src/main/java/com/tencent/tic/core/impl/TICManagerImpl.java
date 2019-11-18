@@ -1195,7 +1195,7 @@ public class TICManagerImpl  extends TICManager{
         }
 
         @Override
-        public void onTEBFileTranscodeProgress(String s, String s1, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
+        public void onTEBFileTranscodeProgress(String s, String s1, String s2, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
 
         }
     }
