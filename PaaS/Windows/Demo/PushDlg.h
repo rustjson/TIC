@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <Live/ITXLivePlayer.h>
-#include "..\SDK\TIC\TICLocalRecord.h"
 
 class CPushDlg
 	: public CDialogEx
@@ -22,13 +21,9 @@ private:
 	virtual void DoDataExchange(CDataExchange* pDX) override;
 
 public:
-	TICLocalRecorder* mLocalRecorder;
 	ITXLivePlayer* mLivePlayer;
 	CButton chkPushEnable_;
-private:
-	void StartPlay();
-	void StopPlay();
 public:
 	afx_msg void OnBnClickedChkEnableDraw();
-	afx_msg void OnBnClickedCheckEnablePush();
+
 };
