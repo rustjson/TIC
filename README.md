@@ -26,6 +26,7 @@ git clone https://github.com/tencentyun/TIC.git
 </tr>
 </table>
 
+
 ## 方案简介
 
 腾讯云在线教育互动课堂（Tencent Interact Class，TIC）是集实时音视频、交互式白板涂鸦、IM 聊天室、PPT 课件共享、屏幕分享和录制回放等功能于一体的一站式在线教育互动课堂解决方案。
