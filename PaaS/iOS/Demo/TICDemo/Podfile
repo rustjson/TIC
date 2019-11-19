@@ -2,7 +2,7 @@
 platform :ios, '8.0'
 
 target 'TICDemo' do
-  pod 'TEduBoard_iOS', '2.3.5'
+  pod 'TEduBoard_iOS', '2.3.6'
   pod 'TXIMSDK_iOS', '4.5.111'
   pod 'TXLiteAVSDK_TRTC', '6.7.7734'
 end
