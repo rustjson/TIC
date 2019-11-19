@@ -362,26 +362,32 @@
  *                                             四、文件操作接口
  *
  ********************************************************************************************************/
+
 /**
- * 增加文件
- * @param path      要增加的文件路径
- * @return NSString 文件Id
- * @brief 支持 PPT、PDF、Word、Excel，调用该接口后，SDK会先将文件上传到COS后再执行后续操作，因此该接口会触发文件上传相关回调，文件上传成功后，将自动切换到该文件
+ * 发起文件转码请求
+ * @param path                要转码的文件路径，编码格式为UTF8
+ * @param config            转码参数
+ * @brief 支持 PPT、PDF、Word文件转码
+ * PPT文档默认转为H5动画，能够还原PPT原有动画效果，其它文档转码为静态图片
+ * PPT动画转码耗时约1秒/页，所有文档的静态转码耗时约0.5秒/页
+ * 转码进度和结果将会通过onTEBFileTranscodeProgress回调返回，详情参见该回调说明文档
  */
-- (NSString *)addFile:(NSString *)path
-__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
+- (void)applyFileTranscode:(NSString *)path config:(TEduBoardTranscodeConfig *)config;
+
 /**
- * 增加H5动画PPT文件
- * @param url       要增加的H5动画PPT的URL
- * @return NSString 文件Id
- * @brief 调用该接口后，SDK会在后台进行H5加载，期间用户可正常进行其它操作，加载成功或失败后会触发相应回调，H5加载成功后，将自动切换到该文件
+ * 主动查询文件转码进度
+ * @param taskId            通过onTEBFileTranscodeProgress回调拿到的转码任务taskId
+ * @brief 转码进度和结果将会通过onTEBFileTranscodeProgress回调返回，详情参见该回调说明文档
+ * @warning 该接口仅用于特殊业务场景下主动查询文件转码进度，调用ApplyFileTranscode后，SDK内部将会自动定期触发onTEBFileTranscodeProgress回调，正常情况下您不需要主动调用此接口
  */
-- (NSString *)addH5PPTFile:(NSString *)url
-__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
+- (void)getFileTranscodeProgress:(NSString *)taskId;
+
 /**
  * 添加转码文件
  * @param result 文件转码结果
  * @return NSString 文件Id
+ * @brief 接口只处理result参数中的title、resolution、url、pages字段
+ * @warning 在收到对应的onTEBAddTranscodeFile回调前，无法用返回的文件ID查询到文件信息
  */
 - (NSString *)addTranscodeFile:(TEduBoardTranscodeFileResult *)result;
 /**
@@ -396,6 +402,15 @@ __attribute__((deprecated("接口已废弃，后续会删除，不建议使用�
  * @brief 文件ID为必填项，为空将导致文件切换失败
  */
 - (void)switchFile:(NSString *)fileId;
+/**
+ * 跳转到文件指定白班指定步
+ * @param fileId            文件ID
+ * @param boardId          白板ID
+ * @param stepIndex      步数索引
+ * @brief 只在首次加载文件时有效，跳转到非当前文件的指定白板指定步
+ */
+- (void)switchFile:(NSString *)fileId boardId:(NSString *)boardId stepIndex:(NSInteger)stepIndex;
+
 /**
  * 获取当前文件ID
  * @return 当前文件ID

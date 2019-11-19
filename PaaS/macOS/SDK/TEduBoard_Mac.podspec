@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'TEduBoard_Mac'
-  spec.version      = '2.3.5'
+  spec.version      = '2.3.6'
   spec.platform     = :osx 
   spec.osx.deployment_target = '10.10'
   spec.license      = { :type => 'Proprietary',

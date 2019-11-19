@@ -152,6 +152,18 @@ typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
     TEDU_BOARD_OVAL_DRAW_MODE_FIX_CENTER    = 2,    //固定圆心，起始点为圆心
 };
 
+/**
+ * 转码状态
+ */
+typedef NS_ENUM(NSInteger, TEduBoardFileTranscodeStatus)
+{
+    TEDU_BOARD_FILE_TRANSCODE_ERROR         = 1,    //转码错误
+    TEDU_BOARD_FILE_TRANSCODE_UPLOADING     = 2,    //文件上传中
+    TEDU_BOARD_FILE_TRANSCODE_CREATED       = 3,    //发起转码任务
+    TEDU_BOARD_FILE_TRANSCODE_QUEUED        = 4,    //排队中
+    TEDU_BOARD_FILE_TRANSCODE_PROCESSING    = 5,    //转码中
+    TEDU_BOARD_FILE_TRANSCODE_FINISHED      = 6,    //转码完成
+};
 
 
 /**
@@ -238,15 +250,34 @@ typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
 @end
 
 
+@interface TEduBoardTranscodeConfig : NSObject
+//指定转码结果最小分辨率，可用于提高转码结果清晰度，如960x540，宽高分隔符为x
+@property (nonatomic, strong) NSString *minResolution;
+//指定对于PPT文件是否启用静态转码（转为静态图片），默认转为H5动画（转码耗时较长）
+@property (nonatomic, assign) BOOL isStaticPPT;
+//指定文件生成缩略图分辨率，默认不生成缩略图（生成缩略图增加额外转码消耗），如200x200，宽高分隔符为x
+@property (nonatomic, strong) NSString *thumbnailResolution;
+@end
+
 @interface TEduBoardTranscodeFileResult : NSObject
-//文件名
+//任务ID
+@property (nonatomic, strong) NSString *taskId;
+//转码状态
+@property (nonatomic, assign) TEduBoardFileTranscodeStatus status;
+//转码进度（百分比）
+@property (nonatomic, assign) NSInteger progress;
+//文件标题
 @property (nonatomic, strong) NSString *title;
-//文件下载链接
-@property (nonatomic, strong) NSString *url;
 //文件分辨率，如@"1024x768"
 @property (nonatomic, strong) NSString *resolution;
 //文件总页数
-@property (nonatomic, assign) int pages;
+@property (nonatomic, assign) NSInteger pages;
+//转码结果URL
+@property (nonatomic, strong) NSString *url;
+//文件生成缩略图的分辨率，如@"200x200"
+@property (nonatomic, strong) NSString *thumbnailResolution;
+//文件生成缩略图URL
+@property (nonatomic, strong) NSString *thumbnailUrl;
 @end
 
 @protocol TEduBoardDelegate <NSObject>
@@ -352,20 +383,16 @@ typedef NS_ENUM(NSInteger, TEduBoardOvalDrawMode)
  *                                            四、文件操作回调
  *
  *************************************************************************************************/
+
 /**
- * 增加文件回调
- * @param fileId        增加的文件ID
- * @brief 文件上传完成后才会触发该回调
+ * 文件转码进度回调
+ * @param errorCode         文件转码错误码，无异常时为空字符串 ""
+ * @param errorMsg          文件转码错误信息，无异常时为空字符串 ""
+ * @param result            文件转码结果
  */
-- (void)onTEBAddFile:(NSString *)fileId
-__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
-/**
- * 增加H5动画PPT文件回调
- * @param fileId        增加的文件ID
- * @brief 文件加载完成后才会触发该回调
- */
-- (void)onTEBAddH5PPTFile:(NSString *)fileId
-__attribute__((deprecated("接口已废弃，后续会删除，不建议使用，添加文件请统一使用addTranscodeFile接口")));
+- (void)onTEBFileTranscodeProgress:(TEduBoardTranscodeFileResult *)result path:(NSString *)path errorCode:(NSString *)errorCode errorMsg:(NSString *)errorMsg;
+
+
 /**
  * 增加转码文件回调
  * @param fileId        增加的文件ID
