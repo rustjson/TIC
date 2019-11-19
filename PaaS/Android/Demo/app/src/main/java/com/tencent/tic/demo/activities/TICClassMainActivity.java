@@ -918,7 +918,7 @@ public class TICClassMainActivity extends BaseActvity
          }
 
          @Override
-         public void onTEBFileTranscodeProgress(String s, String s1, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
+         public void onTEBFileTranscodeProgress(String s, String s1, String s2, TEduBoardController.TEduBoardTranscodeFileResult tEduBoardTranscodeFileResult) {
 
          }
 

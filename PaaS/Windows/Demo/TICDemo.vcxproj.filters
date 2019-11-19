@@ -57,23 +57,17 @@
     <ClInclude Include="..\SDK\TIC\HttpClient.h">
       <Filter>TIC</Filter>
     </ClInclude>
-    <ClInclude Include="..\SDK\TIC\TICRecorder.h">
-      <Filter>TIC</Filter>
-    </ClInclude>
     <ClInclude Include="..\SDK\TIC\jsoncpp\json.h">
       <Filter>TIC\jsoncpp</Filter>
     </ClInclude>
     <ClInclude Include="..\SDK\TIC\jsoncpp\json-forwards.h">
       <Filter>TIC\jsoncpp</Filter>
     </ClInclude>
-    <ClInclude Include="..\SDK\TIC\TICLocalRecord.h">
-      <Filter>TIC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SDK\TIC\TICLocalRecordImpl.h">
-      <Filter>TIC</Filter>
-    </ClInclude>
     <ClInclude Include="PushDlg.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SDK\TIC\TICRecorder.h">
+      <Filter>TIC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -107,19 +101,13 @@
     <ClCompile Include="..\SDK\TIC\HttpClient.cpp">
       <Filter>TIC</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\TIC\TICRecorder.cpp">
-      <Filter>TIC</Filter>
-    </ClCompile>
     <ClCompile Include="..\SDK\TIC\jsoncpp\jsoncpp.cpp">
       <Filter>TIC\jsoncpp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SDK\TIC\TICLocalRecordImpl.cpp">
-      <Filter>TIC</Filter>
     </ClCompile>
     <ClCompile Include="PushDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\SDK\TIC\TICLocalRecord.cpp">
+    <ClCompile Include="..\SDK\TIC\TICRecorder.cpp">
       <Filter>TIC</Filter>
     </ClCompile>
   </ItemGroup>

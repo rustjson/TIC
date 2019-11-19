@@ -67,7 +67,7 @@ BOOL CTICDemoDlg::OnInitDialog()
 	//插入TAB页
 	tabCtrl_.InsertItem(0, _T("视频"));
 	tabCtrl_.InsertItem(1, _T("白板"));
-	tabCtrl_.InsertItem(2, _T("推流"));
+	//tabCtrl_.InsertItem(2, _T("推流"));
 
 	videoDlg_->Create(IDD_VIDEO_DIALOG, &tabCtrl_);
 	boardDlg_->Create(IDD_BOARD_DIALOG, &tabCtrl_);
