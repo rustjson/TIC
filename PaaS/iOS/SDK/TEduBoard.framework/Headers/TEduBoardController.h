@@ -81,6 +81,17 @@
  *
  ********************************************************************************************************/
 /**
+ * 设置允许操作哪些用户绘制的图形
+ * @param users             指定允许操作的用户集，为nil表示不加限制
+ * @brief 该接口会产生以下影响：
+ *    1. ERASER 工具只能擦除users参数列出的用户绘制的涂鸦，无法擦除其他人绘制的涂鸦
+ *    2. POINTSELECT、SELECT 工具只能选中users参数列出的用户绘制的涂鸦，无法选中其他人绘制的涂鸦
+ *    3. clear 接口只能用于清空选中涂鸦以及users参数列出的用户绘制的涂鸦，无法清空背景及其他人绘制的涂鸦
+ *    4. 白板包含的其他功能未在本列表明确列出者都可以确定不受本接口影响
+ */
+- (void)setAccessibleUsers:(NSArray<NSString *> *)users;
+
+/**
  * 设置白板是否允许涂鸦
  * @param enabled       是否允许涂鸦，true 表示白板可以涂鸦，false 表示白板不能涂鸦
  * @brief 白板创建后默认为允许涂鸦状态
@@ -244,6 +255,19 @@
  */
 - (void)clearDraws;
 
+/**
+* 清除涂鸦
+* @param  background    是否清除背景色和背景图片
+* @param  selected    是否只清除选中涂鸦
+*/
+- (void)clearBackground:(BOOL)background andSelected:(BOOL)selected;
+
+/**
+* 设置鼠标样式
+* @param toolType  要设置鼠标样式的白板工具类型
+* @param cursorIcon  要设置鼠标样式
+*/
+- (void)setCursorIcon:(TEduBoardToolType)toolType cursorIcon:(TEduBoardCursorIcon *)cursorIcon;
 
 /*********************************************************************************************************
  *
@@ -371,6 +395,7 @@
  * PPT文档默认转为H5动画，能够还原PPT原有动画效果，其它文档转码为静态图片
  * PPT动画转码耗时约1秒/页，所有文档的静态转码耗时约0.5秒/页
  * 转码进度和结果将会通过onTEBFileTranscodeProgress回调返回，详情参见该回调说明文档
+ * @warning 本接口设计用于在接入阶段快速体验转码功能，原则上不建议在生产环境中使用，生产环境中的转码请求建议使用后台服务接口发起
  */
 - (void)applyFileTranscode:(NSString *)path config:(TEduBoardTranscodeConfig *)config;
 
