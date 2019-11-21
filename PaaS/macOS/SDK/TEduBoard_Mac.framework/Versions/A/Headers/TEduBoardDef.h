@@ -280,6 +280,18 @@ typedef NS_ENUM(NSInteger, TEduBoardFileTranscodeStatus)
 @property (nonatomic, strong) NSString *thumbnailUrl;
 @end
 
+
+@interface TEduBoardCursorIcon : NSObject
+//浏览器内置鼠标指针样式，可取值参考文档：https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor
+@property (nonatomic, strong) NSString *cursor;
+//自定义鼠标指针样式的URL，格式限制参考文档：https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor/url
+@property (nonatomic, strong) NSString *url;
+//自定义鼠标指针样式的横行偏移
+@property (nonatomic, assign) UInt32 offsetX;
+ //自定义鼠标指针样式的纵向偏移
+@property (nonatomic, assign) UInt32 offsetY;
+@end
+
 @protocol TEduBoardDelegate <NSObject>
 /*************************************************************************************************
  *
