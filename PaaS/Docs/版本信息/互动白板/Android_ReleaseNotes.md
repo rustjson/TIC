@@ -1,5 +1,10 @@
 # Release Notes - Android
 
+## 2.3.7.255 @ 2019.11.21
+- 增加setAccessibleUsers接口,设置允许操作特定用户绘制的图形
+- 增加clearBackground接口,删除选中涂鸦
+- 增加setCursorIcon接口,自定义鼠标样式
+    
 ## 2.3.6.242 @ 2019.11.14
 - 增加客户端转码接口(PPT、PDF、Word文件转码 applyFileTranscode)
 - 增加客户端转码回调(onTEBFileTranscodeProgress)
