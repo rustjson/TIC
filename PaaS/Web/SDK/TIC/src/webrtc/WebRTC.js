@@ -1,3 +1,4 @@
+import TRTC from 'trtc-js-sdk';
 import Constant from '../constant/Constant';
 
 function TICWebRTC(accountModel, webRTCOptionModel) {
