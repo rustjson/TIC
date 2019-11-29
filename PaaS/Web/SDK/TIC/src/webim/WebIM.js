@@ -1,3 +1,5 @@
+
+import webim from 'tim-js-sdk';
 import IMHandler from './ImHandler';
 import LogReport from '../log/LogReport'
 import Constant from '../constant/Constant';

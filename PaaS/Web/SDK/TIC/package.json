@@ -34,6 +34,7 @@
     "axios": "^0.18.0",
     "babel-plugin-add-module-exports": "^1.0.0",
     "js-md5": "^0.7.3",
+    "tim-js-sdk": "^2.2.1",
     "trtc-js-sdk": "^4.3.1"
   }
 }
